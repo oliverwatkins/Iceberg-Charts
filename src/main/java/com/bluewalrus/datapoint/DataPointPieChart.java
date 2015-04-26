@@ -8,9 +8,9 @@ package com.bluewalrus.datapoint;
 import com.bluewalrus.pie.Segment;
 import java.util.ArrayList;
 
-//
 /**
  *
+ * 
  * @author oliver
  */
 public class DataPointPieChart extends DataPoint {
@@ -20,9 +20,10 @@ public class DataPointPieChart extends DataPoint {
     public ArrayList<Segment> pievalues;
     
     
-    public DataPointPieChart(ArrayList<Segment> pievalues, double xPoint, double yPoint, double magnitutde) {
+    public DataPointPieChart(ArrayList<Segment> pievalues, double xPoint, double yPoint, double magnitude, String name) {
 
         super(xPoint, yPoint);
+        this.name = name;
         this.magnitude = magnitude;
         this.pievalues = pievalues;
         

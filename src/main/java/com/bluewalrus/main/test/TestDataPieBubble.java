@@ -31,27 +31,27 @@ public class TestDataPieBubble {
         ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
         ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-
         
         ArrayList<Segment> al = new ArrayList<Segment>();
-        al.add(new Segment(30, Color.RED));
-        al.add(new Segment(30, Color.PINK));
-        al.add(new Segment(30, Color.BLUE));
-        al.add(new Segment(10, Color.ORANGE));
-        
-        DataPointPieChart dppc = new DataPointPieChart(al, 10, 20, 30);
-        
-        values.add(dppc);
         
         al = new ArrayList<Segment>();
-        al.add(new Segment(25, Color.RED));
-        al.add(new Segment(35, Color.PINK));
-        al.add(new Segment(39, Color.BLUE));
+        al.add(new Segment(55, Color.RED));
+        al.add(new Segment(34, Color.PINK));
+        al.add(new Segment(10, Color.BLUE));
         al.add(new Segment(1, Color.ORANGE));
+
         
-        dppc = new DataPointPieChart(al, 40, 50, 40);
+        DataPointPieChart dppc = new DataPointPieChart(al, 10, 20, 30, "One ");
+        
+        
         
         values.add(dppc);
+        
+        
+        
+        
+        
+        
         
         al = new ArrayList<Segment>();
         al.add(new Segment(5, Color.RED));
@@ -59,18 +59,20 @@ public class TestDataPieBubble {
         al.add(new Segment(30, Color.BLUE));
         al.add(new Segment(10, Color.ORANGE));
         
-        dppc = new DataPointPieChart(al, 45, 55, 40);
+        dppc = new DataPointPieChart(al, 40, 50, 40, "Two ");
+//        
+        values.add(dppc);
+//
+        
+        al = new ArrayList<Segment>();
+        al.add(new Segment(33, Color.RED));
+        al.add(new Segment(33, Color.PINK));
+        al.add(new Segment(34, Color.BLUE));
+        
+        dppc = new DataPointPieChart(al, 60, 70, 15, "Three ");
         
         values.add(dppc);
         
-        
-        
-//        values.add(new DataPointWithMagnitude("Alabama", 51.70, 2.8, 4779736));
-//        
-//        
-//        values.add(new DataPointWithMagnitude("Alaska", 57.80, 2.7, 710231));
-
-
         XYDataSeries series = new XYDataSeries(values, new PieChartPoint(Color.BLUE),
                 null, "1994");
 
@@ -79,7 +81,7 @@ public class TestDataPieBubble {
 
         xySeriesList.add(series);
 
-        double factor = 0.0000001;
+        double factor = 1;
 
         PieBubbleChart chart = new PieBubbleChart(xySeriesList, yAxis, xAxis, factor);
 

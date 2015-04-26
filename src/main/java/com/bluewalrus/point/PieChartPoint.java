@@ -18,7 +18,7 @@ import java.awt.Shape;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
 /**
  *
@@ -43,34 +43,25 @@ public class PieChartPoint extends ComplexXYPoint {
         } else {
             magnitude = pieChartDataPoint.magnitude * xyFactor.yFactor;
         }
-
-        magnitude = 60;
+        
+        System.out.println("Name=" + pieChartDataPoint.name);
+        System.out.println("pieChartDataPoint.magnitude=" + pieChartDataPoint.magnitude);
+        System.out.println("M=" + magnitude);
+        System.out.println("xyFactor.xFactor=" + xyFactor.xFactor);
+        System.out.println("xyFactor.yFactor=" + xyFactor.yFactor);
+        
+        
+        
 
         g.setColor(color);
 
         Paint gp = g.getPaint();
 
-        Color c = new Color(color.getRed(), color.getGreen(), color.getBlue(), 100);
-        Color c2 = new Color(Color.RED.getRed(), Color.RED.getGreen(), Color.RED.getBlue(), 100);
-
-        Color[] colors = {c, c2};
-
-        float[] dist = {.3f, .7f};
-
         int x = (int) (point.x - (magnitude / 2));
         int y = (int) (point.y - (magnitude / 2));
 
-        RadialGradientPaint rgp = new RadialGradientPaint(
-                new Point(point.x, point.y),
-                (int) magnitude,
-                dist,
-                colors);
+        drawPieChart(pieChartDataPoint, g, new Point(x,y), magnitude);
 
-        g.setPaint(rgp);
-
-        drawPieChart(pieChartDataPoint, g);
-
-//        g.fillRect(x, y, (int) magnitude, (int) magnitude );
         g.setPaint(gp);
 
         g.setColor(Color.BLACK);
@@ -79,99 +70,53 @@ public class PieChartPoint extends ComplexXYPoint {
 //        Utils.outlineText(g, "hi there", x, y);
     }
 
-    private void drawPieChart(DataPointPieChart pieChartDataPoint, Graphics2D g2d) {
+    private void drawPieChart(DataPointPieChart pieChartDataPoint, Graphics2D g2d, Point point, double magnitude) {
 
-        double startAngle = 0;
-        ArrayList<Segment> initialSegments = pieChartDataPoint.pievalues;
-        /**
-         * Draw the segments first
-         */
-        for (int i = 0; i < initialSegments.size(); i++) {
+        int startAngle = 0;
+        ArrayList<Segment> values = pieChartDataPoint.pievalues;
+        
+        int width = (int)magnitude;
 
-            Segment s = initialSegments.get(i);
+        System.out.println("");
+        System.out.println("");
 
-            double angleOfThisSegment = (s.magnitude / 100) * 360;
+        System.out.println("name = " + pieChartDataPoint.name);
+        
+        for (int i = 0; i < values.size(); i++) {
 
-            s.startAngle = startAngle;
-            s.angle = angleOfThisSegment;
+            Segment s = values.get(i);
 
-            g2d.fillArc((int)pieChartDataPoint.x, (int)pieChartDataPoint.y, 60, 60, (int)startAngle, (int)-s.angle);
-//            paintSegment(g2d, i, s);
+            Double angleOfThisSegment = (s.magnitude / 100) * 360;
+
+//            s.startAngle = startAngle;
+//            s.angle = angleOfThisSegment; // * Math.PI/180;
+            
+            System.out.println("startAngle = " + startAngle);
+            System.out.println("angleOfThisSegment = " + angleOfThisSegment);
+
+            g2d.setColor(s.color);
+            
+            g2d.fillArc(point.x, point.y, width, width, startAngle, angleOfThisSegment.intValue());
 
             startAngle += angleOfThisSegment;
         }
-
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
+//        int lastPoint = -270;
+//
+//        for (int i = 0; i < values.size(); i++) {
+//                g2d.setColor(colors.get(i));
+//
+//                Double val = values.get(i);
+//                Double angle = (val / 100) * 360;
+//
+//                g2d.fillArc(0, 0, width, width, lastPoint, -angle.intValue());
+//                System.out.println("fill arc " + lastPoint + " "
+//                                + -angle.intValue());
+//
+//                lastPoint = lastPoint + -angle.intValue();
+//        }
     }
 
-    protected void paintSegment(Graphics2D g2d, int i, Segment segment) {
 
-//        int level = segment.level;
-
-//        /**
-//         * Do children. Their start angle is not zero
-//         */
-//        if (segment.children != null && !segment.children.isEmpty()) {
-//
-//            double kidStartAngle = segment.startAngle;
-//
-//            for (int j = 0; j < segment.children.size(); j++) {
-//
-//                Segment kidSegment = segment.children.get(j);
-//
-//                kidSegment.startAngle = kidStartAngle;
-//
-//                //initial angle 
-//                double kidAngle = (kidSegment.magnitude / 100) * 360;
-//
-//                //scale the kid magnitude 
-//                double kidAngleScaled = kidAngle * segment.getRelativeMagnitude();
-//
-//                kidSegment.angle = kidAngleScaled;
-//
-//                paintSegment(g2d, i, kidSegment);
-//
-//                //adjust kid start angle
-//                kidStartAngle = kidStartAngle + (kidSegment.angle);
-//            }
-//        }
-//
-//        Ellipse2D circleSubtract = null;
-//        Ellipse2D circleToDraw = circles.get(level);
-//
-//        //apply scaling to angle.
-//        if (segment.parent == null) {//first level - no scaling needed 
-//            Double angle = (segment.magnitude / 100) * 360;
-//            segment.angle = angle;
-//        } else { //not first level - we need a circle to subtract
-//            circleSubtract = circles.get(level - 1);
-//        }
-//        /**
-//         * Draw with circle1
-//         */
-//        Shape arc2d = new Arc2D.Double(
-//                circleToDraw.getBounds(),
-//                segment.startAngle,
-//                segment.angle,
-//                Arc2D.PIE);
-//
-//        Area a = new Area(arc2d);
-//
-//        /**
-//         * Cut out with circle2
-//         */
-//        if (segment.parent != null) {
-//            a.subtract(new Area(circleSubtract));
-//        }
-//
-//        //get mid point
-//        segment.midpoint = getMidpointOfSegment(circleToDraw, circleSubtract, segment.startAngle, segment.angle);
-//
-//        segment.area = a;
-//
-//        g2d.setColor(Color.BLACK);
-//        g2d.draw(a);
-//        g2d.setColor(segment.color);
-//        g2d.fill(a);
-    }
 }
