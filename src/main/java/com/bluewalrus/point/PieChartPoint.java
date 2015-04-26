@@ -72,7 +72,7 @@ public class PieChartPoint extends ComplexXYPoint {
 
     private void drawPieChart(DataPointPieChart pieChartDataPoint, Graphics2D g2d, Point point, double magnitude) {
 
-        int startAngle = 0;
+        Double startAngle = 0.0;
         ArrayList<Segment> values = pieChartDataPoint.pievalues;
         
         int width = (int)magnitude;
@@ -96,26 +96,11 @@ public class PieChartPoint extends ComplexXYPoint {
 
             g2d.setColor(s.color);
             
-            g2d.fillArc(point.x, point.y, width, width, startAngle, angleOfThisSegment.intValue());
+            g2d.fillArc(point.x, point.y, width, width, startAngle.intValue(), angleOfThisSegment.intValue());
 
             startAngle += angleOfThisSegment;
         }
-        
-        
-//        int lastPoint = -270;
-//
-//        for (int i = 0; i < values.size(); i++) {
-//                g2d.setColor(colors.get(i));
-//
-//                Double val = values.get(i);
-//                Double angle = (val / 100) * 360;
-//
-//                g2d.fillArc(0, 0, width, width, lastPoint, -angle.intValue());
-//                System.out.println("fill arc " + lastPoint + " "
-//                                + -angle.intValue());
-//
-//                lastPoint = lastPoint + -angle.intValue();
-//        }
+
     }
 
 
