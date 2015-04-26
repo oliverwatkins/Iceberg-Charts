@@ -1,6 +1,5 @@
 package com.bluewalrus.pie;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -9,20 +8,18 @@ import java.util.ArrayList;
 import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.Legend;
 import com.bluewalrus.bar.Legendable;
-import com.bluewalrus.chart.Chart;
 
-public class PieChart extends AbstractPieChart implements Legendable{
+public class PieChart extends AbstractPieChart implements Legendable {
 
-	private PieChartType type = PieChartType.MULTI_LEVEL; // the type of pie chart
-
+    private PieChartType type = PieChartType.MULTI_LEVEL; // the type of pie chart
 
     public int initialWidth = 200;
     public int incrementWidth = 80;
 
     private int depth;
-    
+
     /**
-     * 
+     *
      * @param values
      * @param title
      */
@@ -30,21 +27,19 @@ public class PieChart extends AbstractPieChart implements Legendable{
         this(values, 200, 80, title);
     }
 
-    
     /**
      * Multi Level
-     * 
+     *
      * @param values initial pie slice values.
      * @param totalWidth total width of this component
      * @param chartWidth width of the chart (should be less than total width)
-     * @param initialWidth width of the first pie segments. 
+     * @param initialWidth width of the first pie segments.
      * @param incrementWidth width of each outer layer of arches.
      */
-    public PieChart(ArrayList<Segment> values, 
-    		int initialWidth, 
-    		int incrementWidth, String title) {
+    public PieChart(ArrayList<Segment> values,
+            int initialWidth,
+            int incrementWidth, String title) {
 
-    	
 //		if (type == PieChartType.SIMPLE_INDICATOR) {
 //
 //			// colours used for simple indicator
@@ -57,59 +52,50 @@ public class PieChart extends AbstractPieChart implements Legendable{
 //			Double angle = (percent / 100) * 360;
 //			g2d.fillArc(0, 0, width, width, -270, -angle.intValue());
 //		}
-    	
-    	
-
         this.initialWidth = initialWidth;
-        this.incrementWidth = incrementWidth; 
+        this.incrementWidth = incrementWidth;
 
         this.depth = 1;//getDepth(values);
         this.initialSegments = values;
         this.title = title;
 
-        
-    	this.topOffset = 25;
+        this.topOffset = 25;
 
-    	this.leftOffset = 15;
+        this.leftOffset = 15;
 
-    	this.rightOffset = 150;
-    	
-    	this.bottomOffset = 15;
+        this.rightOffset = 150;
+
+        this.bottomOffset = 15;
     }
 
-    
     @Override
     protected void paintComponent(Graphics g) {
-    	drawGraph(g);
+        drawGraph(g);
     }
-    
 
-	@Override
-	protected void drawGraph(Graphics g) {
+    @Override
+    protected void drawGraph(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        
-        calculateHeighAndWidthOfChart();
-        
-        calculateCenterPoint();
-    	
 
-    	
+        calculateHeighAndWidthOfChart();
+
+        calculateCenterPoint();
+
         System.out.println("centerPoint " + centerPoint);
-        
+
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, // Anti-alias!
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-        
         this.circles = getCircleArray(depth);
-        
+
         g2d.drawRect(0, 0, width, height);
         g2d.setColor(backgroundColor);
         g2d.fillRect(0, 0, width, height);
 
-    	drawTitle(g2d);
-    	
-    	this.drawLegend(g2d);
-        
+        drawTitle(g2d);
+
+        this.drawLegend(g2d);
+
         double startAngle = 0;
 
         /**
@@ -130,18 +116,17 @@ public class PieChart extends AbstractPieChart implements Legendable{
         }
     }
 
+    @Override
+    public void drawLegend(Graphics2D g) {
+        ArrayList<Category> categories = new ArrayList<Category>();
 
-	@Override
-	public void drawLegend(Graphics2D g) {
-		ArrayList<Category> categories = new ArrayList<Category>();
-		
-		legend = new Legend(legendFont,this);
-        
-		for (Segment bar : initialSegments) {
-			Category category = new Category(bar.name, bar.color);
-			categories.add(category);
-		}
-		
+        legend = new Legend(legendFont, this);
+
+        for (Segment bar : initialSegments) {
+            Category category = new Category(bar.name, bar.color);
+            categories.add(category);
+        }
+
         super.drawLegend(g, categories);
-	}
+    }
 }

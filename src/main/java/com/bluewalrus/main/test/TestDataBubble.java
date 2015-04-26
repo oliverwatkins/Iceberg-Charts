@@ -12,7 +12,7 @@ import com.bluewalrus.chart.BubbleChart;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointWithMagnitude;
-import com.bluewalrus.point.Bubble;
+import com.bluewalrus.point.BubblePoint;
 
 public class TestDataBubble {
 
@@ -77,7 +77,7 @@ public class TestDataBubble {
 		values.add(new DataPointWithMagnitude("Wyoming",	59.70,	0.9,	563626));
 		
 		
-		XYDataSeries series = new XYDataSeries(values, new Bubble(Color.BLUE),
+		XYDataSeries series = new XYDataSeries(values, new BubblePoint(Color.BLUE),
 				null, "1994");
 
 		YAxis yAxis = new YAxis(0.0, 10.0, 1.0, null, null, "No. of Homicides per 100,000 ");
@@ -122,10 +122,10 @@ public class TestDataBubble {
 		values2.add(new DataPointWithMagnitude(21, 34, 23));
 		values2.add(new DataPointWithMagnitude(26, 42, 21));
 
-		XYDataSeries series = new XYDataSeries(values, new Bubble(Color.BLUE),
+		XYDataSeries series = new XYDataSeries(values, new BubblePoint(Color.BLUE),
 				null, "1994");
 
-		XYDataSeries series2 = new XYDataSeries(values2, new Bubble(
+		XYDataSeries series2 = new XYDataSeries(values2, new BubblePoint(
 				Color.ORANGE), null, "1995");
 
 		YAxis yAxis = new YAxis(0.0, 400.0, 50.0, null, null, "No. of Crimes ");

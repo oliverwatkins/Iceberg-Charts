@@ -22,6 +22,7 @@ import com.bluewalrus.main.test.TestDataBar;
 import com.bluewalrus.main.test.TestDataBubble;
 import com.bluewalrus.main.test.TestDataLineScatter;
 import com.bluewalrus.main.test.TestDataPie;
+import com.bluewalrus.main.test.TestDataPieBubble;
 
 public class BarChartFrame extends JFrame {
 
@@ -130,6 +131,10 @@ public class BarChartFrame extends JFrame {
         charts.add(chart);
         p.add(chart);
 
+        p = createTabbedPane(tabbedPaneLine, "Pie Bubble");
+        chart = TestDataPieBubble.getTestData_Bubble2();
+        charts.add(chart);
+        p.add(chart);
         
         p = createTabbedPane(tabbedPaneLine, "Box Plot");
         chart = TestDataLineScatter.getTestData_BoxPlot();

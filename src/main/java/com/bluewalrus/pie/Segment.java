@@ -15,13 +15,13 @@ import com.bluewalrus.bar.Categorisable;
 
 public class Segment implements Categorisable{
     
-    double startAngle;//starting angle (calculated)
-    double angle; // from magnitude (calculated)
+    public double startAngle;//starting angle (calculated)
+    public double angle; // from magnitude (calculated)
     
     public Color color; //color (supplied by user)
     int level; //level 0 = first level pie chart (supplied by user)
     Segment parent; //parent segment (supplied by user)
-    Double magnitude; //percent (supplied by user)
+    public Double magnitude; //percent (supplied by user)
     public String name; //name of segment (supplied by user)
     
     Area area; //geometric shaped (calculated)
