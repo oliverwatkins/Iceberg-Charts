@@ -131,11 +131,8 @@ public class XYChart extends Chart implements Legendable {
             } else {
                 category = new Category(series.name, series.point, series.line);
             }
-
             categories.add(category);
-
         }
-
         super.drawLegend(g, categories);
     }
 }

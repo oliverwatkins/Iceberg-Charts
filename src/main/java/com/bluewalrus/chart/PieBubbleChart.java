@@ -8,6 +8,9 @@ import com.bluewalrus.bar.YAxis;
 import com.bluewalrus.datapoint.DataPointPieChart;
 
 /**
+ * Shows pies as bubbles in a bubble chart.
+ * 
+ * Magnitude needs to be multiplied by a factor
  * 
  * 
  * @author Oliver Watkins

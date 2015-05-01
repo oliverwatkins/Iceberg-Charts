@@ -5,25 +5,24 @@
  */
 package com.bluewalrus.datapoint;
 
-
 public class DataPoint {
 
-	
-	/**
-	 * Y point only. The X value is determined by an equally spaced bar chart
-	 * @param y
-	 */
+    /**
+     * Y point only. The X value is determined by an equally spaced bar chart
+     *
+     * @param y
+     */
     public DataPoint(double y) {
         this.y = y;
     }
-	
+
     public DataPoint(double x, double y) {
         this.x = x;
         this.y = y;
     }
     public double x;
     public double y;
-    
-	public String name; //may have a name
+
+    public String name; //may have a name
 
 }

@@ -8,7 +8,7 @@ import com.bluewalrus.bar.YAxis;
 import com.bluewalrus.datapoint.DataPointWithMagnitude;
 
 /**
- * Same as LineChart. Add more later
+ * Bubble chart. Magnitudes of all the elements need to be multiplied by a factor.
  *
  * @author Oliver Watkins
  */
@@ -25,9 +25,9 @@ public class BubbleChart extends XYChart { // LineChart{
 
             for (DataPointWithMagnitude dp : al) {
 
-                System.out.println("dp.magnitude before " + dp.magnitude);
+//                System.out.println("dp.magnitude before " + dp.magnitude);
                 dp.magnitude = dp.magnitude * multipleMagnitudeBy;
-                System.out.println("dp.magnitude after " + dp.magnitude);
+//                System.out.println("dp.magnitude after " + dp.magnitude);
             }
         }
     }

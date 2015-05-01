@@ -11,11 +11,14 @@ import com.bluewalrus.renderer.XYFactor;
 
 public class BubblePoint extends ComplexXYPoint {
 
+    //by default scale on Y
+    boolean scaleOnX = false;
+    
     public BubblePoint(Color color) {
         super(color);
     }
 
-    boolean scaleOnX = false;
+
 
     public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor) {
 
@@ -57,7 +60,8 @@ public class BubblePoint extends ComplexXYPoint {
 
         g.setColor(Color.BLACK);
 
-        g.drawString(dpWithM.name, x, y);
+        if (dpWithM.name != null)
+            g.drawString("" + dpWithM.name, x, y);
 
 //        Utils.outlineText(g, "hi there", x, y);
     }
