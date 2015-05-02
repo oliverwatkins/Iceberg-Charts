@@ -1,9 +1,9 @@
 package com.bluewalrus.datapoint;
 
 /**
- * A dataPoint on an XY Graph that also has a magnitude. Common applications of
- * this type of data point would be in a bubble graph and some types of bar
- * graphs.
+ * Used for bubble chart as bubble point (magnitutde is size of bubble)
+ * 
+ * @author lauren
  */
 public class DataPointWithMagnitude extends DataPoint {
 

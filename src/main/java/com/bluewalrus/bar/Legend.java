@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.bluewalrus.bar;
 
 import java.awt.Color;
@@ -20,159 +19,160 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.point.SimpleXYPoint;
 import com.bluewalrus.point.XYPoint;
 
+/**
+ * LegendUI
+ * 
+ * @author lauren
+ */
 public class Legend {
 
-	//padding between the chart and the legend
-	int paddingLegendLeft = 10;
-	//padding between the chart and the legend
-	int paddingLegendRight = 10;
-	//padding square and text
-	int paddingBetweenLegendSquareAndText = 10;
-	//padding for the square that shows symbol
-	int paddingAroundSquare = 3;
-	//cat height (also its height)
-	int squareWidth = 30;
+    //padding between the chart and the legend
+    int paddingLegendLeft = 10;
+    //padding between the chart and the legend
+    int paddingLegendRight = 10;
+    //padding square and text
+    int paddingBetweenLegendSquareAndText = 10;
+    //padding for the display square that shows symbol/point
+    int paddingAroundSquare = 3;
+    //category width (also its height)
+    int squareWidth = 30;
 
-	Color legendBackgroundColor = new Color(243,239,239);
+    Color legendBackgroundColor = new Color(243, 239, 239);
 
-	Chart chart;
-	
-	
-	public Font legendFont = new Font("Arial", Font.PLAIN, 10);
-	
-	private ArrayList<Category> categories = new ArrayList<Category>();
-	
-	public Legend(Font legendFont, Chart chart) {
-		this.chart = chart;
-		this.legendFont = legendFont;
-	}
-	public Legend(Font legendFont, Chart chart, int paddingLeft) {
-		this.chart = chart;
-		this.legendFont = legendFont;
-		this.paddingLegendLeft = paddingLeft;
-	}
+    Chart chart;
 
-	
-	public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> data) {
-		
-		int legendX = (chart.width - chart.rightOffset) + paddingLegendLeft;
-		int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
-		
-		int legendHeight = (data.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
-		int legendWidth = chart.rightOffset - (paddingLegendLeft);
+    public Font legendFont = new Font("Arial", Font.PLAIN, 10);
 
-		FontMetrics fmT = chart.getFontMetrics(legendFont);
+    private ArrayList<Category> categories = new ArrayList<Category>();
 
-		
-		//draw outside rectangle
-		g.setColor(legendBackgroundColor);
-		
-		g.fillRect(legendX, legendY, legendWidth - paddingLegendRight, legendHeight);
-		//draw outside rectangle
-		g.setColor(Color.LIGHT_GRAY);
-		g.drawRect(legendX, 
-				legendY, 
-				legendWidth - paddingLegendRight, 
-				legendHeight);
+    public Legend(Font legendFont, Chart chart) {
+        this.chart = chart;
+        this.legendFont = legendFont;
+    }
 
+    public Legend(Font legendFont, Chart chart, int paddingLeft) {
+        this.chart = chart;
+        this.legendFont = legendFont;
+        this.paddingLegendLeft = paddingLeft;
+    }
 
-		int i = 0;
+    public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> data) {
 
-		for (Category category : data) {
+        int legendX = (chart.width - chart.rightOffset) + paddingLegendLeft;
+        int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
 
-			if (category.block == true) {
-				
-				drawBlock(g, legendX, legendY, i, category);
+        int legendHeight = (data.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
+        int legendWidth = chart.rightOffset - (paddingLegendLeft);
 
-			}else {
-				Line l = category.line;
+        FontMetrics fmT = chart.getFontMetrics(legendFont);
 
-				if (l != null) {
-					drawLine(g, legendX, legendY, i, l);
-				}
-				
-				XYPoint point = category.point;
+        //draw outside rectangle
+        g.setColor(legendBackgroundColor);
 
-				if (point != null) {
-					drawPoint(g, legendX, legendY, i, point);
-				}
-			}
+        g.fillRect(legendX, legendY, legendWidth - paddingLegendRight, legendHeight);
+        //draw outside rectangle
+        g.setColor(Color.LIGHT_GRAY);
+        g.drawRect(legendX, legendY, legendWidth - paddingLegendRight, legendHeight);
 
-			drawText((Graphics2D) g, legendX, legendY, fmT, i, category);
+        int i = 0;
 
-			i++;
-		}
-	}
+        for (Category category : data) {
 
+            if (category.block == true) {
 
-	private void drawText(Graphics2D g, int legendX, int legendY,
-			FontMetrics fmT, int i, Category category) {
-		
-		g.setFont(legendFont);
+                drawBlock(g, legendX, legendY, i, category);
 
-		int legendStringWidth = fmT.stringWidth(category.name);
-		int legendStringHeight = fmT.getHeight();
+            } else {
+                Line l = category.line;
 
-		int textFactor = (squareWidth - legendStringHeight) / 2;
+                if (l != null) {
+                    drawLine(g, legendX, legendY, i, l);
+                }
 
-		int yPos = legendY + ((i + 1) * squareWidth) - textFactor;
-		int xPos = legendX + squareWidth + paddingBetweenLegendSquareAndText;
+                XYPoint point = category.point;
 
-		g.setColor(Color.BLACK);
+                if (point != null) {
+                    drawPoint(g, legendX, legendY, i, point);
+                }
+            }
+            drawText((Graphics2D) g, legendX, legendY, fmT, i, category);
 
-		g.drawString(category.name, xPos, yPos);
-	}
+            i++;
+        }
+    }
 
+    /**
+     * 
+     * @param g
+     * @param legendX
+     * @param legendY
+     * @param fmT
+     * @param i
+     * @param category 
+     */
+    private void drawText(Graphics2D g, int legendX, int legendY,
+            FontMetrics fmT, int i, Category category) {
 
-	private void drawBlock(Graphics g, int legendX, int legendY, int i, Category category) {
-		g.setColor(category.color);
-		
-		int x = legendX + paddingAroundSquare;
-		int y = legendY + (i * squareWidth) + paddingAroundSquare;
-		int width = squareWidth  - 2*paddingAroundSquare;
-		
-		g.fillRect(x, y, width, width);
-	}
+        g.setFont(legendFont);
 
+        int legendStringWidth = fmT.stringWidth(category.name);
+        int legendStringHeight = fmT.getHeight();
 
-	private void drawPoint(Graphics2D g, int legendX, int legendY, int i, XYPoint point) {
-		g.setColor(point.color);
-		int xPos = legendX + squareWidth/2;
-		int yPos = legendY + squareWidth/2 + (i * squareWidth);
-				
-		Point p = new Point(xPos,yPos);
-		
-		
-		if (point instanceof SimpleXYPoint) {
-			point.draw(g, p, null, null);
-		}
-		
-	}
+        int textFactor = (squareWidth - legendStringHeight) / 2;
 
+        int yPos = legendY + ((i + 1) * squareWidth) - textFactor;
+        int xPos = legendX + squareWidth + paddingBetweenLegendSquareAndText;
 
-	private void drawLine(Graphics2D g, int legendX, int legendY, int i, Line l) {
-		
-		int y1 = legendY + (i * squareWidth) + squareWidth / 2;
-		int y2 = y1; //same
-		
-		int x1 = legendX + paddingAroundSquare;
-		int x2 = legendX + squareWidth - (paddingAroundSquare);
-		
-		l.drawLine(g, x1, y1, x2, y2);
-	}
-	
-	public Shape getChartBounds() {
+        g.setColor(Color.BLACK);
 
-		int legendX = (chart.width - chart.rightOffset) + paddingLegendLeft;
-		int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
-		
-		int legendHeight = (categories.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
-		int legendWidth = chart.rightOffset - (paddingLegendLeft);
+        g.drawString(category.name, xPos, yPos);
+    }
 
-		
-		return new Rectangle(legendX, 
-				legendY, 
-				legendWidth, 
-				legendHeight);
-	}
+    private void drawBlock(Graphics g, int legendX, int legendY, int i, Category category) {
+        g.setColor(category.color);
+
+        int x = legendX + paddingAroundSquare;
+        int y = legendY + (i * squareWidth) + paddingAroundSquare;
+        int width = squareWidth - 2 * paddingAroundSquare;
+
+        g.fillRect(x, y, width, width);
+    }
+
+    private void drawPoint(Graphics2D g, int legendX, int legendY, int i, XYPoint point) {
+        g.setColor(point.color);
+        int xPos = legendX + squareWidth / 2;
+        int yPos = legendY + squareWidth / 2 + (i * squareWidth);
+
+        Point p = new Point(xPos, yPos);
+
+        if (point instanceof SimpleXYPoint) {
+            point.draw(g, p, null, null);
+        }
+
+    }
+
+    private void drawLine(Graphics2D g, int legendX, int legendY, int i, Line l) {
+
+        int y1 = legendY + (i * squareWidth) + squareWidth / 2;
+        int y2 = y1; //same
+
+        int x1 = legendX + paddingAroundSquare;
+        int x2 = legendX + squareWidth - (paddingAroundSquare);
+
+        l.drawLine(g, x1, y1, x2, y2);
+    }
+
+    public Shape getChartBounds() {
+
+        int legendX = (chart.width - chart.rightOffset) + paddingLegendLeft;
+        int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
+
+        int legendHeight = (categories.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
+        int legendWidth = chart.rightOffset - (paddingLegendLeft);
+
+        return new Rectangle(legendX,
+                legendY,
+                legendWidth,
+                legendHeight);
+    }
 }

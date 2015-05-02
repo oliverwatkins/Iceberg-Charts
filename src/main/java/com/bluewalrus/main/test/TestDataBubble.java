@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.XAxis;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.YAxis;
@@ -24,6 +23,7 @@ public class TestDataBubble {
 
         ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 
+        //homicide
         values.add(new DataPointWithMagnitude("Alabama", 51.70, 2.8, 4779736));
         values.add(new DataPointWithMagnitude("Alaska", 57.80, 2.7, 710231));
         values.add(new DataPointWithMagnitude("Arizona", 31.10, 3.6, 6392017));
@@ -99,47 +99,48 @@ public class TestDataBubble {
         return chart;
     }
 
-    public static Chart getTestData_Bubble() {
+    public static BubbleChart getTestData_Bubble() {
 
         ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
         ArrayList<DataPoint> values = new ArrayList<DataPoint>();
         ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
 
-        values.add(new DataPointWithMagnitude(10, 73, 100));
-        values.add(new DataPointWithMagnitude(15, 12, 50));
-        values.add(new DataPointWithMagnitude(270, 240, 200));
-        values.add(new DataPointWithMagnitude(45, 16, 10));
-        values.add(new DataPointWithMagnitude(67, 12, 24));
-        values.add(new DataPointWithMagnitude(23, 14, 80));
-        values.add(new DataPointWithMagnitude(76, 66, 70));
-        values.add(new DataPointWithMagnitude(34, 56, 60));
+        values.add(new DataPointWithMagnitude("A", 15, 12, 40));
+        values.add(new DataPointWithMagnitude("B", 40, 20, 50));
+        values.add(new DataPointWithMagnitude("C", 90, 89, 110));
+        values.add(new DataPointWithMagnitude("D", 210, 110, 110));
+        values.add(new DataPointWithMagnitude("E", 300, 130, 24));
+        values.add(new DataPointWithMagnitude("F", 350, 140, 80));
+        values.add(new DataPointWithMagnitude("G", 370, 150, 20));
+        values.add(new DataPointWithMagnitude("H", 400, 160, 120));
 
-        values2.add(new DataPointWithMagnitude(13, 12, 13));
-        values2.add(new DataPointWithMagnitude(16, 67, 45));
-        values2.add(new DataPointWithMagnitude(21, 34, 23));
-        values2.add(new DataPointWithMagnitude(26, 42, 21));
+        values2.add(new DataPointWithMagnitude("A", 15, 22, 20));
+        values2.add(new DataPointWithMagnitude("B", 40, 30, 70));
+        values2.add(new DataPointWithMagnitude("C", 90, 99, 60));
+        values2.add(new DataPointWithMagnitude("D", 210, 140, 87));
+        values2.add(new DataPointWithMagnitude("E", 300, 110, 12));
+        values2.add(new DataPointWithMagnitude("F", 350, 175, 76));
+        values2.add(new DataPointWithMagnitude("G", 370, 134, 40));
+        values2.add(new DataPointWithMagnitude("H", 400, 349, 80));
 
-        XYDataSeries series = new XYDataSeries(values, new BubblePoint(Color.BLUE),
-                null, "1994");
+        XYDataSeries series = new XYDataSeries(values, new BubblePoint(Color.BLUE), null, "Series 1");
+        XYDataSeries series2 = new XYDataSeries(values2, new BubblePoint(Color.ORANGE), null, "Series 2");
 
-        XYDataSeries series2 = new XYDataSeries(values2, new BubblePoint(
-                Color.ORANGE), null, "1995");
-
-        YAxis yAxis = new YAxis(0.0, 400.0, 50.0, null, null, "Height ");
-        XAxis xAxis = new XAxis(0.0, 400.0, 50.0, null, null,
-                "Weight");
+        YAxis yAxis = new YAxis(0.0, 400.0, 50.0, null, null, "Y Axis ");
+        XAxis xAxis = new XAxis(0.0, 400.0, 50.0, null, null, "X Axis");
 
         xySeriesList.add(series);
         xySeriesList.add(series2);
 
         BubbleChart chart = new BubbleChart(xySeriesList, yAxis, xAxis, 1);
 
-        chart.width = 1000;
+        chart.width = 700;
+        chart.height = 700;
         chart.rightOffset = 200;
 
         chart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-        chart.title = "Sea Lion Height versus Weight";
+        chart.title = "Two Series Bubble Chart";
 
         return chart;
     }

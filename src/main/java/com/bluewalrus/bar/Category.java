@@ -5,6 +5,10 @@ import java.awt.Color;
 import com.bluewalrus.point.BubblePoint;
 import com.bluewalrus.point.XYPoint;
 
+/**
+ * 
+ * @author lauren
+ */
 public class Category {
 
     public XYPoint point;
@@ -25,11 +29,14 @@ public class Category {
 
     public Category(String name, XYPoint point, Line line) {
 
+        this.name = name;
+
+        /**
+         * If XY chart is bubble then the point shape is just a filled in square
+         */
         if (point instanceof BubblePoint) {
             this.block = true;
         }
-
-        this.name = name;
 
         if (point != null) {
             this.point = point;

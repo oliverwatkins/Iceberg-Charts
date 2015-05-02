@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bluewalrus.datapoint;
 
 import com.bluewalrus.pie.Segment;
 import java.util.ArrayList;
 
 /**
- *
+ * Datapoint for the crazy pie-bubble chart. Datapoint requires data needed for normal pie chart and magnitude
  * 
  * @author oliver
  */

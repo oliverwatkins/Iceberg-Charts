@@ -158,8 +158,8 @@ public class BarChartFrame extends JFrame {
 
 
 
-        tabbedPane.add("Bar Charts", tabbedPaneBar);
         tabbedPane.add("Scatter Line Charts", tabbedPaneLine);
+        tabbedPane.add("Bar Charts", tabbedPaneBar);
         tabbedPane.add("Pie Charts", tabbedPanePie);
         
         JButton b = new JButton("Create PNG");
@@ -184,13 +184,6 @@ public class BarChartFrame extends JFrame {
 						width = chart2.getWidth(); 
 						height = chart2.getHeight();
 					}
-					
-					
-					
-					
-					
-					
-					
 					
 					BufferedImage image = new BufferedImage(width, height, 
 							BufferedImage.TYPE_INT_ARGB);
@@ -220,7 +213,7 @@ public class BarChartFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
+    public static void mainXX(String[] args) {
         BarChartFrame frame = new BarChartFrame();
         frame.setVisible(true);
     }

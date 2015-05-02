@@ -35,13 +35,13 @@ public class XYChart extends Chart implements Legendable {
 
         yAxis.drawYGridLineOnZero(g, this);
 
-        drawGridLine(yAxis.tick3, g, 1);
-        drawGridLine(yAxis.tick2, g, 1);
-        drawGridLine(yAxis.tick1, g, 1);
+        drawGridLine(yAxis.interval3, g, 1);
+        drawGridLine(yAxis.interval2, g, 1);
+        drawGridLine(yAxis.interval1, g, 1);
 
-        drawGridLine(xAxis.tick3, g, 0);
-        drawGridLine(xAxis.tick2, g, 0);
-        drawGridLine(xAxis.tick1, g, 0);
+        drawGridLine(xAxis.interval3, g, 0);
+        drawGridLine(xAxis.interval2, g, 0);
+        drawGridLine(xAxis.interval1, g, 0);
     }
 
     private void drawGridLine(Interval tick, Graphics2D g, int type) {
@@ -74,8 +74,8 @@ public class XYChart extends Chart implements Legendable {
 
         drawGrid(g2d);
 
-        yAxis.drawTicks(g2d, this);
-        yAxis.drawTickLabels(this.yAxis.tick1.increment, g2d, Color.BLACK, this);
+        yAxis.drawIntervals(g2d, this);
+        yAxis.drawIntervalLabels(this.yAxis.interval1.increment, g2d, Color.BLACK, this);
         yAxis.drawLabel(g2d, this);
 
     }
@@ -92,11 +92,11 @@ public class XYChart extends Chart implements Legendable {
 
         this.prePaint(g2d);
 
-        xAxis.drawTicks(g, this);
+        xAxis.drawIntervals(g, this);
 
-        System.out.println("xAxis.drawTickLabels(this.yAxis.tick1.increment " + this.yAxis.tick1.increment);
+        System.out.println("xAxis.drawTickLabels(this.yAxis.tick1.increment " + this.yAxis.interval1.increment);
 
-        xAxis.drawAllTickLabels(g, this);
+        xAxis.drawAllIntervalLabels(g, this);
 
         xAxis.drawLabel(g, this);
 

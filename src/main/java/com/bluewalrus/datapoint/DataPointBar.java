@@ -2,6 +2,10 @@ package com.bluewalrus.datapoint;
 
 import java.awt.Color;
 
+/**
+ * 
+ * @author lauren
+ */
 public class DataPointBar extends DataPoint {
 
     public String name;

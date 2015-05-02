@@ -6,13 +6,11 @@
 
 package com.bluewalrus.bar;
 
-
 /**
  * Describes a graphical interval along an axis. 
  * 
  * @author Oliver Watkins
  */
-
 public class Interval {
 
     public Line graphLine;

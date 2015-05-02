@@ -22,6 +22,13 @@ public class BarChart extends XYChart {
 
     public BarChart(XAxis xAxis, YAxis yAxis, ArrayList<Bar> bars, BarPoint barPoint) {
         super(xAxis, yAxis);
+        
+        //inverse relationship?
+        /**
+         * The reason baropint needs to reference the chart is because of the dimensions
+         * of the bar need to be measured from the X-Axis. Labels ticks everything is related
+         * to dimensions of chart. Not sure if possible to remove this dependency
+         */
         barPoint.chart = this;
 
         data = new ArrayList<XYDataSeries>();
