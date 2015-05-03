@@ -8,17 +8,25 @@ import com.bluewalrus.bar.YAxis;
 import com.bluewalrus.datapoint.DataPointPieChart;
 
 /**
- * Shows pies as bubbles in a bubble chart.
+ * ShowpieBubbleChartSettings piepieBubbleChartSettings apieBubbleChartSettings bubblepieBubbleChartSettings in a bubble chart.
  * 
- * Magnitude needs to be multiplied by a factor
+ * Magnitude needpieBubbleChartSettings to be multiplied by a factor
  * 
- * 
- * @author Oliver Watkins
+ * @author Oliver WatkinpieBubbleChartSettings
  */
 public class PieBubbleChart extends XYChart {
-
-    public PieBubbleChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis,
-            XAxis xAxis, double multipleMagnitudeBy) {
+    
+    
+    PieBubbleChartSettings pieBubbleChartSettings;
+            
+    public PieBubbleChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis, XAxis xAxis, double multipleMagnitudeBy, PieBubbleChartSettings s) {
+        
+        this(listOfSeries, yAxis, xAxis, multipleMagnitudeBy);
+        this.pieBubbleChartSettings = s;
+    }
+    
+    
+    public PieBubbleChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis, XAxis xAxis, double multipleMagnitudeBy) {
 
         super(listOfSeries, yAxis, xAxis);
 

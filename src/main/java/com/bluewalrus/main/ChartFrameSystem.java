@@ -7,26 +7,12 @@
 package com.bluewalrus.main;
 
 import com.bluewalrus.chart.BubbleChart;
-import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.TestDataBar;
 import com.bluewalrus.main.test.TestDataBubble;
-import com.bluewalrus.main.test.TestDataLineScatter;
-import com.bluewalrus.main.test.TestDataPie;
-import com.bluewalrus.main.test.TestDataPieBubble;
 import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 
 /**
@@ -41,14 +27,23 @@ public class ChartFrameSystem  extends JFrame {
     	
         BubbleChart chart = TestDataBubble.getTestData_Bubble();
         
-        JSlider s = new JSlider(JSlider.VERTICAL, 10, 40, 10);
-        JSlider s2 = new JSlider(JSlider.HORIZONTAL, 10, 40, 10);
+//        JSlider s = new JSlider(JSlider.VERTICAL, 10, 40, 10);
+//        JSlider s2 = new JSlider(JSlider.HORIZONTAL, 10, 40, 10);
         
-        BottomControls bc = new BottomControls(chart);
+        
+        JTabbedPane tabbedPane = new JTabbedPane();
+        
+//        BottomControls2 bc = new BottomControls2(chart);
+        
+        AxisPropertiesPanel panelX = new AxisPropertiesPanel(chart.xAxis);
+        AxisPropertiesPanel panelY = new AxisPropertiesPanel(chart.yAxis);
+        
+        tabbedPane.add(panelX);
+        tabbedPane.add(panelY);
         
         getContentPane().add(chart);
-        getContentPane().add(bc, BorderLayout.SOUTH);
-        getContentPane().add(s, BorderLayout.EAST);
+        getContentPane().add(tabbedPane, BorderLayout.SOUTH);
+//        getContentPane().add(s, BorderLayout.EAST);
         
         setSize(1400, 1100);
 

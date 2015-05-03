@@ -7,7 +7,7 @@ package com.bluewalrus.datapoint;
  */
 public class DataPointWithMagnitude extends DataPoint {
 
-    public double magnitude;
+    public double magnitude; 
     public String name;
 
     public DataPointWithMagnitude(double x, double y, double magnitude) {

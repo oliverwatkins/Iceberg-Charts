@@ -18,15 +18,15 @@ public class BottomControls2 extends JPanel {
         // Variables declaration - do not modify                     
     private javax.swing.JButton applyButton;
     
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+//    private javax.swing.JLabel jLabel1;
+//    private javax.swing.JLabel jLabel2;
+//    private javax.swing.JLabel jLabel3;
+//    private javax.swing.JLabel jLabel4;
+//    private javax.swing.JLabel jLabel5;
+//    private javax.swing.JLabel jLabel6;
+//    private javax.swing.JLabel jLabel7;
+//    private javax.swing.JPanel jPanel1;
+//    private javax.swing.JPanel jPanel2;
     
     private javax.swing.JTabbedPane incrementTab;
     private javax.swing.JTextField maxXValueField;
@@ -53,35 +53,16 @@ public class BottomControls2 extends JPanel {
         this.setLayout(new BorderLayout());
         
         minXValueField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         minYValueField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         maxXValueField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         maxYValueField = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         applyButton = new javax.swing.JButton();
         incrementTab = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
         x1IncField = new javax.swing.JTextField();
         x2IncField = new javax.swing.JTextField();
         x3IncField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-
-        jLabel1.setText("X Primary Increments");
-        jLabel6.setText("X Primary Secondary Increments");
-        jLabel7.setText("X Primary Tertiary Increments");
-
-        jLabel2.setText("min. Y Value");
-        jLabel3.setText("max. Y Value");
-        jLabel4.setText("max. X Value");
 
         maxYValueField.setText(" ");
-        
-        jLabel5.setText("min. X Value");
 
         applyButton.setText("Apply");
         applyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -90,10 +71,8 @@ public class BottomControls2 extends JPanel {
             }
         });
 
-//        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        
-//        jPanel1.setLayout(new BorderLayout());
         JPanel topPanel = new JPanel(new GridBagLayout());
+        JPanel bottomPanel = new JPanel(new BorderLayout());
         
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -122,11 +101,15 @@ public class BottomControls2 extends JPanel {
         
         this.add(topPanel, BorderLayout.NORTH);
         this.add(incrementTab, BorderLayout.CENTER);
-
-        incrementTab.addTab("X increments", jPanel1);
-
-        incrementTab.addTab("Y increments", jPanel2);
-
+        this.add(bottomPanel, BorderLayout.CENTER);
+        
+        
+        JPanel xIncrements = new JPanel();
+        JPanel yIncrements = new JPanel();
+        
+        
+        incrementTab.addTab("X increments", xIncrements);
+        incrementTab.addTab("Y increments", yIncrements);
     }                     
 
                                             
@@ -155,22 +138,5 @@ public class BottomControls2 extends JPanel {
 
             e.printStackTrace();
         }
-
-//        x1IncField.getText();
-//        x2IncField.getText();
-//        x3IncField.getText();
-        //apply
-// TODO add your handling code here:
     }                                           
-
-    private void x3IncFieldActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
-
-    private void maxYValueFieldActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
-    }                                              
-
-
-              
 }

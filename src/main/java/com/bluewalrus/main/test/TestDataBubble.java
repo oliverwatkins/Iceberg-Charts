@@ -84,7 +84,7 @@ public class TestDataBubble {
 
         xySeriesList.add(series);
 
-        double factor = 0.0000001;
+        double factor = 0.000005;
 
         BubbleChart chart = new BubbleChart(xySeriesList, yAxis, xAxis, factor);
 
@@ -133,8 +133,9 @@ public class TestDataBubble {
         xySeriesList.add(series);
         xySeriesList.add(series2);
 
-        BubbleChart chart = new BubbleChart(xySeriesList, yAxis, xAxis, 1);
+        BubbleChart chart = new BubbleChart(xySeriesList, yAxis, xAxis, 15);
 
+        
         chart.width = 700;
         chart.height = 700;
         chart.rightOffset = 200;

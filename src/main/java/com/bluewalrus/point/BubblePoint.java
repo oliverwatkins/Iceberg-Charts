@@ -9,6 +9,14 @@ import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.renderer.XYFactor;
 
+/**
+ * TODO offer option of setting magnitude as radius or area!!!
+ * 
+ * At the moment is radius only.
+ * 
+ * @author lauren
+ */
+
 public class BubblePoint extends ComplexXYPoint {
 
     //by default scale on Y
@@ -31,6 +39,18 @@ public class BubblePoint extends ComplexXYPoint {
         } else {
             mag = dpWithM.magnitude * xyFactor.yFactor;
         }
+        
+        
+        /**
+         * Magnitude is equivalent to area of circle.
+         * 
+         * So we calculate the radius like this :
+         * 
+         * radius = sqrt(area / pie)
+         */
+//        double radius = mag/2;
+//        double radius = mag/2;
+        double radius = Math.sqrt(mag/Math.PI);
 
         g.setColor(color);
 
@@ -43,8 +63,9 @@ public class BubblePoint extends ComplexXYPoint {
 
         float[] dist = {.3f, .7f};
 
-        int x = (int) (point.x - (mag / 2));
-        int y = (int) (point.y - (mag / 2));
+        //pull x y to the top left corner
+        int x = (int) (point.x - (radius));
+        int y = (int) (point.y - (radius));
 
         RadialGradientPaint rgp = new RadialGradientPaint(
                 new Point(point.x, point.y),
@@ -54,7 +75,7 @@ public class BubblePoint extends ComplexXYPoint {
 
         g.setPaint(rgp);
 
-        g.fillOval(x, y, (int) mag, (int) mag );
+        g.fillOval(x, y, (int)radius*2, (int)radius*2 );
 
         g.setPaint(gp);
 

@@ -5,6 +5,7 @@
  */
 package com.bluewalrus.point;
 
+import com.bluewalrus.chart.PieBubbleChartSettings;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointPieChart;
 import com.bluewalrus.pie.Segment;
@@ -14,11 +15,7 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
-import java.awt.Shape;
-import java.awt.geom.Arc2D;
-import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
-import java.util.ArrayList; 
+import java.util.ArrayList;
 
 /**
  *
@@ -26,11 +23,14 @@ import java.util.ArrayList;
  */
 public class PieChartPoint extends ComplexXYPoint {
 
-    public PieChartPoint(Color color) {
-        super(color);
-    }
+    PieBubbleChartSettings pbcs;
 
     boolean scaleOnX = false;
+
+    public PieChartPoint(Color color, PieBubbleChartSettings pbcs) {
+        super();
+        this.pbcs = pbcs;
+    }
 
     public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor) {
 
@@ -43,15 +43,6 @@ public class PieChartPoint extends ComplexXYPoint {
         } else {
             magnitude = pieChartDataPoint.magnitude * xyFactor.yFactor;
         }
-        
-        System.out.println("Name=" + pieChartDataPoint.name);
-        System.out.println("pieChartDataPoint.magnitude=" + pieChartDataPoint.magnitude);
-        System.out.println("M=" + magnitude);
-        System.out.println("xyFactor.xFactor=" + xyFactor.xFactor);
-        System.out.println("xyFactor.yFactor=" + xyFactor.yFactor);
-        
-        
-        
 
         g.setColor(color);
 
@@ -60,12 +51,12 @@ public class PieChartPoint extends ComplexXYPoint {
         int x = (int) (point.x - (magnitude / 2));
         int y = (int) (point.y - (magnitude / 2));
 
-        drawPieChart(pieChartDataPoint, g, new Point(x,y), magnitude);
+        drawPieChart(pieChartDataPoint, g, point, magnitude);
 
         g.setPaint(gp);
 
         g.setColor(Color.BLACK);
-        g.drawString("blah " + pieChartDataPoint.name, x, y);
+        g.drawString(pieChartDataPoint.name, x, y);
 
 //        Utils.outlineText(g, "hi there", x, y);
     }
@@ -74,34 +65,55 @@ public class PieChartPoint extends ComplexXYPoint {
 
         Double startAngle = 0.0;
         ArrayList<Segment> values = pieChartDataPoint.pievalues;
-        
-        int width = (int)magnitude;
 
-        System.out.println("");
-        System.out.println("");
-
-        System.out.println("name = " + pieChartDataPoint.name);
+        int width = (int) magnitude;
         
+        //TODO mag should be not beradius
+
+        int alpha = 256;
+
+        //pull x y to the top left corner
+        int x = (int) (point.x - (magnitude / 2));
+        int y = (int) (point.y - (magnitude / 2));
+        
+        if (this.pbcs != null) {
+
+            Color c1 = new Color(pbcs.c1.getRed(), pbcs.c1.getGreen(), pbcs.c1.getBlue(), pbcs.frontalTransparancy);
+            Color c2 = new Color(pbcs.c2.getRed(), pbcs.c2.getGreen(), pbcs.c2.getBlue(), pbcs.frontalTransparancy);
+
+            Color[] colors = {c1, c2};
+
+            float[] dist = {.3f, .7f};
+
+            RadialGradientPaint rgp = new RadialGradientPaint(
+                    new Point(point.x, point.y),
+                    (int) width,
+                    dist,
+                    colors);
+
+            g2d.setPaint(rgp);
+
+            
+            System.out.println(" x " + x);
+            System.out.println(" y " + y);
+            
+            g2d.fillOval(x, y, (int) width, (int) width);
+
+            alpha = this.pbcs.frontalTransparancy;
+        }
+
         for (int i = 0; i < values.size(); i++) {
 
             Segment s = values.get(i);
 
             Double angleOfThisSegment = (s.magnitude / 100) * 360;
 
-//            s.startAngle = startAngle;
-//            s.angle = angleOfThisSegment; // * Math.PI/180;
-            
-            System.out.println("startAngle = " + startAngle);
-            System.out.println("angleOfThisSegment = " + angleOfThisSegment);
+            Color c = new Color(s.color.getRed(), s.color.getGreen(), s.color.getBlue(), alpha);
+            g2d.setColor(c);
 
-            g2d.setColor(s.color);
-            
-            g2d.fillArc(point.x, point.y, width, width, startAngle.intValue(), angleOfThisSegment.intValue());
+            g2d.fillArc(x, y, width, width, startAngle.intValue(), angleOfThisSegment.intValue());
 
             startAngle += angleOfThisSegment;
         }
-
     }
-
-
 }

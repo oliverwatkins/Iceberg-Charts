@@ -1,7 +1,6 @@
 package com.bluewalrus.main;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +23,9 @@ import com.bluewalrus.main.test.TestDataLineScatter;
 import com.bluewalrus.main.test.TestDataPie;
 import com.bluewalrus.main.test.TestDataPieBubble;
 
-public class BarChartFrame extends JFrame {
+public class IcebergChartsDemo extends JFrame {
 
-    public BarChartFrame() {
+    public IcebergChartsDemo() {
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
@@ -213,8 +212,8 @@ public class BarChartFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public static void mainXX(String[] args) {
-        BarChartFrame frame = new BarChartFrame();
+    public static void main(String[] args) {
+        IcebergChartsDemo frame = new IcebergChartsDemo();
         frame.setVisible(true);
     }
 
