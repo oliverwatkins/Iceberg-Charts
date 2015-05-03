@@ -9,7 +9,9 @@ package com.bluewalrus.main;
 import com.bluewalrus.chart.BubbleChart;
 import com.bluewalrus.main.test.TestDataBubble;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -31,18 +33,18 @@ public class ChartFrameSystem  extends JFrame {
 //        JSlider s2 = new JSlider(JSlider.HORIZONTAL, 10, 40, 10);
         
         
-        JTabbedPane tabbedPane = new JTabbedPane();
+        JPanel jpanel = new JPanel(new GridLayout(1, 3));
         
 //        BottomControls2 bc = new BottomControls2(chart);
         
         AxisPropertiesPanel panelX = new AxisPropertiesPanel(chart.xAxis);
         AxisPropertiesPanel panelY = new AxisPropertiesPanel(chart.yAxis);
         
-        tabbedPane.add(panelX);
-        tabbedPane.add(panelY);
+        jpanel.add(panelX);
+        jpanel.add(panelY);
         
         getContentPane().add(chart);
-        getContentPane().add(tabbedPane, BorderLayout.SOUTH);
+        getContentPane().add(jpanel, BorderLayout.SOUTH);
 //        getContentPane().add(s, BorderLayout.EAST);
         
         setSize(1400, 1100);

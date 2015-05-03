@@ -7,11 +7,13 @@
 package com.bluewalrus.main;
 
 import com.bluewalrus.bar.Axis;
+import com.bluewalrus.bar.Interval;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -43,6 +45,8 @@ public class IntervalPanel extends JPanel {
         
         this.initComponents();
     }
+    
+
 
     private void initComponents() {
         this.setBorder(BorderFactory.createTitledBorder("Intervals"));
@@ -50,35 +54,28 @@ public class IntervalPanel extends JPanel {
 
         GridBagConstraints gbc = new GridBagConstraints();
 
+        
+        drawInterval(axis.interval1, gbc, 0, x1IncField);
+        drawInterval(axis.interval2, gbc, 1, x2IncField);
+        drawInterval(axis.interval3, gbc, 2, x3IncField);
+        
+    }
+    
+    public void drawInterval(Interval interval1, GridBagConstraints gbc, int position, JTextField incField) {
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = position;
         
-        this.add(new JLabel("Increment 1 "), gbc);
-
+        this.add(new JLabel("Increment " + position), gbc);
         gbc.gridx = 1;
-        gbc.gridy = 0;
+        this.add(incField, gbc);
 
-        this.add(x1IncField, gbc);
-        
-        gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridx = 2;
 
-        this.add(new JLabel("Increment 2"), gbc);
+        this.add(new JLabel("Tick Length "), gbc);
         
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-
         
-        this.add(x2IncField, gbc);
-        
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-
-        this.add(new JLabel("Increment 3"), gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        this.add(x3IncField, gbc);
-        
+        gbc.gridx = 3;
+        this.add(new JTextField(10), gbc);
         
     }
 }
