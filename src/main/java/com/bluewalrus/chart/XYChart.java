@@ -9,10 +9,8 @@ import com.bluewalrus.bar.Interval;
 import com.bluewalrus.renderer.LineRenderer;
 import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.Legendable;
-import com.bluewalrus.bar.XAxis;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
-import com.bluewalrus.bar.YAxis;
 
 import java.awt.Color;
 import java.awt.Graphics;

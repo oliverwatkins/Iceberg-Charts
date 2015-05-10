@@ -2,9 +2,7 @@ package com.bluewalrus.chart;
 
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.XAxis;
 import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.bar.YAxis;
 
 /**
  * Same as LineChart. Add more later

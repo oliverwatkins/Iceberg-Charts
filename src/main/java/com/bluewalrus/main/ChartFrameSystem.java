@@ -11,7 +11,7 @@ import com.bluewalrus.main.test.TestDataBubble;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,25 +29,25 @@ public class ChartFrameSystem  extends JFrame {
     	
         BubbleChart chart = TestDataBubble.getTestData_Bubble();
         
-//        JSlider s = new JSlider(JSlider.VERTICAL, 10, 40, 10);
-//        JSlider s2 = new JSlider(JSlider.HORIZONTAL, 10, 40, 10);
-        
-        
         JPanel jpanel = new JPanel(new GridLayout(1, 3));
-        
-//        BottomControls2 bc = new BottomControls2(chart);
         
         AxisPropertiesPanel panelX = new AxisPropertiesPanel(chart.xAxis);
         AxisPropertiesPanel panelY = new AxisPropertiesPanel(chart.yAxis);
         
+        ChartPropertiesPanel panelC = new ChartPropertiesPanel(chart);
+        
+        JButton b = new JButton("Apply");
+        
         jpanel.add(panelX);
         jpanel.add(panelY);
+        jpanel.add(panelC);
+        jpanel.add(b);
         
         getContentPane().add(chart);
         getContentPane().add(jpanel, BorderLayout.SOUTH);
 //        getContentPane().add(s, BorderLayout.EAST);
         
-        setSize(1400, 1100);
+        setSize(1600, 900);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

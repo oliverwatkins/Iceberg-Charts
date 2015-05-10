@@ -4,9 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import com.bluewalrus.bar.Bar;
-import com.bluewalrus.bar.XAxis;
 import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.bar.YAxis;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.BarPoint;
 

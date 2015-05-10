@@ -6,7 +6,7 @@
 
 package com.bluewalrus.main;
 
-import com.bluewalrus.bar.Axis;
+import com.bluewalrus.chart.Axis;
 import com.bluewalrus.bar.Interval;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -60,6 +60,8 @@ public class IntervalPanel extends JPanel {
         drawInterval(axis.interval3, gbc, 2, x3IncField);
         
     }
+
+    private JTextField tickLength = new JTextField(10);
     
     public void drawInterval(Interval interval1, GridBagConstraints gbc, int position, JTextField incField) {
         gbc.gridx = 0;
@@ -73,9 +75,17 @@ public class IntervalPanel extends JPanel {
 
         this.add(new JLabel("Tick Length "), gbc);
         
-        
         gbc.gridx = 3;
-        this.add(new JTextField(10), gbc);
+        this.add(tickLength, gbc);
+        
+        
+        
+    }
+    
+    
+    public void apply() {
+        
+//        axis
         
     }
 }

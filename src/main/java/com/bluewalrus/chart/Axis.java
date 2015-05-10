@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bluewalrus.bar;
+package com.bluewalrus.chart;
 
+import com.bluewalrus.bar.Interval;
+import com.bluewalrus.bar.Line;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -20,6 +22,7 @@ import com.bluewalrus.chart.Chart;
 public abstract class Axis {
 
     public AxisType type;
+
 
     public enum AxisType {
 
@@ -142,4 +145,7 @@ public abstract class Axis {
     public abstract void drawIntervalLabels(Double increment, Graphics g, Color c, Chart chart);
 
     public abstract void drawGridLine(Interval tick, Graphics2D g, Chart chart);
+    
+    public abstract String getName();
+
 }

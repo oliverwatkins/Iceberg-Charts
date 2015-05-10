@@ -1,5 +1,6 @@
-package com.bluewalrus.bar;
+package com.bluewalrus.chart;
 
+import com.bluewalrus.bar.Interval;
 import com.bluewalrus.chart.Chart;
 import java.awt.Color;
 import java.awt.Font;
@@ -31,6 +32,11 @@ public class XAxis extends Axis {
         super(minValue, maxValue, t1, t2, t3, name);
     }
 
+    
+    public String getName() {
+        return "X Axis";
+    }
+    
     protected void drawTick(Double increment, Graphics g, Color c, int tickWidth, Chart chart) {
 
         if (type == AxisType.BLANK) {

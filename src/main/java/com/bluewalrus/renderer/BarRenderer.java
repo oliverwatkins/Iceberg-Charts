@@ -5,10 +5,10 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Axis;
+import com.bluewalrus.chart.Axis;
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.MultiBar;
-import com.bluewalrus.bar.XAxis;
+import com.bluewalrus.chart.XAxis;
 import com.bluewalrus.chart.Chart;
 
 public class BarRenderer {

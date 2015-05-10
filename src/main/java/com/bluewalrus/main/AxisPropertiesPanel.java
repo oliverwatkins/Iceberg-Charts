@@ -1,9 +1,10 @@
 package com.bluewalrus.main;
 
-import com.bluewalrus.bar.Axis;
+import com.bluewalrus.chart.Axis;
 import com.bluewalrus.chart.XYChart;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -14,28 +15,39 @@ import javax.swing.JTextField;
  */
 public class AxisPropertiesPanel extends JPanel {
 
-//    String axis = "";
+    
+    private IntervalPanel interval;
 
+//    String axis = "";
     private JTextField maxValueField;
     private JTextField minValueField;
 
     private Axis axis;
-    
+
     AxisPropertiesPanel(Axis axis) {
-        
-        
+
+        setBorder(BorderFactory.createTitledBorder(axis.getName()));
+
 //        this.chart = chart;
 //        this.chart.xAxis.maxValue
-        
         this.axis = axis;
 
         minValueField = new javax.swing.JTextField(10);
         maxValueField = new javax.swing.JTextField(10);
-        
+
         minValueField.setText("" + axis.minValue);
         maxValueField.setText("" + axis.maxValue);
 
         this.initComponents();
+    }
+
+    private void apply() {
+
+        axis.minValue = new Double(minValueField.getText());
+        axis.maxValue = new Double(maxValueField.getText());
+        
+        interval.apply();
+
     }
 
     private void initComponents() {
@@ -62,10 +74,9 @@ public class AxisPropertiesPanel extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;
-        
-        IntervalPanel interval = new IntervalPanel(this.axis);
+
+        interval = new IntervalPanel(this.axis);
 
         this.add(interval, gbc);
     }
-
 }

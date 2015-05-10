@@ -1,6 +1,7 @@
-package com.bluewalrus.bar;
+package com.bluewalrus.chart;
 
-import com.bluewalrus.chart.Chart;
+import com.bluewalrus.bar.Interval;
+import com.bluewalrus.bar.Utils;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -117,7 +118,8 @@ public class YAxis extends Axis {
 
         g.drawLine(x1, y1, x2, y2);
     }
-
+    
+        
     public void drawIntervalLabels(Double increment, Graphics g, Color c, Chart chart) {
 
         int incrementNo = (int) ((maxValue - minValue) / increment);
@@ -193,5 +195,9 @@ public class YAxis extends Axis {
 
         //reset
         g2d.setTransform(oldTransform);
+    }
+    
+    public String getName() {
+        return "Y Axis";
     }
 }
