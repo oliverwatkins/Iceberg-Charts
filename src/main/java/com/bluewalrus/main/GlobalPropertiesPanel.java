@@ -39,9 +39,9 @@ public class GlobalPropertiesPanel extends JPanel {
 
         this.setLayout(new GridBagLayout());
 
-        this.add(new JLabel("Min Value "));
-        this.add(minXValueField);
-        this.add(new JLabel("Max Value "));
-        this.add(maxXValueField);   
+//        this.add(new JLabel("Min Value "));
+//        this.add(minXValueField);
+//        this.add(new JLabel("Max Value "));
+//        this.add(maxXValueField);   
     }
 }

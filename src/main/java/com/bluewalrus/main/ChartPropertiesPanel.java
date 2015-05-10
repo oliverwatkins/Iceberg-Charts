@@ -20,4 +20,9 @@ public class ChartPropertiesPanel extends JPanel{
         
             setBorder(BorderFactory.createTitledBorder("Chart Properties"));
         }
+
+		public void apply() {
+			// TODO Auto-generated method stub
+			
+		}
 }

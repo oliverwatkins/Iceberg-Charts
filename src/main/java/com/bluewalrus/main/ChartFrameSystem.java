@@ -8,9 +8,13 @@ package com.bluewalrus.main;
 
 import com.bluewalrus.chart.BubbleChart;
 import com.bluewalrus.main.test.TestDataBubble;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -27,21 +31,36 @@ public class ChartFrameSystem  extends JFrame {
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
-        BubbleChart chart = TestDataBubble.getTestData_Bubble();
+        final BubbleChart chart = TestDataBubble.getTestData_Bubble();
         
         JPanel jpanel = new JPanel(new GridLayout(1, 3));
         
-        AxisPropertiesPanel panelX = new AxisPropertiesPanel(chart.xAxis);
-        AxisPropertiesPanel panelY = new AxisPropertiesPanel(chart.yAxis);
+        final AxisPropertiesPanel panelX = new AxisPropertiesPanel(chart.xAxis, chart);
+        final AxisPropertiesPanel panelY = new AxisPropertiesPanel(chart.yAxis, chart);
         
-        ChartPropertiesPanel panelC = new ChartPropertiesPanel(chart);
+        final ChartPropertiesPanel panelC = new ChartPropertiesPanel(chart);
         
-        JButton b = new JButton("Apply");
+        JButton applyButton = new JButton("Apply");
         
         jpanel.add(panelX);
         jpanel.add(panelY);
         jpanel.add(panelC);
-        jpanel.add(b);
+        jpanel.add(applyButton);
+        
+        
+        applyButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				panelX.apply();
+				panelY.apply();
+				panelC.apply();
+				
+				chart.updateUI();
+				// TODO Auto-generated method stub
+				
+			}
+		});
         
         getContentPane().add(chart);
         getContentPane().add(jpanel, BorderLayout.SOUTH);

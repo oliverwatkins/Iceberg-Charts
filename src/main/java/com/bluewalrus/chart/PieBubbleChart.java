@@ -6,39 +6,40 @@ import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.datapoint.DataPointPieChart;
 
 /**
- * ShowpieBubbleChartSettings piepieBubbleChartSettings apieBubbleChartSettings bubblepieBubbleChartSettings in a bubble chart.
+ * ShowpieBubbleChartSettings piepieBubbleChartSettings apieBubbleChartSettings
+ * bubblepieBubbleChartSettings in a bubble chart.
  * 
  * Magnitude needpieBubbleChartSettings to be multiplied by a factor
  * 
  * @author Oliver WatkinpieBubbleChartSettings
  */
 public class PieBubbleChart extends XYChart {
-    
-    
-    PieBubbleChartSettings pieBubbleChartSettings;
-            
-    public PieBubbleChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis, XAxis xAxis, double multipleMagnitudeBy, PieBubbleChartSettings s) {
-        
-        this(listOfSeries, yAxis, xAxis, multipleMagnitudeBy);
-        this.pieBubbleChartSettings = s;
-    }
-    
-    
-    public PieBubbleChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis, XAxis xAxis, double multipleMagnitudeBy) {
 
-        super(listOfSeries, yAxis, xAxis);
+	PieBubbleChartSettings pieBubbleChartSettings;
 
-        for (XYDataSeries xyDataSeries : listOfSeries) {
+	public PieBubbleChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis,
+			XAxis xAxis, double multipleMagnitudeBy, PieBubbleChartSettings s) {
 
-            ArrayList<DataPointPieChart> al = xyDataSeries.dataPoints;
+		this(listOfSeries, yAxis, xAxis, multipleMagnitudeBy);
+		this.pieBubbleChartSettings = s;
+	}
 
-            for (DataPointPieChart dp : al) {
+	public PieBubbleChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis,
+			XAxis xAxis, double multipleMagnitudeBy) {
 
-                System.out.println("dp.magnitude before " + dp.magnitude);
-                dp.magnitude = dp.magnitude * multipleMagnitudeBy;
-                System.out.println("dp.magnitude after " + dp.magnitude);
-            }
-        }
-    }
+		super(listOfSeries, yAxis, xAxis);
+
+		for (XYDataSeries xyDataSeries : listOfSeries) {
+
+			ArrayList<DataPointPieChart> al = xyDataSeries.dataPoints;
+
+			for (DataPointPieChart dp : al) {
+
+				System.out.println("dp.magnitude before " + dp.magnitude);
+				dp.magnitude = dp.magnitude * multipleMagnitudeBy;
+				System.out.println("dp.magnitude after " + dp.magnitude);
+			}
+		}
+	}
 
 }

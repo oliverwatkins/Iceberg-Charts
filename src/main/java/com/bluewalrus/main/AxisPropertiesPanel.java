@@ -1,13 +1,16 @@
 package com.bluewalrus.main;
 
-import com.bluewalrus.chart.Axis;
-import com.bluewalrus.chart.XYChart;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
+
+import com.bluewalrus.chart.Axis;
+import com.bluewalrus.chart.Chart;
 
 /**
  *
@@ -23,12 +26,13 @@ public class AxisPropertiesPanel extends JPanel {
     private JTextField minValueField;
 
     private Axis axis;
+    private Chart chart;
 
-    AxisPropertiesPanel(Axis axis) {
+    AxisPropertiesPanel(Axis axis, Chart chart) {
 
         setBorder(BorderFactory.createTitledBorder(axis.getName()));
 
-//        this.chart = chart;
+        this.chart = chart;
 //        this.chart.xAxis.maxValue
         this.axis = axis;
 
@@ -41,7 +45,7 @@ public class AxisPropertiesPanel extends JPanel {
         this.initComponents();
     }
 
-    private void apply() {
+    public void apply() {
 
         axis.minValue = new Double(minValueField.getText());
         axis.maxValue = new Double(maxValueField.getText());
@@ -56,13 +60,27 @@ public class AxisPropertiesPanel extends JPanel {
 
         GridBagConstraints gbc = new GridBagConstraints();
 
+        minValueField.setMinimumSize(minValueField.getPreferredSize());
+        maxValueField.setMinimumSize(maxValueField.getPreferredSize());
+
+        
         int x = 0;
         gbc.gridx = x;
         gbc.gridy = 0;
+//        gbc.weightx = 1;
 
         this.add(new JLabel("Min Value "), gbc);
         gbc.gridx = 1;
         this.add(minValueField, gbc);
+        gbc.gridx = 2;
+        
+        JSlider slider = new JSlider(0, 100);
+        slider.setMinimumSize(minValueField.getPreferredSize());
+        gbc.weightx = 1;
+        this.add(slider, gbc);
+        
+        
+        
         gbc.gridx = 0;
         gbc.gridy = 1;
 
@@ -75,7 +93,7 @@ public class AxisPropertiesPanel extends JPanel {
         gbc.gridy = 2;
         gbc.gridwidth = 2;
 
-        interval = new IntervalPanel(this.axis);
+        interval = new IntervalPanel(this.axis, this.chart);
 
         this.add(interval, gbc);
     }

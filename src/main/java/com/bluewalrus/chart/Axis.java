@@ -41,9 +41,9 @@ public abstract class Axis {
     public double maxValue = 100;
     public double minValue = 0;
 
-    public Interval interval1;
-    public Interval interval2;
-    public Interval interval3;
+    public Interval interval1 = new Interval(0,0.0);
+    public Interval interval2 = new Interval(0,0.0);
+    public Interval interval3 = new Interval(0,0.0);
 
     /**
      * Default constructor
