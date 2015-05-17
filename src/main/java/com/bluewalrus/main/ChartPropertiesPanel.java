@@ -6,23 +6,92 @@
 
 package com.bluewalrus.main;
 
-import com.bluewalrus.chart.Chart;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
+import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.XYChart;
 
 /**
  *
  * @author lauren
  */
-public class ChartPropertiesPanel extends JPanel{
-     
-        ChartPropertiesPanel(Chart chart) {
-        
-            setBorder(BorderFactory.createTitledBorder("Chart Properties"));
-        }
+public class ChartPropertiesPanel extends JPanel {
 
-		public void apply() {
-			// TODO Auto-generated method stub
-			
-		}
+	
+	private Color chartBackgroundColor = Color.WHITE;
+	
+	private XYChart chart;
+	
+	ChartPropertiesPanel(Chart chart) {
+
+		this.chart = (XYChart)chart;
+		setBorder(BorderFactory.createTitledBorder("XY Chart Properties"));
+
+		initComponents();
+	}
+
+	public void apply() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void initComponents() {
+
+		GridBagConstraints gbc = new GridBagConstraints();
+
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+
+		this.setLayout(new GridBagLayout());
+
+		
+		final ColorChooserPanel p = new ColorChooserPanel("BackgroundColor ");
+		
+		p.setOnColorChangeListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				chart.backgroundColor = p.getChosenColor();
+				
+				chart.updateUI();
+				
+			}
+		});
+		
+		this.add(p, gbc);
+		
+		gbc.gridy = 1;
+		
+		final ColorChooserPanel p2 = new ColorChooserPanel("Axis Color ");
+		
+		p2.setOnColorChangeListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Color c = p2.getChosenColor();
+				
+				
+				chart.yAxis.axisColor = c;
+				chart.xAxis.axisColor = c;
+				
+				
+//				chart.
+				
+				chart.updateUI();
+				
+			}
+		});
+
+		
+		this.add(p2, gbc);
+
+
+	}
 }

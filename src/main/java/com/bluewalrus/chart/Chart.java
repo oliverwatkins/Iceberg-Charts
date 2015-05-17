@@ -28,6 +28,8 @@ public abstract class Chart extends JPanel {
 	public Font legendFont = new Font("Arial", Font.PLAIN, 12);
 
 	public Color backgroundColor = Color.WHITE;
+	
+	public Color borderLineColor = Color.BLACK;
 
 	// offsets (padding of actual chart to its border)
 	public int leftOffset = 140;
@@ -106,28 +108,36 @@ public abstract class Chart extends JPanel {
 		g2d.setComposite(c);
 	}
 
-	Color borderColor = Color.BLACK;
+//	Color borderColor = Color.BLACK;
 
 	BasicStroke chartBorderLine = new BasicStroke(1, BasicStroke.CAP_BUTT,
 			BasicStroke.JOIN_MITER, 10.0f, new float[] { 2, 0 }, // no dash
 			0.0f);
 
-	// g.setStroke(dashed);
+	
+	/**
+	 * Inner line just inside of the axis line. Potentially optional??
+	 * 
+	 */
 	protected void drawBottomLine(Graphics2D g) {
 
 		g.setStroke(chartBorderLine);
 
-		g.setColor(borderColor);
+		g.setColor(borderLineColor);
 
 		g.drawLine(leftOffset, heightChart + topOffset,
 				leftOffset + widthChart, heightChart + topOffset);
 	}
 
+	/**
+	 * Inner line just inside of the axis line. Potentially optional?? Eg colored area instead?
+	 * 
+	 */
 	protected void drawLeftLine(Graphics2D g) {
 
 		g.setStroke(chartBorderLine);
 
-		g.setColor(borderColor);
+		g.setColor(borderLineColor);
 
 		g.drawLine(leftOffset, topOffset, leftOffset, heightChart + topOffset);
 	}
@@ -136,7 +146,7 @@ public abstract class Chart extends JPanel {
 
 		g.setStroke(chartBorderLine);
 
-		g.setColor(borderColor);
+		g.setColor(borderLineColor);
 
 		g.drawLine(leftOffset + widthChart, topOffset, leftOffset + widthChart,
 				heightChart + topOffset);

@@ -19,6 +19,7 @@ public class YAxis extends Axis {
 
     public Font yFont = new Font("Arial", Font.PLAIN, 12);
     public boolean rightSide = false;
+	
 
     public YAxis(String name) {
         super(name, Axis.AxisType.STANDARD);
@@ -36,6 +37,9 @@ public class YAxis extends Axis {
         super(minValue, maxValue, t1, t2, t3, name);
     }
 
+    /**
+     * If Y passes through ZERO then draw a line
+     */
     public void drawYGridLineOnZero(Graphics2D g, Chart chart) {
 
         double factor = Utils.getFactor(chart.heightChart, maxValue, minValue);
@@ -67,7 +71,7 @@ public class YAxis extends Axis {
     }
 
     /**
-     * Draw a tick
+     * Draw a tick AND line
      *
      * @param heightChart
      * @param increment
@@ -116,6 +120,7 @@ public class YAxis extends Axis {
         int x2 = x1; //chart.leftOffset + chart.widthChart;
         int y2 = chart.topOffset + chart.heightChart;
 
+        g.setColor(axisColor);
         g.drawLine(x1, y1, x2, y2);
     }
     

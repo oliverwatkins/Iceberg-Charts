@@ -66,7 +66,7 @@ public class ChartFrameSystem  extends JFrame {
         getContentPane().add(jpanel, BorderLayout.SOUTH);
 //        getContentPane().add(s, BorderLayout.EAST);
         
-        setSize(1600, 900);
+        setSize(1600, 620);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

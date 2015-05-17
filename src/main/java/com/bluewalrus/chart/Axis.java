@@ -23,6 +23,7 @@ public abstract class Axis {
 
     public AxisType type;
 
+    public Color axisColor = Color.BLACK;
 
     public enum AxisType {
 
@@ -106,13 +107,13 @@ public abstract class Axis {
      */
     public void drawIntervals(Graphics g, Chart chart) {
         if (this.interval1 != null && this.interval1.increment != 0) {
-            drawTick(this.interval1.increment, g, Color.BLACK, this.interval1.lineLength, chart);
+            drawTick(this.interval1.increment, g, this.axisColor, this.interval1.lineLength, chart);
         }
         if (this.interval2 != null && this.interval2.increment != 0) {
-            drawTick(this.interval2.increment, g, Color.BLACK, this.interval2.lineLength, chart);
+            drawTick(this.interval2.increment, g, this.axisColor, this.interval2.lineLength, chart);
         }
         if (this.interval3 != null && this.interval3.increment != 0) {
-            drawTick(this.interval3.increment, g, Color.BLACK, this.interval3.lineLength, chart);
+            drawTick(this.interval3.increment, g, this.axisColor, this.interval3.lineLength, chart);
         }
     }
     /**
@@ -133,13 +134,25 @@ public abstract class Axis {
     }
 
 
-
+    /**
+     * Borderline is the OUTER line
+     * @param g
+     * @param chart
+     */
     public abstract void drawBorderLine(Graphics g, Chart chart);
 
     public abstract void drawLabel(Graphics g, Chart chart);
 
     protected abstract void drawYGridLineOnZero(Graphics2D g, Chart chart);
 
+    /**
+     * Draw ticks and tick line
+     * @param increment
+     * @param g
+     * @param c
+     * @param tickWidth
+     * @param chart
+     */
     protected abstract void drawTick(Double increment, Graphics g, Color c, int tickWidth, Chart chart);
 
     public abstract void drawIntervalLabels(Double increment, Graphics g, Color c, Chart chart);

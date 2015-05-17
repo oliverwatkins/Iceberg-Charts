@@ -64,6 +64,10 @@ public class XYChart extends Chart implements Legendable {
 
         this.calculateHeighAndWidthOfChart();
 
+        
+        /**
+         * Maybe we want a filled colored area instead of some lines???
+         */
         drawBackground(g2d);
         drawBottomLine(g2d);
         drawLeftLine(g2d);

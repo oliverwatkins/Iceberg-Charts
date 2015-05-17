@@ -37,6 +37,10 @@ public class XAxis extends Axis {
         return "X Axis";
     }
     
+    
+    /**
+     * Draws the tick lines
+     */
     protected void drawTick(Double increment, Graphics g, Color c, int tickWidth, Chart chart) {
 
         if (type == AxisType.BLANK) {
@@ -48,8 +52,6 @@ public class XAxis extends Axis {
         double xScalingFactor = ((double) chart.widthChart / (double) maxValue);
 
         double incrementInPixel = (double) (increment * xScalingFactor);
-
-        g.setColor(c);
 
         for (int i = 0; i < incrementNo; i++) {
             int x1 = chart.leftOffset + (int) (i * incrementInPixel);
@@ -159,6 +161,7 @@ public class XAxis extends Axis {
         int x2 = chart.leftOffset + chart.widthChart;
         int y2 = y1;
 
+    	g.setColor(axisColor);
         g.drawLine(x1, y1, x2, y2);
     }
 }
