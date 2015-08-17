@@ -19,7 +19,7 @@ import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.Legend;
 
 /**
- * 
+ *   
  * 
  * @author oliver
  */
