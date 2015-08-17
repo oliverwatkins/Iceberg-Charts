@@ -27,7 +27,10 @@ import javax.swing.JTabbedPane;
  */
 public class ChartFrameSystem  extends JFrame {
 
-    public ChartFrameSystem() {
+    public JButton applyButton;
+	public ActionListener applyAction;
+
+	public ChartFrameSystem() {
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
@@ -35,12 +38,12 @@ public class ChartFrameSystem  extends JFrame {
         
         JPanel jpanel = new JPanel(new GridLayout(1, 3));
         
-        final AxisPropertiesPanel panelX = new AxisPropertiesPanel(chart.xAxis, chart);
-        final AxisPropertiesPanel panelY = new AxisPropertiesPanel(chart.yAxis, chart);
+        final AxisPropertiesPanel panelX = new AxisPropertiesPanel(chart.xAxis, chart, this);
+        final AxisPropertiesPanel panelY = new AxisPropertiesPanel(chart.yAxis, chart, this);
         
         final ChartPropertiesPanel panelC = new ChartPropertiesPanel(chart);
         
-        JButton applyButton = new JButton("Apply");
+        applyButton = new JButton("Apply");
         
         jpanel.add(panelX);
         jpanel.add(panelY);
@@ -48,7 +51,8 @@ public class ChartFrameSystem  extends JFrame {
         jpanel.add(applyButton);
         
         
-        applyButton.addActionListener(new ActionListener() {
+        applyAction = new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
@@ -57,10 +61,11 @@ public class ChartFrameSystem  extends JFrame {
 				panelC.apply();
 				
 				chart.updateUI();
-				// TODO Auto-generated method stub
-				
 			}
-		});
+		};
+        
+        
+        applyButton.addActionListener(applyAction);
         
         getContentPane().add(chart);
         getContentPane().add(jpanel, BorderLayout.SOUTH);

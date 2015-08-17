@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.bluewalrus.main;
 
 import java.awt.GridBagConstraints;
@@ -22,10 +16,6 @@ import com.bluewalrus.bar.Interval;
 import com.bluewalrus.chart.Axis;
 import com.bluewalrus.chart.Chart;
 
-/**
- *
- * @author lauren
- */
 public class IntervalPanel extends JPanel {
 
 	private javax.swing.JTextField x1IncField;
