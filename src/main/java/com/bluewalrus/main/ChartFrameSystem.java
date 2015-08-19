@@ -37,6 +37,9 @@ public class ChartFrameSystem  extends JFrame {
         final BubbleChart chart = TestDataBubble.getTestData_Bubble();
         
         JPanel jpanel = new JPanel(new GridLayout(1, 3));
+        JPanel jpanel2 = new JPanel(new GridLayout(3, 1));
+        
+        
         
         final AxisPropertiesPanel panelX = new AxisPropertiesPanel(chart.xAxis, chart, this);
         final AxisPropertiesPanel panelY = new AxisPropertiesPanel(chart.yAxis, chart, this);
@@ -49,6 +52,9 @@ public class ChartFrameSystem  extends JFrame {
         jpanel.add(panelY);
         jpanel.add(panelC);
         jpanel.add(applyButton);
+        
+        
+        jpanel2.add(new GridPanel(chart));
         
         
         applyAction = new ActionListener() {
@@ -69,9 +75,9 @@ public class ChartFrameSystem  extends JFrame {
         
         getContentPane().add(chart);
         getContentPane().add(jpanel, BorderLayout.SOUTH);
-//        getContentPane().add(s, BorderLayout.EAST);
+        getContentPane().add(jpanel2, BorderLayout.EAST);
         
-        setSize(1600, 620);
+        setSize(1300, 620);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

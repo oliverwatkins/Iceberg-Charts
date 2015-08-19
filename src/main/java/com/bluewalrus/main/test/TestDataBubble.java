@@ -137,7 +137,7 @@ public class TestDataBubble {
 
         
         chart.width = 700;
-        chart.height = 450;
+//        chart.height = 450;
         chart.rightOffset = 200;
 
         chart.titleFont = new Font("Ariel", Font.PLAIN, 24);

@@ -15,12 +15,8 @@ import com.bluewalrus.chart.Axis;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 
-/**
- *
- * @author lauren
- */
-public class AxisPropertiesPanel extends JPanel {
 
+public class AxisPropertiesPanel extends JPanel {
     
     private IntervalPanel interval;
     
@@ -34,7 +30,7 @@ public class AxisPropertiesPanel extends JPanel {
 
 	private JSlider maxValueSlider;
 
-    AxisPropertiesPanel(Axis axis, final XYChart chart, final ChartFrameSystem chartFrameSystem) {
+    public AxisPropertiesPanel(Axis axis, final XYChart chart, final ChartFrameSystem chartFrameSystem) {
 
         setBorder(BorderFactory.createTitledBorder(axis.getName()));
 
@@ -64,6 +60,10 @@ public class AxisPropertiesPanel extends JPanel {
         
         maxValueSlider.setMinimum(max1);
         maxValueSlider.setMaximum(max2);
+        
+        
+        minValueSlider.setValue((int)axis.minValue);
+        maxValueSlider.setValue((int)axis.maxValue);
         
         
         minValueSlider.addChangeListener(new ChangeListener() {
