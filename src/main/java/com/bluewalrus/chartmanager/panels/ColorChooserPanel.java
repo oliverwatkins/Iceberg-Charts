@@ -1,4 +1,4 @@
-package com.bluewalrus.main;
+package com.bluewalrus.chartmanager.panels;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import com.bluewalrus.chartmanager.ColorChooserDialog;
 
 public class ColorChooserPanel extends JPanel {
 	

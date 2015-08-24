@@ -1,4 +1,4 @@
-package com.bluewalrus.main;
+package com.bluewalrus.chartmanager.panels;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

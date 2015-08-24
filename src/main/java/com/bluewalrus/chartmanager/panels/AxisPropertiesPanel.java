@@ -1,4 +1,4 @@
-package com.bluewalrus.main;
+package com.bluewalrus.chartmanager.panels;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -14,6 +14,7 @@ import javax.swing.event.ChangeListener;
 import com.bluewalrus.chart.Axis;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chartmanager.ChartManagerApp;
 
 
 public class AxisPropertiesPanel extends JPanel {
@@ -30,7 +31,7 @@ public class AxisPropertiesPanel extends JPanel {
 
 	private JSlider maxValueSlider;
 
-    public AxisPropertiesPanel(Axis axis, final XYChart chart, final ChartFrameSystem chartFrameSystem) {
+    public AxisPropertiesPanel(Axis axis, final XYChart chart, final ChartManagerApp chartFrameSystem) {
 
         setBorder(BorderFactory.createTitledBorder(axis.getName()));
 

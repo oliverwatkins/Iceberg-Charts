@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.bluewalrus.main;
+package com.bluewalrus.chartmanager.panels;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -29,7 +29,7 @@ public class ChartPropertiesPanel extends JPanel {
 	
 	private XYChart chart;
 	
-	ChartPropertiesPanel(Chart chart) {
+	public ChartPropertiesPanel(Chart chart) {
 
 		this.chart = (XYChart)chart;
 		setBorder(BorderFactory.createTitledBorder("XY Chart Properties"));

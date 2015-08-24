@@ -42,14 +42,14 @@ public class XYChart extends Chart implements Legendable {
         drawGridLine(xAxis.interval1, g, 0);
     }
 
-    private void drawGridLine(Interval tick, Graphics2D g, int type) {
+    private void drawGridLine(Interval interval, Graphics2D g, int type) {
 
-        if (tick != null && tick.graphLine != null) {
+        if (interval != null && interval.graphLine != null) {
             if (type == 1) //type is y
             {
-                yAxis.drawGridLine(tick, g, this);
+                yAxis.drawGridLine(interval, g, this);
             } else {
-                xAxis.drawGridLine(tick, g, this);
+                xAxis.drawGridLine(interval, g, this);
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.bluewalrus.main;
+package com.bluewalrus.chartmanager;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
