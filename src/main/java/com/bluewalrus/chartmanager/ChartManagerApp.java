@@ -83,7 +83,8 @@ public class ChartManagerApp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				fm = new FileManager();
 				try {
-					fm.open(ChartManagerApp.this);
+					XYChart xy = fm.open(ChartManagerApp.this);
+					loadChart(xy);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -106,6 +107,16 @@ public class ChartManagerApp extends JFrame {
 
 		chart = TestDataBubble.getTestData_Bubble();
 
+		loadChart(chart);
+		
+		
+
+		setSize(1300, 620);
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	private void loadChart(final XYChart chart) {
 		JPanel jpanel = new JPanel(new GridLayout(1, 3));
 		JPanel jpanel2 = new JPanel(new GridLayout(3, 1));
 
@@ -141,12 +152,10 @@ public class ChartManagerApp extends JFrame {
 		applyButton.addActionListener(applyAction);
 
 		getContentPane().add(chart);
+		
+		
 		getContentPane().add(jpanel, BorderLayout.SOUTH);
 		getContentPane().add(jpanel2, BorderLayout.EAST);
-
-		setSize(1300, 620);
-
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public static void main(String[] args) throws Exception {

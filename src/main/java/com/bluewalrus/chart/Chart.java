@@ -120,6 +120,12 @@ public abstract class Chart extends JPanel {
 	 */
 	protected void drawBottomLine(Graphics2D g) {
 
+		if (chartBorderLine == null) {
+			chartBorderLine = new BasicStroke(1, BasicStroke.CAP_BUTT,
+					BasicStroke.JOIN_MITER, 10.0f, new float[] { 2, 0 }, // no dash
+					0.0f);
+		}
+		
 		g.setStroke(chartBorderLine);
 
 		g.setColor(borderLineColor);
