@@ -10,15 +10,9 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -151,11 +145,21 @@ public class ChartManagerApp extends JFrame {
 
 		applyButton.addActionListener(applyAction);
 
-		getContentPane().add(chart);
+		
+		if (getContentPane().getComponentCount() != 0) {
+			XYChart oldC = (XYChart)getContentPane().getComponent(0);
+			getContentPane().remove(oldC);
+			getContentPane().add(chart);
+			getContentPane().repaint();
+			
+		}else {
+			getContentPane().add(chart);
+			getContentPane().add(jpanel, BorderLayout.SOUTH);
+			getContentPane().add(jpanel2, BorderLayout.EAST);
+			
+		}
 		
 		
-		getContentPane().add(jpanel, BorderLayout.SOUTH);
-		getContentPane().add(jpanel2, BorderLayout.EAST);
 	}
 
 	public static void main(String[] args) throws Exception {
