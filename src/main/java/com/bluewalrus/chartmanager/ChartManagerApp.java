@@ -41,6 +41,8 @@ public class ChartManagerApp extends JFrame {
 	ArrayList<ChartFile> recentCharts = new ArrayList<ChartFile>();
 
 	private final XYChart chart;
+	
+	FileManager fm = new FileManager();
 
 	public ChartManagerApp() throws Exception {
 
@@ -59,7 +61,7 @@ public class ChartManagerApp extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				FileManager fm = new FileManager();
+
 				fm.save(chart);
 			}
 		});
@@ -67,16 +69,25 @@ public class ChartManagerApp extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				FileManager fm = new FileManager();
-				fm.saveAs(chart, ChartManagerApp.this);
+				fm = new FileManager();
+				try {
+					fm.saveAs(chart, ChartManagerApp.this);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		i1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				FileManager fm = new FileManager();
-				fm.open(ChartManagerApp.this);
+				fm = new FileManager();
+				try {
+					fm.open(ChartManagerApp.this);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -86,11 +97,12 @@ public class ChartManagerApp extends JFrame {
 		menu.add(i3);
 		menuBar.add(menu);
 		
-		FileManager fm = new FileManager();
 		recentCharts = fm.getLatestSavedCharts(ChartManagerApp.this);
 		
-
-//		final ArrayList<JComponent> charts = new ArrayList<JComponent>();
+		for (ChartFile chartFile : recentCharts) {
+			menu.add(new JMenuItem("" + chartFile.location));
+		}
+		
 
 		chart = TestDataBubble.getTestData_Bubble();
 

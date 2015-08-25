@@ -1,12 +1,14 @@
 package com.bluewalrus.datapoint;
 
+import java.io.Serializable;
+
 /**
  * Super type for boxplots, bar, multibar, piechart, bubble etc. But used individually for
  * things like scatter chart
  * 
  * @author lauren
  */
-public class DataPoint {
+public class DataPoint implements Serializable{
 
     public double x;
     public double y;

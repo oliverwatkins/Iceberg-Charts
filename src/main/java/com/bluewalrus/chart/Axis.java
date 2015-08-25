@@ -7,10 +7,12 @@ package com.bluewalrus.chart;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Line;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.Serializable;
 
 import com.bluewalrus.chart.Chart;
 
@@ -19,7 +21,7 @@ import com.bluewalrus.chart.Chart;
  *
  * @author Oliver Watkins
  */
-public abstract class Axis {
+public abstract class Axis implements Serializable{
 
     public AxisType type;
 

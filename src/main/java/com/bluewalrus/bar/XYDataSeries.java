@@ -5,6 +5,7 @@ import com.bluewalrus.point.XYPoint;
 import com.bluewalrus.datapoint.DataPoint;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  *
  * @param <T>
  */
-public class XYDataSeries<T extends DataPoint> implements Categorisable {
+public class XYDataSeries<T extends DataPoint> implements Categorisable, Serializable {
 
     public ArrayList<T> dataPoints;
 

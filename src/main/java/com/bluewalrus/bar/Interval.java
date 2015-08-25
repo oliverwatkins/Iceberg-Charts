@@ -6,12 +6,14 @@
 
 package com.bluewalrus.bar;
 
+import java.io.Serializable;
+
 /**
  * Describes a graphical interval along an axis. 
  * 
  * @author Oliver Watkins
  */
-public class Interval {
+public class Interval implements Serializable{
 
     public Line graphLine;
 

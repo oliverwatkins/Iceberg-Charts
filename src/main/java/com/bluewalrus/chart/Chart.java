@@ -108,9 +108,8 @@ public abstract class Chart extends JPanel {
 		g2d.setComposite(c);
 	}
 
-//	Color borderColor = Color.BLACK;
 
-	BasicStroke chartBorderLine = new BasicStroke(1, BasicStroke.CAP_BUTT,
+	transient BasicStroke chartBorderLine = new BasicStroke(1, BasicStroke.CAP_BUTT,
 			BasicStroke.JOIN_MITER, 10.0f, new float[] { 2, 0 }, // no dash
 			0.0f);
 

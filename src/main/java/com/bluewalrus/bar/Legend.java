@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.bluewalrus.chart.Chart;
@@ -24,7 +25,7 @@ import com.bluewalrus.point.XYPoint;
  * 
  * @author lauren
  */
-public class Legend {
+public class Legend implements Serializable{
 
     //padding between the chart and the legend
     int paddingLegendLeft = 10;

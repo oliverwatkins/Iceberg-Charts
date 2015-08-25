@@ -3,6 +3,7 @@ package com.bluewalrus.point;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.io.Serializable;
 
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
@@ -11,7 +12,7 @@ import com.bluewalrus.renderer.XYFactor;
  *
  * @author Oliver Watkins
  */
-public abstract class XYPoint {
+public abstract class XYPoint implements Serializable {
 
     public int radiusOrWidthOfPointShape = 10; //default
     public Color color;
