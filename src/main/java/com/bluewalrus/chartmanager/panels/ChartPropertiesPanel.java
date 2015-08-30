@@ -18,14 +18,7 @@ import javax.swing.JPanel;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 
-/**
- *
- * @author lauren
- */
 public class ChartPropertiesPanel extends JPanel {
-
-	
-	private Color chartBackgroundColor = Color.WHITE;
 	
 	private XYChart chart;
 	
@@ -37,10 +30,6 @@ public class ChartPropertiesPanel extends JPanel {
 		initComponents();
 	}
 
-	public void apply() {
-		// TODO Auto-generated method stub
-
-	}
 
 	private void initComponents() {
 
@@ -59,7 +48,6 @@ public class ChartPropertiesPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				chart.backgroundColor = p.getChosenColor();
-				
 				chart.updateUI();
 				
 			}
@@ -77,15 +65,9 @@ public class ChartPropertiesPanel extends JPanel {
 				
 				Color c = p2.getChosenColor();
 				
-				
 				chart.yAxis.axisColor = c;
 				chart.xAxis.axisColor = c;
-				
-				
-//				chart.
-				
 				chart.updateUI();
-				
 			}
 		});
 

@@ -25,7 +25,7 @@ public class AxisPropertiesPanel extends JPanel {
     private JTextField minValueField;
 
     private Axis axis;
-    private Chart chart;
+    public Chart chart;
 
 	private JSlider minValueSlider;
 
@@ -96,6 +96,13 @@ public class AxisPropertiesPanel extends JPanel {
 
         this.initComponents();
     }
+    
+    
+	public void setChart(XYChart chart2) {
+		this.chart = chart2;
+	}
+	
+	
 
     public void apply() {
 
@@ -157,4 +164,6 @@ public class AxisPropertiesPanel extends JPanel {
 
         this.add(interval, gbc);
     }
+
+
 }

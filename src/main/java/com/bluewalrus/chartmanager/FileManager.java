@@ -20,11 +20,12 @@ public class FileManager {
 
 	public XYChart open(ChartManagerApp frame) throws Exception {
 		
-		
 		JFileChooser c = new JFileChooser();
 		
 		int rVal = c.showOpenDialog(frame);
 		if (rVal == JFileChooser.APPROVE_OPTION) {
+			
+			
 			System.out.println("c.getSelectedFile().getName() "
 					+ c.getSelectedFile().getName());
 			System.out.println("c.getCurrentDirectory().toString() "
@@ -40,9 +41,6 @@ public class FileManager {
 		}
 		return null;
 	}
-	
-	
-	
 	
 	
 

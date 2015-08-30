@@ -7,6 +7,7 @@
 package com.bluewalrus.chartmanager;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chartmanager.panels.AxisPropertiesPanel;
@@ -31,20 +31,39 @@ public class ChartManagerApp extends JFrame {
 
 	public ActionListener applyAction;
 
-	
-	ArrayList<ChartFile> recentCharts = new ArrayList<ChartFile>();
-
-	private final XYChart chart;
+	private XYChart chart;
 	
 	FileManager fm = new FileManager();
 
+	private GridPanel gridPanel;
+
+	private ChartPropertiesPanel chartPropertiesPanel;
+
+	private AxisPropertiesPanel xAxisPanel;
+
+	private AxisPropertiesPanel yAxisPanel;
+
 	public ChartManagerApp() throws Exception {
 
+		setupMenu();
+		
+
+		chart = TestDataBubble.getTestData_Bubble();
+
+		loadChart(chart);
+		
+		
+
+		setSize(1300, 620);
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	private void setupMenu() throws Exception {
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
 
 		JMenu menu = new JMenu("File");
-
 		
 		JMenuItem i1 = new JMenuItem("Open");
 		JMenuItem i2 = new JMenuItem("Save");
@@ -80,7 +99,6 @@ public class ChartManagerApp extends JFrame {
 					XYChart xy = fm.open(ChartManagerApp.this);
 					loadChart(xy);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -92,74 +110,93 @@ public class ChartManagerApp extends JFrame {
 		menu.add(i3);
 		menuBar.add(menu);
 		
-		recentCharts = fm.getLatestSavedCharts(ChartManagerApp.this);
+		ArrayList<ChartFile> recentCharts = fm.getLatestSavedCharts(ChartManagerApp.this);
 		
 		for (ChartFile chartFile : recentCharts) {
 			menu.add(new JMenuItem("" + chartFile.location));
 		}
-		
-
-		chart = TestDataBubble.getTestData_Bubble();
-
-		loadChart(chart);
-		
-		
-
-		setSize(1300, 620);
-
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	private void loadChart(final XYChart chart) {
-		JPanel jpanel = new JPanel(new GridLayout(1, 3));
-		JPanel jpanel2 = new JPanel(new GridLayout(3, 1));
+		
+		this.chart = chart;
+		
 
-		final AxisPropertiesPanel panelX = new AxisPropertiesPanel(chart.xAxis,
-				chart, this);
-		final AxisPropertiesPanel panelY = new AxisPropertiesPanel(chart.yAxis,
-				chart, this);
 
-		final ChartPropertiesPanel panelC = new ChartPropertiesPanel(chart);
+
+		
+		if (getContentPane().getComponentCount() != 0) {
+//			Component[] a = getContentPane().getComponents();
+			
+
+			XYChart oldC = (XYChart)getContentPane().getComponent(0);
+
+			getContentPane().remove(oldC);
+			getContentPane().add(chart, 0);
+			
+			
+//			panelY.chart = chart;
+//			panelX.chart = chart;
+//			
+			xAxisPanel.setChart(chart);
+			yAxisPanel.setChart(chart);
+			
+//			yAxisPanel.chart = chart;
+//			chartPropertiesPanel
+//			gridPanel
+			
+			
+			getContentPane().repaint();
+			
+		}else { //new
+			
+			initUI(chart);
+			
+		}
+		
+		
+	}
+
+	private void initUI(final XYChart chart) {
+		
+		JPanel bottomPanel = new JPanel(new GridLayout(1, 3));
+		JPanel rightPanel = new JPanel(new GridLayout(3, 1));
+
+		xAxisPanel = new AxisPropertiesPanel(chart.xAxis, chart, this);
+		yAxisPanel = new AxisPropertiesPanel(chart.yAxis, chart, this);
+
+		chartPropertiesPanel = new ChartPropertiesPanel(chart);
 
 		JButton applyButton = new JButton("Apply");
 
-		jpanel.add(panelX);
-		jpanel.add(panelY);
-		jpanel.add(panelC);
-		jpanel.add(applyButton);
+		bottomPanel.add(xAxisPanel);
+		bottomPanel.add(yAxisPanel);
+		bottomPanel.add(chartPropertiesPanel);
+		bottomPanel.add(applyButton);
+		
+		gridPanel = new GridPanel(chart, this);
 
-		jpanel2.add(new GridPanel(chart, this));
-
+		rightPanel.add(gridPanel);
+		
 		applyAction = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				panelX.apply();
-				panelY.apply();
-				panelC.apply();
+				xAxisPanel.apply();
+				yAxisPanel.apply();
 
-				chart.updateUI();
+				ChartManagerApp.this.chart.updateUI();
 			}
 		};
 
 		applyButton.addActionListener(applyAction);
-
 		
-		if (getContentPane().getComponentCount() != 0) {
-			XYChart oldC = (XYChart)getContentPane().getComponent(0);
-			getContentPane().remove(oldC);
-			getContentPane().add(chart);
-			getContentPane().repaint();
-			
-		}else {
-			getContentPane().add(chart);
-			getContentPane().add(jpanel, BorderLayout.SOUTH);
-			getContentPane().add(jpanel2, BorderLayout.EAST);
-			
-		}
+		getContentPane().add(chart);
 		
 		
+		getContentPane().add(bottomPanel, BorderLayout.SOUTH);
+		getContentPane().add(rightPanel, BorderLayout.EAST);
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -167,12 +204,5 @@ public class ChartManagerApp extends JFrame {
 		frame.setVisible(true);
 	}
 
-	private JPanel createTabbedPane(JTabbedPane tabbedPane, String string) {
-
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		tabbedPane.add(string, panel);
-		return panel;
-	}
 
 }
