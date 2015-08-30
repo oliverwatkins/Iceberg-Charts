@@ -79,9 +79,6 @@ public class LineRenderer {
             XYDataSeries xYDataSeries,
             DataPoint dataPoint, Chart chart) {
 
-        System.out.println("dataPoint.y " + dataPoint.y);
-        System.out.println("xyFactor.yFactor " + xyFactor.yFactor);
-
         int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
         int y = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
 

@@ -7,7 +7,6 @@
 package com.bluewalrus.chartmanager;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -108,12 +107,29 @@ public class ChartManagerApp extends JFrame {
 		menu.add(i1);
 		menu.add(i2);
 		menu.add(i3);
+		menu.addSeparator();
 		menuBar.add(menu);
 		
 		ArrayList<ChartFile> recentCharts = fm.getLatestSavedCharts(ChartManagerApp.this);
 		
-		for (ChartFile chartFile : recentCharts) {
-			menu.add(new JMenuItem("" + chartFile.location));
+		for (final ChartFile chartFile : recentCharts) {
+			
+			JMenuItem i = new JMenuItem("" + chartFile.location);
+			i.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					try {
+						XYChart xy = fm.open(ChartManagerApp.this, chartFile);
+						loadChart(xy);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+			
+			menu.add(i);
 		}
 	}
 

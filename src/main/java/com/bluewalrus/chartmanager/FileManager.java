@@ -36,12 +36,48 @@ public class FileManager {
 			ObjectInputStream is = new ObjectInputStream(fs);
 
 			Object o = is.readObject();
+			
+			is.close();
 
 			return (XYChart)o;
 		}
 		return null;
 	}
 	
+	
+	
+	public XYChart open(ChartManagerApp frame, ChartFile file) throws Exception {
+		
+		FileInputStream fs = new FileInputStream(new File(file.location));
+		ObjectInputStream is = new ObjectInputStream(fs);
+
+		Object o = is.readObject();
+		
+		is.close();
+
+		return (XYChart)o;
+//		
+//		JFileChooser c = new JFileChooser();
+//		
+//		int rVal = c.showOpenDialog(frame);
+//		if (rVal == JFileChooser.APPROVE_OPTION) {
+//			
+//			
+//			System.out.println("c.getSelectedFile().getName() "
+//					+ c.getSelectedFile().getName());
+//			System.out.println("c.getCurrentDirectory().toString() "
+//					+ c.getCurrentDirectory().toString());
+//			
+//			
+//			FileInputStream fs = new FileInputStream(new File(c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName()));
+//			ObjectInputStream is = new ObjectInputStream(fs);
+//
+//			Object o = is.readObject();
+//
+//			return (XYChart)o;
+//		}
+//		return null;
+	}
 	
 
 	public void saveAs(XYChart chart, ChartManagerApp frame) throws Exception {
