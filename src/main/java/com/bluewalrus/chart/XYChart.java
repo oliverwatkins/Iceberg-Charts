@@ -96,8 +96,6 @@ public class XYChart extends Chart implements Legendable {
 
         xAxis.drawIntervals(g, this);
 
-//        System.out.println("xAxis.drawTickLabels(this.yAxis.tick1.increment " + this.yAxis.interval1.increment);
-
         xAxis.drawAllIntervalLabels(g, this);
 
         xAxis.drawLabel(g, this);

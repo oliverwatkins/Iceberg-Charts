@@ -30,147 +30,46 @@ public class ChartManagerApp extends JFrame {
 
 	public ActionListener applyAction;
 
-	private XYChart chart;
-	
-	FileManager fm = new FileManager();
+	public XYChart chart;
 
 	private GridPanel gridPanel;
 
 	private ChartPropertiesPanel chartPropertiesPanel;
-
 	private AxisPropertiesPanel xAxisPanel;
-
 	private AxisPropertiesPanel yAxisPanel;
 
 	public ChartManagerApp() throws Exception {
 
-		setupMenu();
+		MenuManager menu = new MenuManager();
+		menu.setupMenu(this);
 		
-
-		chart = TestDataBubble.getTestData_Bubble();
-
-		loadChart(chart);
-		
-		
+		loadChart(TestDataBubble.getTestData_Bubble());
 
 		setSize(1300, 620);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	private void setupMenu() throws Exception {
-		JMenuBar menuBar = new JMenuBar();
-		this.setJMenuBar(menuBar);
 
-		JMenu menu = new JMenu("File");
-		
-		JMenuItem i1 = new JMenuItem("Open");
-		JMenuItem i2 = new JMenuItem("Save");
-		JMenuItem i3 = new JMenuItem("Save As..");
-		
-		
-		i2.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				fm.save(chart);
-			}
-		});
-		i3.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				fm = new FileManager();
-				try {
-					fm.saveAs(chart, ChartManagerApp.this);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		i1.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				fm = new FileManager();
-				try {
-					XYChart xy = fm.open(ChartManagerApp.this);
-					loadChart(xy);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		
-
-		menu.add(i1);
-		menu.add(i2);
-		menu.add(i3);
-		menu.addSeparator();
-		menuBar.add(menu);
-		
-		ArrayList<ChartFile> recentCharts = fm.getLatestSavedCharts(ChartManagerApp.this);
-		
-		for (final ChartFile chartFile : recentCharts) {
-			
-			JMenuItem i = new JMenuItem("" + chartFile.location);
-			i.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-
-					try {
-						XYChart xy = fm.open(ChartManagerApp.this, chartFile);
-						loadChart(xy);
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				}
-			});
-			
-			menu.add(i);
-		}
-	}
-
-	private void loadChart(final XYChart chart) {
+	void loadChart(final XYChart chart) {
 		
 		this.chart = chart;
 		
-
-
-
-		
 		if (getContentPane().getComponentCount() != 0) {
-//			Component[] a = getContentPane().getComponents();
-			
 
-			XYChart oldC = (XYChart)getContentPane().getComponent(0);
+			XYChart oldChart = (XYChart)getContentPane().getComponent(0);
 
-			getContentPane().remove(oldC);
+			getContentPane().remove(oldChart);
 			getContentPane().add(chart, 0);
 			
+			xAxisPanel.setChart(chart, chart.xAxis);
+			yAxisPanel.setChart(chart, chart.yAxis);
 			
-//			panelY.chart = chart;
-//			panelX.chart = chart;
-//			
-			xAxisPanel.setChart(chart);
-			yAxisPanel.setChart(chart);
-			
-//			yAxisPanel.chart = chart;
-//			chartPropertiesPanel
-//			gridPanel
-			
-			
-			getContentPane().repaint();
+			getContentPane().revalidate();
 			
 		}else { //new
-			
 			initUI(chart);
-			
 		}
-		
-		
 	}
 
 	private void initUI(final XYChart chart) {

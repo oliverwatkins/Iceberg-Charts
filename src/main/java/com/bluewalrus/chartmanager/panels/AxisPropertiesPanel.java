@@ -98,8 +98,9 @@ public class AxisPropertiesPanel extends JPanel {
     }
     
     
-	public void setChart(XYChart chart2) {
-		this.chart = chart2;
+	public void setChart(XYChart chart, Axis axis) {
+		this.chart = chart;
+		
 	}
 	
 	

@@ -108,7 +108,7 @@ public class TestDataLineScatter {
 		return lineChart;
 	}
 
-	public static Chart getTestData_Scatter() {
+	public static XYChart getTestData_Scatter() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
@@ -173,7 +173,7 @@ public class TestDataLineScatter {
 		return chart;
 	}
 
-	public static Chart getTestData_LineExamples() {
+	public static XYChart getTestData_LineExamples() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
@@ -241,7 +241,7 @@ public class TestDataLineScatter {
 
 
 
-	public static Chart getTestData_BoxPlot() {
+	public static XYChart getTestData_BoxPlot() {
 
 		// TEST_DATA_START
 
