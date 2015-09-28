@@ -98,7 +98,7 @@ public class XYYChart extends XYChart { // extends LineChart{
             if (series.type == XYDataSeriesType.BUBBLE) {
                 category = new Category(series.name, series.seriesColor);
             } else {
-                category = new Category(series.name, series.point, series.line);
+                category = new Category(series.name, series.pointType, series.line);
             }
 
             categories.add(category);

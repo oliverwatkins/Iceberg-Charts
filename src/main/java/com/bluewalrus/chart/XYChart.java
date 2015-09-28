@@ -5,19 +5,22 @@
  */
 package com.bluewalrus.chart;
 
-import com.bluewalrus.bar.Interval;
-import com.bluewalrus.renderer.LineRenderer;
-import com.bluewalrus.bar.Category;
-import com.bluewalrus.bar.Legendable;
-import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.bar.XYDataSeriesType;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+
+import com.bluewalrus.bar.Category;
+import com.bluewalrus.bar.Interval;
+import com.bluewalrus.bar.Legendable;
+import com.bluewalrus.bar.XYDataSeries;
+import com.bluewalrus.bar.XYDataSeriesType;
+import com.bluewalrus.datapoint.DataPoint;
+import com.bluewalrus.point.UIPointXY;
+import com.bluewalrus.renderer.LineRenderer;
 
 public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
@@ -29,6 +32,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
     public XYChart(XAxis xAxis, YAxis yAxis) {
         this.yAxis = yAxis;
         this.xAxis = xAxis;
+        
+        this.addMouseMotionListener(this);
     }
 
     protected void drawGrid(Graphics2D g) {
@@ -131,7 +136,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
             if (series.type == XYDataSeriesType.BUBBLE) {
                 category = new Category(series.name, series.seriesColor);
             } else {
-                category = new Category(series.name, series.point, series.line);
+                category = new Category(series.name, series.pointType, series.line);
             }
             categories.add(category);
         }
@@ -146,7 +151,21 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
+		Point point = e.getPoint();
+		System.out.println("point = " + point);
+		
+		for (XYDataSeries xyDataSeries : data) {
+			ArrayList al  = xyDataSeries.dataPoints;
+			
+			for (Object object : al) {
+				DataPoint dp = (DataPoint) object;
+				
+				UIPointXY uip = dp.uiPointXY;
+				
+				boolean b = uip.doesShapeContainPoint(point);
+				
+			}
+		}
 	}
 }

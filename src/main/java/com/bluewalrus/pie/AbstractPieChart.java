@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
@@ -202,6 +203,7 @@ public abstract class AbstractPieChart extends Chart  {
                 segment.startAngle,
                 segment.angle,
                 Arc2D.PIE);
+        
 
         Area a = new Area(arc2d);
 

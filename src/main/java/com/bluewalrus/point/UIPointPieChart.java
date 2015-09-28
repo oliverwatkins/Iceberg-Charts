@@ -116,4 +116,10 @@ public class UIPointPieChart extends UIPointComplexXY {
             startAngle += angleOfThisSegment;
         }
     }
+
+	@Override
+	public boolean doesShapeContainPoint(Point point) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

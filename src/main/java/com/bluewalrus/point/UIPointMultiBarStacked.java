@@ -98,6 +98,12 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
         this.drawTickLine(g, chart, point.x);
 
 	}
+
+	@Override
+	public boolean doesShapeContainPoint(Point point) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 }

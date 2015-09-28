@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.XYDataSeries;
+import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
 

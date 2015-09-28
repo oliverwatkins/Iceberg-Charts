@@ -35,4 +35,10 @@ public class UIPointCircle extends UIPointSimpleXY {
         );
     }
 
+	@Override
+	public boolean doesShapeContainPoint(Point point) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

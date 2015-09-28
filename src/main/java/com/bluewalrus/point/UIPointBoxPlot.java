@@ -101,6 +101,12 @@ public class UIPointBoxPlot extends UIPointComplexXY{
         
 	}
 
+	@Override
+	public boolean doesShapeContainPoint(Point point) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 
 }

@@ -19,7 +19,8 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
 
     public ArrayList<T> dataPoints;
 
-    public UIPointXY point;
+    public UIPointXY pointType; //describes the type of point UI.
+    
     public Line line;
     public String name;
 
@@ -46,7 +47,7 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
             type = XYDataSeriesType.LINE;
         }
 
-        this.point = point;
+        this.pointType = point;
         this.line = line;
         this.name = name;
     }

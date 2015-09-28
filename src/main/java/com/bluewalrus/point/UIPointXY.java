@@ -8,7 +8,7 @@ import java.io.Serializable;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
 
-public abstract class UIPointXY implements Serializable {
+public abstract class UIPointXY implements Serializable, Cloneable {
 
     public int radiusOrWidthOfPointShape = 10; //default
     public Color color;
@@ -36,6 +36,15 @@ public abstract class UIPointXY implements Serializable {
         this.transparancyFraction = transparancyFraction;
     }
 
+	
+	public UIPointXY createNewInstanceOfSelf() throws CloneNotSupportedException {
+		return (UIPointXY)this.clone();
+	}
+
     public abstract void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor);
+
+	public abstract boolean doesShapeContainPoint(Point point);
+
+
 
 }

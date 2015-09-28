@@ -91,7 +91,7 @@ public class MultiBarChart extends XYChart { // extends LineChart{
         for (DataPointBar dpb : dps) {
             Category category;
 
-            category = new Category(dpb.name, series.point, null);
+            category = new Category(dpb.name, series.pointType, null);
             category.block = true;
             category.color = dpb.color;
             categories.add(category);

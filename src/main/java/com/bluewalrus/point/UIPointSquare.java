@@ -3,6 +3,7 @@ package com.bluewalrus.point;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
@@ -27,12 +28,33 @@ public class UIPointSquare extends UIPointSimpleXY {
         Color c = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
 
         g.setColor(c);
+        
 
-        g.fillRect((int) point.x - radiusOrWidthOfPointShape / 2,
+        Rectangle rec = new Rectangle((int) point.x - radiusOrWidthOfPointShape / 2,
                 point.y - radiusOrWidthOfPointShape / 2,
                 radiusOrWidthOfPointShape,
                 radiusOrWidthOfPointShape
         );
+        
+        g.draw(rec);
+
+        
+//        g.fillRect((int) point.x - radiusOrWidthOfPointShape / 2,
+//                point.y - radiusOrWidthOfPointShape / 2,
+//                radiusOrWidthOfPointShape,
+//                radiusOrWidthOfPointShape
+//        );
     }
+
+	@Override
+	public boolean doesShapeContainPoint(Point point) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+//	@Override
+//	public UIPointXY createNewInstanceOfSelf() throws CloneNotSupportedException {
+//		return (UIPointXY)this.clone();
+//	}
 
 }

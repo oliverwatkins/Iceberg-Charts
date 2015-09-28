@@ -86,4 +86,12 @@ public class UIPointBubble extends UIPointComplexXY {
 
 //        Utils.outlineText(g, "hi there", x, y);
     }
+
+
+
+	@Override
+	public boolean doesShapeContainPoint(Point point) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

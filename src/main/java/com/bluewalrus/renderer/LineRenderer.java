@@ -2,13 +2,14 @@ package com.bluewalrus.renderer;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 import com.bluewalrus.bar.Line;
-import com.bluewalrus.chart.XAxis;
 import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.chart.YAxis;
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.XAxis;
+import com.bluewalrus.chart.YAxis;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointXY;
@@ -48,7 +49,7 @@ public class LineRenderer {
         int xShift = chart.leftOffset;
         int yShift = chart.topOffset + chart.heightChart;
 
-        DataPoint lastPoint = new DataPoint(0, 0);
+        DataPoint lastPoint = null; 
 
         for (XYDataSeries xYDataSeries : xYDataSerieses) {
 
@@ -61,7 +62,7 @@ public class LineRenderer {
                     firstRun = false;
                     lastPoint = dataPoint;
 
-                    if (xYDataSeries.point != null) {
+                    if (xYDataSeries.pointType != null) {
 
                         drawPoint(g, xyFactor, xShift, yShift,
                                 xYDataSeries, dataPoint, chart);
@@ -74,7 +75,7 @@ public class LineRenderer {
                         drawLine(g, xyFactor, xShift, yShift,
                                 lastPoint, xYDataSeries, dataPoint);
                     }
-                    if (xYDataSeries.point != null) {
+                    if (xYDataSeries.pointType != null) {
 
                         drawPoint(g, xyFactor, xShift, yShift,
                                 xYDataSeries, dataPoint, chart);
@@ -85,17 +86,27 @@ public class LineRenderer {
         }
     }
 
-    private static void drawPoint(Graphics2D g, XYFactor xyFactor,
+    private static void drawPoint(Graphics2D g, 
+    		XYFactor xyFactor,
             int xShift,
             int yShift,
             XYDataSeries xYDataSeries,
-            DataPoint dataPoint, Chart chart) {
+            DataPoint dataPoint, 
+            Chart chart) {
 
         int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
         int y = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
 
-        UIPointXY xyPoint = xYDataSeries.point;
-
+        UIPointXY pointType = xYDataSeries.pointType;
+        
+        UIPointXY xyInstance = null;
+        try {
+        	xyInstance = pointType.createNewInstanceOfSelf();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+        
+        
         //hack
         if (xyFactor.yFactor * y > 200000) {
             return;
@@ -104,7 +115,9 @@ public class LineRenderer {
             return;
         }
 
-        xyPoint.draw(g, new Point(x, y), dataPoint, xyFactor);
+        xyInstance.draw(g, new Point(x, y), dataPoint, xyFactor);
+
+        dataPoint.setPoinUI(xyInstance);
     }
 
     private static void drawLine(Graphics2D g, XYFactor xyFactor,
