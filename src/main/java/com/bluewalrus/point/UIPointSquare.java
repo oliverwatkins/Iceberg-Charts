@@ -10,7 +10,9 @@ import com.bluewalrus.renderer.XYFactor;
 
 public class UIPointSquare extends UIPointSimpleXY {
 
-    public UIPointSquare(Color color) {
+    private Rectangle rectangle;
+
+	public UIPointSquare(Color color) {
         super(color);
     }
 
@@ -30,13 +32,32 @@ public class UIPointSquare extends UIPointSimpleXY {
         g.setColor(c);
         
 
-        Rectangle rec = new Rectangle((int) point.x - radiusOrWidthOfPointShape / 2,
+        rectangle = new Rectangle((int) point.x - radiusOrWidthOfPointShape / 2,
                 point.y - radiusOrWidthOfPointShape / 2,
                 radiusOrWidthOfPointShape,
                 radiusOrWidthOfPointShape
         );
         
-        g.draw(rec);
+        g.fill(rectangle);
+    
+        if (mouseIsOverPoint) {
+        	
+        	g.setColor(Color.GREEN);
+        	g.fill(rectangle);
+        	System.out.println("Draw11");
+//        	g.draw(rectangle);
+        	
+        }else {
+        	g.setColor(Color.PINK);
+        	g.fill(rectangle);
+        	System.out.println("Draw22");
+        	
+        }
+        
+//		if (b)
+//			System.out.println("CONTAINS POINT!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        
+
 
         
 //        g.fillRect((int) point.x - radiusOrWidthOfPointShape / 2,
@@ -46,15 +67,25 @@ public class UIPointSquare extends UIPointSimpleXY {
 //        );
     }
 
+    boolean mouseIsOverPoint = false;
+    
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		
+		if (rectangle.contains(point)) {
+			
+			System.out.println("does 1");
+			
+			mouseIsOverPoint = true;
+			return true;
+		}else {
+			
+			System.out.println("does 2");
 
-//	@Override
-//	public UIPointXY createNewInstanceOfSelf() throws CloneNotSupportedException {
-//		return (UIPointXY)this.clone();
-//	}
+			
+			mouseIsOverPoint = false;
+			return false;
+		}
+	}
 
 }

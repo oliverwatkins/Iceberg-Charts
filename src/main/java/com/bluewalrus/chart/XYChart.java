@@ -153,7 +153,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public void mouseMoved(MouseEvent e) {
 		
 		Point point = e.getPoint();
-		System.out.println("point = " + point);
+//		System.out.println("point = " + point);
 		
 		for (XYDataSeries xyDataSeries : data) {
 			ArrayList al  = xyDataSeries.dataPoints;
@@ -165,7 +165,14 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				
 				boolean b = uip.doesShapeContainPoint(point);
 				
+				
+				if (b)
+					System.out.println("CONTAINS POINT!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				
 			}
 		}
+		
+		this.updateUI();
+//		this.repaint();
 	}
 }

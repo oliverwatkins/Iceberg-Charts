@@ -97,16 +97,6 @@ public class LineRenderer {
         int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
         int y = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
 
-        UIPointXY pointType = xYDataSeries.pointType;
-        
-        UIPointXY xyInstance = null;
-        try {
-        	xyInstance = pointType.createNewInstanceOfSelf();
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
-        
-        
         //hack
         if (xyFactor.yFactor * y > 200000) {
             return;
@@ -114,10 +104,29 @@ public class LineRenderer {
         if (xyFactor.xFactor * x > 200000) {
             return;
         }
+        
+        
+        
+        if (dataPoint.uiPointXY == null) {
+            UIPointXY pointType = xYDataSeries.pointType;
+            
+            UIPointXY xyInstance = null;
+            try {
+            	xyInstance = pointType.createNewInstanceOfSelf();
+    		} catch (CloneNotSupportedException e) {
+    			e.printStackTrace();
+    		}
+            dataPoint.setPoinUI(xyInstance);
 
-        xyInstance.draw(g, new Point(x, y), dataPoint, xyFactor);
+        }
+        
+        
+        
 
-        dataPoint.setPoinUI(xyInstance);
+
+        dataPoint.uiPointXY.draw(g, new Point(x, y), dataPoint, xyFactor);
+
+        
     }
 
     private static void drawLine(Graphics2D g, XYFactor xyFactor,
