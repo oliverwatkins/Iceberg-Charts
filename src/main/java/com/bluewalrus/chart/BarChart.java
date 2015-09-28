@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.datapoint.DataPointBar;
-import com.bluewalrus.point.BarPoint;
+import com.bluewalrus.point.UIPointBar;
 
 public class BarChart extends XYChart {
 
@@ -15,10 +15,10 @@ public class BarChart extends XYChart {
     }
 
     public BarChart(XAxis xAxis, YAxis yAxis, ArrayList<Bar> bars, int barWidth) {
-        this(xAxis, yAxis, bars, new BarPoint(Color.PINK, Color.YELLOW, null, barWidth));
+        this(xAxis, yAxis, bars, new UIPointBar(Color.PINK, Color.YELLOW, null, barWidth));
     }
 
-    public BarChart(XAxis xAxis, YAxis yAxis, ArrayList<Bar> bars, BarPoint barPoint) {
+    public BarChart(XAxis xAxis, YAxis yAxis, ArrayList<Bar> bars, UIPointBar barPoint) {
         super(xAxis, yAxis);
         
         //inverse relationship?

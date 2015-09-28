@@ -1,7 +1,7 @@
 package com.bluewalrus.bar;
 
-import com.bluewalrus.point.BubblePoint;
-import com.bluewalrus.point.XYPoint;
+import com.bluewalrus.point.UIPointBubble;
+import com.bluewalrus.point.UIPointXY;
 import com.bluewalrus.datapoint.DataPoint;
 
 import java.awt.Color;
@@ -19,7 +19,7 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
 
     public ArrayList<T> dataPoints;
 
-    public XYPoint point;
+    public UIPointXY point;
     public Line line;
     public String name;
 
@@ -30,16 +30,16 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
         this.name = name;
     }
 
-    public XYDataSeries(ArrayList<T> dataPoints, XYPoint point, Line line, String name) {
+    public XYDataSeries(ArrayList<T> dataPoints, UIPointXY point, Line line, String name) {
 
         this(point, line, name);
 
         this.dataPoints = dataPoints;
     }
 
-    public XYDataSeries(XYPoint point, Line line, String name) {
+    public XYDataSeries(UIPointXY point, Line line, String name) {
 
-        if (point instanceof BubblePoint) {
+        if (point instanceof UIPointBubble) {
             type = XYDataSeriesType.BUBBLE;
             seriesColor = point.color;
         } else {

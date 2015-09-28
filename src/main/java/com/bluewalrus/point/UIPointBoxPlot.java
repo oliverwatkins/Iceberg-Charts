@@ -8,9 +8,9 @@ import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBoxPlot;
 import com.bluewalrus.renderer.XYFactor;
 
-public class BoxPlotPoint extends ComplexXYPoint{
+public class UIPointBoxPlot extends UIPointComplexXY{
 
-	public BoxPlotPoint(Color color) {
+	public UIPointBoxPlot(Color color) {
 		super(color);
 	}
 

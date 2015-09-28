@@ -15,9 +15,11 @@ import com.bluewalrus.bar.XYDataSeriesType;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-public class XYChart extends Chart implements Legendable {
+public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
     public YAxis yAxis;
     public XAxis xAxis;
@@ -135,4 +137,16 @@ public class XYChart extends Chart implements Legendable {
         }
         super.drawLegend(g, categories);
     }
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

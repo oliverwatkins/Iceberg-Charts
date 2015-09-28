@@ -14,10 +14,10 @@ import com.bluewalrus.chart.ScatterChart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBoxPlot;
-import com.bluewalrus.point.BoxPlotPoint;
-import com.bluewalrus.point.CirclePoint;
-import com.bluewalrus.point.SquarePoint;
-import com.bluewalrus.point.TrianglePoint;
+import com.bluewalrus.point.UIPointBoxPlot;
+import com.bluewalrus.point.UIPointCircle;
+import com.bluewalrus.point.UIPointSquare;
+import com.bluewalrus.point.UIPointTriangle;
 
 public class TestDataLineScatter {
 
@@ -71,13 +71,13 @@ public class TestDataLineScatter {
 		values3.add(new DataPoint(61, 61));
 		values3.add(new DataPoint(63, 57));
 
-		XYDataSeries series = new XYDataSeries(new SquarePoint(Color.BLUE),
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE),
 				new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
-		XYDataSeries series2 = new XYDataSeries(new CirclePoint(Color.GRAY),
+		XYDataSeries series2 = new XYDataSeries(new UIPointCircle(Color.GRAY),
 				new Line(Color.GRAY), "Red");
 		series2.dataPoints = values2;
-		XYDataSeries series3 = new XYDataSeries(new TrianglePoint(Color.PINK),
+		XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.PINK),
 				new Line(Color.PINK), "Orange");
 		series3.dataPoints = values3;
 
@@ -146,13 +146,13 @@ public class TestDataLineScatter {
 		values2.add(new DataPoint(46, 14));
 		values2.add(new DataPoint(54, 21));
 
-		XYDataSeries series = new XYDataSeries(new SquarePoint(Color.RED, 8),
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.RED, 8),
 				null, "1994");
 
 		series.dataPoints = values;
 
 		XYDataSeries series2 = new XYDataSeries(
-				new CirclePoint(Color.ORANGE, 8), null, "1995");
+				new UIPointCircle(Color.ORANGE, 8), null, "1995");
 
 		series2.dataPoints = values2;
 
@@ -198,17 +198,17 @@ public class TestDataLineScatter {
 		values5.add(new DataPoint(8, 7));
 
 		XYDataSeries<DataPoint> series1 = new XYDataSeries<DataPoint>(
-				new CirclePoint(Color.ORANGE, 15),
+				new UIPointCircle(Color.ORANGE, 15),
 				new Line(Color.RED, true, 11), "1");
 		XYDataSeries<DataPoint> series2 = new XYDataSeries<DataPoint>(
-				new SquarePoint(Color.PINK), new Line(Color.PINK, true), "2");
+				new UIPointSquare(Color.PINK), new Line(Color.PINK, true), "2");
 		XYDataSeries<DataPoint> series3 = new XYDataSeries<DataPoint>(
-				new CirclePoint(Color.BLACK, 23),
+				new UIPointCircle(Color.BLACK, 23),
 				new Line(Color.BLACK, true, 1), "3");
 		XYDataSeries<DataPoint> series4 = new XYDataSeries<DataPoint>(
-				new CirclePoint(Color.GRAY), new Line(Color.GRAY), "4");
+				new UIPointCircle(Color.GRAY), new Line(Color.GRAY), "4");
 		XYDataSeries<DataPoint> series5 = new XYDataSeries<DataPoint>(
-				new SquarePoint(Color.CYAN), new Line(Color.CYAN), "5");
+				new UIPointSquare(Color.CYAN), new Line(Color.CYAN), "5");
 
 		series1.dataPoints = values1;
 		series2.dataPoints = values2;
@@ -259,7 +259,7 @@ public class TestDataLineScatter {
 		values.add(new DataPointBoxPlot(70, 73, 38, 41, 45, 49, 57));
 		values.add(new DataPointBoxPlot(80, 73, 42, 45, 55, 63, 69));
 
-		XYDataSeries series = new XYDataSeries(values, new BoxPlotPoint(
+		XYDataSeries series = new XYDataSeries(values, new UIPointBoxPlot(
 				new Color(181, 197, 207, 100)), null, "1994");
 
 		YAxis yAxis = new YAxis(0.0, 100.0, 50.0, 10.0, null, "y Axis");
@@ -298,11 +298,11 @@ public class TestDataLineScatter {
 			values3.add(new DataPoint(i, x));
 		}
 
-		XYDataSeries series = new XYDataSeries(new SquarePoint(Color.BLUE),
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE),
 				new Line(Color.BLUE), "x^2");
 		series.dataPoints = values;
 
-		XYDataSeries series3 = new XYDataSeries(new TrianglePoint(Color.PINK),
+		XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.PINK),
 				new Line(Color.PINK), "e^x");
 		series3.dataPoints = values3;
 

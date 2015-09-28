@@ -7,16 +7,16 @@ import java.awt.Point;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
 
-public class TrianglePoint extends SimpleXYPoint{
+public class UIPointTriangle extends UIPointSimpleXY{
 
 	
-    public TrianglePoint(Color color) {
+    public UIPointTriangle(Color color) {
 		super(color);
 	}
-    public TrianglePoint(Color color, int size) {
+    public UIPointTriangle(Color color, int size) {
 		super(color, size, 1);
 	}
-    public TrianglePoint(Color color, int size, double transparancyFraction) {
+    public UIPointTriangle(Color color, int size, double transparancyFraction) {
 		super(color, size, transparancyFraction);
 	}
     

@@ -17,8 +17,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.point.SimpleXYPoint;
-import com.bluewalrus.point.XYPoint;
+import com.bluewalrus.point.UIPointSimpleXY;
+import com.bluewalrus.point.UIPointXY;
 
 /**
  * LegendUI
@@ -90,7 +90,7 @@ public class Legend implements Serializable{
                     drawLine(g, legendX, legendY, i, l);
                 }
 
-                XYPoint point = category.point;
+                UIPointXY point = category.point;
 
                 if (point != null) {
                     drawPoint(g, legendX, legendY, i, point);
@@ -139,14 +139,14 @@ public class Legend implements Serializable{
         g.fillRect(x, y, width, width);
     }
 
-    private void drawPoint(Graphics2D g, int legendX, int legendY, int i, XYPoint point) {
+    private void drawPoint(Graphics2D g, int legendX, int legendY, int i, UIPointXY point) {
         g.setColor(point.color);
         int xPos = legendX + squareWidth / 2;
         int yPos = legendY + squareWidth / 2 + (i * squareWidth);
 
         Point p = new Point(xPos, yPos);
 
-        if (point instanceof SimpleXYPoint) {
+        if (point instanceof UIPointSimpleXY) {
             point.draw(g, p, null, null);
         }
 

@@ -30,7 +30,10 @@ public class ChartPropertiesPanel extends JPanel {
 		initComponents();
 	}
 
-
+	public void setChart(XYChart chart2) {
+		this.chart = chart2;
+	}
+	
 	private void initComponents() {
 
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -76,4 +79,7 @@ public class ChartPropertiesPanel extends JPanel {
 
 
 	}
+
+
+
 }

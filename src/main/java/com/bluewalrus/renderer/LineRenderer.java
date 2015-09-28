@@ -11,7 +11,7 @@ import com.bluewalrus.chart.YAxis;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
-import com.bluewalrus.point.XYPoint;
+import com.bluewalrus.point.UIPointXY;
 
 /**
  * 
@@ -22,7 +22,19 @@ import com.bluewalrus.point.XYPoint;
  */
 public class LineRenderer {
 
-//	ArrayList<? extends XYDataSeries<? extends DataPoint>>
+	
+
+    public static void drawLinesOrPointsXXY(Graphics2D g, Chart chart,
+            YAxis yAxis, XAxis xAxis, XYDataSeries<DataPointBar> barSeries) {
+
+        ArrayList al = new ArrayList<>();
+        al.add(barSeries);
+
+        drawLinesOrPoints(g, chart, yAxis, xAxis, al);
+
+    }
+    
+    
     public static void drawLinesOrPoints(Graphics2D g, Chart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
 
@@ -82,7 +94,7 @@ public class LineRenderer {
         int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
         int y = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
 
-        XYPoint xyp = xYDataSeries.point;
+        UIPointXY xyPoint = xYDataSeries.point;
 
         //hack
         if (xyFactor.yFactor * y > 200000) {
@@ -92,7 +104,7 @@ public class LineRenderer {
             return;
         }
 
-        xyp.draw(g, new Point(x, y), dataPoint, xyFactor);
+        xyPoint.draw(g, new Point(x, y), dataPoint, xyFactor);
     }
 
     private static void drawLine(Graphics2D g, XYFactor xyFactor,
@@ -118,14 +130,5 @@ public class LineRenderer {
         line.drawLine(g, adjustedX1, adjustedY1, adjustedX2, adjustedY2);
     }
 
-    public static void drawLinesOrPoints(Graphics2D g, Chart chart,
-            YAxis yAxis, XAxis xAxis, XYDataSeries<DataPointBar> barSeries) {
-
-        ArrayList al = new ArrayList<>();
-        al.add(barSeries);
-
-        drawLinesOrPoints(g, chart, yAxis, xAxis, al);
-
-    }
 
 }

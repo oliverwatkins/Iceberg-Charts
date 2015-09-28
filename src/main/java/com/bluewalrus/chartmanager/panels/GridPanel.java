@@ -174,8 +174,10 @@ public class GridPanel extends JPanel {
 	    }
 	 
 	}
-	
-	
+
+	public void setChart(XYChart chart) {
+		this.chart = chart;
+	}
 	
 
 }

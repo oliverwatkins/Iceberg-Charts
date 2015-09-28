@@ -7,17 +7,17 @@ import java.awt.Point;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
 
-public class CirclePoint extends SimpleXYPoint {
+public class UIPointCircle extends UIPointSimpleXY {
 
-    public CirclePoint(Color color) {
+    public UIPointCircle(Color color) {
         super(color);
     }
 
-    public CirclePoint(Color color, int size) {
+    public UIPointCircle(Color color, int size) {
         super(color, size, .7);
     }
 
-    public CirclePoint(Color color, int size, double transparancyFraction) {
+    public UIPointCircle(Color color, int size, double transparancyFraction) {
         super(color, size, transparancyFraction);
     }
 

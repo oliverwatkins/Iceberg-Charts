@@ -21,13 +21,13 @@ import java.util.ArrayList;
  *
  * @author oliver
  */
-public class PieChartPoint extends ComplexXYPoint {
+public class UIPointPieChart extends UIPointComplexXY {
 
     PieBubbleChartSettings pbcs;
 
     boolean scaleOnX = false;
 
-    public PieChartPoint(Color color, PieBubbleChartSettings pbcs) {
+    public UIPointPieChart(Color color, PieBubbleChartSettings pbcs) {
         super();
         this.pbcs = pbcs;
     }

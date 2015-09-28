@@ -8,32 +8,28 @@ import java.io.Serializable;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
 
-/**
- *
- * @author Oliver Watkins
- */
-public abstract class XYPoint implements Serializable {
+public abstract class UIPointXY implements Serializable {
 
     public int radiusOrWidthOfPointShape = 10; //default
     public Color color;
     public double transparancyFraction = 0.7;
 
-    public XYPoint() {
+    public UIPointXY() {
         super();
     }
     
-    public XYPoint(Color color) {
+    public UIPointXY(Color color) {
         super();
         this.color = color;
     }
 
-    public XYPoint(int width, Color color) {
+    public UIPointXY(int width, Color color) {
         super();
         this.radiusOrWidthOfPointShape = width;
         this.color = color;
     }
 
-    public XYPoint(int width, Color color, double transparancyFraction) {
+    public UIPointXY(int width, Color color, double transparancyFraction) {
         super();
         this.radiusOrWidthOfPointShape = width;
         this.color = color;

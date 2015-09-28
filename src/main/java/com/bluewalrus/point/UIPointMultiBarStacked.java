@@ -1,8 +1,6 @@
 package com.bluewalrus.point;
 
 import java.awt.Color;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -12,12 +10,12 @@ import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.DataPointMultiBar;
 import com.bluewalrus.renderer.XYFactor;
 
-public class MultiBarPoint extends AbstractMultiBarPoint{
+public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 
 	XYChart chart; //Two way reference here :( Not good :(
 	
-	public MultiBarPoint(XYChart chart) {
-		super(Color.BLACK); //unimportant, never used.
+	public UIPointMultiBarStacked(XYChart chart) {
+		super(Color.BLACK);
 		this.chart = chart;		
 	}
 
@@ -32,27 +30,38 @@ public class MultiBarPoint extends AbstractMultiBarPoint{
         int width = 0;
         int height = 0;
 
-        int shift = 0;
-        
-        int totalWidthOfBars = dpX.datapointBars.size() * barWidth;
+        double distance = 0;
         
         for (DataPointBar dpb : dpX.datapointBars) {
         	
+        	
+        	
             if (dpb.y > 0) { // greater than zero
-                x = point.x - (totalWidthOfBars/2);
-                y = chart.topOffset + chart.heightChart - (int)(dpb.y * xyFactor.yFactor);
+                
+            	x = point.x - (barWidth/2);
+                
+            	
+            	double scaledYPoint = (dpb.y * xyFactor.yFactor);
+                
+            	System.out.println("scaledYPoint " + scaledYPoint);
+            	System.out.println("distance " + distance);
+            	
+                y = (int)(chart.topOffset + chart.heightChart - scaledYPoint - distance);
+
                 width = barWidth;
                 height = (int)((dpb.y * xyFactor.yFactor));
+                
+                distance = distance + (dpb.y * xyFactor.yFactor);
                 
                 colorToUse = color;
             	
             }else { // less than zero
             	
-                x = point.x - (totalWidthOfBars/2);
-                y = point.y + (int)( dpb.y * xyFactor.yFactor);
-                width = barWidth;
-                height = (int)((- dpb.y * xyFactor.yFactor)); 
-                
+//                x = point.x - (barWidth/2);
+//                y = point.y + (int)( dpb.y * xyFactor.yFactor);
+//                width = barWidth;
+//                height = (int)((- dpb.y * xyFactor.yFactor)); 
+//                
                 colorToUse = color;
 //                colorToUse = negativeColor;
             }
@@ -67,7 +76,7 @@ public class MultiBarPoint extends AbstractMultiBarPoint{
             g.setColor(colorToUse);
             
             //bottom rect
-            g.fillRect(x + shift,
+            g.fillRect(x,
             		y,
             		width,
             		height); // - xyFactor.yZeroOffsetInPixel));
@@ -75,13 +84,12 @@ public class MultiBarPoint extends AbstractMultiBarPoint{
             g.setColor(muchmuchdarker);
             
             //bottom rect
-            g.drawRect(x + shift,
+            g.drawRect(x,
             		y,
             		width,
             		height);
             
             
-            shift = shift+barWidth;
 		}
         
         if (dpX.name != null)
@@ -90,4 +98,6 @@ public class MultiBarPoint extends AbstractMultiBarPoint{
         this.drawTickLine(g, chart, point.x);
 
 	}
+	
+
 }

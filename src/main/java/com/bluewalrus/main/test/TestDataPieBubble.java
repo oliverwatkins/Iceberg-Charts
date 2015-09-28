@@ -14,7 +14,7 @@ import com.bluewalrus.chart.YAxis;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointPieChart;
 import com.bluewalrus.pie.Segment;
-import com.bluewalrus.point.PieChartPoint;
+import com.bluewalrus.point.UIPointPieChart;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -109,7 +109,7 @@ public class TestDataPieBubble {
         pbcs.setRadialColorStartingPoint1(Color.WHITE);
         pbcs.setRadialColorStartingPoint2(Color.GREEN);
 
-        XYDataSeries series = new XYDataSeries(values, new PieChartPoint(Color.BLUE, pbcs), null, "1994");
+        XYDataSeries series = new XYDataSeries(values, new UIPointPieChart(Color.BLUE, pbcs), null, "1994");
 
         YAxis yAxis = new YAxis(0.0, 100.0, 10.0, null, null, "GNI ");
         XAxis xAxis = new XAxis(0.0, 100.0, 50.0, 10.0, null, "Life Expectancy ");

@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.main.test.TestDataBar;
 import com.bluewalrus.main.test.TestDataBubble;
 import com.bluewalrus.main.test.TestDataLineScatter;
 
@@ -27,12 +28,17 @@ public class MenuManager {
 		JMenuItem newItemBubble = new JMenuItem("Bubble");
 		JMenuItem newItemScatter = new JMenuItem("Scatter");
 		JMenuItem newItemLine = new JMenuItem("Line");
+		JMenuItem newItemXXY = new JMenuItem("XXY");
+		
+		
 		JMenuItem newItemBoxplot = new JMenuItem("Boxplot");
 
 		newItem.add(newItemBubble);
 		newItem.add(newItemScatter);
 		newItem.add(newItemLine);
 		newItem.add(newItemBoxplot);
+		newItem.add(newItemXXY);
+		
 		
 		
 		
@@ -48,6 +54,8 @@ public class MenuManager {
 				app.loadChart(TestDataBubble.getTestData_Bubble());
 			}
 		});
+		
+		///
 		
 		newItemScatter.addActionListener(new ActionListener() {
 			
@@ -71,6 +79,16 @@ public class MenuManager {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				app.loadChart(TestDataLineScatter.getTestData_BoxPlot());
+			}
+		});
+		
+		///
+		
+		newItemXXY.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				app.loadChart(TestDataBar.getTestData_Bar2Y());
 			}
 		});
 		

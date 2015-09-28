@@ -11,7 +11,7 @@ import com.bluewalrus.chart.BubbleChart;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointWithMagnitude;
-import com.bluewalrus.point.BubblePoint;
+import com.bluewalrus.point.UIPointBubble;
 
 public class TestDataBubble {
 
@@ -76,7 +76,7 @@ public class TestDataBubble {
         values.add(new DataPointWithMagnitude("Wisconsin", 44.40, 1.7, 5686986));
         values.add(new DataPointWithMagnitude("Wyoming", 59.70, 0.9, 563626));
 
-        XYDataSeries series = new XYDataSeries(values, new BubblePoint(Color.BLUE),
+        XYDataSeries series = new XYDataSeries(values, new UIPointBubble(Color.BLUE),
                 null, "1994");
 
         YAxis yAxis = new YAxis(0.0, 10.0, 1.0, null, null, "No. of Homicides per 100,000 ");
@@ -124,8 +124,8 @@ public class TestDataBubble {
         values2.add(new DataPointWithMagnitude("G", 370, 134, 40));
         values2.add(new DataPointWithMagnitude("H", 400, 349, 80));
 
-        XYDataSeries series = new XYDataSeries(values, new BubblePoint(Color.BLUE), null, "Series 1");
-        XYDataSeries series2 = new XYDataSeries(values2, new BubblePoint(Color.ORANGE), null, "Series 2");
+        XYDataSeries series = new XYDataSeries(values, new UIPointBubble(Color.BLUE), null, "Series 1");
+        XYDataSeries series2 = new XYDataSeries(values2, new UIPointBubble(Color.ORANGE), null, "Series 2");
 
         YAxis yAxis = new YAxis(0.0, 400.0, 50.0, null, null, "Y Axis ");
         XAxis xAxis = new XAxis(0.0, 400.0, 50.0, null, null, "X Axis");

@@ -64,6 +64,10 @@ public class ChartManagerApp extends JFrame {
 			
 			xAxisPanel.setChart(chart, chart.xAxis);
 			yAxisPanel.setChart(chart, chart.yAxis);
+			chartPropertiesPanel.setChart(chart);
+			gridPanel.setChart(chart);
+			
+			
 			
 			getContentPane().revalidate();
 			

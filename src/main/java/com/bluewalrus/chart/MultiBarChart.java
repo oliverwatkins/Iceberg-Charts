@@ -9,8 +9,8 @@ import com.bluewalrus.bar.MultiBar;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.DataPointMultiBar;
-import com.bluewalrus.point.MultiBarPoint;
-import com.bluewalrus.point.MultiBarStackedPoint;
+import com.bluewalrus.point.UIPointMultiBar;
+import com.bluewalrus.point.UIPointMultiBarStacked;
 
 public class MultiBarChart extends XYChart { // extends LineChart{
 
@@ -61,7 +61,7 @@ public class MultiBarChart extends XYChart { // extends LineChart{
         if (stacked) {
             XYDataSeries<DataPointMultiBar> series = new XYDataSeries<DataPointMultiBar>(
                     dataPoints,
-                    new MultiBarStackedPoint(this),
+                    new UIPointMultiBarStacked(this),
                     null,
                     "");
 
@@ -69,7 +69,7 @@ public class MultiBarChart extends XYChart { // extends LineChart{
         } else {
             XYDataSeries<DataPointMultiBar> series = new XYDataSeries<DataPointMultiBar>(
                     dataPoints,
-                    new MultiBarPoint(this),
+                    new UIPointMultiBar(this),
                     null,
                     "");
 

@@ -11,7 +11,7 @@ import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
-import com.bluewalrus.point.BarPoint;
+import com.bluewalrus.point.UIPointBar;
 import com.bluewalrus.renderer.LineRenderer;
 
 public class XYYChart extends XYChart { // extends LineChart{
@@ -60,7 +60,7 @@ public class XYYChart extends XYChart { // extends LineChart{
 
         barSeries = new XYDataSeries<DataPointBar>(
                 dataPoints,
-                new BarPoint(Color.PINK, Color.YELLOW, this, barWidth),
+                new UIPointBar(Color.PINK, Color.YELLOW, this, barWidth),
                 null,
                 "");
 
@@ -70,7 +70,7 @@ public class XYYChart extends XYChart { // extends LineChart{
     @Override
     protected void drawGraph(Graphics g) {
 
-        LineRenderer.drawLinesOrPoints((Graphics2D) g, this, yAxis2, xAxis, barSeries);
+        LineRenderer.drawLinesOrPointsXXY((Graphics2D) g, this, yAxis2, xAxis, barSeries);
 
         LineRenderer.drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
 

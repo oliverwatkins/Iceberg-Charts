@@ -2,8 +2,8 @@ package com.bluewalrus.bar;
 
 import java.awt.Color;
 
-import com.bluewalrus.point.BubblePoint;
-import com.bluewalrus.point.XYPoint;
+import com.bluewalrus.point.UIPointBubble;
+import com.bluewalrus.point.UIPointXY;
 
 /**
  * 
@@ -11,7 +11,7 @@ import com.bluewalrus.point.XYPoint;
  */
 public class Category {
 
-    public XYPoint point;
+    public UIPointXY point;
     public Line line;
     public String name;
 
@@ -27,14 +27,14 @@ public class Category {
         this.color = color;
     }
 
-    public Category(String name, XYPoint point, Line line) {
+    public Category(String name, UIPointXY point, Line line) {
 
         this.name = name;
 
         /**
          * If XY chart is bubble then the point shape is just a filled in square
          */
-        if (point instanceof BubblePoint) {
+        if (point instanceof UIPointBubble) {
             this.block = true;
         }
 

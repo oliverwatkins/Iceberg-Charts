@@ -17,12 +17,12 @@ import com.bluewalrus.renderer.XYFactor;
  * @author lauren
  */
 
-public class BubblePoint extends ComplexXYPoint {
+public class UIPointBubble extends UIPointComplexXY {
 
     //by default scale on Y
     boolean scaleOnX = false;
     
-    public BubblePoint(Color color) {
+    public UIPointBubble(Color color) {
         super(color);
     }
 

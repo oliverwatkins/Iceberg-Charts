@@ -6,15 +6,15 @@ import java.awt.Graphics;
 
 import com.bluewalrus.chart.XYChart;
 
-public abstract class AbstractBarPoint extends ComplexXYPoint {
+public abstract class UIPointAbstractBar extends UIPointComplexXY {
 
     int barWidth = 10;
 
-    public AbstractBarPoint(Color color, int size) {
+    public UIPointAbstractBar(Color color, int size) {
         super(color, size);
     }
 
-    public AbstractBarPoint(Color color) {
+    public UIPointAbstractBar(Color color) {
         super(color);
     }
 

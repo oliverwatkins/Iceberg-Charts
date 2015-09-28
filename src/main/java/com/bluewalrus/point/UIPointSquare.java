@@ -7,17 +7,17 @@ import java.awt.Point;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
 
-public class SquarePoint extends SimpleXYPoint {
+public class UIPointSquare extends UIPointSimpleXY {
 
-    public SquarePoint(Color color) {
+    public UIPointSquare(Color color) {
         super(color);
     }
 
-    public SquarePoint(Color color, int size) {
+    public UIPointSquare(Color color, int size) {
         super(color, size, .7);
     }
 
-    public SquarePoint(Color color, int size, double transparancyFraction) {
+    public UIPointSquare(Color color, int size, double transparancyFraction) {
         super(color, size, transparancyFraction);
     }
 

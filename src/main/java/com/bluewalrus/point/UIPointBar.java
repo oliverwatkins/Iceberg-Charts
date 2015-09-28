@@ -9,18 +9,18 @@ import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.renderer.XYFactor;
 
-public class BarPoint extends AbstractBarPoint {
+public class UIPointBar extends UIPointAbstractBar {
 
     boolean doBorder = true;
     Color negativeColor;
     public XYChart chart; //Two way reference here :( Not good :(
 
-    public BarPoint(Color color, XYChart chart) {
+    public UIPointBar(Color color, XYChart chart) {
         super(color);
         this.chart = chart;
     }
 
-    public BarPoint(Color color, Color negativeColor, XYChart chart, int barWidth) {
+    public UIPointBar(Color color, Color negativeColor, XYChart chart, int barWidth) {
         super(color);
         this.negativeColor = negativeColor;
         this.chart = chart;

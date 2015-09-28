@@ -23,10 +23,10 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
-import com.bluewalrus.point.BarPoint;
-import com.bluewalrus.point.CirclePoint;
-import com.bluewalrus.point.SquarePoint;
-import com.bluewalrus.point.TrianglePoint;
+import com.bluewalrus.point.UIPointBar;
+import com.bluewalrus.point.UIPointCircle;
+import com.bluewalrus.point.UIPointSquare;
+import com.bluewalrus.point.UIPointTriangle;
 
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
@@ -239,7 +239,7 @@ public class TestDataBar {
     }
     
     
-    public static Chart getTestData_Bar2Y() {
+    public static XYChart getTestData_Bar2Y() {
         
         ArrayList<XYDataSeries> xySeries = new ArrayList<XYDataSeries>();
 
@@ -285,15 +285,15 @@ public class TestDataBar {
         values3.add(new DataPoint(2.8));
         values3.add(new DataPoint(-0.9));
 
-        XYDataSeries series = new XYDataSeries(new CirclePoint(Color.RED), 
+        XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.RED), 
         		new Line(Color.RED), "max");
         series.dataPoints = values;
 
-        XYDataSeries series2 = new XYDataSeries(new SquarePoint(Color.BLUE), 
+        XYDataSeries series2 = new XYDataSeries(new UIPointSquare(Color.BLUE), 
         		new Line(Color.BLUE), "min");
         series2.dataPoints = values2;
 
-        XYDataSeries series3 = new XYDataSeries(new TrianglePoint(Color.ORANGE), 
+        XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.ORANGE), 
         		new Line(Color.ORANGE), "average");
         series3.dataPoints = values3;
 
@@ -375,7 +375,7 @@ public class TestDataBar {
         XYChart lineChart = new XYChart(xAxis, yAxis);
         
         XYDataSeries<DataPointBar> series = new XYDataSeries<DataPointBar>(
-        		new BarPoint(Color.RED, lineChart),
+        		new UIPointBar(Color.RED, lineChart),
         		null,
         		"");
 
