@@ -16,7 +16,9 @@ import com.bluewalrus.point.UIPointXY;
 
 /**
  * 
- * Line OR POINT renderer. Sort of a utilities class
+ * Line OR POINT renderer. Sort of a utilities class.
+ * 
+ * TODO refactor. this should belong in the chart class.
  *
  * @author Oliver Watkins
  *
@@ -25,16 +27,16 @@ public class LineRenderer {
 
 	
 
-    public static void drawLinesOrPointsXXY(Graphics2D g, Chart chart,
-            YAxis yAxis, XAxis xAxis, XYDataSeries<DataPointBar> barSeries) {
-
-        ArrayList al = new ArrayList<>();
-        al.add(barSeries);
-
-        drawLinesOrPoints(g, chart, yAxis, xAxis, al);
-
-    }
-    
+//    public static void drawLinesOrPointsXXY(Graphics2D g, Chart chart,
+//            YAxis yAxis, XAxis xAxis, XYDataSeries<DataPointBar> barSeries) {
+//
+//        ArrayList al = new ArrayList<>();
+//        al.add(barSeries);
+//
+//        drawLinesOrPoints(g, chart, yAxis, xAxis, al);
+//
+//    }
+//    
     
     public static void drawLinesOrPoints(Graphics2D g, Chart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
@@ -97,15 +99,13 @@ public class LineRenderer {
         int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
         int y = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
 
-        //hack
+        //hack TODO 
         if (xyFactor.yFactor * y > 200000) {
             return;
         }
         if (xyFactor.xFactor * x > 200000) {
             return;
         }
-        
-        
         
         if (dataPoint.uiPointXY == null) {
             UIPointXY pointType = xYDataSeries.pointType;
@@ -119,14 +119,8 @@ public class LineRenderer {
             dataPoint.setPoinUI(xyInstance);
 
         }
-        
-        
-        
-
 
         dataPoint.uiPointXY.draw(g, new Point(x, y), dataPoint, xyFactor);
-
-        
     }
 
     private static void drawLine(Graphics2D g, XYFactor xyFactor,

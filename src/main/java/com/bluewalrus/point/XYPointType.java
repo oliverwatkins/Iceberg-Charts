@@ -7,6 +7,7 @@
 package com.bluewalrus.point;
 
 /**
+ * hmmm...
  *
  * @author lauren
  */

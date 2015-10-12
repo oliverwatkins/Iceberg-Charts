@@ -10,8 +10,11 @@ import com.bluewalrus.renderer.XYFactor;
 
 public class UIPointSquare extends UIPointSimpleXY {
 
+	//shape that represents the point
     private Rectangle rectangle;
-
+    
+    boolean mouseIsOverPoint = false;
+    
 	public UIPointSquare(Color color) {
         super(color);
     }
@@ -41,33 +44,14 @@ public class UIPointSquare extends UIPointSimpleXY {
         g.fill(rectangle);
     
         if (mouseIsOverPoint) {
-        	
         	g.setColor(Color.GREEN);
         	g.fill(rectangle);
-        	System.out.println("Draw11");
-//        	g.draw(rectangle);
-        	
         }else {
         	g.setColor(Color.PINK);
         	g.fill(rectangle);
-        	System.out.println("Draw22");
-        	
         }
-        
-//		if (b)
-//			System.out.println("CONTAINS POINT!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        
-
-
-        
-//        g.fillRect((int) point.x - radiusOrWidthOfPointShape / 2,
-//                point.y - radiusOrWidthOfPointShape / 2,
-//                radiusOrWidthOfPointShape,
-//                radiusOrWidthOfPointShape
-//        );
     }
 
-    boolean mouseIsOverPoint = false;
     
 	@Override
 	public boolean doesShapeContainPoint(Point point) {

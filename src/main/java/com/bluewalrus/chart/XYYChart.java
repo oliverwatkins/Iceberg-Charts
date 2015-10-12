@@ -14,7 +14,14 @@ import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
 import com.bluewalrus.renderer.LineRenderer;
 
-public class XYYChart extends XYChart { // extends LineChart{
+
+/**
+ * XXYChart has line/point for one Y axis, and bar for the other Y axis. At this point in time
+ * that is all that is planned for this chart.
+ * 
+ * @author Oliver Watkins
+ */
+public class XYYChart extends XYChart { 
 
     public int barWidth = 30;
     public YAxis yAxis2;
@@ -70,14 +77,16 @@ public class XYYChart extends XYChart { // extends LineChart{
     @Override
     protected void drawGraph(Graphics g) {
 
-        LineRenderer.drawLinesOrPointsXXY((Graphics2D) g, this, yAxis2, xAxis, barSeries);
+    	//draw bars first
+        drawLinesOrPointsXXY((Graphics2D) g, this, yAxis2, xAxis, barSeries);
 
+        //...then the other series.
         LineRenderer.drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
 
         Graphics2D g2d = (Graphics2D) g;
 
         drawRightLine(g2d);
-//
+        
         yAxis2.rightSide = true;
         yAxis2.drawIntervals(g, this);
         yAxis2.drawIntervalLabels(this.yAxis.interval1.increment, g, Color.BLACK, this);
@@ -85,7 +94,22 @@ public class XYYChart extends XYChart { // extends LineChart{
 
         drawLegend(g2d);
     }
+    
+    
+    public static void drawLinesOrPointsXXY(Graphics2D g, Chart chart,
+            YAxis yAxis, XAxis xAxis, XYDataSeries<DataPointBar> barSeries) {
 
+        ArrayList al = new ArrayList<>();
+        al.add(barSeries);
+
+        LineRenderer.drawLinesOrPoints(g, chart, yAxis, xAxis, al);
+
+    }
+
+    /**
+     * This is slightly different to the super implementation, because an offset is used where the second
+     * y axis is displyed.
+     */
     @Override
     public void drawLegend(Graphics2D g) {
 
@@ -108,4 +132,5 @@ public class XYYChart extends XYChart { // extends LineChart{
 
         super.drawLegend(g, categories, offset);
     }
+
 }

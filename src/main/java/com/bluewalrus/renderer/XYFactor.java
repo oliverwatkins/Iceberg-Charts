@@ -14,5 +14,4 @@ public class XYFactor {
 		this.xFactor = xFactor;
 		this.yFactor = yFactor;
 	}
-
 }
