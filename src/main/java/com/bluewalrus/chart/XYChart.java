@@ -28,6 +28,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
     public XAxis xAxis;
 
     public ArrayList<XYDataSeries> data = new ArrayList<XYDataSeries>();
+	public String fileLocation = "";
     
     public XYChart(XAxis xAxis, YAxis yAxis) {
         this.yAxis = yAxis;
