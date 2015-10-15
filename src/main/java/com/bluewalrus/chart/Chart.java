@@ -24,6 +24,10 @@ import com.bluewalrus.bar.Legend;
  * @author oliver
  */
 public abstract class Chart extends JPanel {
+	
+	
+	//file locations in local file system TODO this probably does not belong here. Have class like ChartExt with meta data like file location?
+	public String fileLocation = "";
 
 	public Font legendFont = new Font("Arial", Font.PLAIN, 12);
 
@@ -193,6 +197,15 @@ public abstract class Chart extends JPanel {
 		legend.drawLegend(g, this, categories);
 
 	}
+	
+	public void setLocation(String location) {
+
+		this.firePropertyChange("location", fileLocation, location);
+		this.fileLocation = location;
+		
+	}
+	
+	
 
 	public Legend legend;
 
