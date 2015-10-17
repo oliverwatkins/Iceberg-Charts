@@ -54,11 +54,11 @@ public class YAxis extends Axis {
 
     public void drawGridLine(Interval tick, Graphics2D g, Chart chart) {
 
-        int incrementNo = (int) ((maxValue - minValue) / tick.increment);
+        int incrementNo = (int) ((maxValue - minValue) / tick.getIncrement());
 
         double factor = Utils.getFactor(chart.heightChart, maxValue, minValue);
 
-        double incrementInPixel = (double) (tick.increment * factor);
+        double incrementInPixel = (double) (tick.getIncrement() * factor);
 
         for (int i = 0; i < incrementNo; i++) {
             int x1 = chart.leftOffset;

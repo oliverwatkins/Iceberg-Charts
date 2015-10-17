@@ -15,13 +15,21 @@ import java.io.Serializable;
  */
 public class Interval implements Serializable{
 
-    public Line graphLine;
+	
+	
+	/**
+	 * Can be active, and inactive
+	 */
+	public boolean active;
+	
+	
+
+	public Line graphLine;
 
     /**
      * length in pixels of the 'Tick'. 
      * Usually about 5 pixels hanging to the side of axis
      */
-    
     public int lineLength; 
     
     
@@ -29,9 +37,24 @@ public class Interval implements Serializable{
      * Spacing of interval. If increment = 10.0, then the tick will appear
      * at 0,10,20,30 etc.
      */
-    public Double increment; 
+    private Double increment; 
 
-    public Interval(int lineLength, Double increment) {
+    public Double getIncrement() {
+    	
+    	
+    	
+		return increment;
+	}
+
+	public void setIncrement(Double increment) {
+		
+//		if (!(increment > 0.0))
+			
+		
+		this.increment = increment;
+	}
+
+	public Interval(int lineLength, Double increment) {
         this.lineLength = lineLength;
         this.increment = increment;
     }
@@ -41,4 +64,23 @@ public class Interval implements Serializable{
         this.increment = increment;
         this.graphLine = graphLine;
     }
+
+    /**
+     * increment cannot be zero or less than zero
+     * @return
+     */
+	public boolean isValid() {
+		if (increment > 0)
+			return true;
+		return false;
+	}
+	
+    public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 }

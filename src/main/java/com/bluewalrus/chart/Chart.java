@@ -11,6 +11,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Shape;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -51,6 +53,56 @@ public abstract class Chart extends JPanel {
 	public Color titleColor = Color.BLACK;
 
 	public String title = "My Fruits";
+	
+	
+	public Chart() {
+		this.addComponentListener(new ComponentListener() {
+			
+			@Override
+			public void componentShown(ComponentEvent e) {
+				
+				System.out.println("Chart height " + Chart.this.getHeight());
+				
+				Chart.this.height = Chart.this.getHeight();
+				Chart.this.width = Chart.this.getWidth();
+				Chart.this.repaint();
+			}
+			
+			@Override
+			public void componentResized(ComponentEvent e) {
+				System.out.println("componentResized " + Chart.this.getHeight());
+				
+				Chart.this.height = Chart.this.getHeight();
+				Chart.this.width = Chart.this.getWidth();
+				Chart.this.repaint();
+				
+			}
+			
+			@Override
+			public void componentMoved(ComponentEvent e) {
+				
+				System.out.println("componentResized " + Chart.this.getHeight());
+				
+				Chart.this.height = Chart.this.getHeight();
+				Chart.this.width = Chart.this.getWidth();
+				Chart.this.repaint();
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				
+				System.out.println("componentResized " + Chart.this.getHeight());
+				
+				Chart.this.height = Chart.this.getHeight();
+				Chart.this.width = Chart.this.getWidth();
+				Chart.this.repaint();
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
 
 	protected void drawTitle(Graphics g) {
 
@@ -79,38 +131,10 @@ public abstract class Chart extends JPanel {
 		this.heightChart = height - (topOffset + bottomOffset);
 		this.widthChart = width - (leftOffset + rightOffset);
 	}
+	
+	
 
-	private void drawTrialVersion(Graphics2D g2d) {
-		String trialVersion = "Trial Version : ";
-		String trialVersion2 = "If you would like a free copy without watermark";
-		String trialVersion3 = "Contact me on ";
-		String trialVersion4 = "oliver.f.watkins@gmail.com";
-		String trialVersion5 = "I want to get a feel for how popular this component is";
 
-		Font yFont = new Font("Arial", Font.BOLD, 15);
-		FontMetrics fm = getFontMetrics(yFont);
-		int width = fm.stringWidth(trialVersion);
-		int height = fm.getHeight();
-
-		Composite c = g2d.getComposite();
-
-		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
-				2 * 0.1f));
-
-		g2d.setFont(yFont);
-		g2d.setColor(Color.GRAY);
-
-		int x = 0;
-		int y = 0;
-
-		g2d.drawString(trialVersion, x, y);
-		g2d.drawString(trialVersion2, x, y + 15);
-		g2d.drawString(trialVersion3, x, y + 30);
-		g2d.drawString(trialVersion4, x, y + 45);
-		g2d.drawString(trialVersion5, x, y + 60);
-
-		g2d.setComposite(c);
-	}
 
 
 	transient BasicStroke chartBorderLine = new BasicStroke(1, BasicStroke.CAP_BUTT,
@@ -166,9 +190,12 @@ public abstract class Chart extends JPanel {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, // Anti-alias!
 				RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g.drawRect(0, 0, width, height);
+		
+		
+		
+		g.drawRect(0, 0, this.getWidth(), this.getHeight());
 		g2d.setColor(backgroundColor);
-		g.fillRect(0, 0, width, height);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g2d.setColor(Color.BLACK);
 	}
 
@@ -204,8 +231,6 @@ public abstract class Chart extends JPanel {
 		this.fileLocation = location;
 		
 	}
-	
-	
 
 	public Legend legend;
 
@@ -214,5 +239,40 @@ public abstract class Chart extends JPanel {
 			return legend.getChartBounds();
 		}
 		return null;
+	}
+	
+	
+	
+	
+	private void drawTrialVersion(Graphics2D g2d) {
+		String trialVersion = "Trial Version : ";
+		String trialVersion2 = "If you would like a free copy without watermark";
+		String trialVersion3 = "Contact me on ";
+		String trialVersion4 = "oliver.f.watkins@gmail.com";
+		String trialVersion5 = "I want to get a feel for how popular this component is";
+
+		Font yFont = new Font("Arial", Font.BOLD, 15);
+		FontMetrics fm = getFontMetrics(yFont);
+		int width = fm.stringWidth(trialVersion);
+		int height = fm.getHeight();
+
+		Composite c = g2d.getComposite();
+
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+				2 * 0.1f));
+
+		g2d.setFont(yFont);
+		g2d.setColor(Color.GRAY);
+
+		int x = 0;
+		int y = 0;
+
+		g2d.drawString(trialVersion, x, y);
+		g2d.drawString(trialVersion2, x, y + 15);
+		g2d.drawString(trialVersion3, x, y + 30);
+		g2d.drawString(trialVersion4, x, y + 45);
+		g2d.drawString(trialVersion5, x, y + 60);
+
+		g2d.setComposite(c);
 	}
 }

@@ -85,7 +85,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         drawGrid(g2d);
 
         yAxis.drawIntervals(g2d, this);
-        yAxis.drawIntervalLabels(this.yAxis.interval1.increment, g2d, Color.BLACK, this);
+        yAxis.drawIntervalLabels(this.yAxis.interval1.getIncrement(), g2d, Color.BLACK, this);
         yAxis.drawLabel(g2d, this);
 
     }

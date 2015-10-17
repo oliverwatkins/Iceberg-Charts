@@ -89,7 +89,7 @@ public class XYYChart extends XYChart {
         
         yAxis2.rightSide = true;
         yAxis2.drawIntervals(g, this);
-        yAxis2.drawIntervalLabels(this.yAxis.interval1.increment, g, Color.BLACK, this);
+        yAxis2.drawIntervalLabels(this.yAxis.interval1.getIncrement(), g, Color.BLACK, this);
         yAxis2.drawLabel(g, this);
 
         drawLegend(g2d);

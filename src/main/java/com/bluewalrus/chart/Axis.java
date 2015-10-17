@@ -97,9 +97,18 @@ public abstract class Axis implements Serializable{
         this.minValue = minValue;
         this.label = name;
 
-        this.interval1 = interval1;
-        this.interval2 = interval2;
-        this.interval3 = interval3;
+        if (interval1 == null) {
+            this.interval1 = new Interval(0,0.0);
+            this.interval1.setActive(false);
+        }
+        if (interval2 == null) {
+            this.interval2 = new Interval(0,0.0);
+            this.interval2.setActive(false);
+        }
+        if (interval3 == null) {
+            this.interval3 = new Interval(0,0.0);
+            this.interval3.setActive(false);
+        }
     }
     
     /**
@@ -108,14 +117,14 @@ public abstract class Axis implements Serializable{
      * @param chart 
      */
     public void drawIntervals(Graphics g, Chart chart) {
-        if (this.interval1 != null && this.interval1.increment != 0) {
-            drawTick(this.interval1.increment, g, this.axisColor, this.interval1.lineLength, chart);
+        if (this.interval1.isValid() && this.interval1.isActive()) {
+            drawTick(this.interval1.getIncrement(), g, this.axisColor, this.interval1.lineLength, chart);
         }
-        if (this.interval2 != null && this.interval2.increment != 0) {
-            drawTick(this.interval2.increment, g, this.axisColor, this.interval2.lineLength, chart);
+        if (this.interval2.isValid() && this.interval2.isActive()) {
+            drawTick(this.interval2.getIncrement(), g, this.axisColor, this.interval2.lineLength, chart);
         }
-        if (this.interval3 != null && this.interval3.increment != 0) {
-            drawTick(this.interval3.increment, g, this.axisColor, this.interval3.lineLength, chart);
+        if (this.interval3.isValid() && this.interval3.isActive()) {
+            drawTick(this.interval3.getIncrement(), g, this.axisColor, this.interval3.lineLength, chart);
         }
     }
     /**
@@ -124,14 +133,14 @@ public abstract class Axis implements Serializable{
      * @param chart 
      */
     public void drawAllIntervalLabels(Graphics g, Chart chart) {
-        if (this.interval1 != null && this.interval1.increment != 0) {
-            drawIntervalLabels(this.interval1.increment, g, Color.BLACK, chart);
+        if (this.interval1.isValid() && this.interval1.isActive()) {
+            drawIntervalLabels(this.interval1.getIncrement(), g, Color.BLACK, chart);
         }
-        if (this.interval2 != null && this.interval2.increment != 0) {
-            drawIntervalLabels(this.interval2.increment, g, Color.BLACK, chart);
+        if (this.interval2.isValid() && this.interval2.isActive()) {
+            drawIntervalLabels(this.interval2.getIncrement(), g, Color.BLACK, chart);
         }
-        if (this.interval3 != null && this.interval3.increment != 0) {
-            drawIntervalLabels(this.interval3.increment, g, Color.BLACK, chart);
+        if (this.interval3.isValid() && this.interval3.isActive()) {
+            drawIntervalLabels(this.interval3.getIncrement(), g, Color.BLACK, chart);
         }
     }
 

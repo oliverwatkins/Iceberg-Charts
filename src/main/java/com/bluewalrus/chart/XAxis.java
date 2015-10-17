@@ -108,9 +108,9 @@ public class XAxis extends Axis {
             return;
         }
 
-        int incrementNo = (int) (maxValue / tick.increment);
+        int incrementNo = (int) (maxValue / tick.getIncrement());
         double factor = ((double) chart.widthChart / (double) maxValue);
-        double incrementInPixel = (double) (tick.increment * factor);
+        double incrementInPixel = (double) (tick.getIncrement() * factor);
 
         g.setColor(tick.graphLine.color);
 
