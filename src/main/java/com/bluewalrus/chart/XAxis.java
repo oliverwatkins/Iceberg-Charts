@@ -2,6 +2,7 @@ package com.bluewalrus.chart;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.chart.Chart;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -10,7 +11,7 @@ import java.awt.Graphics2D;
 
 public class XAxis extends Axis {
 
-    public Font xFont = new Font("Arial", Font.BOLD, 12);
+    public Font xFont = new Font("Arial", Font.PLAIN, 12);
 
     public XAxis(String name) {
         super(name, AxisType.STANDARD);
@@ -38,8 +39,64 @@ public class XAxis extends Axis {
     }
     
     
-    /**
+	@Override
+	protected void drawTickAndLabels(Interval interval12, Graphics g,
+			Color axisColor2, int lineLength, Chart chart) {
+		
+		Double increment = interval12.getIncrement();
+		
+        if (type == AxisType.BLANK) {
+            return;
+        }
+        int incrementNo = (int) ((maxValue - minValue) / increment);
+
+        double xScalingFactor = ((double) chart.widthChart / (double) (maxValue - minValue));
+
+        int incrementInPixel = (int) (increment * xScalingFactor);
+
+        g.setColor(axisColor2);
+        FontMetrics fm = chart.getFontMetrics(axisCatFont);
+        
+        for (int i = 0; i < incrementNo; i++) {
+        	drawTick_new(interval12.getIncrement(), g, axisColor2, lineLength, chart, i, incrementInPixel);
+        	drawLabel_new(interval12.getIncrement(), g, axisColor2, lineLength, chart, i, incrementInPixel);
+    	}
+		
+	}
+	
+    
+    private void drawLabel_new(Double increment, Graphics g, Color axisColor2,
+			int lineLength, Chart chart, int i, int incrementInPixel) {
+    	
+        String xLabel = "" + ((i * increment) + minValue);
+        FontMetrics fm = chart.getFontMetrics(axisCatFont);
+        int widthStr = fm.stringWidth(xLabel);
+//        int heightStr = fm.getHeight();
+
+        int xPos = chart.leftOffset + (i * incrementInPixel) - (widthStr / 2);
+        int yPos = chart.topOffset + chart.heightChart + tickLabelOffset;
+
+        g.setFont(axisCatFont);
+
+        g.drawString(xLabel, xPos, yPos);
+		
+	}
+
+	private void drawTick_new(Double increment, Graphics g, Color axisColor2,
+			int lineLength, Chart chart, int i, int incrementInPixel) {
+		
+        int x1 = chart.leftOffset + (int) (i * incrementInPixel);
+        int x2 = x1;
+        int y1 = (chart.topOffset + chart.heightChart + marginOffset);
+        int y2 = (chart.topOffset + chart.heightChart + marginOffset + lineLength);
+
+        g.drawLine(x1, y1, x2, y2);
+		
+	}
+
+	/**
      * Draws the tick lines
+     * @deprecated
      */
     protected void drawTick(Double increment, Graphics g, Color c, int tickWidth, Chart chart) {
 
@@ -66,7 +123,7 @@ public class XAxis extends Axis {
     /* (non-Javadoc)
      * @see com.bluewalrus.bar.cvyxcyxcv#drawIntervalLabels(java.lang.Double, java.awt.Graphics, java.awt.Color, com.bluewalrus.chart.Chart)
      */
-    @Override
+    @Deprecated
     public void drawIntervalLabels(Double increment, Graphics g, Color c, Chart chart) {
 
         if (type == AxisType.BLANK) {
@@ -164,4 +221,6 @@ public class XAxis extends Axis {
     	g.setColor(axisColor);
         g.drawLine(x1, y1, x2, y2);
     }
+
+
 }

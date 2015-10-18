@@ -61,7 +61,7 @@ public abstract class Chart extends JPanel {
 			@Override
 			public void componentShown(ComponentEvent e) {
 				
-				System.out.println("Chart height " + Chart.this.getHeight());
+//				System.out.println("Chart height " + Chart.this.getHeight());
 				
 				Chart.this.height = Chart.this.getHeight();
 				Chart.this.width = Chart.this.getWidth();
@@ -70,7 +70,7 @@ public abstract class Chart extends JPanel {
 			
 			@Override
 			public void componentResized(ComponentEvent e) {
-				System.out.println("componentResized " + Chart.this.getHeight());
+//				System.out.println("componentResized " + Chart.this.getHeight());
 				
 				Chart.this.height = Chart.this.getHeight();
 				Chart.this.width = Chart.this.getWidth();
@@ -81,7 +81,7 @@ public abstract class Chart extends JPanel {
 			@Override
 			public void componentMoved(ComponentEvent e) {
 				
-				System.out.println("componentResized " + Chart.this.getHeight());
+//				System.out.println("componentResized " + Chart.this.getHeight());
 				
 				Chart.this.height = Chart.this.getHeight();
 				Chart.this.width = Chart.this.getWidth();
@@ -93,7 +93,7 @@ public abstract class Chart extends JPanel {
 			@Override
 			public void componentHidden(ComponentEvent e) {
 				
-				System.out.println("componentResized " + Chart.this.getHeight());
+//				System.out.println("componentResized " + Chart.this.getHeight());
 				
 				Chart.this.height = Chart.this.getHeight();
 				Chart.this.width = Chart.this.getWidth();

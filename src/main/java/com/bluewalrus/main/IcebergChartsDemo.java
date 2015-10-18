@@ -46,6 +46,11 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
         
+//        setSize(1300, 800);
+//        
+//        if(true)
+//        	return;
+        
         p = createTabbedPane(tabbedPaneBar, "Bar - Can be XY");
         chart = TestDataBar.getTestData_BarCanBeXY();
         charts.add(chart);

@@ -17,10 +17,12 @@ public class Interval implements Serializable{
 
 	
 	
+
+
 	/**
 	 * Can be active, and inactive
 	 */
-	public boolean active;
+	public boolean active = true;
 	
 	
 
@@ -40,8 +42,6 @@ public class Interval implements Serializable{
     private Double increment; 
 
     public Double getIncrement() {
-    	
-    	
     	
 		return increment;
 	}
@@ -81,6 +81,13 @@ public class Interval implements Serializable{
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	
+	@Override
+	public String toString() {
+		return "Interval [active=" + active + ", graphLine=" + graphLine
+				+ ", lineLength=" + lineLength + ", increment=" + increment
+				+ "]";
 	}
 
 }

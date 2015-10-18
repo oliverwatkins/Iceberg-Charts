@@ -58,13 +58,13 @@ public class UIPointSquare extends UIPointSimpleXY {
 		
 		if (rectangle.contains(point)) {
 			
-			System.out.println("does 1");
+//			System.out.println("does 1");
 			
 			mouseIsOverPoint = true;
 			return true;
 		}else {
 			
-			System.out.println("does 2");
+//			System.out.println("does 2");
 
 			
 			mouseIsOverPoint = false;
