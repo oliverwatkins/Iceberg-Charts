@@ -116,84 +116,45 @@ public abstract class Axis implements Serializable{
             this.interval3 = interval3;
         }
     }
-//    protected void drawTickAndLabels(Interval tick, Graphics g, Color c, int tickWidth, Chart chart) {
 
     public void drawTicksAndLabels(Graphics g, Chart chart) {
-    	
-
-    	System.out.println("interval1.toString() " + interval1.toString());
-    	
-    	
-    	Double i = interval1.getIncrement();
-    	if (i != 0) {
-    		
-    		
-//    		@Override
-//    		public String toString() {
-//    			return "Interval [active=" + active + ", graphLine=" + graphLine
-//    					+ ", lineLength=" + lineLength + ", increment=" + increment
-//    					+ "]";
-//    		}
-    		
-    		System.out.println("interval is " + i);
-    	}
 
     	
         if (this.interval1.isValid() && this.interval1.isActive()) {
-            drawTickAndLabels(this.interval1, g, this.axisColor, this.interval1.lineLength, chart);
-//            drawTicksAndLabels(g, chart);
-        	
-//        	System.out.println("i = " + i);
+            drawIntervalTickAndLabels(this.interval1, g, chart, true);
         }
         if (this.interval2.isValid() && this.interval2.isActive()) {
-            drawTickAndLabels(this.interval2, g, this.axisColor, this.interval2.lineLength, chart);
-//            drawTick(this.interval2.getIncrement(), g, this.axisColor, this.interval2.lineLength, chart);
+            drawIntervalTickAndLabels(this.interval2, g, chart, false);
         }
         if (this.interval3.isValid() && this.interval3.isActive()) {
-            drawTickAndLabels(this.interval3, g, this.axisColor, this.interval3.lineLength, chart);
-//            drawTick(this.interval3.getIncrement(), g, this.axisColor, this.interval3.lineLength, chart);
+            drawIntervalTickAndLabels(this.interval3, g, chart, false);
         }
     }
     
+    /**
+     * Draw the intervals ticks and labels :
+     * 
+     *10--|
+     *    |
+     *   -|
+     *    |
+     *20--|
+     *    |
+     * 
+     * 
+     * @param interval
+     * @param g
+     * @param chart
+     * @param showLabel
+     */
+    protected abstract void drawIntervalTickAndLabels(Interval interval, Graphics g, Chart chart, boolean showLabel);
     
-
-
-//	/**
-//     * 
-//     * @param g
-//     * @deprecated
-//     * @param chart 
-//     */
-//    public void drawIntervals(Graphics g, Chart chart) {
-//        if (this.interval1.isValid() && this.interval1.isActive()) {
-//            drawTick(this.interval1.getIncrement(), g, this.axisColor, this.interval1.lineLength, chart);
-//        }
-//        if (this.interval2.isValid() && this.interval2.isActive()) {
-//            drawTick(this.interval2.getIncrement(), g, this.axisColor, this.interval2.lineLength, chart);
-//        }
-//        if (this.interval3.isValid() && this.interval3.isActive()) {
-//            drawTick(this.interval3.getIncrement(), g, this.axisColor, this.interval3.lineLength, chart);
-//        }
-//    }
-//    /**
-//     * 
-//     * @param g
-//     * @param chart 
-//     * @deprecated
-//     */
-//    public void drawAllIntervalLabels(Graphics g, Chart chart) {
-//        if (this.interval1.isValid() && this.interval1.isActive()) {
-//            drawIntervalLabels(this.interval1.getIncrement(), g, Color.BLACK, chart);
-//        }
-//        if (this.interval2.isValid() && this.interval2.isActive()) {
-//            drawIntervalLabels(this.interval2.getIncrement(), g, Color.BLACK, chart);
-//        }
-//        if (this.interval3.isValid() && this.interval3.isActive()) {
-//            drawIntervalLabels(this.interval3.getIncrement(), g, Color.BLACK, chart);
-//        }
-//    }
-
-
+	protected abstract void drawIntervalTick(Interval interval, Graphics g, 
+			Chart chart, int i, int incrementInPixel);
+		
+    protected abstract void drawIntervalLabel(Interval interval, Graphics g, 
+			Chart chart, int i, int incrementInPixel);
+    	
     /**
      * Borderline is the OUTER line
      * @param g
@@ -205,26 +166,7 @@ public abstract class Axis implements Serializable{
 
     protected abstract void drawYGridLineOnZero(Graphics2D g, Chart chart);
 
-    /**
-     * Draw ticks and tick line
-     * @param increment
-     * @param g
-     * @param c
-     * @param tickWidth
-     * @param chart
-     */
-//    @Deprecated
-//    protected abstract void drawTick(Double increment, Graphics g, Color c, int tickWidth, Chart chart);
-
-//    @Deprecated
-//    public abstract void drawIntervalLabels(Double increment, Graphics g, Color c, Chart chart);
-//    
-//    
-    protected abstract void drawTickAndLabels(Interval interval12, Graphics g, Color axisColor2, int lineLength, Chart chart);
     
-//    protected abstract void drawTickAndLabel(Double increment, Graphics g, Color c, int tickWidth, Chart chart);
-
-
     public abstract void drawGridLine(Interval tick, Graphics2D g, Chart chart);
     
     public abstract String getName();

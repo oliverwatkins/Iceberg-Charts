@@ -39,12 +39,11 @@ public class XAxis extends Axis {
     }
     
     
-	@Override
-	protected void drawTickAndLabels(Interval interval12, Graphics g,
-			Color axisColor2, int lineLength, Chart chart) {
+	protected void drawIntervalTickAndLabels(Interval interval, Graphics g,
+			 Chart chart, boolean showLabel) {
 		
-		Double increment = interval12.getIncrement();
-		
+		Double increment = interval.getIncrement();
+
         if (type == AxisType.BLANK) {
             return;
         }
@@ -54,19 +53,39 @@ public class XAxis extends Axis {
 
         int incrementInPixel = (int) (increment * xScalingFactor);
 
-        g.setColor(axisColor2);
-        FontMetrics fm = chart.getFontMetrics(axisCatFont);
+        g.setColor(this.axisColor);
         
         for (int i = 0; i < incrementNo; i++) {
-        	drawTick_new(interval12.getIncrement(), g, axisColor2, lineLength, chart, i, incrementInPixel);
-        	drawLabel_new(interval12.getIncrement(), g, axisColor2, lineLength, chart, i, incrementInPixel);
+        	drawIntervalTick(interval, g, chart, i, incrementInPixel);
+        	
+        	if (showLabel)
+        		drawIntervalLabel(interval, g, chart, i, incrementInPixel);
     	}
 		
 	}
 	
+    @Override
+    public void drawLabel(Graphics g, Chart chart) {
+
+        Graphics2D g2d = (Graphics2D) g;
+
+        FontMetrics fmX = chart.getFontMetrics(xFont);
+        int xAxisStringWidth = fmX.stringWidth(label);
+
+        //X Label
+        int xAxesLabelHeight = chart.bottomOffset - labelOffset;
+
+        //x label        
+        g2d.setFont(xFont);
+        g2d.drawString(label, chart.widthChart / 2 + chart.leftOffset - xAxisStringWidth / 2, chart.topOffset + chart.heightChart + labelOffset + xAxesLabelHeight / 2);
+
+    }
     
-    private void drawLabel_new(Double increment, Graphics g, Color axisColor2,
-			int lineLength, Chart chart, int i, int incrementInPixel) {
+    
+	protected void drawIntervalLabel(Interval interval, Graphics g, 
+			Chart chart, int i, int incrementInPixel) {
+    	
+		Double increment = interval.getIncrement();
     	
         String xLabel = "" + ((i * increment) + minValue);
         FontMetrics fm = chart.getFontMetrics(axisCatFont);
@@ -82,82 +101,21 @@ public class XAxis extends Axis {
 		
 	}
 
-	private void drawTick_new(Double increment, Graphics g, Color axisColor2,
-			int lineLength, Chart chart, int i, int incrementInPixel) {
+	protected void drawIntervalTick(Interval interval, Graphics g, 
+			Chart chart, int i, int incrementInPixel) {
+		
+		Double increment = interval.getIncrement();
 		
         int x1 = chart.leftOffset + (int) (i * incrementInPixel);
         int x2 = x1;
         int y1 = (chart.topOffset + chart.heightChart + marginOffset);
-        int y2 = (chart.topOffset + chart.heightChart + marginOffset + lineLength);
+        int y2 = (chart.topOffset + chart.heightChart + marginOffset + interval.lineLength);
 
         g.drawLine(x1, y1, x2, y2);
 		
 	}
 
-	/**
-     * Draws the tick lines
-     * @deprecated
-     */
-    protected void drawTick(Double increment, Graphics g, Color c, int tickWidth, Chart chart) {
 
-        if (type == AxisType.BLANK) {
-            return;
-        }
-
-        int incrementNo = (int) (maxValue / increment);
-
-        double xScalingFactor = ((double) chart.widthChart / (double) maxValue);
-
-        double incrementInPixel = (double) (increment * xScalingFactor);
-
-        for (int i = 0; i < incrementNo; i++) {
-            int x1 = chart.leftOffset + (int) (i * incrementInPixel);
-            int x2 = x1;
-            int y1 = (chart.topOffset + chart.heightChart + marginOffset);
-            int y2 = (chart.topOffset + chart.heightChart + marginOffset + tickWidth);
-
-            g.drawLine(x1, y1, x2, y2);
-        }
-    }
-
-    /* (non-Javadoc)
-     * @see com.bluewalrus.bar.cvyxcyxcv#drawIntervalLabels(java.lang.Double, java.awt.Graphics, java.awt.Color, com.bluewalrus.chart.Chart)
-     */
-    @Deprecated
-    public void drawIntervalLabels(Double increment, Graphics g, Color c, Chart chart) {
-
-        if (type == AxisType.BLANK) {
-            return;
-        }
-
-        int incrementNo = (int) ((maxValue - minValue) / increment);
-
-        double xScalingFactor = ((double) chart.widthChart / (double) (maxValue - minValue));
-
-        int incrementInPixel = (int) (increment * xScalingFactor);
-
-        g.setColor(c);
-        FontMetrics fm = chart.getFontMetrics(axisCatFont);
-
-        for (int i = 0; i < incrementNo; i++) {
-
-            String xLabel = "" + ((i * increment) + minValue);
-
-            int widthStr = fm.stringWidth(xLabel);
-//            int heightStr = fm.getHeight();
-
-            int xPos = chart.leftOffset + (i * incrementInPixel) - (widthStr / 2);
-            int yPos = chart.topOffset + chart.heightChart + tickLabelOffset;
-
-            g.setFont(axisCatFont);
-
-            g.drawString(xLabel, xPos, yPos);
-        }
-    }
-
-    /* (non-Javadoc)
-     * @see com.bluewalrus.bar.cvyxcyxcv#drawGridLine(com.bluewalrus.bar.Tick, java.awt.Graphics2D, com.bluewalrus.chart.Chart)
-     */
     @Override
     public void drawGridLine(Interval tick, Graphics2D g, Chart chart) {
 
@@ -182,23 +140,7 @@ public class XAxis extends Axis {
         }
     }
 
-    @Override
-    public void drawLabel(Graphics g, Chart chart) {
 
-        Graphics2D g2d = (Graphics2D) g;
-
-        FontMetrics fmX = chart.getFontMetrics(xFont);
-        int xAxisStringWidth = fmX.stringWidth(label);
-//        int xAxisStringHeight = fmX.getHeight();
-
-        //X Label
-        int xAxesLabelHeight = chart.bottomOffset - labelOffset;
-
-        //x label        
-        g2d.setFont(xFont);
-        g2d.drawString(label, chart.widthChart / 2 + chart.leftOffset - xAxisStringWidth / 2, chart.topOffset + chart.heightChart + labelOffset + xAxesLabelHeight / 2);
-
-    }
 
     @Override
     protected void drawYGridLineOnZero(Graphics2D g, Chart chart) {

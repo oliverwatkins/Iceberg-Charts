@@ -72,29 +72,35 @@ public class YAxis extends Axis {
     }
     
     
-    protected void drawTickAndLabels(Interval tick, Graphics g, Color c, int lineLength, Chart chart) {
-    	
-    	Double increment = tick.getIncrement();
+	@Override
+	protected void drawIntervalTickAndLabels(Interval interval, Graphics g,
+			Chart chart, boolean showLabel) {
+
+    	Double increment = interval.getIncrement();
     	
         int incrementNo = (int) ((maxValue - minValue) / increment);
 
+        //divide height of chart by actual height of chart to get the multiplaying factor
         double factor = ((double) chart.heightChart / (double) (maxValue - minValue));
 
-        double incrementInPixel = (double) (increment * factor);
+        int incrementInPixel = (int) (increment * factor);
         
-        
-//    	double toZeroShift = getToZeroShift(increment, maxValue, minValue, factor);
-        
-        g.setColor(c);
+        g.setColor(this.axisColor);
         
         //building from bottom to top
         for (int i = 0; i < incrementNo; i++) {
-        	drawTick_new(tick.getIncrement(), g, c, lineLength, chart, i, incrementInPixel);
-        	drawLabel_new(tick.getIncrement(), g, c, lineLength, chart, i, incrementInPixel);
+        	drawIntervalTick(interval, g, chart, i, incrementInPixel);
+        	
+        	if (showLabel)
+        		drawIntervalLabel(interval, g, chart, i, incrementInPixel);
         }
     }
 
-    private void drawLabel_new(Double increment, Graphics g, Color c, int tickWidth, Chart chart, int i, double incrementInPixel) {
+	
+    protected void drawIntervalLabel(Interval interval, Graphics g, 
+			Chart chart, int i, int incrementInPixel) {
+
+    	Double increment = interval.getIncrement();
     	
     	FontMetrics fm = chart.getFontMetrics(axisCatFont);
     	 
@@ -121,9 +127,12 @@ public class YAxis extends Axis {
 		
 	}
 
-	private void drawTick_new(Double increment, Graphics g, Color c, int tickWidth, Chart chart, int i, double incrementInPixel) {
+	@Override
+	protected void drawIntervalTick(Interval interval, Graphics g, Chart chart, int i, int incrementInPixel) {
 		
+		Double increment = interval.getIncrement();
 		
+		int lineLength = interval.lineLength;
 		
     	double toZeroShift = 0; //getToZeroShift(increment, maxValue, minValue, factor);
 
@@ -135,59 +144,15 @@ public class YAxis extends Axis {
         if (rightSide) {
 
             x1 = chart.leftOffset + chart.widthChart;
-            x2 = chart.leftOffset + chart.widthChart + tickWidth;
+            x2 = chart.leftOffset + chart.widthChart + lineLength;
         } else {
 
             x1 = chart.leftOffset - marginOffset;
-            x2 = chart.leftOffset - marginOffset - tickWidth;
+            x2 = chart.leftOffset - marginOffset - lineLength;
         }
 
         g.drawLine(x1, (int)fromTop, x2, (int)fromTop);
 	}
-
-//	/**
-//     * Draw a tick lines
-//     *
-//     * @param heightChart
-//     * @param increment
-//     * @param g
-//     * @param c
-//     * @param tickWidth
-//     */
-//    protected void drawTick(Double increment, Graphics g, Color c, int tickWidth, Chart chart) {
-//
-//        int incrementNo = (int) ((maxValue - minValue) / increment);
-//
-//        double factor = ((double) chart.heightChart / (double) (maxValue - minValue));
-//
-//        double incrementInPixel = (double) (increment * factor);
-//        
-//        g.setColor(c);
-//
-//        for (int i = 0; i < incrementNo; i++) {
-//        	
-//        	
-//        	double toZeroShift = 0; //getToZeroShift(increment, maxValue, minValue, factor);
-//
-//        	double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel) + toZeroShift;
-//        	
-//            int x1;
-//            int x2;
-//
-//            if (rightSide) {
-//
-//                x1 = chart.leftOffset + chart.widthChart;
-//                x2 = chart.leftOffset + chart.widthChart + tickWidth;
-//            } else {
-//
-//                x1 = chart.leftOffset - marginOffset;
-//                x2 = chart.leftOffset - marginOffset - tickWidth;
-//            }
-//
-//            g.drawLine(x1, (int)fromTop, x2, (int)fromTop);
-//
-//        }
-//    }
 
 
     private double getToZeroShift(Double increment, double maxValue,
@@ -202,55 +167,6 @@ public class YAxis extends Axis {
 		return (startValue - minValue) * factor;
 	}
 
-//	/**
-//     * Number/Value next to the tick
-//     */
-//    public void drawIntervalLabels(Double increment, Graphics g, Color c, Chart chart) {
-//
-//        int incrementNo = (int) ((maxValue - minValue) / increment);
-//
-//        double factor = ((double) chart.heightChart / (double) (maxValue - minValue));
-//
-//        double incrementInPixel = (double) (increment * factor);
-//        
-//        
-////    	double toZeroShift = getToZeroShift(increment, maxValue, minValue, factor);
-//    	
-//        
-//        
-//        g.setColor(c);
-//
-//        
-//        
-//        FontMetrics fm = chart.getFontMetrics(axisCatFont);
-//
-//        
-//        //building from bottom to top
-//        for (int i = 0; i < incrementNo; i++) {
-//
-//        	double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel);
-//        	
-//        	
-//            String yLabel = "" + ((i * increment) + minValue);
-//            int widthStr = fm.stringWidth(yLabel);
-//            int heightStr = fm.getHeight();
-//            g.setFont(axisCatFont);
-//
-//            int x;
-//            int y;
-//
-//            if (rightSide) {
-//                x = chart.widthChart + chart.leftOffset + (tickLabelOffset / 2 - widthStr / 2);
-//                y = (int)fromTop + (heightStr / 2);
-//            } else {
-//
-//                x = (chart.leftOffset - tickLabelOffset) + (tickLabelOffset / 2 - widthStr / 2) - marginOffset;
-//                y = (int)fromTop + (heightStr / 2);
-//            }
-//            g.drawString(yLabel, x, y); 
-//        }
-//    }
-//    
     
     @Override
     public void drawBorderLine(Graphics g, Chart chart) {
