@@ -26,7 +26,6 @@ public class TestDataLineScatter {
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-
 		values.add(new DataPoint(13, -30));
 		values.add(new DataPoint(15, -11));
 		values.add(new DataPoint(17, -14));
@@ -42,7 +41,6 @@ public class TestDataLineScatter {
 		values.add(new DataPoint(50, -30));
 
 		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
-
 		values2.add(new DataPoint(10, -2));
 		values2.add(new DataPoint(14, 3));
 		values2.add(new DataPoint(18, 6));
@@ -85,13 +83,13 @@ public class TestDataLineScatter {
 		Interval t2 = new Interval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
 		Interval t3 = new Interval(1, 5.0, null);
 
-		YAxis yAxis = new YAxis(-100.0, 100.0, t1, t2, t3, "Y Axis");
+		YAxis yAxis = new YAxis(-90.0, 100.0, t1, t2, t3, "Y Axis");
 
 		Interval t1x = new Interval(6, 20.0, new Line(Color.GRAY, false, 1));
 		Interval t2x = new Interval(3, 10.0,
 				new Line(Color.LIGHT_GRAY, true, 1));
 
-		XAxis xAxis = new XAxis(0.0, 70.0, t1x, t2x, null, "X Value");
+		XAxis xAxis = new XAxis(17.0, 70.0, t1x, t2x, null, "X Value");
 
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
@@ -156,8 +154,8 @@ public class TestDataLineScatter {
 
 		series2.dataPoints = values2;
 
-		YAxis yAxis = new YAxis(0.0, 100.0, 50.0, 10.0, 1.0, "Length (inches) ");
-		XAxis xAxis = new XAxis(0.0, 100.0, 50.0, 10.0, 1.0, "Weight (kg)");
+		YAxis yAxis = new YAxis(3.0, 100.0, 50.0, 0.0, 0.0, "Length (inches) ");
+		XAxis xAxis = new XAxis(3.0, 100.0, 50.0, 10.0, 0.0, "Weight (kg)");
 
 		xySeriesList.add(series);
 		xySeriesList.add(series2);

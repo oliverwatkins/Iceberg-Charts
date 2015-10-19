@@ -21,7 +21,7 @@ public class YAxis extends Axis {
     public Font yFont = new Font("Arial", Font.PLAIN, 12);
     public boolean rightSide = false;
 	
-
+ 
     public YAxis(String name) {
         super(name, Axis.AxisType.STANDARD);
     }
@@ -53,61 +53,51 @@ public class YAxis extends Axis {
         }
     }
 
-    public void drawGridLine(Interval tick, Graphics2D g, Chart chart) {
+    public void drawGridLine(Interval interval, Graphics2D g, Chart chart) {
 
-        int incrementNo = (int) ((maxValue - minValue) / tick.getIncrement());
+        int incrementNo = (int) ((maxValue - minValue) / interval.getIncrement());
 
-        double factor = Utils.getFactor(chart.heightChart, maxValue, minValue);
+        //divide height of chart by actual height of chart to get the multiplaying factor
+        double factor = getMultiplicationFactor(chart); 
+        
+        //to first increment
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
 
-        double incrementInPixel = (double) (tick.getIncrement() * factor);
+        double incrementInPixel = (double) (interval.getIncrement() * factor);
 
         for (int i = 0; i < incrementNo; i++) {
             int x1 = chart.leftOffset;
-            int y1 = chart.heightChart + chart.topOffset - (int) (i * incrementInPixel);
+            double y1 = chart.heightChart + chart.topOffset - (i * incrementInPixel) - toFirstInPixels;
             int x2 = chart.leftOffset + chart.widthChart;
-            int y2 = y1;
 
-            tick.graphLine.drawLine(g, x1, y1, x2, y2);
-        }
-    }
-    
-    
-	@Override
-	protected void drawIntervalTickAndLabels(Interval interval, Graphics g,
-			Chart chart, boolean showLabel) {
-
-    	Double increment = interval.getIncrement();
-    	
-        int incrementNo = (int) ((maxValue - minValue) / increment);
-
-        //divide height of chart by actual height of chart to get the multiplaying factor
-        double factor = ((double) chart.heightChart / (double) (maxValue - minValue));
-
-        int incrementInPixel = (int) (increment * factor);
-        
-        g.setColor(this.axisColor);
-        
-        //building from bottom to top
-        for (int i = 0; i < incrementNo; i++) {
-        	drawIntervalTick(interval, g, chart, i, incrementInPixel);
-        	
-        	if (showLabel)
-        		drawIntervalLabel(interval, g, chart, i, incrementInPixel);
+            interval.graphLine.drawLine(g, x1, (int)y1, x2, (int)y1);
         }
     }
 
 	
     protected void drawIntervalLabel(Interval interval, Graphics g, 
-			Chart chart, int i, int incrementInPixel) {
-
+			Chart chart, int i, double incrementInPixel) {
+    	
     	Double increment = interval.getIncrement();
     	
     	FontMetrics fm = chart.getFontMetrics(axisCatFont);
-    	 
-    	double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel);
     	
+        //divide height of chart by actual height of chart to get the multiplaying factor
+        double factor = getMultiplicationFactor(chart); 
+        
+        //to first increment
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(increment, factor);
     	
-        String yLabel = "" + ((i * increment) + minValue);
+    	double toFirst = getToFirstIntervalValueFromMin(increment);
+
+    	
+    	double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel) - toFirstInPixels;
+
+    	
+    	String yLabel = "" + ((i * increment) + toFirst);
+        
+        
+        
         int widthStr = fm.stringWidth(yLabel);
         int heightStr = fm.getHeight();
         g.setFont(axisCatFont);
@@ -127,16 +117,22 @@ public class YAxis extends Axis {
 		
 	}
 
+
+
 	@Override
-	protected void drawIntervalTick(Interval interval, Graphics g, Chart chart, int i, int incrementInPixel) {
+	protected void drawIntervalTick(Interval interval, Graphics g, Chart chart, int i, double incrementInPixel) {
 		
 		Double increment = interval.getIncrement();
 		
 		int lineLength = interval.lineLength;
-		
-    	double toZeroShift = 0; //getToZeroShift(increment, maxValue, minValue, factor);
 
-    	double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel) + toZeroShift;
+		
+        //divide height of chart by actual height of chart to get the multiplaying factor
+        double factor = getMultiplicationFactor(chart); 
+		
+    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(increment, factor);
+
+    	double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel) - toZeroShift;
     	
         int x1;
         int x2;
@@ -154,17 +150,8 @@ public class YAxis extends Axis {
         g.drawLine(x1, (int)fromTop, x2, (int)fromTop);
 	}
 
-
-    private double getToZeroShift(Double increment, double maxValue,
-			double minValue, double factor) {
-    	
-    	double startValue = minValue;
-    	
-    	while (startValue % increment != 0) {
-    		startValue++;
-    	}
-    	
-		return (startValue - minValue) * factor;
+    protected double getMultiplicationFactor(Chart chart) {
+    	return ((double) chart.heightChart / (double) (maxValue - minValue));
 	}
 
     
