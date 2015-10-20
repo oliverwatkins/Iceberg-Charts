@@ -202,7 +202,7 @@ public class IcebergChartsDemo extends JFrame {
 //					System.out.println("saving ");
 
 					try {
-						ImageIO.write(image, "PNG", new File("chart-image-" + i + ".png"));
+						ImageIO.write(image, "PNG", new File("src\\main\\resources\\screenshots\\chart-image-" + i + ".png"));
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

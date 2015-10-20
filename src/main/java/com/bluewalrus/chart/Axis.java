@@ -271,7 +271,7 @@ public abstract class Axis implements Serializable {
 	 */
 	public abstract void drawBorderLine(Graphics g, Chart chart);
 
-	public abstract void drawGridLine(Interval tick, Graphics2D g, Chart chart);
+	public abstract void drawGridLine(Interval interval, Graphics2D g, Chart chart);
 
 	protected abstract void drawYGridLineOnZero(Graphics2D g, Chart chart);
 
