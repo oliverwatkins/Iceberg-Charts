@@ -46,7 +46,7 @@ public class MultiLevelPieChart extends AbstractPieChart {
 
         this.depth = getDepth(values);
         this.initialSegments = values;
-        this.title = title;
+        this.setTitle(title);
         
         
     	this.topOffset = 90;
@@ -84,7 +84,7 @@ public class MultiLevelPieChart extends AbstractPieChart {
         g2d.setColor(backgroundColor);
         g.fillRect(0, 0, width, height);
         
-    	drawTitle(g);
+    	this.drawTitle(g);
     	
     	
     	

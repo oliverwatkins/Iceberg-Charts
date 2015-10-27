@@ -126,8 +126,8 @@ public class TestDataPieBubble {
 
         chart.rightOffset = 200;
 
-        chart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-        chart.title = "Country Export Data";
+        chart.setTitle("Country Export Data");
+        chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 
         return chart;
     }

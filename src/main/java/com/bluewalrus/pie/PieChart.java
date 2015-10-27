@@ -57,7 +57,7 @@ public class PieChart extends AbstractPieChart implements Legendable {
 
         this.depth = 1;//getDepth(values);
         this.initialSegments = values;
-        this.title = title;
+        this.setTitle(title);
 
         this.topOffset = 25;
 

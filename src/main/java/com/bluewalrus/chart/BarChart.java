@@ -1,11 +1,11 @@
 package com.bluewalrus.chart;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
 
@@ -54,4 +54,8 @@ public class BarChart extends XYChart {
 
         data.add(series);
     }
+
+
+
+
 }

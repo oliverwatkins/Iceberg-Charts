@@ -15,10 +15,6 @@ import java.io.Serializable;
  */
 public class Interval implements Serializable{
 
-	
-	
-
-
 	/**
 	 * Can be active, and inactive
 	 */

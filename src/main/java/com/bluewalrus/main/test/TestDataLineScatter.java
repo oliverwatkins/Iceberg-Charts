@@ -100,8 +100,8 @@ public class TestDataLineScatter {
 		lineChart.width = 1000;
 		lineChart.rightOffset = 200;
 
-		lineChart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-		lineChart.title = "Some Kind of XY Chart";
+		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+		lineChart.setTitle("Some Kind of XY Chart");
 
 		return lineChart;
 	}
@@ -165,8 +165,8 @@ public class TestDataLineScatter {
 		chart.width = 1000;
 		chart.rightOffset = 200;
 
-		chart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-		chart.title = "Sea Lion Height versus Weight";
+		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+		chart.setTitle("Sea Lion Height versus Weight");
 
 		return chart;
 	}
@@ -229,8 +229,8 @@ public class TestDataLineScatter {
 		chart.width = 1000;
 		chart.rightOffset = 200;
 
-		chart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-		chart.title = "xy";
+		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+		chart.setTitle("xy");
 
 		return chart;
 	}
@@ -270,8 +270,8 @@ public class TestDataLineScatter {
 		chart.width = 1000;
 		chart.rightOffset = 200;
 
-		chart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-		chart.title = "Box Plot";
+		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+		chart.setTitle("Box Plot");
 
 		return chart;
 	}
@@ -321,8 +321,8 @@ public class TestDataLineScatter {
 		lineChart.width = 1000;
 		lineChart.rightOffset = 200;
 
-		lineChart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-		lineChart.title = "Maths";
+		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+		lineChart.setTitle("Maths");
 
 		return lineChart;
 	}

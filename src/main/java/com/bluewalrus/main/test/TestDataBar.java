@@ -60,7 +60,7 @@ public class TestDataBar {
         
         BarChart barChart = new BarChart(xAxis, yAxis, bars, 40);
         
-        barChart.title = "Change In Commodity Price";
+        barChart.setTitle("Change In Commodity Price");
         barChart.width = 800;
         		
         return barChart;
@@ -98,8 +98,8 @@ public class TestDataBar {
         BarChart barChart = new BarChart(xAxis, yAxis, values, 38);
         barChart.topOffset = 160;
 
-        barChart.titleFont = new Font("Ravie", Font.PLAIN, 70);
-        barChart.title = "Really Big Text";
+        barChart.setTitleFont("Ravie", Font.PLAIN, 70);
+        barChart.setTitle("Really Big Text");
         barChart.width = 900;
 
         return barChart;
@@ -126,8 +126,8 @@ public class TestDataBar {
         BarChart barChart = new BarChart(xAxis, yAxis, values, 1);
 
         barChart.width = 1000;
-        barChart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-        barChart.title = "Annual Sunlight Variability";
+        barChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+        barChart.setTitle("Annual Sunlight Variability");
 
         return barChart;
     }
@@ -173,7 +173,7 @@ public class TestDataBar {
         XAxis xAxis = new XAxis("year", Axis.AxisType.BLANK);
         
         MultiBarChart chart = new MultiBarChart(xAxis,yAxis,ml);
-        chart.title = "Advertising Revenue By Sector";
+        chart.setTitle("Advertising Revenue By Sector");
         chart.rightOffset = 170;
         chart.width = 600;
         return chart;
@@ -232,7 +232,7 @@ public class TestDataBar {
 
         MultiBarChart chart = new MultiBarChart(xAxis,yAxis,ml,true);
 //        chart.barWidth = 30;
-        chart.title = "Advertising Revenue By Sector";
+        chart.setTitle("Advertising Revenue By Sector");
         chart.rightOffset = 170;
         
         return chart;
@@ -330,8 +330,8 @@ public class TestDataBar {
         
         chart.rightOffset = 340;
         
-        chart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-        chart.title = "Munich Weather";
+        chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+        chart.setTitle("Munich Weather");
         
         return chart;
 
@@ -386,7 +386,7 @@ public class TestDataBar {
         a.add(series);
         
         lineChart.data = a;
-        lineChart.title = "Bars Can Be Treated as XY";
+        lineChart.setTitle("Bars Can Be Treated as XY");
         lineChart.width = 800;
 
         return lineChart;

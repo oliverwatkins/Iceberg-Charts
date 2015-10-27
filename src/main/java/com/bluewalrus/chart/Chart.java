@@ -21,7 +21,10 @@ import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.Legend;
 
 /**
- *   
+ * <code>Chart <code> is the abstract chart for all charts.   
+ * 
+ * 
+ * 
  * 
  * @author oliver
  */
@@ -30,23 +33,17 @@ public abstract class Chart extends JPanel {
 	//file locations in local file system TODO this probably does not belong here. Have class like ChartExt with meta data like file location?
 	public String fileLocation = "";
 
+	//TODO this does not belong here
 	public Font legendFont = new Font("Arial", Font.PLAIN, 12);
 
 	public Color backgroundColor = Color.WHITE;
-	
-	public Color borderLineColor = Color.BLACK;
+
 
 	// offsets (padding of actual chart to its border)
 	public int leftOffset = 140;
 	public int topOffset = 120;
 	public int bottomOffset = 100;
 	public int rightOffset = 15;
-
-//	public int leftOffset = 2;
-//	public int topOffset = 2;
-//	public int bottomOffset = 2;
-//	public int rightOffset = 2;
-	
 	
 	public int width = 500; // total width of the component
 	public int height = 430; // total height of the component
@@ -54,10 +51,11 @@ public abstract class Chart extends JPanel {
 	public int heightChart; // generated
 	public int widthChart; // generated
 
-	public Font titleFont = new Font("Arial", Font.BOLD, 18);
-	public Color titleColor = Color.BLACK;
+	
+	public Legend legend;
 
-	public String title = "My Fruits";
+	public Title title = new Title();
+	
 	
 	
 	public Chart() {
@@ -108,26 +106,22 @@ public abstract class Chart extends JPanel {
 			}
 		});
 	}
-
-	protected void drawTitle(Graphics g) {
-
-		Graphics2D g2d = (Graphics2D) g;
-
-		FontMetrics fmT = getFontMetrics(titleFont);
-		int titleStringWidth = fmT.stringWidth(title);
-		int titleStringHeight = fmT.getHeight();
-
-		g2d.setFont(titleFont);
-		int titleX = (leftOffset + rightOffset + widthChart) / 2
-				- titleStringWidth / 2;
-		int titleY = topOffset / 2 + titleStringHeight / 2;
-
-		g2d.setColor(titleColor);
-		g2d.drawString(title, titleX, titleY);
-
-		// drawTrialVersion(g2d);
+	
+	public void setTitle(String t) {
+		title.title = t;
+	}
+	public String getTitle() {
+		return title.title;
 	}
 
+	public void setTitleFont(String string, int plain, int i) {
+		title.titleFont = new Font(string, plain, i);
+	}
+
+	public void setTitleFont(Font font) {
+		title.titleFont = font;
+	}
+	
 	/**
 	 * Must be called at every paint() call.
 	 */
@@ -170,6 +164,11 @@ public abstract class Chart extends JPanel {
 		legend.drawLegend(g, this, data);
 	}
 
+	
+	protected void drawTitle(Graphics g) {
+		title.drawTitle(g, this);
+	}
+
 	public void drawLegend(Graphics2D g, ArrayList<Category> categories,
 			int offset) {
 
@@ -186,7 +185,6 @@ public abstract class Chart extends JPanel {
 		
 	}
 
-	public Legend legend;
 
 	public Shape getLegendBounds() {
 		if (legend != null) {
@@ -229,4 +227,10 @@ public abstract class Chart extends JPanel {
 
 		g2d.setComposite(c);
 	}
+
+	public Font getTitleFont() {
+		return title.titleFont;
+	}
+
+
 }

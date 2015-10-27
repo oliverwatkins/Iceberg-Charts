@@ -93,8 +93,8 @@ public class TestDataBubble {
 
         chart.rightOffset = 200;
 
-        chart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-        chart.title = "Gun Ownership versus Homicide Rate";
+        chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+        chart.setTitle("Gun Ownership versus Homicide Rate");
 
         return chart;
     }
@@ -140,8 +140,8 @@ public class TestDataBubble {
 //        chart.height = 450;
         chart.rightOffset = 200;
 
-        chart.titleFont = new Font("Ariel", Font.PLAIN, 24);
-        chart.title = "Two Series Bubble Chart";
+        chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+        chart.setTitle("Two Series Bubble Chart");
         
         chart.setBackground(Color.PINK);
 

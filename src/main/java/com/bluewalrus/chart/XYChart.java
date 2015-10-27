@@ -31,6 +31,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			0.0f);
 	
 	
+	public Color borderLineColor = Color.BLACK;
+	
     public YAxis yAxis;
     public XAxis xAxis;
 
