@@ -27,7 +27,6 @@ import com.bluewalrus.bar.Legend;
  */
 public abstract class Chart extends JPanel {
 	
-	
 	//file locations in local file system TODO this probably does not belong here. Have class like ChartExt with meta data like file location?
 	public String fileLocation = "";
 
@@ -43,6 +42,12 @@ public abstract class Chart extends JPanel {
 	public int bottomOffset = 100;
 	public int rightOffset = 15;
 
+//	public int leftOffset = 2;
+//	public int topOffset = 2;
+//	public int bottomOffset = 2;
+//	public int rightOffset = 2;
+	
+	
 	public int width = 500; // total width of the component
 	public int height = 430; // total height of the component
 
@@ -131,59 +136,8 @@ public abstract class Chart extends JPanel {
 		this.heightChart = height - (topOffset + bottomOffset);
 		this.widthChart = width - (leftOffset + rightOffset);
 	}
-	
-	
-
-
-
-
-	transient BasicStroke chartBorderLine = new BasicStroke(1, BasicStroke.CAP_BUTT,
-			BasicStroke.JOIN_MITER, 10.0f, new float[] { 2, 0 }, // no dash
-			0.0f);
 
 	
-	/**
-	 * Inner line just inside of the axis line. Potentially optional??
-	 * 
-	 */
-	protected void drawBottomLine(Graphics2D g) {
-
-		if (chartBorderLine == null) {
-			chartBorderLine = new BasicStroke(1, BasicStroke.CAP_BUTT,
-					BasicStroke.JOIN_MITER, 10.0f, new float[] { 2, 0 }, // no dash
-					0.0f);
-		}
-		
-		g.setStroke(chartBorderLine);
-
-		g.setColor(borderLineColor);
-
-		g.drawLine(leftOffset, heightChart + topOffset,
-				leftOffset + widthChart, heightChart + topOffset);
-	}
-
-	/**
-	 * Inner line just inside of the axis line. Potentially optional?? Eg colored area instead?
-	 * 
-	 */
-	protected void drawLeftLine(Graphics2D g) {
-
-		g.setStroke(chartBorderLine);
-
-		g.setColor(borderLineColor);
-
-		g.drawLine(leftOffset, topOffset, leftOffset, heightChart + topOffset);
-	}
-
-	protected void drawRightLine(Graphics2D g) {
-
-		g.setStroke(chartBorderLine);
-
-		g.setColor(borderLineColor);
-
-		g.drawLine(leftOffset + widthChart, topOffset, leftOffset + widthChart,
-				heightChart + topOffset);
-	}
 
 	protected void drawBackground(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;

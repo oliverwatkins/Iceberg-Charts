@@ -5,6 +5,7 @@
  */
 package com.bluewalrus.chart;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -24,6 +25,12 @@ import com.bluewalrus.renderer.LineRenderer;
 
 public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
+	
+	transient BasicStroke chartBorderLine = new BasicStroke(1, BasicStroke.CAP_BUTT,
+			BasicStroke.JOIN_MITER, 10.0f, new float[] { 2, 0 }, // no dash
+			0.0f);
+	
+	
     public YAxis yAxis;
     public XAxis xAxis;
 
@@ -177,14 +184,55 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				
 				
 				if (b)
-					System.out.println("CONTAINS POINT!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				
+					System.out.println("CONTAINS POINT!!");
 			}
 		}
 		
 		this.updateUI();
-//		this.repaint();
+	}
+	
+	
+	/**
+	 * Inner line just inside of the axis line. Potentially optional??
+	 * 
+	 */
+	protected void drawBottomLine(Graphics2D g) {
+
+		if (chartBorderLine == null) {
+			chartBorderLine = new BasicStroke(1, BasicStroke.CAP_BUTT,
+					BasicStroke.JOIN_MITER, 10.0f, new float[] { 2, 0 }, // no dash
+					0.0f);
+		}
+		
+		g.setStroke(chartBorderLine);
+
+		g.setColor(borderLineColor);
+
+		g.drawLine(leftOffset, heightChart + topOffset,
+				leftOffset + widthChart, heightChart + topOffset);
 	}
 
+	/**
+	 * Inner line just inside of the axis line. Potentially optional?? Eg colored area instead?
+	 * 
+	 */
+	protected void drawLeftLine(Graphics2D g) {
+
+		g.setStroke(chartBorderLine);
+
+		g.setColor(borderLineColor);
+
+		g.drawLine(leftOffset, topOffset, leftOffset, heightChart + topOffset);
+	}
+
+	protected void drawRightLine(Graphics2D g) {
+
+		g.setStroke(chartBorderLine);
+
+		g.setColor(borderLineColor);
+
+		g.drawLine(leftOffset + widthChart, topOffset, leftOffset + widthChart,
+				heightChart + topOffset);
+	}
 
 }

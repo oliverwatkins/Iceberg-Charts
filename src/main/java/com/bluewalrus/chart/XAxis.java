@@ -13,10 +13,18 @@ public class XAxis extends Axis {
 
     public Font xFont = new Font("Arial", Font.PLAIN, 12);
 
+    /**
+     * @param name axis name
+     */
     public XAxis(String name) {
         super(name, AxisType.STANDARD);
     }
 
+    /**
+     * 
+     * @param name axis name
+     * @param type type
+     */
     public XAxis(String name, AxisType type) {
         super(name, type);
     }
