@@ -51,7 +51,7 @@ public class SimpleIndicatorPieChart extends AbstractPieChart {
 
         this.percent = percent;
 
-        this.width = width;
+        this.setSize(width, this.getSize().height);
 
         this.topOffset = 0;
         this.leftOffset = 0;
@@ -85,10 +85,10 @@ public class SimpleIndicatorPieChart extends AbstractPieChart {
             Color mainColor = Color.BLUE;
 
             g2d.setColor(backgroundColor);
-            g2d.fillOval(0, 0, width, width);
+            g2d.fillOval(0, 0, getWidth(), getWidth());
             g2d.setColor(mainColor);
             Double angle = (percent / 100) * 360;
-            g2d.fillArc(0, 0, width, width, -270, -angle.intValue());
+            g2d.fillArc(0, 0, getWidth(), getWidth(), -270, -angle.intValue());
             
         } else if (type == PieChartType.GRADED_INDICATOR) {
 
@@ -117,7 +117,7 @@ public class SimpleIndicatorPieChart extends AbstractPieChart {
                     // make an adjusted calculation of the last wedge
                     angle = ((percent - gradingAccumMinusOneSegment) / 100) * 360;
 
-                    g2d.fillArc(0, 0, width, width, lastPoint,
+                    g2d.fillArc(0, 0, getWidth(), getWidth(), lastPoint,
                             -angle.intValue());
 
                     lastPoint = lastPoint + -angle.intValue();
@@ -129,7 +129,7 @@ public class SimpleIndicatorPieChart extends AbstractPieChart {
                     System.out.println("normal");
                     angle = (val / 100) * 360;
 
-                    g2d.fillArc(0, 0, width, width, lastPoint,
+                    g2d.fillArc(0, 0, getWidth(), getWidth(), lastPoint,
                             -angle.intValue());
 
                     System.out.println("fill arc " + lastPoint + " "

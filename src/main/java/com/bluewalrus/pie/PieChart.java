@@ -88,9 +88,9 @@ public class PieChart extends AbstractPieChart implements Legendable {
 
         this.circles = getCircleArray(depth);
 
-        g2d.drawRect(0, 0, width, height);
+        g2d.drawRect(0, 0, getWidth(), getHeight());
         g2d.setColor(backgroundColor);
-        g2d.fillRect(0, 0, width, height);
+        g2d.fillRect(0, 0, getWidth(), getHeight());
 
         drawTitle(g2d);
 

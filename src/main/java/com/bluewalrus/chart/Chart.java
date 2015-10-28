@@ -40,65 +40,20 @@ public abstract class Chart extends JPanel {
 
 	public Color backgroundColor = Color.WHITE;
 
-
 	// offsets (padding of actual chart to its border)
 	public int leftOffset = 140;
 	public int topOffset = 120;
 	public int bottomOffset = 100;
 	public int rightOffset = 15;
 	
-//	public int width = 500; // total width of the component
-//	public int height = 430; // total height of the component
-
 	public int heightChart; // generated
 	public int widthChart; // generated
 
-	
 	public Legend legend;
 
 	public Title title = new Title();
 	
-	
-	
 	public Chart() {
-		
-		
-//		this.addComponentListener(new ComponentListener() {
-//			
-//			@Override
-//			public void componentShown(ComponentEvent e) {
-//				Chart.this.height = Chart.this.getHeight();
-//				Chart.this.width = Chart.this.getWidth();
-//				Chart.this.repaint();
-//			}
-//			
-//			@Override
-//			public void componentResized(ComponentEvent e) {
-//				Chart.this.height = Chart.this.getHeight();
-//				Chart.this.width = Chart.this.getWidth();
-//				Chart.this.repaint();
-//				
-//			}
-//			
-//			@Override
-//			public void componentMoved(ComponentEvent e) {
-//				Chart.this.height = Chart.this.getHeight();
-//				Chart.this.width = Chart.this.getWidth();
-//				Chart.this.repaint();
-//			}
-//			
-//			@Override
-//			public void componentHidden(ComponentEvent e) {
-//				
-////				System.out.println("componentResized " + Chart.this.getHeight());
-//				
-//				Chart.this.height = Chart.this.getHeight();
-//				Chart.this.width = Chart.this.getWidth();
-//				Chart.this.repaint();
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		});
 	}
 	
 	public void setTitle(String t) {
@@ -116,16 +71,6 @@ public abstract class Chart extends JPanel {
 		title.titleFont = font;
 	}
 	
-//	/**
-//	 * Must be called at every paint() call.
-//	 */
-//	protected void calculateHeighAndWidthOfChart() {
-//
-//		this.heightChart = height - (topOffset + bottomOffset);
-//		this.widthChart = width - (leftOffset + rightOffset);
-//	}
-
-	
 	/**
 	 * Must be called at every paint() call.
 	 */
@@ -136,7 +81,11 @@ public abstract class Chart extends JPanel {
 	}
 
 	
-
+	/**
+	 * Draw the background. Just a blank white rectangle.
+	 * 
+	 * @param g
+	 */
 	protected void drawBackground(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, // Anti-alias!
@@ -148,8 +97,18 @@ public abstract class Chart extends JPanel {
 		g2d.setColor(Color.BLACK);
 	}
 
+	/**
+	 * Draw the graph ontop of the background within the bounds. 
+	 * 
+	 * @param g
+	 */
 	abstract protected void drawGraph(Graphics g);
 
+	
+	/**
+	 * Get the bounds of the actual chart (not the background canvas).
+	 * @return
+	 */
 	public Rectangle getChartBounds() {
 		return new Rectangle(leftOffset, topOffset, widthChart, heightChart);
 	}
@@ -232,6 +191,4 @@ public abstract class Chart extends JPanel {
 	public Font getTitleFont() {
 		return title.titleFont;
 	}
-
-
 }

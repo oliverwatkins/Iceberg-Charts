@@ -81,7 +81,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
         this.calculateHeighAndWidthOfChart();
 
-        
         /**
          * Maybe we want a filled colored area instead of some lines???
          */
@@ -94,10 +93,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         drawGrid(g2d);
 
         yAxis.drawTicksAndLabels(g2d, this);
-        
-//        yAxis.drawIntervals(g2d, this);
-//        yAxis.drawIntervalLabels(this.yAxis.interval1.getIncrement(), g2d, Color.BLACK, this);
-        
         
         
         yAxis.drawLabel(g2d, this);

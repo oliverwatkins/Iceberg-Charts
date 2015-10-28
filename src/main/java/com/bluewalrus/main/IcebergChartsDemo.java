@@ -182,8 +182,8 @@ public class IcebergChartsDemo extends JFrame {
 					
 					
 					if (chart2 instanceof Chart) {
-						width = ((Chart)chart2).width; 
-						height = ((Chart)chart2).height;
+						width = ((Chart)chart2).getWidth(); 
+						height = ((Chart)chart2).getHeight();
 					}else {
 						width = chart2.getWidth(); 
 						height = chart2.getHeight();

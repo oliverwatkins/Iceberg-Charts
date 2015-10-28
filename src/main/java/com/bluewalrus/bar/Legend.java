@@ -59,7 +59,7 @@ public class Legend implements Serializable{
 
     public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> data) {
 
-        int legendX = (chart.width - chart.rightOffset) + paddingLegendLeft;
+        int legendX = (chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
         int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
 
         int legendHeight = (data.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
@@ -165,7 +165,7 @@ public class Legend implements Serializable{
 
     public Shape getChartBounds() {
 
-        int legendX = (chart.width - chart.rightOffset) + paddingLegendLeft;
+        int legendX = (chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
         int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
 
         int legendHeight = (categories.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);

@@ -80,9 +80,9 @@ public class MultiLevelPieChart extends AbstractPieChart {
         
         this.circles = getCircleArray(depth);
         
-        g.drawRect(0, 0, width, height);
+        g.drawRect(0, 0, getWidth(), getHeight());
         g2d.setColor(backgroundColor);
-        g.fillRect(0, 0, width, height);
+        g.fillRect(0, 0, getWidth(), getHeight());
         
     	this.drawTitle(g);
     	
