@@ -23,6 +23,12 @@ import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointXY;
 import com.bluewalrus.renderer.LineRenderer;
 
+/**
+ * 
+ * 
+ * @author Oliver Watkins
+ */
+
 public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	
