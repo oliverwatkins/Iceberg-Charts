@@ -88,8 +88,10 @@ public class TestDataBubble {
 
         BubbleChart chart = new BubbleChart(xySeriesList, yAxis, xAxis, factor);
 
-        chart.width = 900;
-        chart.height = 650;
+//        chart.width = 900;
+//        chart.height = 650;
+//        
+        chart.setSize(900, 650);
 
         chart.rightOffset = 200;
 
@@ -136,7 +138,11 @@ public class TestDataBubble {
         BubbleChart chart = new BubbleChart(xySeriesList, yAxis, xAxis, 15);
 
         
-        chart.width = 700;
+//        chart.width = 700;
+        
+        chart.setSize(700, 200);
+        
+        
 //        chart.height = 450;
         chart.rightOffset = 200;
 

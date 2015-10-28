@@ -21,9 +21,11 @@ import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.Legend;
 
 /**
- * <code>Chart <code> is the abstract chart for all charts.   
+ * <code>Chart<code> is an abstract chart for all charts.   
  * 
+ * It extends a JPanel and defines the basic geometry of where the chart is positioned in the JPanel.
  * 
+ * Additionally a Chart is composed of a <code>Title</code> and optionally a <code>Legend</code>
  * 
  * 
  * @author oliver
@@ -45,8 +47,8 @@ public abstract class Chart extends JPanel {
 	public int bottomOffset = 100;
 	public int rightOffset = 15;
 	
-	public int width = 500; // total width of the component
-	public int height = 430; // total height of the component
+//	public int width = 500; // total width of the component
+//	public int height = 430; // total height of the component
 
 	public int heightChart; // generated
 	public int widthChart; // generated
@@ -59,52 +61,44 @@ public abstract class Chart extends JPanel {
 	
 	
 	public Chart() {
-		this.addComponentListener(new ComponentListener() {
-			
-			@Override
-			public void componentShown(ComponentEvent e) {
-				
-//				System.out.println("Chart height " + Chart.this.getHeight());
-				
-				Chart.this.height = Chart.this.getHeight();
-				Chart.this.width = Chart.this.getWidth();
-				Chart.this.repaint();
-			}
-			
-			@Override
-			public void componentResized(ComponentEvent e) {
-//				System.out.println("componentResized " + Chart.this.getHeight());
-				
-				Chart.this.height = Chart.this.getHeight();
-				Chart.this.width = Chart.this.getWidth();
-				Chart.this.repaint();
-				
-			}
-			
-			@Override
-			public void componentMoved(ComponentEvent e) {
-				
-//				System.out.println("componentResized " + Chart.this.getHeight());
-				
-				Chart.this.height = Chart.this.getHeight();
-				Chart.this.width = Chart.this.getWidth();
-				Chart.this.repaint();
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void componentHidden(ComponentEvent e) {
-				
-//				System.out.println("componentResized " + Chart.this.getHeight());
-				
-				Chart.this.height = Chart.this.getHeight();
-				Chart.this.width = Chart.this.getWidth();
-				Chart.this.repaint();
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		
+		
+//		this.addComponentListener(new ComponentListener() {
+//			
+//			@Override
+//			public void componentShown(ComponentEvent e) {
+//				Chart.this.height = Chart.this.getHeight();
+//				Chart.this.width = Chart.this.getWidth();
+//				Chart.this.repaint();
+//			}
+//			
+//			@Override
+//			public void componentResized(ComponentEvent e) {
+//				Chart.this.height = Chart.this.getHeight();
+//				Chart.this.width = Chart.this.getWidth();
+//				Chart.this.repaint();
+//				
+//			}
+//			
+//			@Override
+//			public void componentMoved(ComponentEvent e) {
+//				Chart.this.height = Chart.this.getHeight();
+//				Chart.this.width = Chart.this.getWidth();
+//				Chart.this.repaint();
+//			}
+//			
+//			@Override
+//			public void componentHidden(ComponentEvent e) {
+//				
+////				System.out.println("componentResized " + Chart.this.getHeight());
+//				
+//				Chart.this.height = Chart.this.getHeight();
+//				Chart.this.width = Chart.this.getWidth();
+//				Chart.this.repaint();
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		});
 	}
 	
 	public void setTitle(String t) {
@@ -122,13 +116,23 @@ public abstract class Chart extends JPanel {
 		title.titleFont = font;
 	}
 	
+//	/**
+//	 * Must be called at every paint() call.
+//	 */
+//	protected void calculateHeighAndWidthOfChart() {
+//
+//		this.heightChart = height - (topOffset + bottomOffset);
+//		this.widthChart = width - (leftOffset + rightOffset);
+//	}
+
+	
 	/**
 	 * Must be called at every paint() call.
 	 */
 	protected void calculateHeighAndWidthOfChart() {
 
-		this.heightChart = height - (topOffset + bottomOffset);
-		this.widthChart = width - (leftOffset + rightOffset);
+		this.heightChart = getHeight() - (topOffset + bottomOffset);
+		this.widthChart = getWidth() - (leftOffset + rightOffset);
 	}
 
 	
@@ -137,9 +141,6 @@ public abstract class Chart extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, // Anti-alias!
 				RenderingHints.VALUE_ANTIALIAS_ON);
-
-		
-		
 		
 		g.drawRect(0, 0, this.getWidth(), this.getHeight());
 		g2d.setColor(backgroundColor);
