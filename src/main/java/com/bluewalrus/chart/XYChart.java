@@ -52,34 +52,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         this.addMouseMotionListener(this);
     }
 
-    protected void drawGrid(Graphics2D g) {
-
-        yAxis.drawYGridLineOnZero(g, this);
-
-        drawGridLine(yAxis.interval3, g, 1);
-        drawGridLine(yAxis.interval2, g, 1);
-        drawGridLine(yAxis.interval1, g, 1);
-
-        drawGridLine(xAxis.interval3, g, 0);
-        drawGridLine(xAxis.interval2, g, 0);
-        drawGridLine(xAxis.interval1, g, 0);
-    }
-
-    private void drawGridLine(Interval interval, Graphics2D g, int type) {
-
-        if (interval != null && interval.graphLine != null) {
-            if (type == 1) //type is y
-            {
-                yAxis.drawGridLine(interval, g, this);
-            } else {
-                xAxis.drawGridLine(interval, g, this);
-            }
-        }
-    }
 
     /**
-     * All XY Types need to have this. If you forget to call this your chart is
-     * kinda gonna suck.
+     * Paint the background, Title, Grid and Axis. All the elements of the chart except for
+     * the actual data.
      *
      * @param g2d
      */
@@ -94,16 +70,53 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         drawBottomLine(g2d);
         drawLeftLine(g2d);
 
+        //title
         drawTitle(g2d);
 
         drawGrid(g2d);
+        
+        drawLegend(g2d);
 
+        //y axis
         yAxis.drawTicksAndLabels(g2d, this);
-        
-        
         yAxis.drawLabel(g2d, this);
+        yAxis.drawBorderLine(g2d, this);
+
+        //x axis
+        xAxis.drawTicksAndLabels(g2d, this);
+        xAxis.drawLabel(g2d, this);
+        xAxis.drawBorderLine(g2d, this);
 
     }
+    
+    /**
+     * TODO should the drawing of the grid line belong to the Axis object?
+     * @param g
+     */
+    protected void drawGrid(Graphics2D g) {
+
+        yAxis.drawYGridLineOnZero(g, this);
+
+        drawGridLine(yAxis.interval3, g, 1);
+        drawGridLine(yAxis.interval2, g, 1);
+        drawGridLine(yAxis.interval1, g, 1);
+
+        drawGridLine(xAxis.interval3, g, 0);
+        drawGridLine(xAxis.interval2, g, 0);
+        drawGridLine(xAxis.interval1, g, 0);
+    }
+    
+    private void drawGridLine(Interval interval, Graphics2D g, int type) {
+
+        if (interval != null && interval.getIncrement() != 0 && interval.graphLine != null) {
+            if (type == 1) { //type is y
+                yAxis.drawGridLine(interval, g, this);
+            } else {
+                xAxis.drawGridLine(interval, g, this);
+            }
+        }
+    }
+
 
     public XYChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis, XAxis xAxis) {
         this(xAxis, yAxis);
@@ -117,22 +130,9 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
         this.prePaint(g2d);
 
-
-        xAxis.drawTicksAndLabels(g2d, this);
-
-
-        //drawing TICK and then LABEL
-//        xAxis.drawIntervals(g, this);
-//        xAxis.drawAllIntervalLabels(g, this);
-
-        xAxis.drawLabel(g, this);
-
-        xAxis.drawBorderLine(g2d, this);
-        yAxis.drawBorderLine(g2d, this);
-
         drawGraph(g2d);
 
-        drawLegend(g2d);
+        
     }
 
     @Override

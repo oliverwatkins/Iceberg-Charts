@@ -55,7 +55,12 @@ public class YAxis extends Axis {
 
     public void drawGridLine(Interval interval, Graphics2D g, Chart chart) {
 
+    	System.out.println("drawGridLine 1 ");
+    	
+    	
         int incrementNo = (int) ((maxValue - minValue) / interval.getIncrement());
+
+    	System.out.println("drawGridLine 2 ");
 
         //divide height of chart by actual height of chart to get the multiplaying factor
         double factor = getMultiplicationFactor(chart); 
