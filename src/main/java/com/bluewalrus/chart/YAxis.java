@@ -39,7 +39,7 @@ public class YAxis extends Axis {
     }
 
     /**
-     * If Y passes through ZERO then draw a line
+     * If Y passes through ZERO then draw a line on the zero point.
      */
     public void drawYGridLineOnZero(Graphics2D g, Chart chart) {
 

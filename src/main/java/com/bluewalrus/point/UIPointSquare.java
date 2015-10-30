@@ -57,16 +57,9 @@ public class UIPointSquare extends UIPointSimpleXY {
 	public boolean doesShapeContainPoint(Point point) {
 		
 		if (rectangle.contains(point)) {
-			
-//			System.out.println("does 1");
-			
 			mouseIsOverPoint = true;
 			return true;
 		}else {
-			
-//			System.out.println("does 2");
-
-			
 			mouseIsOverPoint = false;
 			return false;
 		}

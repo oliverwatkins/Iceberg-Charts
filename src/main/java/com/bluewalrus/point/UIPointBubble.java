@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
+import java.awt.geom.Ellipse2D;
+
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.renderer.XYFactor;
@@ -21,6 +23,12 @@ public class UIPointBubble extends UIPointComplexXY {
 
     //by default scale on Y
     boolean scaleOnX = false;
+    
+	private Ellipse2D oval;
+	
+	private boolean mouseIsOverPoint = false;
+	private RadialGradientPaint paint;
+
     
     public UIPointBubble(Color color) {
         super(color);
@@ -67,31 +75,73 @@ public class UIPointBubble extends UIPointComplexXY {
         int x = (int) (point.x - (radius));
         int y = (int) (point.y - (radius));
 
-        RadialGradientPaint rgp = new RadialGradientPaint(
-                new Point(point.x, point.y),
+        paint = new RadialGradientPaint(
+                point,
                 (int) mag,
                 dist,
                 colors);
 
-        g.setPaint(rgp);
+        g.setPaint(paint);
+        
+        
+        oval = new Ellipse2D.Double(x, y, (int)radius*2, (int)radius*2);
+        
+        g.fill(oval);
 
-        g.fillOval(x, y, (int)radius*2, (int)radius*2 );
+//        g.fillOval(x, y, (int)radius*2, (int)radius*2 );
 
         g.setPaint(gp);
 
+        //draw text
         g.setColor(Color.BLACK);
 
         if (dpWithM.name != null)
             g.drawString("" + dpWithM.name, x, y);
 
-//        Utils.outlineText(g, "hi there", x, y);
+        
+        if (mouseIsOverPoint) {
+        	g.setPaint(this.getHighlightedPaint(point, mag));
+        	
+        	
+//        	g.setColor(Color.GREEN);
+        	g.fill(oval);
+        }else {
+            g.setPaint(paint);
+        }
     }
+    
+    private Paint getHighlightedPaint(Point point, double mag) {
+    	
+        
+        Color c = new Color(color.getRed(), color.getGreen(), color.getBlue(), 100);
+        Color c2 = new Color(Color.PINK.getRed(), Color.PINK.getGreen(), Color.PINK.getBlue(), 100);
+
+        Color[] colors = {c, c2};
+
+        float[] dist = {.4f, .6f};
+    	
+    	RadialGradientPaint rpaint = new RadialGradientPaint(
+                new Point(point.x, point.y),
+                (int) mag,
+                dist,
+                colors);
+    	
+		return rpaint;
+	}
+
+    
+    
 
 
 
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
-		// TODO Auto-generated method stub
-		return false;
+		if (oval.contains(point)) {
+			mouseIsOverPoint = true;
+			return true;
+		}else {
+			mouseIsOverPoint = false;
+			return false;
+		}
 	}
 }
