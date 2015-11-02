@@ -12,7 +12,7 @@ import com.bluewalrus.datapoint.DataPointMultiBar;
 import com.bluewalrus.point.UIPointMultiBar;
 import com.bluewalrus.point.UIPointMultiBarStacked;
 
-public class MultiBarChart extends XYChart { // extends LineChart{
+public class MultiBarChart extends XYChart { 
 
     public MultiBarChart(XAxis xAxis, YAxis yAxis, ArrayList<MultiBar> bars) {
         this(xAxis, yAxis, bars, 10, false);

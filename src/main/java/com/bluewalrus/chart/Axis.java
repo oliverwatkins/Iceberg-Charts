@@ -271,6 +271,24 @@ public abstract class Axis implements Serializable {
 	 */
 	public abstract void drawBorderLine(Graphics g, Chart chart);
 
+	public void drawGridLines(Graphics2D g, Chart chart) {
+		
+		if (interval1 != null && interval1.getIncrement() != 0
+			&& interval1.graphLine != null) {
+			this.drawGridLine(interval1, g, chart);
+		}
+		if (interval2 != null && interval2.getIncrement() != 0
+			&& interval2.graphLine != null) {
+			this.drawGridLine(interval2, g, chart);
+		}
+		if (interval3 != null && interval3.getIncrement() != 0
+			&& interval3.graphLine != null) {
+			this.drawGridLine(interval3, g, chart);
+		}
+		
+	}
+	
+	
 	public abstract void drawGridLine(Interval interval, Graphics2D g, Chart chart);
 
 	protected abstract void drawYGridLineOnZero(Graphics2D g, Chart chart);

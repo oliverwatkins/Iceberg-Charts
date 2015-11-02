@@ -241,7 +241,7 @@ public class TestDataBar {
     
     public static XYChart getTestData_Bar2Y() {
         
-        ArrayList<XYDataSeries> xySeries = new ArrayList<XYDataSeries>();
+        ArrayList<XYDataSeries<?>> xySeries = new ArrayList<XYDataSeries<?>>();
 
         ArrayList<DataPoint> values = new ArrayList<DataPoint>();
         values.add(new DataPoint(17.2));
@@ -375,7 +375,7 @@ public class TestDataBar {
         
         XYChart lineChart = new XYChart(xAxis, yAxis);
         
-        XYDataSeries<DataPointBar> series = new XYDataSeries<DataPointBar>(
+        XYDataSeries<DataPoint> series = new XYDataSeries<DataPoint>(
         		new UIPointBar(Color.RED, lineChart),
         		null,
         		"");

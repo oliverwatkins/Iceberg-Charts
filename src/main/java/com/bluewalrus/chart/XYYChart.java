@@ -28,11 +28,11 @@ public class XYYChart extends XYChart {
     public ArrayList<Bar> bars;
     private XYDataSeries<DataPointBar> barSeries;
 
-    public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries> xySeriesList) {
+    public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries<?>> xySeriesList) {
         this(xAxis, yAxis, yAxis2, bars, xySeriesList, 10);
     }
 
-    public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries> lineSeries, int barWidth) {
+    public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries<?>> lineSeries, int barWidth) {
         super(xAxis, yAxis);
 
         this.bars = bars;

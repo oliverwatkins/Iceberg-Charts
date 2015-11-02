@@ -128,8 +128,8 @@ public class TestDataBubble {
         values2.add(new DataPointWithMagnitude("G", 370, 134, 40));
         values2.add(new DataPointWithMagnitude("H", 400, 349, 80));
 
-        XYDataSeries series = new XYDataSeries(values, new UIPointBubble(Color.BLUE), null, "Series 1");
-        XYDataSeries series2 = new XYDataSeries(values2, new UIPointBubble(Color.ORANGE), null, "Series 2");
+        XYDataSeries<DataPointWithMagnitude> series = new XYDataSeries<DataPointWithMagnitude>(values, new UIPointBubble(Color.BLUE), null, "Series 1");
+        XYDataSeries<DataPointWithMagnitude> series2 = new XYDataSeries<DataPointWithMagnitude>(values2, new UIPointBubble(Color.ORANGE), null, "Series 2");
 
         Interval i1 = new Interval(5, 50.0, new Line(Color.GRAY, false, 2));
         Interval i2 = new Interval(2, 10.0, new Line(Color.LIGHT_GRAY, false, 1));

@@ -44,7 +44,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public ArrayList<XYDataSeries> data = new ArrayList<XYDataSeries>();
 
 	/**
-	 * Create an XY chart by passing in the two axis.
+	 * Create an XY chart by passing in the two axis. This is the default
+	 * constructor for an empty chart.
 	 * 
 	 * @param xAxis 
 	 * @param yAxis
@@ -54,6 +55,20 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.xAxis = xAxis;
 
 		this.addMouseMotionListener(this);
+	}
+
+	/**
+	 * Create an XY chart passing in also the data set.
+	 * 
+	 * @param listOfSeries
+	 * @param yAxis
+	 * @param xAxis
+	 */
+	public XYChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis,
+			XAxis xAxis) {
+		
+		this(xAxis, yAxis);
+		this.data.addAll(listOfSeries);
 	}
 
 	/**
@@ -93,50 +108,30 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 	/**
-	 * TODO should the drawing of the grid line belong to the Axis object?
+	 * Draw grid and/or lines on the 0 points
 	 * 
 	 * @param g
 	 */
 	protected void drawGrid(Graphics2D g) {
-
-		// TODO this should be optional
-		// TODO and what about X == 0?
+		
+		yAxis.drawGridLines(g, this);
+		xAxis.drawGridLines(g, this);
+		
 		yAxis.drawYGridLineOnZero(g, this);
-
-		drawGridLine(yAxis.interval3, g, 1);
-		drawGridLine(yAxis.interval2, g, 1);
-		drawGridLine(yAxis.interval1, g, 1);
-
-		drawGridLine(xAxis.interval3, g, 0);
-		drawGridLine(xAxis.interval2, g, 0);
-		drawGridLine(xAxis.interval1, g, 0);
 	}
 
-	private void drawGridLine(Interval interval, Graphics2D g, int type) {
 
-		if (interval != null && interval.getIncrement() != 0
-				&& interval.graphLine != null) {
-			if (type == 1) { // type is y
-				yAxis.drawGridLine(interval, g, this);
-			} else {
-				xAxis.drawGridLine(interval, g, this);
-			}
-		}
-	}
 
-	public XYChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis,
-			XAxis xAxis) {
-		this(xAxis, yAxis);
-		this.data.addAll(listOfSeries);
-	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
 
+		//draws axis, frame etc
 		this.prePaint(g2d);
 
+		//draws actual data
 		drawGraph(g2d);
 
 	}
@@ -171,33 +166,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		super.drawLegend(g, categories);
 	}
 
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
 
-	@Override
-	public void mouseMoved(MouseEvent e) {
-
-		Point point = e.getPoint();
-		// System.out.println("point = " + point);
-
-		for (XYDataSeries xyDataSeries : data) {
-			ArrayList al = xyDataSeries.dataPoints;
-
-			for (Object object : al) {
-				DataPoint dp = (DataPoint) object;
-
-				UIPointXY uip = dp.uiPointXY;
-
-				boolean b = uip.doesShapeContainPoint(point);
-
-				if (b)
-					System.out.println("CONTAINS POINT!!");
-			}
-		}
-		this.updateUI();
-	}
 
 	/**
 	 * Inner line just inside of the axis line. Potentially optional??
@@ -237,6 +206,35 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		g.setStroke(chartBorderLine);
 		g.setColor(borderLineColor);
 		g.drawLine(leftOffset + widthChart, topOffset, leftOffset + widthChart, heightChart + topOffset);
+	}
+	
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+
+		Point point = e.getPoint();
+		// System.out.println("point = " + point);
+
+		for (XYDataSeries xyDataSeries : data) {
+			ArrayList al = xyDataSeries.dataPoints;
+
+			for (Object object : al) {
+				DataPoint dp = (DataPoint) object;
+
+				UIPointXY uip = dp.uiPointXY;
+
+				boolean b = uip.doesShapeContainPoint(point);
+
+				if (b)
+					System.out.println("CONTAINS POINT!!");
+			}
+		}
+		this.updateUI();
 	}
 
 }

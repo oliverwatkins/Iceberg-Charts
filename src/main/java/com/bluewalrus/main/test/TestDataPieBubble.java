@@ -109,7 +109,7 @@ public class TestDataPieBubble {
         pbcs.setRadialColorStartingPoint1(Color.WHITE);
         pbcs.setRadialColorStartingPoint2(Color.GREEN);
 
-        XYDataSeries series = new XYDataSeries(values, new UIPointPieChart(Color.BLUE, pbcs), null, "1994");
+        XYDataSeries<DataPoint> series = new XYDataSeries<DataPoint>(values, new UIPointPieChart(Color.BLUE, pbcs), null, "1994");
 
         YAxis yAxis = new YAxis(0.0, 100.0, 10.0, null, null, "GNI ");
         XAxis xAxis = new XAxis(0.0, 100.0, 50.0, 10.0, null, "Life Expectancy ");

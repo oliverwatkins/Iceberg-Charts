@@ -3,6 +3,7 @@ package com.bluewalrus.chart;
 import java.util.ArrayList;
 
 import com.bluewalrus.bar.XYDataSeries;
+import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointPieChart;
 
 /**
