@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.chart.Axis;
-import com.bluewalrus.chart.Axis.AxisType;
+import com.bluewalrus.chart.axis.Axis;
+import com.bluewalrus.chart.axis.XAxis;
+import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.axis.Axis.AxisType;
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.GradiantRule;
 import com.bluewalrus.bar.Interval;
@@ -13,9 +15,7 @@ import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.MultiBar;
 import com.bluewalrus.bar.MultiBar.MultiBarMode;
 import com.bluewalrus.bar.Utils;
-import com.bluewalrus.chart.XAxis;
 import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.chart.YAxis;
 import com.bluewalrus.chart.BarChart;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.MultiBarChart;
@@ -47,7 +47,7 @@ public class TestDataBar {
         YAxis yAxis = new YAxis(-40.0, 100.0, tick1, tick2, tick3, "Number of Fruits");
         yAxis.label = "Price USD";
         
-        XAxis xAxis = new XAxis("Commodity", AxisType.BLANK);
+        XAxis xAxis = new XAxis("Commodity", AxisType.ENUMERATION);
 
         ArrayList<Bar> bars = new ArrayList<Bar>();
         bars.add(new Bar(90, colors.get(0), "Apple"));
@@ -89,7 +89,7 @@ public class TestDataBar {
         yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
         yAxis.yFont = new Font("Blackadder ITC", Font.PLAIN, 20);
         
-        XAxis xAxis = new XAxis("yadda yadda", AxisType.BLANK);
+        XAxis xAxis = new XAxis("yadda yadda", AxisType.ENUMERATION);
         
         xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
         xAxis.xFont = new Font("Blackadder ITC", Font.PLAIN, 20);
@@ -170,7 +170,7 @@ public class TestDataBar {
         
         YAxis yAxis = new YAxis(0.0, 100.0, 20.0, 10.0, 5.0, "thousand dollars");
 
-        XAxis xAxis = new XAxis("year", Axis.AxisType.BLANK);
+        XAxis xAxis = new XAxis("year", Axis.AxisType.ENUMERATION);
         
         MultiBarChart chart = new MultiBarChart(xAxis,yAxis,ml);
         chart.setTitle("Advertising Revenue By Sector");
@@ -228,7 +228,7 @@ public class TestDataBar {
         
         YAxis yAxis = new YAxis(0.0, 200.0, 50.0, 20.0, 10.0, "thousand dollars");
 
-        XAxis xAxis = new XAxis("Year", Axis.AxisType.BLANK);
+        XAxis xAxis = new XAxis("Year", Axis.AxisType.ENUMERATION);
 
         MultiBarChart chart = new MultiBarChart(xAxis,yAxis,ml,true);
 //        chart.barWidth = 30;
@@ -298,7 +298,7 @@ public class TestDataBar {
         series3.dataPoints = values3;
 
         YAxis yAxis = new YAxis(-50.0, 100.0, 50.0, 10.0, 1.0, "Temperature");
-        XAxis xAxis = new XAxis("Month", AxisType.BLANK);
+        XAxis xAxis = new XAxis("Month", AxisType.ENUMERATION);
         
         YAxis yAxis2 = new YAxis(0.0, 200.0, 100.0, 20.0, 0.0, "Precipitation");
 

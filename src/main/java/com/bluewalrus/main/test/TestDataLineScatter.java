@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Line;
-import com.bluewalrus.chart.XAxis;
 import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.chart.YAxis;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.ScatterChart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.XAxis;
+import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBoxPlot;
 import com.bluewalrus.point.UIPointBoxPlot;
@@ -150,7 +150,7 @@ public class TestDataLineScatter {
 		series.dataPoints = values;
 
 		XYDataSeries series2 = new XYDataSeries(
-				new UIPointCircle(Color.ORANGE, 8), null, "1995");
+				new UIPointCircle(Color.ORANGE, 8), null, "1995xxxx");
 
 		series2.dataPoints = values2;
 
@@ -159,7 +159,8 @@ public class TestDataLineScatter {
 
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
-		ScatterChart chart = new ScatterChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+//		ScatterChart chart = new ScatterChart(xySeriesList, yAxis, xAxis);
 
 		chart.setSize(1000, 500);
 		chart.rightOffset = 200;

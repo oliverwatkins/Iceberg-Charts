@@ -5,16 +5,17 @@
  */
 package com.bluewalrus.main.test;
 
-import com.bluewalrus.chart.XAxis;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.PieBubbleChart;
 import com.bluewalrus.chart.PieBubbleChartSettings;
-import com.bluewalrus.chart.YAxis;
+import com.bluewalrus.chart.axis.XAxis;
+import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointPieChart;
 import com.bluewalrus.pie.Segment;
 import com.bluewalrus.point.UIPointPieChart;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;

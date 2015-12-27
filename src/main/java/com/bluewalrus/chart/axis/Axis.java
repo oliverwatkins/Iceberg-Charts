@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bluewalrus.chart;
+package com.bluewalrus.chart.axis;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Line;
@@ -27,9 +27,9 @@ public abstract class Axis implements Serializable {
 
 	public Color axisColor = Color.BLACK;
 
+	//interval schema?
 	public enum AxisType {
-
-		BLANK, STANDARD
+		ENUMERATION, LINEAR_NUMERICAL, LOGARITHMIC, TIME
 	}
 
 	public int tickLabelOffset = 40; // TODO this should be seperate for each
@@ -157,7 +157,7 @@ public abstract class Axis implements Serializable {
 	protected void drawIntervalTickAndLabels(Interval interval, Graphics g,
 			Chart chart, boolean showLabel) {
 
-		if (type == AxisType.BLANK) {
+		if (type == AxisType.ENUMERATION) {
 			return;
 		}
 

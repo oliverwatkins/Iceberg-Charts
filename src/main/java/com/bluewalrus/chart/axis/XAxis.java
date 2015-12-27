@@ -1,4 +1,4 @@
-package com.bluewalrus.chart;
+package com.bluewalrus.chart.axis;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.chart.Chart;
@@ -17,7 +17,7 @@ public class XAxis extends Axis {
      * @param name axis name
      */
     public XAxis(String name) {
-        super(name, AxisType.STANDARD);
+        super(name, AxisType.LINEAR_NUMERICAL);
     }
 
     /**
@@ -104,7 +104,7 @@ public class XAxis extends Axis {
         //to first increment
     	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
 
-        if (type == AxisType.BLANK) {
+        if (type == AxisType.ENUMERATION) {
             return;
         }
 
@@ -143,7 +143,7 @@ public class XAxis extends Axis {
 
     @Override
     protected void drawYGridLineOnZero(Graphics2D g, Chart chart) {
-        if (type == AxisType.BLANK) {
+        if (type == AxisType.ENUMERATION) {
             return;
         }
         throw new RuntimeException("TODO");

@@ -7,6 +7,8 @@ import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.MultiBar;
 import com.bluewalrus.bar.XYDataSeries;
+import com.bluewalrus.chart.axis.XAxis;
+import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.DataPointMultiBar;
 import com.bluewalrus.point.UIPointMultiBar;

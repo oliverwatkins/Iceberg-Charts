@@ -1,7 +1,8 @@
-package com.bluewalrus.chart;
+package com.bluewalrus.chart.axis;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Utils;
+import com.bluewalrus.chart.Chart;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -23,7 +24,7 @@ public class YAxis extends Axis {
 	
  
     public YAxis(String name) {
-        super(name, Axis.AxisType.STANDARD);
+        super(name, Axis.AxisType.LINEAR_NUMERICAL);
     }
 
     public YAxis(Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements, String name) {
