@@ -45,12 +45,8 @@ public class MultiBarChart extends XYChart {
 
             DataPointMultiBar dpmb = new DataPointMultiBar((int) (pointDistance * i), (int) 42);
 
-            for (Bar bar : multibar.bars) {
-                dataPointArray.add(new DataPointBar(
-                        (int) (pointDistance * i),
-                        (int) bar.value,
-                        bar.color,
-                        bar.name));
+            for (DataPointBar bar : multibar.bars) {
+                dataPointArray.add(bar);
             }
             i++;
 
@@ -76,9 +72,7 @@ public class MultiBarChart extends XYChart {
                     "");
 
             data.add(series);
-
         }
-
     }
 
     @Override
@@ -93,7 +87,8 @@ public class MultiBarChart extends XYChart {
         for (DataPointBar dpb : dps) {
             Category category;
 
-            category = new Category(dpb.xName, series.pointType, null);
+        	category = new Category(dpb.xName, series.pointType, null);
+
             category.block = true;
             category.color = dpb.color;
             categories.add(category);

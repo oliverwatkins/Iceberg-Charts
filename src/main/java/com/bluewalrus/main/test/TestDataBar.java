@@ -190,32 +190,32 @@ public class TestDataBar {
         
         ArrayList<MultiBar> ml = new ArrayList<MultiBar>();
 
-        ArrayList<Bar> values = new ArrayList<Bar>();
-        values.add(new Bar(50, Color.RED, "Automobile"));
-        values.add(new Bar(25, Color.BLUE, "Food Industry"));
-        values.add(new Bar(10, Color.GREEN, "Cosmetics"));
-        values.add(new Bar(5, Color.ORANGE, "Travel Products"));
-        values.add(new Bar(67, Color.GRAY, "Government"));
+        ArrayList<DataPointBar> values = new ArrayList<DataPointBar>();
+        values.add(new DataPointBar("Automobile", 51, Color.RED));
+        values.add(new DataPointBar("Food Industry", 25, Color.BLUE ));
+        values.add(new DataPointBar("Cosmetics", 10, Color.GREEN));
+        values.add(new DataPointBar("Travel Products", 5, Color.ORANGE ));
+        values.add(new DataPointBar("Government", 67, Color.GRAY ));
         
         MultiBar mb1 = new MultiBar(values, "2007", MultiBarMode.STACK_ON_TOP);
         ml.add(mb1);
 
-        ArrayList<Bar> values2 = new ArrayList<Bar>();
-        values2.add(new Bar(80, Color.RED, "Automobile"));
-        values2.add(new Bar(45, Color.BLUE, "Food Industry"));
-        values2.add(new Bar(12, Color.GREEN, "Cosmetics"));
-        values2.add(new Bar(14, Color.ORANGE, "Travel Products"));
-        values2.add(new Bar(10, Color.GRAY, "Government"));
+        ArrayList<DataPointBar> values2 = new ArrayList<DataPointBar>();
+        values2.add(new DataPointBar("Automobile", 80, Color.RED ));
+        values2.add(new DataPointBar("Food Industry", 45, Color.BLUE ));
+        values2.add(new DataPointBar("Cosmetics", 12, Color.GREEN ));
+        values2.add(new DataPointBar("Travel Products", 14, Color.ORANGE ));
+        values2.add(new DataPointBar("Government", 10, Color.GRAY ));
         
         MultiBar mb2 = new MultiBar(values2, "2008", MultiBarMode.STACK_ON_TOP);
         ml.add(mb2);
 
-        ArrayList<Bar> values3 = new ArrayList<Bar>();
-        values3.add(new Bar(70, Color.RED, "Automobile"));
-        values3.add(new Bar(45, Color.BLUE, "Food Industry"));
-        values3.add(new Bar(3, Color.GREEN, "Cosmetics"));
-        values3.add(new Bar(1, Color.ORANGE, "Travel Products"));
-        values3.add(new Bar(2, Color.GRAY, "Government"));
+        ArrayList<DataPointBar> values3 = new ArrayList<DataPointBar>();
+        values3.add(new DataPointBar("Automobile", 70, Color.RED ));
+        values3.add(new DataPointBar("Food Industry", 45, Color.BLUE ));
+        values3.add(new DataPointBar("Cosmetics",  3, Color.GREEN ));
+        values3.add(new DataPointBar("Travel Products", 1, Color.ORANGE ));
+        values3.add(new DataPointBar("Government", 2, Color.GRAY));
         
         MultiBar mb3 = new MultiBar(values3, "2009", MultiBarMode.STACK_ON_TOP);
         ml.add(mb3);
@@ -239,43 +239,35 @@ public class TestDataBar {
     	
         ArrayList<MultiBar> ml = new ArrayList<MultiBar>();
 
-        ArrayList<Bar> values = new ArrayList<Bar>();
-        values.add(new Bar(50, Color.RED, "Automobile"));
-        values.add(new Bar(25, Color.BLUE, "Food Industry"));
-        values.add(new Bar(10, Color.GREEN, "Cosmetics"));
-        values.add(new Bar(5, Color.ORANGE, "Travel Products"));
-        values.add(new Bar(67, Color.GRAY, "Government"));
+        ArrayList<DataPointBar> values = new ArrayList<DataPointBar>();
+        values.add(new DataPointBar("Automobile", 50, Color.RED));
+        values.add(new DataPointBar("Food Industry", 25, Color.BLUE ));
+        values.add(new DataPointBar("Cosmetics", 10, Color.GREEN));
+        values.add(new DataPointBar("Travel Products", 5, Color.ORANGE ));
+        values.add(new DataPointBar("Government", 67, Color.GRAY ));
         
         MultiBar mb1 = new MultiBar(values, "2007", MultiBarMode.STACK_ON_TOP);
         ml.add(mb1);
 
-        ArrayList<Bar> values2 = new ArrayList<Bar>();
-        values2.add(new Bar(80, Color.RED, "Automobile"));
-        values2.add(new Bar(45, Color.BLUE, "Food Industry"));
-        values2.add(new Bar(12, Color.GREEN, "Cosmetics"));
-        values2.add(new Bar(14, Color.ORANGE, "Travel Products"));
-        values2.add(new Bar(10, Color.GRAY, "Government"));
+        ArrayList<DataPointBar> values2 = new ArrayList<DataPointBar>();
+        values2.add(new DataPointBar("Automobile", 80, Color.RED ));
+        values2.add(new DataPointBar("Food Industry", 45, Color.BLUE ));
+        values2.add(new DataPointBar("Cosmetics", 12, Color.GREEN ));
+        values2.add(new DataPointBar("Travel Products", 14, Color.ORANGE ));
+        values2.add(new DataPointBar("Government", 10, Color.GRAY ));
         
         MultiBar mb2 = new MultiBar(values2, "2008", MultiBarMode.STACK_ON_TOP);
         ml.add(mb2);
 
-        ArrayList<Bar> values3 = new ArrayList<Bar>();
-        values3.add(new Bar(70, Color.RED, "Automobile"));
-        values3.add(new Bar(45, Color.BLUE, "Food Industry"));
-        values3.add(new Bar(3, Color.GREEN, "Cosmetics"));
-        values3.add(new Bar(1, Color.ORANGE, "Travel Products"));
-        values3.add(new Bar(2, Color.GRAY, "Government"));
+        ArrayList<DataPointBar> values3 = new ArrayList<DataPointBar>();
+        values3.add(new DataPointBar("Automobile", 70, Color.RED ));
+        values3.add(new DataPointBar("Food Industry", 45, Color.BLUE ));
+        values3.add(new DataPointBar("Cosmetics",  3, Color.GREEN ));
+        values3.add(new DataPointBar("Travel Products", 1, Color.ORANGE ));
+        values3.add(new DataPointBar("Government", 2, Color.GRAY));
         
         MultiBar mb3 = new MultiBar(values3, "2009", MultiBarMode.STACK_ON_TOP);
         ml.add(mb3);
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         

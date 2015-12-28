@@ -7,10 +7,9 @@ public class DataPointBar extends DataPoint {
 
     public String xName;
 
-    public Color color;
+    public Color color; //TODO get rid of this
     
     public ValueType valueType;
-
     
 	public DataPointBar(String xName, double y, Color color) {
 		super(-9999, y); //
@@ -20,6 +19,19 @@ public class DataPointBar extends DataPoint {
 		
 		this.xName = xName;
 	}
+	
+    public DataPointBar(double x, double y, String name) {
+        super(x, y);
+        this.xName = name;
+    }
+
+    public DataPointBar(int x, int y, Color color2, String string) {
+        super(x, y);
+        this.xName = string;
+        this.color = color2;
+    }
+    
+    
 	
 	public DataPointBar(double x, double y, Color color) {
 		super(x, y);
@@ -32,16 +44,7 @@ public class DataPointBar extends DataPoint {
         super(x, y);
     }
 
-    public DataPointBar(double x, double y, String name) {
-        super(x, y);
-        this.xName = name;
-    }
 
-    public DataPointBar(int i, int j, Color color2, String string) {
-        super(i, j);
-        this.xName = string;
-        this.color = color2;
-    }
 
 
 }

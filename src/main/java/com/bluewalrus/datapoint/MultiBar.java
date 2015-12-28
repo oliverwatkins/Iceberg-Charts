@@ -15,9 +15,9 @@ public class MultiBar {
     public MultiBarMode mode;
 
     public String name;
-    public ArrayList<Bar> bars;
+    public ArrayList<DataPointBar> bars;
 
-    public MultiBar(ArrayList<Bar> bars, String name, MultiBarMode mode) {
+    public MultiBar(ArrayList<DataPointBar> bars, String name, MultiBarMode mode) {
         this.bars = bars;
         this.name = name;
         this.mode = mode;
