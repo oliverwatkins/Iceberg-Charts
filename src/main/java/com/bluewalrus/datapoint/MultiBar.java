@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import com.bluewalrus.bar.Bar;
 
+
+/**
+ * A set of bars.
+ * 
+ * @author Oliver Watkins
+ */
 public class MultiBar {
 
     public MultiBarMode mode;

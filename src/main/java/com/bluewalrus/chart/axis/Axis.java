@@ -15,6 +15,7 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.draw.LinearNumericalAxisDraw;
 
 /**
  * Abstract Axis. Sub types are X and Y. Possible Z Axis in future
@@ -26,9 +27,7 @@ public abstract class Axis implements Serializable {
     public Font font = new Font("Arial", Font.PLAIN, 12);
 	public String labelText;
 
-//	Orientation orientation;
-	
-	public AxisType type;
+	public AxisType type = AxisType.LINEAR_NUMERICAL; //default
 
 	public Color axisColor = Color.BLACK;
 
@@ -69,12 +68,12 @@ public abstract class Axis implements Serializable {
 
 	Axis(Double primaryIncrements, Double secondaryIncrements,
 			Double tertiaryIncrements, String name) {
+		
 		this(0.0, 100.0, primaryIncrements, secondaryIncrements,
 				tertiaryIncrements, name);
 	}
 
-	Axis(Double minValue, Double maxValue, Double primaryIncrements,
-			Double secondaryIncrements, Double tertiaryIncrements, String name) {
+	Axis(Double minValue, Double maxValue, Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements, String name) {
 
 		this.maxValue = maxValue;
 		this.minValue = minValue;
@@ -103,8 +102,7 @@ public abstract class Axis implements Serializable {
 	 * @param interval3
 	 * @param name
 	 */
-	Axis(Double minValue, Double maxValue, Interval interval1,
-			Interval interval2, Interval interval3, String name) {
+	Axis(Double minValue, Double maxValue, Interval interval1, Interval interval2, Interval interval3, String name) {
 
 		this.maxValue = maxValue;
 		this.minValue = minValue;
@@ -129,16 +127,35 @@ public abstract class Axis implements Serializable {
 			this.interval3 = interval3;
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
 
 	public void drawTicksAndLabels(Graphics g, Chart chart) {
 
 		
 		if (type == AxisType.ENUMERATION) {
 			
+			LinearNumericalAxisDraw draw = new LinearNumericalAxisDraw() {
+				
+				@Override
+				public void drawTicksAndLabels(Graphics g, Chart chart) {
+					// TODO Auto-generated method stub
+					
+				}
+			};
+//			LinearNumericalAxisDraw.drawTicksAndLabels(g, chart);
+			
+			
 			//draw ticks and labels
 			
 			return;
-		}else {
+		}else if (type == AxisType.LINEAR_NUMERICAL){
+			
 			if (this.interval1.isValid() && this.interval1.isActive()) {
 				drawIntervalTickAndLabels(this.interval1, g, chart, true);
 			}
@@ -148,6 +165,8 @@ public abstract class Axis implements Serializable {
 			if (this.interval3.isValid() && this.interval3.isActive()) {
 				drawIntervalTickAndLabels(this.interval3, g, chart, false);
 			}
+		}else {
+			throw new RuntimeException("no type specified");
 		}
 		
 	}
@@ -187,7 +206,6 @@ public abstract class Axis implements Serializable {
 
 		for (int i = 0; i < (incrementNo + 1); i++) {
 			
-			System.out.println("");
 			drawIntervalTick(interval, g, chart, i, incrementInPixel);
 
 			if (showLabel)

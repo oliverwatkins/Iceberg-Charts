@@ -60,6 +60,11 @@ public class TestDataBar {
         bars.add(new DataPointBar(60, 30, colors.get(4)));
         bars.add(new DataPointBar(70, 54, colors.get(4)));
         
+        
+
+        
+        
+        
         BarChart barChart = new BarChart(xAxis, yAxis, bars, 40);
         
         barChart.setTitle("Change In Commodity Price");
@@ -92,6 +97,12 @@ public class TestDataBar {
         bars.add(new DataPointBar( "Oranges", 30, colors.get(4)));
         bars.add(new DataPointBar( "Corn", 54, colors.get(4)));
         
+        
+        
+
+        
+        
+        
         BarChart barChart = new BarChart(xAxis, yAxis, bars, 40);
         
         barChart.setTitle("Change In Commodity Price");
@@ -118,6 +129,11 @@ public class TestDataBar {
 //        values.add(new Bar(13, colors.get(10), "11"));
 //        values.add(new Bar(21, colors.get(11), "12"));
 
+
+        
+        
+        
+        
         YAxis yAxis = new YAxis(0.0, 300.0, 50.0, 0.0, 0.0, "Numbers");
         yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
         yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
@@ -155,6 +171,10 @@ public class TestDataBar {
         
         xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
         xAxis.labelText = "Day of Year"; 
+        
+        
+        
+        
         
         BarChart barChart = new BarChart(xAxis, yAxis, values, 1);
 
@@ -373,13 +393,13 @@ public class TestDataBar {
     
     public static Chart getTestData_BarCanBeXY() {
         
-        Interval tick1 = new Interval(20, 20.0, new Line(Color.GRAY,true,1)); //grid line
-        Interval tick2 = new Interval(10, 10.0, null); //no grid line
-        Interval tick3 = new Interval(5, 5.0, null);
+        Interval tick1 = new Interval(20, 5.0, new Line(Color.GRAY,true,1)); //grid line
+        Interval tick2 = new Interval(10, 2.0, null); //no grid line
+//        Interval tick3 = new Interval(5, 5.0, null);
         
-        YAxis yAxis = new YAxis(-80.0, 100.0, tick1, tick2, tick3, "Y value");
+        YAxis yAxis = new YAxis(-80.0, 100.0, tick1, tick2, null, "Y value");
         
-        XAxis xAxis = new XAxis(0.0, 25.0, tick1, tick2, tick3, "X Value - must be even spaced");
+        XAxis xAxis = new XAxis(0.0, 25.0, tick1, tick2, null, "X Value - must be even spaced");
         
         ArrayList<DataPointBar> bars = new ArrayList<DataPointBar>();
         bars.add(new DataPointBar(1, -60, Color.YELLOW, ""));

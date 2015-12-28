@@ -30,18 +30,7 @@ import com.bluewalrus.renderer.XYFactor;
  */
 public class LineRenderer {
 
-	
 
-//    public static void drawLinesOrPointsXXY(Graphics2D g, Chart chart,
-//            YAxis yAxis, XAxis xAxis, XYDataSeries<DataPointBar> barSeries) {
-//
-//        ArrayList al = new ArrayList<>();
-//        al.add(barSeries);
-//
-//        drawLinesOrPoints(g, chart, yAxis, xAxis, al);
-//
-//    }
-//    
     
     public static void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {

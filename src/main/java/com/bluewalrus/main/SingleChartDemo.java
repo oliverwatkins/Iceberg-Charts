@@ -28,7 +28,7 @@ public class SingleChartDemo extends JFrame {
         
 //        Chart chart = TestDataBar.getTestData_BarNegativeAndPositive();
         
-        Chart chart2 = TestDataBar.getTestData_MultiBar_Stacked();
+        Chart chart2 = TestDataBar.getTestData_BarCanBeXY();
 
 //        tabbedPaneBar.addTab("1", chart);
 

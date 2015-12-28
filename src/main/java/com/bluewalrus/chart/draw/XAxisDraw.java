@@ -30,22 +30,6 @@ public class XAxisDraw {
 
         g.drawLine((int)fromLeft, y1, (int)fromLeft, y2);
 	} 
-	
-	/**
-	 * TODO for bar charts now only!!!!
-	 * 
-	 * @param g
-	 * @param chart
-	 * @param x
-	 */
-    public static void drawTickLine_BAR(Graphics g, XYChart chart, int x) {
-    	
-//        g.drawLine((int) (x),
-//                (int) (chart.topOffset + chart.xAxis.marginOffset + chart.heightChart),
-//                (int) (x),
-//                (int) (chart.topOffset + chart.xAxis.marginOffset + chart.heightChart + 2));
-    }
-    
     
     
 	
@@ -86,42 +70,7 @@ public class XAxisDraw {
             return;
         }
         throw new RuntimeException("TODO");
-		
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-    
     
     
 	public static void drawXLabel(Graphics g, Chart chart, double fromLeft,
@@ -138,31 +87,7 @@ public class XAxisDraw {
 
         g.drawString(xLabel, (int)fromLeft, yPos);
 	}
-    
-    
-    /**
-     * Draw label text. For enum bar charts at the moment only
-     * @param chart
-     * @param name
-     * @param g
-     * @param x
-     */
-    public static void drawText_BAR(XYChart chart, String name,
-            Graphics g, int x) {
 
-        FontMetrics fm = chart.getFontMetrics(chart.xAxis.axisCatFont);
-        int widthStr = fm.stringWidth(name);
-        int heightStr = fm.getHeight();
-
-        g.setFont(chart.xAxis.axisCatFont);
-        g.setColor(Color.BLACK);
-
-        int xPosition = x - (widthStr / 2);
-        int yPosition = chart.topOffset + chart.xAxis.marginOffset + chart.heightChart + chart.xAxis.labelOffset - heightStr / 2;
-
-        //draw tick
-        g.drawString(name, xPosition, yPosition);
-    }
     
     
     
