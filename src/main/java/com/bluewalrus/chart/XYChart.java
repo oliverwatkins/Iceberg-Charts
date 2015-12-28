@@ -15,15 +15,15 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import com.bluewalrus.bar.Category;
-import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Legendable;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
+import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.draw.LineRenderer;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointXY;
-import com.bluewalrus.renderer.LineRenderer;
 
 /**
  * XYChart is a chart where data is represented by x,y data. Typically the y axis is vertical 
@@ -123,8 +123,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 
-
-
 	@Override
 	protected void paintComponent(Graphics g) {
 
@@ -135,7 +133,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		//draws actual data
 		drawGraph(g2d);
-
 	}
 
 	@Override

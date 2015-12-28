@@ -11,7 +11,7 @@ import java.awt.Graphics2D;
 
 public class XAxis extends Axis {
 
-    public Font xFont = new Font("Arial", Font.PLAIN, 12);
+//    public Font xFont = new Font("Arial", Font.PLAIN, 12);
 
     /**
      * @param name axis name
@@ -129,15 +129,15 @@ public class XAxis extends Axis {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        FontMetrics fmX = chart.getFontMetrics(xFont);
-        int xAxisStringWidth = fmX.stringWidth(label);
+        FontMetrics fmX = chart.getFontMetrics(font);
+        int xAxisStringWidth = fmX.stringWidth(labelText);
 
         //X Label
         int xAxesLabelHeight = chart.bottomOffset - labelOffset;
 
         //x label        
-        g2d.setFont(xFont);
-        g2d.drawString(label, chart.widthChart / 2 + chart.leftOffset - xAxisStringWidth / 2, chart.topOffset + chart.heightChart + labelOffset + xAxesLabelHeight / 2);
+        g2d.setFont(font);
+        g2d.drawString(labelText, chart.widthChart / 2 + chart.leftOffset - xAxisStringWidth / 2, chart.topOffset + chart.heightChart + labelOffset + xAxesLabelHeight / 2);
 
     }
 

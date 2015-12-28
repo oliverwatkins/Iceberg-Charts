@@ -8,7 +8,6 @@ import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.ScatterChart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
@@ -154,6 +153,9 @@ public class TestDataLineScatter {
 
 		series2.dataPoints = values2;
 
+//		NumericalAxis yAxis = new NumericalAxis(3.0, 100.0, 50.0, 0.0, 0.0, "Length (inches) ");
+//		NumericalAxis xAxis = new NumericalAxis(3.0, 100.0, 50.0, 10.0, 0.0, "Weight (kg)");
+		
 		YAxis yAxis = new YAxis(3.0, 100.0, 50.0, 0.0, 0.0, "Length (inches) ");
 		XAxis xAxis = new XAxis(3.0, 100.0, 50.0, 10.0, 0.0, "Weight (kg)");
 

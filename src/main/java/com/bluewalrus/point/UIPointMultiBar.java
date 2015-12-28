@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.draw.XAxisDraw;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.DataPointMultiBar;
@@ -85,9 +86,9 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
 		}
         
         if (dpX.name != null)
-        	this.drawText(chart, dpX.name, g, point.x);
+        	XAxisDraw.drawText(chart, dpX.name, g, point.x);
         
-        this.drawTickLine(g, chart, point.x);
+        XAxisDraw.drawTickLine(g, chart, point.x);
 
 	}
 

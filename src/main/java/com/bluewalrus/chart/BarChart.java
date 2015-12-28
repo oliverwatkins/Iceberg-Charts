@@ -1,36 +1,31 @@
 package com.bluewalrus.chart;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
 
+/**
+ * 
+ * @author Oliver Watkins
+ *
+ */
 public class BarChart extends XYChart {
 
-    public BarChart(XAxis xAxis, YAxis yAxis, ArrayList<Bar> bars) {
+    public BarChart(XAxis xAxis, YAxis yAxis, ArrayList<DataPointBar> bars) {
         this(xAxis, yAxis, bars, 10);
     }
 
-    public BarChart(XAxis xAxis, YAxis yAxis, ArrayList<Bar> bars, int barWidth) {
+    public BarChart(XAxis xAxis, YAxis yAxis, ArrayList<DataPointBar> bars, int barWidth) {
         this(xAxis, yAxis, bars, new UIPointBar(Color.PINK, Color.YELLOW, null, barWidth));
     }
 
-    public BarChart(XAxis xAxis, YAxis yAxis, ArrayList<Bar> bars, UIPointBar barPoint) {
+    public BarChart(XAxis xAxis, YAxis yAxis, ArrayList<DataPointBar> bars, UIPointBar barPoint) {
         super(xAxis, yAxis);
-        
-        //inverse relationship?
-        /**
-         * The reason baropint needs to reference the chart is because of the dimensions
-         * of the bar need to be measured from the X-Axis. Labels ticks everything is related
-         * to dimensions of chart. Not sure if possible to remove this dependency
-         */
-        barPoint.chart = this;
 
         data = new ArrayList<XYDataSeries>();
 
@@ -42,11 +37,24 @@ public class BarChart extends XYChart {
         //distance between points
         double pointDistance = (double) (xRange / (bars.size() + 1));
 
-        int i = 1;
-        for (Bar bar : bars) {
-            dataPoints.add(new DataPointBar((int) (pointDistance * i), (int) bar.value, bar.color, bar.name));
-            i++;
+        validityCheck(bars);
+        
+        //massages the data.
+        
+        if (bars.get(0).xName != null) {
+            int i = 1;
+            for (DataPointBar bar : bars) {
+                dataPoints.add(new DataPointBar((int) (pointDistance * i), (int) bar.y, bar.color, bar.xName));
+                i++;
+            }
+        }else {
+        	
+        	dataPoints = bars;
+        
+        	//nothing
         }
+        
+        
 
         XYDataSeries<DataPointBar> series = new XYDataSeries<DataPointBar>(
                 dataPoints,
@@ -56,6 +64,28 @@ public class BarChart extends XYChart {
 
         data.add(series);
     }
+
+	private void validityCheck(ArrayList<DataPointBar> bars) {
+		
+		DataPointBar firstElem = bars.get(0);
+		if (firstElem.xName != null) {
+			//enumerable
+			for (DataPointBar dataPointBar : bars) {
+				if (firstElem.xName == null) {
+					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
+				}
+			}
+		}
+		
+		if (firstElem.xName == null) {
+			//numerical
+			for (DataPointBar dataPointBar : bars) {
+				if (firstElem.xName != null) {
+					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
+				}
+			}
+		}
+	}
 
 
 

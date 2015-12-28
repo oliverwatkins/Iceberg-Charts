@@ -8,7 +8,6 @@ import com.bluewalrus.point.UIPointXY;
  * Super type for boxplots, bar, multibar, piechart, bubble etc. But used individually for
  * things like scatter chart
  * 
- * @author lauren
  */
 public class DataPoint implements Serializable{
 

@@ -11,10 +11,10 @@ import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.draw.LineRenderer;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
-import com.bluewalrus.renderer.LineRenderer;
 
 
 /**
@@ -103,7 +103,7 @@ public class XYYChart extends XYChart {
     }
     
     
-    public static void drawLinesOrPointsXXY(Graphics2D g, Chart chart,
+    public static void drawLinesOrPointsXXY(Graphics2D g, XYChart chart,
             YAxis yAxis, XAxis xAxis, XYDataSeries<DataPointBar> barSeries) {
 
         ArrayList al = new ArrayList<>();

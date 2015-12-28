@@ -7,7 +7,9 @@ import java.awt.Color;
  * @author Oliver Watkins (www.blue-walrus.com)
  *
  * All Rights Reserved
+ * 
  */
+@Deprecated
 public class Bar {
 
     GradiantRule gradiantRule;

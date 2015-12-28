@@ -4,16 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.chart.axis.Axis;
-import com.bluewalrus.chart.axis.XAxis;
-import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.axis.Axis.AxisType;
+import javax.swing.JComponent;
+
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.GradiantRule;
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Line;
-import com.bluewalrus.bar.MultiBar;
-import com.bluewalrus.bar.MultiBar.MultiBarMode;
 import com.bluewalrus.bar.Utils;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.BarChart;
@@ -21,8 +17,14 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.MultiBarChart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYYChart;
+import com.bluewalrus.chart.axis.Axis;
+import com.bluewalrus.chart.axis.Axis.AxisType;
+import com.bluewalrus.chart.axis.XAxis;
+import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
+import com.bluewalrus.datapoint.MultiBar;
+import com.bluewalrus.datapoint.MultiBar.MultiBarMode;
 import com.bluewalrus.point.UIPointBar;
 import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
@@ -33,6 +35,38 @@ import com.bluewalrus.point.UIPointTriangle;
  */
 public class TestDataBar {
 
+	
+	public static Chart getTestData_BarNegativeAndPositiveNumerical() {
+		
+        ArrayList<Color> colors = Utils.makeGradients(Color.ORANGE, Color.CYAN, 5);
+        
+        Interval tick1 = new Interval(20, 20.0, 
+        		new Line(Color.GRAY,true,1)); //grid line
+        
+        Interval tick2 = new Interval(10, 10.0, null); //no grid line
+        Interval tick3 = new Interval(5, 5.0, null);
+        
+        YAxis yAxis = new YAxis(-40.0, 100.0, tick1, tick2, tick3, "Number of Fruits");
+        yAxis.labelText = "Price USD";
+        
+        XAxis xAxis = new XAxis("Commodity", AxisType.ENUMERATION);
+
+        ArrayList<DataPointBar> bars = new ArrayList<DataPointBar>();
+        bars.add(new DataPointBar(10, 90, colors.get(0)));
+        bars.add(new DataPointBar(20, 14, colors.get(1)));
+        bars.add(new DataPointBar(30, -7, colors.get(2)));
+        bars.add(new DataPointBar(40, 30, colors.get(3)));
+        bars.add(new DataPointBar(50, 10, colors.get(4)));
+        bars.add(new DataPointBar(60, 30, colors.get(4)));
+        bars.add(new DataPointBar(70, 54, colors.get(4)));
+        
+        BarChart barChart = new BarChart(xAxis, yAxis, bars, 40);
+        
+        barChart.setTitle("Change In Commodity Price");
+        barChart.setSize(800, 200);
+        		
+        return barChart;
+	}
 	
     public static Chart getTestData_BarNegativeAndPositive() {
         
@@ -45,18 +79,18 @@ public class TestDataBar {
         Interval tick3 = new Interval(5, 5.0, null);
         
         YAxis yAxis = new YAxis(-40.0, 100.0, tick1, tick2, tick3, "Number of Fruits");
-        yAxis.label = "Price USD";
+        yAxis.labelText = "Price USD";
         
         XAxis xAxis = new XAxis("Commodity", AxisType.ENUMERATION);
 
-        ArrayList<Bar> bars = new ArrayList<Bar>();
-        bars.add(new Bar(90, colors.get(0), "Apple"));
-        bars.add(new Bar(14, colors.get(1), "Banana"));
-        bars.add(new Bar(-7, colors.get(2), "Barley"));
-        bars.add(new Bar(30, colors.get(3), "Rice"));
-        bars.add(new Bar(10, colors.get(4), "Wheat"));
-        bars.add(new Bar(30, colors.get(4), "Oranges"));
-        bars.add(new Bar(54, colors.get(4), "Corn"));
+        ArrayList<DataPointBar> bars = new ArrayList<DataPointBar>();
+        bars.add(new DataPointBar("Apple", 90, colors.get(0)));
+        bars.add(new DataPointBar("Banana",14, colors.get(1)));
+        bars.add(new DataPointBar("Barley",-7, colors.get(2)));
+        bars.add(new DataPointBar( "Rice",30, colors.get(3)));
+        bars.add(new DataPointBar( "Wheat",10, colors.get(4)));
+        bars.add(new DataPointBar( "Oranges", 30, colors.get(4)));
+        bars.add(new DataPointBar( "Corn", 54, colors.get(4)));
         
         BarChart barChart = new BarChart(xAxis, yAxis, bars, 40);
         
@@ -71,29 +105,28 @@ public class TestDataBar {
     	
         ArrayList<Color> colors = Utils.makeGradients(Color.RED, Color.BLUE, 12);
         
-        ArrayList<Bar> values = new ArrayList<Bar>();
-        values.add(new Bar(10, colors.get(0), "1"));
-        values.add(new Bar(14, colors.get(1), "2"));
-        values.add(new Bar(300, colors.get(2), "3"));
-        values.add(new Bar(12, colors.get(3), "4"));
-        values.add(new Bar(18, colors.get(4), "5"));
-        values.add(new Bar(19, colors.get(5), "6"));
-        values.add(new Bar(23, colors.get(6), "7"));
-        values.add(new Bar(33, colors.get(7), "8"));
-        values.add(new Bar(11, colors.get(8), "9"));
-        values.add(new Bar(16, colors.get(9), "10"));
-        values.add(new Bar(13, colors.get(10), "11"));
-        values.add(new Bar(21, colors.get(11), "12"));
+        ArrayList<DataPointBar> values = new ArrayList<DataPointBar>();
+        values.add(new DataPointBar(1, 10, colors.get(0)));
+        values.add(new DataPointBar(2, 14, colors.get(1)));
+//        values.add(new Bar(12, colors.get(3), "4"));
+//        values.add(new Bar(18, colors.get(4), "5"));
+//        values.add(new Bar(19, colors.get(5), "6"));
+//        values.add(new Bar(23, colors.get(6), "7"));
+//        values.add(new Bar(33, colors.get(7), "8"));
+//        values.add(new Bar(11, colors.get(8), "9"));
+//        values.add(new Bar(16, colors.get(9), "10"));
+//        values.add(new Bar(13, colors.get(10), "11"));
+//        values.add(new Bar(21, colors.get(11), "12"));
 
         YAxis yAxis = new YAxis(0.0, 300.0, 50.0, 0.0, 0.0, "Numbers");
         yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
-        yAxis.yFont = new Font("Blackadder ITC", Font.PLAIN, 20);
+        yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
         
         XAxis xAxis = new XAxis("yadda yadda", AxisType.ENUMERATION);
         
         xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
-        xAxis.xFont = new Font("Blackadder ITC", Font.PLAIN, 20);
-        xAxis.label = "Playing with fonts";
+        xAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
+        xAxis.labelText = "Playing with fonts";
         
         BarChart barChart = new BarChart(xAxis, yAxis, values, 38);
         barChart.topOffset = 160;
@@ -107,11 +140,11 @@ public class TestDataBar {
 
 
     public static BarChart getTestData_thinLines() {
-        ArrayList<Bar> values = new ArrayList<Bar>();
+        ArrayList<DataPointBar> values = new ArrayList<DataPointBar>();
 
         for (int i = 0; i < 365; i++) {
             double d = Math.random();
-            values.add(new Bar((int) (100 * d), Color.GRAY, ""));
+            values.add(new DataPointBar("", (int) (100 * d), Color.GRAY));
         }
 
         YAxis yAxis = new YAxis(0.0, 100.0, 50.0, 10.0, 1.0, "Percent Sunlight");
@@ -121,7 +154,7 @@ public class TestDataBar {
         xAxis.maxValue = 365.0;
         
         xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
-        xAxis.label = "Day of Year"; 
+        xAxis.labelText = "Day of Year"; 
         
         BarChart barChart = new BarChart(xAxis, yAxis, values, 1);
 
@@ -395,5 +428,8 @@ public class TestDataBar {
 
         return lineChart;
     }
+
+
+
 
 }

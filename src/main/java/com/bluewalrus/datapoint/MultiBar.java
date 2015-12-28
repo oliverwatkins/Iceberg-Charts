@@ -1,6 +1,8 @@
-package com.bluewalrus.bar;
+package com.bluewalrus.datapoint;
 
 import java.util.ArrayList;
+
+import com.bluewalrus.bar.Bar;
 
 public class MultiBar {
 

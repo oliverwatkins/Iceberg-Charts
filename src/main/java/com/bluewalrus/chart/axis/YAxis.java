@@ -1,15 +1,16 @@
 package com.bluewalrus.chart.axis;
 
-import com.bluewalrus.bar.Interval;
-import com.bluewalrus.bar.Utils;
-import com.bluewalrus.chart.Chart;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+
+import com.bluewalrus.bar.Interval;
+import com.bluewalrus.bar.Utils;
+import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.draw.YAxisDraw;
 
 /**
  * @copyright 2014
@@ -19,7 +20,6 @@ import java.awt.geom.AffineTransform;
  */
 public class YAxis extends Axis {
 
-    public Font yFont = new Font("Arial", Font.PLAIN, 12);
     public boolean rightSide = false;
 	
  
@@ -50,35 +50,40 @@ public class YAxis extends Axis {
 
             int fromTop = (int) (chart.heightChart + chart.topOffset + (minValue * factor));
 
-            zeroLine.drawLine(g, chart.leftOffset, fromTop, chart.leftOffset + chart.widthChart, fromTop);
+            YAxisDraw.drawYGridLineOnZero(g, chart, fromTop);
         }
     }
 
+
+
     public void drawGridLine(Interval interval, Graphics2D g, Chart chart) {
 
-    	System.out.println("drawGridLine 1 ");
-    	
-    	
         int incrementNo = (int) ((maxValue - minValue) / interval.getIncrement());
 
-    	System.out.println("drawGridLine 2 ");
 
         //divide height of chart by actual height of chart to get the multiplaying factor
         double factor = getMultiplicationFactor(chart); 
         
         //to first increment
     	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
-
+    	
         double incrementInPixel = (double) (interval.getIncrement() * factor);
+        
 
         for (int i = 0; i < incrementNo; i++) {
-            int x1 = chart.leftOffset;
-            double y1 = chart.heightChart + chart.topOffset - (i * incrementInPixel) - toFirstInPixels;
-            int x2 = chart.leftOffset + chart.widthChart;
+        	
 
-            interval.graphLine.drawLine(g, x1, (int)y1, x2, (int)y1);
+            double fromTop = getFromTop(chart, i, incrementInPixel, toFirstInPixels);
+
+        	/**
+        	 * Draw grid line
+        	 */
+            YAxisDraw.drawGridLine(interval, g, chart, fromTop);
+            
         }
     }
+
+
 
 	
     protected void drawIntervalLabel(Interval interval, Graphics g, 
@@ -86,7 +91,6 @@ public class YAxis extends Axis {
     	
     	Double increment = interval.getIncrement();
     	
-    	FontMetrics fm = chart.getFontMetrics(axisCatFont);
     	
         //divide height of chart by actual height of chart to get the multiplaying factor
         double factor = getMultiplicationFactor(chart); 
@@ -97,30 +101,15 @@ public class YAxis extends Axis {
     	double toFirst = getToFirstIntervalValueFromMin(increment);
 
     	
-    	double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel) - toFirstInPixels;
-
+    	double fromTop = getFromTop(chart, i, incrementInPixel, toFirstInPixels);
     	
     	String yLabel = "" + ((i * increment) + toFirst);
-        
-        
-        
-        int widthStr = fm.stringWidth(yLabel);
-        int heightStr = fm.getHeight();
-        g.setFont(axisCatFont);
-
-        int x;
-        int y;
-
-        if (rightSide) {
-            x = chart.widthChart + chart.leftOffset + (tickLabelOffset / 2 - widthStr / 2);
-            y = (int)fromTop + (heightStr / 2);
-        } else {
-
-            x = (chart.leftOffset - tickLabelOffset) + (tickLabelOffset / 2 - widthStr / 2) - marginOffset;
-            y = (int)fromTop + (heightStr / 2);
-        }
-        g.drawString(yLabel, x, y); 
-		
+    	
+    	
+    	/**
+    	 * Draw the label
+    	 */
+    	YAxisDraw.drawYLabel(g, chart, fromTop, yLabel, this); 
 	}
 
 
@@ -128,34 +117,38 @@ public class YAxis extends Axis {
 	@Override
 	protected void drawIntervalTick(Interval interval, Graphics g, Chart chart, int i, double incrementInPixel) {
 		
-		Double increment = interval.getIncrement();
-		
-		int lineLength = interval.lineLength;
-
-		
         //divide height of chart by actual height of chart to get the multiplaying factor
         double factor = getMultiplicationFactor(chart); 
 		
-    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(increment, factor);
+    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
 
-    	double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel) - toZeroShift;
+    	double fromTop = getFromTop(chart, i, incrementInPixel, toZeroShift);
     	
-        int x1;
-        int x2;
-
-        if (rightSide) {
-
-            x1 = chart.leftOffset + chart.widthChart;
-            x2 = chart.leftOffset + chart.widthChart + lineLength;
-        } else {
-
-            x1 = chart.leftOffset - marginOffset;
-            x2 = chart.leftOffset - marginOffset - lineLength;
-        }
-
-        g.drawLine(x1, (int)fromTop, x2, (int)fromTop);
+    	/**
+    	 * Draw the tick
+    	 */
+    	YAxisDraw.drawIntervalTick(interval, g, chart, fromTop, this);
 	}
 
+	/**
+	 * Get the pixels from top based on increment number. Add top offset and chart height first,
+	 * then move back multiplying the increment number with pixels, then adding the zeroshift.
+	 * 
+	 * Used for ticks, labels, grid lines.
+	 * 
+	 * @param chart
+	 * @param incrementNo
+	 * @param incrementInPixel
+	 * @param toZeroShift
+	 * @return
+	 */
+	private double getFromTop(Chart chart, int incrementNo, double incrementInPixel,
+			double toZeroShift) {
+		double fromTop = chart.heightChart + chart.topOffset - (incrementNo * incrementInPixel) - toZeroShift;
+		return fromTop;
+	}
+
+	
     protected double getMultiplicationFactor(Chart chart) {
     	return ((double) chart.heightChart / (double) (maxValue - minValue));
 	}
@@ -173,53 +166,20 @@ public class YAxis extends Axis {
         g.drawLine(x1, y1, x2, y2);
     }
 
+    
+  
     public void drawLabel(Graphics g, Chart chart) {
 
+    	YAxis axis = this;
+    	
         Graphics2D g2d = (Graphics2D) g;
-
-        AffineTransform oldTransform = g2d.getTransform();
-
-        FontMetrics fmY = chart.getFontMetrics(yFont);
-        int yAxisStringWidth = fmY.stringWidth(label);
-        int yAxisStringHeight = fmY.getHeight();
-
-        g2d.setColor(Color.BLACK);
-
-        g2d.rotate(Math.toRadians(270)); //rotates to above out of screen.
-
-        int translateDown;
-        //starts off being "topOffset" off, so subtract that first
-        int translateLeft;
-        if (rightSide) {
-
-            translateDown = -(chart.topOffset + chart.heightChart / 2 + yAxisStringWidth / 2);
-
-            translateLeft = chart.leftOffset + chart.widthChart + tickLabelOffset + labelOffset
-                    - (labelOffset) / 2;
-
-        } else {
-            translateDown = -(chart.topOffset + chart.heightChart / 2 + yAxisStringWidth / 2);
-            //starts off being "topOffset" off, so subtract that first
-            translateLeft = (chart.leftOffset - tickLabelOffset - marginOffset) / 2 + yAxisStringHeight / 2;
-        }
-
-        //pull down, which is basically the left offset, topOffset, then middle it by 
-        //usin chart height and using text height.
-        g2d.translate(translateDown, translateLeft);
-
-        g2d.setFont(yFont);
-
-        g2d.drawString(label, 0, 0);
-
-        //reset
-        g2d.setTransform(oldTransform);
+        
+        YAxisDraw.drawLabel(chart, axis, g2d);
     }
+
     
     public String getName() {
         return "Y Axis";
     }
-
-
-
 
 }

@@ -22,7 +22,12 @@ import com.bluewalrus.chart.Chart;
  * @author Oliver Watkins
  */
 public abstract class Axis implements Serializable {
+	
+    public Font font = new Font("Arial", Font.PLAIN, 12);
+	public String labelText;
 
+//	Orientation orientation;
+	
 	public AxisType type;
 
 	public Color axisColor = Color.BLACK;
@@ -41,7 +46,7 @@ public abstract class Axis implements Serializable {
 	public Line zeroLine = new Line(Color.GRAY, false, 1);
 
 	public Font axisCatFont = new Font("Arial", Font.BOLD, 12);
-	public String label;
+
 
 	public double maxValue = 100;
 	public double minValue = 0;
@@ -57,7 +62,7 @@ public abstract class Axis implements Serializable {
 	 * @param type
 	 */
 	Axis(String name, AxisType type) {
-		this(0.0, 100.0, 50.0, 10.0, 5.0, name);
+		this(0.0, 100.0, 50.0, 10.0, 5.0, name); //arbitrary values
 
 		this.type = type;
 	}
@@ -74,7 +79,7 @@ public abstract class Axis implements Serializable {
 		this.maxValue = maxValue;
 		this.minValue = minValue;
 
-		this.label = name;
+		this.labelText = name;
 
 		if (primaryIncrements != null) {
 			this.interval1 = new Interval(8, primaryIncrements);
@@ -103,7 +108,7 @@ public abstract class Axis implements Serializable {
 
 		this.maxValue = maxValue;
 		this.minValue = minValue;
-		this.label = name;
+		this.labelText = name;
 
 		if (interval1 == null) {
 			this.interval1 = new Interval(0, 0.0);
@@ -182,6 +187,11 @@ public abstract class Axis implements Serializable {
 	
 	
 
+	/**
+	 * Basically the width (or height) of the chart in pixels, divided by difference in max and min values.
+	 * @param chart
+	 * @return
+	 */
 	protected abstract double getMultiplicationFactor(Chart chart);
 
 	/**
