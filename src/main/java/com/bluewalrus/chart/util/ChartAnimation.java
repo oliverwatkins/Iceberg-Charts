@@ -1,0 +1,43 @@
+package com.bluewalrus.chart.util;
+
+
+import java.awt.Dimension;
+
+import com.bluewalrus.chart.Chart;
+
+public class ChartAnimation extends AnimationSupport{
+
+	private Chart chart;
+	
+	public ChartAnimation(Chart chart, int durationMs) {
+		
+		super(durationMs);
+		this.chart = chart;
+	}
+
+	public void starting () {
+//		sideBarSection.contentPane.setVisible(true);
+	}
+	
+	protected void render(int value) {
+		
+		
+//		chart
+		
+		System.out.println("render with value : " + value);
+		
+		
+//		sideBarSection.setMaximumSize(new Dimension(Integer.MAX_VALUE, value));
+//		
+//		sideBarSection.contentPane.setVisible(true);
+//
+//		sideBarSection.revalidate();
+	}
+
+	public void stopped () {
+		
+//		sideBarSection.contentPane.setVisible(true);
+//		sideBarSection.revalidate();
+//		sideBarSection.printDimensions();
+	}
+}

@@ -1,0 +1,160 @@
+package com.bluewalrus.chart.draw;
+
+import java.awt.Color;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+
+import com.bluewalrus.bar.Interval;
+import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.axis.Axis;
+import com.bluewalrus.chart.axis.YAxis;
+
+/**
+ * Do all the drawing for the YAxis
+ * 
+ * @author Oliver Watkins
+ */
+public class YAxisDraw {
+
+	
+	/**
+	 * Draw the interval tick
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 * @param fromTop
+	 * @param axis
+	 */
+	public static void drawIntervalTick(Interval interval, Graphics g, Chart chart,
+			double fromTop, YAxis axis) {
+		int lineLength = interval.lineLength;
+    	
+        int x1;
+        int x2;
+
+        if (axis.rightSide) {
+
+            x1 = chart.leftOffset + chart.widthChart;
+            x2 = chart.leftOffset + chart.widthChart + lineLength;
+        } else {
+
+            x1 = chart.leftOffset - axis.marginOffset;
+            x2 = chart.leftOffset - axis.marginOffset - lineLength;
+        }
+
+        g.drawLine(x1, (int)fromTop, x2, (int)fromTop);
+	}
+	/**
+	 * 
+	 * Draw a label on the yAxis for an incrememnt eg (10, 20 ,30)
+	 * 
+	 * @param g
+	 * @param chart
+	 * @param fromTop determines its position from the top
+	 * @param yLabel
+	 * @param axis
+	 */
+	public static void drawYLabel(Graphics g, Chart chart, double fromTop,
+			String yLabel, YAxis axis) {
+		FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
+        int widthStr = fm.stringWidth(yLabel);
+        int heightStr = fm.getHeight();
+        g.setFont(axis.axisCatFont);
+
+        int x;
+        int y;
+
+        if (axis.rightSide) {
+            x = chart.widthChart + chart.leftOffset + (axis.tickLabelOffset / 2 - widthStr / 2);
+            y = (int)fromTop + (heightStr / 2);
+        } else {
+
+            x = (chart.leftOffset - axis.tickLabelOffset) + (axis.tickLabelOffset / 2 - widthStr / 2) - axis.marginOffset;
+            y = (int)fromTop + (heightStr / 2);
+        }
+        g.drawString(yLabel, x, y);
+	}
+	
+	
+	
+	/**
+	 * Draw Y Grid Line
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 * @param fromTop
+	 */
+	
+	public static void drawGridLine(Interval interval, Graphics2D g, Chart chart,
+			double fromTop) {
+		int x1 = chart.leftOffset;
+		
+		int x2 = chart.leftOffset + chart.widthChart;
+
+		interval.graphLine.drawLine(g, x1, (int)fromTop, x2, (int)fromTop);
+	}
+	
+	/**
+	 * Draw the label (vertically)
+	 * 
+	 * @param chart
+	 * @param axis
+	 * @param g2d
+	 */
+	public static void drawLabel(Chart chart, YAxis axis, Graphics2D g2d) {
+		AffineTransform oldTransform = g2d.getTransform();
+
+        FontMetrics fmY = chart.getFontMetrics(axis.font);
+        int yAxisStringWidth = fmY.stringWidth(axis.labelText);
+        int yAxisStringHeight = fmY.getHeight();
+
+        g2d.setColor(Color.BLACK);
+
+        g2d.rotate(Math.toRadians(270)); //rotates to above out of screen.
+
+        int translateDown;
+        //starts off being "topOffset" off, so subtract that first
+        int translateLeft;
+        if (axis.rightSide) {
+
+            translateDown = -(chart.topOffset + chart.heightChart / 2 + yAxisStringWidth / 2);
+
+            translateLeft = chart.leftOffset + chart.widthChart + axis.tickLabelOffset + axis.labelOffset
+                    - (axis.labelOffset) / 2;
+
+        } else {
+            translateDown = -(chart.topOffset + chart.heightChart / 2 + yAxisStringWidth / 2);
+            //starts off being "topOffset" off, so subtract that first
+            translateLeft = (chart.leftOffset - axis.tickLabelOffset - axis.marginOffset) / 2 + yAxisStringHeight / 2;
+        }
+
+        //pull down, which is basically the left offset, topOffset, then middle it by 
+        //usin chart height and using text height.
+        g2d.translate(translateDown, translateLeft);
+
+        g2d.setFont(axis.font);
+
+        g2d.drawString(axis.labelText, 0, 0);
+
+        //reset
+        g2d.setTransform(oldTransform);
+	}
+	
+	/**
+	 * Not sure the point of this here (just one line). But adding for completeness.
+	 * 
+	 * @param g
+	 * @param chart
+	 * @param fromTop
+	 */
+	public static void drawYGridLineOnZero(Graphics2D g, Chart chart, int fromTop, Axis axis) {
+		
+		axis.zeroLine.drawLine(g, chart.leftOffset, fromTop, chart.leftOffset + chart.widthChart, fromTop);
+	}
+	
+
+}

@@ -37,6 +37,12 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
         
         int totalWidthOfBars = dpX.datapointBars.size() * barWidth;
         
+        
+        int leftPosition = point.x;
+        
+    	/**
+    	 * Draw each of the (multi) bars
+    	 */
         for (DataPointBar dpb : dpX.datapointBars) {
         	
             if (dpb.y > 0) { // greater than zero
@@ -82,13 +88,24 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
             		height);
             
             
+            
+            
+            
             shift = shift+barWidth;
 		}
         
-        if (dpX.name != null)
-        	XAxisDraw.drawText(chart, dpX.name, g, point.x);
+        XAxisDraw.drawXLabel(g, chart, leftPosition, dpX.name, chart.xAxis);
+        XAxisDraw.drawIntervalTick(chart.xAxis.interval1, g, chart, leftPosition, chart.xAxis);
         
-        XAxisDraw.drawTickLine(g, chart, point.x);
+        
+//        if (dpX.name != null)
+//        	XAxisDraw.drawText_BAR(chart, dpX.name, g, point.x);
+//        
+//        
+//        
+//
+//        
+//        XAxisDraw.drawTickLine_BAR(g, chart, point.x);
 
 	}
 

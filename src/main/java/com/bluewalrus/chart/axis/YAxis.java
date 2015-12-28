@@ -1,11 +1,7 @@
 package com.bluewalrus.chart.axis;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Utils;
@@ -50,7 +46,7 @@ public class YAxis extends Axis {
 
             int fromTop = (int) (chart.heightChart + chart.topOffset + (minValue * factor));
 
-            YAxisDraw.drawYGridLineOnZero(g, chart, fromTop);
+            YAxisDraw.drawYGridLineOnZero(g, chart, fromTop, this);
         }
     }
 

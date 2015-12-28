@@ -26,11 +26,11 @@ public class SingleChartDemo extends JFrame {
     	
         JTabbedPane tabbedPaneBar = new JTabbedPane();
         
-        Chart chart = TestDataBar.getTestData_BarNegativeAndPositive();
+//        Chart chart = TestDataBar.getTestData_BarNegativeAndPositive();
         
-        Chart chart2 = TestDataBar.getTestData_BarNegativeAndPositiveNumerical();
+        Chart chart2 = TestDataBar.getTestData_MultiBar_Stacked();
 
-        tabbedPaneBar.addTab("1", chart);
+//        tabbedPaneBar.addTab("1", chart);
 
         tabbedPaneBar.addTab("2", chart2);
         

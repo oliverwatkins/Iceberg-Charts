@@ -11,6 +11,13 @@ import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.DataPointMultiBar;
 import com.bluewalrus.renderer.XYFactor;
 
+
+/**
+ * Note can only be enumerable
+ * 
+ * @author Oliver Watkins
+ *
+ */
 public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 
 	XYChart chart; //Two way reference here :( Not good :(
@@ -26,38 +33,43 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 	    
 		Color colorToUse;
 
-        int x = 0;
+        int leftPosition = 0;
         int y = 0;
         int width = 0;
         int height = 0;
 
         double distance = 0;
         
-        for (DataPointBar dpb : dpX.datapointBars) {
+    	leftPosition = point.x;
+        
+    	/**
+    	 * Draw each of the (multi) bars
+    	 */
+        for (DataPointBar dataPointBar : dpX.datapointBars) {
+
+        	
+        	int startDrawLeft = leftPosition  - (barWidth/2);
         	
         	
         	
-            if (dpb.y > 0) { // greater than zero
-                
-            	x = point.x - (barWidth/2);
-                
+        	/**
+        	 * Calculate rectangle dimensions.
+        	 */
+            if (dataPointBar.y > 0) { // greater than zero
             	
-            	double scaledYPoint = (dpb.y * xyFactor.yFactor);
-                
-            	System.out.println("scaledYPoint " + scaledYPoint);
-            	System.out.println("distance " + distance);
+            	double scaledYPoint = (dataPointBar.y * xyFactor.yFactor);
             	
                 y = (int)(chart.topOffset + chart.heightChart - scaledYPoint - distance);
 
                 width = barWidth;
-                height = (int)((dpb.y * xyFactor.yFactor));
+                height = (int)((dataPointBar.y * xyFactor.yFactor));
                 
-                distance = distance + (dpb.y * xyFactor.yFactor);
+                distance = distance + (dataPointBar.y * xyFactor.yFactor);
                 
                 colorToUse = color;
             	
             }else { // less than zero
-            	
+            	//??
 //                x = point.x - (barWidth/2);
 //                y = point.y + (int)( dpb.y * xyFactor.yFactor);
 //                width = barWidth;
@@ -67,9 +79,13 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 //                colorToUse = negativeColor;
             }
 
-            if (dpb.color != null) {
+            
+            /**
+             * Draw rectangle here
+             */
+            if (dataPointBar.color != null) {
 
-            	colorToUse = dpb.color;
+            	colorToUse = dataPointBar.color;
             }
             
             Color muchmuchdarker = colorToUse.darker(); 
@@ -77,7 +93,7 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
             g.setColor(colorToUse);
             
             //bottom rect
-            g.fillRect(x,
+            g.fillRect(startDrawLeft,
             		y,
             		width,
             		height); // - xyFactor.yZeroOffsetInPixel));
@@ -85,21 +101,18 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
             g.setColor(muchmuchdarker);
             
             //bottom rect
-            g.drawRect(x,
+            g.drawRect(startDrawLeft,
             		y,
             		width,
             		height);
-            
             
 		}
         
         
         
-        if (dpX.name != null)
-        	XAxisDraw.drawText(chart, dpX.name, g, point.x);
         
-        XAxisDraw.drawTickLine(g, chart, point.x);
-
+        XAxisDraw.drawXLabel(g, chart, leftPosition, dpX.name, chart.xAxis);
+        XAxisDraw.drawIntervalTick(chart.xAxis.interval1, g, chart, leftPosition, chart.xAxis);
 	}
 
 	@Override

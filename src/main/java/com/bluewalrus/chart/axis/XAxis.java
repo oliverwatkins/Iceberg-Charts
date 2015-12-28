@@ -2,6 +2,8 @@ package com.bluewalrus.chart.axis;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.draw.XAxisDraw;
+import com.bluewalrus.chart.draw.YAxisDraw;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,8 +12,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class XAxis extends Axis {
-
-//    public Font xFont = new Font("Arial", Font.PLAIN, 12);
 
     /**
      * @param name axis name
@@ -48,7 +48,7 @@ public class XAxis extends Axis {
     
     
 	protected void drawIntervalLabel(Interval interval, Graphics g, 
-			Chart chart, int i, double incrementInPixel) {
+			Chart chart, int incrementNumber, double incrementInPixel) {
     	
 		Double increment = interval.getIncrement();
 		
@@ -59,19 +59,14 @@ public class XAxis extends Axis {
     	
     	double toFirst = getToFirstIntervalValueFromMin(increment);
     	
-        String xLabel = "" + ((i * increment) + toFirst);
+        String xLabel = "" + ((incrementNumber * increment) + toFirst);
         
-        FontMetrics fm = chart.getFontMetrics(axisCatFont);
-        int widthStr = fm.stringWidth(xLabel);
-//        int heightStr = fm.getHeight();
-
-        double xPos = chart.leftOffset + (i * incrementInPixel) - (widthStr / 2) + toFirstInPixels;
-        int yPos = chart.topOffset + chart.heightChart + tickLabelOffset;
-
-        g.setFont(axisCatFont);
-
-        g.drawString(xLabel, (int)xPos, yPos);
-		
+        double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel,incrementNumber);
+        
+        /**
+         * Draw X Label
+         */
+        XAxisDraw.drawXLabel(g, chart, fromLeft, xLabel, this);
 	}
 
 
@@ -84,16 +79,13 @@ public class XAxis extends Axis {
         //to first increment
     	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
 		
-		Double increment = interval.getIncrement();
-		
-        double x1 = chart.leftOffset + (i * incrementInPixel) + toFirstInPixels;
-//        int x2 = x1;
-        int y1 = (chart.topOffset + chart.heightChart + marginOffset);
-        int y2 = (chart.topOffset + chart.heightChart + marginOffset + interval.lineLength);
-
-        g.drawLine((int)x1, y1, (int)x1, y2);
+        double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
+        
+        XAxisDraw.drawIntervalTick(interval, g, chart, fromLeft, this);
 		
 	}
+
+
 
 
     @Override
@@ -115,40 +107,32 @@ public class XAxis extends Axis {
         g.setColor(interval.graphLine.color);
 
         for (int i = 0; i < incrementNo; i++) {
-            double x1 = chart.leftOffset +  (i * incrementInPixel) + toFirstInPixels;
-            int y1 = chart.topOffset + chart.heightChart;
-
-            int y2 = chart.topOffset;
-
-            interval.graphLine.drawLine(g, (int)x1, y1, (int)x1, y2);
+        	
+            double fromLeft = getFromLeft(chart, toFirstInPixels,
+					incrementInPixel, i);
+            
+            /**
+             * Draw Grid line
+             */
+            XAxisDraw.drawGridLine(interval, g, chart, fromLeft);
         }
     }
+
 
     @Override
     public void drawLabel(Graphics g, Chart chart) {
 
+    	XAxis axis = this;
+    	
         Graphics2D g2d = (Graphics2D) g;
-
-        FontMetrics fmX = chart.getFontMetrics(font);
-        int xAxisStringWidth = fmX.stringWidth(labelText);
-
-        //X Label
-        int xAxesLabelHeight = chart.bottomOffset - labelOffset;
-
-        //x label        
-        g2d.setFont(font);
-        g2d.drawString(labelText, chart.widthChart / 2 + chart.leftOffset - xAxisStringWidth / 2, chart.topOffset + chart.heightChart + labelOffset + xAxesLabelHeight / 2);
+        
+        XAxisDraw.drawLabel(chart, axis, g2d);
 
     }
 
     @Override
     protected void drawYGridLineOnZero(Graphics2D g, Chart chart) {
-        if (type == AxisType.ENUMERATION) {
-            return;
-        }
-        throw new RuntimeException("TODO");
-
-		// TODO Auto-generated method stub
+    	XAxisDraw.drawYGridLineOnZero(g, chart, -999, this);
     }
 
     @Override
@@ -163,6 +147,12 @@ public class XAxis extends Axis {
         g.drawLine(x1, y1, x2, y2);
     }
 
+
+	private double getFromLeft(Chart chart, double toFirstInPixels, double incrementInPixel, int i) {
+		double fromLeft = chart.leftOffset +  (i * incrementInPixel) + toFirstInPixels;
+		return fromLeft;
+	}
+    
 	@Override
 	protected double getMultiplicationFactor(Chart chart) {
     	return ((double) chart.widthChart / (double) (maxValue - minValue));

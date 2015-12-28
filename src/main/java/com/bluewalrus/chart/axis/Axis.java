@@ -132,15 +132,24 @@ public abstract class Axis implements Serializable {
 
 	public void drawTicksAndLabels(Graphics g, Chart chart) {
 
-		if (this.interval1.isValid() && this.interval1.isActive()) {
-			drawIntervalTickAndLabels(this.interval1, g, chart, true);
+		
+		if (type == AxisType.ENUMERATION) {
+			
+			//draw ticks and labels
+			
+			return;
+		}else {
+			if (this.interval1.isValid() && this.interval1.isActive()) {
+				drawIntervalTickAndLabels(this.interval1, g, chart, true);
+			}
+			if (this.interval2.isValid() && this.interval2.isActive()) {
+				drawIntervalTickAndLabels(this.interval2, g, chart, false);
+			}
+			if (this.interval3.isValid() && this.interval3.isActive()) {
+				drawIntervalTickAndLabels(this.interval3, g, chart, false);
+			}
 		}
-		if (this.interval2.isValid() && this.interval2.isActive()) {
-			drawIntervalTickAndLabels(this.interval2, g, chart, false);
-		}
-		if (this.interval3.isValid() && this.interval3.isActive()) {
-			drawIntervalTickAndLabels(this.interval3, g, chart, false);
-		}
+		
 	}
 	
 	
@@ -177,6 +186,8 @@ public abstract class Axis implements Serializable {
 		g.setColor(this.axisColor);
 
 		for (int i = 0; i < (incrementNo + 1); i++) {
+			
+			System.out.println("");
 			drawIntervalTick(interval, g, chart, i, incrementInPixel);
 
 			if (showLabel)
