@@ -5,20 +5,22 @@
  */
 package com.bluewalrus.main.test;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.util.ArrayList;
+
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.PieBubbleChart;
 import com.bluewalrus.chart.PieBubbleChartSettings;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointPieChart;
 import com.bluewalrus.pie.Segment;
 import com.bluewalrus.point.UIPointPieChart;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.util.ArrayList;
 
 /**
  *
@@ -112,8 +114,8 @@ public class TestDataPieBubble {
 
         XYDataSeries<DataPoint> series = new XYDataSeries<DataPoint>(values, new UIPointPieChart(Color.BLUE, pbcs), null, "1994");
 
-        YAxis yAxis = new YAxis(0.0, 100.0, 10.0, null, null, "GNI ");
-        XAxis xAxis = new XAxis(0.0, 100.0, 50.0, 10.0, null, "Life Expectancy ");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 100.0, 10.0, null, null), "GNI ");
+        XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 100.0, 50.0, 10.0, null), "Life Expectancy ");
 
         xySeriesList.add(series);
 

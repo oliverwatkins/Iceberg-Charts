@@ -35,12 +35,12 @@ public class LineRenderer {
     public static void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
 
-        double xFactor = ((double) chart.widthChart / (double) (xAxis.maxValue - xAxis.minValue));
-        double yfactor = ((double) chart.heightChart / (double) (yAxis.maxValue - yAxis.minValue));
+        double xFactor = ((double) chart.widthChart / (double) (xAxis.axisDraw.maxValue - xAxis.axisDraw.minValue));
+        double yfactor = ((double) chart.heightChart / (double) (yAxis.axisDraw.maxValue - yAxis.axisDraw.minValue));
 
         XYFactor xyFactor = new XYFactor(xFactor, yfactor);
-        xyFactor.xZeroOffsetInPixel = (double) ((-xAxis.minValue / (xAxis.maxValue - xAxis.minValue)) * chart.widthChart);
-        xyFactor.yZeroOffsetInPixel = (double) ((-yAxis.minValue / (yAxis.maxValue - yAxis.minValue)) * chart.heightChart);
+        xyFactor.xZeroOffsetInPixel = (double) ((-xAxis.axisDraw.minValue / (xAxis.axisDraw.maxValue - xAxis.axisDraw.minValue)) * chart.widthChart);
+        xyFactor.yZeroOffsetInPixel = (double) ((-yAxis.axisDraw.minValue / (yAxis.axisDraw.maxValue - yAxis.axisDraw.minValue)) * chart.heightChart);
 
         int xShift = chart.leftOffset;
         int yShift = chart.topOffset + chart.heightChart;

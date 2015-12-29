@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.chart.draw.XAxisDraw;
+import com.bluewalrus.chart.draw.XAxisDrawUtil;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.DataPointMultiBar;
@@ -94,8 +94,8 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
             shift = shift+barWidth;
 		}
         
-        XAxisDraw.drawXLabel(g, chart, leftPosition, dpX.name, chart.xAxis);
-        XAxisDraw.drawIntervalTick(chart.xAxis.interval1, g, chart, leftPosition, chart.xAxis);
+        XAxisDrawUtil.drawXLabel(g, chart, leftPosition, dpX.name, chart.xAxis);
+        XAxisDrawUtil.drawIntervalTick(chart.xAxis.axisDraw.interval1, g, chart, leftPosition, chart.xAxis);
         
         
 //        if (dpX.name != null)

@@ -19,7 +19,7 @@ import com.bluewalrus.chart.axis.XAxis;
  *
  */
 
-public class XAxisDraw {
+public class XAxisDrawUtil {
 
 	
 	public static void drawIntervalTick(Interval interval, Graphics g, Chart chart,

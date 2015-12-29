@@ -116,10 +116,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	protected void drawGrid(Graphics2D g) {
 		
-		yAxis.drawGridLines(g, this);
-		xAxis.drawGridLines(g, this);
+		yAxis.axisDraw.drawGridLines(g, this);
+		xAxis.axisDraw.drawGridLines(g, this);
 		
-		yAxis.drawYGridLineOnZero(g, this);
+		yAxis.axisDraw.drawYGridLineOnZero(g, this);
 	}
 
 

@@ -61,21 +61,21 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
         
-        p = createTabbedPane(tabbedPaneBar, "Bar - 2 Y Axes");
-        chart = TestDataBar.getTestData_Bar2Y();
-        charts.add(chart);
-        p.add(chart);
+//        p = createTabbedPane(tabbedPaneBar, "Bar - 2 Y Axes");
+//        chart = TestDataBar.getTestData_Bar2Y();
+//        charts.add(chart);
+//        p.add(chart);
         
-        p = createTabbedPane(tabbedPaneBar, "MultiBar - side by side");
-        chart = TestDataBar.getTestData_MultiBar_SideBySide();
-        charts.add(chart);
-        p.add(chart);
+//        p = createTabbedPane(tabbedPaneBar, "MultiBar - side by side");
+//        chart = TestDataBar.getTestData_MultiBar_SideBySide();
+//        charts.add(chart);
+//        p.add(chart);
         
 
-        p = createTabbedPane(tabbedPaneBar, "MultiBar - stacked");
-        chart = TestDataBar.getTestData_MultiBar_Stacked();
-        charts.add(chart);
-        p.add(chart);
+//        p = createTabbedPane(tabbedPaneBar, "MultiBar - stacked");
+//        chart = TestDataBar.getTestData_MultiBar_Stacked();
+//        charts.add(chart);
+//        p.add(chart);
         
         
         p = createTabbedPane(tabbedPaneBar, "Font fun");

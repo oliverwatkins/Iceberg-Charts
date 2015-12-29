@@ -16,7 +16,7 @@ import com.bluewalrus.chart.axis.YAxis;
  * 
  * @author Oliver Watkins
  */
-public class YAxisDraw {
+public class YAxisDrawUtil {
 
 	
 	/**
@@ -146,14 +146,17 @@ public class YAxisDraw {
 	
 	/**
 	 * Not sure the point of this here (just one line). But adding for completeness.
-	 * 
+	 *  
+	 *  TODO move to AxisDraw
+	 *  
+	 *  
 	 * @param g
 	 * @param chart
 	 * @param fromTop
 	 */
 	public static void drawYGridLineOnZero(Graphics2D g, Chart chart, int fromTop, Axis axis) {
 		
-		axis.zeroLine.drawLine(g, chart.leftOffset, fromTop, chart.leftOffset + chart.widthChart, fromTop);
+		axis.axisDraw.zeroLine.drawLine(g, chart.leftOffset, fromTop, chart.leftOffset + chart.widthChart, fromTop);
 	}
 	
 

@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import javax.swing.JComponent;
-
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.GradiantRule;
 import com.bluewalrus.bar.Interval;
@@ -21,6 +19,8 @@ import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.Axis.AxisType;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.MultiBar;
@@ -46,7 +46,7 @@ public class TestDataBar {
         Interval tick2 = new Interval(10, 10.0, null); //no grid line
         Interval tick3 = new Interval(5, 5.0, null);
         
-        YAxis yAxis = new YAxis(-40.0, 100.0, tick1, tick2, tick3, "Number of Fruits");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-40.0, 100.0, tick1, tick2, tick3), "Number of Fruits");
         yAxis.labelText = "Price USD";
         
         XAxis xAxis = new XAxis("Commodity", AxisType.ENUMERATION);
@@ -83,7 +83,7 @@ public class TestDataBar {
         Interval tick2 = new Interval(10, 10.0, null); //no grid line
         Interval tick3 = new Interval(5, 5.0, null);
         
-        YAxis yAxis = new YAxis(-40.0, 100.0, tick1, tick2, tick3, "Number of Fruits");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-40.0, 100.0, tick1, tick2, tick3), "Number of Fruits");
         yAxis.labelText = "Price USD";
         
         XAxis xAxis = new XAxis("Commodity", AxisType.ENUMERATION);
@@ -134,7 +134,7 @@ public class TestDataBar {
         
         
         
-        YAxis yAxis = new YAxis(0.0, 300.0, 50.0, 0.0, 0.0, "Numbers");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 300.0, 50.0, 0.0, 0.0), "Numbers");
         yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
         yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
         
@@ -162,12 +162,17 @@ public class TestDataBar {
             double d = Math.random();
             values.add(new DataPointBar("", (int) (100 * d), Color.GRAY));
         }
+        
+        
+        
 
-        YAxis yAxis = new YAxis(0.0, 100.0, 50.0, 10.0, 1.0, "Percent Sunlight");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 100.0, 50.0, 10.0, 1.0), "Percent Sunlight");
         
-        XAxis xAxis = new XAxis("yadda yadda");
+        XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 365.0), "yadda yadda");
         
-        xAxis.maxValue = 365.0;
+        System.out.println("xAxis.axisDraw " + xAxis.axisDraw);
+        System.out.println("xAxis.axisDraw.maxValue " + xAxis.axisDraw.maxValue);
+        xAxis.axisDraw.maxValue = 365.0;
         
         xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
         xAxis.labelText = "Day of Year"; 
@@ -221,7 +226,7 @@ public class TestDataBar {
         ml.add(mb3);
         
         
-        YAxis yAxis = new YAxis(0.0, 100.0, 20.0, 10.0, 5.0, "thousand dollars");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 100.0, 20.0, 10.0, 5.0), "thousand dollars");
 
         XAxis xAxis = new XAxis("year", Axis.AxisType.ENUMERATION);
         
@@ -271,7 +276,7 @@ public class TestDataBar {
         
         
         
-        YAxis yAxis = new YAxis(0.0, 200.0, 50.0, 20.0, 10.0, "thousand dollars");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 200.0, 50.0, 20.0, 10.0), "thousand dollars");
 
         XAxis xAxis = new XAxis("Year", Axis.AxisType.ENUMERATION);
 
@@ -342,10 +347,10 @@ public class TestDataBar {
         		new Line(Color.ORANGE), "average");
         series3.dataPoints = values3;
 
-        YAxis yAxis = new YAxis(-50.0, 100.0, 50.0, 10.0, 1.0, "Temperature");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-50.0, 100.0, 50.0, 10.0, 1.0), "Temperature");
         XAxis xAxis = new XAxis("Month", AxisType.ENUMERATION);
         
-        YAxis yAxis2 = new YAxis(0.0, 200.0, 100.0, 20.0, 0.0, "Precipitation");
+        YAxis yAxis2 = new YAxis(new LinearNumericalAxisDrawY(0.0, 200.0, 100.0, 20.0, 0.0), "Precipitation");
 
         xySeries.add(series);
         xySeries.add(series2);
@@ -389,9 +394,9 @@ public class TestDataBar {
         Interval tick2 = new Interval(10, 2.0, null); //no grid line
 //        Interval tick3 = new Interval(5, 5.0, null);
         
-        YAxis yAxis = new YAxis(-80.0, 100.0, tick1, tick2, null, "Y value");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-80.0, 100.0, tick1, tick2, null), "Y value");
         
-        XAxis xAxis = new XAxis(0.0, 25.0, tick1, tick2, null, "X Value - must be even spaced");
+        XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 25.0, tick1, tick2, null), "X Value - must be even spaced");
         
         ArrayList<DataPointBar> bars = new ArrayList<DataPointBar>();
         bars.add(new DataPointBar(1, -60, Color.YELLOW, ""));

@@ -11,6 +11,8 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBoxPlot;
 import com.bluewalrus.point.UIPointBoxPlot;
@@ -82,13 +84,13 @@ public class TestDataLineScatter {
 		Interval t2 = new Interval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
 		Interval t3 = new Interval(1, 5.0, null);
 
-		YAxis yAxis = new YAxis(-90.0, 100.0, t1, t2, t3, "Y Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, t2, t3), "Y Axis");
 
 		Interval t1x = new Interval(6, 20.0, new Line(Color.GRAY, false, 1));
 		Interval t2x = new Interval(3, 10.0,
 				new Line(Color.LIGHT_GRAY, true, 1));
 
-		XAxis xAxis = new XAxis(17.0, 70.0, t1x, t2x, null, "X Value");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(17.0, 70.0, t1x, t2x, null), "X Value");
 
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
@@ -156,9 +158,12 @@ public class TestDataLineScatter {
 //		NumericalAxis yAxis = new NumericalAxis(3.0, 100.0, 50.0, 0.0, 0.0, "Length (inches) ");
 //		NumericalAxis xAxis = new NumericalAxis(3.0, 100.0, 50.0, 10.0, 0.0, "Weight (kg)");
 		
-		YAxis yAxis = new YAxis(3.0, 100.0, 50.0, 0.0, 0.0, "Length (inches) ");
-		XAxis xAxis = new XAxis(3.0, 100.0, 50.0, 10.0, 0.0, "Weight (kg)");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(3.0, 100.0, 50.0, 0.0, 0.0), "Length (inches) ");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(3.0, 100.0, 50.0, 10.0, 0.0), "Weight (kg)");
 
+
+//		new LinearNumericalAxisDrawY(minValue, maxValue, primaryIncrements, secondaryIncrements, tertiaryIncrements)
+		
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
 		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
@@ -216,9 +221,9 @@ public class TestDataLineScatter {
 		series4.dataPoints = values4;
 		series5.dataPoints = values5;
 
-		YAxis yAxis = new YAxis(-5.0, 10.0, new Interval(4, 1.0), new Interval(
-				2, 0.5), null, "y");
-		XAxis xAxis = new XAxis(0.0, 10.0, 1.0, null, null, "x");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-5.0, 10.0, new Interval(4, 1.0), new Interval(
+				2, 0.5), null), "y");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 10.0, 1.0, null, null), "x");
 
 		xySeriesList.add(series1);
 		xySeriesList.add(series2);
@@ -262,8 +267,8 @@ public class TestDataLineScatter {
 		XYDataSeries series = new XYDataSeries(values, new UIPointBoxPlot(
 				new Color(181, 197, 207, 100)), null, "1994");
 
-		YAxis yAxis = new YAxis(0.0, 100.0, 50.0, 10.0, null, "y Axis");
-		XAxis xAxis = new XAxis(0.0, 100.0, 50.0, 10.0, null, "x Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 100.0, 50.0, 10.0, null), "y Axis");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 100.0, 50.0, 10.0, null), "x Axis");
 
 		xySeriesList.add(series);
 
@@ -311,9 +316,9 @@ public class TestDataLineScatter {
 				new Line(Color.LIGHT_GRAY, true, 1));
 		Interval t3x = new Interval(1, 1.0, new Line(Color.LIGHT_GRAY, true, 1));
 
-		YAxis yAxis = new YAxis(-10.0, 10.0, t1x, t2x, t3x, "Y Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-10.0, 10.0, t1x, t2x, t3x), "Y Axis");
 
-		XAxis xAxis = new XAxis(-10.0, 10.0, t1x, t2x, t3x, "X Value");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(-10.0, 10.0, t1x, t2x, t3x), "X Value");
 
 		xySeriesList.add(series);
 		xySeriesList.add(series3);
