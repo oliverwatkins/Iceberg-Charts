@@ -40,17 +40,14 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 
         double distance = 0;
         
-    	leftPosition = point.x;
-        
+    	leftPosition = (int) dataPoint.x;
+    	
     	/**
     	 * Draw each of the (multi) bars
     	 */
         for (DataPointBar dataPointBar : dpX.datapointBars) {
-
         	
         	int startDrawLeft = leftPosition  - (barWidth/2);
-        	
-        	
         	
         	/**
         	 * Calculate rectangle dimensions.
@@ -96,7 +93,7 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
             g.fillRect(startDrawLeft,
             		y,
             		width,
-            		height); // - xyFactor.yZeroOffsetInPixel));
+            		height);
             
             g.setColor(muchmuchdarker);
             
@@ -107,12 +104,6 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
             		height);
             
 		}
-        
-        
-        
-        
-//        XAxisDrawUtil.drawXLabel(g, chart, leftPosition, dpX.name, chart.xAxis);
-//        XAxisDrawUtil.drawIntervalTick(chart.xAxis.axisDraw.interval1, g, chart, leftPosition, chart.xAxis);
 	}
 
 	@Override

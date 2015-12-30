@@ -46,6 +46,8 @@ public abstract class UIPointXY implements Serializable, Cloneable {
 		return (UIPointXY)this.clone();
 	}
 
+	
+	
     public abstract void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor);
 
     /**

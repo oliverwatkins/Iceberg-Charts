@@ -6,6 +6,11 @@ public class DataPointMultiBar extends DataPoint {
 
     public ArrayList<DataPointBar> datapointBars;
 
+    /**
+     * Note y is arbitrary!!
+     * @param x
+     * @param y  -arbitrary
+     */
     public DataPointMultiBar(double x, double y) {
 
         super(x, y);

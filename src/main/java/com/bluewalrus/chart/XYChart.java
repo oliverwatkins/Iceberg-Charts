@@ -21,10 +21,12 @@ import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.draw.EnumerationAxisDrawX;
 import com.bluewalrus.chart.draw.LineRenderer;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointXY;
+import com.bluewalrus.renderer.XYFactor;
 
 /**
  * XYChart is a chart where data is represented by x,y data. Typically the y axis is vertical 
@@ -74,14 +76,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.data.addAll(listOfSeries);
 	}
 
-	
-	
-//	private void prePaintWithData(Graphics2D g2d, ArrayList<XYDataSeries> data) {
-//		
-//		this.prePaint(g2d);
-//	}
-	
-	
 	/**
 	 * Paint the background, Title, Grid and Axis. All the elements of the chart
 	 * except for the actual data.
@@ -90,10 +84,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @param data 
 	 */
 	protected void prePaint(Graphics2D g2d, ArrayList<XYDataSeries> data) {
-
-		
-		
-//		XYDataSeries<DataPointBar>
 		
 		this.calculateHeighAndWidthOfChart();
 
@@ -122,23 +112,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	}
 
-//	/**
-//	 * Draw grid and/or lines on the 0 points
-//	 * 
-//	 * @param g
-//	 */
-//	protected void drawGrid(Graphics2D g) {
-//		
-//		
-//		//if XY-non enumnerabel
-//		yAxis.axisDraw.drawGridLines(g);
-//		
-//		
-//		xAxis.axisDraw.drawGridLines(g);
-//		
-//		yAxis.axisDraw.drawYGridLineOnZero(g, this);
-//	}
-
 
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -147,11 +120,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		//draws axis, frame etc
 		this.prePaint(g2d, data);
-
-		
-//		this.prePaintWithData(g2d, data);
-		
-//		asdfasdf
 		
 		//draws actual data
 		drawGraph(g2d);
@@ -161,8 +129,59 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	@Override
 	protected void drawGraph(Graphics g) {
-		LineRenderer
-				.drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
+		
+		if (xAxis.axisDraw instanceof EnumerationAxisDrawX) {
+			massageData((Graphics2D)g, this, data);
+		}
+		
+		
+		
+		LineRenderer.drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
+	}
+	
+
+	public void massageData(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+
+		double xMax = this.xAxis.axisDraw.maxValue;
+		double xMin = this.xAxis.axisDraw.minValue;
+
+
+
+		double xFactor = ((double) xyChart.widthChart / (double) (xMax - xMin));
+//		double yfactor = ((double) xyChart.heightChart / (double) (yMax - yMin));
+
+		XYFactor xyFactor = new XYFactor(xFactor, 123);
+		xyFactor.xZeroOffsetInPixel = (double) ((-xMin / (xMax - xMin)) * xyChart.widthChart);
+//		xyFactor.yZeroOffsetInPixel = (double) ((-yMin / (yMax - yMin)) * xyChart.heightChart);
+
+		ArrayList<DataPoint> dataPoints = data.get(0).dataPoints;
+
+		double xRange = (double) (xMax - xMin);
+
+		// distance between points (bars)
+		double pointDistance = (double) (xyChart.widthChart / (dataPoints
+				.size() + 1));
+
+		System.out.println("range = " + xRange);
+		System.out.println("pointDistance = " + pointDistance);
+
+		int i = 1;
+		for (DataPoint dataPoint : dataPoints) {
+
+			double xShift2 = (pointDistance * i);
+
+			int x = (int) (xyChart.leftOffset + (xShift2));
+
+			System.out.println("massaged x = " + x );
+			
+			
+			dataPoint.x = x;
+//			drawXLabel(g2d, xyChart, (DataPoint) dataPoint, x);
+
+			i++;
+		}
+
 	}
 
 	@Override

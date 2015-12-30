@@ -37,8 +37,7 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
         
         int totalWidthOfBars = dpX.datapointBars.size() * barWidth;
         
-        
-        int leftPosition = point.x;
+        point.x = (int) dataPoint.x;
         
     	/**
     	 * Draw each of the (multi) bars
@@ -90,9 +89,6 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
             
             shift = shift+barWidth;
 		}
-        
-//        XAxisDrawUtil.drawXLabel(g, chart, leftPosition, dpX.name, chart.xAxis);
-//        XAxisDrawUtil.drawIntervalTick(chart.xAxis.axisDraw.interval1, g, chart, leftPosition, chart.xAxis);
 	}
 
 	@Override

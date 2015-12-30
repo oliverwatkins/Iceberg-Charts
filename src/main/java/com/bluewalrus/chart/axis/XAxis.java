@@ -19,11 +19,6 @@ public class XAxis extends Axis {
         super(name, axisDraw);
     }
 
-    
-//    public XAxis(String name, AxisType enumeration) {
-//    	super(name, null);
-//    }
-
 
 	@Override
     public void drawLabel(Graphics g, Chart chart) {
