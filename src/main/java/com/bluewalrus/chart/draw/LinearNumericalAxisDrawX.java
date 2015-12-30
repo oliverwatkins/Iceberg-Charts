@@ -108,8 +108,7 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 
         for (int i = 0; i < incrementNo; i++) {
         	
-            double fromLeft = getFromLeft(chart, toFirstInPixels,
-					incrementInPixel, i);
+            double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
             
             /**
              * Draw Grid line

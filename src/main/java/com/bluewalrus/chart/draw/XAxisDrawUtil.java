@@ -1,15 +1,12 @@
 package com.bluewalrus.chart.draw;
 
-import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.Axis;
-import com.bluewalrus.chart.axis.Axis.AxisType;
 import com.bluewalrus.chart.axis.XAxis;
 
 /**

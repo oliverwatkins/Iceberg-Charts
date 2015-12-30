@@ -120,14 +120,6 @@ public abstract class Chart extends JPanel {
 
 	protected void drawLegend(Graphics2D g, ArrayList<Category> data) {
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		legend = new Legend(legendFont, this);
 
 		legend.drawLegend(g, this, data);

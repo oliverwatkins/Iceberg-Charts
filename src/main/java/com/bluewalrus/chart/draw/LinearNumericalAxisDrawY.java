@@ -12,8 +12,6 @@ import com.bluewalrus.chart.XYChart;
 
 public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 
-	
-
     public LinearNumericalAxisDrawY() {
 		super();
 	}
@@ -22,18 +20,15 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 		super(min, max);
 	}
 
-
 	public LinearNumericalAxisDrawY(Double primaryIncrements,
 			Double secondaryIncrements, Double tertiaryIncrements) {
 		super(primaryIncrements, secondaryIncrements, tertiaryIncrements);
 	}
 
-
 	public LinearNumericalAxisDrawY(Double minValue, Double maxValue,
 			Interval interval1, Interval interval2, Interval interval3) {
 		super(minValue, maxValue, interval1, interval2, interval3);
 	}
-
 
 	public LinearNumericalAxisDrawY(Double minValue, Double maxValue,
 			Double primaryIncrements, Double secondaryIncrements,
@@ -43,12 +38,10 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 				tertiaryIncrements);
 	}
 
-
 	@Override
 	public void drawAll(Graphics2D g2d, XYChart xyChart, ArrayList<XYDataSeries> data) {
 		
-		//NOTE! data is ignored here. It's only used for enumeration
-		
+		//NOTE! data is ignored here. It's only used for enumeration axisdraw. TODO better way??
 		
 		drawAllIntervalTickAndLabels(g2d, xyChart);
 		
@@ -63,12 +56,9 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 	}
 
 
-
-
 	public void drawGridLine(Interval interval, Graphics2D g, XYChart chart) {
 
         int incrementNo = (int) ((maxValue - minValue) / interval.getIncrement());
-
 
         //divide height of chart by actual height of chart to get the multiplaying factor
         double factor = getMultiplicationFactor(chart); 
@@ -77,10 +67,8 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
     	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
     	
         double incrementInPixel = (double) (interval.getIncrement() * factor);
-        
 
         for (int i = 0; i < incrementNo; i++) {
-        	
 
             double fromTop = getFromTop(chart, i, incrementInPixel, toFirstInPixels);
 
@@ -88,11 +76,8 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
         	 * Draw grid line
         	 */
             YAxisDrawUtil.drawGridLine(interval, g, chart, fromTop);
-            
         }
     }
-
-
 
 	
     protected void drawIntervalLabel(Interval interval, Graphics g, 

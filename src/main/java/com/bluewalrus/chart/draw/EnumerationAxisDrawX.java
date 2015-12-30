@@ -94,4 +94,13 @@ public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 				(int) (x), (int) (chart.topOffset + chart.xAxis.marginOffset
 						+ chart.heightChart + 2));
 	}
+	
+
+
+	@Override
+	protected void drawGridLineOnZero(Graphics2D g) {
+		//ignore here.
+	}
+
+
 }

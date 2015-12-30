@@ -29,12 +29,9 @@ import com.bluewalrus.renderer.XYFactor;
  *
  */
 public class LineRenderer {
-
-
     
     public static void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
-    	
     	
     	double xMax = xAxis.axisDraw.maxValue;
     	double xMin = xAxis.axisDraw.minValue;
@@ -147,6 +144,5 @@ public class LineRenderer {
 
         line.drawLine(g, adjustedX1, adjustedY1, adjustedX2, adjustedY2);
     }
-
 
 }

@@ -6,9 +6,7 @@ import java.awt.Graphics2D;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Line;
-import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.chart.axis.Axis.AxisType;
 
 public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
@@ -55,17 +53,6 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 		}
 	}
 
-	/**
-	 * 
-	 * @param minValue
-	 *            minimum axis value
-	 * @param maxValue
-	 *            maximum axis value
-	 * @param interval1
-	 * @param interval2
-	 * @param interval3
-	 * @param name
-	 */
 	public LinearNumericalAxisDraw(Double minValue, Double maxValue, Interval interval1, Interval interval2, Interval interval3) {
 
 		this.maxValue = maxValue;
@@ -90,8 +77,6 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 			this.interval3 = interval3;
 		}
 	}
-	
-	
 
 
 
@@ -110,6 +95,39 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 	 */
 	protected abstract void drawIntervalLabel(Interval interval, Graphics g,
 			XYChart chart, int i, double incrementInPixel);
+	
+	/**
+	 * Draw the tick of the interval. Usually just a small line coming out
+	 * perpendicular to the axis.
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 * @param i
+	 * @param incrementInPixel
+	 */
+
+	protected abstract void drawIntervalTick(Interval interval, Graphics g,
+			XYChart chart, int i, double incrementInPixel);
+
+	/**
+	 * Draw all the intervals and ticks for all intervals
+	 * @param g
+	 * @param chart
+	 */
+	public void drawAllIntervalTickAndLabels(Graphics g, XYChart chart) {
+		
+		if (this.interval1.isValid() && this.interval1.isActive()) {
+			drawIntervalTickAndLabels(this.interval1, g, chart, true);
+		}
+		if (this.interval2.isValid() && this.interval2.isActive()) {
+			drawIntervalTickAndLabels(this.interval2, g, chart, false);
+		}
+		if (this.interval3.isValid() && this.interval3.isActive()) {
+			drawIntervalTickAndLabels(this.interval3, g, chart, false);
+		}
+	}
+	
 	
 	
 	public void drawGridLines(Graphics2D g, XYChart chart) {
@@ -220,30 +238,5 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 	}
 	
 	
-	/**
-	 * Draw the tick of the interval. Usually just a small line coming out
-	 * perpendicular to the axis.
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param i
-	 * @param incrementInPixel
-	 */
 
-	protected abstract void drawIntervalTick(Interval interval, Graphics g,
-			XYChart chart, int i, double incrementInPixel);
-
-	public void drawAllIntervalTickAndLabels(Graphics g, XYChart chart) {
-		
-		if (this.interval1.isValid() && this.interval1.isActive()) {
-			drawIntervalTickAndLabels(this.interval1, g, chart, true);
-		}
-		if (this.interval2.isValid() && this.interval2.isActive()) {
-			drawIntervalTickAndLabels(this.interval2, g, chart, false);
-		}
-		if (this.interval3.isValid() && this.interval3.isActive()) {
-			drawIntervalTickAndLabels(this.interval3, g, chart, false);
-		}
-	}
 }

@@ -14,6 +14,13 @@ import com.bluewalrus.datapoint.MultiBar;
 import com.bluewalrus.point.UIPointMultiBar;
 import com.bluewalrus.point.UIPointMultiBarStacked;
 
+/**
+ * Multibar chart can be stacked or side by side. It currently is only enumerable
+ * on the X-Axis.
+ * 
+ * @author Oliver Watkins
+ *
+ */
 public class MultiBarChart extends XYChart { 
 
     public MultiBarChart(XAxis xAxis, YAxis yAxis, ArrayList<MultiBar> bars) {
@@ -32,41 +39,14 @@ public class MultiBarChart extends XYChart {
         
         ArrayList<DataPointMultiBar> dataPoints = new ArrayList<DataPointMultiBar>();
 
-//        double xRange = 140; //(double) (this.xAxis.axisDraw.maxValue - this.xAxis.axisDraw.minValue);
+		double pointDistance = (double) (this.widthChart / (dataPoints.size() + 1));
 
-        
-        
-        
-        
-        
-		double pointDistance = (double) (this.widthChart / (dataPoints
-				.size() + 1));
-
-		System.out.println("1 pointDistance = " + pointDistance);
-        
-        
-//        space out
-        //distance between points
-//        double pointDistance = (double) (xRange / (bars.size() + 1));
-
-        int i = 1;
         for (MultiBar multibar : bars) {
 
             ArrayList<DataPointBar> dataPointArray = new ArrayList<DataPointBar>();
-
             
-//            System.out.println("pointDistance " + pointDistance);
-            
-			double xShift2 = (pointDistance * i);
-
-			int x = (int) (this.leftOffset + (xShift2));
-            
-			System.out.println("xx = " + x);
-			System.out.println("pointDistance = " + pointDistance);
-			System.out.println("i = " + i);
-			System.out.println("xShift2 = " + xShift2);
-            
-            DataPointMultiBar dpmb = new DataPointMultiBar(-9999, 42) ; ///x ,(int) 42); //CANNOT GUARANTEE X HERE :(((
+            //arbitrary x/y values at this stage because it will be enumerable
+            DataPointMultiBar dpmb = new DataPointMultiBar(-9999, 42); //CANNOT GUARANTEE X HERE :(((
 
             for (DataPointBar bar : multibar.bars) {
                 dataPointArray.add(bar);
@@ -76,8 +56,6 @@ public class MultiBarChart extends XYChart {
             dpmb.name = multibar.name + "";
 
             dataPoints.add(dpmb);
-            
-            i++;
         }
 
         if (stacked) {

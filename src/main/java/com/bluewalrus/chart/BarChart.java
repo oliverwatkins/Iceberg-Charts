@@ -1,19 +1,12 @@
 package com.bluewalrus.chart;
 
 import java.awt.Color;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
 import java.util.ArrayList;
 
 import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.chart.axis.Axis.AxisType;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.AxisDraw;
 import com.bluewalrus.chart.draw.EnumerationAxisDrawX;
-import com.bluewalrus.chart.draw.LineRenderer;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
 

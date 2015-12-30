@@ -130,17 +130,29 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	@Override
 	protected void drawGraph(Graphics g) {
 		
+		/**
+		 * TODO if the x-axis is enumerable then the data needs
+		 * to be massaged. Upon creation of the datapoints the
+		 * x y values were arbitrary. Now that the chart
+		 * has size we can calculate the values where 
+		 * the points need to be positioned.
+		 * 
+		 * This does not look right here :( Maybe put into EnumeratioAxisDraw??
+		 */
 		if (xAxis.axisDraw instanceof EnumerationAxisDrawX) {
-			massageData((Graphics2D)g, this, data);
+			massageXAxisData((Graphics2D)g, this, data);
 		}
-		
-		
-		
 		LineRenderer.drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
 	}
 	
 
-	public void massageData(Graphics2D g2d, XYChart xyChart,
+	/**
+	 * Massage data on X axis.
+	 * @param g2d
+	 * @param xyChart
+	 * @param data
+	 */
+	public void massageXAxisData(Graphics2D g2d, XYChart xyChart,
 			ArrayList<XYDataSeries> data) {
 
 		double xMax = this.xAxis.axisDraw.maxValue;
@@ -149,22 +161,16 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 
 		double xFactor = ((double) xyChart.widthChart / (double) (xMax - xMin));
-//		double yfactor = ((double) xyChart.heightChart / (double) (yMax - yMin));
 
 		XYFactor xyFactor = new XYFactor(xFactor, 123);
 		xyFactor.xZeroOffsetInPixel = (double) ((-xMin / (xMax - xMin)) * xyChart.widthChart);
-//		xyFactor.yZeroOffsetInPixel = (double) ((-yMin / (yMax - yMin)) * xyChart.heightChart);
 
 		ArrayList<DataPoint> dataPoints = data.get(0).dataPoints;
 
 		double xRange = (double) (xMax - xMin);
 
 		// distance between points (bars)
-		double pointDistance = (double) (xyChart.widthChart / (dataPoints
-				.size() + 1));
-
-		System.out.println("range = " + xRange);
-		System.out.println("pointDistance = " + pointDistance);
+		double pointDistance = (double) (xyChart.widthChart / (dataPoints.size() + 1));
 
 		int i = 1;
 		for (DataPoint dataPoint : dataPoints) {
@@ -173,15 +179,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 			int x = (int) (xyChart.leftOffset + (xShift2));
 
-			System.out.println("massaged x = " + x );
-			
-			
 			dataPoint.x = x;
-//			drawXLabel(g2d, xyChart, (DataPoint) dataPoint, x);
 
 			i++;
 		}
-
 	}
 
 	@Override

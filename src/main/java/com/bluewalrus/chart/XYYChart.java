@@ -91,10 +91,6 @@ public class XYYChart extends XYChart {
         
         yAxis2.rightSide = true;
         
-        
-//        yAxis2.drawIntervals(g, this);
-//        yAxis2.drawIntervalLabels(this.yAxis.interval1.getIncrement(), g, Color.BLACK, this);
-        
         yAxis2.axisDraw.drawAll(g2d, this, null); //drawTicksAndLabels(g, this);
         
         yAxis2.drawLabel(g, this);
@@ -110,7 +106,6 @@ public class XYYChart extends XYChart {
         al.add(barSeries);
 
         LineRenderer.drawLinesOrPoints(g, chart, yAxis, xAxis, al);
-
     }
 
     /**

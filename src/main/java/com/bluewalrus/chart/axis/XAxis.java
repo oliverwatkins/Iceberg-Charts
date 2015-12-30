@@ -3,11 +3,8 @@ package com.bluewalrus.chart.axis;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import com.bluewalrus.bar.Interval;
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.axis.Axis.AxisType;
 import com.bluewalrus.chart.draw.AxisDraw;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDraw;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
 
 public class XAxis extends Axis {

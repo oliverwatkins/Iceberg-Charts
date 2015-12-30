@@ -38,15 +38,10 @@ public class Interval implements Serializable{
     private Double increment; 
 
     public Double getIncrement() {
-    	
 		return increment;
 	}
 
 	public void setIncrement(Double increment) {
-		
-//		if (!(increment > 0.0))
-			
-		
 		this.increment = increment;
 	}
 
@@ -85,5 +80,4 @@ public class Interval implements Serializable{
 				+ ", lineLength=" + lineLength + ", increment=" + increment
 				+ "]";
 	}
-
 }

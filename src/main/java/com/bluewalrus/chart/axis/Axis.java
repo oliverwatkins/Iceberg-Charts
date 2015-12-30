@@ -20,22 +20,16 @@ import com.bluewalrus.chart.draw.LinearNumericalAxisDraw;
  * @author Oliver Watkins
  */
 public abstract class Axis implements Serializable {
-	
-	
+
+	/**
+	 * determines the schema of the Axis. How it is drawn, ie linear , time , logarithmic
+	 */
 	public AxisDraw axisDraw;
-	
 	
     public Font font = new Font("Arial", Font.PLAIN, 12);
 	public String labelText = "";
 
-	public AxisType type = AxisType.LINEAR_NUMERICAL; //default
-
 	public Color axisColor = Color.BLACK;
-
-	//interval schema?
-	public enum AxisType {
-		ENUMERATION, LINEAR_NUMERICAL, LOGARITHMIC, TIME
-	}
 
 	public int tickLabelOffset = 40; // TODO this should be seperate for each
 										// Axis. X and Y have slightly different
