@@ -15,14 +15,14 @@ public class XAxis extends Axis {
     /**
      * @param name axis name
      */
-    public XAxis(LinearNumericalAxisDraw axisDraw, String name) {
+    public XAxis(AxisDraw axisDraw, String name) {
         super(name, axisDraw);
     }
 
     
-    public XAxis(String name, AxisType enumeration) {
-    	super(name, null);
-    }
+//    public XAxis(String name, AxisType enumeration) {
+//    	super(name, null);
+//    }
 
 
 	@Override

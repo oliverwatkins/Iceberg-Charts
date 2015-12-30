@@ -2,8 +2,10 @@ package com.bluewalrus.chart.draw;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import com.bluewalrus.bar.Interval;
+import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 
@@ -13,20 +15,14 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 	public LinearNumericalAxisDrawX() {
 		super();
 	}
-
-
 	public LinearNumericalAxisDrawX(Double primaryIncrements,
 			Double secondaryIncrements, Double tertiaryIncrements) {
 		super(primaryIncrements, secondaryIncrements, tertiaryIncrements);
 	}
-
-
 	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
 			Interval interval1, Interval interval2, Interval interval3) {
 		super(minValue, maxValue, interval1, interval2, interval3);
 	}
-
-
 	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
 			Double primaryIncrements, Double secondaryIncrements,
 			Double tertiaryIncrements) {
@@ -34,13 +30,26 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 		super(minValue, maxValue, primaryIncrements, secondaryIncrements,
 				tertiaryIncrements);
 	}
-
-
 	public LinearNumericalAxisDrawX(double d, double e) {
 		super(d,e);
 	}
+	
+	
+	
+	////////////////
 
+	
+	@Override
+	public void drawAll(Graphics2D g2d, XYChart xyChart, ArrayList<XYDataSeries> data) {
+		
+		//NOTE! data is ignored here. It's only used for enumeration
 
+		
+		drawAllIntervalTickAndLabels(g2d, xyChart);
+		
+		drawGridLines(g2d, xyChart);
+	}
+	
 	protected void drawIntervalLabel(Interval interval, Graphics g, 
 			XYChart chart, int incrementNumber, double incrementInPixel) {
 		
@@ -91,10 +100,6 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
         //to first increment
     	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
 
-//        if (type == AxisType.ENUMERATION) {
-//            return;
-//        }
-
         int incrementNo = (int) (maxValue / interval.getIncrement());
         
         double incrementInPixel = (double) (interval.getIncrement() * factor);
@@ -113,10 +118,20 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
         }
     }
     
+	@Override
+	protected void drawGridLineOnZero(Graphics2D g) {
+		// TODO 
+		
+	}
+    
     @Override
-	public void drawYGridLineOnZero(Graphics2D g, XYChart chart) {
-    	XAxisDrawUtil.drawYGridLineOnZero(g, chart, -999, chart.xAxis);
+	public void drawGridLineOnZero(Graphics2D g, XYChart chart) {
+    	
+        //TODO draw X Line
+//    	XAxisDrawUtil.drawXGridLineOnZero(g, chart, -999, chart.xAxis);
     }
+    
+    
     
 	private double getFromLeft(Chart chart, double toFirstInPixels, double incrementInPixel, int i) {
 		double fromLeft = chart.leftOffset +  (i * incrementInPixel) + toFirstInPixels;
@@ -128,6 +143,4 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
     	return ((double) chart.widthChart / (double) (maxValue - minValue));
 
 	}
-    
-    
 }

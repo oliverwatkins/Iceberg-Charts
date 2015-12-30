@@ -111,8 +111,8 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
         
         
         
-        XAxisDrawUtil.drawXLabel(g, chart, leftPosition, dpX.name, chart.xAxis);
-        XAxisDrawUtil.drawIntervalTick(chart.xAxis.axisDraw.interval1, g, chart, leftPosition, chart.xAxis);
+//        XAxisDrawUtil.drawXLabel(g, chart, leftPosition, dpX.name, chart.xAxis);
+//        XAxisDrawUtil.drawIntervalTick(chart.xAxis.axisDraw.interval1, g, chart, leftPosition, chart.xAxis);
 	}
 
 	@Override

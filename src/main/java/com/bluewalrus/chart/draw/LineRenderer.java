@@ -34,13 +34,22 @@ public class LineRenderer {
     
     public static void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
+    	
+    	
+    	double xMax = xAxis.axisDraw.maxValue;
+    	double xMin = xAxis.axisDraw.minValue;
+    	
+    	double yMax = yAxis.axisDraw.maxValue;
+    	double yMin = yAxis.axisDraw.minValue;
+    	
+    	
 
-        double xFactor = ((double) chart.widthChart / (double) (xAxis.axisDraw.maxValue - xAxis.axisDraw.minValue));
-        double yfactor = ((double) chart.heightChart / (double) (yAxis.axisDraw.maxValue - yAxis.axisDraw.minValue));
+        double xFactor = ((double) chart.widthChart / (double) (xMax - xMin));
+        double yfactor = ((double) chart.heightChart / (double) (yMax - yMin));
 
         XYFactor xyFactor = new XYFactor(xFactor, yfactor);
-        xyFactor.xZeroOffsetInPixel = (double) ((-xAxis.axisDraw.minValue / (xAxis.axisDraw.maxValue - xAxis.axisDraw.minValue)) * chart.widthChart);
-        xyFactor.yZeroOffsetInPixel = (double) ((-yAxis.axisDraw.minValue / (yAxis.axisDraw.maxValue - yAxis.axisDraw.minValue)) * chart.heightChart);
+        xyFactor.xZeroOffsetInPixel = (double) ((-xMin / (xMax - xMin)) * chart.widthChart);
+        xyFactor.yZeroOffsetInPixel = (double) ((-yMin / (yMax - yMin)) * chart.heightChart);
 
         int xShift = chart.leftOffset;
         int yShift = chart.topOffset + chart.heightChart;
@@ -117,52 +126,55 @@ public class LineRenderer {
         dataPoint.uiPointXY.draw(g, new Point(x, y), dataPoint, xyFactor);
         
         
-        if (dataPoint instanceof DataPointBar) {
-            drawXLabel(g, chart, (DataPointBar)dataPoint, new Point(x, y));
-        }
-        
-        
+//        if (chart.xAxis.axisDraw instanceof EnumerationAxisDrawX) {
+//        
+//        	chart.xAxis.axisDraw.drawAll(g2d, xyChart);
+////        if (dataPoint instanceof DataPointBar) {
+//            drawXLabel(g, chart, (DataPointBar)dataPoint, new Point(x, y));
+//        }
     }
     
-    private static void drawXLabel(Graphics2D g, XYChart chart, DataPointBar dp, Point point) {
-        //TODO bar refactor : remove this out of here! This class is not responsible for drawing the axis labels. 
-        
-//      System.out.println("1 xName " + dp.xName);
-      if (dp.xName != null) {
-//      	System.out.println("2 xName " + dp.xName);
-    	  LineRenderer.drawText(chart, dp.xName, g, point.x);
-      }else {
-    	  LineRenderer.drawText(chart, "" + dp.x, g, point.x);
-      }
-
-      LineRenderer.drawTickLine(g, chart, point.x);
-		
-	}
     
-    protected static void drawText(XYChart chart, String name,
-            Graphics g, int x) {
-
-        FontMetrics fm = chart.getFontMetrics(chart.xAxis.axisCatFont);
-        int widthStr = fm.stringWidth(name);
-        int heightStr = fm.getHeight();
-
-        g.setFont(chart.xAxis.axisCatFont);
-        g.setColor(Color.BLACK);
-
-        int xPosition = x - (widthStr / 2);
-        int yPosition = chart.topOffset + chart.xAxis.marginOffset + chart.heightChart + chart.xAxis.labelOffset - heightStr / 2;
-
-        //draw tick
-        g.drawString(name, xPosition, yPosition);
-    }
-
-    @Deprecated //this will be done by the axis, not this point. TODO bar refactor
-    protected static void drawTickLine(Graphics g, XYChart chart, int x) {
-        g.drawLine((int) (x),
-                (int) (chart.topOffset + chart.xAxis.marginOffset + chart.heightChart),
-                (int) (x),
-                (int) (chart.topOffset + chart.xAxis.marginOffset + chart.heightChart + 2));
-    }
+//    @Deprecated
+//    private static void drawXLabel(Graphics2D g, XYChart chart, DataPointBar dp, Point point) {
+//        //TODO bar refactor : remove this out of here! This class is not responsible for drawing the axis labels. 
+//        
+////      System.out.println("1 xName " + dp.xName);
+//      if (dp.xName != null) {
+////      	System.out.println("2 xName " + dp.xName);
+//    	  LineRenderer.drawText(chart, dp.xName, g, point.x);
+//      }else {
+//    	  LineRenderer.drawText(chart, "" + dp.x, g, point.x);
+//      }
+//
+//      LineRenderer.drawTickLine(g, chart, point.x);
+//		
+//	}
+//    
+//    protected static void drawText(XYChart chart, String name,
+//            Graphics g, int x) {
+//
+//        FontMetrics fm = chart.getFontMetrics(chart.xAxis.axisCatFont);
+//        int widthStr = fm.stringWidth(name);
+//        int heightStr = fm.getHeight();
+//
+//        g.setFont(chart.xAxis.axisCatFont);
+//        g.setColor(Color.BLACK);
+//
+//        int xPosition = x - (widthStr / 2);
+//        int yPosition = chart.topOffset + chart.xAxis.marginOffset + chart.heightChart + chart.xAxis.labelOffset - heightStr / 2;
+//
+//        //draw tick
+//        g.drawString(name, xPosition, yPosition);
+//    }
+//
+//    @Deprecated //this will be done by the axis, not this point. TODO bar refactor
+//    protected static void drawTickLine(Graphics g, XYChart chart, int x) {
+//        g.drawLine((int) (x),
+//                (int) (chart.topOffset + chart.xAxis.marginOffset + chart.heightChart),
+//                (int) (x),
+//                (int) (chart.topOffset + chart.xAxis.marginOffset + chart.heightChart + 2));
+//    }
     
 
 

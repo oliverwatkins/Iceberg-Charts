@@ -29,10 +29,10 @@ public class MultiBarChart extends XYChart {
         super(xAxis, yAxis);
 
         data = new ArrayList<XYDataSeries>();
-
+        
         ArrayList<DataPointMultiBar> dataPoints = new ArrayList<DataPointMultiBar>();
 
-        double xRange = (double) (this.xAxis.axisDraw.maxValue - this.xAxis.axisDraw.minValue);
+        double xRange = 140; //(double) (this.xAxis.axisDraw.maxValue - this.xAxis.axisDraw.minValue);
 
 //        space out
         //distance between points
@@ -87,7 +87,7 @@ public class MultiBarChart extends XYChart {
         for (DataPointBar dpb : dps) {
             Category category;
 
-        	category = new Category(dpb.xName, series.pointType, null);
+        	category = new Category(dpb.name, series.pointType, null);
 
             category.block = true;
             category.color = dpb.color;

@@ -23,6 +23,7 @@ import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.LineRenderer;
 import com.bluewalrus.datapoint.DataPoint;
+import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointXY;
 
 /**
@@ -73,14 +74,27 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.data.addAll(listOfSeries);
 	}
 
+	
+	
+//	private void prePaintWithData(Graphics2D g2d, ArrayList<XYDataSeries> data) {
+//		
+//		this.prePaint(g2d);
+//	}
+	
+	
 	/**
 	 * Paint the background, Title, Grid and Axis. All the elements of the chart
 	 * except for the actual data.
 	 *
 	 * @param g2d
+	 * @param data 
 	 */
-	protected void prePaint(Graphics2D g2d) {
+	protected void prePaint(Graphics2D g2d, ArrayList<XYDataSeries> data) {
 
+		
+		
+//		XYDataSeries<DataPointBar>
+		
 		this.calculateHeighAndWidthOfChart();
 
 		/**
@@ -93,34 +107,37 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		// title
 		drawTitle(g2d);
 
-		drawGrid(g2d);
-
 		drawLegend(g2d);
 
 		// y axis
-		yAxis.drawTicksAndLabels(g2d, this);
+		yAxis.axisDraw.drawAll(g2d, this, data);  
+		
 		yAxis.drawLabel(g2d, this);
 		yAxis.drawBorderLine(g2d, this);
 
 		// x axis
-		xAxis.drawTicksAndLabels(g2d, this);
+		xAxis.axisDraw.drawAll(g2d, this, data); 
 		xAxis.drawLabel(g2d, this);
 		xAxis.drawBorderLine(g2d, this);
 
 	}
 
-	/**
-	 * Draw grid and/or lines on the 0 points
-	 * 
-	 * @param g
-	 */
-	protected void drawGrid(Graphics2D g) {
-		
-		yAxis.axisDraw.drawGridLines(g, this);
-		xAxis.axisDraw.drawGridLines(g, this);
-		
-		yAxis.axisDraw.drawYGridLineOnZero(g, this);
-	}
+//	/**
+//	 * Draw grid and/or lines on the 0 points
+//	 * 
+//	 * @param g
+//	 */
+//	protected void drawGrid(Graphics2D g) {
+//		
+//		
+//		//if XY-non enumnerabel
+//		yAxis.axisDraw.drawGridLines(g);
+//		
+//		
+//		xAxis.axisDraw.drawGridLines(g);
+//		
+//		yAxis.axisDraw.drawYGridLineOnZero(g, this);
+//	}
 
 
 	@Override
@@ -129,11 +146,18 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		Graphics2D g2d = (Graphics2D) g;
 
 		//draws axis, frame etc
-		this.prePaint(g2d);
+		this.prePaint(g2d, data);
 
+		
+//		this.prePaintWithData(g2d, data);
+		
+//		asdfasdf
+		
 		//draws actual data
 		drawGraph(g2d);
 	}
+
+
 
 	@Override
 	protected void drawGraph(Graphics g) {

@@ -2,9 +2,11 @@ package com.bluewalrus.chart.draw;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Utils;
+import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 
@@ -14,33 +16,23 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 
     public LinearNumericalAxisDrawY() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
     
 	public LinearNumericalAxisDrawY(double min, double max) {
 		super(min, max);
-		// TODO Auto-generated constructor stub
 	}
-
-
 
 
 	public LinearNumericalAxisDrawY(Double primaryIncrements,
 			Double secondaryIncrements, Double tertiaryIncrements) {
 		super(primaryIncrements, secondaryIncrements, tertiaryIncrements);
-		// TODO Auto-generated constructor stub
 	}
-
-
 
 
 	public LinearNumericalAxisDrawY(Double minValue, Double maxValue,
 			Interval interval1, Interval interval2, Interval interval3) {
 		super(minValue, maxValue, interval1, interval2, interval3);
-		// TODO Auto-generated constructor stub
 	}
-
-
 
 
 	public LinearNumericalAxisDrawY(Double minValue, Double maxValue,
@@ -52,9 +44,23 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 	}
 
 
+	@Override
+	public void drawAll(Graphics2D g2d, XYChart xyChart, ArrayList<XYDataSeries> data) {
+		
+		//NOTE! data is ignored here. It's only used for enumeration
+		
+		
+		drawAllIntervalTickAndLabels(g2d, xyChart);
+		
+		drawGridLines(g2d, xyChart);
+		
+	}
 
-
-
+	@Override
+	protected void drawGridLineOnZero(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 
@@ -151,32 +157,27 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 		double fromTop = chart.heightChart + chart.topOffset - (incrementNo * incrementInPixel) - toZeroShift;
 		return fromTop;
 	}
-
 	
 	
 	
     /**
      * If Y passes through ZERO then draw a line on the zero point.
      */
-    public void drawYGridLineOnZero(Graphics2D g, XYChart chart) {
+    public void drawGridLineOnZero(Graphics2D g, XYChart chart) {
 
         double factor = Utils.getFactor(chart.heightChart, maxValue, minValue);
 
         if (minValue < 0) {
 
             int fromTop = (int) (chart.heightChart + chart.topOffset + (minValue * factor));
-
-            YAxisDrawUtil.drawYGridLineOnZero(g, chart, fromTop, chart.yAxis);
+            
+            //TODO draw Y Line
+//            YAxisDrawUtil.drawYGridLineOnZero(g, chart, fromTop, chart.yAxis);
         }
     }
-
-
-
 
     protected double getMultiplicationFactor(XYChart chart) {
     	return ((double) chart.heightChart / (double) (maxValue - minValue));
 	}
-
-
 
 }

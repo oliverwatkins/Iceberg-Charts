@@ -31,6 +31,8 @@ public class UIPointBar extends UIPointAbstractBar {
 
         DataPointBar dp = (DataPointBar) dataPoint;
 
+        
+//        if (true)return;
         Color colorToUse;
 
         int x = 0;

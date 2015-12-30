@@ -11,17 +11,12 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.Axis.AxisType;
 
 public abstract class LinearNumericalAxisDraw extends AxisDraw{
-	
-	public double maxValue = 100;
-	public double minValue = 0;
 
 	public Interval interval1 = new Interval(0, 0.0);
 	public Interval interval2 = new Interval(0, 0.0);
 	public Interval interval3 = new Interval(0, 0.0);
 	
 	public Line zeroLine = new Line(Color.GRAY, false, 1);
-	
-
 	
 	/**
 	 * Default constructor
@@ -38,11 +33,9 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 		this(min, max, new Interval(0,0.0), new Interval(0,0.0), new Interval(0,0.0));
 	}
 
-	public LinearNumericalAxisDraw(Double primaryIncrements, Double secondaryIncrements,
-			Double tertiaryIncrements) {
+	public LinearNumericalAxisDraw(Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements) {
 		
-		this(0.0, 100.0, primaryIncrements, secondaryIncrements,
-				tertiaryIncrements);
+		this(0.0, 100.0, primaryIncrements, secondaryIncrements, tertiaryIncrements);
 	}
 
 
@@ -50,8 +43,6 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
 		this.maxValue = maxValue;
 		this.minValue = minValue;
-
-//		this.labelText = name;
 
 		if (primaryIncrements != null) {
 			this.interval1 = new Interval(8, primaryIncrements);
@@ -79,8 +70,6 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
 		this.maxValue = maxValue;
 		this.minValue = minValue;
-		
-//		this.labelText = name;
 
 		if (interval1 == null) {
 			this.interval1 = new Interval(0, 0.0);
@@ -108,7 +97,7 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
 	public abstract void drawGridLine(Interval interval, Graphics2D g, XYChart chart);
 
-	public abstract void drawYGridLineOnZero(Graphics2D g, XYChart chart);
+	public abstract void drawGridLineOnZero(Graphics2D g, XYChart chart);
 	
 	/**
 	 * Draw the label next to the tick
@@ -167,8 +156,6 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 		double factor = this.getMultiplicationFactor(chart);
 
 		double incrementInPixel = (double) (increment * factor);
-
-//		g.setColor(this.axisColor);
 
 		for (int i = 0; i < (incrementNo + 1); i++) {
 			
@@ -258,14 +245,5 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 		if (this.interval3.isValid() && this.interval3.isActive()) {
 			drawIntervalTickAndLabels(this.interval3, g, chart, false);
 		}
-		
 	}
-
-	
-	
-	
-	
-	
-	
-	
 }

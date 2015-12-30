@@ -3,10 +3,8 @@ package com.bluewalrus.chart.axis;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import com.bluewalrus.bar.Interval;
-import com.bluewalrus.bar.Utils;
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDraw;
+import com.bluewalrus.chart.draw.AxisDraw;
 import com.bluewalrus.chart.draw.YAxisDrawUtil;
 
 /**
@@ -19,7 +17,7 @@ public class YAxis extends Axis {
 
     public boolean rightSide = false;
 	
-    public YAxis(LinearNumericalAxisDraw axisDraw, String name) {
+    public YAxis(AxisDraw axisDraw, String name) {
         super(name, axisDraw);
     }
 

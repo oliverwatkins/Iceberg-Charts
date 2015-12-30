@@ -88,25 +88,11 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
             		height);
             
             
-            
-            
-            
             shift = shift+barWidth;
 		}
         
-        XAxisDrawUtil.drawXLabel(g, chart, leftPosition, dpX.name, chart.xAxis);
-        XAxisDrawUtil.drawIntervalTick(chart.xAxis.axisDraw.interval1, g, chart, leftPosition, chart.xAxis);
-        
-        
-//        if (dpX.name != null)
-//        	XAxisDraw.drawText_BAR(chart, dpX.name, g, point.x);
-//        
-//        
-//        
-//
-//        
-//        XAxisDraw.drawTickLine_BAR(g, chart, point.x);
-
+//        XAxisDrawUtil.drawXLabel(g, chart, leftPosition, dpX.name, chart.xAxis);
+//        XAxisDrawUtil.drawIntervalTick(chart.xAxis.axisDraw.interval1, g, chart, leftPosition, chart.xAxis);
 	}
 
 	@Override

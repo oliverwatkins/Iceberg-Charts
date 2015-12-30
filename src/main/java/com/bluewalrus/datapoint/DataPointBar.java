@@ -5,7 +5,7 @@ import java.awt.Color;
 
 public class DataPointBar extends DataPoint {
 
-    public String xName;
+//    public String xName;
 
     public Color color; //TODO get rid of this
     
@@ -17,17 +17,17 @@ public class DataPointBar extends DataPoint {
 		
 		valueType = ValueType.X_ENUMARABLE;
 		
-		this.xName = xName;
+		this.name = xName;
 	}
 	
     public DataPointBar(double x, double y, String name) {
         super(x, y);
-        this.xName = name;
+        this.name = name;
     }
 
     public DataPointBar(int x, int y, Color color2, String string) {
         super(x, y);
-        this.xName = string;
+        this.name = string;
         this.color = color2;
     }
     

@@ -64,13 +64,13 @@ public class XAxisDrawUtil {
 	}
 	
 	
-	public static void drawYGridLineOnZero(Graphics2D g, Chart chart, int fromTop, Axis axis) {
-		
-        if (axis.type == AxisType.ENUMERATION) {
-            return;
-        }
-        throw new RuntimeException("TODO");
-	}
+//	public static void drawYGridLineOnZero(Graphics2D g, Chart chart, int fromTop, Axis axis) {
+//		
+//        if (axis.type == AxisType.ENUMERATION) {
+//            return;
+//        }
+//        throw new RuntimeException("TODO");
+//	}
     
     
 	public static void drawXLabel(Graphics g, Chart chart, double fromLeft,
@@ -87,8 +87,4 @@ public class XAxisDrawUtil {
 
         g.drawString(xLabel, (int)fromLeft, yPos);
 	}
-
-    
-    
-    
 }

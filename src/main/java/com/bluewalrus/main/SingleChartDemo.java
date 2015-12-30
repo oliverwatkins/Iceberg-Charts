@@ -25,10 +25,15 @@ public class SingleChartDemo extends JFrame {
     public SingleChartDemo() {
     	
         JTabbedPane tabbedPaneBar = new JTabbedPane();
+  
         
-        Chart chart2 = TestDataBar.getTestData_MultiBar_SideBySide();
+        Chart chart2 = TestDataBar.getTestData_Bar2Y();
+
         
-//        Chart chart2 = TestDataBar.getTestData_BarCanBeXY();
+//        Chart chart2 = TestDataBar.getTestData_MultiBar_SideBySide();
+        
+        
+//        Chart chart2 = TestDataLineScatter.getTestData_SomeKindOfXY();
 
 //        tabbedPaneBar.addTab("1", chart);
 
