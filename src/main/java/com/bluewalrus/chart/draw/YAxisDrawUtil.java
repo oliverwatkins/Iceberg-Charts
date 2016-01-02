@@ -6,9 +6,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
-import com.bluewalrus.bar.Interval;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.axis.Axis;
+import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.YAxis;
 
 /**
@@ -28,7 +28,7 @@ public class YAxisDrawUtil {
 	 * @param fromTop
 	 * @param axis
 	 */
-	public static void drawIntervalTick(Interval interval, Graphics g, Chart chart,
+	public static void drawIntervalTick(NumericalInterval interval, Graphics g, Chart chart,
 			double fromTop, YAxis axis) {
 		int lineLength = interval.lineLength;
     	
@@ -89,7 +89,7 @@ public class YAxisDrawUtil {
 	 * @param fromTop
 	 */
 	
-	public static void drawGridLine(Interval interval, Graphics2D g, Chart chart,
+	public static void drawGridLine(NumericalInterval interval, Graphics2D g, Chart chart,
 			double fromTop) {
 		int x1 = chart.leftOffset;
 		

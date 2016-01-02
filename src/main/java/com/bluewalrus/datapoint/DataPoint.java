@@ -1,6 +1,7 @@
 package com.bluewalrus.datapoint;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.bluewalrus.point.UIPointXY;
 
@@ -12,6 +13,8 @@ import com.bluewalrus.point.UIPointXY;
 public class DataPoint implements Serializable{
 
     public double x;
+    public Date xDate;
+    
     public double y;
 
     public String name; //may have a name
@@ -30,6 +33,11 @@ public class DataPoint implements Serializable{
 
     public DataPoint(double x, double y) {
         this.x = x;
+        this.y = y;
+    }
+    
+    public DataPoint(Date date, double y) {
+        this.xDate = date;
         this.y = y;
     }
 

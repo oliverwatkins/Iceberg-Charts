@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.BubbleChart;
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
@@ -133,8 +133,8 @@ public class TestDataBubble {
         XYDataSeries<DataPointWithMagnitude> series = new XYDataSeries<DataPointWithMagnitude>(values, new UIPointBubble(Color.BLUE), null, "Series 1");
         XYDataSeries<DataPointWithMagnitude> series2 = new XYDataSeries<DataPointWithMagnitude>(values2, new UIPointBubble(Color.ORANGE), null, "Series 2");
 
-        Interval i1 = new Interval(5, 50.0, new Line(Color.GRAY, false, 2));
-        Interval i2 = new Interval(2, 10.0, new Line(Color.LIGHT_GRAY, false, 1));
+        NumericalInterval i1 = new NumericalInterval(5, 50.0, new Line(Color.GRAY, false, 2));
+        NumericalInterval i2 = new NumericalInterval(2, 10.0, new Line(Color.LIGHT_GRAY, false, 1));
         
         YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-44.0, 400.0, i1, i2, null), "Y Axis");
         XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(-12.0, 400.0, i1, i2, null), "X Axis");

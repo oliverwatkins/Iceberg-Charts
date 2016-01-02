@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.GradiantRule;
-import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.Utils;
 import com.bluewalrus.bar.XYDataSeries;
@@ -15,6 +14,7 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.MultiBarChart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYYChart;
+import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.EnumerationAxisDrawX;
@@ -39,11 +39,11 @@ public class TestDataBar {
 		
         ArrayList<Color> colors = Utils.makeGradients(Color.ORANGE, Color.CYAN, 5);
         
-        Interval tick1 = new Interval(20, 20.0, 
+        NumericalInterval tick1 = new NumericalInterval(20, 20.0, 
         		new Line(Color.GRAY,true,1)); //grid line
         
-        Interval tick2 = new Interval(10, 10.0, null); //no grid line
-        Interval tick3 = new Interval(5, 5.0, null);
+        NumericalInterval tick2 = new NumericalInterval(10, 10.0, null); //no grid line
+        NumericalInterval tick3 = new NumericalInterval(5, 5.0, null);
         
         YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-40.0, 100.0, tick1, tick2, tick3), "Number of Fruits");
         yAxis.labelText = "Price USD";
@@ -76,11 +76,11 @@ public class TestDataBar {
         
         ArrayList<Color> colors = Utils.makeGradients(Color.ORANGE, Color.CYAN, 5);
         
-        Interval tick1 = new Interval(20, 20.0, 
+        NumericalInterval tick1 = new NumericalInterval(20, 20.0, 
         		new Line(Color.GRAY,true,1)); //grid line
         
-        Interval tick2 = new Interval(10, 10.0, null); //no grid line
-        Interval tick3 = new Interval(5, 5.0, null);
+        NumericalInterval tick2 = new NumericalInterval(10, 10.0, null); //no grid line
+        NumericalInterval tick3 = new NumericalInterval(5, 5.0, null);
         
         YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-40.0, 100.0, tick1, tick2, tick3), "Number of Fruits");
         yAxis.labelText = "Price USD";
@@ -383,8 +383,8 @@ public class TestDataBar {
     
     public static Chart getTestData_BarCanBeXY() {
         
-        Interval tick1 = new Interval(20, 5.0, new Line(Color.GRAY,true,1)); //grid line
-        Interval tick2 = new Interval(10, 2.0, null); //no grid line
+        NumericalInterval tick1 = new NumericalInterval(20, 5.0, new Line(Color.GRAY,true,1)); //grid line
+        NumericalInterval tick2 = new NumericalInterval(10, 2.0, null); //no grid line
 //        Interval tick3 = new Interval(5, 5.0, null);
         
         YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-80.0, 100.0, tick1, tick2, null), "Y value");

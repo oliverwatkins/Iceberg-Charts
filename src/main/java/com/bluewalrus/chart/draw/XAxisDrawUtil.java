@@ -4,13 +4,14 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import com.bluewalrus.bar.Interval;
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
+import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 
 /**
- * Does all drawing for XAxis
+ * Tick, GridLine, Label, XLabel
  * 
  * @author Oliver Watkins
  *
@@ -19,7 +20,7 @@ import com.bluewalrus.chart.axis.XAxis;
 public class XAxisDrawUtil {
 
 	
-	public static void drawIntervalTick(Interval interval, Graphics g, Chart chart,
+	public static void drawIntervalTick(AbstractInterval interval, Graphics g, Chart chart,
 			double fromLeft, Axis axis) {
 		
 		int y1 = (chart.topOffset + chart.heightChart + axis.marginOffset);
@@ -30,7 +31,7 @@ public class XAxisDrawUtil {
     
     
 	
-	public static void drawGridLine(Interval interval, Graphics2D g, Chart chart,
+	public static void drawGridLine(NumericalInterval interval, Graphics2D g, Chart chart,
 			double fromLeft) {
 		int y1 = chart.topOffset + chart.heightChart;
 

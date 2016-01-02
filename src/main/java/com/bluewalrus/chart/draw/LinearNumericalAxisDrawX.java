@@ -4,10 +4,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.NumericalInterval;
 
 public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 
@@ -20,7 +20,7 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 		super(primaryIncrements, secondaryIncrements, tertiaryIncrements);
 	}
 	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
-			Interval interval1, Interval interval2, Interval interval3) {
+			NumericalInterval interval1, NumericalInterval interval2, NumericalInterval interval3) {
 		super(minValue, maxValue, interval1, interval2, interval3);
 	}
 	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
@@ -50,13 +50,13 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 		drawGridLines(g2d, xyChart);
 	}
 	
-	protected void drawIntervalLabel(Interval interval, Graphics g, 
+	protected void drawIntervalLabel(NumericalInterval interval, Graphics g, 
 			XYChart chart, int incrementNumber, double incrementInPixel) {
 		
 		g.setColor(chart.xAxis.axisColor);
 
     	
-		Double increment = interval.getIncrement();
+		Double increment = interval.getInterval();
 		
         double factor = getMultiplicationFactor(chart); 
         
@@ -76,7 +76,7 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 	}
 	
 	
-	protected void drawIntervalTick(Interval interval, Graphics g, 
+	protected void drawIntervalTick(NumericalInterval interval, Graphics g, 
 			XYChart chart, int i, double incrementInPixel) {
 		
 		g.setColor(chart.xAxis.axisColor);
@@ -84,7 +84,7 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 		double factor = getMultiplicationFactor(chart); 
 		
         //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
 		
         double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
         
@@ -93,16 +93,16 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 	}
 	
     @Override
-    public void drawGridLine(Interval interval, Graphics2D g, XYChart chart) {
+    public void drawGridLine(NumericalInterval interval, Graphics2D g, XYChart chart) {
 
 		double factor = getMultiplicationFactor(chart); 
     	
         //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
 
-        int incrementNo = (int) (maxValue / interval.getIncrement());
+        int incrementNo = (int) (maxValue / interval.getInterval());
         
-        double incrementInPixel = (double) (interval.getIncrement() * factor);
+        double incrementInPixel = (double) (interval.getInterval() * factor);
 
         g.setColor(interval.graphLine.color);
 

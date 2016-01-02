@@ -4,11 +4,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Utils;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.NumericalInterval;
 
 public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 
@@ -26,7 +26,7 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 	}
 
 	public LinearNumericalAxisDrawY(Double minValue, Double maxValue,
-			Interval interval1, Interval interval2, Interval interval3) {
+			NumericalInterval interval1, NumericalInterval interval2, NumericalInterval interval3) {
 		super(minValue, maxValue, interval1, interval2, interval3);
 	}
 
@@ -56,17 +56,17 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 	}
 
 
-	public void drawGridLine(Interval interval, Graphics2D g, XYChart chart) {
+	public void drawGridLine(NumericalInterval interval, Graphics2D g, XYChart chart) {
 
-        int incrementNo = (int) ((maxValue - minValue) / interval.getIncrement());
+        int incrementNo = (int) ((maxValue - minValue) / interval.getInterval());
 
         //divide height of chart by actual height of chart to get the multiplaying factor
         double factor = getMultiplicationFactor(chart); 
         
         //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
     	
-        double incrementInPixel = (double) (interval.getIncrement() * factor);
+        double incrementInPixel = (double) (interval.getInterval() * factor);
 
         for (int i = 0; i < incrementNo; i++) {
 
@@ -80,10 +80,10 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
     }
 
 	
-    protected void drawIntervalLabel(Interval interval, Graphics g, 
+    protected void drawIntervalLabel(NumericalInterval interval, Graphics g, 
     		XYChart chart, int i, double incrementInPixel) {
     	
-    	Double increment = interval.getIncrement();
+    	Double increment = interval.getInterval();
     	
     	
         //divide height of chart by actual height of chart to get the multiplaying factor
@@ -109,12 +109,12 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 
 
 	@Override
-	protected void drawIntervalTick(Interval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
+	protected void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
 		
         //divide height of chart by actual height of chart to get the multiplaying factor
         double factor = getMultiplicationFactor(chart); 
 		
-    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getIncrement(), factor);
+    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
 
     	double fromTop = getFromTop(chart, i, incrementInPixel, toZeroShift);
     	

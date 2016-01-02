@@ -1,28 +1,18 @@
 package com.bluewalrus.main;
 
 import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.text.ParseException;
 
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.TestDataBar;
-import com.bluewalrus.main.test.TestDataLineScatter;
+import com.bluewalrus.main.test.TestDataTimeSeries;
 
 public class SingleChartDemo extends JFrame {
 
-    public SingleChartDemo() {
+    public SingleChartDemo() throws ParseException {
     	
         JTabbedPane tabbedPaneBar = new JTabbedPane();
   
@@ -30,7 +20,7 @@ public class SingleChartDemo extends JFrame {
 //        Chart chart2 = TestDataBar.getTestData_Bar2Y();
 
         
-        Chart chart2 = TestDataBar.getTestData_MultiBar_Stacked();
+        Chart chart2 = TestDataTimeSeries.getTestData_TimeSeries();
         
         
 //        Chart chart2 = TestDataLineScatter.getTestData_SomeKindOfXY();
@@ -46,7 +36,7 @@ public class SingleChartDemo extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         SingleChartDemo frame = new SingleChartDemo();
         frame.setVisible(true);
     }

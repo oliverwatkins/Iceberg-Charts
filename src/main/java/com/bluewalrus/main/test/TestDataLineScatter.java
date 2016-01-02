@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Interval;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
@@ -80,14 +80,14 @@ public class TestDataLineScatter {
 				new Line(Color.PINK), "Orange");
 		series3.dataPoints = values3;
 
-		Interval t1 = new Interval(6, 50.0, new Line(Color.GRAY, false, 1));
-		Interval t2 = new Interval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
-		Interval t3 = new Interval(1, 5.0, null);
+		NumericalInterval t1 = new NumericalInterval(6, 50.0, new Line(Color.GRAY, false, 1));
+		NumericalInterval t2 = new NumericalInterval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, t2, t3), "Y Axis");
 
-		Interval t1x = new Interval(6, 20.0, new Line(Color.GRAY, false, 1));
-		Interval t2x = new Interval(3, 10.0,
+		NumericalInterval t1x = new NumericalInterval(6, 20.0, new Line(Color.GRAY, false, 1));
+		NumericalInterval t2x = new NumericalInterval(3, 10.0,
 				new Line(Color.LIGHT_GRAY, true, 1));
 
 		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(17.0, 70.0, t1x, t2x, null), "X Value");
@@ -221,7 +221,7 @@ public class TestDataLineScatter {
 		series4.dataPoints = values4;
 		series5.dataPoints = values5;
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-5.0, 10.0, new Interval(4, 1.0), new Interval(
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-5.0, 10.0, new NumericalInterval(4, 1.0), new NumericalInterval(
 				2, 0.5), null), "y");
 		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 10.0, 1.0, null, null), "x");
 
@@ -311,10 +311,10 @@ public class TestDataLineScatter {
 				new Line(Color.PINK), "e^x");
 		series3.dataPoints = values3;
 
-		Interval t1x = new Interval(6, 10.0, new Line(Color.GRAY, false, 1));
-		Interval t2x = new Interval(3, 5.0,
+		NumericalInterval t1x = new NumericalInterval(6, 10.0, new Line(Color.GRAY, false, 1));
+		NumericalInterval t2x = new NumericalInterval(3, 5.0,
 				new Line(Color.LIGHT_GRAY, true, 1));
-		Interval t3x = new Interval(1, 1.0, new Line(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t3x = new NumericalInterval(1, 1.0, new Line(Color.LIGHT_GRAY, true, 1));
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-10.0, 10.0, t1x, t2x, t3x), "Y Axis");
 
