@@ -29,7 +29,7 @@ public class TestDataTimeSeries {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm");
 		
-		Date startDate = df.parse("1984-01-20 05-33"); 
+		Date startDate = df.parse("1984-06-20 05-33"); 
 		Date endDate = df.parse("1991-01-20 05-33");
 		
 		

@@ -2,8 +2,12 @@ package com.bluewalrus.chart.draw;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+
+import javax.xml.stream.events.StartDocument;
 
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
@@ -58,18 +62,9 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		//to first increment
 		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
 		
-		double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
-
-		System.out.println("toFirstInPixels " + toFirstInPixels);
-
-		System.out.println("incrementInPixel " + incrementInPixel);
-
-
-//		fromLeft = 4;
+		double pixFromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
 		
-		System.out.println("pixels from left " + fromLeft);
-		
-		XAxisDrawUtil.drawIntervalTick(interval, g, chart, fromLeft, chart.xAxis);
+		XAxisDrawUtil.drawIntervalTick(interval, g, chart, pixFromLeft, chart.xAxis);
 
 }
 	
@@ -78,38 +73,63 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 			XYChart chart, int incrementNumber, double incrementInPixel) {
 		
 		g.setColor(chart.xAxis.axisColor);
+		
+		double factor = getMultiplicationFactor(chart); 
+		
+		//to first increment
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
+		
+		double pixFromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, incrementNumber);
+		
+		long ms = DateUtils.getMsToNearestDataType(this.dateStart, interval.type);
+		
+		
+		long date = dateStart.getTime() + ms; // + (msForType * incrementNumber);
+		
+		long date2 = addYear(date, incrementNumber);
+		
+		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 
-    	
-		Type increment = interval.getInterval();
+		String xLabel = df.format(date2);
 		
-		
-		
-        double factor = getMultiplicationFactor(chart); 
-        
-        //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
-    	
-    	
-    	
-//    	double toFirst = getToFirstIntervalValueFromMin(increment);
-//    	
-//        String xLabel = "" + ((incrementNumber * increment) + toFirst);
-//        
-//        double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel,incrementNumber);
-//
-//   
-//        /**
-//         * Draw X Label
-//         */
-//        XAxisDrawUtil.drawXLabel(g, chart, fromLeft, xLabel, chart.xAxis);
-        
-   	 
+		/**
+		 * Draw X Label
+		 */
+		XAxisDrawUtil.drawXLabel(g, chart, pixFromLeft, xLabel, chart.xAxis);
 
 	}
 	
+	
+	/**
+	 * Given a date ( which should be in the for 01.01.00:00 19XX ) add years such that
+	 * the date returned is 01.01.00:00 (19XX+years) 
+	 * 
+	 * 
+	 * @param date
+	 * @param incrementNumber
+	 * @return
+	 */
+	private long addYear(long date, int years) {
+		
+		Calendar cal = Calendar.getInstance();
+		
+		cal.setTime(new Date(date));
+		cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) + years);
+		
+		return cal.getTimeInMillis();
+	}
+
+
 	/**
 	 * The distance in pixels to the first displayable interval
 	 * 
+	 * Get the first interval that should be displayed on the axis. Eg. if the
+	 * interval increment is 50, then we want the first value to be a multiple
+	 * of 50.
+	 * 
+	 * if the min/max range is 3/101, then the first value would be 50 (and not
+	 * 3)	 * 
 	 * @param increment
 	 * @param maxValue
 	 * @param minValue
@@ -120,7 +140,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 			double factor) {
 
 		
-		long ms = getToFirstIntervalValueFromMin(increment);
+		long ms = DateUtils.getMsToNearestDataType(this.dateStart, increment.type);
 
 		double pix = (ms) * factor; //convert to pixels
 		
@@ -129,87 +149,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		
 		return pix;
 	}
-	
-	
-	/**
-	 * Get the first interval that should be displayed on the axis. Eg. if the
-	 * interval increment is 50, then we want the first value to be a multiple
-	 * of 50.
-	 * 
-	 * if the min/max range is 3/101, then the first value would be 50 (and not
-	 * 3)
-	 * 
-	 * @param increment
-	 * @param maxValue
-	 * @param minValue
-	 * @param factor
-	 * @return
-	 */
-	protected long getToFirstIntervalValueFromMin(TimeInterval increment) {
 
-//		Date dateStart = this.dateStart;
-
-		long ms = getMsToNearestDataType(this.dateStart, increment.type);
-		
-//		long ms = getMsForType(increment.type);
-		
-		
-		// find first value which has a remainder of zero from increment
-		// starting at min value.
-//		while (val % increment != 0) {
-//			val++;
-//		}
-		return ms;
-	}
-	
-	
-	
-	
-	
-	
-	
-//
-//
-//
-//	protected void drawIntervalTick(NumericalInterval interval, Graphics g, 
-//			XYChart chart, int i, double incrementInPixel) {
-//		
-//		g.setColor(chart.xAxis.axisColor);
-//		
-//		double factor = getMultiplicationFactor(chart); 
-//		
-//        //to first increment
-//    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
-//		
-//        double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
-//        
-//        XAxisDrawUtil.drawIntervalTick(interval, g, chart, fromLeft, chart.xAxis);
-//		
-//	}
-//	
-//    public void drawGridLine(NumericalInterval interval, Graphics2D g, XYChart chart) {
-//
-//		double factor = getMultiplicationFactor(chart); 
-//    	
-//        //to first increment
-//    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
-//
-//        int incrementNo = (int) (maxValue / interval.getInterval());
-//        
-//        double incrementInPixel = (double) (interval.getInterval() * factor);
-//
-//        g.setColor(interval.graphLine.color);
-//
-//        for (int i = 0; i < incrementNo; i++) {
-//        	
-//            double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
-//            
-//            /**
-//             * Draw Grid line
-//             */
-//            XAxisDrawUtil.drawGridLine(interval, g, chart, fromLeft);
-//        }
-//    }
     
 	@Override
 	protected void drawGridLineOnZero(Graphics2D g) {
@@ -220,8 +160,8 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
     
     
 	private double getFromLeft(Chart chart, double toFirstInPixels, double incrementInPixel, int i) {
-		double fromLeft = chart.leftOffset +  (i * incrementInPixel) + toFirstInPixels;
-		return fromLeft;
+		double fromLeftPixels = chart.leftOffset +  (i * incrementInPixel) + toFirstInPixels;
+		return fromLeftPixels;
 	}
     
 	@Override

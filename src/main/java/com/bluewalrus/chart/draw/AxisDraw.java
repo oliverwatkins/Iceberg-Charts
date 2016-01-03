@@ -1,6 +1,5 @@
 package com.bluewalrus.chart.draw;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
@@ -17,5 +16,8 @@ public abstract class AxisDraw {
 //	public abstract void drawAllIntervalTickAndLabels(Graphics g, XYChart chart);
 
 	protected abstract void drawGridLineOnZero(Graphics2D g);
+	
+	protected abstract double getMultiplicationFactor(XYChart chart);
+	
 
 }

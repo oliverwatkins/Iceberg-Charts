@@ -102,5 +102,11 @@ public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 		//ignore here.
 	}
 
+	@Override
+	protected double getMultiplicationFactor(XYChart chart) {
+		// ???
+		return 0;
+	}
+
 
 }
