@@ -61,6 +61,8 @@ public abstract class TimeSeriesAxisDraw extends AxisDraw{
 		 */
 		int incrementNo = (int) ((dateEnd.getTime() - dateStart.getTime()) / increment); //shit!!
 
+		System.out.println("incrementNo " + incrementNo);
+		
 		double factor = this.getMultiplicationFactor(chart);
 		
 		double incrementInPixel = (double) (increment * factor);

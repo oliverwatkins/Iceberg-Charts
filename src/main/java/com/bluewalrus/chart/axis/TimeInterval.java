@@ -14,10 +14,11 @@ public class TimeInterval extends AbstractInterval{
 	public Type type;
 
 
-	public TimeInterval(int i, Type intervalType, Line line) {
+	public TimeInterval(int lineLength, Type intervalType, Line line) {
 		super();
+
 		
-		lineLength = 4;
+		this.lineLength = lineLength;
 		graphLine = line;
 		type = intervalType;
 	}

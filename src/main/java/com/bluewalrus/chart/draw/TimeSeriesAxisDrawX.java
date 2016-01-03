@@ -84,9 +84,16 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		long ms = DateUtils.getMsToNearestDataType(this.dateStart, interval.type);
 		
 		
-		long date = dateStart.getTime() + ms; // + (msForType * incrementNumber);
+		long date = dateStart.getTime() + ms; 
 		
-		long date2 = addYear(date, incrementNumber);
+		long date2 = -888;
+		if (interval.type == Type.YEAR) {
+			
+			date2 = DateUtils.addYear(date, incrementNumber);
+		
+		}else if (interval.type == Type.MONTH) {
+			date2 = DateUtils.addMonth(date, incrementNumber);
+		}
 		
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
@@ -100,25 +107,6 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 
 	}
 	
-	
-	/**
-	 * Given a date ( which should be in the for 01.01.00:00 19XX ) add years such that
-	 * the date returned is 01.01.00:00 (19XX+years) 
-	 * 
-	 * 
-	 * @param date
-	 * @param incrementNumber
-	 * @return
-	 */
-	private long addYear(long date, int years) {
-		
-		Calendar cal = Calendar.getInstance();
-		
-		cal.setTime(new Date(date));
-		cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) + years);
-		
-		return cal.getTimeInMillis();
-	}
 
 
 	/**
