@@ -33,8 +33,8 @@ public class XAxisDrawUtil {
 	
 	public static void drawGridLine(NumericalInterval interval, Graphics2D g, Chart chart,
 			double fromLeft) {
+		
 		int y1 = chart.topOffset + chart.heightChart;
-
 		int y2 = chart.topOffset;
 
 		interval.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
@@ -82,7 +82,6 @@ public class XAxisDrawUtil {
         int yPos = chart.topOffset + chart.heightChart + axis.tickLabelOffset;
 
         g.setFont(axis.axisCatFont);
-
         g.drawString(xLabel, (int)fromLeft, yPos);
 	}
 }

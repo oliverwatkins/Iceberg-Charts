@@ -15,23 +15,32 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 	public LinearNumericalAxisDrawX() {
 		super();
 	}
-	public LinearNumericalAxisDrawX(Double primaryIncrements,
-			Double secondaryIncrements, Double tertiaryIncrements) {
-		super(primaryIncrements, secondaryIncrements, tertiaryIncrements);
-	}
-	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
-			NumericalInterval interval1, NumericalInterval interval2, NumericalInterval interval3) {
-		super(minValue, maxValue, interval1, interval2, interval3);
-	}
-	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
-			Double primaryIncrements, Double secondaryIncrements,
-			Double tertiaryIncrements) {
-		
-		super(minValue, maxValue, primaryIncrements, secondaryIncrements,
-				tertiaryIncrements);
-	}
+	
 	public LinearNumericalAxisDrawX(double d, double e) {
 		super(d,e);
+	}
+
+	public LinearNumericalAxisDrawX(Double primaryIncrements,
+									Double secondaryIncrements, 
+									Double tertiaryIncrements) {
+		
+		super(primaryIncrements, secondaryIncrements, tertiaryIncrements);
+	}
+	public LinearNumericalAxisDrawX(Double minValue, 
+									Double maxValue,
+									NumericalInterval interval1, 
+									NumericalInterval interval2, 
+									NumericalInterval interval3) {
+		
+		super(minValue, maxValue, interval1, interval2, interval3);
+	}
+	public LinearNumericalAxisDrawX(Double minValue, 
+									Double maxValue,
+									Double primaryIncrements, 
+									Double secondaryIncrements,
+									Double tertiaryIncrements) {
+		
+		super(minValue, maxValue, primaryIncrements, secondaryIncrements, tertiaryIncrements);
 	}
 	
 	
@@ -54,7 +63,6 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 			XYChart chart, int incrementNumber, double incrementInPixel) {
 		
 		g.setColor(chart.xAxis.axisColor);
-
     	
 		Double increment = interval.getInterval();
 		

@@ -103,12 +103,12 @@ public class DateUtils {
 	}
 	
 	
-	public static long addMonth(long date, int incrementNumber) {
+	public static long addMonth(long date, int months) {
 		
 		Calendar cal = Calendar.getInstance();
 		
 		cal.setTime(new Date(date));
-		cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + 1); //will this work 13-->1 ?
+		cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + months); //will this work 13-->1 ?
 		
 		return cal.getTimeInMillis();
 	}

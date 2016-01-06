@@ -30,7 +30,7 @@ public class TestDataTimeSeries {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm");
 		
 		Date startDate = df.parse("1984-06-20 05-33"); 
-		Date endDate = df.parse("1991-01-20 05-33");
+		Date endDate = df.parse("2015-01-20 05-33");
 		
 		
 //		String time = "2009-07-20 05-33";                              
@@ -73,8 +73,10 @@ public class TestDataTimeSeries {
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, t2, t3), "Y Axis");
 		
-		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new Line(Color.GRAY, false, 6));
-		TimeInterval timeInt2 = new TimeInterval(4, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 1));
+		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+		SimpleDateFormat monthFormat = new SimpleDateFormat("");
+		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new Line(Color.GRAY, false, 6), yearFormat);
+		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 1), monthFormat);
 		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.NONE, new Line(Color.GRAY, false, 1));
 //		
 		

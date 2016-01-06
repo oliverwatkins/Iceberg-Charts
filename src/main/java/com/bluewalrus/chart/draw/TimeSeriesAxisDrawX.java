@@ -18,9 +18,9 @@ import com.bluewalrus.chart.axis.TimeInterval.Type;
 
 public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 
-	public TimeSeriesAxisDrawX(Date date, Date date2, TimeInterval timeInt1,
+	public TimeSeriesAxisDrawX(Date dateStart, Date dateEnd, TimeInterval timeInt1,
 			TimeInterval timeInt2, TimeInterval timeInt3) {
-		super(date, date2, timeInt1, timeInt2, timeInt2);	
+		super(dateStart, dateEnd, timeInt1, timeInt2, timeInt2);	
 	}
 
 	
@@ -46,7 +46,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 			drawIntervalTickAndLabels(this.timeInt1, g, chart, true);
 		}
 		if (this.timeInt2.isValid() && this.timeInt2.isActive()) {
-			drawIntervalTickAndLabels(this.timeInt2, g, chart, false);
+			drawIntervalTickAndLabels(this.timeInt2, g, chart, true);
 		}
 		if (this.timeInt3.isValid() && this.timeInt3.isActive()) {
 			drawIntervalTickAndLabels(this.timeInt3, g, chart, false);
@@ -96,8 +96,16 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		}
 		
 		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+		SimpleDateFormat df;
+		
+		if (interval.dateFormat != null) {
+			df = interval.dateFormat;
+		}else {
+			df = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+		}
 
+		
+		
 		String xLabel = df.format(date2);
 		
 		/**

@@ -1,4 +1,4 @@
-package com.bluewalrus.chart.draw;
+package com.bluewalrus.chart.plotter;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -14,6 +14,7 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointXY;
@@ -32,6 +33,17 @@ public class LineRenderer {
     
     public static void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
+    	
+    	if (chart.xAxis.axisDraw instanceof TimeSeriesAxisDrawX) {
+    		
+    		
+    		DatePlotter.drawLinesOrPoints(g, chart, yAxis, xAxis, xYDataSerieses);
+    		
+    		return;
+    	}
+    	
+    	
+    	
     	
     	double xMax = xAxis.axisDraw.maxValue;
     	double xMin = xAxis.axisDraw.minValue;
@@ -87,7 +99,7 @@ public class LineRenderer {
         }
     }
 
-    private static void drawPoint(Graphics2D g, 
+    static void drawPoint(Graphics2D g, 
     		XYFactor xyFactor,
             int xShift,
             int yShift,
@@ -122,7 +134,7 @@ public class LineRenderer {
 
 
 
-	private static void drawLine(Graphics2D g, XYFactor xyFactor,
+	static void drawLine(Graphics2D g, XYFactor xyFactor,
             int xShift, int yShift, DataPoint lastPoint,
             XYDataSeries xYDataSeries, DataPoint dataPoint) {
 
