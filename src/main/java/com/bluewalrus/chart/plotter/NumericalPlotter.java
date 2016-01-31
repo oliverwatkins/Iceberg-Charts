@@ -29,20 +29,10 @@ import com.bluewalrus.renderer.XYFactor;
  * @author Oliver Watkins
  *
  */
-public class LineRenderer {
+public class NumericalPlotter extends AbstractPlotter {
     
-    public static void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
+    public void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
-    	
-    	if (chart.xAxis.axisDraw instanceof TimeSeriesAxisDrawX) {
-    		
-    		
-    		DatePlotter.drawLinesOrPoints(g, chart, yAxis, xAxis, xYDataSerieses);
-    		
-    		return;
-    	}
-    	
-    	
     	
     	
     	double xMax = xAxis.axisDraw.maxValue;
@@ -99,7 +89,7 @@ public class LineRenderer {
         }
     }
 
-    static void drawPoint(Graphics2D g, 
+    public void drawPoint(Graphics2D g, 
     		XYFactor xyFactor,
             int xShift,
             int yShift,
@@ -134,7 +124,7 @@ public class LineRenderer {
 
 
 
-	static void drawLine(Graphics2D g, XYFactor xyFactor,
+    public void drawLine(Graphics2D g, XYFactor xyFactor,
             int xShift, int yShift, DataPoint lastPoint,
             XYDataSeries xYDataSeries, DataPoint dataPoint) {
 

@@ -22,7 +22,9 @@ import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.EnumerationAxisDrawX;
-import com.bluewalrus.chart.plotter.LineRenderer;
+import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
+import com.bluewalrus.chart.plotter.DatePlotter;
+import com.bluewalrus.chart.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointXY;
@@ -140,19 +142,25 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		 * This does not look right here :( Maybe put into EnumeratioAxisDraw??
 		 */
 		if (xAxis.axisDraw instanceof EnumerationAxisDrawX) {
-			massageXAxisData((Graphics2D)g, this, data);
+			massageXAxisData_forEnumeration((Graphics2D)g, this, data);
 		}
-		LineRenderer.drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
+		
+    	if (xAxis.axisDraw instanceof TimeSeriesAxisDrawX) {
+    		new DatePlotter().drawLinesOrPoints((Graphics2D)g, this, yAxis, xAxis, data);
+    	}else {
+    		new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
+    	}
+		
 	}
 	
 
 	/**
-	 * Massage data on X axis.
+	 * Massage data on X axis.ONLY USED FOR ENUMERATION!!!!
 	 * @param g2d
 	 * @param xyChart
 	 * @param data
 	 */
-	public void massageXAxisData(Graphics2D g2d, XYChart xyChart,
+	public void massageXAxisData_forEnumeration(Graphics2D g2d, XYChart xyChart,
 			ArrayList<XYDataSeries> data) {
 
 		double xMax = this.xAxis.axisDraw.maxValue;

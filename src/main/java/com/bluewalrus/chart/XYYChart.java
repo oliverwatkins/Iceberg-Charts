@@ -11,7 +11,7 @@ import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.plotter.LineRenderer;
+import com.bluewalrus.chart.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
@@ -83,7 +83,7 @@ public class XYYChart extends XYChart {
         drawLinesOrPointsXXY((Graphics2D) g, this, yAxis2, xAxis, barSeries);
 
         //...then the other series.
-        LineRenderer.drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
+        new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
 
         Graphics2D g2d = (Graphics2D) g;
 
@@ -105,7 +105,7 @@ public class XYYChart extends XYChart {
         ArrayList al = new ArrayList<>();
         al.add(barSeries);
 
-        LineRenderer.drawLinesOrPoints(g, chart, yAxis, xAxis, al);
+        new NumericalPlotter().drawLinesOrPoints(g, chart, yAxis, xAxis, al);
     }
 
     /**

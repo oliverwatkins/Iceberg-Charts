@@ -14,13 +14,11 @@ import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointXY;
 import com.bluewalrus.renderer.XYFactor;
 
-public class DatePlotter {
+public class DatePlotter extends AbstractPlotter {
 
 	
-    public static void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
+    public void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
-    	
-    	
     	
     	long xMax = ((TimeSeriesAxisDrawX)xAxis.axisDraw).dateEnd.getTime();
     	long xMin = ((TimeSeriesAxisDrawX)xAxis.axisDraw).dateStart.getTime();
@@ -28,12 +26,15 @@ public class DatePlotter {
     	double yMax = yAxis.axisDraw.maxValue;
     	double yMin = yAxis.axisDraw.minValue;
     	
+    	long diffX = xMax - xMin;
 
-        double xFactor = ((double) chart.widthChart / (double) (xMax - xMin));
+    	double xFactor = ((double)chart.widthChart / (double)diffX);
+    	
         double yfactor = ((double) chart.heightChart / (double) (yMax - yMin));
 
         XYFactor xyFactor = new XYFactor(xFactor, yfactor);
-        xyFactor.xZeroOffsetInPixel = (double) ((-xMin / (xMax - xMin)) * chart.widthChart);
+        xyFactor.xZeroOffsetInPixel = (double) ((-xMin / diffX) * chart.widthChart);
+        
         xyFactor.yZeroOffsetInPixel = (double) ((-yMin / (yMax - yMin)) * chart.heightChart);
 
         int xShift = chart.leftOffset;
@@ -54,7 +55,7 @@ public class DatePlotter {
 
                     if (xYDataSeries.pointType != null) {
 
-                        drawPoint_Date(g, xyFactor, xShift, yShift,
+                        drawPoint(g, xyFactor, xShift, yShift,
                                 xYDataSeries, dataPoint, chart);
                     }
 
@@ -62,35 +63,47 @@ public class DatePlotter {
 
                     if (xYDataSeries.line != null) {
 
-                    	LineRenderer.drawLine(g, xyFactor, xShift, yShift,
-                                lastPoint, xYDataSeries, dataPoint);
+//                    	throw new RuntimeException("TODO");
+//                    	LineRenderer.drawLine(g, xyFactor, xShift, yShift,
+//                                lastPoint, xYDataSeries, dataPoint);
                     }
                     if (xYDataSeries.pointType != null) {
-
-                    	LineRenderer.drawPoint(g, xyFactor, xShift, yShift,
+                    	
+                        drawPoint(g, xyFactor, xShift, yShift,
                                 xYDataSeries, dataPoint, chart);
                     }
                     lastPoint = dataPoint;
                 }
             }
         }
-        
-        
-    	
     }
     
     
-    static void drawPoint_Date(Graphics2D g, 
-    		XYFactor xyFactor,
-            int xShift,
-            int yShift,
-            XYDataSeries xYDataSeries,
-            DataPoint dataPoint, 
-            XYChart chart) {
+    /**
+     * TODO drawPoint is hugely similar to drawPoint in numerical plotter. Needs refactoring.
+     */
+	@Override
+	protected void drawPoint(Graphics2D g, XYFactor xyFactor, int xShift,
+			int yShift, XYDataSeries xYDataSeries, DataPoint dataPoint,
+			XYChart chart) {
+
 
         int x = (int) ((dataPoint.xDate.getTime() * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
         int y = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
 
+
+        System.out.println("date " + dataPoint.xDate + " | time " + 
+        		dataPoint.xDate.getTime() + " | xyFactor.xFactor " + 
+        		xyFactor.xFactor + " | xShift " + xShift + "xyFactor.xZeroOffsetInPixel " + 
+        		xyFactor.xZeroOffsetInPixel);
+
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+
+        System.out.println("x " + x);
+        
+        
         //hack TODO 
         if (xyFactor.yFactor * y > 200000) {
             return;
@@ -112,4 +125,16 @@ public class DatePlotter {
         }
         dataPoint.uiPointXY.draw(g, new Point(x, y), dataPoint, xyFactor);
     }
+
+
+	@Override
+	protected void drawLine(Graphics2D g, XYFactor xyFactor, int xShift,
+			int yShift, DataPoint lastPoint, XYDataSeries xYDataSeries,
+			DataPoint dataPoint) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }

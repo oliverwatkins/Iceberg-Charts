@@ -48,8 +48,8 @@ public class DateUtils {
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
 			
-			System.out.println("cal2.getTimeInMillis() " + new Date(cal2.getTimeInMillis()));
-			System.out.println("cal1.getTimeInMillis() " + new Date(cal.getTimeInMillis()));
+//			System.out.println("cal2.getTimeInMillis() " + new Date(cal2.getTimeInMillis()));
+//			System.out.println("cal1.getTimeInMillis() " + new Date(cal.getTimeInMillis()));
 			
 			return cal2.getTimeInMillis() - cal.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
 		}

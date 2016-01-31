@@ -27,10 +27,10 @@ public class TestDataTimeSeries {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
-		Date startDate = df.parse("1984-06-20 05-33"); 
-		Date endDate = df.parse("2015-01-20 05-33");
+		Date startDate = df.parse("1970-01-01 01-00-00"); 
+		Date endDate = df.parse("2015-01-20 05-33-00");
 		
 		
 //		String time = "2009-07-20 05-33";                              
@@ -45,15 +45,14 @@ public class TestDataTimeSeries {
 //		df = new SimpleDateFormat("yyyy-MM-dd hh-mm");
 //		Date dt3 = df.parse(time);                                      
 
-		String time = "1990-01-20 05-33";                              
+		String time = "1981-01-01 00-33-00";                              
 		Date dt4 = df.parse(time);                                      
 
-		time = "1984-07-20 05-33";                                                
+		time = "1985-01-01 00-33-00";                                                
 		Date dt5 = df.parse(time);                                      
 
-		time = "1988-07-20 05-33";                              
+		time = "1988-07-20 05-33-00";                              
 		Date dt6 = df.parse(time);                                      
-		
 		
 		
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
@@ -62,7 +61,7 @@ public class TestDataTimeSeries {
 //		values.add(new DataPoint(dt3, -14));
 		values.add(new DataPoint(dt4, 5));
 		values.add(new DataPoint(dt5, 8));
-		values.add(new DataPoint(dt6, 14));
+//		values.add(new DataPoint(dt6, 14));
 
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
@@ -73,7 +72,7 @@ public class TestDataTimeSeries {
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, t2, t3), "Y Axis");
 		
-		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+		SimpleDateFormat yearFormat = new SimpleDateFormat("yy");
 		SimpleDateFormat monthFormat = new SimpleDateFormat("");
 		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new Line(Color.GRAY, false, 6), yearFormat);
 		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 1), monthFormat);
