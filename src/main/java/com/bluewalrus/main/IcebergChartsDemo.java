@@ -22,10 +22,11 @@ import com.bluewalrus.main.test.TestDataBubble;
 import com.bluewalrus.main.test.TestDataLineScatter;
 import com.bluewalrus.main.test.TestDataPie;
 import com.bluewalrus.main.test.TestDataPieBubble;
+import com.bluewalrus.main.test.TestDataTimeSeries;
 
 public class IcebergChartsDemo extends JFrame {
 
-    public IcebergChartsDemo() {
+    public IcebergChartsDemo() throws Exception {
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
@@ -156,11 +157,15 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
         
+        p = createTabbedPane(tabbedPaneLine, "Time Series 1 ");
+        chart = TestDataTimeSeries.getTestData_TimeSeries();
+        charts.add(chart);
+        p.add(chart);
         
 
 
 
-        tabbedPane.add("Scatter Line Charts", tabbedPaneLine);
+        tabbedPane.add("General XY Charts", tabbedPaneLine);
         tabbedPane.add("Bar Charts", tabbedPaneBar);
         tabbedPane.add("Pie Charts", tabbedPanePie);
         
@@ -215,7 +220,7 @@ public class IcebergChartsDemo extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         IcebergChartsDemo frame = new IcebergChartsDemo();
         frame.setVisible(true);
     }

@@ -33,7 +33,7 @@ public class DatePlotter extends AbstractPlotter {
         double yfactor = ((double) chart.heightChart / (double) (yMax - yMin));
 
         XYFactor xyFactor = new XYFactor(xFactor, yfactor);
-        xyFactor.xZeroOffsetInPixel = (double) ((-xMin / diffX) * chart.widthChart);
+        xyFactor.xZeroOffsetInPixel = (double) ((-(double) xMin / (double) diffX) * chart.widthChart);
         
         xyFactor.yZeroOffsetInPixel = (double) ((-yMin / (yMax - yMin)) * chart.heightChart);
 
