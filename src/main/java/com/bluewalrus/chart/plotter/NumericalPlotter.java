@@ -24,8 +24,6 @@ import com.bluewalrus.renderer.XYFactor;
  * 
  * Line OR POINT renderer. Sort of a utilities class.
  * 
- * TODO refactor. this should belong in the chart class.
- *
  * @author Oliver Watkins
  *
  */

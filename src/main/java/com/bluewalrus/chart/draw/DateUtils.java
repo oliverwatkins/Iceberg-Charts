@@ -30,9 +30,7 @@ public class DateUtils {
 			cal2.set(Calendar.MILLISECOND, 0);
 			
 			return cal2.getTimeInMillis() - cal.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
-		}
-		
-		if (type == Type.MONTH) {
+		}else if (type == Type.MONTH) {
 			
 			/**
 			 * Given a date "dateStart", find the milliseconds to the next month (ie. YYYY-01-01-00:00)
@@ -52,10 +50,12 @@ public class DateUtils {
 //			System.out.println("cal1.getTimeInMillis() " + new Date(cal.getTimeInMillis()));
 			
 			return cal2.getTimeInMillis() - cal.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
+		}else {
+			throw new RuntimeException("No type yet " + type);
 		}
 		
 		
-		return -999;
+//		return -999;
 	}
 	
 	

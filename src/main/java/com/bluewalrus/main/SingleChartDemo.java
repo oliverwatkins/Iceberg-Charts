@@ -20,7 +20,7 @@ public class SingleChartDemo extends JFrame {
 //        Chart chart2 = TestDataBar.getTestData_Bar2Y();
 
         
-        Chart chart2 = TestDataTimeSeries.getTestData_TimeSeries();
+        Chart chart2 = TestDataTimeSeries.getTestData_TimeSeries2();
         
         
 //        Chart chart2 = TestDataLineScatter.getTestData_SomeKindOfXY();

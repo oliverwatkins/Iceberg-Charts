@@ -45,10 +45,10 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		if (this.timeInt1.isValid() && this.timeInt1.isActive()) {
 			drawIntervalTickAndLabels(this.timeInt1, g, chart, true);
 		}
-		if (this.timeInt2.isValid() && this.timeInt2.isActive()) {
+		if (this.timeInt2 != null && this.timeInt2.isValid() && this.timeInt2.isActive()) {
 			drawIntervalTickAndLabels(this.timeInt2, g, chart, true);
 		}
-		if (this.timeInt3.isValid() && this.timeInt3.isActive()) {
+		if (this.timeInt3 != null && this.timeInt3.isValid() && this.timeInt3.isActive()) {
 			drawIntervalTickAndLabels(this.timeInt3, g, chart, false);
 		}
 	}

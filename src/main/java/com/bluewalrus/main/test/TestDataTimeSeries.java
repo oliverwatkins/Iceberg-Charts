@@ -30,21 +30,9 @@ public class TestDataTimeSeries {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
 		Date startDate = df.parse("1984-01-01 01-00-00"); 
-		Date endDate = df.parse("2015-01-20 05-33-00");
+		Date endDate = df.parse("2002-01-20 05-33-00");
 		
 		
-//		String time = "2009-07-20 05-33";                              
-//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm");
-//		Date dt = df.parse(time);                                      
-//		
-//		time = "2009-07-20 05-33";                              
-//		df = new SimpleDateFormat("yyyy-MM-dd hh-mm");
-//		Date dt2 = df.parse(time);                                      
-//
-//		time = "2010-07-20 05-33";                                                          
-//		df = new SimpleDateFormat("yyyy-MM-dd hh-mm");
-//		Date dt3 = df.parse(time);                                      
-
 		String time = "1985-01-01 00-33-00";                              
 		Date dt4 = df.parse(time);                                      
 
@@ -80,6 +68,67 @@ public class TestDataTimeSeries {
 //		
 		
 		XAxis xAxis = new XAxis(new TimeSeriesAxisDrawX(startDate, endDate, timeInt1, timeInt2, timeInt3), "Time Series"); //timeInt2, timeInt3), "Time Series");
+
+		xySeriesList.add(series);
+
+		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
+
+		lineChart.setSize(1000, 500);
+		lineChart.rightOffset = 200;
+
+		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+		lineChart.setTitle("Some Kind of XY Chart");
+
+		return lineChart;
+	}
+	
+	
+	
+	public static Chart getTestData_TimeSeries2() throws ParseException {
+
+		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
+		
+		Date startDate = df.parse("2001-01-01 01-00-00"); 
+		Date endDate = df.parse("2002-01-20 05-33-00");
+		
+		
+		String time = "2001-03-01 00-33-00";                              
+		Date dt4 = df.parse(time);                                      
+
+		time = "2001-04-01 00-33-00";                                                
+		Date dt5 = df.parse(time);                                      
+
+		time = "2001-07-20 05-33-00";                              
+		Date dt6 = df.parse(time);                                      
+		
+		
+		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+//		values.add(new DataPoint(dt, -30));
+//		values.add(new DataPoint(dt2, -11));
+//		values.add(new DataPoint(dt3, -14));
+		values.add(new DataPoint(dt4, 5));
+		values.add(new DataPoint(dt5, 8));
+		values.add(new DataPoint(dt6, 14));
+
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
+		series.dataPoints = values;
+
+		NumericalInterval t1 = new NumericalInterval(8, 10.0, new Line(Color.GRAY, false, 1));
+//		NumericalInterval t2 = new NumericalInterval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
+//		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
+
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, null, null), "Y Axis");
+		
+//		SimpleDateFormat yearFormat = new SimpleDateFormat("MMM");
+		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
+//		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new Line(Color.GRAY, false, 6), yearFormat);
+		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 1), monthFormat);
+//		TimeInterval timeInt3 = new TimeInterval(1, TimeInterval.Type.DAY, new Line(Color.GRAY, false, 1));
+//		
+		
+		XAxis xAxis = new XAxis(new TimeSeriesAxisDrawX(startDate, endDate, timeInt2, null, null), "Time Series"); //timeInt2, timeInt3), "Time Series");
 
 		xySeriesList.add(series);
 
