@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.renderer.XYFactor;
@@ -106,6 +107,12 @@ public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 	protected double getMultiplicationFactor(XYChart chart) {
 		// ???
 		return 0;
+	}
+
+	@Override
+	protected void drawGridLine(AbstractInterval interval, Graphics2D g,
+			XYChart chart) {
+		// TODO Auto-generated method stub
 	}
 
 

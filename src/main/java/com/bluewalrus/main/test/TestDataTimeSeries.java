@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.bluewalrus.bar.GridFill;
+import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
@@ -54,17 +56,18 @@ public class TestDataTimeSeries {
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
-		NumericalInterval t1 = new NumericalInterval(6, 50.0, new Line(Color.GRAY, false, 1));
-		NumericalInterval t2 = new NumericalInterval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1 = new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2 = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
 		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, t2, t3), "Y Axis");
 		
 		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
 		SimpleDateFormat monthFormat = new SimpleDateFormat("");
-		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new Line(Color.GRAY, false, 6), yearFormat);
-		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 1), monthFormat);
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.NONE, new Line(Color.GRAY, false, 1));
+		
+		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new GridLine(Color.GRAY, false, 6), yearFormat);
+		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 3), monthFormat);
+		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.NONE, new GridLine(Color.GRAY, false, 1));
 //		
 		
 		XAxis xAxis = new XAxis(new TimeSeriesAxisDrawX(startDate, endDate, timeInt1, timeInt2, timeInt3), "Time Series"); //timeInt2, timeInt3), "Time Series");
@@ -90,8 +93,8 @@ public class TestDataTimeSeries {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
-		Date startDate = df.parse("2001-05-01 01-00-00"); 
-		Date endDate = df.parse("2001-08-20 05-33-00");
+		Date startDate = df.parse("2001-05-16 01-00-00"); 
+		Date endDate = df.parse("2001-07-12 05-33-00");
 		
 		
 		String time = "2001-03-01 00-33-00";                              
@@ -105,9 +108,6 @@ public class TestDataTimeSeries {
 		
 		
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-//		values.add(new DataPoint(dt, -30));
-//		values.add(new DataPoint(dt2, -11));
-//		values.add(new DataPoint(dt3, -14));
 		values.add(new DataPoint(dt4, 5));
 		values.add(new DataPoint(dt5, 8));
 		values.add(new DataPoint(dt6, 14));
@@ -115,22 +115,24 @@ public class TestDataTimeSeries {
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
-		NumericalInterval t1 = new NumericalInterval(8, 10.0, new Line(Color.GRAY, false, 1));
-//		NumericalInterval t2 = new NumericalInterval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
-//		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
+		NumericalInterval t1 = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, null, null), "Y Axis");
 		
-//		SimpleDateFormat yearFormat = new SimpleDateFormat("MMM");
 		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
 		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
-		
-//		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new Line(Color.GRAY, false, 6), yearFormat);
-		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 1), monthFormat);
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new Line(Color.GRAY, false, 1), dayFormat);
+
+		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
+		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1, new GridFill(Color.RED, Color.ORANGE)), dayFormat);
 //		
 		
-		XAxis xAxis = new XAxis(new TimeSeriesAxisDrawX(startDate, endDate, timeInt2, timeInt3, null), "Time Series"); //timeInt2, timeInt3), "Time Series");
+		XAxis xAxis = new XAxis(
+				new TimeSeriesAxisDrawX(
+						startDate, 
+						endDate, 
+						timeInt2, 
+						timeInt3, 
+						null), "Time Series"); 
 
 		xySeriesList.add(series);
 

@@ -4,14 +4,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-
-import javax.xml.stream.events.StartDocument;
 
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.TimeInterval.Type;
@@ -28,11 +26,11 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 	public void drawAll(Graphics2D g2d, XYChart xyChart, ArrayList<XYDataSeries> data) {
 		
 		//NOTE! data is ignored here. It's only used for enumeration
-
 		
 		drawAllIntervalTickAndLabels(g2d, xyChart);
 		
-//		drawGridLines(g2d, xyChart);
+		drawGridLines(g2d, xyChart);
+		
 	}
 	
 	/**
@@ -42,32 +40,18 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 	 */
 	public void drawAllIntervalTickAndLabels(Graphics g, XYChart chart) {
 		
-		if (this.timeInt1.isValid() && this.timeInt1.isActive()) {
-			drawIntervalTickAndLabels(this.timeInt1, g, chart, true);
+		if (this.interval1.isValid() && this.interval1.isActive()) {
+			drawIntervalTickAndLabels((TimeInterval)this.interval1, g, chart, true);
 		}
-		if (this.timeInt2 != null && this.timeInt2.isValid() && this.timeInt2.isActive()) {
-			drawIntervalTickAndLabels(this.timeInt2, g, chart, true);
+		if (this.interval2 != null && this.interval2.isValid() && this.interval2.isActive()) {
+			drawIntervalTickAndLabels((TimeInterval)this.interval2, g, chart, true);
 		}
-		if (this.timeInt3 != null && this.timeInt3.isValid() && this.timeInt3.isActive()) {
-			drawIntervalTickAndLabels(this.timeInt3, g, chart, false);
+		if (this.interval3 != null && this.interval3.isValid() && this.interval3.isActive()) {
+			drawIntervalTickAndLabels((TimeInterval)this.interval3, g, chart, false);
 		}
 	}
 	
-	protected void drawIntervalTick(TimeInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
 
-		g.setColor(chart.xAxis.axisColor);
-		
-		double factor = getMultiplicationFactor(chart); 
-		
-		//to first increment
-		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
-		
-		double pixFromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
-		
-		XAxisDrawUtil.drawIntervalTick(interval, g, chart, pixFromLeft, chart.xAxis);
-
-}
-	
 	
 	protected void drawIntervalLabel(TimeInterval interval, Graphics g, 
 			XYChart chart, int incrementNumber, double incrementInPixel) {
@@ -115,7 +99,10 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		/**
 		 * Draw X Label
 		 */
-		XAxisDrawUtil.drawXLabel(g, chart, pixFromLeft, xLabel, chart.xAxis, 0);
+		
+		
+		
+		XAxisDrawUtil.drawXLabel(g, chart, pixFromLeft, xLabel, chart.xAxis, interval.level);
 
 	}
 	
@@ -136,11 +123,13 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 	 * @param factor
 	 * @return
 	 */
-	protected double getToFirstIntervalValueFromMinInPixels(TimeInterval increment,
+	protected double getToFirstIntervalValueFromMinInPixels(AbstractInterval increment,
 			double factor) {
 
 		
-		long ms = DateUtils.getMsToNearestDataType(this.dateStart, increment.type);
+		TimeInterval inter = (TimeInterval) increment;
+		
+		long ms = DateUtils.getMsToNearestDataType(this.dateStart, inter.type);
 
 		double pix = (ms) * factor; //convert to pixels
 		
@@ -168,6 +157,54 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 	protected double getMultiplicationFactor(XYChart chart) {
     	return ((double) chart.widthChart / (double) (dateEnd.getTime() - dateStart.getTime()));
 	}
+
+
+	protected void drawIntervalTick(TimeInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
+
+		g.setColor(chart.xAxis.axisColor);
+		
+		double factor = getMultiplicationFactor(chart); 
+		
+		//to first increment
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
+		
+		double pixFromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
+		
+		XAxisDrawUtil.drawIntervalTick(interval, g, chart, pixFromLeft, chart.xAxis);
+	}
+
+//	@Override
+    public void drawGridLine(AbstractInterval interval, Graphics2D g, XYChart chart) {
+
+		double factor = getMultiplicationFactor(chart); 
+    	
+        //to first increment
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
+
+    	int incrementNo = getIncrementNumber(interval);
+    	
+        double incrementInPixel = getIncrementInPixels(interval, chart);
+
+        g.setColor(interval.graphLine.color);
+
+        for (int i = 0; i < incrementNo; i++) {
+        	
+            double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
+            
+            /**
+             * Draw Grid line
+             */
+            XAxisDrawUtil.drawGridLine(interval, g, chart, fromLeft);
+            
+            if (interval.graphLine.gridFill != null)
+            	XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, incrementNo);
+            
+            
+        }
+    }
+
+
+
 
 
 }

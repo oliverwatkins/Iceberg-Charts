@@ -1,22 +1,22 @@
 package com.bluewalrus.chart.draw;
 
 import java.awt.Graphics;
-import java.util.Calendar;
+import java.awt.Graphics2D;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
-import com.bluewalrus.chart.axis.TimeInterval.Type;
 
 public abstract class TimeSeriesAxisDraw extends AxisDraw{
 
 	
 	public Date dateStart;
 	public Date dateEnd;
-	public TimeInterval timeInt1;
-	public TimeInterval timeInt2; 
-	public TimeInterval timeInt3;
+	
+//	public TimeInterval timeInt1;
+//	public TimeInterval timeInt2; 
+//	public TimeInterval timeInt3;
 	
 	
 	public TimeSeriesAxisDraw(Date dateStart, Date dateEnd, TimeInterval timeInt1,
@@ -24,9 +24,23 @@ public abstract class TimeSeriesAxisDraw extends AxisDraw{
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		
-		this.timeInt1 = timeInt1;
-		this.timeInt2 = timeInt2;
-		this.timeInt3 = timeInt3;
+//		this.timeInt1 = timeInt1;
+//		this.timeInt2 = timeInt2;
+//		this.timeInt3 = timeInt3;
+
+		this.interval1 = timeInt1;
+		this.interval2 = timeInt2;
+		this.interval3 = timeInt3;
+
+		
+//		this.timeInt1.level = 1;
+//		this.timeInt2.level = 2;
+//		this.timeInt3.level = 3;
+		
+		
+//		this.timeInt2.level = 2;
+//		this.timeInt3.level = 3;
+
 	}
 	
 	
@@ -48,24 +62,10 @@ public abstract class TimeSeriesAxisDraw extends AxisDraw{
 	 */
 	protected void drawIntervalTickAndLabels(TimeInterval interval, Graphics g,
 			XYChart chart, boolean showLabel) {
-
-
-		TimeInterval.Type t = interval.getInterval();
 		
-		long increment = DateUtils.getMsForType(t); // :(
-
+		int incrementNo = getIncrementNumber(interval);
 		
-		/**
-		 * TODO this code isn't very correct. The method getMsForType is incorrect for year and month because they are both variable
-		 * and this could lead to the incrementNo below being incorrectly calculated. incrementNo could be out by one.
-		 */
-		int incrementNo = (int) ((dateEnd.getTime() - dateStart.getTime()) / increment); //shit!!
-
-		System.out.println("incrementNo " + incrementNo);
-		
-		double factor = this.getMultiplicationFactor(chart);
-		
-		double incrementInPixel = (double) (increment * factor);
+		double incrementInPixel = getIncrementInPixels(interval, chart); //(double) (increment * factor);
 
 		for (int i = 0; i < (incrementNo + 1); i++) {
 			
@@ -75,6 +75,46 @@ public abstract class TimeSeriesAxisDraw extends AxisDraw{
 				drawIntervalLabel(interval, g, chart, i, incrementInPixel);
 		}
 	}
+	
+	
+	protected double getIncrementInPixels(AbstractInterval interval, XYChart chart) {
+		
+		TimeInterval inter = (TimeInterval) interval;
+		
+		TimeInterval.Type t = inter.getInterval();
+//		
+		long increment = DateUtils.getMsForType(t); // :(
+		
+		double factor = this.getMultiplicationFactor(chart);
+		
+		double incrementInPixel = (double) (increment * factor);
+		
+		return incrementInPixel;
+		
+	}
+		
+	
+	protected int getIncrementNumber(AbstractInterval interval) {
+		
+		
+		TimeInterval inter = (TimeInterval) interval;
+		
+		TimeInterval.Type t = inter.getInterval();
+		
+		long increment = DateUtils.getMsForType(t); // :(
+
+		
+		/**
+		 * TODO this code isn't very correct. The method getMsForType is incorrect for year and month because they are both variable
+		 * and this could lead to the incrementNo below being incorrectly calculated. incrementNo could be out by one.
+		 */
+		int incrementNo = (int) ((dateEnd.getTime() - dateStart.getTime()) / increment); //shit!!
+		
+		return incrementNo;
+	}
+	
+	
+	
 	
 	/**
 	 * Draw the label next to the tick
@@ -101,6 +141,10 @@ public abstract class TimeSeriesAxisDraw extends AxisDraw{
 
 	protected abstract void drawIntervalTick(TimeInterval interval, Graphics g,
 			XYChart chart, int i, double incrementInPixel);
+	
+	
+//	public abstract void drawGridLine(TimeInterval interval, Graphics2D g, XYChart chart);
+	
 	
 	
 	

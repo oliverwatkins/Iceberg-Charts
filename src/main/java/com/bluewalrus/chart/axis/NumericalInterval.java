@@ -8,7 +8,7 @@ package com.bluewalrus.chart.axis;
 
 import java.io.Serializable;
 
-import com.bluewalrus.bar.Line;
+import com.bluewalrus.bar.GridLine;
 
 /**
  * Describes a graphical interval along an axis. 
@@ -33,16 +33,17 @@ public class NumericalInterval extends AbstractInterval implements Serializable{
 
     
 	public NumericalInterval(int lineLength, Double increment) {
+		
         this.lineLength = lineLength;
         this.increment = increment;
     }
     
-    public NumericalInterval(int lineLength, Double increment, Line graphLine) {
+    public NumericalInterval(int lineLength, Double increment, GridLine graphLine) {
+		
         this.lineLength = lineLength;
         this.increment = increment;
         this.graphLine = graphLine;
     }
-    
     
     
     public Double getInterval() {
@@ -64,7 +65,7 @@ public class NumericalInterval extends AbstractInterval implements Serializable{
      * @return
      */
 	public boolean isValid() {
-		if (increment > 0)
+		if (increment != null && increment > 0)
 			return true;
 		return false;
 	}

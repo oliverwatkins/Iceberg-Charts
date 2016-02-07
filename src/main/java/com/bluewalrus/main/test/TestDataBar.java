@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.GradiantRule;
+import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.Utils;
 import com.bluewalrus.bar.XYDataSeries;
@@ -40,7 +41,7 @@ public class TestDataBar {
         ArrayList<Color> colors = Utils.makeGradients(Color.ORANGE, Color.CYAN, 5);
         
         NumericalInterval tick1 = new NumericalInterval(20, 20.0, 
-        		new Line(Color.GRAY,true,1)); //grid line
+        		new GridLine(Color.GRAY,true,1)); //grid line
         
         NumericalInterval tick2 = new NumericalInterval(10, 10.0, null); //no grid line
         NumericalInterval tick3 = new NumericalInterval(5, 5.0, null);
@@ -76,8 +77,7 @@ public class TestDataBar {
         
         ArrayList<Color> colors = Utils.makeGradients(Color.ORANGE, Color.CYAN, 5);
         
-        NumericalInterval tick1 = new NumericalInterval(20, 20.0, 
-        		new Line(Color.GRAY,true,1)); //grid line
+        NumericalInterval tick1 = new NumericalInterval(20, 20.0, new GridLine(Color.GRAY,true,1)); //grid line
         
         NumericalInterval tick2 = new NumericalInterval(10, 10.0, null); //no grid line
         NumericalInterval tick3 = new NumericalInterval(5, 5.0, null);
@@ -383,7 +383,7 @@ public class TestDataBar {
     
     public static Chart getTestData_BarCanBeXY() {
         
-        NumericalInterval tick1 = new NumericalInterval(20, 5.0, new Line(Color.GRAY,true,1)); //grid line
+        NumericalInterval tick1 = new NumericalInterval(20, 5.0, new GridLine(Color.GRAY,true,1)); //grid line
         NumericalInterval tick2 = new NumericalInterval(10, 2.0, null); //no grid line
 //        Interval tick3 = new Interval(5, 5.0, null);
         

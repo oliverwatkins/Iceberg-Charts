@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
@@ -80,15 +81,15 @@ public class TestDataLineScatter {
 				new Line(Color.PINK), "Orange");
 		series3.dataPoints = values3;
 
-		NumericalInterval t1 = new NumericalInterval(6, 50.0, new Line(Color.GRAY, false, 1));
-		NumericalInterval t2 = new NumericalInterval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1 = new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2 = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
 		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, t2, t3), "Y Axis");
 
-		NumericalInterval t1x = new NumericalInterval(6, 20.0, new Line(Color.GRAY, false, 1));
+		NumericalInterval t1x = new NumericalInterval(6, 20.0, new GridLine(Color.GRAY, false, 1));
 		NumericalInterval t2x = new NumericalInterval(3, 10.0,
-				new Line(Color.LIGHT_GRAY, true, 1));
+				new GridLine(Color.LIGHT_GRAY, true, 1));
 
 		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(17.0, 70.0, t1x, t2x, null), "X Value");
 
@@ -311,10 +312,9 @@ public class TestDataLineScatter {
 				new Line(Color.PINK), "e^x");
 		series3.dataPoints = values3;
 
-		NumericalInterval t1x = new NumericalInterval(6, 10.0, new Line(Color.GRAY, false, 1));
-		NumericalInterval t2x = new NumericalInterval(3, 5.0,
-				new Line(Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3x = new NumericalInterval(1, 1.0, new Line(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1x = new NumericalInterval(6, 10.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2x = new NumericalInterval(3, 5.0, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t3x = new NumericalInterval(1, 1.0, new GridLine(Color.LIGHT_GRAY, true, 1));
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-10.0, 10.0, t1x, t2x, t3x), "Y Axis");
 

@@ -6,13 +6,12 @@ import java.awt.Graphics2D;
 
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
 
 public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
-	public NumericalInterval interval1 = new NumericalInterval(0, 0.0);
-	public NumericalInterval interval2 = new NumericalInterval(0, 0.0);
-	public NumericalInterval interval3 = new NumericalInterval(0, 0.0);
+
 	
 	public Line zeroLine = new Line(Color.GRAY, false, 1);
 	
@@ -39,18 +38,9 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
 	public LinearNumericalAxisDraw(Double minValue, Double maxValue, Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements) {
 
-		this.maxValue = maxValue;
-		this.minValue = minValue;
-
-		if (primaryIncrements != null) {
-			this.interval1 = new NumericalInterval(8, primaryIncrements);
-		}
-		if (secondaryIncrements != null) {
-			this.interval2 = new NumericalInterval(4, secondaryIncrements);
-		}
-		if (tertiaryIncrements != null) {
-			this.interval3 = new NumericalInterval(2, tertiaryIncrements);
-		}
+		this(minValue, maxValue, new NumericalInterval(8, primaryIncrements), 
+								new NumericalInterval(4, secondaryIncrements), 
+								new NumericalInterval(2, tertiaryIncrements));
 	}
 
 	public LinearNumericalAxisDraw(Double minValue, Double maxValue, NumericalInterval interval1, NumericalInterval interval2, NumericalInterval interval3) {
@@ -80,7 +70,9 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
 
 
-	public abstract void drawGridLine(NumericalInterval interval, Graphics2D g, XYChart chart);
+//	public abstract void drawGridLine(NumericalInterval interval, Graphics2D g, XYChart chart);
+	
+	
 
 	public abstract void drawGridLineOnZero(Graphics2D g, XYChart chart);
 	
@@ -130,22 +122,7 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 	
 	
 	
-	public void drawGridLines(Graphics2D g, XYChart chart) {
-		
-		if (interval1 != null && interval1.getInterval() != 0
-			&& interval1.graphLine != null) {
-			this.drawGridLine(interval1, g, chart);
-		}
-		if (interval2 != null && interval2.getInterval() != 0
-			&& interval2.graphLine != null) {
-			this.drawGridLine(interval2, g, chart);
-		}
-		if (interval3 != null && interval3.getInterval() != 0
-			&& interval3.graphLine != null) {
-			this.drawGridLine(interval3, g, chart);
-		}
-		
-	}
+
 	
 	
 	/**
@@ -163,11 +140,13 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 	 * @param chart
 	 * @param showLabel
 	 */
-	protected void drawIntervalTickAndLabels(NumericalInterval interval, Graphics g,
+	protected void drawIntervalTickAndLabels(AbstractInterval interval, Graphics g,
 			XYChart chart, boolean showLabel) {
 
+		NumericalInterval inter = (NumericalInterval)interval;
+		
 
-		Double increment = interval.getInterval();
+		Double increment = inter.getInterval();
 
 		int incrementNo = (int) ((maxValue - minValue) / increment);
 
@@ -177,10 +156,10 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
 		for (int i = 0; i < (incrementNo + 1); i++) {
 			
-			drawIntervalTick(interval, g, chart, i, incrementInPixel);
+			drawIntervalTick(inter, g, chart, i, incrementInPixel);
 
 			if (showLabel)
-				drawIntervalLabel(interval, g, chart, i, incrementInPixel);
+				drawIntervalLabel(inter, g, chart, i, incrementInPixel);
 		}
 
 	}

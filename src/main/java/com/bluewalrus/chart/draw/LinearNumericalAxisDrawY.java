@@ -8,6 +8,7 @@ import com.bluewalrus.bar.Utils;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
 
 public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
@@ -55,18 +56,28 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 		
 	}
 
+//	@Override
+//	protected void drawGridLine(AbstractInterval interval, Graphics2D g,
+//			XYChart chart) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+	
 
-	public void drawGridLine(NumericalInterval interval, Graphics2D g, XYChart chart) {
+	public void drawGridLine(AbstractInterval interval, Graphics2D g, XYChart chart) {
 
-        int incrementNo = (int) ((maxValue - minValue) / interval.getInterval());
+		
+		NumericalInterval inter = (NumericalInterval) interval;
+		
+        int incrementNo = (int) ((maxValue - minValue) / inter.getInterval());
 
         //divide height of chart by actual height of chart to get the multiplaying factor
         double factor = getMultiplicationFactor(chart); 
         
         //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(inter.getInterval(), factor);
     	
-        double incrementInPixel = (double) (interval.getInterval() * factor);
+        double incrementInPixel = (double) (inter.getInterval() * factor);
 
         for (int i = 0; i < incrementNo; i++) {
 
@@ -75,7 +86,7 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
         	/**
         	 * Draw grid line
         	 */
-            YAxisDrawUtil.drawGridLine(interval, g, chart, fromTop);
+            YAxisDrawUtil.drawGridLine(inter, g, chart, fromTop);
         }
     }
 
@@ -164,5 +175,7 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
     protected double getMultiplicationFactor(XYChart chart) {
     	return ((double) chart.heightChart / (double) (maxValue - minValue));
 	}
+
+
 
 }

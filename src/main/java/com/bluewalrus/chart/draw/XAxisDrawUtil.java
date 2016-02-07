@@ -5,9 +5,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
-import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 
 /**
@@ -31,13 +31,26 @@ public class XAxisDrawUtil {
     
     
 	
-	public static void drawGridLine(NumericalInterval interval, Graphics2D g, Chart chart,
+	public static void drawGridLine(AbstractInterval interval, Graphics2D g, Chart chart,
 			double fromLeft) {
 		
 		int y1 = chart.topOffset + chart.heightChart;
 		int y2 = chart.topOffset;
 
 		interval.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
+	}
+	
+	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
+			XYChart chart, double fromLeft, int incrementNo) {
+		
+		throw new RuntimeException("TODO");
+		
+
+//		if (incrementNo / 2)
+//		interval.graphLine.gridFill
+		
+		// TODO Auto-generated method stub
+		
 	}
 	
 	/**
@@ -72,7 +85,7 @@ public class XAxisDrawUtil {
     
     
 	public static void drawXLabel(Graphics g, Chart chart, double fromLeft,
-			String xLabel, Axis axis, int indendation) {
+			String xLabel, Axis axis, int intervalLevel) {
 		
         FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
         int widthStr = fm.stringWidth(xLabel);
@@ -81,15 +94,19 @@ public class XAxisDrawUtil {
         
         int yPos = chart.topOffset + chart.heightChart + axis.tickLabelOffset;
 
-        if (indendation == 0) {
+        if (intervalLevel == 1) {
         	
-        }else if (indendation == -1) {
+        }else if (intervalLevel == 2) {
+        	yPos = yPos -5;
+        }else if (intervalLevel == 3) {
         	yPos = yPos -10;
-        }else if (indendation == 1) {
-        	yPos = yPos +10;
         }
         
         g.setFont(axis.axisCatFont);
         g.drawString(xLabel, (int)fromLeft, yPos);
 	}
+
+
+
+
 }

@@ -92,13 +92,18 @@ public class DateUtils {
 	}
 	
 	
+	/**
+	 * TODO this code isn't very correct. The method getMsForType is incorrect for year and month because they are both variable
+	 * and this could lead to the incrementNo below being incorrectly calculated. incrementNo could be out by one.
+	 */
+	
 	public static long getMsForType(Type i) {
 		
 		switch (i) {
 		case MONTH:
 			return TimeUnit.DAYS.toMillis(30); //TODO 30, 31, 28, 29
 		case YEAR:
-			return TimeUnit.DAYS.toMillis(365); //TODO wrong!!!
+			return TimeUnit.DAYS.toMillis(365); //TODO wrong!!! leap years??
 		case DAY:
 			return TimeUnit.DAYS.toMillis(1);     // 1 day to milliseconds.
 		case HOUR:

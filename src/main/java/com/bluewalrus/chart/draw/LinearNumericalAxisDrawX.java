@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
 
 public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
@@ -77,10 +78,14 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
         
         double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel,incrementNumber);
         
+        
+//        if (interval.level == 1)
+        	
+        	
         /**
          * Draw X Label
-         */
-        XAxisDrawUtil.drawXLabel(g, chart, fromLeft, xLabel, chart.xAxis);
+         */ 
+        XAxisDrawUtil.drawXLabel(g, chart, fromLeft, xLabel, chart.xAxis, 0);
 	}
 	
 	
@@ -100,17 +105,18 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 		
 	}
 	
+	
     @Override
-    public void drawGridLine(NumericalInterval interval, Graphics2D g, XYChart chart) {
+    public void drawGridLine(AbstractInterval interval, Graphics2D g, XYChart chart) {
 
 		double factor = getMultiplicationFactor(chart); 
     	
         //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(((NumericalInterval)interval).getInterval(), factor);
 
-        int incrementNo = (int) (maxValue / interval.getInterval());
+        int incrementNo = (int) (maxValue / ((NumericalInterval)interval).getInterval());
         
-        double incrementInPixel = (double) (interval.getInterval() * factor);
+        double incrementInPixel = (double) (((NumericalInterval)interval).getInterval() * factor);
 
         g.setColor(interval.graphLine.color);
 
@@ -150,4 +156,6 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
     	return ((double) chart.widthChart / (double) (maxValue - minValue));
 
 	}
+
+
 }
