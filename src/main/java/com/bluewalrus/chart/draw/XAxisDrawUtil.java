@@ -72,7 +72,7 @@ public class XAxisDrawUtil {
     
     
 	public static void drawXLabel(Graphics g, Chart chart, double fromLeft,
-			String xLabel, Axis axis) {
+			String xLabel, Axis axis, int indendation) {
 		
         FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
         int widthStr = fm.stringWidth(xLabel);
@@ -81,6 +81,14 @@ public class XAxisDrawUtil {
         
         int yPos = chart.topOffset + chart.heightChart + axis.tickLabelOffset;
 
+        if (indendation == 0) {
+        	
+        }else if (indendation == -1) {
+        	yPos = yPos -10;
+        }else if (indendation == 1) {
+        	yPos = yPos +10;
+        }
+        
         g.setFont(axis.axisCatFont);
         g.drawString(xLabel, (int)fromLeft, yPos);
 	}

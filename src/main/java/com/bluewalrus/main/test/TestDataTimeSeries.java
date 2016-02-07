@@ -90,8 +90,8 @@ public class TestDataTimeSeries {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
-		Date startDate = df.parse("2001-01-01 01-00-00"); 
-		Date endDate = df.parse("2002-01-20 05-33-00");
+		Date startDate = df.parse("2001-05-01 01-00-00"); 
+		Date endDate = df.parse("2001-08-20 05-33-00");
 		
 		
 		String time = "2001-03-01 00-33-00";                              
@@ -123,12 +123,14 @@ public class TestDataTimeSeries {
 		
 //		SimpleDateFormat yearFormat = new SimpleDateFormat("MMM");
 		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
+		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
+		
 //		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new Line(Color.GRAY, false, 6), yearFormat);
 		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 1), monthFormat);
-//		TimeInterval timeInt3 = new TimeInterval(1, TimeInterval.Type.DAY, new Line(Color.GRAY, false, 1));
+		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new Line(Color.GRAY, false, 1), dayFormat);
 //		
 		
-		XAxis xAxis = new XAxis(new TimeSeriesAxisDrawX(startDate, endDate, timeInt2, null, null), "Time Series"); //timeInt2, timeInt3), "Time Series");
+		XAxis xAxis = new XAxis(new TimeSeriesAxisDrawX(startDate, endDate, timeInt2, timeInt3, null), "Time Series"); //timeInt2, timeInt3), "Time Series");
 
 		xySeriesList.add(series);
 
@@ -142,4 +144,18 @@ public class TestDataTimeSeries {
 
 		return lineChart;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

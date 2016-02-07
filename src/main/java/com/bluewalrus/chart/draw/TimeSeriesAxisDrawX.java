@@ -87,12 +87,16 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		long date = dateStart.getTime() + ms; 
 		
 		long date2 = -888;
-		if (interval.type == Type.YEAR) {
-			
-			date2 = DateUtils.addYear(date, incrementNumber);
 		
+		if (interval.type == Type.YEAR) {
+			date2 = DateUtils.addYear(date, incrementNumber);
 		}else if (interval.type == Type.MONTH) {
 			date2 = DateUtils.addMonth(date, incrementNumber);
+		}else if (interval.type == Type.DAY) {
+			date2 = DateUtils.addDay(date, incrementNumber);
+		}else {
+			
+			throw new RuntimeException("Unknown interval type " + interval.type);
 		}
 		
 		
@@ -111,7 +115,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		/**
 		 * Draw X Label
 		 */
-		XAxisDrawUtil.drawXLabel(g, chart, pixFromLeft, xLabel, chart.xAxis);
+		XAxisDrawUtil.drawXLabel(g, chart, pixFromLeft, xLabel, chart.xAxis, 0);
 
 	}
 	

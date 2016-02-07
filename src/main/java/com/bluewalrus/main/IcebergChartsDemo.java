@@ -162,6 +162,10 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
         
+        p = createTabbedPane(tabbedPaneLine, "Time Series 2 ");
+        chart = TestDataTimeSeries.getTestData_TimeSeries2();
+        charts.add(chart);
+        p.add(chart);
 
 
 

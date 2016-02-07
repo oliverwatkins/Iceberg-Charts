@@ -11,7 +11,7 @@ public class DateUtils {
 	
 	public static long getMsToNearestDataType(Date dateStart, Type type) {
 		
-		Calendar cal = Calendar.getInstance();
+		Calendar calDateStart = Calendar.getInstance();
 
 		if (type == Type.YEAR) {
 			
@@ -20,16 +20,16 @@ public class DateUtils {
 			 */
 			Calendar cal2 = Calendar.getInstance();
 			
-			cal.setTime(dateStart);
+			calDateStart.setTime(dateStart);
 			
-			cal2.set(Calendar.YEAR, cal.get(Calendar.YEAR) + 1);
+			cal2.set(Calendar.YEAR, calDateStart.get(Calendar.YEAR) + 1);
 			cal2.set(Calendar.DAY_OF_YEAR, 1);
 			cal2.set(Calendar.HOUR_OF_DAY, 0);
 			cal2.set(Calendar.MINUTE, 0);
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
 			
-			return cal2.getTimeInMillis() - cal.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
+			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
 		}else if (type == Type.MONTH) {
 			
 			/**
@@ -37,21 +37,54 @@ public class DateUtils {
 			 */
 			Calendar cal2 = Calendar.getInstance();
 			
-			cal.setTime(dateStart);
+			calDateStart.setTime(dateStart);
 			cal2.setTime(dateStart);
-			cal2.set(Calendar.MONTH, cal.get(Calendar.MONTH) + 1);
+			cal2.set(Calendar.MONTH, calDateStart.get(Calendar.MONTH) + 1);
 			cal2.set(Calendar.DAY_OF_MONTH, 0);
 			cal2.set(Calendar.HOUR, 0);
 			cal2.set(Calendar.MINUTE, 0);
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
 			
-//			System.out.println("cal2.getTimeInMillis() " + new Date(cal2.getTimeInMillis()));
-//			System.out.println("cal1.getTimeInMillis() " + new Date(cal.getTimeInMillis()));
 			
-			return cal2.getTimeInMillis() - cal.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
+			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
+		}else if (type == Type.DAY){
+			
+			/**
+			 * Given a date "dateStart", find the milliseconds to the next day (ie. YYYY-01-01-00:00)
+			 */
+			Calendar cal2 = Calendar.getInstance();
+			
+			calDateStart.setTime(dateStart);
+			
+			
+			cal2.setTime(dateStart);
+			
+			
+			
+//			cal2.set(Calendar.MONTH, calDateStart.get(Calendar.MONTH) + 1);
+			
+			cal2.set(Calendar.DAY_OF_YEAR, calDateStart.get(Calendar.DAY_OF_YEAR) + 1);
+			cal2.set(Calendar.HOUR, 0);
+			cal2.set(Calendar.MINUTE, 0);
+			cal2.set(Calendar.SECOND, 0);
+			cal2.set(Calendar.MILLISECOND, 0);
+			
+			
+//			cal2.set(Calendar.DAY_OF_MONTH, 0);
+//			cal2.set(Calendar.HOUR, 0);
+//			cal2.set(Calendar.MINUTE, 0);
+//			cal2.set(Calendar.SECOND, 0);
+//			cal2.set(Calendar.MILLISECOND, 0);
+			
+			
+			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
+			
+			
+			
 		}else {
 			throw new RuntimeException("No type yet " + type);
+			
 		}
 		
 		
@@ -109,6 +142,17 @@ public class DateUtils {
 		
 		cal.setTime(new Date(date));
 		cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + months); //will this work 13-->1 ?
+		
+		return cal.getTimeInMillis();
+	}
+
+
+	public static long addDay(long date, int days) {
+		
+		Calendar cal = Calendar.getInstance();
+		
+		cal.setTime(new Date(date));
+		cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) + days); //will this work 31-->1 ?
 		
 		return cal.getTimeInMillis();
 	}

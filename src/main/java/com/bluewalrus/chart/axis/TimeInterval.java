@@ -27,8 +27,8 @@ public class TimeInterval extends AbstractInterval{
 	}
 	
 	
-    public TimeInterval(int lineLength, Type intervalType, Line line, SimpleDateFormat dateFormat) {
-    	this(lineLength, intervalType, line);
+    public TimeInterval(int lineLength, Type intervalType, Line graphLine, SimpleDateFormat dateFormat) {
+    	this(lineLength, intervalType, graphLine);
     	
     	this.dateFormat = dateFormat;
 	}
