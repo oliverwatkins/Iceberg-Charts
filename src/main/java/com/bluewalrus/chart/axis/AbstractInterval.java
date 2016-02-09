@@ -13,7 +13,6 @@ public abstract class AbstractInterval {
 	 */
 	public boolean active = true;
 
-	
 	public GridLine graphLine;
 	
     /**

@@ -40,16 +40,26 @@ public class XAxisDrawUtil {
 		interval.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
 	}
 	
+	/**
+	 * TODO grid fill is out by one pixel when compared to grid lines.
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 * @param fromLeft
+	 * @param incrementNo
+	 * @param incrementInPixels
+	 */
 	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
-			XYChart chart, double fromLeft, int incrementNo) {
+			XYChart chart, double fromLeft, int incrementNo, int incrementInPixels) {
 		
-		throw new RuntimeException("TODO");
+		int y1 = chart.topOffset + chart.heightChart;
+		int y2 = chart.topOffset;
 		
-
-//		if (incrementNo / 2)
-//		interval.graphLine.gridFill
+		int height = y1 - y2;
 		
-		// TODO Auto-generated method stub
+		
+		interval.graphLine.fillArea(g, (int)fromLeft, y2, incrementInPixels, height);
 		
 	}
 	
@@ -105,8 +115,5 @@ public class XAxisDrawUtil {
         g.setFont(axis.axisCatFont);
         g.drawString(xLabel, (int)fromLeft, yPos);
 	}
-
-
-
 
 }

@@ -197,9 +197,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
             XAxisDrawUtil.drawGridLine(interval, g, chart, fromLeft);
             
             if (interval.graphLine.gridFill != null)
-            	XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, incrementNo);
-            
-            
+            	XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, incrementNo, (int)incrementInPixel);
         }
     }
 
