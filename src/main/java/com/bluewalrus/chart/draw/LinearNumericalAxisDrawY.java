@@ -46,22 +46,25 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 		
 		drawAllIntervalTickAndLabels(g2d, xyChart);
 		
+//		drawGridFills(g2d, xyChart);
+		
 		drawGridLines(g2d, xyChart);
 		
 	}
+	
+	@Override
+	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+		
+		drawGridFills(g2d, xyChart);
+	}
+	
 
 	@Override
 	protected void drawGridLineOnZero(Graphics2D g) {
 		// TODO Auto-generated method stub
 		
 	}
-
-//	@Override
-//	protected void drawGridLine(AbstractInterval interval, Graphics2D g,
-//			XYChart chart) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 	
 
 	public void drawGridLine(AbstractInterval interval, Graphics2D g, XYChart chart) {
@@ -89,6 +92,32 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
             YAxisDrawUtil.drawGridLine(inter, g, chart, fromTop);
         }
     }
+	
+	@Override
+	protected void drawGridFill(AbstractInterval interval, Graphics2D g, XYChart chart) {
+		NumericalInterval inter = (NumericalInterval) interval;
+		
+        int incrementNo = (int) ((maxValue - minValue) / inter.getInterval());
+
+        //divide height of chart by actual height of chart to get the multiplaying factor
+        double factor = getMultiplicationFactor(chart); 
+        
+        //to first increment
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(inter.getInterval(), factor);
+    	
+        double incrementInPixel = (double) (inter.getInterval() * factor);
+
+        for (int i = 0; i < incrementNo; i++) {
+
+            double fromTop = getFromTop(chart, i, incrementInPixel, toFirstInPixels);
+
+        	/**
+        	 * Draw grid line
+        	 */
+            YAxisDrawUtil.drawGridFill(inter, g, chart, fromTop, i , incrementInPixel);
+        }
+		
+	}
 
 	
     protected void drawIntervalLabel(NumericalInterval interval, Graphics g, 
@@ -175,6 +204,10 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
     protected double getMultiplicationFactor(XYChart chart) {
     	return ((double) chart.heightChart / (double) (maxValue - minValue));
 	}
+
+
+
+
 
 
 

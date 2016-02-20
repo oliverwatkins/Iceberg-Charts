@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.YAxis;
@@ -97,6 +98,18 @@ public class YAxisDrawUtil {
 
 		interval.graphLine.drawLine(g, x1, (int)fromTop, x2, (int)fromTop);
 	}
+	//TODO similar code
+	public static void drawGridFill(NumericalInterval interval, Graphics2D g,
+			XYChart chart, double fromTop, int i, double incrementInPixel) {
+		int x1 = chart.leftOffset;
+		
+		int x2 = chart.leftOffset + chart.widthChart;
+
+		interval.graphLine.fillArea(g, x1, (int)fromTop, x2, (int)fromTop, chart);
+		
+	}
+	
+	
 	
 	/**
 	 * Draw the label (vertically)
@@ -143,6 +156,7 @@ public class YAxisDrawUtil {
         //reset
         g2d.setTransform(oldTransform);
 	}
+
 	
 //	/**
 //	 * Not sure the point of this here (just one line). But adding for completeness.

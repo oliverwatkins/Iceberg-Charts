@@ -93,7 +93,7 @@ public class TestDataTimeSeries {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
-		Date startDate = df.parse("2001-05-16 01-00-00"); 
+		Date startDate = df.parse("2001-05-3 01-00-00"); 
 		Date endDate = df.parse("2001-07-12 05-33-00");
 		
 		
@@ -122,9 +122,15 @@ public class TestDataTimeSeries {
 		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
 		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
 
-		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1, new GridFill(Color.RED, Color.ORANGE)), dayFormat);
-//		
+//		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
+//		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1, new GridFill(Color.GRAY, Color.WHITE, true)), dayFormat);
+
+
+		
+		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2, 
+				new GridFill(new Color(179, 209, 255), Color.WHITE, true)), monthFormat);
+		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1), dayFormat);
+
 		
 		XAxis xAxis = new XAxis(
 				new TimeSeriesAxisDrawX(

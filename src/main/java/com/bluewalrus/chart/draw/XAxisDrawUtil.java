@@ -51,7 +51,7 @@ public class XAxisDrawUtil {
 	 * @param incrementInPixels
 	 */
 	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
-			XYChart chart, double fromLeft, int incrementNo, int incrementInPixels) {
+			XYChart chart, double fromLeft, int incrementNo, double incrementInPixels) {
 		
 		int y1 = chart.topOffset + chart.heightChart;
 		int y2 = chart.topOffset;
@@ -59,7 +59,7 @@ public class XAxisDrawUtil {
 		int height = y1 - y2;
 		
 		
-		interval.graphLine.fillArea(g, (int)fromLeft, y2, incrementInPixels, height);
+		interval.graphLine.fillArea(g, (int)fromLeft, y2, incrementInPixels, height, chart);
 		
 	}
 	
@@ -83,15 +83,6 @@ public class XAxisDrawUtil {
         		chart.topOffset + chart.heightChart + axis.labelOffset + xAxesLabelHeight / 2);
 
 	}
-	
-	
-//	public static void drawYGridLineOnZero(Graphics2D g, Chart chart, int fromTop, Axis axis) {
-//		
-//        if (axis.type == AxisType.ENUMERATION) {
-//            return;
-//        }
-//        throw new RuntimeException("TODO");
-//	}
     
     
 	public static void drawXLabel(Graphics g, Chart chart, double fromLeft,
@@ -114,6 +105,37 @@ public class XAxisDrawUtil {
         
         g.setFont(axis.axisCatFont);
         g.drawString(xLabel, (int)fromLeft, yPos);
+	}
+
+
+	public static void drawLeftFill(AbstractInterval interval, Graphics2D g,
+			XYChart chart, double toFirstInPixels, double fromLeft, double incrementInPixel) {
+		
+		int y1 = chart.topOffset + chart.heightChart;
+		int y2 = chart.topOffset;
+		
+		int height = y1 - y2;
+		
+		int xPos = (chart.leftOffset + (int)toFirstInPixels) - (int)incrementInPixel;
+		
+		interval.graphLine.fillArea(g, xPos, y2, toFirstInPixels, height, chart);
+	}
+
+
+
+	public static void drawRightFill(AbstractInterval interval, Graphics2D g,
+			XYChart chart, double toFirstInPixels, double fromLeft, int incrementNo, double incrementInPixel) {
+		
+		
+		int y1 = chart.topOffset + chart.heightChart;
+		int y2 = chart.topOffset;
+		
+		int height = y1 - y2;
+		
+		int leftPoint = chart.leftOffset + (int)toFirstInPixels + ((int)incrementInPixel * (incrementNo));
+		
+		interval.graphLine.fillArea(g, leftPoint, y2, incrementInPixel, height, chart);
+		
 	}
 
 }

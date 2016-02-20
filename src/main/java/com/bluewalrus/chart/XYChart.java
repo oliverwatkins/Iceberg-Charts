@@ -101,6 +101,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		drawLegend(g2d);
 
+		
+		yAxis.axisDraw.drawAllPre(g2d, this, data);  
+		xAxis.axisDraw.drawAllPre(g2d, this, data);  
+
 		// y axis
 		yAxis.axisDraw.drawAll(g2d, this, data);  
 		

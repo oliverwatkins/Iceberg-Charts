@@ -115,5 +115,19 @@ public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	protected void drawGridFill(AbstractInterval interval, Graphics2D g,
+			XYChart chart) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

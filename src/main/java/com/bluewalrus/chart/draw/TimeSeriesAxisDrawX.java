@@ -29,9 +29,20 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		
 		drawAllIntervalTickAndLabels(g2d, xyChart);
 		
+//		drawGridFills(g2d, xyChart);
+		
 		drawGridLines(g2d, xyChart);
 		
 	}
+	
+	@Override
+	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+		
+		drawGridFills(g2d, xyChart);
+		
+	}
+	
 	
 	/**
 	 * Draw all the intervals and ticks for all intervals
@@ -91,8 +102,6 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		}else {
 			df = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		}
-
-		
 		
 		String xLabel = df.format(date2);
 		
@@ -100,10 +109,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		 * Draw X Label
 		 */
 		
-		
-		
 		XAxisDrawUtil.drawXLabel(g, chart, pixFromLeft, xLabel, chart.xAxis, interval.level);
-
 	}
 	
 
@@ -173,7 +179,9 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		XAxisDrawUtil.drawIntervalTick(interval, g, chart, pixFromLeft, chart.xAxis);
 	}
 
-//	@Override
+    /**
+     * TODO : similar code
+     */
     public void drawGridLine(AbstractInterval interval, Graphics2D g, XYChart chart) {
 
 		double factor = getMultiplicationFactor(chart); 
@@ -190,16 +198,57 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
         for (int i = 0; i < incrementNo; i++) {
         	
             double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
-            
+
             /**
              * Draw Grid line
              */
             XAxisDrawUtil.drawGridLine(interval, g, chart, fromLeft);
             
-            if (interval.graphLine.gridFill != null)
-            	XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, incrementNo, (int)incrementInPixel);
         }
     }
+    
+    /**
+     * TODO : similar code
+     */
+
+	@Override
+	protected void drawGridFill(AbstractInterval interval, Graphics2D g,
+			XYChart chart) {
+		double factor = getMultiplicationFactor(chart); 
+    	
+        //to first increment
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
+
+    	int incrementNo = getIncrementNumber(interval);
+    	
+        double incrementInPixel = getIncrementInPixels(interval, chart);
+
+        g.setColor(interval.graphLine.color);
+
+        
+        double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, 0);
+        
+        XAxisDrawUtil.drawLeftFill(interval, g, chart, toFirstInPixels, fromLeft, incrementInPixel);
+        
+        for (int i = 0; i < incrementNo; i++) {
+        	
+            fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
+
+            /**
+             * Draw Grid line
+             */
+            XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, incrementNo, incrementInPixel);
+            
+        }
+        
+        XAxisDrawUtil.drawRightFill(interval, g, chart, toFirstInPixels, fromLeft, incrementNo, incrementInPixel);
+
+	}
+
+
+
+
+
 
 
 

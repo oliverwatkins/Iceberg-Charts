@@ -5,8 +5,11 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.Stroke;
 import java.io.Serializable;
+
+import com.bluewalrus.chart.Chart;
 
 public class GridLine implements Serializable{
 
@@ -67,17 +70,45 @@ public class GridLine implements Serializable{
     private boolean gradiant = true;
     
     public void fillArea(Graphics2D g, int x, int y,
-            int width, int height) {
-
-//    	g.setColor(gridFill.color1);
+            double width, int height, Chart chart) {
     	
-    	if (gradiant) {
-    		
-    		GradientPaint redtowhite = new GradientPaint(0,0,color.RED,100, 0,color.WHITE);
-    		g.setPaint(redtowhite);
-    		
-//    		g.setColor(gridFill.color2);
-    		g.fill(new Rectangle(x, y, width, height));
+    	if (gridFill.gradiant) {
+		
+			GradientPaint redtowhite2 = new GradientPaint(x,0,gridFill.color1, (int)(x+width), 0,gridFill.color2);
+			g.setPaint(redtowhite2);
+			
+			if ((x + width) > (chart.leftOffset + chart.widthChart)) {
+				
+				//clip off anything that is shown passed the chart right edge
+				Shape clip = g.getClip();
+				
+				g.setClip(new Rectangle(x, y, (int)width, height));
+				
+				int width2 = chart.leftOffset + chart.widthChart - x;
+				
+				g.clip(new Rectangle(x, y, width2, height));
+				
+				g.fill (new Rectangle(x, y, (int)width, height));
+
+				g.setClip(clip);
+				
+			}else if (x < chart.leftOffset) {
+
+				//clip off anything that is shown passed the chart left edge
+				Shape clip = g.getClip();
+				
+				g.setClip(new Rectangle(x, y, (int)width, height));
+				
+				g.clip(new Rectangle(chart.leftOffset, y, (int)width, height));
+				
+				g.fill (new Rectangle(x, y, (int)width, height));
+
+				g.setClip(clip);
+				
+			}else {
+				g.fill (new Rectangle(x, y, (int)width, height));
+			}
+
     		
     	}else {
         	if((x%2)==0) {
@@ -86,7 +117,7 @@ public class GridLine implements Serializable{
         		g.setColor(gridFill.color2);
         	}
         	
-        	g.fillRect(x, y, width, height); //(x1, y1, x2, y2)
+        	g.fillRect(x, y, (int)width, height); //(x1, y1, x2, y2)
     	}
     	
 

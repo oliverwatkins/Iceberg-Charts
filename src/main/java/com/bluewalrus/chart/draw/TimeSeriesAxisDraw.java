@@ -14,33 +14,16 @@ public abstract class TimeSeriesAxisDraw extends AxisDraw{
 	public Date dateStart;
 	public Date dateEnd;
 	
-//	public TimeInterval timeInt1;
-//	public TimeInterval timeInt2; 
-//	public TimeInterval timeInt3;
-	
 	
 	public TimeSeriesAxisDraw(Date dateStart, Date dateEnd, TimeInterval timeInt1,
 			TimeInterval timeInt2, TimeInterval timeInt3) {
+		
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
-		
-//		this.timeInt1 = timeInt1;
-//		this.timeInt2 = timeInt2;
-//		this.timeInt3 = timeInt3;
 
 		this.interval1 = timeInt1;
 		this.interval2 = timeInt2;
 		this.interval3 = timeInt3;
-
-		
-//		this.timeInt1.level = 1;
-//		this.timeInt2.level = 2;
-//		this.timeInt3.level = 3;
-		
-		
-//		this.timeInt2.level = 2;
-//		this.timeInt3.level = 3;
-
 	}
 	
 	
@@ -96,13 +79,11 @@ public abstract class TimeSeriesAxisDraw extends AxisDraw{
 	
 	protected int getIncrementNumber(AbstractInterval interval) {
 		
-		
 		TimeInterval inter = (TimeInterval) interval;
 		
 		TimeInterval.Type t = inter.getInterval();
 		
 		long increment = DateUtils.getMsForType(t); // :(
-
 		
 		/**
 		 * TODO this code isn't very correct. The method getMsForType is incorrect for year and month because they are both variable
@@ -112,9 +93,6 @@ public abstract class TimeSeriesAxisDraw extends AxisDraw{
 		
 		return incrementNo;
 	}
-	
-	
-	
 	
 	/**
 	 * Draw the label next to the tick
@@ -141,12 +119,6 @@ public abstract class TimeSeriesAxisDraw extends AxisDraw{
 
 	protected abstract void drawIntervalTick(TimeInterval interval, Graphics g,
 			XYChart chart, int i, double incrementInPixel);
-	
-	
-//	public abstract void drawGridLine(TimeInterval interval, Graphics2D g, XYChart chart);
-	
-	
-	
-	
+
 
 }

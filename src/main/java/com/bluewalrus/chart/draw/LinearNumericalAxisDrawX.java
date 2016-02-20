@@ -53,12 +53,19 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
 	public void drawAll(Graphics2D g2d, XYChart xyChart, ArrayList<XYDataSeries> data) {
 		
 		//NOTE! data is ignored here. It's only used for enumeration
-
 		
 		drawAllIntervalTickAndLabels(g2d, xyChart);
-		
+
 		drawGridLines(g2d, xyChart);
 	}
+	
+	@Override
+	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+		
+		drawGridFills(g2d, xyChart);
+	}
+	
 	
 	protected void drawIntervalLabel(NumericalInterval interval, Graphics g, 
 			XYChart chart, int incrementNumber, double incrementInPixel) {
@@ -132,6 +139,35 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
     }
     
 	@Override
+	protected void drawGridFill(AbstractInterval interval, Graphics2D g,
+			XYChart chart) {
+		
+		double factor = getMultiplicationFactor(chart); 
+    	
+        //to first increment
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(((NumericalInterval)interval).getInterval(), factor);
+
+        int incrementNo = (int) (maxValue / ((NumericalInterval)interval).getInterval());
+        
+        double incrementInPixel = (double) (((NumericalInterval)interval).getInterval() * factor);
+
+        g.setColor(interval.graphLine.color);
+
+        for (int i = 0; i < incrementNo; i++) {
+        	
+            double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
+            
+            /**
+             * Draw Grid line
+             */
+            XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, i, incrementInPixel);
+        }
+		
+	}
+	
+	
+    
+	@Override
 	protected void drawGridLineOnZero(Graphics2D g) {
 		// TODO 
 		
@@ -156,6 +192,10 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
     	return ((double) chart.widthChart / (double) (maxValue - minValue));
 
 	}
+
+
+
+
 
 
 }
