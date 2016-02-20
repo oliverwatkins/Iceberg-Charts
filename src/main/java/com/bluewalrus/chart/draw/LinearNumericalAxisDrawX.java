@@ -10,192 +10,198 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
 
-public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw{
+public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw {
 
-	
 	public LinearNumericalAxisDrawX() {
 		super();
 	}
-	
+
 	public LinearNumericalAxisDrawX(double d, double e) {
-		super(d,e);
+		super(d, e);
 	}
 
 	public LinearNumericalAxisDrawX(Double primaryIncrements,
-									Double secondaryIncrements, 
-									Double tertiaryIncrements) {
-		
+			Double secondaryIncrements, Double tertiaryIncrements) {
+
 		super(primaryIncrements, secondaryIncrements, tertiaryIncrements);
 	}
-	public LinearNumericalAxisDrawX(Double minValue, 
-									Double maxValue,
-									NumericalInterval interval1, 
-									NumericalInterval interval2, 
-									NumericalInterval interval3) {
-		
+
+	public LinearNumericalAxisDrawX(int minValue, int maxValue,
+			NumericalInterval interval1, NumericalInterval interval2,
+			NumericalInterval interval3) {
+
+		this((double) minValue, (double) maxValue, interval1, interval2,
+				interval3);
+	}
+
+	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
+			NumericalInterval interval1, NumericalInterval interval2,
+			NumericalInterval interval3) {
+
 		super(minValue, maxValue, interval1, interval2, interval3);
 	}
-	public LinearNumericalAxisDrawX(Double minValue, 
-									Double maxValue,
-									Double primaryIncrements, 
-									Double secondaryIncrements,
-									Double tertiaryIncrements) {
-		
-		super(minValue, maxValue, primaryIncrements, secondaryIncrements, tertiaryIncrements);
-	}
-	
-	
-	
-	////////////////
 
-	
+	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
+			Double primaryIncrements, Double secondaryIncrements,
+			Double tertiaryIncrements) {
+
+		super(minValue, maxValue, primaryIncrements, secondaryIncrements,
+				tertiaryIncrements);
+	}
+
+	// //////////////
+
 	@Override
-	public void drawAll(Graphics2D g2d, XYChart xyChart, ArrayList<XYDataSeries> data) {
-		
-		//NOTE! data is ignored here. It's only used for enumeration
-		
+	public void drawAll(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+
+		// NOTE! data is ignored here. It's only used for enumeration
+
 		drawAllIntervalTickAndLabels(g2d, xyChart);
 
 		drawGridLines(g2d, xyChart);
 	}
-	
+
 	@Override
 	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
 			ArrayList<XYDataSeries> data) {
-		
+
 		drawGridFills(g2d, xyChart);
 	}
-	
-	
-	protected void drawIntervalLabel(NumericalInterval interval, Graphics g, 
+
+	protected void drawIntervalLabel(NumericalInterval interval, Graphics g,
 			XYChart chart, int incrementNumber, double incrementInPixel) {
-		
+
 		g.setColor(chart.xAxis.axisColor);
-    	
+
 		Double increment = interval.getInterval();
-		
-        double factor = getMultiplicationFactor(chart); 
-        
-        //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(increment, factor);
-    	
-    	double toFirst = getToFirstIntervalValueFromMin(increment);
-    	
-        String xLabel = "" + ((incrementNumber * increment) + toFirst);
-        
-        double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel,incrementNumber);
-        
-        
-//        if (interval.level == 1)
-        	
-        	
-        /**
-         * Draw X Label
-         */ 
-        XAxisDrawUtil.drawXLabel(g, chart, fromLeft, xLabel, chart.xAxis, 0);
+
+		double factor = getMultiplicationFactor(chart);
+
+		// to first increment
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				increment, factor);
+
+		double toFirst = getToFirstIntervalValueFromMin(increment);
+
+		String xLabel = "" + ((incrementNumber * increment) + toFirst);
+
+		double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel,
+				incrementNumber);
+
+		// if (interval.level == 1)
+
+		/**
+		 * Draw X Label
+		 */
+		XAxisDrawUtil.drawXLabel(g, chart, fromLeft, xLabel, chart.xAxis, 0);
 	}
-	
-	
-	protected void drawIntervalTick(NumericalInterval interval, Graphics g, 
+
+	protected void drawIntervalTick(NumericalInterval interval, Graphics g,
 			XYChart chart, int i, double incrementInPixel) {
-		
+
 		g.setColor(chart.xAxis.axisColor);
-		
-		double factor = getMultiplicationFactor(chart); 
-		
-        //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
-		
-        double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
-        
-        XAxisDrawUtil.drawIntervalTick(interval, g, chart, fromLeft, chart.xAxis);
-		
+
+		double factor = getMultiplicationFactor(chart);
+
+		// to first increment
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				interval.getInterval(), factor);
+
+		double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel,
+				i);
+
+		XAxisDrawUtil.drawIntervalTick(interval, g, chart, fromLeft,
+				chart.xAxis);
+
 	}
-	
-	
-    @Override
-    public void drawGridLine(AbstractInterval interval, Graphics2D g, XYChart chart) {
 
-		double factor = getMultiplicationFactor(chart); 
-    	
-        //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(((NumericalInterval)interval).getInterval(), factor);
+	@Override
+	public void drawGridLine(AbstractInterval interval, Graphics2D g,
+			XYChart chart) {
 
-        int incrementNo = (int) (maxValue / ((NumericalInterval)interval).getInterval());
-        
-        double incrementInPixel = (double) (((NumericalInterval)interval).getInterval() * factor);
+		double factor = getMultiplicationFactor(chart);
 
-        g.setColor(interval.graphLine.color);
+		// to first increment
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				((NumericalInterval) interval).getInterval(), factor);
 
-        for (int i = 0; i < incrementNo; i++) {
-        	
-            double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
-            
-            /**
-             * Draw Grid line
-             */
-            XAxisDrawUtil.drawGridLine(interval, g, chart, fromLeft);
-        }
-    }
-    
+		int incrementNo = (int) (maxValue / ((NumericalInterval) interval)
+				.getInterval());
+
+		double incrementInPixel = (double) (((NumericalInterval) interval)
+				.getInterval() * factor);
+
+		g.setColor(interval.graphLine.color);
+
+		for (int i = 0; i < incrementNo; i++) {
+
+			double fromLeft = getFromLeft(chart, toFirstInPixels,
+					incrementInPixel, i);
+
+			/**
+			 * Draw Grid line
+			 */
+			XAxisDrawUtil.drawGridLine(interval, g, chart, fromLeft);
+		}
+	}
+
 	@Override
 	protected void drawGridFill(AbstractInterval interval, Graphics2D g,
 			XYChart chart) {
-		
-		double factor = getMultiplicationFactor(chart); 
-    	
-        //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(((NumericalInterval)interval).getInterval(), factor);
 
-        int incrementNo = (int) (maxValue / ((NumericalInterval)interval).getInterval());
-        
-        double incrementInPixel = (double) (((NumericalInterval)interval).getInterval() * factor);
+		double factor = getMultiplicationFactor(chart);
 
-        g.setColor(interval.graphLine.color);
+		// to first increment
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				((NumericalInterval) interval).getInterval(), factor);
 
-        for (int i = 0; i < incrementNo; i++) {
-        	
-            double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
-            
-            /**
-             * Draw Grid line
-             */
-            XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, i, incrementInPixel);
-        }
-		
+		int incrementNo = (int) (maxValue / ((NumericalInterval) interval)
+				.getInterval());
+
+		double incrementInPixel = (double) (((NumericalInterval) interval)
+				.getInterval() * factor);
+
+		g.setColor(interval.graphLine.color);
+
+		for (int i = 0; i < incrementNo; i++) {
+
+			double fromLeft = getFromLeft(chart, toFirstInPixels,
+					incrementInPixel, i);
+
+			/**
+			 * Draw Grid line
+			 */
+			XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, i,
+					incrementInPixel);
+		}
+
 	}
-	
-	
-    
+
 	@Override
 	protected void drawGridLineOnZero(Graphics2D g) {
-		// TODO 
-		
+		// TODO
+
 	}
-    
-    @Override
+
+	@Override
 	public void drawGridLineOnZero(Graphics2D g, XYChart chart) {
-    	
-        //TODO draw X Line
-//    	XAxisDrawUtil.drawXGridLineOnZero(g, chart, -999, chart.xAxis);
-    }
-    
-    
-    
-	private double getFromLeft(Chart chart, double toFirstInPixels, double incrementInPixel, int i) {
-		double fromLeft = chart.leftOffset +  (i * incrementInPixel) + toFirstInPixels;
+
+		// TODO draw X Line
+		// XAxisDrawUtil.drawXGridLineOnZero(g, chart, -999, chart.xAxis);
+	}
+
+	private double getFromLeft(Chart chart, double toFirstInPixels,
+			double incrementInPixel, int i) {
+		double fromLeft = chart.leftOffset + (i * incrementInPixel)
+				+ toFirstInPixels;
 		return fromLeft;
 	}
-    
+
 	@Override
 	protected double getMultiplicationFactor(XYChart chart) {
-    	return ((double) chart.widthChart / (double) (maxValue - minValue));
+		return ((double) chart.widthChart / (double) (maxValue - minValue));
 
 	}
-
-
-
-
-
 
 }

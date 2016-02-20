@@ -40,11 +40,11 @@ public abstract class AxisDraw {
 	public void drawGridFills(Graphics2D g, XYChart chart) {
 
 		if (interval1 != null && interval1.isValid()
-				&& interval3.graphLine != null && interval1.graphLine.gridFill != null) {
+				&& interval1.graphLine != null && interval1.graphLine.gridFill != null) {
 			this.drawGridFill(interval1, g, chart);
 		}
 		if (interval2 != null && interval2.isValid()
-				&& interval3.graphLine != null && interval2.graphLine.gridFill != null) {
+				&& interval2.graphLine != null && interval2.graphLine.gridFill != null) {
 			this.drawGridFill(interval2, g, chart);
 		}
 		if (interval3 != null && interval3.isValid()

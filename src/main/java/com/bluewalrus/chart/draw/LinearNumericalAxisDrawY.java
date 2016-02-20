@@ -114,7 +114,7 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
         	/**
         	 * Draw grid line
         	 */
-            YAxisDrawUtil.drawGridFill(inter, g, chart, fromTop, i , incrementInPixel);
+            YAxisDrawUtil.drawGridFill(inter, g, chart, fromTop, i , incrementInPixel, incrementNo);
         }
 		
 	}

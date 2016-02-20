@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.main.test.TestDataGrids;
 import com.bluewalrus.main.test.TestDataTimeSeries;
 
 public class SingleChartDemo extends JFrame {
@@ -25,7 +26,7 @@ public class SingleChartDemo extends JFrame {
 
 		JTabbedPane tabbedPaneBar = new JTabbedPane();
 
-		Chart chart2 = TestDataTimeSeries.getTestData_TimeSeries2();
+		Chart chart2 = TestDataGrids.getTestData_Grid1();
 
 		// Chart chart2 = TestDataLineScatter.getTestData_SomeKindOfXY();
 

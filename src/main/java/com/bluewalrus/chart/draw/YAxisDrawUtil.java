@@ -100,12 +100,12 @@ public class YAxisDrawUtil {
 	}
 	//TODO similar code
 	public static void drawGridFill(NumericalInterval interval, Graphics2D g,
-			XYChart chart, double fromTop, int i, double incrementInPixel) {
+			XYChart chart, double fromTop, int i, double incrementInPixel, int incrementNo) {
 		int x1 = chart.leftOffset;
 		
 		int x2 = chart.leftOffset + chart.widthChart;
 
-		interval.graphLine.fillArea(g, x1, (int)fromTop, x2, (int)fromTop, chart);
+		interval.graphLine.fillArea(g, x1, (int)fromTop, x2, (int)fromTop, chart, incrementNo);
 		
 	}
 	

@@ -67,58 +67,65 @@ public class GridLine implements Serializable{
         g.setStroke(oldStroke);
     }
     
-    private boolean gradiant = true;
+//    private boolean gradiant = true;
     
     public void fillArea(Graphics2D g, int x, int y,
-            double width, int height, Chart chart) {
+            double width, int height, Chart chart, int incrementNo) {
     	
     	if (gridFill.gradiant) {
-		
 			GradientPaint redtowhite2 = new GradientPaint(x,0,gridFill.color1, (int)(x+width), 0,gridFill.color2);
 			g.setPaint(redtowhite2);
-			
-			if ((x + width) > (chart.leftOffset + chart.widthChart)) {
-				
-				//clip off anything that is shown passed the chart right edge
-				Shape clip = g.getClip();
-				
-				g.setClip(new Rectangle(x, y, (int)width, height));
-				
-				int width2 = chart.leftOffset + chart.widthChart - x;
-				
-				g.clip(new Rectangle(x, y, width2, height));
-				
-				g.fill (new Rectangle(x, y, (int)width, height));
-
-				g.setClip(clip);
-				
-			}else if (x < chart.leftOffset) {
-
-				//clip off anything that is shown passed the chart left edge
-				Shape clip = g.getClip();
-				
-				g.setClip(new Rectangle(x, y, (int)width, height));
-				
-				g.clip(new Rectangle(chart.leftOffset, y, (int)width, height));
-				
-				g.fill (new Rectangle(x, y, (int)width, height));
-
-				g.setClip(clip);
-				
-			}else {
-				g.fill (new Rectangle(x, y, (int)width, height));
-			}
-
-    		
     	}else {
-        	if((x%2)==0) {
+        	if((incrementNo%2)==0) {
         		g.setColor(gridFill.color1);
         	}else {
         		g.setColor(gridFill.color2);
         	}
-        	
         	g.fillRect(x, y, (int)width, height); //(x1, y1, x2, y2)
     	}
+		
+		if ((x + width) > (chart.leftOffset + chart.widthChart)) {
+			
+			//clip off anything that is shown passed the chart right edge
+			Shape clip = g.getClip();
+			
+			g.setClip(new Rectangle(x, y, (int)width, height));
+			
+			int width2 = chart.leftOffset + chart.widthChart - x;
+			
+			g.clip(new Rectangle(x, y, width2, height));
+			
+			g.fill (new Rectangle(x, y, (int)width, height));
+
+			g.setClip(clip);
+			
+		}else if (x < chart.leftOffset) {
+
+			//clip off anything that is shown passed the chart left edge
+			Shape clip = g.getClip();
+			
+			g.setClip(new Rectangle(x, y, (int)width, height));
+			
+			g.clip(new Rectangle(chart.leftOffset, y, (int)width, height));
+			
+			g.fill (new Rectangle(x, y, (int)width, height));
+
+			g.setClip(clip);
+			
+		}else {
+			g.fill (new Rectangle(x, y, (int)width, height));
+		}
+
+    		
+//    	}else {
+//        	if((x%2)==0) {
+//        		g.setColor(gridFill.color1);
+//        	}else {
+//        		g.setColor(gridFill.color2);
+//        	}
+//        	
+//        	g.fillRect(x, y, (int)width, height); //(x1, y1, x2, y2)
+//    	}
     	
 
     	;

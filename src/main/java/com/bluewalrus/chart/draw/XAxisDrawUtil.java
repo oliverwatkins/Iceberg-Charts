@@ -40,28 +40,7 @@ public class XAxisDrawUtil {
 		interval.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
 	}
 	
-	/**
-	 * TODO grid fill is out by one pixel when compared to grid lines.
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param fromLeft
-	 * @param incrementNo
-	 * @param incrementInPixels
-	 */
-	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
-			XYChart chart, double fromLeft, int incrementNo, double incrementInPixels) {
-		
-		int y1 = chart.topOffset + chart.heightChart;
-		int y2 = chart.topOffset;
-		
-		int height = y1 - y2;
-		
-		
-		interval.graphLine.fillArea(g, (int)fromLeft, y2, incrementInPixels, height, chart);
-		
-	}
+
 	
 	/**
 	 * 
@@ -107,7 +86,30 @@ public class XAxisDrawUtil {
         g.drawString(xLabel, (int)fromLeft, yPos);
 	}
 
-
+	/**
+	 * TODO grid fill is out by one pixel when compared to grid lines.
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 * @param fromLeft
+	 * @param incrementNo
+	 * @param incrementInPixels
+	 */
+	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
+			XYChart chart, double fromLeft, int incrementNo, double incrementInPixels) {
+		
+		int y1 = chart.topOffset + chart.heightChart;
+		int y2 = chart.topOffset;
+		
+		int height = y1 - y2;
+		
+		
+		interval.graphLine.fillArea(g, (int)fromLeft, y2, incrementInPixels, height, chart, incrementNo);
+		
+	}
+	
+	
 	public static void drawLeftFill(AbstractInterval interval, Graphics2D g,
 			XYChart chart, double toFirstInPixels, double fromLeft, double incrementInPixel) {
 		
@@ -118,7 +120,7 @@ public class XAxisDrawUtil {
 		
 		int xPos = (chart.leftOffset + (int)toFirstInPixels) - (int)incrementInPixel;
 		
-		interval.graphLine.fillArea(g, xPos, y2, toFirstInPixels, height, chart);
+		interval.graphLine.fillArea(g, xPos, y2, toFirstInPixels, height, chart, 0);
 	}
 
 
@@ -134,7 +136,7 @@ public class XAxisDrawUtil {
 		
 		int leftPoint = chart.leftOffset + (int)toFirstInPixels + ((int)incrementInPixel * (incrementNo));
 		
-		interval.graphLine.fillArea(g, leftPoint, y2, incrementInPixel, height, chart);
+		interval.graphLine.fillArea(g, leftPoint, y2, incrementInPixel, height, chart, incrementNo);
 		
 	}
 

@@ -19,6 +19,7 @@ import javax.swing.JTabbedPane;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.main.test.TestDataBar;
 import com.bluewalrus.main.test.TestDataBubble;
+import com.bluewalrus.main.test.TestDataGrids;
 import com.bluewalrus.main.test.TestDataLineScatter;
 import com.bluewalrus.main.test.TestDataPie;
 import com.bluewalrus.main.test.TestDataPieBubble;
@@ -167,7 +168,12 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
 
-
+        p = createTabbedPane(tabbedPaneLine, "Grid 1 ");
+        chart = TestDataGrids.getTestData_Grid1();
+        charts.add(chart);
+        p.add(chart);
+        
+        
 
         tabbedPane.add("General XY Charts", tabbedPaneLine);
         tabbedPane.add("Bar Charts", tabbedPaneBar);

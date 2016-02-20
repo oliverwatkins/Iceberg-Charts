@@ -1,5 +1,6 @@
 package com.bluewalrus.main.test;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.text.ParseException;
@@ -17,12 +18,13 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
 import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
 import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointSquare;
 
-public class TestDataTimeSeries {
+public class TestDataGrids {
 
 	
 	public static Chart getTestData_TimeSeries() throws ParseException {
@@ -87,7 +89,7 @@ public class TestDataTimeSeries {
 	
 	
 	
-	public static Chart getTestData_TimeSeries2() throws ParseException {
+	public static Chart getTestData_Grid1() throws ParseException {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 		
@@ -114,32 +116,29 @@ public class TestDataTimeSeries {
 
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
-
-		NumericalInterval t1 = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
-
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, null, null), "Y Axis");
 		
-		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
-		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
+		
 
-//		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
-//		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1, new GridFill(Color.GRAY, Color.WHITE, true)), dayFormat);
-
+		NumericalInterval yInterval = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
 
 		
-		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2));
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, yInterval, null, null), "Y Axis");
+
 		
-//				new GridFill(new Color(179, 209, 255), Color.WHITE, true)), monthFormat);
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1), dayFormat);
+		NumericalInterval x1 = new NumericalInterval(2, 
+				5.0, new GridLine(Color.GRAY, true, 2, 
+						new GridFill(new Color(179, 209, 255), Color.WHITE, false)));
+		
+		NumericalInterval x2 = new NumericalInterval(6, 
+				20.0, new GridLine(Color.GRAY, false, 3));
 
 		
 		XAxis xAxis = new XAxis(
-				new TimeSeriesAxisDrawX(
-						startDate, 
-						endDate, 
-						timeInt2, 
-						timeInt3, 
-						null), "Time Series"); 
+				new LinearNumericalAxisDrawX(
+						3, 
+						97, 
+						x1, 
+						x2, null), "Time Series"); 
 
 		xySeriesList.add(series);
 
@@ -168,3 +167,4 @@ public class TestDataTimeSeries {
 	
 	
 }
+
