@@ -47,7 +47,7 @@ public class UIPointSquare extends UIPointSimpleXY {
         	g.setColor(Color.GREEN);
         	g.fill(rectangle);
         }else {
-        	g.setColor(Color.PINK);
+        	g.setColor(color);
         	g.fill(rectangle);
         }
     }

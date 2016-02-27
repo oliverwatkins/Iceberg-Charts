@@ -208,11 +208,18 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
 		double val = this.minValue;
 
-		// find first value which has a remainder of zero from increment
-		// starting at min value.
-		while (val % increment != 0) {
-			val++;
+		
+		if ((val == Math.floor(val)) && !Double.isInfinite(val)) {
+		    // integral type
+			while (val % increment != 0) {
+				//TODO Error here!!!!! If you ++ a real number then it will not necessary break out of this loop!!!
+				val++;
+			}
+			
+		}else {
+			System.err.println("cannot have real number here " +val);
 		}
+
 		return val;
 	}
 	

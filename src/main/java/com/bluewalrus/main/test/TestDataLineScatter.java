@@ -22,6 +22,23 @@ import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointTriangle;
 
 public class TestDataLineScatter {
+	
+	public static Chart getTestData_SimpleXY() {
+
+		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		values.add(new DataPoint(5, 30));
+		values.add(new DataPoint(55, 63));
+		values.add(new DataPoint(101, 25));
+		values.add(new DataPoint(135, 37));
+		values.add(new DataPoint(150, 60));
+		
+		XYChart lineChart = new XYChart(values, 200, 100, "My Easy Example");
+		
+		return lineChart;
+	}
+	
+	
+	
 
 	public static Chart getTestData_SomeKindOfXY() {
 
@@ -80,6 +97,14 @@ public class TestDataLineScatter {
 		XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.PINK),
 				new Line(Color.PINK), "Orange");
 		series3.dataPoints = values3;
+		
+		xySeriesList.add(series);
+		xySeriesList.add(series2);
+		xySeriesList.add(series3);
+		
+		
+		
+		
 
 		NumericalInterval t1 = new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
 		NumericalInterval t2 = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
@@ -87,16 +112,13 @@ public class TestDataLineScatter {
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, t2, t3), "Y Axis");
 
-		NumericalInterval t1x = new NumericalInterval(6, 20.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2x = new NumericalInterval(3, 10.0,
-				new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1x = new NumericalInterval(10, 20.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2x = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
 
 		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(17.0, 70.0, t1x, t2x, null), "X Value");
-
-		xySeriesList.add(series);
-		xySeriesList.add(series2);
-		xySeriesList.add(series3);
-
+		
+		
+		
 		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
 
 		lineChart.setSize(1000, 500);
@@ -107,6 +129,9 @@ public class TestDataLineScatter {
 
 		return lineChart;
 	}
+	
+	
+	
 
 	public static XYChart getTestData_Scatter() {
 

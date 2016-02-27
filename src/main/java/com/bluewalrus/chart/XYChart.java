@@ -13,20 +13,27 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.bluewalrus.bar.Category;
+import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.bar.Legendable;
+import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.chart.axis.Axis;
+import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.EnumerationAxisDrawX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
 import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
 import com.bluewalrus.chart.plotter.DatePlotter;
 import com.bluewalrus.chart.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
+import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointXY;
 import com.bluewalrus.renderer.XYFactor;
 
@@ -77,6 +84,221 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this(xAxis, yAxis);
 		this.data.addAll(listOfSeries);
 	}
+
+	
+
+
+	private double getMinXValue(ArrayList<DataPoint> values) {
+		
+		double xMin = values.get(0).x;
+		for (DataPoint dataPoint : values) {
+			if (dataPoint.x < xMin)
+				xMin = dataPoint.x;
+		}
+		return xMin;
+	}
+
+	private double getMinYValue(ArrayList<DataPoint> values) {
+		double yMin = values.get(0).y;
+		for (DataPoint dataPoint : values) {
+			if (dataPoint.y < yMin)
+				yMin = dataPoint.y;
+		}
+		return yMin;
+	}
+
+	private double getMaxYValue(ArrayList<DataPoint> values) {
+		double yMax = values.get(0).y;
+		for (DataPoint dataPoint : values) {
+			if (dataPoint.y > yMax)
+				yMax = dataPoint.y;
+		}
+		return yMax;
+	}
+
+	private double getMaxXValue(ArrayList<DataPoint> values) {
+		double xMax = values.get(0).x;
+		for (DataPoint dataPoint : values) {
+			if (dataPoint.x > xMax)
+				xMax = dataPoint.x;
+		}
+		return xMax;
+	}
+
+	private double calculateXAxisMax(ArrayList<DataPoint> values) {
+		double d = getMaxXValue(values);
+		return d;
+	}
+
+	private double calculateYAxisMin(ArrayList<DataPoint> values) {
+		double d = getMinYValue(values);
+		return d;
+	}
+
+	private double calculateYAxisMax(ArrayList<DataPoint> values) {
+		double d = getMaxYValue(values);
+		return d;
+	}
+	private double calculateXAxisMin(ArrayList<DataPoint> values) {
+		double d = getMinXValue(values);
+		return d;
+	}
+	
+	/**
+	 * 
+	 * @param values
+	 * @param xAxisMax
+	 * @param yAxisMax
+	 * @param title
+	 */
+	
+	public XYChart(ArrayList<DataPoint> values, int xAxisMax, int yAxisMax, String title) {
+		
+		
+		double yMax = calculateYAxisMax(values);
+		double yMin = calculateYAxisMin(values);
+		double xMax = calculateXAxisMax(values);
+		double xMin = calculateXAxisMin(values);
+		
+		double xDiff = xMax -xMin;
+		double yDiff = yMax -yMin;
+		
+		
+		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		
+		
+		
+		//calculate first 
+		
+		
+//		NumericalInterval t1 = null; //new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2 = null; //new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t3 = null; //new NumericalInterval(1, 5.0, null);
+		
+		
+
+		//pad out to 10%
+		double yMinAdj = yMin - (yDiff/10);
+		double xMinAdj = xMin - (xDiff/10);
+		double yMaxAdj = yMax + (yDiff/10);
+		double xMaxAdj = xMax + (xDiff/10);
+		
+		
+		
+		
+		
+
+		
+		//Needs to be floored. If decimal place then crashes later
+		xMaxAdj = Math.floor(xMaxAdj);
+		yMaxAdj = Math.floor(yMaxAdj);
+		xMinAdj = Math.floor(xMinAdj);
+		yMinAdj = Math.floor(yMinAdj);
+		
+
+		
+		
+		
+
+		NumericalInterval t1 = getInterval1(yMinAdj, yMaxAdj);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, null, null), "");
+
+		NumericalInterval t1x = new NumericalInterval(10, 20.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2x = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
+
+		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, null), "");
+		
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLACK),
+				new Line(Color.BLACK), "");
+		series.dataPoints = values;
+		
+		xySeriesList.add(series);
+		
+		
+		this.yAxis = yAxis;
+		this.xAxis = xAxis;
+
+		this.addMouseMotionListener(this);
+		this.data.addAll(xySeriesList);
+		
+		this.setTitle(title);
+		
+		
+	}
+
+	private NumericalInterval getInterval1(
+			double yMinAdj, double yMaxAdj) {
+		
+		NumericalInterval t1 = null;
+		
+		double yT = yMaxAdj;
+		double yT2 = yMinAdj;
+		
+		while (yT % 10 != 0) {
+			yT--;
+		}
+		
+		while (yT2 % 10 != 0) {
+			yT2++;
+		}
+		
+		
+		if (((yT - yT2) / 10) < 10) {
+	
+			//good candidate!!
+			return new NumericalInterval(6, 10.0, new GridLine(Color.GRAY, false, 1));
+		}
+		
+		
+		yT = yMaxAdj;
+		yT2 = yMinAdj;
+		
+		while (yT % 100 != 0) {
+			yT--;
+		}
+		
+		while (yT2 % 100 != 0) {
+			yT2++;
+		}
+
+		
+		if (((yT - yT2) / 100) < 10) {
+			
+			//good candidate!!
+			return new NumericalInterval(6, 10.0, new GridLine(Color.GRAY, false, 1));
+		}
+		
+		
+		
+		return t1;
+	}
+
+
 
 	/**
 	 * Paint the background, Title, Grid and Axis. All the elements of the chart

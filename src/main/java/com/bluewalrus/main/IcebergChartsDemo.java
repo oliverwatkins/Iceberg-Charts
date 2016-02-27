@@ -84,9 +84,10 @@ public class IcebergChartsDemo extends JFrame {
         p.add(chart);
         
         
-        
-        ///////////////
-        
+        p = createTabbedPane(tabbedPaneLine, "XY Simple");
+        chart = TestDataLineScatter.getTestData_SimpleXY();
+        charts.add(chart);
+        p.add(chart);
         
         p = createTabbedPane(tabbedPaneLine, "XY Chart");
         chart = TestDataLineScatter.getTestData_SomeKindOfXY();
