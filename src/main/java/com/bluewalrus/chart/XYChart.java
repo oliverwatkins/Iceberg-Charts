@@ -15,6 +15,8 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.management.RuntimeErrorException;
+
 import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.bar.Legendable;
@@ -86,64 +88,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 	
-
-
-	private double getMinXValue(ArrayList<DataPoint> values) {
-		
-		double xMin = values.get(0).x;
-		for (DataPoint dataPoint : values) {
-			if (dataPoint.x < xMin)
-				xMin = dataPoint.x;
-		}
-		return xMin;
-	}
-
-	private double getMinYValue(ArrayList<DataPoint> values) {
-		double yMin = values.get(0).y;
-		for (DataPoint dataPoint : values) {
-			if (dataPoint.y < yMin)
-				yMin = dataPoint.y;
-		}
-		return yMin;
-	}
-
-	private double getMaxYValue(ArrayList<DataPoint> values) {
-		double yMax = values.get(0).y;
-		for (DataPoint dataPoint : values) {
-			if (dataPoint.y > yMax)
-				yMax = dataPoint.y;
-		}
-		return yMax;
-	}
-
-	private double getMaxXValue(ArrayList<DataPoint> values) {
-		double xMax = values.get(0).x;
-		for (DataPoint dataPoint : values) {
-			if (dataPoint.x > xMax)
-				xMax = dataPoint.x;
-		}
-		return xMax;
-	}
-
-	private double calculateXAxisMax(ArrayList<DataPoint> values) {
-		double d = getMaxXValue(values);
-		return d;
-	}
-
-	private double calculateYAxisMin(ArrayList<DataPoint> values) {
-		double d = getMinYValue(values);
-		return d;
-	}
-
-	private double calculateYAxisMax(ArrayList<DataPoint> values) {
-		double d = getMaxYValue(values);
-		return d;
-	}
-	private double calculateXAxisMin(ArrayList<DataPoint> values) {
-		double d = getMinXValue(values);
-		return d;
-	}
-	
 	/**
 	 * 
 	 * @param values
@@ -152,42 +96,24 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @param title
 	 */
 	
-	public XYChart(ArrayList<DataPoint> values, int xAxisMax, int yAxisMax, String title) {
+	public XYChart(ArrayList<DataPoint> values, String title) {
 		
 		
-		double yMax = calculateYAxisMax(values);
-		double yMin = calculateYAxisMin(values);
-		double xMax = calculateXAxisMax(values);
-		double xMin = calculateXAxisMin(values);
 		
+		double yMax = ChartUtils.calculateYAxisMax(values);
+		double yMin = ChartUtils.calculateYAxisMin(values);
+		double xMax = ChartUtils.calculateXAxisMax(values);
+		double xMin = ChartUtils.calculateXAxisMin(values);
+
+		//get the diffs
 		double xDiff = xMax -xMin;
 		double yDiff = yMax -yMin;
-		
-		
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
-		
-		
-		
-		//calculate first 
-		
-		
-//		NumericalInterval t1 = null; //new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2 = null; //new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3 = null; //new NumericalInterval(1, 5.0, null);
-		
-		
 
 		//pad out to 10%
 		double yMinAdj = yMin - (yDiff/10);
 		double xMinAdj = xMin - (xDiff/10);
 		double yMaxAdj = yMax + (yDiff/10);
 		double xMaxAdj = xMax + (xDiff/10);
-		
-		
-		
-		
-		
-
 		
 		//Needs to be floored. If decimal place then crashes later
 		xMaxAdj = Math.floor(xMaxAdj);
@@ -196,33 +122,14 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		yMinAdj = Math.floor(yMinAdj);
 		
 
+		double magnitude = getInterval1(yMinAdj, yMaxAdj);
+		
+		NumericalInterval t1  = new NumericalInterval(6, magnitude, new GridLine(Color.GRAY, false, 1));
 		
 		
-		
-
-		NumericalInterval t1 = getInterval1(yMinAdj, yMaxAdj);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+//		NumericalInterval t1 = null; //new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2 = null; //new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t3 = null; //new NumericalInterval(1, 5.0, null);
 		
 		
 
@@ -237,65 +144,69 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				new Line(Color.BLACK), "");
 		series.dataPoints = values;
 		
+		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+
 		xySeriesList.add(series);
-		
 		
 		this.yAxis = yAxis;
 		this.xAxis = xAxis;
 
 		this.addMouseMotionListener(this);
+		
+		
 		this.data.addAll(xySeriesList);
 		
 		this.setTitle(title);
-		
-		
 	}
 
-	private NumericalInterval getInterval1(
+	private double getInterval1(
 			double yMinAdj, double yMaxAdj) {
 		
 		NumericalInterval t1 = null;
 		
 		double yT = yMaxAdj;
 		double yT2 = yMinAdj;
-		
-		while (yT % 10 != 0) {
-			yT--;
-		}
-		
-		while (yT2 % 10 != 0) {
-			yT2++;
-		}
-		
-		
-		if (((yT - yT2) / 10) < 10) {
-	
-			//good candidate!!
-			return new NumericalInterval(6, 10.0, new GridLine(Color.GRAY, false, 1));
-		}
-		
-		
-		yT = yMaxAdj;
-		yT2 = yMinAdj;
-		
-		while (yT % 100 != 0) {
-			yT--;
-		}
-		
-		while (yT2 % 100 != 0) {
-			yT2++;
-		}
 
+		double magnitude = 10.0;
 		
-		if (((yT - yT2) / 100) < 10) {
-			
-			//good candidate!!
-			return new NumericalInterval(6, 10.0, new GridLine(Color.GRAY, false, 1));
+		boolean ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+//
+//		if (!ok) {
+//			magnitude = 10.0;
+//			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+//		}
+		
+		if (!ok) {
+			magnitude = 100.0;
+			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
 		}
 		
+		if (!ok) {
+			magnitude = 1000.0;
+			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+		}
 		
+//		else {
+//			throw new RuntimeException("TODO ");
+//		}
+		return magnitude;
+	}
+
+	private boolean isOrderMagnitudeAcceptableFirstInterval(double maxValue, double minValue, double orderOfMagnitude) {
+		while (maxValue % orderOfMagnitude != 0) {
+			maxValue--;
+		}
 		
-		return t1;
+		while (minValue % orderOfMagnitude != 0) {
+			minValue++;
+		}
+		
+		double numberTicks = (maxValue - minValue) / orderOfMagnitude;
+		
+		if ( numberTicks < 10) { // && numberTicks > 2) {
+			return true;
+		}
+		return false;
 	}
 
 
@@ -323,7 +234,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		drawLegend(g2d);
 
-		
+		// fills
 		yAxis.axisDraw.drawAllPre(g2d, this, data);  
 		xAxis.axisDraw.drawAllPre(g2d, this, data);  
 

@@ -32,9 +32,7 @@ public abstract class AxisDraw {
 	public abstract void drawAll(Graphics2D g2d, XYChart xyChart,
 			ArrayList<XYDataSeries> data);
 
-	protected abstract void drawGridLineOnZero(Graphics2D g);
 
-	protected abstract double getMultiplicationFactor(XYChart chart);
 
 
 	public void drawGridFills(Graphics2D g, XYChart chart) {
@@ -75,5 +73,9 @@ public abstract class AxisDraw {
 	
 	protected abstract void drawGridFill(AbstractInterval interval,
 			Graphics2D g, XYChart chart);
+	
+	protected abstract void drawGridLineOnZero(Graphics2D g);
+
+	protected abstract double getMultiplicationFactor(XYChart chart);
 
 }

@@ -46,8 +46,6 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 		
 		drawAllIntervalTickAndLabels(g2d, xyChart);
 		
-//		drawGridFills(g2d, xyChart);
-		
 		drawGridLines(g2d, xyChart);
 		
 	}
@@ -60,39 +58,10 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 	}
 	
 
-	@Override
-	protected void drawGridLineOnZero(Graphics2D g) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 
-	public void drawGridLine(AbstractInterval interval, Graphics2D g, XYChart chart) {
 
-		
-		NumericalInterval inter = (NumericalInterval) interval;
-		
-        int incrementNo = (int) ((maxValue - minValue) / inter.getInterval());
-
-        //divide height of chart by actual height of chart to get the multiplaying factor
-        double factor = getMultiplicationFactor(chart); 
-        
-        //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(inter.getInterval(), factor);
-    	
-        double incrementInPixel = (double) (inter.getInterval() * factor);
-
-        for (int i = 0; i < incrementNo; i++) {
-
-            double fromTop = getFromTop(chart, i, incrementInPixel, toFirstInPixels);
-
-        	/**
-        	 * Draw grid line
-        	 */
-            YAxisDrawUtil.drawGridLine(inter, g, chart, fromTop);
-        }
-    }
-	
 	@Override
 	protected void drawGridFill(AbstractInterval interval, Graphics2D g, XYChart chart) {
 		NumericalInterval inter = (NumericalInterval) interval;
@@ -116,7 +85,6 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
         	 */
             YAxisDrawUtil.drawGridFill(inter, g, chart, fromTop, i , incrementInPixel, incrementNo);
         }
-		
 	}
 
 	
@@ -164,6 +132,20 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
     	YAxisDrawUtil.drawIntervalTick(interval, g, chart, fromTop, chart.yAxis);
 	}
 	
+	protected void drawGridLine(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
+		
+        //divide height of chart by actual height of chart to get the multiplaying factor
+        double factor = getMultiplicationFactor(chart); 
+		
+    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
+
+        double fromTop = getFromTop(chart, i, incrementInPixel, toZeroShift);
+    	/**
+    	 * Draw the tick
+    	 */
+ 
+    	YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromTop);
+	}
 	
 	/**
 	 * Get the pixels from top based on increment number. Add top offset and chart height first,
@@ -205,10 +187,10 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
     	return ((double) chart.heightChart / (double) (maxValue - minValue));
 	}
 
-
-
-
-
-
+	@Override
+	protected void drawGridLineOnZero(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

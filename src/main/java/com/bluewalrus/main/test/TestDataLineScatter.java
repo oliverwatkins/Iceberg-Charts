@@ -27,12 +27,12 @@ public class TestDataLineScatter {
 
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		values.add(new DataPoint(5, 30));
-		values.add(new DataPoint(55, 63));
-		values.add(new DataPoint(101, 25));
-		values.add(new DataPoint(135, 37));
-		values.add(new DataPoint(150, 60));
+		values.add(new DataPoint(58, 43));
+//		values.add(new DataPoint(101, 40));
+//		values.add(new DataPoint(135, 37));
+//		values.add(new DataPoint(150, 40));
 		
-		XYChart lineChart = new XYChart(values, 200, 100, "My Easy Example");
+		XYChart lineChart = new XYChart(values, "My Easy Example");
 		
 		return lineChart;
 	}

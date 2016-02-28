@@ -67,15 +67,9 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 			this.interval3 = interval3;
 		}
 	}
-
-
-
-//	public abstract void drawGridLine(NumericalInterval interval, Graphics2D g, XYChart chart);
-	
 	
 
-	public abstract void drawGridLineOnZero(Graphics2D g, XYChart chart);
-	
+	public abstract void drawGridLineOnZero(Graphics2D g, XYChart chart);	
 	/**
 	 * Draw the label next to the tick
 	 * 
@@ -100,6 +94,10 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 	 */
 
 	protected abstract void drawIntervalTick(NumericalInterval interval, Graphics g,
+			XYChart chart, int i, double incrementInPixel);
+	
+	
+	protected abstract void drawGridLine(NumericalInterval interval, Graphics g,
 			XYChart chart, int i, double incrementInPixel);
 
 	/**
@@ -144,7 +142,6 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 			XYChart chart, boolean showLabel) {
 
 		NumericalInterval inter = (NumericalInterval)interval;
-		
 
 		Double increment = inter.getInterval();
 
@@ -163,6 +160,26 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 		}
 
 	}
+	
+	
+	public void drawGridLine(AbstractInterval interval, Graphics2D g, XYChart chart) {
+		
+		NumericalInterval inter = (NumericalInterval) interval;
+		
+		Double increment = inter.getInterval();
+		
+        int incrementNo = (int) ((maxValue - minValue) / increment);
+
+        //divide height of chart by actual height of chart to get the multiplaying factor
+        double factor = getMultiplicationFactor(chart); 
+        
+        double incrementInPixel = (double) (inter.getInterval() * factor);
+        
+        for (int i = 0; i < (incrementNo + 1); i++) {
+        	drawGridLine(inter, g, chart, i, incrementInPixel);
+        }
+    }
+	
 	
 	
 	/**
