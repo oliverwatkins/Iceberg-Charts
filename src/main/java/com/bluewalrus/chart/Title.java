@@ -14,7 +14,8 @@ import java.awt.Graphics2D;
  */
 public class Title {
 	
-	public Font titleFont = new Font("Arial", Font.BOLD, 18);
+	public Font titleFont = new Font("Arial", Font.PLAIN, 24);
+	
 	public Color titleColor = Color.BLACK;
 	public String title = "My Fruits";
 	

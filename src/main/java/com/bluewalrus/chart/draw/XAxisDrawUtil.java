@@ -19,15 +19,27 @@ import com.bluewalrus.chart.axis.XAxis;
 
 public class XAxisDrawUtil {
 
-	
+	/**
+	 * Draw Tick. If the position (from left) is passed the edge of the chart, then don't draw it.
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 * @param fromLeft
+	 * @param axis
+	 */
 	public static void drawIntervalTick(AbstractInterval interval, Graphics g, Chart chart,
 			double fromLeft, Axis axis) {
 		
 		int y1 = (chart.topOffset + chart.heightChart + axis.marginOffset);
         int y2 = (chart.topOffset + chart.heightChart + axis.marginOffset + interval.lineLength);
 
-        g.drawLine((int)fromLeft, y1, (int)fromLeft, y2);
-	} 
+        int rightSideChart = (chart.getWidth() - chart.rightOffset);
+        
+        if (fromLeft < rightSideChart) {
+            g.drawLine((int)fromLeft, y1, (int)fromLeft, y2);
+        }
+ 	} 
     
     
 	
@@ -37,7 +49,12 @@ public class XAxisDrawUtil {
 		int y1 = chart.topOffset + chart.heightChart;
 		int y2 = chart.topOffset;
 
-		interval.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
+        int rightSideChart = (chart.getWidth() - chart.rightOffset);
+		
+        if (fromLeft < rightSideChart) {
+        	interval.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
+        }
+		
 	}
 	
 

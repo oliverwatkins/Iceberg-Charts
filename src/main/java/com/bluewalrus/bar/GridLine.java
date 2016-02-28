@@ -46,8 +46,6 @@ public class GridLine implements Serializable{
     	
     	Color colorCached = g.getColor();
     	
-//    	System.out.println("color Chached = " + colorCached);
-    	
         g.setColor(color);
 
         Stroke oldStroke = g.getStroke();
@@ -80,8 +78,6 @@ public class GridLine implements Serializable{
             double width, int height, Chart chart, int incrementNo) {
     	
     	Color colorCached = g.getColor();
-    	
-//    	System.out.println("color Chached = " + colorCached);
     	
     	if (gridFill.gradiant) {
 			GradientPaint redtowhite2 = new GradientPaint(x,0,gridFill.color1, (int)(x+width), 0,gridFill.color2);

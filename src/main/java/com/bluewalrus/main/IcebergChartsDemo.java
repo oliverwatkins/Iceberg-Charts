@@ -27,6 +27,10 @@ import com.bluewalrus.main.test.TestDataTimeSeries;
 
 public class IcebergChartsDemo extends JFrame {
 
+	/**
+	 * 
+	 * @throws Exception
+	 */
     public IcebergChartsDemo() throws Exception {
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
@@ -40,7 +44,26 @@ public class IcebergChartsDemo extends JFrame {
         JPanel p = null;
         JComponent chart = null;
         
-
+        
+        p = createTabbedPane(tabbedPaneLine, "XY Simple");
+        chart = TestDataLineScatter.getTestData_SimpleXY();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneLine, "XY Chart");
+        chart = TestDataLineScatter.getTestData_Multiple_XY();
+        charts.add(chart);
+        p.add(chart);
+        
+        
+        
+        /***
+         * 
+         * 
+         * BARS
+         * 
+         */
+        
         
         
         p = createTabbedPane(tabbedPaneBar, "Bar - postitive negative");
@@ -63,6 +86,9 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
         
+        
+        
+        
         p = createTabbedPane(tabbedPaneBar, "Bar - 2 Y Axes");
         chart = TestDataBar.getTestData_Bar2Y();
         charts.add(chart);
@@ -84,15 +110,7 @@ public class IcebergChartsDemo extends JFrame {
         p.add(chart);
         
         
-        p = createTabbedPane(tabbedPaneLine, "XY Simple");
-        chart = TestDataLineScatter.getTestData_SimpleXY();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneLine, "XY Chart");
-        chart = TestDataLineScatter.getTestData_SomeKindOfXY();
-        charts.add(chart);
-        p.add(chart);
+
 
         
         

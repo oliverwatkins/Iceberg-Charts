@@ -27,7 +27,7 @@ public class SingleChartDemo extends JFrame {
 
 		JTabbedPane tabbedPaneBar = new JTabbedPane();
 
-		Chart chart2 = TestDataLineScatter.getTestData_SimpleXY();
+		Chart chart2 = TestDataLineScatter.getTestData_Multiple_XY();
 
 		// Chart chart2 = TestDataLineScatter.getTestData_SomeKindOfXY();
 

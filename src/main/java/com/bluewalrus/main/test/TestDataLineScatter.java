@@ -38,7 +38,7 @@ public class TestDataLineScatter {
 		values.add(new DataPoint(135, 67));
 		values.add(new DataPoint(150, 70));
 		
-		XYChart lineChart = new XYChart(values, "My Easy Example");
+		XYChart lineChart = new XYChart(values, "My Easy Example", "", "");
 		
 		JFrame frame = new JFrame();
 		frame.add(lineChart);
@@ -52,7 +52,7 @@ public class TestDataLineScatter {
 	
 	
 
-	public static Chart getTestData_SomeKindOfXY() {
+	public static Chart getTestData_Multiple_XY() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
@@ -62,82 +62,46 @@ public class TestDataLineScatter {
 		values.add(new DataPoint(17, -14));
 		values.add(new DataPoint(19, 5));
 		values.add(new DataPoint(22, 8));
-		values.add(new DataPoint(26, 14));
-		values.add(new DataPoint(29, -60));
-		values.add(new DataPoint(35, 25));
-		values.add(new DataPoint(37, 28));
-		values.add(new DataPoint(38, 31));
-		values.add(new DataPoint(41, 32));
-		values.add(new DataPoint(42, 34));
-		values.add(new DataPoint(50, -30));
 
 		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
 		values2.add(new DataPoint(10, -2));
 		values2.add(new DataPoint(14, 3));
 		values2.add(new DataPoint(18, 6));
 		values2.add(new DataPoint(21, 14));
-		values2.add(new DataPoint(26, 17));
-		values2.add(new DataPoint(29, 22));
-		values2.add(new DataPoint(32, -50));
-		values2.add(new DataPoint(35, 67));
-		values2.add(new DataPoint(37, 37));
-		values2.add(new DataPoint(39, 41));
-		values2.add(new DataPoint(43, 37));
-		values2.add(new DataPoint(45, 32));
-		values2.add(new DataPoint(60, 21));
+		values2.add(new DataPoint(14, 17));
 
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
-		values3.add(new DataPoint(5, 90));
+		values3.add(new DataPoint(4, 90));
 		values3.add(new DataPoint(8, 74));
 		values3.add(new DataPoint(11, 67));
 		values3.add(new DataPoint(14, 22));
 		values3.add(new DataPoint(18, 21));
-		values3.add(new DataPoint(23, 22));
-		values3.add(new DataPoint(27, 22));
-		values3.add(new DataPoint(45, 69));
-		values3.add(new DataPoint(52, 56));
-		values3.add(new DataPoint(57, 52));
-		values3.add(new DataPoint(61, 61));
-		values3.add(new DataPoint(63, 57));
 
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE),
-				new Line(Color.BLUE), "Something Blue");
+				new Line(Color.BLUE), "First");
 		series.dataPoints = values;
-		XYDataSeries series2 = new XYDataSeries(new UIPointCircle(Color.GRAY),
-				new Line(Color.GRAY), "Red");
+		XYDataSeries series2 = new XYDataSeries(new UIPointCircle(Color.GREEN),
+				new Line(Color.GREEN), "Second");
 		series2.dataPoints = values2;
-		XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.PINK),
-				new Line(Color.PINK), "Orange");
+		XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.RED),
+				new Line(Color.RED), "Third");
 		series3.dataPoints = values3;
 		
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
 		xySeriesList.add(series3);
 		
-		
-		
-		
-
-		NumericalInterval t1 = new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2 = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
-
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, t2, t3), "Y Axis");
-
-		NumericalInterval t1x = new NumericalInterval(10, 20.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2x = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
-
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(17.0, 70.0, t1x, t2x, null), "X Value");
-		
-		
-		
-		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart lineChart = new XYChart(xySeriesList, "Many Series"); //yAxis, xAxis);
 
 		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
+		
+		//for legend
+		lineChart.rightOffset = 500;
+		lineChart.topOffset = 500;
 
-		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-		lineChart.setTitle("Some Kind of XY Chart");
+
+//		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+//		lineChart.setTitle("Some Kind of XY Chart");
 
 		return lineChart;
 	}

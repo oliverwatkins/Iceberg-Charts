@@ -88,6 +88,65 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 	
+	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title) {
+		
+		double yMax = ChartUtils.calculateYAxisMax(xySeriesList, true);
+		double yMin = ChartUtils.calculateYAxisMin(xySeriesList, true);
+		double xMax = ChartUtils.calculateXAxisMax(xySeriesList, true);
+		double xMin = ChartUtils.calculateXAxisMin(xySeriesList, true);
+
+
+
+		
+		//get the diffs
+		double xDiff = xMax -xMin;
+		double yDiff = yMax -yMin;
+
+		//pad out to 10%
+		double yMinAdj = yMin - (yDiff/10);
+		double xMinAdj = xMin - (xDiff/10);
+		double yMaxAdj = yMax + (yDiff/10);
+		double xMaxAdj = xMax + (xDiff/10);
+		
+		//Needs to be floored. If decimal place then crashes later
+		xMaxAdj = Math.floor(xMaxAdj);
+		yMaxAdj = Math.floor(yMaxAdj);
+		xMinAdj = Math.floor(xMinAdj);
+		yMinAdj = Math.floor(yMinAdj);
+		
+		
+		double magnitude = getInterval(yMinAdj, yMaxAdj);
+		
+		NumericalInterval t1  = new NumericalInterval(6, magnitude, new GridLine(Color.GRAY, false, 1));
+
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, null, null), "Y TODO");
+
+		NumericalInterval t1x = new NumericalInterval(10, 20.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2x = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
+
+		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, null), "X TODO");
+		
+//		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLACK),
+//				new Line(Color.BLACK), "");
+//		series.dataPoints = values;
+		
+//		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+
+//		this.xySeriesList = xySeriesList; //.add(series);
+		
+		this.yAxis = yAxis;
+		this.xAxis = xAxis;
+
+		this.addMouseMotionListener(this);
+		
+		this.data.addAll(xySeriesList);
+		
+		this.setTitle(title);
+		
+		
+	}
+	
+	
 	/**
 	 * 
 	 * @param values
@@ -96,7 +155,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @param title
 	 */
 	
-	public XYChart(ArrayList<DataPoint> values, String title) {
+	public XYChart(ArrayList<DataPoint> values, String title, String xLabel, String yLabel) {
 		
 		
 		
@@ -125,20 +184,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		double magnitude = getInterval(yMinAdj, yMaxAdj);
 		
 		NumericalInterval t1  = new NumericalInterval(6, magnitude, new GridLine(Color.GRAY, false, 1));
-		
-		
-//		NumericalInterval t1 = null; //new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2 = null; //new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3 = null; //new NumericalInterval(1, 5.0, null);
-		
-		
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, null, null), "");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, null, null), yLabel);
 
 		NumericalInterval t1x = new NumericalInterval(10, 20.0, new GridLine(Color.GRAY, false, 1));
 		NumericalInterval t2x = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
 
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, null), "");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, null), xLabel);
 		
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLACK),
 				new Line(Color.BLACK), "");
@@ -153,11 +205,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		this.addMouseMotionListener(this);
 		
-		
 		this.data.addAll(xySeriesList);
 		
 		this.setTitle(title);
 	}
+
+
 
 	private double getInterval(
 			double yMinAdj, double yMaxAdj) {
