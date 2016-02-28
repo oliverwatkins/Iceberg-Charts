@@ -106,7 +106,6 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw {
 		double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
 
 		XAxisDrawUtil.drawIntervalTick(interval, g, chart, fromLeft, chart.xAxis);
-
 	}
 	
 
@@ -168,7 +167,6 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw {
 	@Override
 	protected double getMultiplicationFactor(XYChart chart) {
 		return ((double) chart.widthChart / (double) (maxValue - minValue));
-
 	}
 	
 

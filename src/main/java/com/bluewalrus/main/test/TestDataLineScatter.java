@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
@@ -23,16 +25,26 @@ import com.bluewalrus.point.UIPointTriangle;
 
 public class TestDataLineScatter {
 	
+	public static void main(String[] s) {
+		getTestData_SimpleXY();
+	}
+	
 	public static Chart getTestData_SimpleXY() {
 
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		values.add(new DataPoint(5, 30));
+		values.add(new DataPoint(5, 96));
 		values.add(new DataPoint(58, 43));
-//		values.add(new DataPoint(101, 40));
-//		values.add(new DataPoint(135, 37));
-//		values.add(new DataPoint(150, 40));
+		values.add(new DataPoint(101, 90));
+		values.add(new DataPoint(135, 67));
+		values.add(new DataPoint(150, 70));
 		
 		XYChart lineChart = new XYChart(values, "My Easy Example");
+		
+		JFrame frame = new JFrame();
+		frame.add(lineChart);
+		frame.setSize(700, 500);
+		frame.setVisible(true);
+		
 		
 		return lineChart;
 	}

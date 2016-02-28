@@ -122,7 +122,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		yMinAdj = Math.floor(yMinAdj);
 		
 
-		double magnitude = getInterval1(yMinAdj, yMaxAdj);
+		double magnitude = getInterval(yMinAdj, yMaxAdj);
 		
 		NumericalInterval t1  = new NumericalInterval(6, magnitude, new GridLine(Color.GRAY, false, 1));
 		
@@ -159,10 +159,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 	}
 
-	private double getInterval1(
+	private double getInterval(
 			double yMinAdj, double yMaxAdj) {
 		
-		NumericalInterval t1 = null;
+//		NumericalInterval t1 = null;
 		
 		double yT = yMaxAdj;
 		double yT2 = yMinAdj;
@@ -170,11 +170,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		double magnitude = 10.0;
 		
 		boolean ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
-//
-//		if (!ok) {
-//			magnitude = 10.0;
-//			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
-//		}
 		
 		if (!ok) {
 			magnitude = 100.0;
@@ -185,10 +180,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			magnitude = 1000.0;
 			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
 		}
-		
-//		else {
-//			throw new RuntimeException("TODO ");
-//		}
+
+		if (!ok) {
+			magnitude = 10000.0;
+			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+		}
 		return magnitude;
 	}
 
