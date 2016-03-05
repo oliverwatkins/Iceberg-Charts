@@ -71,7 +71,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @param xAxis
 	 * @param yAxis
 	 */
-	protected XYChart(XAxis xAxis, YAxis yAxis) {
+	public XYChart(XAxis xAxis, YAxis yAxis) {
 		this.yAxis = yAxis;
 		this.xAxis = xAxis;
 
