@@ -68,7 +68,7 @@ public class TestDataLineScatter {
 		values2.add(new DataPoint(14, 3));
 		values2.add(new DataPoint(18, 6));
 		values2.add(new DataPoint(21, 14));
-		values2.add(new DataPoint(14, 17));
+		values2.add(new DataPoint(34, 17));
 
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
 		values3.add(new DataPoint(4, 90));
@@ -77,27 +77,24 @@ public class TestDataLineScatter {
 		values3.add(new DataPoint(14, 22));
 		values3.add(new DataPoint(18, 21));
 
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE),
-				new Line(Color.BLUE), "First");
-		series.dataPoints = values;
-		XYDataSeries series2 = new XYDataSeries(new UIPointCircle(Color.GREEN),
-				new Line(Color.GREEN), "Second");
-		series2.dataPoints = values2;
-		XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.RED),
-				new Line(Color.RED), "Third");
-		series3.dataPoints = values3;
+		XYDataSeries series = new XYDataSeries(values, "First");
+		XYDataSeries series2 = new XYDataSeries(values2, "Second");
+		XYDataSeries series3 = new XYDataSeries(values3, "Third");
 		
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
 		xySeriesList.add(series3);
 		
-		XYChart lineChart = new XYChart(xySeriesList, "Many Series"); //yAxis, xAxis);
+		
+//		XYChart lineChart = new XYChart("Many Series", "TODO-X", "TODO-Y", xySeriesList); 
+
+		XYChart lineChart = new XYChart("Many Series", "TODO-X", "TODO-Y", series, series2, series3); 
 
 		lineChart.setSize(1000, 500);
 		
 		//for legend
-		lineChart.rightOffset = 500;
-		lineChart.topOffset = 500;
+
+//		lineChart.topOffset = 500;
 
 
 //		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));

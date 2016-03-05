@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bluewalrus.chart;
 
 import java.awt.BasicStroke;
@@ -13,9 +8,6 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.management.RuntimeErrorException;
 
 import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.GridLine;
@@ -23,7 +15,6 @@ import com.bluewalrus.bar.Legendable;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
-import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
@@ -34,20 +25,21 @@ import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
 import com.bluewalrus.chart.plotter.DatePlotter;
 import com.bluewalrus.chart.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.datapoint.DataPointBar;
+import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
+import com.bluewalrus.point.UIPointTriangle;
 import com.bluewalrus.point.UIPointXY;
 import com.bluewalrus.renderer.XYFactor;
 
 /**
- * XYChart is a chart where data is represented by x,y data. Typically the y axis is vertical 
- * and on the left, while the x axis runs along the bottom.
+ * XYChart is a chart where data is represented by x,y data. Typically the y
+ * axis is vertical and on the left, while the x axis runs along the bottom.
  * 
  * @author Oliver Watkins
  */
 public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
-	transient BasicStroke chartBorderLine = new BasicStroke(1, 
+	transient BasicStroke chartBorderLine = new BasicStroke(1,
 			BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, new float[] {
 					2, 0 }, // no dash
 			0.0f);
@@ -60,13 +52,26 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public ArrayList<XYDataSeries> data = new ArrayList<XYDataSeries>();
 
 	/**
+	 * Create an XY chart passing in also the data set.
+	 * 
+	 * @param listOfSeries
+	 * @param yAxis
+	 * @param xAxis
+	 */
+	public XYChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis, XAxis xAxis) {
+
+		this(xAxis, yAxis);
+		this.data.addAll(listOfSeries);
+	}
+
+	/**
 	 * Create an XY chart by passing in the two axis. This is the default
 	 * constructor for an empty chart.
 	 * 
-	 * @param xAxis 
+	 * @param xAxis
 	 * @param yAxis
 	 */
-	public XYChart(XAxis xAxis, YAxis yAxis) {
+	protected XYChart(XAxis xAxis, YAxis yAxis) {
 		this.yAxis = yAxis;
 		this.xAxis = xAxis;
 
@@ -74,50 +79,123 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 	/**
-	 * Create an XY chart passing in also the data set.
+	 * Simple Single Constructor
 	 * 
-	 * @param listOfSeries
-	 * @param yAxis
-	 * @param xAxis
+	 * @param values
+	 * @param xAxisMax
+	 * @param yAxisMax
+	 * @param title
 	 */
-	public XYChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis,
-			XAxis xAxis) {
-		
-		this(xAxis, yAxis);
-		this.data.addAll(listOfSeries);
+
+	public XYChart(ArrayList<DataPoint> values, String title, String xLabel,
+			String yLabel) {
+		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+
+		XYDataSeries<DataPoint> xy = new XYDataSeries<DataPoint>(values,
+				new UIPointSquare(Color.BLACK), new Line(Color.BLACK), "");
+		xySeriesList.add(xy);
+
+		init(xySeriesList, title);
 	}
 
-	
-	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title) {
+
+	/**
+	 * Simple Mutliple Constructor
+	 * 
+	 * @param title
+	 * @param x
+	 * @param y
+	 * @param xySeriesList
+	 */
+	public XYChart(String title, String x, String y,
+			ArrayList<XYDataSeries> xySeriesList) {
+
+		xySeriesList.get(0).pointType = new UIPointSquare(Color.BLUE);
+		xySeriesList.get(0).line = new Line(Color.BLUE);
+
+		xySeriesList.get(1).pointType = new UIPointCircle(Color.GREEN);
+		xySeriesList.get(1).line = new Line(Color.GREEN);
+
+		xySeriesList.get(2).pointType = new UIPointTriangle(Color.RED);
+		xySeriesList.get(2).line = new Line(Color.RED);
 		
+		//TODO
+
+		// ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+
+		// XYDataSeries<DataPoint> xy = new XYDataSeries<DataPoint>(values, new
+		// UIPointSquare(Color.BLACK),
+		// new Line(Color.BLACK), "");
+		// xySeriesList.add(xy);
+
+		init(xySeriesList, title);
+	}
+
+	/**
+	 * Simple multiple constructor
+	 * 
+	 * @param title
+	 * @param x
+	 * @param y
+	 * @param series
+	 */
+	public XYChart(String title, String x, String y, XYDataSeries... series) {
+
+		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+
+		series[0].pointType = new UIPointSquare(Color.BLUE);
+		series[0].line = new Line(Color.BLUE);
+
+		series[1].pointType = new UIPointCircle(Color.GREEN);
+		series[1].line = new Line(Color.GREEN);
+
+		series[2].pointType = new UIPointTriangle(Color.RED);
+		series[2].line = new Line(Color.RED);
+
+		//TODO
+		
+		xySeriesList.add(series[0]);
+		xySeriesList.add(series[1]);
+		xySeriesList.add(series[2]);
+
+		rightOffset = 200;
+
+		init(xySeriesList, title);
+	}
+	
+	/**
+	 * INitialize, calculating best x,y scalings and intervals.
+	 * 
+	 * @param xySeriesList
+	 * @param title
+	 */
+
+	private void init(ArrayList<XYDataSeries> xySeriesList, String title) {
+
 		double yMax = ChartUtils.calculateYAxisMax(xySeriesList, true);
 		double yMin = ChartUtils.calculateYAxisMin(xySeriesList, true);
 		double xMax = ChartUtils.calculateXAxisMax(xySeriesList, true);
 		double xMin = ChartUtils.calculateXAxisMin(xySeriesList, true);
 
+		// get the diffs
+		double xDiff = xMax - xMin;
+		double yDiff = yMax - yMin;
 
+		// pad out to 10%
+		double yMinAdj = yMin - (yDiff / 10);
+		double xMinAdj = xMin - (xDiff / 10);
+		double yMaxAdj = yMax + (yDiff / 10);
+		double xMaxAdj = xMax + (xDiff / 10);
 
-		
-		//get the diffs
-		double xDiff = xMax -xMin;
-		double yDiff = yMax -yMin;
-
-		//pad out to 10%
-		double yMinAdj = yMin - (yDiff/10);
-		double xMinAdj = xMin - (xDiff/10);
-		double yMaxAdj = yMax + (yDiff/10);
-		double xMaxAdj = xMax + (xDiff/10);
-		
-		//Needs to be floored. If decimal place then crashes later
+		// Needs to be floored. If decimal place then crashes later
 		xMaxAdj = Math.floor(xMaxAdj);
 		yMaxAdj = Math.floor(yMaxAdj);
 		xMinAdj = Math.floor(xMinAdj);
 		yMinAdj = Math.floor(yMinAdj);
-		
-		
+
 		double magnitude = getInterval(yMinAdj, yMaxAdj);
-		
-		NumericalInterval t1  = new NumericalInterval(6, magnitude, new GridLine(Color.GRAY, false, 1));
+
+		NumericalInterval t1 = new NumericalInterval(6, magnitude, new GridLine(Color.GRAY, false, 1));
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, null, null), "Y TODO");
 
@@ -125,110 +203,33 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		NumericalInterval t2x = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
 
 		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, null), "X TODO");
-		
-//		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLACK),
-//				new Line(Color.BLACK), "");
-//		series.dataPoints = values;
-		
-//		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
-//		this.xySeriesList = xySeriesList; //.add(series);
-		
 		this.yAxis = yAxis;
 		this.xAxis = xAxis;
 
 		this.addMouseMotionListener(this);
-		
+
 		this.data.addAll(xySeriesList);
-		
-		this.setTitle(title);
-		
-		
-	}
-	
-	
-	/**
-	 * 
-	 * @param values
-	 * @param xAxisMax
-	 * @param yAxisMax
-	 * @param title
-	 */
-	
-	public XYChart(ArrayList<DataPoint> values, String title, String xLabel, String yLabel) {
-		
-		
-		
-		double yMax = ChartUtils.calculateYAxisMax(values);
-		double yMin = ChartUtils.calculateYAxisMin(values);
-		double xMax = ChartUtils.calculateXAxisMax(values);
-		double xMin = ChartUtils.calculateXAxisMin(values);
 
-		//get the diffs
-		double xDiff = xMax -xMin;
-		double yDiff = yMax -yMin;
-
-		//pad out to 10%
-		double yMinAdj = yMin - (yDiff/10);
-		double xMinAdj = xMin - (xDiff/10);
-		double yMaxAdj = yMax + (yDiff/10);
-		double xMaxAdj = xMax + (xDiff/10);
-		
-		//Needs to be floored. If decimal place then crashes later
-		xMaxAdj = Math.floor(xMaxAdj);
-		yMaxAdj = Math.floor(yMaxAdj);
-		xMinAdj = Math.floor(xMinAdj);
-		yMinAdj = Math.floor(yMinAdj);
-		
-
-		double magnitude = getInterval(yMinAdj, yMaxAdj);
-		
-		NumericalInterval t1  = new NumericalInterval(6, magnitude, new GridLine(Color.GRAY, false, 1));
-
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, null, null), yLabel);
-
-		NumericalInterval t1x = new NumericalInterval(10, 20.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2x = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
-
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, null), xLabel);
-		
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLACK),
-				new Line(Color.BLACK), "");
-		series.dataPoints = values;
-		
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
-
-		xySeriesList.add(series);
-		
-		this.yAxis = yAxis;
-		this.xAxis = xAxis;
-
-		this.addMouseMotionListener(this);
-		
-		this.data.addAll(xySeriesList);
-		
 		this.setTitle(title);
 	}
 
 
 
-	private double getInterval(
-			double yMinAdj, double yMaxAdj) {
-		
-//		NumericalInterval t1 = null;
-		
+	private double getInterval(double yMinAdj, double yMaxAdj) {
+
 		double yT = yMaxAdj;
 		double yT2 = yMinAdj;
 
 		double magnitude = 10.0;
-		
+
 		boolean ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
-		
+
 		if (!ok) {
 			magnitude = 100.0;
 			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
 		}
-		
+
 		if (!ok) {
 			magnitude = 1000.0;
 			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
@@ -241,34 +242,33 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		return magnitude;
 	}
 
-	private boolean isOrderMagnitudeAcceptableFirstInterval(double maxValue, double minValue, double orderOfMagnitude) {
+	private boolean isOrderMagnitudeAcceptableFirstInterval(double maxValue,
+			double minValue, double orderOfMagnitude) {
 		while (maxValue % orderOfMagnitude != 0) {
 			maxValue--;
 		}
-		
+
 		while (minValue % orderOfMagnitude != 0) {
 			minValue++;
 		}
-		
+
 		double numberTicks = (maxValue - minValue) / orderOfMagnitude;
-		
-		if ( numberTicks < 10) { // && numberTicks > 2) {
+
+		if (numberTicks < 10) { // && numberTicks > 2) {
 			return true;
 		}
 		return false;
 	}
-
-
 
 	/**
 	 * Paint the background, Title, Grid and Axis. All the elements of the chart
 	 * except for the actual data.
 	 *
 	 * @param g2d
-	 * @param data 
+	 * @param data
 	 */
 	protected void prePaint(Graphics2D g2d, ArrayList<XYDataSeries> data) {
-		
+
 		this.calculateHeighAndWidthOfChart();
 
 		/**
@@ -284,75 +284,71 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		drawLegend(g2d);
 
 		// fills
-		yAxis.axisDraw.drawAllPre(g2d, this, data);  
-		xAxis.axisDraw.drawAllPre(g2d, this, data);  
+		yAxis.axisDraw.drawAllPre(g2d, this, data);
+		xAxis.axisDraw.drawAllPre(g2d, this, data);
 
 		// y axis
-		yAxis.axisDraw.drawAll(g2d, this, data);  
-		
+		yAxis.axisDraw.drawAll(g2d, this, data);
+
 		yAxis.drawLabel(g2d, this);
 		yAxis.drawBorderLine(g2d, this);
 
 		// x axis
-		xAxis.axisDraw.drawAll(g2d, this, data); 
+		xAxis.axisDraw.drawAll(g2d, this, data);
 		xAxis.drawLabel(g2d, this);
 		xAxis.drawBorderLine(g2d, this);
 
 	}
-
 
 	@Override
 	protected void paintComponent(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
 
-		//draws axis, frame etc
+		// draws axis, frame etc
 		this.prePaint(g2d, data);
-		
-		//draws actual data
+
+		// draws actual data
 		drawGraph(g2d);
 	}
 
-
-
 	@Override
 	protected void drawGraph(Graphics g) {
-		
+
 		/**
-		 * TODO if the x-axis is enumerable then the data needs
-		 * to be massaged. Upon creation of the datapoints the
-		 * x y values were arbitrary. Now that the chart
-		 * has size we can calculate the values where 
-		 * the points need to be positioned.
+		 * TODO if the x-axis is enumerable then the data needs to be massaged.
+		 * Upon creation of the datapoints the x y values were arbitrary. Now
+		 * that the chart has size we can calculate the values where the points
+		 * need to be positioned.
 		 * 
 		 * This does not look right here :( Maybe put into EnumeratioAxisDraw??
 		 */
 		if (xAxis.axisDraw instanceof EnumerationAxisDrawX) {
-			massageXAxisData_forEnumeration((Graphics2D)g, this, data);
+			massageXAxisData_forEnumeration((Graphics2D) g, this, data);
 		}
-		
-    	if (xAxis.axisDraw instanceof TimeSeriesAxisDrawX) {
-    		new DatePlotter().drawLinesOrPoints((Graphics2D)g, this, yAxis, xAxis, data);
-    	}else {
-    		new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
-    	}
-		
+
+		if (xAxis.axisDraw instanceof TimeSeriesAxisDrawX) {
+			new DatePlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis,
+					xAxis, data);
+		} else {
+			new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this,
+					yAxis, xAxis, data);
+		}
+
 	}
-	
 
 	/**
 	 * Massage data on X axis.ONLY USED FOR ENUMERATION!!!!
+	 * 
 	 * @param g2d
 	 * @param xyChart
 	 * @param data
 	 */
-	public void massageXAxisData_forEnumeration(Graphics2D g2d, XYChart xyChart,
-			ArrayList<XYDataSeries> data) {
+	public void massageXAxisData_forEnumeration(Graphics2D g2d,
+			XYChart xyChart, ArrayList<XYDataSeries> data) {
 
 		double xMax = this.xAxis.axisDraw.maxValue;
 		double xMin = this.xAxis.axisDraw.minValue;
-
-
 
 		double xFactor = ((double) xyChart.widthChart / (double) (xMax - xMin));
 
@@ -364,7 +360,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		double xRange = (double) (xMax - xMin);
 
 		// distance between points (bars)
-		double pointDistance = (double) (xyChart.widthChart / (dataPoints.size() + 1));
+		double pointDistance = (double) (xyChart.widthChart / (dataPoints
+				.size() + 1));
 
 		int i = 1;
 		for (DataPoint dataPoint : dataPoints) {
@@ -403,8 +400,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		super.drawLegend(g, categories);
 	}
 
-
-
 	/**
 	 * Inner line just inside of the axis line. Potentially optional??
 	 * 
@@ -420,7 +415,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		g.setStroke(chartBorderLine);
 		g.setColor(borderLineColor);
-		g.drawLine(leftOffset, heightChart + topOffset, leftOffset + widthChart, heightChart + topOffset);
+		g.drawLine(leftOffset, heightChart + topOffset,
+				leftOffset + widthChart, heightChart + topOffset);
 	}
 
 	/**
@@ -436,16 +432,18 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 	/**
-	 * Inner line inside axis line. Not the same as the axis. Only used in XYYChart
+	 * Inner line inside axis line. Not the same as the axis. Only used in
+	 * XYYChart
+	 * 
 	 * @param g
 	 */
 	protected void drawRightLine(Graphics2D g) {
 		g.setStroke(chartBorderLine);
 		g.setColor(borderLineColor);
-		g.drawLine(leftOffset + widthChart, topOffset, leftOffset + widthChart, heightChart + topOffset);
+		g.drawLine(leftOffset + widthChart, topOffset, leftOffset + widthChart,
+				heightChart + topOffset);
 	}
-	
-	
+
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub

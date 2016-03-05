@@ -31,6 +31,11 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
         this.name = name;
     }
 
+	public XYDataSeries(ArrayList<DataPoint> dataPoints, String name) {
+		this.name = name;
+		this.dataPoints = dataPoints;
+	}
+    
     public XYDataSeries(ArrayList<? extends DataPoint> dataPoints, UIPointXY point, Line line, String name) {
 
         this(point, line, name);
@@ -51,5 +56,7 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
         this.line = line;
         this.name = name;
     }
+
+
 
 }
