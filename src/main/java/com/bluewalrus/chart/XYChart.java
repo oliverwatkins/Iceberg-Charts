@@ -109,26 +109,15 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	public XYChart(String title, String x, String y,
 			ArrayList<XYDataSeries> xySeriesList) {
-
-		xySeriesList.get(0).pointType = new UIPointSquare(Color.BLUE);
-		xySeriesList.get(0).line = new Line(Color.BLUE);
-
-		xySeriesList.get(1).pointType = new UIPointCircle(Color.GREEN);
-		xySeriesList.get(1).line = new Line(Color.GREEN);
-
-		xySeriesList.get(2).pointType = new UIPointTriangle(Color.RED);
-		xySeriesList.get(2).line = new Line(Color.RED);
 		
-		//TODO
+		
 
-		// ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
-
-		// XYDataSeries<DataPoint> xy = new XYDataSeries<DataPoint>(values, new
-		// UIPointSquare(Color.BLACK),
-		// new Line(Color.BLACK), "");
-		// xySeriesList.add(xy);
+		setUpSeriesStyle(xySeriesList);
 
 		init(xySeriesList, title);
+		
+		this.xAxis.labelText = x;
+		this.yAxis.labelText = y;
 	}
 
 	/**
@@ -141,26 +130,50 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	public XYChart(String title, String x, String y, XYDataSeries... series) {
 
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
-
-		series[0].pointType = new UIPointSquare(Color.BLUE);
-		series[0].line = new Line(Color.BLUE);
-
-		series[1].pointType = new UIPointCircle(Color.GREEN);
-		series[1].line = new Line(Color.GREEN);
-
-		series[2].pointType = new UIPointTriangle(Color.RED);
-		series[2].line = new Line(Color.RED);
-
-		//TODO
 		
-		xySeriesList.add(series[0]);
-		xySeriesList.add(series[1]);
-		xySeriesList.add(series[2]);
-
-		rightOffset = 200;
+		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		for (XYDataSeries xyDataSeries : series) {
+			xySeriesList.add(xyDataSeries);
+		}
+		
+		setUpSeriesStyle(xySeriesList);
 
 		init(xySeriesList, title);
+		
+		this.xAxis.labelText = x;
+		this.yAxis.labelText = y;
+
+	}
+
+	private void setUpSeriesStyle(ArrayList<XYDataSeries> xySeriesList) {
+		int i = 0;
+		for (XYDataSeries xyDataSeries : xySeriesList) {
+			
+			if (i == 0) {
+				xyDataSeries.pointType = new UIPointSquare(Color.BLUE);
+				xyDataSeries.line = new Line(Color.BLUE, false, 2);
+				
+			}else if (i == 1) {
+				xyDataSeries.pointType = new UIPointCircle(Color.GREEN);
+				xyDataSeries.line = new Line(Color.GREEN, false, 2);
+			}else if (i == 2) {
+				xyDataSeries.pointType = new UIPointTriangle(Color.RED);
+				xyDataSeries.line = new Line(Color.RED, false, 2);
+			}else if (i == 3) {
+				xyDataSeries.pointType = new UIPointTriangle(Color.CYAN);
+				xyDataSeries.line = new Line(Color.CYAN, false, 2);
+				
+			}else if (i == 4) {
+				xyDataSeries.pointType = new UIPointCircle(Color.MAGENTA);
+				xyDataSeries.line = new Line(Color.MAGENTA, false, 2);
+			}else {
+				//create random TODO
+			}
+//			xySeriesList.add(xyDataSeries);
+			i++;
+		}
+
+		rightOffset = 200;
 	}
 	
 	/**
@@ -193,14 +206,16 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		xMinAdj = Math.floor(xMinAdj);
 		yMinAdj = Math.floor(yMinAdj);
 
-		double magnitude = getInterval(yMinAdj, yMaxAdj);
+		double magnitudeY = getInterval(yMinAdj, yMaxAdj);
+		double magnitudeX = getInterval(xMinAdj, xMaxAdj);
 
-		NumericalInterval t1 = new NumericalInterval(6, magnitude, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t1 = new NumericalInterval(6, magnitudeY, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2 = new NumericalInterval(3, magnitudeY/10, new GridLine(Color.LIGHT_GRAY, true, 1));
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, null, null), "Y TODO");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, t2, null), "Y TODO");
 
-		NumericalInterval t1x = new NumericalInterval(10, 20.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2x = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1x = new NumericalInterval(6, magnitudeX, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2x = new NumericalInterval(3, magnitudeX/10, new GridLine(Color.LIGHT_GRAY, true, 1));
 
 		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, null), "X TODO");
 
@@ -214,8 +229,17 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 	}
 
-
-
+	
+	/**
+	 * Get a sensible interval between two points. Ie. (34 --> 10,000) would be 1000 (36 --> 132) would be 10
+	 * 
+	 * 
+	 * TODO less than zero and greater than 10000. Need generic algorithm here
+	 * 
+	 * @param yMinAdj
+	 * @param yMaxAdj
+	 * @return
+	 */
 	private double getInterval(double yMinAdj, double yMaxAdj) {
 
 		double yT = yMaxAdj;
@@ -289,7 +313,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		// y axis
 		yAxis.axisDraw.drawAll(g2d, this, data);
-
 		yAxis.drawLabel(g2d, this);
 		yAxis.drawBorderLine(g2d, this);
 

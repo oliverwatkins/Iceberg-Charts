@@ -34,53 +34,30 @@ public class XAxisDrawUtil {
 		int y1 = (chart.topOffset + chart.heightChart + axis.marginOffset);
         int y2 = (chart.topOffset + chart.heightChart + axis.marginOffset + interval.lineLength);
 
-        int rightSideChart = (chart.getWidth() - chart.rightOffset);
-        
-        if (fromLeft < rightSideChart) {
+        if (isXPositionInsideChart(chart, fromLeft))
             g.drawLine((int)fromLeft, y1, (int)fromLeft, y2);
-        }
+        
  	} 
-    
-    
 	
+	/**
+	 * Draw Grid Line
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 * @param fromLeft
+	 */
 	public static void drawGridLine(AbstractInterval interval, Graphics2D g, Chart chart,
 			double fromLeft) {
 		
 		int y1 = chart.topOffset + chart.heightChart;
 		int y2 = chart.topOffset;
 
-        int rightSideChart = (chart.getWidth() - chart.rightOffset);
-		
-        if (fromLeft < rightSideChart) {
+        if (isXPositionInsideChart(chart, fromLeft))
         	interval.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
-        }
 		
 	}
 	
-
-	
-	/**
-	 * 
-	 * @param chart
-	 * @param axis
-	 * @param g2d
-	 */
-	public static void drawLabel(Chart chart, XAxis axis, Graphics2D g2d) {
-
-        FontMetrics fmX = chart.getFontMetrics(axis.font);
-        int xAxisStringWidth = fmX.stringWidth(axis.labelText);
-
-        //X Label
-        int xAxesLabelHeight = chart.bottomOffset - axis.labelOffset;
-
-        //x label        
-        g2d.setFont(axis.font);
-        g2d.drawString(axis.labelText, chart.widthChart / 2 + chart.leftOffset - xAxisStringWidth / 2, 
-        		chart.topOffset + chart.heightChart + axis.labelOffset + xAxesLabelHeight / 2);
-
-	}
-    
-    
 	public static void drawXLabel(Graphics g, Chart chart, double fromLeft,
 			String xLabel, Axis axis, int intervalLevel) {
 		
@@ -100,8 +77,46 @@ public class XAxisDrawUtil {
         }
         
         g.setFont(axis.axisCatFont);
-        g.drawString(xLabel, (int)fromLeft, yPos);
+        
+        if (isXPositionInsideChart(chart, fromLeft))
+            g.drawString(xLabel, (int)fromLeft, yPos);
+    }
+        
+	
+
+	private static boolean isXPositionInsideChart(Chart chart, double fromLeft) {
+		
+		int rightSideChart = (chart.getWidth() - chart.rightOffset);
+		
+		if (fromLeft < rightSideChart && fromLeft > chart.leftOffset) {
+			return true;
+		}
+		return false;
 	}
+
+	
+	/**
+	 * 
+	 * @param chart
+	 * @param axis
+	 * @param g2d
+	 */
+	public static void drawLabel(Chart chart, XAxis axis, Graphics2D g2d) {
+
+        FontMetrics fmX = chart.getFontMetrics(axis.font);
+        int xAxisStringWidth = fmX.stringWidth(axis.labelText);
+
+        //X Label
+        int xAxesLabelHeight = chart.bottomOffset - axis.labelOffset;
+
+        //x label        
+        g2d.setFont(axis.font);
+        
+
+        g2d.drawString(axis.labelText, chart.widthChart / 2 + chart.leftOffset - xAxisStringWidth / 2, 
+        		chart.topOffset + chart.heightChart + axis.labelOffset + xAxesLabelHeight / 2);
+	}
+    
 
 	/**
 	 * TODO grid fill is out by one pixel when compared to grid lines.

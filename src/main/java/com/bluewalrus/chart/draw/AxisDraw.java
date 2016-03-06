@@ -54,18 +54,20 @@ public abstract class AxisDraw {
 	
 	public void drawGridLines(Graphics2D g, XYChart chart) {
 		
-		if (interval1 != null && interval1.isValid()
-				&& interval1.graphLine != null) {
-			this.drawGridLine(interval1, g, chart);
+		if (interval3 != null && interval3.isValid()
+				&& interval3.graphLine != null) {
+			this.drawGridLine(interval3, g, chart);
 		}
 		if (interval2 != null && interval2.isValid()
 				&& interval2.graphLine != null) {
 			this.drawGridLine(interval2, g, chart);
 		}
-		if (interval3 != null && interval3.isValid()
-				&& interval3.graphLine != null) {
-			this.drawGridLine(interval3, g, chart);
+		
+		if (interval1 != null && interval1.isValid()
+				&& interval1.graphLine != null) {
+			this.drawGridLine(interval1, g, chart);
 		}
+
 	}
 
 	protected abstract void drawGridLine(AbstractInterval interval,

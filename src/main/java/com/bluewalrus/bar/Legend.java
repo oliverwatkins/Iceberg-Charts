@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -39,6 +40,7 @@ public class Legend implements Serializable{
     int squareWidth = 30;
 
     Color legendBackgroundColor = new Color(243, 239, 239);
+//  Color legendBackgroundColor = Color.WHITE;
 
     Chart chart;
 
@@ -70,11 +72,19 @@ public class Legend implements Serializable{
         //draw outside rectangle
         g.setColor(legendBackgroundColor);
 
-        g.fillRect(legendX, legendY, legendWidth - paddingLegendRight, legendHeight);
+        g.fill(new RoundRectangle2D.Double(legendX, legendY,
+        		legendWidth - paddingLegendRight,
+        		legendHeight,
+                10, 10));
+
         //draw outside rectangle
         g.setColor(Color.LIGHT_GRAY);
-        g.drawRect(legendX, legendY, legendWidth - paddingLegendRight, legendHeight);
-
+        
+        g.draw(new RoundRectangle2D.Double(legendX, legendY,
+        		legendWidth - paddingLegendRight,
+        		legendHeight,
+                10, 10));
+        
         int i = 0;
 
         for (Category category : data) {
