@@ -15,9 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.TestDataGrids;
 import com.bluewalrus.main.test.TestDataLineScatter;
-import com.bluewalrus.main.test.TestDataTimeSeries;
 
 public class SingleChartDemo extends JFrame {
 

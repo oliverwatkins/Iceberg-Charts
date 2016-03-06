@@ -42,7 +42,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	transient BasicStroke chartBorderLine = new BasicStroke(1,
 			BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, new float[] {
 					2, 0 }, // no dash
-			0.0f);
+					0.0f);
 
 	public Color borderLineColor = Color.BLACK;
 
@@ -109,8 +109,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	public XYChart(String title, String x, String y,
 			ArrayList<XYDataSeries> xySeriesList) {
-		
-		
 
 		setUpSeriesStyle(xySeriesList);
 
@@ -123,7 +121,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	/**
 	 * Simple multiple constructor
 	 * 
-	 * @param title
+	 * @param title chart title
 	 * @param x
 	 * @param y
 	 * @param series
@@ -144,6 +142,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.yAxis.labelText = y;
 
 	}
+	
+	/**
+	 * Set up some default styles
+	 * 
+	 * @param xySeriesList
+	 */
 
 	private void setUpSeriesStyle(ArrayList<XYDataSeries> xySeriesList) {
 		int i = 0;
@@ -169,7 +173,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			}else {
 				//create random TODO
 			}
-//			xySeriesList.add(xyDataSeries);
 			i++;
 		}
 
@@ -182,7 +185,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @param xySeriesList
 	 * @param title
 	 */
-
 	private void init(ArrayList<XYDataSeries> xySeriesList, String title) {
 
 		double yMax = ChartUtils.calculateYAxisMax(xySeriesList, true);

@@ -88,6 +88,7 @@ public class TestDataLineScatter {
 		XYDataSeries series2 = new XYDataSeries(values2, "Second");
 		XYDataSeries series3 = new XYDataSeries(values3, "Third");
 		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
+		
 
 		XYChart lineChart = new XYChart("Many Series Example", "My X Axis", "My Y Axis", series, series2, series3, series4); 
 
