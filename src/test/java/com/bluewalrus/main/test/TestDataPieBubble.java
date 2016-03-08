@@ -26,9 +26,9 @@ import com.bluewalrus.point.UIPointPieChart;
  *
  * @author oliver
  */
-public class TestDataPieBubble {
-
-    public static Chart getTestData_Bubble2() {
+public class TestDataPieBubble extends ChartTester {
+	@Override
+	public Chart getChart() {
 
         System.out.println("getTestData_Bubble2");
 

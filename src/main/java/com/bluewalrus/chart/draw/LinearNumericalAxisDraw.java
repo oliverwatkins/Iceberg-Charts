@@ -10,8 +10,6 @@ import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
 
 public abstract class LinearNumericalAxisDraw extends AxisDraw{
-
-
 	
 	public Line zeroLine = new Line(Color.GRAY, false, 1);
 	
@@ -117,10 +115,6 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 			drawIntervalTickAndLabels(this.interval3, g, chart, false);
 		}
 	}
-	
-	
-	
-
 	
 	
 	/**

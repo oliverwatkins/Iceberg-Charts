@@ -33,11 +33,11 @@ import com.bluewalrus.point.UIPointTriangle;
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
  */
-public class TestDataBar_FontFun {
+public class TestDataBar_FontFun extends ChartTester {
 
-	
-	
-    public static BarChart getTestData_FontFun() {
+	@Override
+	public Chart getChart() {
+
     	
         ArrayList<Color> colors = Utils.makeGradients(Color.RED, Color.BLUE, 12);
         

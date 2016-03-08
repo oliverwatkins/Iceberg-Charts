@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.GradiantRule;
 import com.bluewalrus.bar.GridLine;
@@ -33,9 +35,10 @@ import com.bluewalrus.point.UIPointTriangle;
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
  */
-public class TestDataBar_BarNegativeAndPositiveNumerical {
-	
-	public static Chart getTestData_BarNegativeAndPositiveNumerical() {
+public class TestDataBar_BarNegativeAndPositiveNumerical extends ChartTester {
+	@Override
+	public JPanel getChart() {
+
 		
         ArrayList<Color> colors = Utils.makeGradients(Color.ORANGE, Color.CYAN, 5);
         

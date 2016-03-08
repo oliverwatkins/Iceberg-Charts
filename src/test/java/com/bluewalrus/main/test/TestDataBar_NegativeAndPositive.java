@@ -33,11 +33,10 @@ import com.bluewalrus.point.UIPointTriangle;
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
  */
-public class TestDataBar_NegativeAndPositive {
+public class TestDataBar_NegativeAndPositive extends ChartTester {
 
-	
-
-    public static Chart getTestData_BarNegativeAndPositive() {
+	@Override
+	public Chart getChart() {
         
         ArrayList<Color> colors = Utils.makeGradients(Color.ORANGE, Color.CYAN, 5);
         

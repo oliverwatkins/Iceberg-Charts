@@ -5,14 +5,12 @@ import java.awt.Color;
 
 public class DataPointBar extends DataPoint {
 
-//    public String xName;
-
     public Color color; //TODO get rid of this
     
     public ValueType valueType;
     
 	public DataPointBar(String xName, double y, Color color) {
-		super(-9999, y); //
+		super(-9999, y); 
 		this.color = color;
 		
 		valueType = ValueType.X_ENUMARABLE;

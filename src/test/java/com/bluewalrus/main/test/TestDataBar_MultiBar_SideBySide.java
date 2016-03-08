@@ -33,13 +33,10 @@ import com.bluewalrus.point.UIPointTriangle;
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
  */
-public class TestDataBar_MultiBar_SideBySide {
+public class TestDataBar_MultiBar_SideBySide extends ChartTester {
 
-	
-
-
-    
-    public static MultiBarChart getTestData_MultiBar_SideBySide() {
+	@Override
+	public Chart getChart() {
         
         ArrayList<MultiBar> ml = new ArrayList<MultiBar>();
 

@@ -33,12 +33,12 @@ import com.bluewalrus.point.UIPointTriangle;
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
  */
-public class TestDataBar_2Y {
+public class TestDataBar_2Y extends ChartTester{
 
 
-    
-    
-    public static XYChart getTestData_Bar2Y() {
+
+	@Override
+	public Chart getChart() {
         
         ArrayList<XYDataSeries<?>> xySeries = new ArrayList<XYDataSeries<?>>();
 
@@ -136,5 +136,6 @@ public class TestDataBar_2Y {
         return chart;
 
     }
+
 
 }

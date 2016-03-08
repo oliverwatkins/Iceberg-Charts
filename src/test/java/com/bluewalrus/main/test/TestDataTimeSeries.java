@@ -22,14 +22,12 @@ import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointSquare;
 
-public class TestDataTimeSeries {
+public class TestDataTimeSeries extends ChartTester {
 
 	
 
-	
-	
-	
-	public static Chart getTestData_TimeSeries2() throws ParseException {
+	@Override
+	public Chart getChart() throws ParseException {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 		

@@ -33,12 +33,10 @@ import com.bluewalrus.point.UIPointTriangle;
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
  */
-public class TestDataBar_MultiBar_Stacked {
+public class TestDataBar_MultiBar_Stacked extends ChartTester {
 
-
-    public static MultiBarChart getTestData_MultiBar_Stacked() {
-    	
-    	
+	@Override
+	public Chart getChart() {
     	
         ArrayList<MultiBar> ml = new ArrayList<MultiBar>();
 

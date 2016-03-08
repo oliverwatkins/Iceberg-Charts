@@ -17,9 +17,9 @@ import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.point.UIPointBubble;
 
-public class TestDataBubble_1_guns {
-
-    public static Chart getTestData_Bubble2() {
+public class TestDataBubble_1_guns extends ChartTester {
+	@Override
+	public Chart getChart() {
 
         System.out.println("getTestData_Bubble2");
 
