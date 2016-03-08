@@ -25,65 +25,7 @@ import com.bluewalrus.point.UIPointSquare;
 public class TestDataTimeSeries {
 
 	
-	public static Chart getTestData_TimeSeries() throws ParseException {
 
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
-		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
-		
-		Date startDate = df.parse("1984-01-01 01-00-00"); 
-		Date endDate = df.parse("2002-01-20 05-33-00");
-		
-		
-		String time = "1985-01-01 00-33-00";                              
-		Date dt4 = df.parse(time);                                      
-
-		time = "1992-01-01 00-33-00";                                                
-		Date dt5 = df.parse(time);                                      
-
-		time = "1999-07-20 05-33-00";                              
-		Date dt6 = df.parse(time);                                      
-		
-		
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-//		values.add(new DataPoint(dt, -30));
-//		values.add(new DataPoint(dt2, -11));
-//		values.add(new DataPoint(dt3, -14));
-		values.add(new DataPoint(dt4, 5));
-		values.add(new DataPoint(dt5, 8));
-		values.add(new DataPoint(dt6, 14));
-
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
-		series.dataPoints = values;
-
-		NumericalInterval t1 = new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2 = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
-
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, t2, t3), "Y Axis");
-		
-		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-		SimpleDateFormat monthFormat = new SimpleDateFormat("");
-		
-		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new GridLine(Color.GRAY, false, 6), yearFormat);
-		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 3), monthFormat);
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.NONE, new GridLine(Color.GRAY, false, 1));
-//		
-		
-		XAxis xAxis = new XAxis(new TimeSeriesAxisDrawX(startDate, endDate, timeInt1, timeInt2, timeInt3), "Time Series"); //timeInt2, timeInt3), "Time Series");
-
-		xySeriesList.add(series);
-
-		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
-
-		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
-
-		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-		lineChart.setTitle("Some Kind of XY Chart");
-
-		return lineChart;
-	}
 	
 	
 	

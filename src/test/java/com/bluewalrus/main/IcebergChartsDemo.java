@@ -17,9 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.TestDataBar;
-import com.bluewalrus.main.test.TestDataBubble;
-import com.bluewalrus.main.test.TestDataGrids;
+import com.bluewalrus.main.test.TestDataBar_BarCanBeXY;
+import com.bluewalrus.main.test.TestDataBubble_1_guns;
+import com.bluewalrus.main.test.TestDataGrids_TimeSeries;
 import com.bluewalrus.main.test.TestDataLineScatter;
 import com.bluewalrus.main.test.TestDataPie;
 import com.bluewalrus.main.test.TestDataPieBubble;
@@ -67,7 +67,7 @@ public class IcebergChartsDemo extends JFrame {
         
         
         p = createTabbedPane(tabbedPaneBar, "Bar - postitive negative");
-        chart = TestDataBar.getTestData_BarNegativeAndPositive();
+        chart = TestDataBar_BarCanBeXY.getTestData_BarNegativeAndPositive();
         charts.add(chart);
         p.add(chart);
         
@@ -77,12 +77,12 @@ public class IcebergChartsDemo extends JFrame {
 //        	return;
         
         p = createTabbedPane(tabbedPaneBar, "Bar - Can be XY");
-        chart = TestDataBar.getTestData_BarCanBeXY();
+        chart = TestDataBar_BarCanBeXY.getTestData_BarCanBeXY();
         charts.add(chart);
         p.add(chart);
         
         p = createTabbedPane(tabbedPaneBar, "Thin Lines");
-        chart = TestDataBar.getTestData_thinLines();
+        chart = TestDataBar_BarCanBeXY.getTestData_thinLines();
         charts.add(chart);
         p.add(chart);
         
@@ -90,22 +90,22 @@ public class IcebergChartsDemo extends JFrame {
         
         
         p = createTabbedPane(tabbedPaneBar, "Bar - 2 Y Axes");
-        chart = TestDataBar.getTestData_Bar2Y();
+        chart = TestDataBar_BarCanBeXY.getTestData_Bar2Y();
         charts.add(chart);
         p.add(chart);
         
         p = createTabbedPane(tabbedPaneBar, "MultiBar - side by side");
-        chart = TestDataBar.getTestData_MultiBar_SideBySide();
+        chart = TestDataBar_BarCanBeXY.getTestData_MultiBar_SideBySide();
         charts.add(chart);
         p.add(chart);
         
         p = createTabbedPane(tabbedPaneBar, "MultiBar - stacked");
-        chart = TestDataBar.getTestData_MultiBar_Stacked();
+        chart = TestDataBar_BarCanBeXY.getTestData_MultiBar_Stacked();
         charts.add(chart);
         p.add(chart);
         
         p = createTabbedPane(tabbedPaneBar, "Font fun");
-        chart = TestDataBar.getTestData_FontFun();
+        chart = TestDataBar_BarCanBeXY.getTestData_FontFun();
         charts.add(chart);
         p.add(chart);
         
@@ -144,13 +144,13 @@ public class IcebergChartsDemo extends JFrame {
         p.add(chart);
 
         p = createTabbedPane(tabbedPaneLine, "Bubble");
-        chart = TestDataBubble.getTestData_Bubble();
+        chart = TestDataBubble_1_guns.getTestData_Bubble();
         charts.add(chart);
         p.add(chart);
         
 
         p = createTabbedPane(tabbedPaneLine, "Bubble2");
-        chart = TestDataBubble.getTestData_Bubble2();
+        chart = TestDataBubble_1_guns.getTestData_Bubble2();
         charts.add(chart);
         p.add(chart);
 
@@ -188,7 +188,7 @@ public class IcebergChartsDemo extends JFrame {
         p.add(chart);
 
         p = createTabbedPane(tabbedPaneLine, "Grid 1 ");
-        chart = TestDataGrids.getTestData_Grid1();
+        chart = TestDataGrids_TimeSeries.getTestData_Grid1();
         charts.add(chart);
         p.add(chart);
         
