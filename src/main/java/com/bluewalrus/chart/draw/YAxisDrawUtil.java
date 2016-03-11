@@ -8,6 +8,7 @@ import java.awt.geom.AffineTransform;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.YAxis;
@@ -98,14 +99,14 @@ public class YAxisDrawUtil {
 
 		interval.graphLine.drawLine(g, x1, (int)fromTop, x2, (int)fromTop);
 	}
+	
+	
+	
 	//TODO similar code
-	public static void drawGridFill(NumericalInterval interval, Graphics2D g,
-			XYChart chart, double fromTop, int i, double incrementInPixel, int incrementNo) {
-		int x1 = chart.leftOffset;
-		
-		int x2 = chart.leftOffset + chart.widthChart;
+	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
+			XYChart chart, double fromTop, int incrementNo, double incrementInPixel) {
 
-		interval.graphLine.fillArea(g, x1, (int)fromTop, x2, (int)fromTop, chart, incrementNo);
+		interval.graphLine.fillAreaY(g, (int)fromTop, incrementInPixel, chart, incrementNo);
 		
 	}
 	

@@ -131,45 +131,39 @@ public class XAxisDrawUtil {
 	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
 			XYChart chart, double fromLeft, int incrementNo, double incrementInPixels) {
 		
-		int y1 = chart.topOffset + chart.heightChart;
-		int y2 = chart.topOffset;
-		
-		int height = y1 - y2;
-		
-		
-		interval.graphLine.fillArea(g, (int)fromLeft, y2, incrementInPixels, height, chart, incrementNo);
+		interval.graphLine.fillAreaX(g, (int)fromLeft, incrementInPixels, chart, incrementNo);
 		
 	}
 	
-	@Deprecated
-	public static void drawLeftFill(AbstractInterval interval, Graphics2D g,
-			XYChart chart, double toFirstInPixels, double fromLeft, double incrementInPixel) {
-		
-		int y1 = chart.topOffset + chart.heightChart;
-		int y2 = chart.topOffset;
-		
-		int height = y1 - y2;
-		
-		int xPos = (chart.leftOffset + (int)toFirstInPixels) - (int)incrementInPixel;
-		
-		interval.graphLine.fillArea(g, xPos, y2, toFirstInPixels, height, chart, 0);
-	}
-
-
-
-	@Deprecated
-	public static void drawRightFill(AbstractInterval interval, Graphics2D g,
-			XYChart chart, double toFirstInPixels, double fromLeft, int incrementNo, double incrementInPixel) {
-		
-		int y1 = chart.topOffset + chart.heightChart;
-		int y2 = chart.topOffset;
-		
-		int height = y1 - y2;
-		
-		int leftPoint = chart.leftOffset + (int)toFirstInPixels + ((int)incrementInPixel * (incrementNo));
-		
-		interval.graphLine.fillArea(g, leftPoint, y2, incrementInPixel, height, chart, incrementNo);
-		
-	}
+//	@Deprecated
+//	public static void drawLeftFill(AbstractInterval interval, Graphics2D g,
+//			XYChart chart, double toFirstInPixels, double fromLeft, double incrementInPixel) {
+//		
+//		int y1 = chart.topOffset + chart.heightChart;
+//		int y2 = chart.topOffset;
+//		
+//		int height = y1 - y2;
+//		
+//		int xPos = (chart.leftOffset + (int)toFirstInPixels) - (int)incrementInPixel;
+//		
+//		interval.graphLine.fillAreaX(g, xPos, y2, toFirstInPixels, height, chart, 0);
+//	}
+//
+//
+//
+//	@Deprecated
+//	public static void drawRightFill(AbstractInterval interval, Graphics2D g,
+//			XYChart chart, double toFirstInPixels, double fromLeft, int incrementNo, double incrementInPixel) {
+//		
+//		int y1 = chart.topOffset + chart.heightChart;
+//		int y2 = chart.topOffset;
+//		
+//		int height = y1 - y2;
+//		
+//		int leftPoint = chart.leftOffset + (int)toFirstInPixels + ((int)incrementInPixel * (incrementNo));
+//		
+//		interval.graphLine.fillAreaX(g, leftPoint, y2, incrementInPixel, height, chart, incrementNo);
+//		
+//	}
 
 }

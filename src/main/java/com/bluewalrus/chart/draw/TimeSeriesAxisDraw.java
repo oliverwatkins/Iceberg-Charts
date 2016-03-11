@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Date;
 
+import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
@@ -16,7 +17,9 @@ public abstract class TimeSeriesAxisDraw extends AxisDraw{
 	
 	
 	public TimeSeriesAxisDraw(Date dateStart, Date dateEnd, TimeInterval timeInt1,
-			TimeInterval timeInt2, TimeInterval timeInt3) {
+			TimeInterval timeInt2, TimeInterval timeInt3, Orientation orientation) {
+		
+		super(orientation);
 		
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;

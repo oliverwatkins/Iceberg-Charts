@@ -184,7 +184,26 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.yAxis.labelText = y;
 
 	}
-	
+	/**
+	 * 
+	 * @param xySeriesList
+	 * @param string
+	 * @param yAxis2
+	 * @param xAxis2
+	 * @param getAroundErasureVariable_IGNORE
+	 */
+	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
+			YAxis yAxis, XAxis xAxis, boolean getAroundErasureVariable_IGNORE) {
+		
+		this.setTitle(title);
+		
+		this.xAxis = xAxis;
+		this.yAxis = yAxis;
+		
+		this.data.addAll(xySeriesList);
+		
+	}
+
 
 
 

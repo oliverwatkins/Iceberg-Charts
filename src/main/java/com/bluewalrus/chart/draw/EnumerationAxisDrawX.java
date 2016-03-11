@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
@@ -14,6 +15,10 @@ import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.renderer.XYFactor;
 
 public class EnumerationAxisDrawX extends EnumerationAxisDraw {
+
+	public EnumerationAxisDrawX() {
+		super(Orientation.X);
+	}
 
 	@Override
 	public void drawAll(Graphics2D g2d, XYChart xyChart,

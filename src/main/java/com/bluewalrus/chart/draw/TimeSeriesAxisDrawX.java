@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
@@ -18,7 +19,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 
 	public TimeSeriesAxisDrawX(Date dateStart, Date dateEnd, TimeInterval timeInt1,
 			TimeInterval timeInt2, TimeInterval timeInt3) {
-		super(dateStart, dateEnd, timeInt1, timeInt2, timeInt2);	
+		super(dateStart, dateEnd, timeInt1, timeInt2, timeInt2, Orientation.X);	
 	}
 
 	

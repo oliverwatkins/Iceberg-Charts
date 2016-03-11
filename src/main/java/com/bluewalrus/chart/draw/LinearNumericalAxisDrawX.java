@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
@@ -12,17 +13,17 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw {
 
 	public LinearNumericalAxisDrawX() {
-		super();
+		super(Orientation.X);
 	}
 
 	public LinearNumericalAxisDrawX(double d, double e) {
-		super(d, e);
+		super(d, e, Orientation.X);
 	}
 
 	public LinearNumericalAxisDrawX(Double primaryIncrements,
 			Double secondaryIncrements, Double tertiaryIncrements) {
 
-		super(primaryIncrements, secondaryIncrements, tertiaryIncrements);
+		super(primaryIncrements, secondaryIncrements, tertiaryIncrements, Orientation.X);
 	}
 
 	public LinearNumericalAxisDrawX(int minValue, int maxValue,
@@ -37,7 +38,7 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw {
 			NumericalInterval interval1, NumericalInterval interval2,
 			NumericalInterval interval3) {
 
-		super(minValue, maxValue, interval1, interval2, interval3);
+		super(minValue, maxValue, interval1, interval2, interval3, Orientation.X);
 	}
 
 	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
@@ -45,7 +46,7 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw {
 			Double tertiaryIncrements) {
 
 		super(minValue, maxValue, primaryIncrements, secondaryIncrements,
-				tertiaryIncrements);
+				tertiaryIncrements, Orientation.X);
 	}
 
 

@@ -3,6 +3,7 @@ package com.bluewalrus.chart.draw;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
@@ -15,14 +16,23 @@ import com.bluewalrus.chart.axis.NumericalInterval;
  *
  */
 public abstract class AxisDraw {
+	
+	Orientation orientation;
+	
 
-	public double maxValue = 100; // arbitrary
-	public double minValue = 0; // arbitrary
+	public double maxValue = -1; //101; // arbitrary
+	public double minValue = -1; //0; // arbitrary
 
 	public AbstractInterval interval1; 
 	public AbstractInterval interval2; 
 	public AbstractInterval interval3; 
 
+	
+	protected AxisDraw(Orientation orientation) {
+		this.orientation = orientation;
+	}
+	
+	
 	/**
 	 * Pre-rendering. Things that can overpaint things of another axis such as grid fills should go in here.
 	 * 
@@ -93,7 +103,7 @@ public abstract class AxisDraw {
 		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
 				((NumericalInterval) interval).getInterval(), factor);
 	
-		int totalIncrementNo = (int) (maxValue / ((NumericalInterval) interval)
+		int totalIncrementNo = (int) ((maxValue - minValue) / ((NumericalInterval) interval)
 				.getInterval());
 	
 		double incrementInPixel = (double) (((NumericalInterval) interval)
@@ -101,7 +111,7 @@ public abstract class AxisDraw {
 		
 		g.setColor(interval.graphLine.color);
 	
-		for (int incrementNo = 0; incrementNo < totalIncrementNo; incrementNo++) {
+		for (int incrementNo = 0; incrementNo <= totalIncrementNo; incrementNo++) {
 	
 			double fromStart = getFromStart(chart, toFirstInPixels,
 					incrementInPixel, incrementNo);
@@ -111,11 +121,67 @@ public abstract class AxisDraw {
 			/**
 			 * Draw Grid line
 			 */
-			XAxisDrawUtil.drawGridFill(interval, g, chart, fromStart, incrementNo,
-					incrementInPixel);
+			
+			if (this.orientation == Orientation.X)
+				XAxisDrawUtil.drawGridFill(interval, g, chart, fromStart, incrementNo,
+						incrementInPixel);
+			else if (this.orientation == Orientation.Y)
+				YAxisDrawUtil.drawGridFill(interval, g, chart, fromStart, incrementNo,
+						incrementInPixel);
+			else {
+				throw new RuntimeException("asdfasdf");
+			}
+
 		}
 	
 	}
+	
+	
+	
+	
+	
+//	
+//	@Override
+//	protected void drawGridFill(AbstractInterval interval, Graphics2D g, XYChart chart) {
+//		NumericalInterval inter = (NumericalInterval) interval;
+//		
+//        int incrementNo = (int) ((maxValue - minValue) / inter.getInterval());
+//
+//        //divide height of chart by actual height of chart to get the multiplaying factor
+//        double factor = getMultiplicationFactor(chart); 
+//        
+//        //to first increment
+//    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(inter.getInterval(), factor);
+//    	
+//        double incrementInPixel = (double) (inter.getInterval() * factor);
+//
+//        for (int i = 0; i < incrementNo; i++) {
+//
+//            double fromTop = getFromTop(chart, i, incrementInPixel, toFirstInPixels);
+//
+//        	/**
+//        	 * Draw grid line
+//        	 */
+//            YAxisDrawUtil.drawGridFill(inter, g, chart, fromTop, i , incrementInPixel, incrementNo);
+//        }
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	protected abstract double getToFirstIntervalValueFromMinInPixels(Double interval, double factor);
 
