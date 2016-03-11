@@ -26,7 +26,9 @@ import com.bluewalrus.main.test.TestDataBar_NegativeAndPositive;
 import com.bluewalrus.main.test.TestDataBar_thinLines;
 import com.bluewalrus.main.test.TestDataBubble_1_guns;
 import com.bluewalrus.main.test.TestDataBubble_2_series;
-import com.bluewalrus.main.test.TestDataGrids2;
+import com.bluewalrus.main.test.TestDataGrids_alternateGridFillX;
+import com.bluewalrus.main.test.TestDataGrids_GraphPaper;
+import com.bluewalrus.main.test.TestDataGrids_TimeSeries;
 import com.bluewalrus.main.test.TestDataPieBubble;
 import com.bluewalrus.main.test.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.TestDataPie_IndicatorSimple;
@@ -55,7 +57,8 @@ public class IcebergChartsDemo extends JFrame {
         JTabbedPane tabbedPaneBar = new JTabbedPane();
         JTabbedPane tabbedPaneLine = new JTabbedPane();
         JTabbedPane tabbedPanePie = new JTabbedPane();
-        
+        JTabbedPane tabbedPaneGridFills = new JTabbedPane();
+                
         JPanel p = null;
         JComponent chart = null;
         
@@ -71,6 +74,28 @@ public class IcebergChartsDemo extends JFrame {
         p.add(chart);
         
         
+        
+        
+
+        /**
+         * GRIDS
+         */
+        
+        p = createTabbedPane(tabbedPaneGridFills, "Grids Graph Paper");
+        chart = new TestDataGrids_GraphPaper().getChart();
+        charts.add(chart);
+        p.add(chart);
+
+        p = createTabbedPane(tabbedPaneGridFills, "Grids Time Series");
+        chart = new TestDataGrids_TimeSeries().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneGridFills, "Grid Alternate X Fill");
+        chart = new TestDataGrids_alternateGridFillX().getChart();
+        charts.add(chart);
+        p.add(chart);
+
         
         /***
          * 
@@ -202,16 +227,14 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
 
-        p = createTabbedPane(tabbedPaneLine, "Grid 1 ");
-        chart = new TestDataGrids2().getChart();
-        charts.add(chart);
-        p.add(chart);
+
         
         
 
         tabbedPane.add("General XY Charts", tabbedPaneLine);
         tabbedPane.add("Bar Charts", tabbedPaneBar);
         tabbedPane.add("Pie Charts", tabbedPanePie);
+        tabbedPane.add("Grids And Fills", tabbedPaneGridFills);
         
         JButton b = new JButton("Create PNG");
         

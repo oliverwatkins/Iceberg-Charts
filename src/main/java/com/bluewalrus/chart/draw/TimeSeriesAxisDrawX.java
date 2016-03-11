@@ -74,7 +74,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		//to first increment
 		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
 		
-		double pixFromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, incrementNumber);
+		double pixFromLeft = getFromStart(chart, toFirstInPixels, incrementInPixel, incrementNumber);
 		
 		long ms = DateUtils.getMsToNearestDataType(this.dateStart, interval.type);
 		
@@ -174,7 +174,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 		//to first increment
 		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
 		
-		double pixFromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
+		double pixFromLeft = getFromStart(chart, toFirstInPixels, incrementInPixel, i);
 		
 		XAxisDrawUtil.drawIntervalTick(interval, g, chart, pixFromLeft, chart.xAxis);
 	}
@@ -197,7 +197,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 
         for (int i = 0; i < incrementNo; i++) {
         	
-            double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
+            double fromLeft = getFromStart(chart, toFirstInPixels, incrementInPixel, i);
 
             /**
              * Draw Grid line
@@ -211,38 +211,51 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
      * TODO : similar code
      */
 
+//	@Override
+//	protected void drawGridFill(AbstractInterval interval, Graphics2D g,
+//			XYChart chart) {
+//		
+//		
+//		double factor = getMultiplicationFactor(chart); 
+//    	
+//        //to first increment
+//    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
+//
+//    	int incrementNo = getIncrementNumber(interval);
+//    	
+//        double incrementInPixel = getIncrementInPixels(interval, chart);
+//
+//        g.setColor(interval.graphLine.color);
+//        
+//        for (int i = 0; i < incrementNo; i++) {
+//        	
+//        	double fromLeft = getFromStart(chart, toFirstInPixels, 
+//        			incrementInPixel, i);
+//
+//        	fromLeft = fromLeft - incrementInPixel; //start left of the y Axis (invisible part)
+//            /**
+//             * Draw Grid line
+//             */
+//            XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, incrementNo, 
+//            		incrementInPixel);
+//        }
+//
+//	}
+
+
 	@Override
-	protected void drawGridFill(AbstractInterval interval, Graphics2D g,
-			XYChart chart) {
-		double factor = getMultiplicationFactor(chart); 
-    	
-        //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
+	protected double getToFirstIntervalValueFromMinInPixels(Double interval,
+			double factor) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-    	int incrementNo = getIncrementNumber(interval);
-    	
-        double incrementInPixel = getIncrementInPixels(interval, chart);
 
-        g.setColor(interval.graphLine.color);
-
-        
-        double fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, 0);
-        
-        XAxisDrawUtil.drawLeftFill(interval, g, chart, toFirstInPixels, fromLeft, incrementInPixel);
-        
-        for (int i = 0; i < incrementNo; i++) {
-        	
-            fromLeft = getFromLeft(chart, toFirstInPixels, incrementInPixel, i);
-
-            /**
-             * Draw Grid line
-             */
-            XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, incrementNo, incrementInPixel);
-            
-        }
-        
-        XAxisDrawUtil.drawRightFill(interval, g, chart, toFirstInPixels, fromLeft, incrementNo, incrementInPixel);
-
+	@Override
+	protected double getFromStart(XYChart chart, double toFirstInPixels,
+			double incrementInPixel, int i) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

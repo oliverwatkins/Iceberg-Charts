@@ -120,14 +120,34 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	/**
 	 * 
+	 * @param series
+	 * @param title
+	 * @param yAxis
+	 * @param xAxis
+	 */
+	public XYChart(XYDataSeries series, String title, YAxis yAxis,
+			XAxis xAxis) {
+		
+		this.setTitle(title);
+		
+		this.xAxis = xAxis;
+		this.yAxis = yAxis;
+		
+		this.data.add(series);
+	}
+	
+	/**
+	 * 
 	 * @param values
 	 * @param string
 	 * @param yAxis2
 	 * @param xAxis2
 	 */
 	
-	public XYChart(ArrayList<DataPoint> values, String string, YAxis yAxis2,
+	public XYChart(ArrayList<DataPoint> values, String title, YAxis yAxis2,
 			XAxis xAxis2) {
+
+		this.setTitle(title);
 		
 		this.xAxis = xAxis2;
 		this.yAxis = yAxis2;
@@ -137,6 +157,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		this.data.add(s);
 	}
+	
+
 	
 	/**
 	 * Simple multiple constructor
@@ -163,6 +185,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	}
 	
+
+
+
+
 
 
 	/**

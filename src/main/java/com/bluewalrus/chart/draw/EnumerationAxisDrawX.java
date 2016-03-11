@@ -129,5 +129,19 @@ public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 		
 	}
 
+	@Override
+	protected double getToFirstIntervalValueFromMinInPixels(Double interval,
+			double factor) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	protected double getFromStart(XYChart chart, double toFirstInPixels,
+			double incrementInPixel, int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

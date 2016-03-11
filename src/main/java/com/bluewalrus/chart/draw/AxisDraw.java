@@ -6,7 +6,14 @@ import java.util.ArrayList;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
+import com.bluewalrus.chart.axis.NumericalInterval;
 
+/**
+ * TODO rename to Scale?
+ * 
+ * @author Oliver Watkins
+ *
+ */
 public abstract class AxisDraw {
 
 	public double maxValue = 100; // arbitrary
@@ -73,11 +80,54 @@ public abstract class AxisDraw {
 	protected abstract void drawGridLine(AbstractInterval interval,
 			Graphics2D g, XYChart chart);
 	
-	protected abstract void drawGridFill(AbstractInterval interval,
-			Graphics2D g, XYChart chart);
-	
 	protected abstract void drawGridLineOnZero(Graphics2D g);
 
 	protected abstract double getMultiplicationFactor(XYChart chart);
+
+	protected void drawGridFill(AbstractInterval interval, Graphics2D g, XYChart chart) {
+		
+		
+		double factor = getMultiplicationFactor(chart);
+	
+		// to first increment
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				((NumericalInterval) interval).getInterval(), factor);
+	
+		int totalIncrementNo = (int) (maxValue / ((NumericalInterval) interval)
+				.getInterval());
+	
+		double incrementInPixel = (double) (((NumericalInterval) interval)
+				.getInterval() * factor);
+		
+		g.setColor(interval.graphLine.color);
+	
+		for (int incrementNo = 0; incrementNo < totalIncrementNo; incrementNo++) {
+	
+			double fromStart = getFromStart(chart, toFirstInPixels,
+					incrementInPixel, incrementNo);
+			
+			fromStart = fromStart - incrementInPixel; //start left of the y Axis (invisible part)
+	
+			/**
+			 * Draw Grid line
+			 */
+			XAxisDrawUtil.drawGridFill(interval, g, chart, fromStart, incrementNo,
+					incrementInPixel);
+		}
+	
+	}
+	
+	protected abstract double getToFirstIntervalValueFromMinInPixels(Double interval, double factor);
+
+	/**
+	 * Get from left, or from bottom
+	 * @param chart
+	 * @param toFirstInPixels
+	 * @param incrementInPixel
+	 * @param i
+	 * @return
+	 * 
+	 */
+	protected abstract double getFromStart(XYChart chart, double toFirstInPixels, double incrementInPixel, int incrementNo);
 
 }

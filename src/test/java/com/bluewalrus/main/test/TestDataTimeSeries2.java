@@ -1,6 +1,5 @@
 package com.bluewalrus.main.test;
 
-
 import java.awt.Color;
 import java.awt.Font;
 import java.text.ParseException;
@@ -18,14 +17,15 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
 import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
 import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointSquare;
 
-public class TestDataGrids_TimeSeries extends ChartTester {
+public class TestDataTimeSeries2 extends ChartTester {
 
+
+	
 	@Override
 	public Chart getChart() throws ParseException {
 
@@ -33,17 +33,17 @@ public class TestDataGrids_TimeSeries extends ChartTester {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
-		Date startDate = df.parse("1997-01-01 01-00-00"); 
-		Date endDate = df.parse("2002-01-20 05-33-00");
+		Date startDate = df.parse("2001-05-3 01-00-00"); 
+		Date endDate = df.parse("2001-07-12 05-33-00");
 		
 		
-		String time = "1985-01-01 00-33-00";                              
+		String time = "2001-03-01 00-33-00";                              
 		Date dt4 = df.parse(time);                                      
 
-		time = "1992-01-01 00-33-00";                                                
+		time = "2001-04-01 00-33-00";                                                
 		Date dt5 = df.parse(time);                                      
 
-		time = "1999-07-20 05-33-00";                              
+		time = "2001-07-20 05-33-00";                              
 		Date dt6 = df.parse(time);                                      
 		
 		
@@ -55,21 +55,31 @@ public class TestDataGrids_TimeSeries extends ChartTester {
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
-		NumericalInterval t1 = new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2 = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
+		NumericalInterval t1 = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, t2, t3), "Y Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, t1, null, null), "Y Axis");
 		
-		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-		SimpleDateFormat monthFormat = new SimpleDateFormat("");
+		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
+		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
+
+//		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
+//		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1, new GridFill(Color.GRAY, Color.WHITE, true)), dayFormat);
+
+
 		
-		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new GridLine(Color.GRAY, false, 6), yearFormat);
-		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 3), monthFormat);
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.NONE, new GridLine(Color.GRAY, false, 1));
-//		
+		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2));
 		
-		XAxis xAxis = new XAxis(new TimeSeriesAxisDrawX(startDate, endDate, timeInt1, timeInt2, timeInt3), "Time Series"); //timeInt2, timeInt3), "Time Series");
+//				new GridFill(new Color(179, 209, 255), Color.WHITE, true)), monthFormat);
+		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1), dayFormat);
+
+		
+		XAxis xAxis = new XAxis(
+				new TimeSeriesAxisDrawX(
+						startDate, 
+						endDate, 
+						timeInt2, 
+						timeInt3, 
+						null), "Time Series"); 
 
 		xySeriesList.add(series);
 
@@ -84,11 +94,17 @@ public class TestDataGrids_TimeSeries extends ChartTester {
 		return lineChart;
 	}
 	
-	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataGrids_TimeSeries();
-		t.testChart(t.getChart());
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
-

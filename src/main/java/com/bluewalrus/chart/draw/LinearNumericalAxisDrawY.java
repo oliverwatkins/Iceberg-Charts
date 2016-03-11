@@ -192,5 +192,13 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	@Override
+	protected double getFromStart(XYChart chart, double toFirstInPixels, double incrementInPixel, int i) {
+		double fromLeft = chart.bottomOffset + (i * incrementInPixel)
+				+ toFirstInPixels;
+		return fromLeft;
+	}
 
 }

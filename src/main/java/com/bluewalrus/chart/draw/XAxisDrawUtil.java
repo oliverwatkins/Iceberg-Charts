@@ -141,7 +141,7 @@ public class XAxisDrawUtil {
 		
 	}
 	
-	
+	@Deprecated
 	public static void drawLeftFill(AbstractInterval interval, Graphics2D g,
 			XYChart chart, double toFirstInPixels, double fromLeft, double incrementInPixel) {
 		
@@ -157,9 +157,9 @@ public class XAxisDrawUtil {
 
 
 
+	@Deprecated
 	public static void drawRightFill(AbstractInterval interval, Graphics2D g,
 			XYChart chart, double toFirstInPixels, double fromLeft, int incrementNo, double incrementInPixel) {
-		
 		
 		int y1 = chart.topOffset + chart.heightChart;
 		int y2 = chart.topOffset;
