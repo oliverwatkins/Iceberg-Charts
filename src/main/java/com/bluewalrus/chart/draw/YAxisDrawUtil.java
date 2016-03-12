@@ -102,13 +102,13 @@ public class YAxisDrawUtil {
 	
 	
 	
-	//TODO similar code
-	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
-			XYChart chart, double fromTop, int incrementNo, double incrementInPixel) {
-
-		interval.graphLine.fillAreaY(g, (int)fromTop, incrementInPixel, chart, incrementNo);
-		
-	}
+//	//TODO similar code
+//	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
+//			XYChart chart, double fromTop, int incrementNo, double incrementInPixel) {
+//
+//		interval.graphLine.fillAreaY(g, (int)fromTop, incrementInPixel, chart, incrementNo);
+//		
+//	}
 	
 	
 	

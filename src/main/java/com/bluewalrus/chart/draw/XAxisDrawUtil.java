@@ -118,52 +118,5 @@ public class XAxisDrawUtil {
 	}
     
 
-	/**
-	 * TODO grid fill is out by one pixel when compared to grid lines.
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param fromLeft
-	 * @param incrementNo
-	 * @param incrementInPixels
-	 */
-	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
-			XYChart chart, double fromLeft, int incrementNo, double incrementInPixels) {
-		
-		interval.graphLine.fillAreaX(g, (int)fromLeft, incrementInPixels, chart, incrementNo);
-		
-	}
-	
-//	@Deprecated
-//	public static void drawLeftFill(AbstractInterval interval, Graphics2D g,
-//			XYChart chart, double toFirstInPixels, double fromLeft, double incrementInPixel) {
-//		
-//		int y1 = chart.topOffset + chart.heightChart;
-//		int y2 = chart.topOffset;
-//		
-//		int height = y1 - y2;
-//		
-//		int xPos = (chart.leftOffset + (int)toFirstInPixels) - (int)incrementInPixel;
-//		
-//		interval.graphLine.fillAreaX(g, xPos, y2, toFirstInPixels, height, chart, 0);
-//	}
-//
-//
-//
-//	@Deprecated
-//	public static void drawRightFill(AbstractInterval interval, Graphics2D g,
-//			XYChart chart, double toFirstInPixels, double fromLeft, int incrementNo, double incrementInPixel) {
-//		
-//		int y1 = chart.topOffset + chart.heightChart;
-//		int y2 = chart.topOffset;
-//		
-//		int height = y1 - y2;
-//		
-//		int leftPoint = chart.leftOffset + (int)toFirstInPixels + ((int)incrementInPixel * (incrementNo));
-//		
-//		interval.graphLine.fillAreaX(g, leftPoint, y2, incrementInPixel, height, chart, incrementNo);
-//		
-//	}
 
 }

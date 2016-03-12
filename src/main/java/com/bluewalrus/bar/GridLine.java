@@ -106,13 +106,15 @@ public class GridLine implements Serializable{
 
     	Rectangle fillRect = new Rectangle(new Rectangle(xPos, yPos, chart.widthChart, (int)lengthDimension));
     	
-		if ((yPos + lengthDimension) > (chart.topOffset + chart.heightChart)) {
+		if ((yPos) > (chart.topOffset + chart.heightChart)) {
+			
+			//skip
+			
+		} else if ((yPos + lengthDimension) > (chart.topOffset + chart.heightChart)) {
 			System.out.println("CLIP END");
 			
 			//clip off anything that is shown passed the chart right edge
 			Shape clip = g.getClip();
-			
-//			g.setClip(fillRect);
 			
 			g.clip(new Rectangle(chart.leftOffset, yPos, (int)chart.widthChart, 
 					(int)(yPos + lengthDimension) - (chart.heightChart + chart.topOffset)));
@@ -122,8 +124,6 @@ public class GridLine implements Serializable{
 			g.setClip(clip);
 			
 		}else if (yPos < chart.topOffset) {
-
-			System.out.println("CLIP START");
 			
 			//clip off anything that is shown passed the chart top edge
 			Shape clip = g.getClip();
@@ -146,36 +146,14 @@ public class GridLine implements Serializable{
             Chart chart, 
             int incrementNo) {
     	
-    	int startXorYPoint = chart.topOffset;
-    	int dimensionStartingPoint = xPos;
-    	int heightDimension = chart.heightChart;
-    	int lengthDimensionSpace = chart.widthChart;
+//    	incrementNo
     	
-    	int startOffset= chart.leftOffset;
-    	
-    	fillArea(g, lengthDimension, incrementNo, startXorYPoint,
-				dimensionStartingPoint, heightDimension, lengthDimensionSpace,
-				startOffset);
-    }
-	
-	
-	private void fillArea(Graphics2D g, 
-			double lengthDimension, 
-			int incrementNo,
-			int stationaryCoordinate, //y pos for left to right (hte NON moving coordinate)
-			int dimensionStartingPoint,
-			double thicknessDimension, 
-			int lengthDimensionSpace, 
-			int startOffset) 
-	
-	
-	{
-		lengthDimension = lengthDimension +1; //The GridFills were always out by one pixel.. ie 1 pixel white line, so need to add a pixel here.
+    	lengthDimension = lengthDimension +1; //The GridFills were always out by one pixel.. ie 1 pixel white line, so need to add a pixel here.
 
     	Color colorCached = g.getColor();
     	
     	if (gridFill.gradiant) {
-			GradientPaint redtowhite2 = new GradientPaint(dimensionStartingPoint,0,gridFill.color1, (int)(dimensionStartingPoint+lengthDimension), 0,gridFill.color2);
+			GradientPaint redtowhite2 = new GradientPaint(xPos,0,gridFill.color1, (int)(xPos + lengthDimension), 0,gridFill.color2);
 			g.setPaint(redtowhite2);
     	}else {
         	if((incrementNo%2)==0) {
@@ -185,57 +163,44 @@ public class GridLine implements Serializable{
         	}
     	}
 
-    	System.out.println("CLIP RIGHT " + dimensionStartingPoint + " to pos " + lengthDimension);
-
-    	Rectangle fillRect = new Rectangle(dimensionStartingPoint, stationaryCoordinate, (int)lengthDimension, (int)thicknessDimension);
+    	Rectangle fillRect = new Rectangle(xPos, chart.topOffset, (int)lengthDimension, (int)chart.heightChart);
     	
-    	
-    	System.out.println(" dimensionStartingPoint = " + dimensionStartingPoint);
-    	System.out.println(" lengthDimension = " + lengthDimension );
-    			
-		System.out.println(" y = " + stationaryCoordinate);
-       	System.out.println(" startOffset = " + startOffset);
-		System.out.println(" lengthDimensionSpace = " + lengthDimensionSpace);
-
-    	
-		if ((dimensionStartingPoint + lengthDimension) > (startOffset + lengthDimensionSpace)) {
+		if ((xPos) > (chart.leftOffset + chart.widthChart)) {
 			
-	    	System.out.println("CLIP RIGHT " + dimensionStartingPoint + " to pos " + lengthDimension);
+			//skip
+		} else if ((xPos + lengthDimension) > (chart.leftOffset + chart.widthChart)) {
 			
+	    	System.out.println("CLIP RIGHT " + xPos + " to pos " + lengthDimension);
 			
 			//clip off anything that is shown passed the chart right edge
 			Shape clip = g.getClip();
 			
 			g.setClip(fillRect);
 			
-			int width2 = startOffset + lengthDimensionSpace - dimensionStartingPoint;
+			int width2 = chart.leftOffset + chart.widthChart - xPos;
 			
-			g.clip(new Rectangle(dimensionStartingPoint, stationaryCoordinate, width2, (int)thicknessDimension));
+			g.clip(new Rectangle(xPos, chart.topOffset, width2, (int)chart.heightChart));
 			
 			g.fill (fillRect);
 
 			g.setClip(clip);
 			
-		}else if (dimensionStartingPoint < startOffset) {
-
+		}else if (xPos < chart.leftOffset) {
 			
-	    	System.out.println("CLIP LEFT " + dimensionStartingPoint + " to pos " + lengthDimension);
+	    	System.out.println("CLIP LEFT " + xPos + " to pos " + lengthDimension);
 
-			
 			//clip off anything that is shown passed the chart left edge
 			Shape clip = g.getClip();
 			
 			g.setClip(fillRect);
 			
-			g.clip(new Rectangle(startOffset, stationaryCoordinate, (int)lengthDimension, (int)thicknessDimension));
+			g.clip(new Rectangle(chart.leftOffset, chart.topOffset, (int)lengthDimension, (int)chart.heightChart));
 			
 			g.fill (fillRect);
 
 			g.setClip(clip);
 			
 		}else {
-
-			
 			g.fill (fillRect);
 		}
 		g.setColor(colorCached);

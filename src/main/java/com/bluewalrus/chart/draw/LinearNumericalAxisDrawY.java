@@ -57,36 +57,6 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
 		
 		drawGridFills(g2d, xyChart);
 	}
-	
-
-
-	
-
-
-//	@Override
-//	protected void drawGridFill(AbstractInterval interval, Graphics2D g, XYChart chart) {
-//		NumericalInterval inter = (NumericalInterval) interval;
-//		
-//        int incrementNo = (int) ((maxValue - minValue) / inter.getInterval());
-//
-//        //divide height of chart by actual height of chart to get the multiplaying factor
-//        double factor = getMultiplicationFactor(chart); 
-//        
-//        //to first increment
-//    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(inter.getInterval(), factor);
-//    	
-//        double incrementInPixel = (double) (inter.getInterval() * factor);
-//
-//        for (int i = 0; i < incrementNo; i++) {
-//
-//            double fromTop = getFromTop(chart, i, incrementInPixel, toFirstInPixels);
-//
-//        	/**
-//        	 * Draw grid line
-//        	 */
-//            YAxisDrawUtil.drawGridFill(inter, g, chart, fromTop, i , incrementInPixel, incrementNo);
-//        }
-//	}
 
 	
     protected void drawIntervalLabel(NumericalInterval interval, Graphics g, 

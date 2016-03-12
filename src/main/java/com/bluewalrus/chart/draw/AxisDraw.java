@@ -105,6 +105,8 @@ public abstract class AxisDraw {
 	
 		int totalIncrementNo = (int) ((maxValue - minValue) / ((NumericalInterval) interval)
 				.getInterval());
+		
+		totalIncrementNo++;
 	
 		double incrementInPixel = (double) (((NumericalInterval) interval)
 				.getInterval() * factor);
@@ -123,11 +125,12 @@ public abstract class AxisDraw {
 			 */
 			
 			if (this.orientation == Orientation.X)
-				XAxisDrawUtil.drawGridFill(interval, g, chart, fromStart, incrementNo,
-						incrementInPixel);
+
+				interval.graphLine.fillAreaX(g, (int)fromStart, incrementInPixel, chart, incrementNo);
+				
 			else if (this.orientation == Orientation.Y)
-				YAxisDrawUtil.drawGridFill(interval, g, chart, fromStart, incrementNo,
-						incrementInPixel);
+				
+				interval.graphLine.fillAreaY(g, (int)fromStart, incrementInPixel, chart, incrementNo);
 			else {
 				throw new RuntimeException("asdfasdf");
 			}
