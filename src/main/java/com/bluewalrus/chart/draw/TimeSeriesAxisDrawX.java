@@ -194,7 +194,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
     	
         double incrementInPixel = getIncrementInPixels(interval, chart);
 
-        g.setColor(interval.graphLine.color);
+        g.setColor(interval.styling.graphLine.color);
 
         for (int i = 0; i < incrementNo; i++) {
         	

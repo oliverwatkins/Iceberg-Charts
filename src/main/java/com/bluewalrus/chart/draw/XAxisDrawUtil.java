@@ -32,7 +32,7 @@ public class XAxisDrawUtil {
 			double fromLeft, Axis axis) {
 		
 		int y1 = (chart.topOffset + chart.heightChart + axis.marginOffset);
-        int y2 = (chart.topOffset + chart.heightChart + axis.marginOffset + interval.lineLength);
+        int y2 = (chart.topOffset + chart.heightChart + axis.marginOffset + interval.styling.lineLength);
 
         if (isXPositionInsideChart(chart, fromLeft))
             g.drawLine((int)fromLeft, y1, (int)fromLeft, y2);
@@ -54,7 +54,7 @@ public class XAxisDrawUtil {
 		int y2 = chart.topOffset;
 
         if (isXPositionInsideChart(chart, fromLeft))
-        	interval.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
+        	interval.styling.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
 		
 	}
 	

@@ -41,12 +41,18 @@ public class TestDataGrids_alternateGridFillY extends ChartTester {
 		
 
 		NumericalInterval yInterval = new NumericalInterval(8, 10.0, 
-				new GridLine(Color.GRAY, false, 1,
-				new GridFill(
-						new Color(179, 209, 255), 
-						new Color(172, 109, 215), false)
-				)
-		);
+				new GridLine(Color.GRAY, false, 1)); 
+		yInterval.styling.graphFill = new GridFill(
+				new Color(179, 209, 255), 
+				new Color(172, 109, 215), false);
+		
+		
+//		//,
+//				new GridFill(
+//						new Color(179, 209, 255), 
+//						new Color(172, 109, 215), false)
+//				)
+//		);
 
 		
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-95.0, 105.0, yInterval, null, null), "Y Axis");

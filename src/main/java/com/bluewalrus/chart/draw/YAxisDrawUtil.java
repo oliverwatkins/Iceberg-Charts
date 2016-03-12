@@ -32,7 +32,7 @@ public class YAxisDrawUtil {
 	 */
 	public static void drawIntervalTick(NumericalInterval interval, Graphics g, Chart chart,
 			double fromTop, YAxis axis) {
-		int lineLength = interval.lineLength;
+		int lineLength = interval.styling.lineLength;
     	
         int x1;
         int x2;
@@ -97,18 +97,8 @@ public class YAxisDrawUtil {
 		
 		int x2 = chart.leftOffset + chart.widthChart;
 
-		interval.graphLine.drawLine(g, x1, (int)fromTop, x2, (int)fromTop);
+		interval.styling.graphLine.drawLine(g, x1, (int)fromTop, x2, (int)fromTop);
 	}
-	
-	
-	
-//	//TODO similar code
-//	public static void drawGridFill(AbstractInterval interval, Graphics2D g,
-//			XYChart chart, double fromTop, int incrementNo, double incrementInPixel) {
-//
-//		interval.graphLine.fillAreaY(g, (int)fromTop, incrementInPixel, chart, incrementNo);
-//		
-//	}
 	
 	
 	

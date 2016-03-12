@@ -15,6 +15,7 @@ import com.bluewalrus.bar.Legendable;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
+import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
@@ -97,6 +98,43 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		init(xySeriesList, title);
 	}
+	
+	
+
+	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
+			IntervalStyling stylingX, IntervalStyling stylingY) {
+		
+		this.data.addAll(xySeriesList);
+		init(xySeriesList, title);
+		
+		xAxis.axisDraw.interval1.styling = stylingX;
+		yAxis.axisDraw.interval1.styling = stylingY;
+
+	}
+	
+	
+
+
+
+
+	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
+			IntervalStyling stylingX, IntervalStyling stylingX2,
+			IntervalStyling stylingX3, IntervalStyling stylingY,
+			IntervalStyling stylingY2, IntervalStyling stylingY3) {
+		
+		this.data.addAll(xySeriesList);
+		init(xySeriesList, title);
+		
+		xAxis.axisDraw.interval1.styling = stylingX;
+		yAxis.axisDraw.interval1.styling = stylingY;
+		xAxis.axisDraw.interval2.styling = stylingX2;
+		yAxis.axisDraw.interval2.styling = stylingY2;
+		xAxis.axisDraw.interval3.styling = stylingX3;
+		yAxis.axisDraw.interval3.styling = stylingY3;
+	}
+	
+	
+	
 
 
 	/**
@@ -209,7 +247,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 
 
-
 	/**
 	 * Set up some default styles
 	 * 
@@ -278,14 +315,33 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		double magnitudeY = getInterval(yMinAdj, yMaxAdj);
 		double magnitudeX = getInterval(xMinAdj, xMaxAdj);
 
-		NumericalInterval t1 = new NumericalInterval(6, magnitudeY, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2 = new NumericalInterval(3, magnitudeY/10, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1 = new NumericalInterval(magnitudeY); //, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2 = new NumericalInterval(magnitudeY/10); //, new GridLine(Color.LIGHT_GRAY, true, 1));
+		
+		
+		t1.styling.graphLine = new GridLine(Color.GRAY, false, 1);
+		t1.styling.lineLength = 6;
+		
+		t2.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);
+		t2.styling.lineLength = 3;
+
+		
+		
+		
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, t2, null), "Y TODO");
 
-		NumericalInterval t1x = new NumericalInterval(6, magnitudeX, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2x = new NumericalInterval(3, magnitudeX/10, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1x = new NumericalInterval(magnitudeX); //, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2x = new NumericalInterval(magnitudeX/10); //, new GridLine(Color.LIGHT_GRAY, true, 1));
 
+		t1x.styling.graphLine = new GridLine(Color.GRAY, false, 1);
+		t1x.styling.lineLength = 6; //new GridLine(Color.GRAY, false, 1);
+
+		
+		t2x.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);		
+		t2x.styling.lineLength = 3; //new GridLine(Color.LIGHT_GRAY, true, 1);		
+		
+		
 		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, null), "X TODO");
 
 		this.yAxis = yAxis;
@@ -553,11 +609,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				DataPoint dp = (DataPoint) object;
 
 				UIPointXY uip = dp.uiPointXY;
+				
+				if (uip != null) {
+					boolean b = uip.doesShapeContainPoint(point);
 
-				boolean b = uip.doesShapeContainPoint(point);
-
-				if (b)
-					System.out.println("CONTAINS POINT!!");
+					if (b)
+						System.out.println("CONTAINS POINT!!");
+				}
 			}
 		}
 		this.updateUI();

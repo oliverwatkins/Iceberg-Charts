@@ -64,9 +64,13 @@ public class TestDataGrids_alternateGridFillXTimesSeries extends ChartTester {
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, yInterval, null, null), "Y Axis");
 
 		
+		GridFill gf = new GridFill(new Color(179, 209, 255), Color.RED, false);
+		
 		NumericalInterval x1 = new NumericalInterval(2, 
-				5.0, new GridLine(Color.GRAY, true, 2, 
-						new GridFill(new Color(179, 209, 255), Color.RED, false)));
+				5.0, new GridLine(Color.GRAY, true, 2));
+
+		x1.styling.graphFill = gf;
+		
 		
 		NumericalInterval x2 = new NumericalInterval(6, 
 				20.0, new GridLine(Color.GRAY, false, 3));

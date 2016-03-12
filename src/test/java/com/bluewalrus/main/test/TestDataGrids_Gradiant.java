@@ -38,7 +38,11 @@ public class TestDataGrids_Gradiant extends ChartTester{
 		NumericalInterval yInterval2 = new NumericalInterval(1, 1.0, null);
 		NumericalInterval yInterval3 = new NumericalInterval(0, 1.0, null);
 
-		NumericalInterval xInterval1 = new NumericalInterval(0, 10.0, new GridLine(Color.BLACK, false, 0, new GridFill(Color.LIGHT_GRAY, Color.WHITE, true)));
+		NumericalInterval xInterval1 = new NumericalInterval(0, 10.0, new GridLine(Color.BLACK, false, 0));
+		
+		xInterval1.styling.graphFill = new GridFill(Color.LIGHT_GRAY, Color.WHITE, true);
+		
+		
 		NumericalInterval xInterval2 = new NumericalInterval(0, 2.0, new GridLine(Color.LIGHT_GRAY, false, 1));
 //		NumericalInterval xInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
 

@@ -17,14 +17,7 @@ import com.bluewalrus.bar.GridLine;
  */
 public class NumericalInterval extends AbstractInterval implements Serializable{
 
-	
-	
 
-
-
-
-    
-    
     /**
      * Spacing of interval. If increment = 10.0, then the tick will appear
      * at 0,10,20,30 etc.
@@ -32,21 +25,29 @@ public class NumericalInterval extends AbstractInterval implements Serializable{
     private Double increment; 
 
     
+    public NumericalInterval(double increment) {
+        this.increment = increment;
+	}
+	
+    
 	public NumericalInterval(int lineLength, Double increment) {
 		
-        this.lineLength = lineLength;
         this.increment = increment;
-    }
     
+        styling.lineLength = lineLength;
+    }
+
+	
     public NumericalInterval(int lineLength, Double increment, GridLine graphLine) {
 		
-        this.lineLength = lineLength;
         this.increment = increment;
-        this.graphLine = graphLine;
+        
+		styling.lineLength = lineLength;
+		styling.graphLine = graphLine;
     }
     
-    
-    public Double getInterval() {
+
+	public Double getInterval() {
 		return increment;
 	}
 
@@ -54,12 +55,6 @@ public class NumericalInterval extends AbstractInterval implements Serializable{
 		this.increment = increment;
 	}
 	
-	
-	
-	
-
-
-
     /**
      * increment cannot be zero or less than zero
      * @return
@@ -74,8 +69,8 @@ public class NumericalInterval extends AbstractInterval implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Interval [active=" + active + ", graphLine=" + graphLine
-				+ ", lineLength=" + lineLength + ", increment=" + increment
+		return "Interval [active=" + active + ", graphLine=" + styling.graphLine
+				+ ", lineLength=" + styling.lineLength + ", increment=" + increment
 				+ "]";
 	}
 }

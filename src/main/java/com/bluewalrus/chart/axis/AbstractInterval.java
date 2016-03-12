@@ -1,9 +1,10 @@
 package com.bluewalrus.chart.axis;
 
-import com.bluewalrus.bar.GridLine;
 
 public abstract class AbstractInterval {
 
+	
+	public IntervalStyling styling = new IntervalStyling();
 	
 	
 	public int level = -1;
@@ -13,13 +14,7 @@ public abstract class AbstractInterval {
 	 */
 	public boolean active = true;
 
-	public GridLine graphLine;
-	
-    /**
-     * length in pixels of the 'Tick'. 
-     * Usually about 5 pixels hanging to the side of axis
-     */
-    public int lineLength; 
+
     
     
     public boolean isActive() {

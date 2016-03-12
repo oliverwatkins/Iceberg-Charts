@@ -18,8 +18,8 @@ public class TimeInterval extends AbstractInterval{
 
 	public TimeInterval(int lineLength, Type intervalType, GridLine line) {
 		
-		this.lineLength = lineLength;
-		graphLine = line;
+		this.styling.lineLength = lineLength;
+		styling.graphLine = line;
 		type = intervalType;
 	}
 	

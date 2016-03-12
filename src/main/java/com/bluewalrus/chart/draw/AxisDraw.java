@@ -55,15 +55,15 @@ public abstract class AxisDraw {
 	public void drawGridFills(Graphics2D g, XYChart chart) {
 
 		if (interval1 != null && interval1.isValid()
-				&& interval1.graphLine != null && interval1.graphLine.gridFill != null) {
+				&& interval1.styling.graphLine != null && interval1.styling.graphFill != null) {
 			this.drawGridFill(interval1, g, chart);
 		}
 		if (interval2 != null && interval2.isValid()
-				&& interval2.graphLine != null && interval2.graphLine.gridFill != null) {
+				&& interval2.styling.graphLine != null && interval2.styling.graphFill != null) {
 			this.drawGridFill(interval2, g, chart);
 		}
 		if (interval3 != null && interval3.isValid()
-				&& interval3.graphLine != null && interval3.graphLine.gridFill != null) {
+				&& interval3.styling.graphLine != null && interval3.styling.graphFill != null) {
 			this.drawGridFill(interval3, g, chart);
 		}
 	}
@@ -72,16 +72,16 @@ public abstract class AxisDraw {
 	public void drawGridLines(Graphics2D g, XYChart chart) {
 		
 		if (interval3 != null && interval3.isValid()
-				&& interval3.graphLine != null) {
+				&& interval3.styling.graphLine != null) {
 			this.drawGridLine(interval3, g, chart);
 		}
 		if (interval2 != null && interval2.isValid()
-				&& interval2.graphLine != null) {
+				&& interval2.styling.graphLine != null) {
 			this.drawGridLine(interval2, g, chart);
 		}
 		
 		if (interval1 != null && interval1.isValid()
-				&& interval1.graphLine != null) {
+				&& interval1.styling.graphLine != null) {
 			this.drawGridLine(interval1, g, chart);
 		}
 
@@ -111,7 +111,7 @@ public abstract class AxisDraw {
 		double incrementInPixel = (double) (((NumericalInterval) interval)
 				.getInterval() * factor);
 		
-		g.setColor(interval.graphLine.color);
+		g.setColor(interval.styling.graphLine.color);
 	
 		for (int incrementNo = 0; incrementNo <= totalIncrementNo; incrementNo++) {
 	
@@ -126,63 +126,16 @@ public abstract class AxisDraw {
 			
 			if (this.orientation == Orientation.X)
 
-				interval.graphLine.fillAreaX(g, (int)fromStart, incrementInPixel, chart, incrementNo);
+				interval.styling.graphFill.fillAreaX(g, (int)fromStart, incrementInPixel, chart, incrementNo);
 				
 			else if (this.orientation == Orientation.Y)
 				
-				interval.graphLine.fillAreaY(g, (int)fromStart, incrementInPixel, chart, incrementNo);
+				interval.styling.graphFill.fillAreaY(g, (int)fromStart, incrementInPixel, chart, incrementNo);
 			else {
 				throw new RuntimeException("asdfasdf");
 			}
-
 		}
-	
 	}
-	
-	
-	
-	
-	
-//	
-//	@Override
-//	protected void drawGridFill(AbstractInterval interval, Graphics2D g, XYChart chart) {
-//		NumericalInterval inter = (NumericalInterval) interval;
-//		
-//        int incrementNo = (int) ((maxValue - minValue) / inter.getInterval());
-//
-//        //divide height of chart by actual height of chart to get the multiplaying factor
-//        double factor = getMultiplicationFactor(chart); 
-//        
-//        //to first increment
-//    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(inter.getInterval(), factor);
-//    	
-//        double incrementInPixel = (double) (inter.getInterval() * factor);
-//
-//        for (int i = 0; i < incrementNo; i++) {
-//
-//            double fromTop = getFromTop(chart, i, incrementInPixel, toFirstInPixels);
-//
-//        	/**
-//        	 * Draw grid line
-//        	 */
-//            YAxisDrawUtil.drawGridFill(inter, g, chart, fromTop, i , incrementInPixel, incrementNo);
-//        }
-//	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
