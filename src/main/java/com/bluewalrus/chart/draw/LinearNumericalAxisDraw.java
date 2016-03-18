@@ -3,6 +3,7 @@ package com.bluewalrus.chart.draw;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.text.DecimalFormat;
 
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.Orientation;
@@ -24,7 +25,7 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 		this(0.0, 100.0, 50.0, 10.0, 5.0, orientation); //arbitrary values
 	}
 	
-	public LinearNumericalAxisDraw(double min, double max,Orientation orientation) {
+	public LinearNumericalAxisDraw(double min, double max, Orientation orientation) {
 		
 		this(min, max, new NumericalInterval(0,0.0), new NumericalInterval(0,0.0), new NumericalInterval(0,0.0), orientation);
 	}
@@ -228,32 +229,7 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
 		double val = this.minValue;
 		
-		if (increment < 1) {
-			
-			int multiplicationFactor = 1;
-			
-			double adjustedInc = increment;
-			while (!(isWholeNumber(adjustedInc))) {
-				adjustedInc = adjustedInc*10;
-				multiplicationFactor = multiplicationFactor*10;
-			}
-			
-			System.out.println("adjusted to whole. and got a multiplicationFactor ");
-			
-			double adjustedMinValue = this.minValue * multiplicationFactor;
-			
-			val = adjustedMinValue;
-			
-			while (val % adjustedInc != 0) {
-				//TODO Error here!!!!! If you ++ a real number then it will not necessary break out of this loop!!!
-				val++;
-				System.out.println("2val = " + val + " this.minValue " + this.minValue + " increment = " + increment);
-			}
-			
-			val = val / multiplicationFactor;
-			
-			return val;
-		}else if (isWholeNumber(val)) {
+		if (isWholeNumber(val)) {
 			
 			
 			
@@ -265,7 +241,67 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 			}
 			
 		}else {
-			System.err.println("cannot have real number here " +val);
+			/**
+			 * Convert increment to a whole number. Get the multiplication factor and
+			 * use that on the axis values. Find the first interval, then divide again.
+			 */
+			
+			//TODO this is not yet working correctly
+			
+			int multiplicationFactor = 1;
+			
+			double adjustedInc = increment;
+			
+			/**
+			 * 1. Adjust the increment
+			 */
+			
+			while (!(isWholeNumber(adjustedInc))) {
+				adjustedInc = adjustedInc*10;
+				multiplicationFactor = multiplicationFactor*10;
+			}
+			
+			System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor);
+			
+			double adjustedMinValue = this.minValue * multiplicationFactor;
+			
+
+			int multiplicationFactor2 = 1; //reset
+			
+			
+			/**
+			 * 2. Adjust starting point
+			 */
+			
+			while (!(isWholeNumber(adjustedMinValue))) {
+				adjustedMinValue = adjustedMinValue*10;
+				multiplicationFactor2 = multiplicationFactor2*10;
+			}
+			
+			System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor2);
+			
+			adjustedInc = adjustedInc * multiplicationFactor2;
+			
+			
+			
+			
+			val = adjustedMinValue;
+			
+			while (val % adjustedInc != 0) {
+				val++;
+				System.out.println("2val = " + val + " this.minValue " + this.minValue + " increment = " + increment);
+			}
+			
+			val = val / multiplicationFactor / multiplicationFactor2;
+
+			
+			DecimalFormat df = new DecimalFormat("##,###");      
+			val = Double.valueOf(df.format(val));
+			
+			System.out.println("val = " + val);
+
+			
+			return val;
 		}
 
 		return val;

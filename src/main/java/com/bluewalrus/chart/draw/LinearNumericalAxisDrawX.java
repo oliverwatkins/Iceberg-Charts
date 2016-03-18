@@ -16,8 +16,8 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw {
 		super(Orientation.X);
 	}
 
-	public LinearNumericalAxisDrawX(double d, double e) {
-		super(d, e, Orientation.X);
+	public LinearNumericalAxisDrawX(double min, double max) {
+		super(min, max, Orientation.X);
 	}
 
 	public LinearNumericalAxisDrawX(Double primaryIncrements,
