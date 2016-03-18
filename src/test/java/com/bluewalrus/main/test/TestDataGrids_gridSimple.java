@@ -25,57 +25,63 @@ import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointSquare;
 
-public class TestDataGrids_alternateGridFillX extends ChartTester {
+/**
+ * introduction to grids
+ * 
+ * @author Oliver Watkins
+ */
+public class TestDataGrids_gridSimple extends ChartTester {
 
 	
-	@Override
-	public Chart getChart() throws ParseException {
+	public Chart getChart() {
 
-		
-		ArrayList<DataPoint> values = getSeries1();
-		ArrayList<DataPoint> values2 = getSeries2();
-
-		XYDataSeries series = new XYDataSeries(null, new Line(Color.BLUE, false, 3), "Blue");
-		series.dataPoints = values;
-		
-		XYDataSeries series2 = new XYDataSeries(null, new Line(Color.RED, false, 3), "Red");
-		series2.dataPoints = values2;
-
-		NumericalInterval yInterval = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
-		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, yInterval, null, null), "Y Axis");
-		
-		NumericalInterval x1 = new NumericalInterval(2, 5.0, new GridLine(Color.GRAY, false, 0));
-		
-		NumericalInterval x2 = new NumericalInterval(6, 20.0, new GridLine(Color.GRAY, false, 0));
-
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(3, 97, x1, x2, null), "X Axis"); 
-		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
-		xySeriesList.add(series);
-		xySeriesList.add(series2);
+		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		values.add(new DataPoint(5, 30));
+		values.add(new DataPoint(10, 11));
+		values.add(new DataPoint(15, 14));
+		values.add(new DataPoint(20, 5));
+		values.add(new DataPoint(25, 8));
 
-		IntervalStyling stylingX = new IntervalStyling(2, 
-				new GridLine(Color.GRAY, false, 0),
-				new GridFill(
-						new Color(179, 209, 255), 
-						new Color(172, 109, 215), false));
-		
-		IntervalStyling stylingY = new IntervalStyling(8,
-				new GridLine(Color.GRAY, false, 1), 
-				null);
-		
-		XYChart lineChart = new XYChart(xySeriesList, "Alternate Grid Fill", null, 
-				stylingX, 
-				null, 
-				null, 
-				stylingY, 
-				null);
-		
-		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
+		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
+		values2.add(new DataPoint(5, 2));
+		values2.add(new DataPoint(10, 33));
+		values2.add(new DataPoint(15, 6));
+		values2.add(new DataPoint(20, 14));
+		values2.add(new DataPoint(25, 17));
 
+		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
+		values3.add(new DataPoint(5, 130));
+		values3.add(new DataPoint(10, 74));
+		values3.add(new DataPoint(15, 67));
+		values3.add(new DataPoint(20, 22));
+		values3.add(new DataPoint(25, 68));
+		
+		ArrayList<DataPoint> values4 = new ArrayList<DataPoint>();
+		values4.add(new DataPoint(5, 90));
+		values4.add(new DataPoint(10, 65));
+		values4.add(new DataPoint(15, 80));
+		values4.add(new DataPoint(20, 83));
+		values4.add(new DataPoint(23, 90));
+
+		XYDataSeries series = new XYDataSeries(values, "First");
+		XYDataSeries series2 = new XYDataSeries(values2, "Second");
+		XYDataSeries series3 = new XYDataSeries(values3, "Third");
+		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
+
+		
+		XYChart lineChart = new XYChart("Many Series Example", 
+				"My X Axis", 
+				"My Y Axis", 
+				new IntervalStyling(4, new GridLine(Color.BLUE, false, 3), null),
+				new IntervalStyling(1, new GridLine(Color.RED, true, 2), null),
+				new IntervalStyling(1, new GridLine(Color.RED, true, 1), null),
+				series, 
+				series2, 
+				series3, 
+				series4); 
+		
 		return lineChart;
 	}
 
@@ -168,7 +174,7 @@ public class TestDataGrids_alternateGridFillX extends ChartTester {
 	
 	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataGrids_alternateGridFillX();
+		ChartTester t = new TestDataGrids_gridSimple();
 		t.testChart(t.getChart());
 	}
 	

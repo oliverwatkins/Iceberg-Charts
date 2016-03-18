@@ -31,6 +31,11 @@ public class XAxisDrawUtil {
 	public static void drawIntervalTick(AbstractInterval interval, Graphics g, Chart chart,
 			double fromLeft, Axis axis) {
 		
+		if (interval.styling == null) {
+			System.out.println("Styling is null");
+			return;
+		}
+		
 		int y1 = (chart.topOffset + chart.heightChart + axis.marginOffset);
         int y2 = (chart.topOffset + chart.heightChart + axis.marginOffset + interval.styling.lineLength);
 

@@ -32,6 +32,12 @@ public class YAxisDrawUtil {
 	 */
 	public static void drawIntervalTick(NumericalInterval interval, Graphics g, Chart chart,
 			double fromTop, YAxis axis) {
+		
+		if (interval.styling == null) {
+			System.out.println("interval.styling == null ");
+			return;
+		}
+		
 		int lineLength = interval.styling.lineLength;
     	
         int x1;

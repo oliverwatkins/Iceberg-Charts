@@ -29,6 +29,7 @@ import com.bluewalrus.main.test.TestDataBubble_2_series;
 import com.bluewalrus.main.test.TestDataGrids_alternateGridFillX;
 import com.bluewalrus.main.test.TestDataGrids_GraphPaper;
 import com.bluewalrus.main.test.TestDataGrids_TimeSeries;
+import com.bluewalrus.main.test.TestDataGrids_alternateGridFillY;
 import com.bluewalrus.main.test.TestDataPieBubble;
 import com.bluewalrus.main.test.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.TestDataPie_IndicatorSimple;
@@ -86,16 +87,23 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
 
-        p = createTabbedPane(tabbedPaneGridFills, "Grids Time Series");
-        chart = new TestDataGrids_TimeSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
         
         p = createTabbedPane(tabbedPaneGridFills, "Grid Alternate X Fill");
         chart = new TestDataGrids_alternateGridFillX().getChart();
         charts.add(chart);
         p.add(chart);
 
+        p = createTabbedPane(tabbedPaneGridFills, "Grid Alternate Y Fill");
+        chart = new TestDataGrids_alternateGridFillY().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        
+        p = createTabbedPane(tabbedPaneGridFills, "Grids Time Series");
+        chart = new TestDataGrids_TimeSeries().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
         
         /***
          * 

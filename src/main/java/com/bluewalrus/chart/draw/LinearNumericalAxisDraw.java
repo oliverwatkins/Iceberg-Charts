@@ -222,6 +222,10 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 	protected double getToFirstIntervalValueFromMin(Double increment) {
 
 		double val = this.minValue;
+		
+		if (increment < 1) {
+			throw new RuntimeException("TODO cannot have fractions for intervals at this point in time");
+		}
 
 		
 		if ((val == Math.floor(val)) && !Double.isInfinite(val)) {
@@ -229,6 +233,7 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 			while (val % increment != 0) {
 				//TODO Error here!!!!! If you ++ a real number then it will not necessary break out of this loop!!!
 				val++;
+				System.out.println("val = " + val + " this.minValue " + this.minValue + " increment = " + increment);
 			}
 			
 		}else {

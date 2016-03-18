@@ -51,13 +51,11 @@ public class TestDataGrids_Gradiant extends ChartTester{
 		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(15.0, 68.0, xInterval1, xInterval2, null), "X Axis");
 
 
-		XYChart lineChart = new XYChart(values, "Graphpaper", yAxis, xAxis);
+		XYChart lineChart = new XYChart(values, "Gradiant", yAxis, xAxis);
 
 		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
 
-		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-//		lineChart.setTitle("Some Kind of XY Chart");
+//		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 
 		return lineChart;
 	}

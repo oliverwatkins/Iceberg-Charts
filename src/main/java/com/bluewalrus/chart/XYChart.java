@@ -247,6 +247,30 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 
 
+	public XYChart(String title, String xAxisTitle, String yAxisTitle,
+			IntervalStyling intervalStyling, 
+			IntervalStyling intervalStyling2,
+			IntervalStyling intervalStyling3,
+			XYDataSeries... series) {
+		
+		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		
+		for (XYDataSeries xyDataSeries : series) {
+			xySeriesList.add(xyDataSeries);
+		}
+		
+		init(xySeriesList, title);
+		setUpSeriesStyle(xySeriesList);
+		
+		this.xAxis.labelText = xAxisTitle;
+		this.yAxis.labelText = yAxisTitle;
+		
+		this.xAxis.axisDraw.interval1.styling = intervalStyling;
+		this.xAxis.axisDraw.interval2.styling = intervalStyling2;
+		this.xAxis.axisDraw.interval3.styling = intervalStyling3;
+		
+	}
+
 	/**
 	 * Set up some default styles
 	 * 
@@ -315,8 +339,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		double magnitudeY = getInterval(yMinAdj, yMaxAdj);
 		double magnitudeX = getInterval(xMinAdj, xMaxAdj);
 
-		NumericalInterval t1 = new NumericalInterval(magnitudeY); //, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2 = new NumericalInterval(magnitudeY/10); //, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1 = new NumericalInterval(magnitudeY); 
+		NumericalInterval t2 = new NumericalInterval(magnitudeY/10); 
 		
 		
 		t1.styling.graphLine = new GridLine(Color.GRAY, false, 1);
@@ -324,25 +348,26 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		t2.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);
 		t2.styling.lineLength = 3;
-
-		
-		
 		
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, t2, null), "Y TODO");
 
 		NumericalInterval t1x = new NumericalInterval(magnitudeX); //, new GridLine(Color.GRAY, false, 1));
 		NumericalInterval t2x = new NumericalInterval(magnitudeX/10); //, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t3x = new NumericalInterval(magnitudeX/100); //, new GridLine(Color.LIGHT_GRAY, true, 1));
 
 		t1x.styling.graphLine = new GridLine(Color.GRAY, false, 1);
 		t1x.styling.lineLength = 6; //new GridLine(Color.GRAY, false, 1);
-
 		
 		t2x.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);		
 		t2x.styling.lineLength = 3; //new GridLine(Color.LIGHT_GRAY, true, 1);		
+
+		//invisible!!!
+		t3x.styling.graphLine = new GridLine(Color.WHITE, false, 0);		
+		t3x.styling.lineLength = 0; 
+
 		
-		
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, null), "X TODO");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, t3x), "X TODO");
 
 		this.yAxis = yAxis;
 		this.xAxis = xAxis;

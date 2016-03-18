@@ -55,14 +55,17 @@ public abstract class AxisDraw {
 	public void drawGridFills(Graphics2D g, XYChart chart) {
 
 		if (interval1 != null && interval1.isValid()
+				&& interval1.styling != null
 				&& interval1.styling.graphLine != null && interval1.styling.graphFill != null) {
 			this.drawGridFill(interval1, g, chart);
 		}
 		if (interval2 != null && interval2.isValid()
+				&& interval2.styling != null
 				&& interval2.styling.graphLine != null && interval2.styling.graphFill != null) {
 			this.drawGridFill(interval2, g, chart);
 		}
 		if (interval3 != null && interval3.isValid()
+				&& interval3.styling != null
 				&& interval3.styling.graphLine != null && interval3.styling.graphFill != null) {
 			this.drawGridFill(interval3, g, chart);
 		}
@@ -72,15 +75,18 @@ public abstract class AxisDraw {
 	public void drawGridLines(Graphics2D g, XYChart chart) {
 		
 		if (interval3 != null && interval3.isValid()
+				&& interval3.styling != null
 				&& interval3.styling.graphLine != null) {
 			this.drawGridLine(interval3, g, chart);
 		}
 		if (interval2 != null && interval2.isValid()
+				&& interval2.styling != null
 				&& interval2.styling.graphLine != null) {
 			this.drawGridLine(interval2, g, chart);
 		}
 		
 		if (interval1 != null && interval1.isValid()
+				&& interval1.styling != null
 				&& interval1.styling.graphLine != null) {
 			this.drawGridLine(interval1, g, chart);
 		}

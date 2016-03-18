@@ -31,4 +31,11 @@ public class TestDataXY_Simple extends ChartTester {
 		
 		return lineChart;
 	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataXY_Simple();
+		t.testChart(t.getChart());
+	}
+	
 }
