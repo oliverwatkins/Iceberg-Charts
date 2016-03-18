@@ -207,41 +207,6 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
             
         }
     }
-    
-    /**
-     * TODO : similar code
-     */
-
-//	@Override
-//	protected void drawGridFill(AbstractInterval interval, Graphics2D g,
-//			XYChart chart) {
-//		
-//		
-//		double factor = getMultiplicationFactor(chart); 
-//    	
-//        //to first increment
-//    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval, factor);
-//
-//    	int incrementNo = getIncrementNumber(interval);
-//    	
-//        double incrementInPixel = getIncrementInPixels(interval, chart);
-//
-//        g.setColor(interval.graphLine.color);
-//        
-//        for (int i = 0; i < incrementNo; i++) {
-//        	
-//        	double fromLeft = getFromStart(chart, toFirstInPixels, 
-//        			incrementInPixel, i);
-//
-//        	fromLeft = fromLeft - incrementInPixel; //start left of the y Axis (invisible part)
-//            /**
-//             * Draw Grid line
-//             */
-//            XAxisDrawUtil.drawGridFill(interval, g, chart, fromLeft, incrementNo, 
-//            		incrementInPixel);
-//        }
-//
-//	}
 
 
 	@Override

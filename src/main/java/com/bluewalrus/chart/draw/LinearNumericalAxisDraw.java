@@ -213,6 +213,11 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 	 * if the min/max range is 3/101, then the first value would be 50 (and not
 	 * 3)
 	 * 
+	 * if min/max range is 3/40, then?? TODO
+	 * 
+	 * if min/max range is 3.0005/4 and the interval is 0.1, then should be 3.1
+	 * 
+	 * 
 	 * @param increment
 	 * @param maxValue
 	 * @param minValue
@@ -224,11 +229,34 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 		double val = this.minValue;
 		
 		if (increment < 1) {
-			throw new RuntimeException("TODO cannot have fractions for intervals at this point in time");
-		}
-
-		
-		if ((val == Math.floor(val)) && !Double.isInfinite(val)) {
+			
+			int multiplicationFactor = 1;
+			
+			double adjustedInc = increment;
+			while (!(isWholeNumber(adjustedInc))) {
+				adjustedInc = adjustedInc*10;
+				multiplicationFactor = multiplicationFactor*10;
+			}
+			
+			System.out.println("adjusted to whole. and got a multiplicationFactor ");
+			
+			double adjustedMinValue = this.minValue * multiplicationFactor;
+			
+			val = adjustedMinValue;
+			
+			while (val % adjustedInc != 0) {
+				//TODO Error here!!!!! If you ++ a real number then it will not necessary break out of this loop!!!
+				val++;
+				System.out.println("2val = " + val + " this.minValue " + this.minValue + " increment = " + increment);
+			}
+			
+			val = val / multiplicationFactor;
+			
+			return val;
+		}else if (isWholeNumber(val)) {
+			
+			
+			
 		    // integral type
 			while (val % increment != 0) {
 				//TODO Error here!!!!! If you ++ a real number then it will not necessary break out of this loop!!!
@@ -241,6 +269,11 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 		}
 
 		return val;
+	}
+	
+	
+	private boolean isWholeNumber(double val) {
+		return (val == Math.floor(val)) && !Double.isInfinite(val);
 	}
 	
 	

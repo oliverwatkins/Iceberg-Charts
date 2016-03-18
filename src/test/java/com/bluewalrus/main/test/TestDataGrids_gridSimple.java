@@ -71,7 +71,7 @@ public class TestDataGrids_gridSimple extends ChartTester {
 		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
 
 		
-		XYChart lineChart = new XYChart("Many Series Example", 
+		XYChart lineChart = new XYChart("Grid Examples", 
 				"My X Axis", 
 				"My Y Axis", 
 				new IntervalStyling(4, new GridLine(Color.BLUE, false, 3), null),

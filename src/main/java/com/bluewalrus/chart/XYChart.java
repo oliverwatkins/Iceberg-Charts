@@ -97,6 +97,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		xySeriesList.add(xy);
 
 		init(xySeriesList, title);
+		
+		xAxis.labelText = xLabel;
+		yAxis.labelText = yLabel;
+				
 	}
 	
 	
