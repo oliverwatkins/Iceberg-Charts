@@ -294,11 +294,14 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 			
 			val = val / multiplicationFactor / multiplicationFactor2;
 
+			System.out.println("3val = " + val); //returning 2.0. Should return 1.6
+
 			
 			DecimalFormat df = new DecimalFormat("##,###");      
 			val = Double.valueOf(df.format(val));
 			
-			System.out.println("val = " + val);
+			//TODO this format converts 1.6 to 2
+			System.out.println("val = " + val); //returning 2.0. Should return 1.6
 
 			
 			return val;
@@ -311,7 +314,5 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 	private boolean isWholeNumber(double val) {
 		return (val == Math.floor(val)) && !Double.isInfinite(val);
 	}
-	
-	
 
 }

@@ -26,9 +26,9 @@ import com.bluewalrus.main.test.TestDataBar_NegativeAndPositive;
 import com.bluewalrus.main.test.TestDataBar_thinLines;
 import com.bluewalrus.main.test.TestDataBubble_1_guns;
 import com.bluewalrus.main.test.TestDataBubble_2_series;
-import com.bluewalrus.main.test.TestDataGrids_alternateGridFillX;
 import com.bluewalrus.main.test.TestDataGrids_GraphPaper;
 import com.bluewalrus.main.test.TestDataGrids_TimeSeries;
+import com.bluewalrus.main.test.TestDataGrids_alternateGridFillX;
 import com.bluewalrus.main.test.TestDataGrids_alternateGridFillY;
 import com.bluewalrus.main.test.TestDataPieBubble;
 import com.bluewalrus.main.test.TestDataPie_IndicatorMany;
@@ -37,6 +37,8 @@ import com.bluewalrus.main.test.TestDataPie_Multi;
 import com.bluewalrus.main.test.TestDataPie_SimplePie;
 import com.bluewalrus.main.test.TestDataTimeSeries;
 import com.bluewalrus.main.test.TestDataXY_Boxplot;
+import com.bluewalrus.main.test.TestDataXY_Fractions;
+import com.bluewalrus.main.test.TestDataXY_Fractions2;
 import com.bluewalrus.main.test.TestDataXY_LineExamples;
 import com.bluewalrus.main.test.TestDataXY_Math;
 import com.bluewalrus.main.test.TestDataXY_Scatter;
@@ -59,10 +61,24 @@ public class IcebergChartsDemo extends JFrame {
         JTabbedPane tabbedPaneLine = new JTabbedPane();
         JTabbedPane tabbedPanePie = new JTabbedPane();
         JTabbedPane tabbedPaneGridFills = new JTabbedPane();
-                
+        JTabbedPane tabbedPaneFracNegatives = new JTabbedPane();
+        JTabbedPane tabbedPaneTime = new JTabbedPane();
+        
+        tabbedPane.add("General XY Charts", tabbedPaneLine);
+        tabbedPane.add("Time Axis", tabbedPaneTime);
+        tabbedPane.add("Bar Charts", tabbedPaneBar);
+        tabbedPane.add("Pie Charts", tabbedPanePie);
+        tabbedPane.add("Grids And Fills", tabbedPaneGridFills);
+        tabbedPane.add("Fractions and Negatives", tabbedPaneFracNegatives);
+        
+                        
+
         JPanel p = null;
         JComponent chart = null;
         
+        /**
+         * XY
+         */
         
         p = createTabbedPane(tabbedPaneLine, "XY Simple");
         chart = new TestDataXY_Simple().getChart();
@@ -74,7 +90,63 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
         
+        p = createTabbedPane(tabbedPaneLine, "Scatter chart");
+        chart = new TestDataXY_Scatter().getChart();
+        charts.add(chart);
+        p.add(chart);
+
+        p = createTabbedPane(tabbedPaneLine, "Bubble");
+        chart = new TestDataBubble_2_series().getChart();
+        charts.add(chart);
+        p.add(chart);
         
+
+        p = createTabbedPane(tabbedPaneLine, "Bubble2");
+        chart = new TestDataBubble_1_guns().getChart();
+        charts.add(chart);
+        p.add(chart);
+
+        p = createTabbedPane(tabbedPaneLine, "Pie Bubble");
+        chart = new TestDataPieBubble().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneLine, "Box Plot");
+        chart = new TestDataXY_Boxplot().getChart();
+        charts.add(chart);
+        p.add(chart);
+
+        
+        p = createTabbedPane(tabbedPaneLine, "Math");
+        chart = new TestDataXY_Math().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        
+        
+        p = createTabbedPane(tabbedPaneLine, "Lines");
+        chart = new TestDataXY_LineExamples().getChart();
+        charts.add(chart);
+        p.add(chart);
+ 
+        /**
+         * TIME
+         */
+        
+        p = createTabbedPane(tabbedPaneTime, "Time Series 1 ");
+        chart = new TestDataTimeSeries().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneTime, "Time Series 2 ");
+        chart = new TestDataTimeSeries().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneTime, "Grids Time Series");
+        chart = new TestDataGrids_TimeSeries().getChart();
+        charts.add(chart);
+        p.add(chart);
         
         
 
@@ -99,10 +171,6 @@ public class IcebergChartsDemo extends JFrame {
         p.add(chart);
         
         
-        p = createTabbedPane(tabbedPaneGridFills, "Grids Time Series");
-        chart = new TestDataGrids_TimeSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
         
         
         /***
@@ -159,6 +227,9 @@ public class IcebergChartsDemo extends JFrame {
         
         
 
+        /**
+         * PIE
+         */
 
         
         
@@ -186,64 +257,24 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
         
-        p = createTabbedPane(tabbedPaneLine, "Scatter chart");
-        chart = new TestDataXY_Scatter().getChart();
+        
+        /**
+         * Fractions and Negatives
+         */
+
+        p = createTabbedPane(tabbedPaneFracNegatives, "range 1.5005 to 3 with 0.1 interval");
+        chart = new TestDataXY_Fractions().getChart();
         charts.add(chart);
         p.add(chart);
 
-        p = createTabbedPane(tabbedPaneLine, "Bubble");
-        chart = new TestDataBubble_2_series().getChart();
+        p = createTabbedPane(tabbedPaneFracNegatives, "Neg to Positive");
+        chart = new TestDataXY_Fractions2().getChart();
         charts.add(chart);
         p.add(chart);
-        
-
-        p = createTabbedPane(tabbedPaneLine, "Bubble2");
-        chart = new TestDataBubble_1_guns().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-        p = createTabbedPane(tabbedPaneLine, "Pie Bubble");
-        chart = new TestDataPieBubble().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneLine, "Box Plot");
-        chart = new TestDataXY_Boxplot().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-        
-        p = createTabbedPane(tabbedPaneLine, "Math");
-        chart = new TestDataXY_Math().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        
-        
-        p = createTabbedPane(tabbedPaneLine, "Lines");
-        chart = new TestDataXY_LineExamples().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneLine, "Time Series 1 ");
-        chart = new TestDataTimeSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneLine, "Time Series 2 ");
-        chart = new TestDataTimeSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-
         
         
 
-        tabbedPane.add("General XY Charts", tabbedPaneLine);
-        tabbedPane.add("Bar Charts", tabbedPaneBar);
-        tabbedPane.add("Pie Charts", tabbedPanePie);
-        tabbedPane.add("Grids And Fills", tabbedPaneGridFills);
-        
+//        tabbedPaneTime       
         JButton b = new JButton("Create PNG");
         
         getContentPane().add(tabbedPane);

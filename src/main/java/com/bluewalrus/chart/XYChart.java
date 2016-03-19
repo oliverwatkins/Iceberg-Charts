@@ -501,7 +501,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		 * This does not look right here :( Maybe put into EnumeratioAxisDraw??
 		 */
 		if (xAxis.axisDraw instanceof EnumerationAxisDrawX) {
-			massageXAxisData_forEnumeration((Graphics2D) g, this, data);
+			
+	        if (xAxis.axisDraw.maxValue == xAxis.axisDraw.minValue) {
+	        	throw new RuntimeException("Bummer! range has not been set for enum axis");
+	        }
+
+//			massageXAxisData_forEnumeration((Graphics2D) g, this, data);
 		}
 
 		if (xAxis.axisDraw instanceof TimeSeriesAxisDrawX) {

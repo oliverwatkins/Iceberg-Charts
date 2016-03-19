@@ -56,7 +56,9 @@ public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 			int x = (int) (xyChart.leftOffset + (xShift2));
 
 			drawXLabel(g2d, xyChart, (DataPoint) dataPoint, x);
-
+			dataPoint.x = x;
+//			dataPoint.y = y;
+			
 			i++;
 		}
 

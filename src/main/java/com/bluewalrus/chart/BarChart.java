@@ -37,7 +37,7 @@ public class BarChart extends XYChart {
         XYDataSeries<DataPointBar> d = new XYDataSeries<DataPointBar>("");
         d.dataPoints = dataPointList;
         
-		this.data.add(d);
+//		this.data.add(d);
 
 		//get the first set for now
 		ArrayList<DataPointBar> dataPoints = dataPointList;
@@ -76,6 +76,9 @@ public class BarChart extends XYChart {
                 "");
 
         data.add(series);
+//        data.add(d);
+
+        
     }
 
 

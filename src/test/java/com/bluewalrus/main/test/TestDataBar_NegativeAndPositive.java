@@ -66,6 +66,12 @@ public class TestDataBar_NegativeAndPositive extends ChartTester {
         		
         return barChart;
     }
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataBar_NegativeAndPositive();
+		t.testChart(t.getChart());
+	}
+
     
     
 }
