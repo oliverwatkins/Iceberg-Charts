@@ -45,7 +45,7 @@ public class XYYChart extends XYChart {
 
         ArrayList<DataPointBar> dataPoints = new ArrayList<DataPointBar>();
 
-        double xRange = (double) (this.xAxis.axisDraw.maxValue - this.xAxis.axisDraw.minValue);
+        double xRange = (double) (this.xAxis.axisDraw.getMaxValue() - this.xAxis.axisDraw.getMinValue());
 
 //        space out
         //distance between points

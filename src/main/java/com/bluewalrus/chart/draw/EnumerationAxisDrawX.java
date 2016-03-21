@@ -16,8 +16,17 @@ import com.bluewalrus.renderer.XYFactor;
 
 public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 
+
+
 	public EnumerationAxisDrawX() {
 		super(Orientation.X);
+	}
+	
+	public double getMaxValue() {
+		return 100;
+	}
+	public double getMinValue() {
+		return 0;
 	}
 
 	@Override
@@ -150,5 +159,13 @@ public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 		return 0;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "EnumerationAxisDrawX [maxValue=" + maxValue + ", minValue="
+				+ minValue + ", orientation=" + orientation + ", interval1="
+				+ interval1 + ", interval2=" + interval2 + ", interval3="
+				+ interval3 + "]";
+	}
 
 }

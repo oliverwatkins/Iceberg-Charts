@@ -155,7 +155,7 @@ public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
     }
 
     protected double getMultiplicationFactor(XYChart chart) {
-    	return ((double) chart.heightChart / (double) (maxValue - minValue));
+    	return ((double) chart.heightChart / (double) (getMaxValue() - minValue));
 	}
 
 	@Override

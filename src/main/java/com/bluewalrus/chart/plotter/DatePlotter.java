@@ -23,8 +23,8 @@ public class DatePlotter extends AbstractPlotter {
     	long xMax = ((TimeSeriesAxisDrawX)xAxis.axisDraw).dateEnd.getTime();
     	long xMin = ((TimeSeriesAxisDrawX)xAxis.axisDraw).dateStart.getTime();
     	
-    	double yMax = yAxis.axisDraw.maxValue;
-    	double yMin = yAxis.axisDraw.minValue;
+    	double yMax = yAxis.axisDraw.getMaxValue();
+    	double yMin = yAxis.axisDraw.getMinValue();
     	
     	long diffX = xMax - xMin;
 

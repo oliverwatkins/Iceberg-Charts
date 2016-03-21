@@ -33,11 +33,11 @@ public class NumericalPlotter extends AbstractPlotter {
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
     	
     	
-    	double xMax = xAxis.axisDraw.maxValue;
-    	double xMin = xAxis.axisDraw.minValue;
+    	double xMax = xAxis.axisDraw.getMaxValue();
+    	double xMin = xAxis.axisDraw.getMinValue();
     	
-    	double yMax = yAxis.axisDraw.maxValue;
-    	double yMin = yAxis.axisDraw.minValue;
+    	double yMax = yAxis.axisDraw.getMaxValue();
+    	double yMin = yAxis.axisDraw.getMinValue();
     	
 
         double xFactor = ((double) chart.widthChart / (double) (xMax - xMin));

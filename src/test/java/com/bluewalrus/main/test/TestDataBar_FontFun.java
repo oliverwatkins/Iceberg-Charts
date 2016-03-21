@@ -42,19 +42,22 @@ public class TestDataBar_FontFun extends ChartTester {
         
         
         
-        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 300.0, 50.0, 0.0, 0.0), "Numbers");
-        yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
-        yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
+//        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 300.0, 50.0, 0.0, 0.0), "Numbers");
+
         
-        XAxis xAxis = new XAxis(new EnumerationAxisDrawX(), "yadda yadda");
+//        XAxis xAxis = new XAxis(new EnumerationAxisDrawX(), "yadda yadda");
         
-        xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
-        xAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
-        xAxis.labelText = "Playing with fonts";
         
-        XYChart barChart = new XYChart(values, "Really Big Text", "yadda yadda", "yadda yadda", 12);
+        XYChart barChart = new XYChart(values, "Really Big Text", "yadda yadda", "yadda yadda", 40);
+        
+        barChart.xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
+        barChart.xAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
+        barChart.xAxis.labelText = "Playing with fonts";
 //        barChart.topOffset = 160;
 
+        barChart.yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
+        barChart.yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
+        
         barChart.setTitleFont("Ravie", Font.PLAIN, 70);
         barChart.setTitle("Really Big Text");
         barChart.setSize(900, 500);

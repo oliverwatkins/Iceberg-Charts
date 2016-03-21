@@ -98,7 +98,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				new UIPointSquare(Color.BLACK), new Line(Color.BLACK), "");
 		xySeriesList.add(xy);
 
-		init(xySeriesList, title);
+		initialiseScaling(xySeriesList);
+		
+		this.addMouseMotionListener(this);
+
+		this.data.addAll(xySeriesList);
+
+		this.setTitle(title);
 		
 		xAxis.labelText = xLabel;
 		yAxis.labelText = yLabel;
@@ -119,7 +125,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		xAxis.labelText = xLabel;
 		yAxis.labelText = yLabel;
 		
-//		this.data.addAll(xySeriesList);
+		this.data.addAll(xySeriesList);
 	}
 	
 	
@@ -131,25 +137,38 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			IntervalStyling stylingX, IntervalStyling stylingY) {
 		
 		this.data.addAll(xySeriesList);
-		init(xySeriesList, title);
+		initialiseScaling(xySeriesList);
 		
 		xAxis.axisDraw.interval1.styling = stylingX;
 		yAxis.axisDraw.interval1.styling = stylingY;
+		
+		this.addMouseMotionListener(this);
 
+		this.data.addAll(xySeriesList);
+
+		this.setTitle(title);
 	}
 	
+	/**
+	 * Set up a chart with specific stylings.
+	 * 
+	 * @param xySeriesList
+	 * @param title
+	 * @param stylingX
+	 * @param stylingX2
+	 * @param stylingX3
+	 * @param stylingY
+	 * @param stylingY2
+	 * @param stylingY3
+	 */
 	
-
-
-
-
 	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
 			IntervalStyling stylingX, IntervalStyling stylingX2,
 			IntervalStyling stylingX3, IntervalStyling stylingY,
 			IntervalStyling stylingY2, IntervalStyling stylingY3) {
 		
 		this.data.addAll(xySeriesList);
-		init(xySeriesList, title);
+		initialiseScaling(xySeriesList);
 		
 		xAxis.axisDraw.interval1.styling = stylingX;
 		yAxis.axisDraw.interval1.styling = stylingY;
@@ -157,6 +176,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		yAxis.axisDraw.interval2.styling = stylingY2;
 		xAxis.axisDraw.interval3.styling = stylingX3;
 		yAxis.axisDraw.interval3.styling = stylingY3;
+		
+		this.addMouseMotionListener(this);
+
+		this.data.addAll(xySeriesList);
+
+		this.setTitle(title);
 	}
 	
 	
@@ -167,19 +192,25 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * Simple Mutliple Constructor
 	 * 
 	 * @param title
-	 * @param x
-	 * @param y
+	 * @param xLabel
+	 * @param yLabel
 	 * @param xySeriesList
 	 */
-	public XYChart(String title, String x, String y,
+	public XYChart(String title, String xLabel, String yLabel,
 			ArrayList<XYDataSeries> xySeriesList) {
 
 		setUpSeriesStyle(xySeriesList);
 
-		init(xySeriesList, title);
+		initialiseScaling(xySeriesList);
 		
-		this.xAxis.labelText = x;
-		this.yAxis.labelText = y;
+		this.xAxis.labelText = xLabel;
+		this.yAxis.labelText = yLabel;
+		
+		this.addMouseMotionListener(this);
+
+		this.data.addAll(xySeriesList);
+
+		this.setTitle(title);
 	}
 
 	/**
@@ -242,10 +273,16 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		setUpSeriesStyle(xySeriesList);
 
-		init(xySeriesList, title);
+		initialiseScaling(xySeriesList);
 		
 		this.xAxis.labelText = x;
 		this.yAxis.labelText = y;
+		
+		this.addMouseMotionListener(this);
+
+		this.data.addAll(xySeriesList);
+
+		this.setTitle(title);
 
 	}
 	/**
@@ -285,7 +322,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			xySeriesList.add(xyDataSeries);
 		}
 		
-		init(xySeriesList, title);
+		initialiseScaling(xySeriesList);
 		setUpSeriesStyle(xySeriesList);
 		
 		this.xAxis.labelText = xAxisTitle;
@@ -294,6 +331,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.xAxis.axisDraw.interval1.styling = intervalStyling;
 		this.xAxis.axisDraw.interval2.styling = intervalStyling2;
 		this.xAxis.axisDraw.interval3.styling = intervalStyling3;
+		
+		this.addMouseMotionListener(this);
+
+		this.data.addAll(xySeriesList);
+
+		this.setTitle(title);
 		
 	}
 
@@ -304,7 +347,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * 
 	 * @param xySeriesList
 	 */
-
 	private void setUpSeriesStyle(ArrayList<XYDataSeries> xySeriesList) {
 		int i = 0;
 		for (XYDataSeries xyDataSeries : xySeriesList) {
@@ -338,7 +380,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	private void initBar(ArrayList<XYDataSeries> xySeriesList, String title) {
 		
 		
-		DataRange drY = getDataRangeY(xySeriesList);
+		DataRange drY = getDataRangeY(xySeriesList); //just the y
 		
 		//get sensible interval
 		double initialIntervalY = getInterval(drY);
@@ -360,11 +402,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
          * Massage data
          */
         	
-    	int xMax = 100;
-    	int xMin = 0;
+
     	
-    	xAxis = new XAxis(new LinearNumericalAxisDrawX(xMin, xMax), "");
+    	EnumerationAxisDrawX xd = new EnumerationAxisDrawX();
+    	xAxis = new XAxis(xd, "");
     	
+    	double xMax = xd.maxValue;
+    	double xMin = xd.minValue;
 	
 		ArrayList<DataPointBar> bars = xySeriesList.get(0).dataPoints; //will only have one series
 
@@ -424,12 +468,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	
 	
 	/**
-	 * INitialize, calculating best x,y scalings and intervals.
+	 * Initialize, calculating best x,y scalings and intervals.
 	 * 
 	 * @param xySeriesList
 	 * @param title
 	 */
-	private void init(ArrayList<XYDataSeries> xySeriesList, String title) {
+	private void initialiseScaling(ArrayList<XYDataSeries> xySeriesList) {
 
 		
 		//get padded range
@@ -468,7 +512,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		t2x.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);		
 		t2x.styling.lineLength = 3; //new GridLine(Color.LIGHT_GRAY, true, 1);		
 
-		//invisible!!!
+		//invisible!!! But not null
 		t3x.styling.graphLine = new GridLine(Color.WHITE, false, 0);		
 		t3x.styling.lineLength = 0; 
 
@@ -478,11 +522,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.yAxis = yAxis;
 		this.xAxis = xAxis;
 
-		this.addMouseMotionListener(this);
 
-		this.data.addAll(xySeriesList);
-
-		this.setTitle(title);
 	}
 
 	private DataRange getDataRangeX(ArrayList<XYDataSeries> xySeriesList) {
@@ -625,11 +665,18 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		 */
 		if (xAxis.axisDraw instanceof EnumerationAxisDrawX) {
 			
-	        if (xAxis.axisDraw.maxValue == xAxis.axisDraw.minValue) {
-	        	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisDraw.minValue);
+//			(EnumerationAxisDrawX)
+			
+			
+	        if (xAxis.axisDraw.getMaxValue() == xAxis.axisDraw.getMinValue()) {
+	        	
+	        	System.out.println("xAxis.axisDraw " + xAxis.axisDraw.toString());
+	        	System.out.println("xAxis.axisDraw " + xAxis.axisDraw.getMaxValue());
+	        	
+	        	
+	        	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisDraw.getMinValue());
 	        }
 
-//			massageXAxisData_forEnumeration((Graphics2D) g, this, data);
 		}
 
 		if (xAxis.axisDraw instanceof TimeSeriesAxisDrawX) {
@@ -652,8 +699,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public void massageXAxisData_forEnumeration(Graphics2D g2d,
 			XYChart xyChart, ArrayList<XYDataSeries> data) {
 
-		double xMax = this.xAxis.axisDraw.maxValue;
-		double xMin = this.xAxis.axisDraw.minValue;
+		double xMax = this.xAxis.axisDraw.getMaxValue();
+		double xMin = this.xAxis.axisDraw.getMinValue();
 
 		double xFactor = ((double) xyChart.widthChart / (double) (xMax - xMin));
 

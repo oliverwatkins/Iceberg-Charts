@@ -10,9 +10,15 @@ import com.bluewalrus.chart.XYChart;
 
 public abstract class EnumerationAxisDraw extends AxisDraw{
 
+	//enum has always 0 to 100. It is arbitrary.
+	public double maxValue = 100; 
+	public double minValue = 0; 
+	
 	protected EnumerationAxisDraw(Orientation orientation) {
 		super(orientation);
-		// TODO Auto-generated constructor stub
+		
+		maxValue = 100; 
+		minValue = 0; 
 	}
 	
 	

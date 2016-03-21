@@ -30,8 +30,7 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw {
 			NumericalInterval interval1, NumericalInterval interval2,
 			NumericalInterval interval3) {
 
-		this((double) minValue, (double) maxValue, interval1, interval2,
-				interval3);
+		this((double) minValue, (double) maxValue, interval1, interval2, interval3);
 	}
 
 	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,

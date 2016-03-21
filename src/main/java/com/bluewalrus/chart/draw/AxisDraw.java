@@ -20,8 +20,8 @@ public abstract class AxisDraw {
 	Orientation orientation;
 	
 
-	public double maxValue = -1; //101; // arbitrary
-	public double minValue = -1; //0; // arbitrary
+	protected double maxValue = -1; //101; // arbitrary
+	protected double minValue = -1; //0; // arbitrary
 
 	public AbstractInterval interval1; 
 	public AbstractInterval interval2; 
@@ -30,6 +30,23 @@ public abstract class AxisDraw {
 	
 	protected AxisDraw(Orientation orientation) {
 		this.orientation = orientation;
+	}
+	
+
+	public void setMaxValue(double d) {
+		this.maxValue = d;
+	}
+		
+	public void setMinValue(double d) {
+		this.minValue = d;
+	}
+	
+	
+	public double getMaxValue() {
+		return maxValue;
+	}
+	public double getMinValue() {
+		return minValue;
 	}
 	
 	
@@ -159,3 +176,5 @@ public abstract class AxisDraw {
 	protected abstract double getFromStart(XYChart chart, double toFirstInPixels, double incrementInPixel, int incrementNo);
 
 }
+
+
