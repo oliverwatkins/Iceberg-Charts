@@ -52,4 +52,11 @@ public class TestDataXY_Simple_Series extends ChartTester {
 
 		return lineChart;
 	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataXY_Simple_Series();
+		t.testChart(t.getChart());
+	}
+	
 }

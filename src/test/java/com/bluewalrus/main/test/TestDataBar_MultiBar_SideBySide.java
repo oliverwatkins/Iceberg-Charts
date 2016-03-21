@@ -1,34 +1,18 @@
 package com.bluewalrus.main.test;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Bar;
-import com.bluewalrus.bar.GradiantRule;
-import com.bluewalrus.bar.GridLine;
-import com.bluewalrus.bar.Line;
-import com.bluewalrus.bar.Utils;
-import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.chart.BarChart;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.MultiBarChart;
 import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.chart.XYYChart;
-import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.EnumerationAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
 import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
-import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.MultiBar;
 import com.bluewalrus.datapoint.MultiBar.MultiBarMode;
-import com.bluewalrus.point.UIPointBar;
-import com.bluewalrus.point.UIPointCircle;
-import com.bluewalrus.point.UIPointSquare;
-import com.bluewalrus.point.UIPointTriangle;
 
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
@@ -71,16 +55,34 @@ public class TestDataBar_MultiBar_SideBySide extends ChartTester {
         ml.add(mb3);
         
         
-        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 100.0, 20.0, 10.0, 5.0), "thousand dollars");
-
-        XAxis xAxis = new XAxis(new EnumerationAxisDrawX(), "year");
+//        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 100.0, 20.0, 10.0, 5.0), "thousand dollars");
+//
+//        XAxis xAxis = new XAxis(new EnumerationAxisDrawX(), "year");
         
-        MultiBarChart chart = new MultiBarChart(xAxis,yAxis,ml);
-        chart.setTitle("Advertising Revenue By Sector");
-        chart.rightOffset = 170;
-        chart.setSize(600, 500);
+        MultiBarChart chart = new MultiBarChart(
+        		ml,
+        		"Advertising Revenue By Sector",
+        		"year",
+        		"thousand dollars"
+        		);
+        
+        
+//      XYChart barChart = new XYChart(values, "Really Big Text", "yadda yadda", "yadda yadda", 12);        		
+//		xAxis,
+//		yAxis,
+        
+        
+//        chart.setTitle("Advertising Revenue By Sector");
+//        chart.rightOffset = 170;
+//        chart.setSize(600, 500);
         return chart;
 
     }
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataBar_MultiBar_SideBySide();
+		t.testChart(t.getChart());
+	}
+	
 
 }

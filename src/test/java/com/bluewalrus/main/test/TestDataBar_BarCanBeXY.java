@@ -63,7 +63,7 @@ public class TestDataBar_BarCanBeXY extends ChartTester {
         XYChart lineChart = new XYChart(xAxis, yAxis);
         
         XYDataSeries<DataPoint> series = new XYDataSeries<DataPoint>(
-        		new UIPointBar(Color.RED, lineChart),
+        		new UIPointBar(Color.RED),
         		null,
         		"");
 

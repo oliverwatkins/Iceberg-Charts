@@ -3,11 +3,11 @@ package com.bluewalrus.chart;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.DataPointMultiBar;
 import com.bluewalrus.datapoint.MultiBar;
@@ -23,15 +23,33 @@ import com.bluewalrus.point.UIPointMultiBarStacked;
  */
 public class MultiBarChart extends XYChart { 
 
-    public MultiBarChart(XAxis xAxis, YAxis yAxis, ArrayList<MultiBar> bars) {
-        this(xAxis, yAxis, bars, 10, false);
-    }
+
 
     public MultiBarChart(XAxis xAxis, YAxis yAxis, ArrayList<MultiBar> bars,
             boolean stacked) {
         this(xAxis, yAxis, bars, 10, stacked);
     }
 
+    
+    public MultiBarChart(ArrayList bars, String title, String xLabel,
+			String yLabel) {
+    	
+        this(bars, 10, false, title, xLabel, yLabel);
+    	
+	}
+    
+    
+
+	public MultiBarChart(ArrayList<DataPoint> bars, int barWidth, boolean b,
+			String title, String xLabel, String yLabel) {
+		
+		super(bars, "Tit", "x", "y");
+	}
+
+	
+    
+    
+    
     public MultiBarChart(XAxis xAxis, YAxis yAxis, ArrayList<MultiBar> bars, int barWidth, boolean stacked) {
         super(xAxis, yAxis);
 
@@ -77,7 +95,9 @@ public class MultiBarChart extends XYChart {
         }
     }
 
-    @Override
+
+
+	@Override
     public void drawLegend(Graphics2D g) {
 
         ArrayList<Category> categories = new ArrayList<Category>();

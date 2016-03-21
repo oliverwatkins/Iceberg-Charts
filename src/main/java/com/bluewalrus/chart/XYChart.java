@@ -26,6 +26,8 @@ import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
 import com.bluewalrus.chart.plotter.DatePlotter;
 import com.bluewalrus.chart.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
+import com.bluewalrus.datapoint.DataPointBar;
+import com.bluewalrus.point.UIPointBar;
 import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointTriangle;
@@ -104,6 +106,26 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 	
 	
+	public XYChart(ArrayList<DataPointBar> bars, String title, String xLabel,
+			String yLabel, int pixelBarWidth) {
+		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+
+		XYDataSeries<DataPoint> xy = new XYDataSeries<DataPoint>(bars,
+				new UIPointBar(Color.RED, Color.YELLOW, pixelBarWidth), null, "");
+		xySeriesList.add(xy);
+
+		initBar(xySeriesList, title);
+		
+		xAxis.labelText = xLabel;
+		yAxis.labelText = yLabel;
+		
+//		this.data.addAll(xySeriesList);
+	}
+	
+	
+	
+
+
 
 	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
 			IntervalStyling stylingX, IntervalStyling stylingY) {
@@ -275,6 +297,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 	}
 
+
+
 	/**
 	 * Set up some default styles
 	 * 
@@ -311,6 +335,94 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		rightOffset = 200;
 	}
 	
+	private void initBar(ArrayList<XYDataSeries> xySeriesList, String title) {
+		
+		
+		DataRange drY = getDataRangeY(xySeriesList);
+		
+		//get sensible interval
+		double initialIntervalY = getInterval(drY);
+		
+		NumericalInterval t1 = new NumericalInterval(initialIntervalY); 
+		
+		t1.styling.graphLine = new GridLine(Color.GRAY, false, 1);
+		t1.styling.lineLength = 6;
+		
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(drY.min, drY.max, t1, null, null), "Y TODO");
+		
+		
+		this.yAxis = yAxis;
+		
+		
+        /**
+         * Special case for enumeration :
+         * 
+         * Massage data
+         */
+        	
+    	int xMax = 100;
+    	int xMin = 0;
+    	
+    	xAxis = new XAxis(new LinearNumericalAxisDrawX(xMin, xMax), "");
+    	
+	
+		ArrayList<DataPointBar> bars = xySeriesList.get(0).dataPoints; //will only have one series
+
+        double xRange = (double) (xMax - xMin);
+
+        //distance between points (bars)
+        double pointDistance = (double) (xRange / (bars.size() + 1));
+
+        validityCheck(bars);
+    	
+        ArrayList<DataPointBar> dataPoints = new ArrayList<DataPointBar>();
+    	
+        int i = 1;
+        for (DataPointBar bar : bars) {
+        	
+        	bar.x = (int) (pointDistance * i);
+        	
+//            dataPoints.add(new DataPointBar((int) (pointDistance * i), (int) bar.y, bar.color, bar.name));
+            i++;
+        }
+		
+//        xySeriesList = new XY
+        
+		this.addMouseMotionListener(this);
+
+		this.data.addAll(xySeriesList);
+
+		this.setTitle(title);
+
+	}
+	
+	
+	
+	
+    
+	private void validityCheck(ArrayList<DataPointBar> bars) {
+		
+		DataPointBar firstElem = bars.get(0);
+		if (firstElem.name != null) {
+			//enumerable
+			for (DataPointBar dataPointBar : bars) {
+				if (firstElem.name == null) {
+					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
+				}
+			}
+		}
+		
+		if (firstElem.name == null) {
+			//numerical
+			for (DataPointBar dataPointBar : bars) {
+				if (firstElem.name != null) {
+					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
+				}
+			}
+		}
+	}
+	
+	
 	/**
 	 * INitialize, calculating best x,y scalings and intervals.
 	 * 
@@ -319,32 +431,22 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	private void init(ArrayList<XYDataSeries> xySeriesList, String title) {
 
-		double yMax = ChartUtils.calculateYAxisMax(xySeriesList, true);
-		double yMin = ChartUtils.calculateYAxisMin(xySeriesList, true);
-		double xMax = ChartUtils.calculateXAxisMax(xySeriesList, true);
-		double xMin = ChartUtils.calculateXAxisMin(xySeriesList, true);
+		
+		//get padded range
+		DataRange drY = getDataRangeY(xySeriesList);
+		
+		//get sensible interval
+		double initialIntervalY = getInterval(drY);
+		
+		//get padded range
+		DataRange drX = getDataRangeX(xySeriesList);
+		
+		//get sensible interval
+		double initialIntervalX = getInterval(drX);
+		
 
-		// get the diffs
-		double xDiff = xMax - xMin;
-		double yDiff = yMax - yMin;
-
-		// pad out to 10%
-		double yMinAdj = yMin - (yDiff / 10);
-		double xMinAdj = xMin - (xDiff / 10);
-		double yMaxAdj = yMax + (yDiff / 10);
-		double xMaxAdj = xMax + (xDiff / 10);
-
-		// Needs to be floored. If decimal place then crashes later
-		xMaxAdj = Math.floor(xMaxAdj);
-		yMaxAdj = Math.floor(yMaxAdj);
-		xMinAdj = Math.floor(xMinAdj);
-		yMinAdj = Math.floor(yMinAdj);
-
-		double magnitudeY = getInterval(yMinAdj, yMaxAdj);
-		double magnitudeX = getInterval(xMinAdj, xMaxAdj);
-
-		NumericalInterval t1 = new NumericalInterval(magnitudeY); 
-		NumericalInterval t2 = new NumericalInterval(magnitudeY/10); 
+		NumericalInterval t1 = new NumericalInterval(initialIntervalY); 
+		NumericalInterval t2 = new NumericalInterval(initialIntervalY/10); 
 		
 		
 		t1.styling.graphLine = new GridLine(Color.GRAY, false, 1);
@@ -354,11 +456,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		t2.styling.lineLength = 3;
 		
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(yMinAdj, yMaxAdj, t1, t2, null), "Y TODO");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(drY.min, drY.max, t1, t2, null), "Y TODO");
 
-		NumericalInterval t1x = new NumericalInterval(magnitudeX); //, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2x = new NumericalInterval(magnitudeX/10); //, new GridLine(Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3x = new NumericalInterval(magnitudeX/100); //, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1x = new NumericalInterval(initialIntervalX); //, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t2x = new NumericalInterval(initialIntervalX/10); //, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t3x = new NumericalInterval(initialIntervalX/100); //, new GridLine(Color.LIGHT_GRAY, true, 1));
 
 		t1x.styling.graphLine = new GridLine(Color.GRAY, false, 1);
 		t1x.styling.lineLength = 6; //new GridLine(Color.GRAY, false, 1);
@@ -371,7 +473,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		t3x.styling.lineLength = 0; 
 
 		
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(xMinAdj, xMaxAdj, t1x, t2x, t3x), "X TODO");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(drX.min, drX.max, t1x, t2x, t3x), "X TODO");
 
 		this.yAxis = yAxis;
 		this.xAxis = xAxis;
@@ -383,21 +485,42 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 	}
 
+	private DataRange getDataRangeX(ArrayList<XYDataSeries> xySeriesList) {
+		//get Max/Min
+		double xMax = ChartUtils.calculateXAxisMax(xySeriesList, true);
+		double xMin = ChartUtils.calculateXAxisMin(xySeriesList, true);
+
+		//range with padding
+		DataRange drX = ChartUtils.getDataRange(xMax, xMin, 10);
+		return drX;
+	}
+
+	private DataRange getDataRangeY(ArrayList<XYDataSeries> xySeriesList) {
+		//Get Max/Min
+		double yMax = ChartUtils.calculateYAxisMax(xySeriesList, true);
+		double yMin = ChartUtils.calculateYAxisMin(xySeriesList, true);
+		
+		//range with padding
+		DataRange drY = ChartUtils.getDataRange(yMax, yMin, 10);
+		return drY;
+	}
+
+
+
 	
+
 	/**
 	 * Get a sensible interval between two points. Ie. (34 --> 10,000) would be 1000 (36 --> 132) would be 10
 	 * 
 	 * 
 	 * TODO less than zero and greater than 10000. Need generic algorithm here
 	 * 
-	 * @param yMinAdj
-	 * @param yMaxAdj
 	 * @return
 	 */
-	private double getInterval(double yMinAdj, double yMaxAdj) {
+	private double getInterval(DataRange dr) {
 
-		double yT = yMaxAdj;
-		double yT2 = yMinAdj;
+		double yT = dr.max; //yMaxAdj;
+		double yT2 = dr.min;//yMinAdj;
 
 		double magnitude = 10.0;
 
@@ -503,7 +626,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		if (xAxis.axisDraw instanceof EnumerationAxisDrawX) {
 			
 	        if (xAxis.axisDraw.maxValue == xAxis.axisDraw.minValue) {
-	        	throw new RuntimeException("Bummer! range has not been set for enum axis");
+	        	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisDraw.minValue);
 	        }
 
 //			massageXAxisData_forEnumeration((Graphics2D) g, this, data);

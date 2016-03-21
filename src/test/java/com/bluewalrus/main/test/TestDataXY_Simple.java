@@ -21,7 +21,7 @@ public class TestDataXY_Simple extends ChartTester {
 		values.add(new DataPoint(135, 67));
 		values.add(new DataPoint(150, 70));
 		
-		XYChart lineChart = new XYChart(values, "My Easy Example", "", "");
+		XYChart lineChart = new XYChart(values, "My Easy Example", "X Axis", "Y Axis");
 		
 		JFrame frame = new JFrame();
 		frame.add(lineChart);

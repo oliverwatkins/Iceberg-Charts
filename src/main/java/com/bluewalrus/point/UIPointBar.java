@@ -13,17 +13,14 @@ public class UIPointBar extends UIPointAbstractBar {
 
     boolean doBorder = true;
     Color negativeColor;
-//    public XYChart chart; //TODO Two way reference here :( Not good :(
 
-    public UIPointBar(Color color, XYChart chart) {
+    public UIPointBar(Color color) {
         super(color);
-//        this.chart = chart;
     }
 
-    public UIPointBar(Color color, Color negativeColor, XYChart chart, int barWidth) {
+    public UIPointBar(Color color, Color negativeColor, int barWidth) {
         super(color);
         this.negativeColor = negativeColor;
-//        this.chart = chart;
         this.barWidth = barWidth;
     }
 

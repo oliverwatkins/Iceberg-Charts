@@ -69,7 +69,7 @@ public class XYYChart extends XYChart {
 
         barSeries = new XYDataSeries<DataPointBar>(
                 dataPoints,
-                new UIPointBar(Color.PINK, Color.YELLOW, this, barWidth),
+                new UIPointBar(Color.PINK, Color.YELLOW, barWidth),
                 null,
                 "");
 

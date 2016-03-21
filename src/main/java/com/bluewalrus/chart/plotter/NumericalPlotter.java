@@ -103,14 +103,17 @@ public class NumericalPlotter extends AbstractPlotter {
             DataPoint dataPoint, 
             XYChart chart) {
 
+    	
         int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
         int y = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
 
         //hack TODO 
         if (xyFactor.yFactor * y > 200000) {
+        	System.err.println("ERROR!!! xyFactor.yFactor * y > 200000");
             return;
         }
         if (xyFactor.xFactor * x > 200000) {
+        	System.err.println("ERROR!!! xyFactor.xFactor * x > 200000");
             return;
         }
         

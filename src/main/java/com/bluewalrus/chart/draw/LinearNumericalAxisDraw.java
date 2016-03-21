@@ -229,84 +229,68 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 
 		double val = this.minValue;
 		
-		if (isWholeNumber(val)) {
-			
-			
-			
-		    // integral type
-			while (val % increment != 0) {
-				//TODO Error here!!!!! If you ++ a real number then it will not necessary break out of this loop!!!
-				val++;
-				System.out.println("val = " + val + " this.minValue " + this.minValue + " increment = " + increment);
-			}
-			
-		}else {
-			/**
-			 * Convert increment to a whole number. Get the multiplication factor and
-			 * use that on the axis values. Find the first interval, then divide again.
-			 */
-			
-			//TODO this is not yet working correctly
-			
-			int multiplicationFactor = 1;
-			
-			double adjustedInc = increment;
-			
-			/**
-			 * 1. Adjust the increment
-			 */
-			
-			while (!(isWholeNumber(adjustedInc))) {
-				adjustedInc = adjustedInc*10;
-				multiplicationFactor = multiplicationFactor*10;
-			}
-			
-			System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor);
-			
-			double adjustedMinValue = this.minValue * multiplicationFactor;
-			
-
-			int multiplicationFactor2 = 1; //reset
-			
-			
-			/**
-			 * 2. Adjust starting point
-			 */
-			
-			while (!(isWholeNumber(adjustedMinValue))) {
-				adjustedMinValue = adjustedMinValue*10;
-				multiplicationFactor2 = multiplicationFactor2*10;
-			}
-			
-			System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor2);
-			
-			adjustedInc = adjustedInc * multiplicationFactor2;
-			
-			
-			
-			
-			val = adjustedMinValue;
-			
-			while (val % adjustedInc != 0) {
-				val++;
-				System.out.println("2val = " + val + " this.minValue " + this.minValue + " increment = " + increment);
-			}
-			
-			val = val / multiplicationFactor / multiplicationFactor2;
-
-			System.out.println("3val = " + val); //returning 2.0. Should return 1.6
-
-			
-			DecimalFormat df = new DecimalFormat("##,###");      
-			val = Double.valueOf(df.format(val));
-			
-			//TODO this format converts 1.6 to 2
-			System.out.println("val = " + val); //returning 2.0. Should return 1.6
-
-			
-			return val;
+		/**
+		 * Convert increment to a whole number. Get the multiplication factor and
+		 * use that on the axis values. Find the first interval, then divide again.
+		 */
+		
+		
+		int multiplicationFactor = 1;
+		
+		double adjustedInc = increment;
+		
+		/**
+		 * 1. Adjust the increment
+		 */
+		
+		while (!(isWholeNumber(adjustedInc))) {
+			adjustedInc = adjustedInc*10;
+			multiplicationFactor = multiplicationFactor*10;
 		}
+		
+		System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor);
+		
+		double adjustedMinValue = this.minValue * multiplicationFactor;
+		
 
+		int multiplicationFactor2 = 1; //reset
+		
+		
+		/**
+		 * 2. Adjust starting point
+		 */
+		
+		while (!(isWholeNumber(adjustedMinValue))) {
+			adjustedMinValue = adjustedMinValue*10;
+			multiplicationFactor2 = multiplicationFactor2*10;
+		}
+		
+		System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor2);
+		
+		adjustedInc = adjustedInc * multiplicationFactor2;
+		
+		
+		
+		
+		val = adjustedMinValue;
+		
+		while (val % adjustedInc != 0) {
+			val++;
+			System.out.println("2val = " + val + " this.minValue " + this.minValue + " increment = " + increment);
+		}
+		
+		val = val / multiplicationFactor / multiplicationFactor2;
+
+		System.out.println("3val = " + val); //returning 2.0. Should return 1.6
+
+		
+		DecimalFormat df = new DecimalFormat("##,###");      
+		val = Double.valueOf(df.format(val));
+		
+		//TODO this format converts 1.6 to 2
+		System.out.println("val = " + val); //returning 2.0. Should return 1.6
+
+		
 		return val;
 	}
 	

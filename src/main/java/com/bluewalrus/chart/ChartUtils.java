@@ -78,6 +78,25 @@ public class ChartUtils {
 		}
 		return max;
 	}
+	
+	
+	public static DataRange getDataRange(double yMax, double yMin, int paddingPercent) {
+		double yDiff = yMax - yMin;
+		
+		// pad out to 10%
+		double yMinAdj = yMin - (yDiff / paddingPercent);
+		double yMaxAdj = yMax + (yDiff / paddingPercent);
+		
+		// Needs to be floored. If decimal place then crashes later
+		yMaxAdj = Math.floor(yMaxAdj);
+		yMinAdj = Math.floor(yMinAdj);
+		
+		DataRange drY = new DataRange();
+		
+		drY.min = yMinAdj;
+		drY.max = yMaxAdj;
+		return drY;
+	}
 
 	public static double calculateYAxisMin(
 			ArrayList<XYDataSeries> xySeriesList, boolean b) {

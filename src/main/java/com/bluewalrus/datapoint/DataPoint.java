@@ -22,6 +22,8 @@ public class DataPoint implements Serializable{
     
     public UIPointXY uiPointXY;
 
+	public DataPoint() {
+	}
     /**
      * Y point only. The X value is determined by an equally spaced bar chart
      *
@@ -41,10 +43,18 @@ public class DataPoint implements Serializable{
         this.y = y;
     }
 
+
+
 	public void setPoinUI(UIPointXY uiPointXY) {
 		
 		this.uiPointXY = uiPointXY;
 		
+	}
+
+	@Override
+	public String toString() {
+		return "DataPoint [x=" + x + ", xDate=" + xDate + ", y=" + y
+				+ ", name=" + name + ", uiPointXY=" + uiPointXY + "]";
 	}
 
 }
