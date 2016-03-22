@@ -1,9 +1,15 @@
 package com.bluewalrus.chart;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
+import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.datapoint.DataPoint;
+import com.bluewalrus.datapoint.DataPointBar;
+import com.bluewalrus.point.UIPointCircle;
+import com.bluewalrus.point.UIPointSquare;
+import com.bluewalrus.point.UIPointTriangle;
 
 public class ChartUtils {
 
@@ -141,6 +147,68 @@ public class ChartUtils {
 				min = m;
 		}
 		return min;
+	}
+	
+	/**
+	 * Set up some default styles
+	 * 
+	 * @param xySeriesList
+	 */
+	public static void setUpSeriesStyle(ArrayList<XYDataSeries> xySeriesList, XYChart chart) {
+		int i = 0;
+		for (XYDataSeries xyDataSeries : xySeriesList) {
+			
+			if (i == 0) {
+				xyDataSeries.pointType = new UIPointSquare(Color.BLUE);
+				xyDataSeries.line = new Line(Color.BLUE, false, 2);
+				
+			}else if (i == 1) {
+				xyDataSeries.pointType = new UIPointCircle(Color.GREEN);
+				xyDataSeries.line = new Line(Color.GREEN, false, 2);
+			}else if (i == 2) {
+				xyDataSeries.pointType = new UIPointTriangle(Color.RED);
+				xyDataSeries.line = new Line(Color.RED, false, 2);
+			}else if (i == 3) {
+				xyDataSeries.pointType = new UIPointTriangle(Color.CYAN);
+				xyDataSeries.line = new Line(Color.CYAN, false, 2);
+				
+			}else if (i == 4) {
+				xyDataSeries.pointType = new UIPointCircle(Color.MAGENTA);
+				xyDataSeries.line = new Line(Color.MAGENTA, false, 2);
+			}else {
+				//create random TODO
+			}
+			i++;
+		}
+
+		chart.rightOffset = 200;
+	}
+	
+	/**
+	 * A DataPointBar, should have all its name set to a value, or no values set to name.
+	 * 
+	 * @param bars
+	 */
+	public static void validityCheck(ArrayList<DataPointBar> bars) {
+		
+		DataPointBar firstElem = bars.get(0);
+		if (firstElem.name != null) {
+			//enumerable
+			for (DataPointBar dataPointBar : bars) {
+				if (dataPointBar.name == null) {
+					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
+				}
+			}
+		}
+		
+		if (firstElem.name == null) {
+			//numerical
+			for (DataPointBar dataPointBar : bars) {
+				if (dataPointBar.name != null) {
+					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
+				}
+			}
+		}
 	}
 	
 	

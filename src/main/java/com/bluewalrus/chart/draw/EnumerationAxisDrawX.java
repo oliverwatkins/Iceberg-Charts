@@ -16,8 +16,6 @@ import com.bluewalrus.renderer.XYFactor;
 
 public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 
-
-
 	public EnumerationAxisDrawX() {
 		super(Orientation.X);
 	}
@@ -42,35 +40,12 @@ public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 		double xFactor = ((double) xyChart.widthChart / (double) (xMax - xMin));
 		double yfactor = ((double) xyChart.heightChart / (double) (yMax - yMin));
 
-		XYFactor xyFactor = new XYFactor(xFactor, yfactor);
-		xyFactor.xZeroOffsetInPixel = (double) ((-xMin / (xMax - xMin)) * xyChart.widthChart);
-		xyFactor.yZeroOffsetInPixel = (double) ((-yMin / (yMax - yMin)) * xyChart.heightChart);
 
 		ArrayList<DataPoint> dataPoints = data.get(0).dataPoints;
 
-		double xRange = (double) (xMax - xMin);
-
-		// distance between points (bars)
-		double pointDistance = (double) (xyChart.widthChart / (dataPoints
-				.size() + 1));
-
-		System.out.println("range = " + xRange);
-		System.out.println("pointDistance = " + pointDistance);
-
-		int i = 1;
 		for (DataPoint dataPoint : dataPoints) {
-
-			double xShift2 = (pointDistance * i);
-
-			int x = (int) (xyChart.leftOffset + (xShift2));
-
-			drawXLabel(g2d, xyChart, (DataPoint) dataPoint, x);
-			dataPoint.x = x;
-//			dataPoint.y = y;
-			
-			i++;
+			drawXLabel(g2d, xyChart, (DataPoint) dataPoint, ((int)(dataPoint.x * xFactor)+xyChart.leftOffset));
 		}
-
 	}
 
 	private static void drawXLabel(Graphics2D g, XYChart chart,

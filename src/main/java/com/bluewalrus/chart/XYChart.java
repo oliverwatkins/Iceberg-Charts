@@ -66,6 +66,24 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this(xAxis, yAxis);
 		this.data.addAll(listOfSeries);
 	}
+	
+	/**
+	 * 
+	 * @param series
+	 * @param title
+	 * @param yAxis
+	 * @param xAxis
+	 */
+	public XYChart(XYDataSeries series, String title, YAxis yAxis,
+			XAxis xAxis) {
+		
+		this.setTitle(title);
+		
+		this.xAxis = xAxis;
+		this.yAxis = yAxis;
+		
+		this.data.add(series);
+	}
 
 	/**
 	 * Create an XY chart by passing in the two axis. This is the default
@@ -82,14 +100,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 	/**
-	 * Simple Single Constructor
+	 * Simple Single Data Series Constructor
 	 * 
 	 * @param values
 	 * @param xAxisMax
 	 * @param yAxisMax
 	 * @param title
 	 */
-
 	public XYChart(ArrayList<DataPoint> values, String title, String xLabel,
 			String yLabel) {
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -111,7 +128,40 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				
 	}
 	
+	/**
+	 * Simple Mutliple Series Constructor
+	 * 
+	 * @param title
+	 * @param xLabel
+	 * @param yLabel
+	 * @param xySeriesList
+	 */
+	public XYChart(String title, String xLabel, String yLabel,
+			ArrayList<XYDataSeries> xySeriesList) {
+
+		ChartUtils.setUpSeriesStyle(xySeriesList, this);
+
+		initialiseScaling(xySeriesList);
+		
+		this.xAxis.labelText = xLabel;
+		this.yAxis.labelText = yLabel;
+		
+		this.addMouseMotionListener(this);
+
+		this.data.addAll(xySeriesList);
+
+		this.setTitle(title);
+	}
 	
+	/**
+	 * Simple Bar Chart constructor
+	 * 
+	 * @param bars
+	 * @param title
+	 * @param xLabel
+	 * @param yLabel
+	 * @param pixelBarWidth
+	 */
 	public XYChart(ArrayList<DataPointBar> bars, String title, String xLabel,
 			String yLabel, int pixelBarWidth) {
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -120,7 +170,9 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				new UIPointBar(Color.RED, Color.YELLOW, pixelBarWidth), null, "");
 		xySeriesList.add(xy);
 
-		initBar(xySeriesList, title);
+		initialiseScalingForEnumeration(xySeriesList);
+		
+		this.setTitle(title);
 		
 		xAxis.labelText = xLabel;
 		yAxis.labelText = yLabel;
@@ -128,11 +180,15 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.data.addAll(xySeriesList);
 	}
 	
-	
-	
 
-
-
+	/**
+	 * TODO is this used?
+	 * 
+	 * @param xySeriesList
+	 * @param title
+	 * @param stylingX
+	 * @param stylingY
+	 */
 	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
 			IntervalStyling stylingX, IntervalStyling stylingY) {
 		
@@ -168,6 +224,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			IntervalStyling stylingY2, IntervalStyling stylingY3) {
 		
 		this.data.addAll(xySeriesList);
+		
 		initialiseScaling(xySeriesList);
 		
 		xAxis.axisDraw.interval1.styling = stylingX;
@@ -182,53 +239,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.data.addAll(xySeriesList);
 
 		this.setTitle(title);
-	}
-	
-	
-	
-
-
-	/**
-	 * Simple Mutliple Constructor
-	 * 
-	 * @param title
-	 * @param xLabel
-	 * @param yLabel
-	 * @param xySeriesList
-	 */
-	public XYChart(String title, String xLabel, String yLabel,
-			ArrayList<XYDataSeries> xySeriesList) {
-
-		setUpSeriesStyle(xySeriesList);
-
-		initialiseScaling(xySeriesList);
-		
-		this.xAxis.labelText = xLabel;
-		this.yAxis.labelText = yLabel;
-		
-		this.addMouseMotionListener(this);
-
-		this.data.addAll(xySeriesList);
-
-		this.setTitle(title);
-	}
-
-	/**
-	 * 
-	 * @param series
-	 * @param title
-	 * @param yAxis
-	 * @param xAxis
-	 */
-	public XYChart(XYDataSeries series, String title, YAxis yAxis,
-			XAxis xAxis) {
-		
-		this.setTitle(title);
-		
-		this.xAxis = xAxis;
-		this.yAxis = yAxis;
-		
-		this.data.add(series);
 	}
 	
 	/**
@@ -264,14 +274,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @param series
 	 */
 	public XYChart(String title, String x, String y, XYDataSeries... series) {
-
 		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 		for (XYDataSeries xyDataSeries : series) {
 			xySeriesList.add(xyDataSeries);
 		}
 		
-		setUpSeriesStyle(xySeriesList);
+		ChartUtils.setUpSeriesStyle(xySeriesList, this);
 
 		initialiseScaling(xySeriesList);
 		
@@ -305,11 +314,17 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 	}
 
-
-
-
-
-
+	
+	/**
+	 * 
+	 * @param title
+	 * @param xAxisTitle
+	 * @param yAxisTitle
+	 * @param intervalStyling
+	 * @param intervalStyling2
+	 * @param intervalStyling3
+	 * @param series
+	 */
 	public XYChart(String title, String xAxisTitle, String yAxisTitle,
 			IntervalStyling intervalStyling, 
 			IntervalStyling intervalStyling2,
@@ -323,7 +338,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		}
 		
 		initialiseScaling(xySeriesList);
-		setUpSeriesStyle(xySeriesList);
+		ChartUtils.setUpSeriesStyle(xySeriesList, this);
 		
 		this.xAxis.labelText = xAxisTitle;
 		this.yAxis.labelText = yAxisTitle;
@@ -342,43 +357,16 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 
 
+
+	
 	/**
-	 * Set up some default styles
-	 * 
 	 * @param xySeriesList
 	 */
-	private void setUpSeriesStyle(ArrayList<XYDataSeries> xySeriesList) {
-		int i = 0;
-		for (XYDataSeries xyDataSeries : xySeriesList) {
-			
-			if (i == 0) {
-				xyDataSeries.pointType = new UIPointSquare(Color.BLUE);
-				xyDataSeries.line = new Line(Color.BLUE, false, 2);
-				
-			}else if (i == 1) {
-				xyDataSeries.pointType = new UIPointCircle(Color.GREEN);
-				xyDataSeries.line = new Line(Color.GREEN, false, 2);
-			}else if (i == 2) {
-				xyDataSeries.pointType = new UIPointTriangle(Color.RED);
-				xyDataSeries.line = new Line(Color.RED, false, 2);
-			}else if (i == 3) {
-				xyDataSeries.pointType = new UIPointTriangle(Color.CYAN);
-				xyDataSeries.line = new Line(Color.CYAN, false, 2);
-				
-			}else if (i == 4) {
-				xyDataSeries.pointType = new UIPointCircle(Color.MAGENTA);
-				xyDataSeries.line = new Line(Color.MAGENTA, false, 2);
-			}else {
-				//create random TODO
-			}
-			i++;
-		}
-
-		rightOffset = 200;
-	}
 	
-	private void initBar(ArrayList<XYDataSeries> xySeriesList, String title) {
-		
+	private void initialiseScalingForEnumeration(ArrayList<XYDataSeries> xySeriesList) {
+
+		 // TODO at this point only on X
+
 		
 		DataRange drY = getDataRangeY(xySeriesList); //just the y
 		
@@ -394,15 +382,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		
 		this.yAxis = yAxis;
-		
-		
-        /**
-         * Special case for enumeration :
-         * 
-         * Massage data
-         */
-        	
-
     	
     	EnumerationAxisDrawX xd = new EnumerationAxisDrawX();
     	xAxis = new XAxis(xd, "");
@@ -417,53 +396,15 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         //distance between points (bars)
         double pointDistance = (double) (xRange / (bars.size() + 1));
 
-        validityCheck(bars);
+        ChartUtils.validityCheck(bars);
     	
         ArrayList<DataPointBar> dataPoints = new ArrayList<DataPointBar>();
     	
         int i = 1;
         for (DataPointBar bar : bars) {
-        	
         	bar.x = (int) (pointDistance * i);
-        	
-//            dataPoints.add(new DataPointBar((int) (pointDistance * i), (int) bar.y, bar.color, bar.name));
             i++;
         }
-		
-//        xySeriesList = new XY
-        
-		this.addMouseMotionListener(this);
-
-		this.data.addAll(xySeriesList);
-
-		this.setTitle(title);
-
-	}
-	
-	
-	
-	
-    
-	private void validityCheck(ArrayList<DataPointBar> bars) {
-		
-		DataPointBar firstElem = bars.get(0);
-		if (firstElem.name != null) {
-			//enumerable
-			for (DataPointBar dataPointBar : bars) {
-				if (firstElem.name == null) {
-					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
-				}
-			}
-		}
-		
-		if (firstElem.name == null) {
-			//numerical
-			for (DataPointBar dataPointBar : bars) {
-				if (firstElem.name != null) {
-					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
-				}
-			}
-		}
 	}
 	
 	
@@ -559,8 +500,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	private double getInterval(DataRange dr) {
 
-		double yT = dr.max; //yMaxAdj;
-		double yT2 = dr.min;//yMinAdj;
+		double yT = dr.max; 
+		double yT2 = dr.min;;
 
 		double magnitude = 10.0;
 
@@ -595,7 +536,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		double numberTicks = (maxValue - minValue) / orderOfMagnitude;
 
-		if (numberTicks < 10) { // && numberTicks > 2) {
+		if (numberTicks < 10) { 
 			return true;
 		}
 		return false;
@@ -654,30 +595,15 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	@Override
 	protected void drawGraph(Graphics g) {
-
-		/**
-		 * TODO if the x-axis is enumerable then the data needs to be massaged.
-		 * Upon creation of the datapoints the x y values were arbitrary. Now
-		 * that the chart has size we can calculate the values where the points
-		 * need to be positioned.
-		 * 
-		 * This does not look right here :( Maybe put into EnumeratioAxisDraw??
-		 */
-		if (xAxis.axisDraw instanceof EnumerationAxisDrawX) {
 			
-//			(EnumerationAxisDrawX)
-			
-			
-	        if (xAxis.axisDraw.getMaxValue() == xAxis.axisDraw.getMinValue()) {
-	        	
-	        	System.out.println("xAxis.axisDraw " + xAxis.axisDraw.toString());
-	        	System.out.println("xAxis.axisDraw " + xAxis.axisDraw.getMaxValue());
-	        	
-	        	
-	        	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisDraw.getMinValue());
-	        }
-
-		}
+        if (xAxis.axisDraw.getMaxValue() == xAxis.axisDraw.getMinValue()) {
+        	
+        	System.out.println("xAxis.axisDraw " + xAxis.axisDraw.toString());
+        	System.out.println("xAxis.axisDraw " + xAxis.axisDraw.getMaxValue());
+        	
+        	
+        	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisDraw.getMinValue());
+        }
 
 		if (xAxis.axisDraw instanceof TimeSeriesAxisDrawX) {
 			new DatePlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis,
@@ -689,50 +615,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	}
 
-	/**
-	 * Massage data on X axis.ONLY USED FOR ENUMERATION!!!!
-	 * 
-	 * @param g2d
-	 * @param xyChart
-	 * @param data
-	 */
-	public void massageXAxisData_forEnumeration(Graphics2D g2d,
-			XYChart xyChart, ArrayList<XYDataSeries> data) {
-
-		double xMax = this.xAxis.axisDraw.getMaxValue();
-		double xMin = this.xAxis.axisDraw.getMinValue();
-
-		double xFactor = ((double) xyChart.widthChart / (double) (xMax - xMin));
-
-		XYFactor xyFactor = new XYFactor(xFactor, 123);
-		xyFactor.xZeroOffsetInPixel = (double) ((-xMin / (xMax - xMin)) * xyChart.widthChart);
-
-		ArrayList<DataPoint> dataPoints = data.get(0).dataPoints;
-
-		double xRange = (double) (xMax - xMin);
-
-		// distance between points (bars)
-		double pointDistance = (double) (xyChart.widthChart / (dataPoints
-				.size() + 1));
-
-		int i = 1;
-		for (DataPoint dataPoint : dataPoints) {
-
-			double xShift2 = (pointDistance * i);
-
-			int x = (int) (xyChart.leftOffset + (xShift2));
-
-			dataPoint.x = x;
-
-			i++;
-		}
-	}
 
 	@Override
 	public void drawLegend(Graphics2D g) {
 
 		ArrayList<Category> categories = new ArrayList<Category>();
 
+		//only one series. no need for legend
 		if (data.size() == 1) {
 			return;
 		}
