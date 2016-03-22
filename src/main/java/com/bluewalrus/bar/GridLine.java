@@ -33,13 +33,6 @@ public class GridLine implements Serializable{
         this.thickness = thickness;
     }
 
-//    public GridLine(Color color, boolean dashed, int thickness, GridFill gridFill) {
-//        this.color = color;
-//        this.dashed = dashed;
-//        this.thickness = thickness;
-////        this.gridFill = gridFill;
-//    }
-
     public void drawLine(Graphics2D g, int x1, int y1,
             int x2, int y2) {
     	

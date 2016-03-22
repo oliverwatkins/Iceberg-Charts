@@ -51,36 +51,21 @@ public class TestDataGrids_gridSimple extends ChartTester {
 		values2.add(new DataPoint(20, 14));
 		values2.add(new DataPoint(25, 17));
 
-		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
-		values3.add(new DataPoint(5, 130));
-		values3.add(new DataPoint(10, 74));
-		values3.add(new DataPoint(15, 67));
-		values3.add(new DataPoint(20, 22));
-		values3.add(new DataPoint(25, 68));
-		
-		ArrayList<DataPoint> values4 = new ArrayList<DataPoint>();
-		values4.add(new DataPoint(5, 90));
-		values4.add(new DataPoint(10, 65));
-		values4.add(new DataPoint(15, 80));
-		values4.add(new DataPoint(20, 83));
-		values4.add(new DataPoint(23, 90));
-
 		XYDataSeries series = new XYDataSeries(values, "First");
 		XYDataSeries series2 = new XYDataSeries(values2, "Second");
-		XYDataSeries series3 = new XYDataSeries(values3, "Third");
-		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
 
 		
 		XYChart lineChart = new XYChart("Grid Examples", 
 				"My X Axis", 
 				"My Y Axis", 
-				new IntervalStyling(4, new GridLine(Color.BLUE, false, 3), null),
-				new IntervalStyling(1, new GridLine(Color.RED, true, 2), null),
-				new IntervalStyling(1, new GridLine(Color.RED, true, 1), null),
+				new IntervalStyling(5, new GridLine(Color.GRAY, false, 3), null),
+				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),
+				null,
+				new IntervalStyling(5, new GridLine(Color.GRAY, true, 3), null),
+				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),
+				null, 
 				series, 
-				series2, 
-				series3, 
-				series4); 
+				series2); 
 		
 		return lineChart;
 	}

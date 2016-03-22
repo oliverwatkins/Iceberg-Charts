@@ -161,7 +161,7 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 	}
 	
 	
-	public void drawGridLine(AbstractInterval interval, Graphics2D g, XYChart chart) {
+	public void drawGridLines(AbstractInterval interval, Graphics2D g, XYChart chart) {
 		
 		NumericalInterval inter = (NumericalInterval) interval;
 		
@@ -178,6 +178,49 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
         	drawGridLine(inter, g, chart, i, incrementInPixel);
         }
     }
+	
+	
+	protected void drawGridFills(AbstractInterval interval, Graphics2D g, XYChart chart) {
+		
+		
+		double factor = getMultiplicationFactor(chart);
+	
+		// to first increment
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				((NumericalInterval) interval).getInterval(), factor);
+	
+		int incrementNo = (int) ((maxValue - minValue) / ((NumericalInterval) interval).getInterval());
+		
+		incrementNo++;
+	
+		double incrementInPixel = (double) (((NumericalInterval) interval)
+				.getInterval() * factor);
+		
+		g.setColor(interval.styling.graphLine.color);
+	
+        for (int i = 0; i < (incrementNo + 1); i++) {
+	
+			double fromStart = getFromStart(chart, toFirstInPixels,
+					incrementInPixel, i);
+			
+			fromStart = fromStart - incrementInPixel; //start left of the y Axis (invisible part)
+	
+			/**
+			 * Draw Grid line
+			 */
+			
+			if (this.orientation == Orientation.X)
+
+				interval.styling.graphFill.fillAreaX(g, (int)fromStart, incrementInPixel, chart, i);
+				
+			else if (this.orientation == Orientation.Y)
+				
+				interval.styling.graphFill.fillAreaY(g, (int)fromStart, incrementInPixel, chart, i);
+			else {
+				throw new RuntimeException("asdfasdf");
+			}
+		}
+	}
 	
 	
 	
@@ -248,7 +291,7 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 			multiplicationFactor = multiplicationFactor*10;
 		}
 		
-		System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor);
+//		System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor);
 		
 		double adjustedMinValue = this.minValue * multiplicationFactor;
 		
@@ -265,30 +308,26 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 			multiplicationFactor2 = multiplicationFactor2*10;
 		}
 		
-		System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor2);
+//		System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor2);
 		
 		adjustedInc = adjustedInc * multiplicationFactor2;
-		
-		
 		
 		
 		val = adjustedMinValue;
 		
 		while (val % adjustedInc != 0) {
 			val++;
-			System.out.println("2val = " + val + " this.minValue " + this.minValue + " increment = " + increment);
 		}
 		
 		val = val / multiplicationFactor / multiplicationFactor2;
 
-		System.out.println("3val = " + val); //returning 2.0. Should return 1.6
 
 		
 		DecimalFormat df = new DecimalFormat("##,###");      
 		val = Double.valueOf(df.format(val));
 		
 		//TODO this format converts 1.6 to 2
-		System.out.println("val = " + val); //returning 2.0. Should return 1.6
+//		System.out.println("val = " + val); //returning 2.0. Should return 1.6
 
 		
 		return val;

@@ -91,7 +91,8 @@ public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw {
 		 */
 		XAxisDrawUtil.drawXLabel(g, chart, fromLeft, xLabel, chart.xAxis, 0);
 	}
-
+	
+	@Override
 	protected void drawIntervalTick(NumericalInterval interval, Graphics g,
 			XYChart chart, int i, double incrementInPixel) {
 

@@ -32,7 +32,7 @@ public class XAxisDrawUtil {
 			double fromLeft, Axis axis) {
 		
 		if (interval.styling == null) {
-			System.out.println("Styling is null");
+//			System.out.println("Styling is null");
 			return;
 		}
 		

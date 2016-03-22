@@ -60,6 +60,11 @@ public class TestDataGrids_GraphPaper extends ChartTester{
 	
 	
 	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataGrids_GraphPaper();
+		t.testChart(t.getChart());
+	}
+	
 	
 	
 	

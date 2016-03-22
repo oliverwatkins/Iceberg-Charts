@@ -34,7 +34,7 @@ public class YAxisDrawUtil {
 			double fromTop, YAxis axis) {
 		
 		if (interval.styling == null) {
-			System.out.println("interval.styling == null ");
+//			System.out.println("interval.styling == null ");
 			return;
 		}
 		

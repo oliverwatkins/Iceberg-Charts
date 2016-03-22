@@ -183,7 +183,7 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
     /**
      * TODO : similar code
      */
-    public void drawGridLine(AbstractInterval interval, Graphics2D g, XYChart chart) {
+    public void drawGridLines(AbstractInterval interval, Graphics2D g, XYChart chart) {
 
 		double factor = getMultiplicationFactor(chart); 
     	
@@ -222,6 +222,14 @@ public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
 			double incrementInPixel, int i) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	@Override
+	protected void drawGridFills(AbstractInterval interval12, Graphics2D g,
+			XYChart chart) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -30,26 +30,16 @@ public class TestDataGrids_alternateGridFillX extends ChartTester {
 	
 	@Override
 	public Chart getChart() throws ParseException {
-
 		
-		ArrayList<DataPoint> values = getSeries1();
-		ArrayList<DataPoint> values2 = getSeries2();
-
-		XYDataSeries series = new XYDataSeries(null, new Line(Color.BLUE, false, 3), "Blue");
-		series.dataPoints = values;
+		XYDataSeries series = new XYDataSeries(null, 
+				new Line(Color.BLUE, false, 3), 
+				"Blue Series");
+		series.dataPoints = getSeries1();
 		
-		XYDataSeries series2 = new XYDataSeries(null, new Line(Color.RED, false, 3), "Red");
-		series2.dataPoints = values2;
-
-		NumericalInterval yInterval = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
-		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, yInterval, null, null), "Y Axis");
-		
-		NumericalInterval x1 = new NumericalInterval(2, 5.0, new GridLine(Color.GRAY, false, 0));
-		
-		NumericalInterval x2 = new NumericalInterval(6, 20.0, new GridLine(Color.GRAY, false, 0));
-
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(3, 97, x1, x2, null), "X Axis"); 
+		XYDataSeries series2 = new XYDataSeries(null, 
+				new Line(Color.RED, false, 3), 
+				"Red Series");
+		series2.dataPoints = getSeries2();
 		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 

@@ -49,37 +49,13 @@ public class GridFill{
 
     	Rectangle fillRect = new Rectangle(new Rectangle(xPos, yPos, chart.widthChart, (int)lengthDimension));
     	
-		if ((yPos) > (chart.topOffset + chart.heightChart)) {
-			
-			//skip
-			
-		} else if ((yPos + lengthDimension) > (chart.topOffset + chart.heightChart)) {
-			System.out.println("CLIP END");
-			
-			//clip off anything that is shown passed the chart right edge
-			Shape clip = g.getClip();
-			
-			g.clip(new Rectangle(chart.leftOffset, yPos, (int)chart.widthChart, 
-					(int)(yPos + lengthDimension) - (chart.heightChart + chart.topOffset)));
-			
-			g.fill (fillRect);
+		Shape clip = g.getClip();
+		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
+		
+		g.fill (fillRect);
 
-			g.setClip(clip);
-			
-		}else if (yPos < chart.topOffset) {
-			
-			//clip off anything that is shown passed the chart top edge
-			Shape clip = g.getClip();
-			
-			g.clip(new Rectangle(chart.leftOffset, chart.topOffset, (int)chart.widthChart, (int)lengthDimension));
-			
-			g.fill (fillRect);
-
-			g.setClip(clip);
-			
-		}else {
-			g.fill (new Rectangle(xPos, yPos, chart.widthChart, (int)lengthDimension));
-		}
+		g.setClip(clip);
+		
 		g.setColor(colorCached);
 	}
 
@@ -88,8 +64,6 @@ public class GridFill{
             double lengthDimension, //increment in pixels
             Chart chart, 
             int incrementNo) {
-    	
-//    	incrementNo
     	
     	lengthDimension = lengthDimension +1; //The GridFills were always out by one pixel.. ie 1 pixel white line, so need to add a pixel here.
 
@@ -108,44 +82,14 @@ public class GridFill{
 
     	Rectangle fillRect = new Rectangle(xPos, chart.topOffset, (int)lengthDimension, (int)chart.heightChart);
     	
-		if ((xPos) > (chart.leftOffset + chart.widthChart)) {
-			
-			//skip
-		} else if ((xPos + lengthDimension) > (chart.leftOffset + chart.widthChart)) {
-			
-	    	System.out.println("CLIP RIGHT " + xPos + " to pos " + lengthDimension);
-			
-			//clip off anything that is shown passed the chart right edge
-			Shape clip = g.getClip();
-			
-			g.setClip(fillRect);
-			
-			int width2 = chart.leftOffset + chart.widthChart - xPos;
-			
-			g.clip(new Rectangle(xPos, chart.topOffset, width2, (int)chart.heightChart));
-			
-			g.fill (fillRect);
+		Shape clip = g.getClip();
+		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
+		
+		g.fill (fillRect);
 
-			g.setClip(clip);
-			
-		}else if (xPos < chart.leftOffset) {
-			
-	    	System.out.println("CLIP LEFT " + xPos + " to pos " + lengthDimension);
-
-			//clip off anything that is shown passed the chart left edge
-			Shape clip = g.getClip();
-			
-			g.setClip(fillRect);
-			
-			g.clip(new Rectangle(chart.leftOffset, chart.topOffset, (int)lengthDimension, (int)chart.heightChart));
-			
-			g.fill (fillRect);
-
-			g.setClip(clip);
-			
-		}else {
-			g.fill (fillRect);
-		}
+		g.setClip(clip);
+		
 		g.setColor(colorCached);
+
 	}
 }

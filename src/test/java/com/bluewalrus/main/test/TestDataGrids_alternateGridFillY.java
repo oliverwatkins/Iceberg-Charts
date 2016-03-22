@@ -14,6 +14,7 @@ import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
@@ -30,52 +31,38 @@ public class TestDataGrids_alternateGridFillY extends ChartTester {
 	@Override
 	public Chart getChart() throws ParseException {
 
-		ArrayList<DataPoint> values = getSeries1();
-		ArrayList<DataPoint> values2 = getSeries2();
 		
 		XYDataSeries series = new XYDataSeries(null, new Line(Color.GREEN, false, 3), "Blue");
-		series.dataPoints = values;
+		series.dataPoints = getSeries1();
 		
-		XYDataSeries series2 = new XYDataSeries(null, new Line(Color.PINK, false, 3), "Red");
-		series2.dataPoints = values2;
-		
-
-		NumericalInterval yInterval = new NumericalInterval(8, 10.0, 
-				new GridLine(Color.GRAY, false, 1)); 
-		yInterval.styling.graphFill = new GridFill(
-				new Color(179, 209, 255), 
-				new Color(172, 109, 215), false);
-		
-		
-//		//,
-//				new GridFill(
-//						new Color(179, 209, 255), 
-//						new Color(172, 109, 215), false)
-//				)
-//		);
-
-		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-95.0, 105.0, yInterval, null, null), "Y Axis");
-
-		
-		NumericalInterval x1 = new NumericalInterval(2, 5.0, 
-				new GridLine(Color.GRAY, false, 0));
-		
-		NumericalInterval x2 = new NumericalInterval(6, 20.0, new GridLine(Color.GRAY, false, 0));
-
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(3, 97, x1, x2, null), "X Axis"); 
+//		XYDataSeries series2 = new XYDataSeries(null, new Line(Color.PINK, false, 3), "Red");
+//		series2.dataPoints = getSeries2();
 		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		xySeriesList.add(series);
-		xySeriesList.add(series2);
+//		xySeriesList.add(series2);
+		
+		IntervalStyling xStyling = new IntervalStyling(2, new GridLine(Color.GRAY, false, 0),
+				null);
+		
+		IntervalStyling yStyling = new IntervalStyling(2, new GridLine(Color.GRAY, false, 0),
+				new GridFill(
+						new Color(179, 209, 255), 
+						new Color(172, 109, 215), false));
 
-		XYChart lineChart = new XYChart(xySeriesList, "Alternate Grid Fill", yAxis, xAxis, false);
+		XYChart chart = new XYChart(xySeriesList, "Alternate Grid Fill Y", 
+				null, 
+				xStyling, //second level interval
+				null, 
+				null, 
+				yStyling, //second level interval
+				null);
+		
+		chart.setSize(1000, 500);
+		chart.rightOffset = 200;
 
-		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
-
-		return lineChart;
+		return chart;
 	}
 
 
@@ -130,33 +117,33 @@ public class TestDataGrids_alternateGridFillY extends ChartTester {
 
 	private ArrayList<DataPoint> getSeries1() {
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		values.add(new DataPoint(5, 94));
-		values.add(new DataPoint(7, 92));
-		values.add(new DataPoint(8, 94));
-		values.add(new DataPoint(10, 91));
-		values.add(new DataPoint(15, 90));
-		values.add(new DataPoint(21, 91));
-		values.add(new DataPoint(24, 92));
-		values.add(new DataPoint(26, 88));
-		values.add(new DataPoint(29, 83));
-		values.add(new DataPoint(30, 81));
-		values.add(new DataPoint(32, 77));
-		values.add(new DataPoint(33, 68));
-		values.add(new DataPoint(34, 61));
-		values.add(new DataPoint(37, 57));
-		values.add(new DataPoint(43, 61));
-		values.add(new DataPoint(46, 68));
-		values.add(new DataPoint(51, 52));
-		values.add(new DataPoint(53, 46));
-		values.add(new DataPoint(54, 41));
-		values.add(new DataPoint(57, 42));
-		values.add(new DataPoint(58, 45));
-		values.add(new DataPoint(62, 52));
-		values.add(new DataPoint(66, 32));
-		values.add(new DataPoint(69, 34));
-		values.add(new DataPoint(72, 25));
-		values.add(new DataPoint(74, 38));
-		values.add(new DataPoint(76, 24));
+//		values.add(new DataPoint(5, 94));
+//		values.add(new DataPoint(7, 92));
+//		values.add(new DataPoint(8, 94));
+//		values.add(new DataPoint(10, 91));
+//		values.add(new DataPoint(15, 90));
+//		values.add(new DataPoint(21, 91));
+//		values.add(new DataPoint(24, 92));
+//		values.add(new DataPoint(26, 88));
+//		values.add(new DataPoint(29, 83));
+//		values.add(new DataPoint(30, 81));
+//		values.add(new DataPoint(32, 77));
+//		values.add(new DataPoint(33, 68));
+//		values.add(new DataPoint(34, 61));
+//		values.add(new DataPoint(37, 57));
+//		values.add(new DataPoint(43, 61));
+//		values.add(new DataPoint(46, 68));
+//		values.add(new DataPoint(51, 52));
+//		values.add(new DataPoint(53, 46));
+//		values.add(new DataPoint(54, 41));
+//		values.add(new DataPoint(57, 42));
+//		values.add(new DataPoint(58, 45));
+//		values.add(new DataPoint(62, 52));
+//		values.add(new DataPoint(66, 32));
+//		values.add(new DataPoint(69, 34));
+//		values.add(new DataPoint(72, 25));
+//		values.add(new DataPoint(74, 38));
+//		values.add(new DataPoint(76, 24));
 		values.add(new DataPoint(77, 21));
 		values.add(new DataPoint(81, 12));
 		values.add(new DataPoint(82, 13));

@@ -223,8 +223,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			IntervalStyling stylingX3, IntervalStyling stylingY,
 			IntervalStyling stylingY2, IntervalStyling stylingY3) {
 		
-		this.data.addAll(xySeriesList);
-		
 		initialiseScaling(xySeriesList);
 		
 		xAxis.axisDraw.interval1.styling = stylingX;
@@ -326,9 +324,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @param series
 	 */
 	public XYChart(String title, String xAxisTitle, String yAxisTitle,
-			IntervalStyling intervalStyling, 
-			IntervalStyling intervalStyling2,
-			IntervalStyling intervalStyling3,
+			IntervalStyling intervalStylingX1, 
+			IntervalStyling intervalStylingX2,
+			IntervalStyling intervalStylingX3,
+			IntervalStyling intervalStylingY1, 
+			IntervalStyling intervalStylingY2,
+			IntervalStyling intervalStylingY3,
 			XYDataSeries... series) {
 		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -343,9 +344,14 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.xAxis.labelText = xAxisTitle;
 		this.yAxis.labelText = yAxisTitle;
 		
-		this.xAxis.axisDraw.interval1.styling = intervalStyling;
-		this.xAxis.axisDraw.interval2.styling = intervalStyling2;
-		this.xAxis.axisDraw.interval3.styling = intervalStyling3;
+		this.xAxis.axisDraw.interval1.styling = intervalStylingX1;
+		this.xAxis.axisDraw.interval2.styling = intervalStylingX2;
+		this.xAxis.axisDraw.interval3.styling = intervalStylingX3;
+
+		this.yAxis.axisDraw.interval1.styling = intervalStylingY1;
+		this.yAxis.axisDraw.interval2.styling = intervalStylingY2;
+		this.yAxis.axisDraw.interval3.styling = intervalStylingY3;
+
 		
 		this.addMouseMotionListener(this);
 

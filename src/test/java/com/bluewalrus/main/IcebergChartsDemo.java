@@ -26,10 +26,12 @@ import com.bluewalrus.main.test.TestDataBar_NegativeAndPositive;
 import com.bluewalrus.main.test.TestDataBar_thinLines;
 import com.bluewalrus.main.test.TestDataBubble_1_guns;
 import com.bluewalrus.main.test.TestDataBubble_2_series;
+import com.bluewalrus.main.test.TestDataGrids_Gradiant;
 import com.bluewalrus.main.test.TestDataGrids_GraphPaper;
 import com.bluewalrus.main.test.TestDataGrids_TimeSeries;
 import com.bluewalrus.main.test.TestDataGrids_alternateGridFillX;
 import com.bluewalrus.main.test.TestDataGrids_alternateGridFillY;
+import com.bluewalrus.main.test.TestDataGrids_gridSimple;
 import com.bluewalrus.main.test.TestDataPieBubble;
 import com.bluewalrus.main.test.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.TestDataPie_IndicatorSimple;
@@ -153,6 +155,12 @@ public class IcebergChartsDemo extends JFrame {
         /**
          * GRIDS
          */
+
+        p = createTabbedPane(tabbedPaneGridFills, "Grids Graph Paper");
+        chart = new TestDataGrids_gridSimple().getChart();
+        charts.add(chart);
+        p.add(chart);
+
         
         p = createTabbedPane(tabbedPaneGridFills, "Grids Graph Paper");
         chart = new TestDataGrids_GraphPaper().getChart();
@@ -169,6 +177,13 @@ public class IcebergChartsDemo extends JFrame {
         chart = new TestDataGrids_alternateGridFillY().getChart();
         charts.add(chart);
         p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneGridFills, "Gradiant Fill");
+        chart = new TestDataGrids_Gradiant().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        
         
         
         

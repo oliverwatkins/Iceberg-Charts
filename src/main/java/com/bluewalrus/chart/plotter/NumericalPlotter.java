@@ -42,10 +42,6 @@ public class NumericalPlotter extends AbstractPlotter {
 
         double xFactor = ((double) chart.widthChart / (double) (xMax - xMin));
         double yfactor = ((double) chart.heightChart / (double) (yMax - yMin));
-        
-//        if (xMax == xMin) {
-//        	throw new RuntimeException("Err");
-//        }
 
         XYFactor xyFactor = new XYFactor(xFactor, yfactor);
         xyFactor.xZeroOffsetInPixel = (double) ((-xMin / (xMax - xMin)) * chart.widthChart);
@@ -62,11 +58,11 @@ public class NumericalPlotter extends AbstractPlotter {
 
             boolean firstRun = true;
             for (DataPoint dataPoint : dataPoints) {
-            	System.out.println("1datapoint.x = " + dataPoint.x + " " + dataPoint.y);
+//            	System.out.println("1datapoint.x = " + dataPoint.x + " " + dataPoint.y);
             }
 
             for (DataPoint dataPoint : dataPoints) {
-            	System.out.println("2datapoint.x = " + dataPoint.x + " " + dataPoint.y);
+//            	System.out.println("2datapoint.x = " + dataPoint.x + " " + dataPoint.y);
                 if (firstRun) {
                     firstRun = false;
                     lastPoint = dataPoint;

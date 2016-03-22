@@ -101,13 +101,13 @@ public class EnumerationAxisDrawX extends EnumerationAxisDraw {
 	}
 
 	@Override
-	protected void drawGridLine(AbstractInterval interval, Graphics2D g,
+	protected void drawGridLines(AbstractInterval interval, Graphics2D g,
 			XYChart chart) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	protected void drawGridFill(AbstractInterval interval, Graphics2D g,
+	protected void drawGridFills(AbstractInterval interval, Graphics2D g,
 			XYChart chart) {
 		// TODO Auto-generated method stub
 		
