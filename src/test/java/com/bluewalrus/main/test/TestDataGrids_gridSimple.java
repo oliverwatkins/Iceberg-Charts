@@ -51,21 +51,18 @@ public class TestDataGrids_gridSimple extends ChartTester {
 		values2.add(new DataPoint(20, 14));
 		values2.add(new DataPoint(25, 17));
 
-		XYDataSeries series = new XYDataSeries(values, "First");
-		XYDataSeries series2 = new XYDataSeries(values2, "Second");
-
+		XYDataSeries series = new XYDataSeries(values, "");
 		
 		XYChart lineChart = new XYChart("Grid Examples", 
 				"My X Axis", 
 				"My Y Axis", 
-				new IntervalStyling(5, new GridLine(Color.GRAY, false, 3), null),
-				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),
-				null,
-				new IntervalStyling(5, new GridLine(Color.GRAY, true, 3), null),
-				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),
-				null, 
-				series, 
-				series2); 
+				new IntervalStyling(5, new GridLine(Color.GRAY, false, 3), null), 		//first X interval styling
+				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second X interval styling
+				null,																	//third X interval styling
+				new IntervalStyling(5, new GridLine(Color.GRAY, true, 3), null),		//first Y interval styling
+				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second Y interval styling
+				null, 																	//third Y interval styling
+				series);
 		
 		return lineChart;
 	}

@@ -32,21 +32,17 @@ public class TestDataGrids_alternateGridFillY extends ChartTester {
 	public Chart getChart() throws ParseException {
 
 		
-		XYDataSeries series = new XYDataSeries(null, new Line(Color.GREEN, false, 3), "Blue");
+		XYDataSeries series = new XYDataSeries(null, new Line(Color.BLUE, false, 3), "Blue");
 		series.dataPoints = getSeries1();
-		
-//		XYDataSeries series2 = new XYDataSeries(null, new Line(Color.PINK, false, 3), "Red");
-//		series2.dataPoints = getSeries2();
 		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		xySeriesList.add(series);
-//		xySeriesList.add(series2);
 		
-		IntervalStyling xStyling = new IntervalStyling(2, new GridLine(Color.GRAY, false, 0),
+		IntervalStyling xStyling = new IntervalStyling(1, new GridLine(Color.GRAY, false, 1),
 				null);
 		
-		IntervalStyling yStyling = new IntervalStyling(2, new GridLine(Color.GRAY, false, 0),
+		IntervalStyling yStyling = new IntervalStyling(1, new GridLine(Color.GRAY, false, 0),
 				new GridFill(
 						new Color(179, 209, 255), 
 						new Color(172, 109, 215), false));
@@ -57,7 +53,7 @@ public class TestDataGrids_alternateGridFillY extends ChartTester {
 				null, 
 				null, 
 				yStyling, //second level interval
-				null);
+				null, "X axis", "Y Axis");
 		
 		chart.setSize(1000, 500);
 		chart.rightOffset = 200;

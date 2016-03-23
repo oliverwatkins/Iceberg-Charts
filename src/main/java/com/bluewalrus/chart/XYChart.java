@@ -221,16 +221,21 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
 			IntervalStyling stylingX, IntervalStyling stylingX2,
 			IntervalStyling stylingX3, IntervalStyling stylingY,
-			IntervalStyling stylingY2, IntervalStyling stylingY3) {
+			IntervalStyling stylingY2, IntervalStyling stylingY3, String xTitle, String yTitle) {
 		
 		initialiseScaling(xySeriesList);
 		
+		//replace the stylings defined in the intialise
 		xAxis.axisDraw.interval1.styling = stylingX;
 		yAxis.axisDraw.interval1.styling = stylingY;
 		xAxis.axisDraw.interval2.styling = stylingX2;
 		yAxis.axisDraw.interval2.styling = stylingY2;
 		xAxis.axisDraw.interval3.styling = stylingX3;
 		yAxis.axisDraw.interval3.styling = stylingY3;
+		
+		yAxis.labelText = yTitle;
+		xAxis.labelText = xTitle;
+				
 		
 		this.addMouseMotionListener(this);
 

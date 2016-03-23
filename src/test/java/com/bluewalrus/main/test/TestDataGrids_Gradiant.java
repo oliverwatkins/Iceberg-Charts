@@ -55,8 +55,6 @@ public class TestDataGrids_Gradiant extends ChartTester{
 
 		lineChart.setSize(1000, 500);
 
-//		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-
 		return lineChart;
 	}
 	

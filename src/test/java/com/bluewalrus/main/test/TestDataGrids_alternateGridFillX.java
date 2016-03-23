@@ -61,7 +61,7 @@ public class TestDataGrids_alternateGridFillX extends ChartTester {
 				null, 
 				null, 
 				stylingY, 
-				null);
+				null, "X Axis", "Y Axis");
 		
 		lineChart.setSize(1000, 500);
 		lineChart.rightOffset = 200;
