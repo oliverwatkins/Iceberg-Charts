@@ -9,7 +9,7 @@ import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
+import com.bluewalrus.chart.draw.TimeSeriesAxisScalingX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointXY;
 import com.bluewalrus.renderer.XYFactor;
@@ -20,8 +20,8 @@ public class DatePlotter extends AbstractPlotter {
     public void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
     	
-    	long xMax = ((TimeSeriesAxisDrawX)xAxis.axisDraw).dateEnd.getTime();
-    	long xMin = ((TimeSeriesAxisDrawX)xAxis.axisDraw).dateStart.getTime();
+    	long xMax = ((TimeSeriesAxisScalingX)xAxis.axisDraw).dateEnd.getTime();
+    	long xMin = ((TimeSeriesAxisScalingX)xAxis.axisDraw).dateStart.getTime();
     	
     	double yMax = yAxis.axisDraw.getMaxValue();
     	double yMin = yAxis.axisDraw.getMinValue();

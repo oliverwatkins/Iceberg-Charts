@@ -9,14 +9,14 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 
-public abstract class TimeSeriesAxisDraw extends AxisDraw{
+public abstract class TimeSeriesAxisScaling extends AxisDraw{
 
 	
 	public Date dateStart;
 	public Date dateEnd;
 	
 	
-	public TimeSeriesAxisDraw(Date dateStart, Date dateEnd, TimeInterval timeInt1,
+	public TimeSeriesAxisScaling(Date dateStart, Date dateEnd, TimeInterval timeInt1,
 			TimeInterval timeInt2, TimeInterval timeInt3, Orientation orientation) {
 		
 		super(orientation);

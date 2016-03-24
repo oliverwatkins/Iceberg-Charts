@@ -14,8 +14,8 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBoxPlot;
 import com.bluewalrus.point.UIPointBoxPlot;
@@ -54,8 +54,8 @@ public class TestDataXY_Boxplot extends ChartTester {
 		XYDataSeries series = new XYDataSeries(values, new UIPointBoxPlot(
 				new Color(181, 197, 207, 100)), null, "1994");
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 100.0, 50.0, 10.0, null), "y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 100.0, 50.0, 10.0, null), "x Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, 50.0, 10.0, null), "y Axis");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 100.0, 50.0, 10.0, null), "x Axis");
 
 		xySeriesList.add(series);
 

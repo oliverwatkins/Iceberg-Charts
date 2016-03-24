@@ -11,8 +11,8 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
@@ -30,8 +30,8 @@ public class TestDataBar_BarCanBeXY extends ChartTester {
         NumericalInterval tick2 = new NumericalInterval(10, 1.0, null); //no grid line
 //        Interval tick3 = new Interval(5, 5.0, null);
         
-        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-80.0, 100.0, tick1, tick2, null), "Y value");
-        XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 25.0, tick1, tick2, null), "X Value - must be even spaced");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-80.0, 100.0, tick1, tick2, null), "Y value");
+        XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 25.0, tick1, tick2, null), "X Value - must be even spaced");
         
         
         

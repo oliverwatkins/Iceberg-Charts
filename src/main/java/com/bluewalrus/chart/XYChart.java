@@ -19,10 +19,10 @@ import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.EnumerationAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
-import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
+import com.bluewalrus.chart.draw.EnumerationAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
+import com.bluewalrus.chart.draw.TimeSeriesAxisScalingX;
 import com.bluewalrus.chart.plotter.DatePlotter;
 import com.bluewalrus.chart.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
@@ -389,12 +389,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		t1.styling.graphLine = new GridLine(Color.GRAY, false, 1);
 		t1.styling.lineLength = 6;
 		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(drY.min, drY.max, t1, null, null), "Y TODO");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(drY.min, drY.max, t1, null, null), "Y TODO");
 		
 		
 		this.yAxis = yAxis;
     	
-    	EnumerationAxisDrawX xd = new EnumerationAxisDrawX();
+    	EnumerationAxisScalingX xd = new EnumerationAxisScalingX();
     	xAxis = new XAxis(xd, "");
     	
     	double xMax = xd.maxValue;
@@ -452,7 +452,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		t2.styling.lineLength = 3;
 		
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(drY.min, drY.max, t1, t2, null), "Y TODO");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(drY.min, drY.max, t1, t2, null), "Y TODO");
 
 		NumericalInterval t1x = new NumericalInterval(initialIntervalX); //, new GridLine(Color.GRAY, false, 1));
 		NumericalInterval t2x = new NumericalInterval(initialIntervalX/10); //, new GridLine(Color.LIGHT_GRAY, true, 1));
@@ -469,7 +469,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		t3x.styling.lineLength = 0; 
 
 		
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(drX.min, drX.max, t1x, t2x, t3x), "X TODO");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(drX.min, drX.max, t1x, t2x, t3x), "X TODO");
 
 		this.yAxis = yAxis;
 		this.xAxis = xAxis;
@@ -616,7 +616,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisDraw.getMinValue());
         }
 
-		if (xAxis.axisDraw instanceof TimeSeriesAxisDrawX) {
+		if (xAxis.axisDraw instanceof TimeSeriesAxisScalingX) {
 			new DatePlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis,
 					xAxis, data);
 		} else {

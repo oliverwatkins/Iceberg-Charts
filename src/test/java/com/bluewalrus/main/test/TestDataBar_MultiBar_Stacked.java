@@ -7,8 +7,8 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.MultiBarChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.EnumerationAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
+import com.bluewalrus.chart.draw.EnumerationAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.MultiBar;
 import com.bluewalrus.datapoint.MultiBar.MultiBarMode;
@@ -55,9 +55,9 @@ public class TestDataBar_MultiBar_Stacked extends ChartTester {
         
         
         
-        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 200.0, 50.0, 20.0, 10.0), "thousand dollars");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 200.0, 50.0, 20.0, 10.0), "thousand dollars");
 
-        XAxis xAxis = new XAxis(new EnumerationAxisDrawX(), "Year");
+        XAxis xAxis = new XAxis(new EnumerationAxisScalingX(), "Year");
 
         MultiBarChart chart = new MultiBarChart(xAxis,yAxis,ml,true);
 //        chart.barWidth = 30;

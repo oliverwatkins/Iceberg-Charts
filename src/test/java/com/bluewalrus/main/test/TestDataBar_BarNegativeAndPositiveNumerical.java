@@ -11,8 +11,8 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.EnumerationAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
+import com.bluewalrus.chart.draw.EnumerationAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPointBar;
 
 /**
@@ -31,10 +31,10 @@ public class TestDataBar_BarNegativeAndPositiveNumerical extends ChartTester {
         NumericalInterval tick2 = new NumericalInterval(10, 10.0, null); //no grid line
         NumericalInterval tick3 = new NumericalInterval(5, 5.0, null);
         
-        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-40.0, 100.0, tick1, tick2, tick3), "Number of Fruits");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-40.0, 100.0, tick1, tick2, tick3), "Number of Fruits");
         yAxis.labelText = "Price USD";
         
-        XAxis xAxis = new XAxis(new EnumerationAxisDrawX(), "Commodity");
+        XAxis xAxis = new XAxis(new EnumerationAxisScalingX(), "Commodity");
 
         ArrayList<DataPointBar> bars = new ArrayList<DataPointBar>();
         bars.add(new DataPointBar(10, 90, colors.get(0)));

@@ -14,9 +14,9 @@ import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.renderer.XYFactor;
 
-public class EnumerationAxisDrawX extends EnumerationAxisDraw {
+public class EnumerationAxisScalingX extends EnumerationAxisScaling {
 
-	public EnumerationAxisDrawX() {
+	public EnumerationAxisScalingX() {
 		super(Orientation.X);
 	}
 	

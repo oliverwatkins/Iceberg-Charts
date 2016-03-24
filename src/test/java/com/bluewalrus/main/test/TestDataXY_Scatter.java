@@ -14,8 +14,8 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBoxPlot;
 import com.bluewalrus.point.UIPointBoxPlot;
@@ -77,8 +77,8 @@ public class TestDataXY_Scatter extends ChartTester {
 //		NumericalAxis yAxis = new NumericalAxis(3.0, 100.0, 50.0, 0.0, 0.0, "Length (inches) ");
 //		NumericalAxis xAxis = new NumericalAxis(3.0, 100.0, 50.0, 10.0, 0.0, "Weight (kg)");
 		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(3.0, 100.0, 50.0, 0.0, 0.0), "Length (inches) ");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(3.0, 100.0, 50.0, 10.0, 0.0), "Weight (kg)");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(3.0, 100.0, 50.0, 0.0, 0.0), "Length (inches) ");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(3.0, 100.0, 50.0, 10.0, 0.0), "Weight (kg)");
 
 
 //		new LinearNumericalAxisDrawY(minValue, maxValue, primaryIncrements, secondaryIncrements, tertiaryIncrements)

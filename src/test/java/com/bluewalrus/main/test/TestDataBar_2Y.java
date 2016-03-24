@@ -12,8 +12,8 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.EnumerationAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
+import com.bluewalrus.chart.draw.EnumerationAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
@@ -85,10 +85,10 @@ public class TestDataBar_2Y extends ChartTester{
         		new Line(Color.ORANGE), "average");
         series3.dataPoints = values3;
 
-        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-50.0, 100.0, 50.0, 10.0, 1.0), "Temperature");
-        XAxis xAxis = new XAxis(new EnumerationAxisDrawX(), "Month");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-50.0, 100.0, 50.0, 10.0, 1.0), "Temperature");
+        XAxis xAxis = new XAxis(new EnumerationAxisScalingX(), "Month");
         
-        YAxis yAxis2 = new YAxis(new LinearNumericalAxisDrawY(0.0, 200.0, 100.0, 20.0, 0.0), "Precipitation");
+        YAxis yAxis2 = new YAxis(new LinearNumericalAxisScalingY(0.0, 200.0, 100.0, 20.0, 0.0), "Precipitation");
 
         xySeries.add(series);
         xySeries.add(series2);

@@ -18,9 +18,9 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
-import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
+import com.bluewalrus.chart.draw.TimeSeriesAxisScalingX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointSquare;
 
@@ -61,7 +61,7 @@ public class TestDataGrids_alternateGridFillXTimesSeries extends ChartTester {
 		NumericalInterval yInterval = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
 
 		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-90.0, 100.0, yInterval, null, null), "Y Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-90.0, 100.0, yInterval, null, null), "Y Axis");
 
 		
 		GridFill gf = new GridFill(new Color(179, 209, 255), Color.RED, false);
@@ -89,7 +89,7 @@ public class TestDataGrids_alternateGridFillXTimesSeries extends ChartTester {
 		//TODO
 		//TODO
 		//TODO
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(3, 97, x1, x2, null), "Time Series"); 
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(3, 97, x1, x2, null), "Time Series"); 
 
 		xySeriesList.add(series);
 

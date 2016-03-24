@@ -9,7 +9,7 @@ import java.awt.Color;
  * All Rights Reserved
  * 
  */
-@Deprecated //either a pointui or datapoint . why was this deprecated?? hmmmm... replace with UIPointbar?
+@Deprecated //either a pointui or datapoint . why was this deprecated?? hmmmm... replace with UIPointbar? still being used in YY
 public class Bar {
 
     GradiantRule gradiantRule;

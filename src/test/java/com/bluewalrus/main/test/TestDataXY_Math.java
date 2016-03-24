@@ -14,8 +14,8 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBoxPlot;
 import com.bluewalrus.point.UIPointBoxPlot;
@@ -62,9 +62,9 @@ public class TestDataXY_Math extends ChartTester {
 		NumericalInterval t2x = new NumericalInterval(3, 5.0, new GridLine(Color.LIGHT_GRAY, true, 1));
 		NumericalInterval t3x = new NumericalInterval(1, 1.0, new GridLine(Color.LIGHT_GRAY, true, 1));
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(-10.0, 10.0, t1x, t2x, t3x), "Y Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-10.0, 10.0, t1x, t2x, t3x), "Y Axis");
 
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(-10.0, 10.0, t1x, t2x, t3x), "X Value");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(-10.0, 10.0, t1x, t2x, t3x), "X Value");
 
 		xySeriesList.add(series);
 		xySeriesList.add(series3);

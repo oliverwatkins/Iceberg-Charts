@@ -11,7 +11,7 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
 
-public abstract class LinearNumericalAxisDraw extends AxisDraw{
+public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	
 	public Line zeroLine = new Line(Color.GRAY, false, 1);
 	
@@ -21,29 +21,29 @@ public abstract class LinearNumericalAxisDraw extends AxisDraw{
 	 * @param name
 	 * @param type
 	 */
-	public LinearNumericalAxisDraw(Orientation orientation) {
+	public LinearNumericalAxisScaling(Orientation orientation) {
 		this(0.0, 100.0, 50.0, 10.0, 5.0, orientation); //arbitrary values
 	}
 	
-	public LinearNumericalAxisDraw(double min, double max, Orientation orientation) {
+	public LinearNumericalAxisScaling(double min, double max, Orientation orientation) {
 		
 		this(min, max, new NumericalInterval(0,0.0), new NumericalInterval(0,0.0), new NumericalInterval(0,0.0), orientation);
 	}
 
-	public LinearNumericalAxisDraw(Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements, Orientation orientation) {
+	public LinearNumericalAxisScaling(Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements, Orientation orientation) {
 		
 		this(0.0, 100.0, primaryIncrements, secondaryIncrements, tertiaryIncrements, orientation);
 	}
 
 
-	public LinearNumericalAxisDraw(Double minValue, Double maxValue, Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements, Orientation orientation) {
+	public LinearNumericalAxisScaling(Double minValue, Double maxValue, Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements, Orientation orientation) {
 
 		this(minValue, maxValue, new NumericalInterval(8, primaryIncrements), 
 								new NumericalInterval(4, secondaryIncrements), 
 								new NumericalInterval(2, tertiaryIncrements), orientation);
 	}
 
-	public LinearNumericalAxisDraw(Double minValue, Double maxValue, 
+	public LinearNumericalAxisScaling(Double minValue, Double maxValue, 
 			NumericalInterval interval1, NumericalInterval interval2, NumericalInterval interval3, Orientation orientation) {
 
 		super(orientation);

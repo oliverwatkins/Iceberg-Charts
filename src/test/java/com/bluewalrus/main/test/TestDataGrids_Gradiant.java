@@ -18,9 +18,9 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
-import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
+import com.bluewalrus.chart.draw.TimeSeriesAxisScalingX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointSquare;
 
@@ -42,13 +42,10 @@ public class TestDataGrids_Gradiant extends ChartTester{
 		
 		xInterval1.styling.graphFill = new GridFill(Color.LIGHT_GRAY, Color.WHITE, true);
 		
-		
 		NumericalInterval xInterval2 = new NumericalInterval(0, 2.0, new GridLine(Color.LIGHT_GRAY, false, 1));
-//		NumericalInterval xInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
-
 		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 35.0, yInterval1, yInterval2, yInterval3), "Y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(15.0, 68.0, xInterval1, xInterval2, null), "X Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 35.0, yInterval1, yInterval2, yInterval3), "Y Axis");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(15.0, 68.0, xInterval1, xInterval2, null), "X Axis");
 
 
 		XYChart lineChart = new XYChart(values, "Gradiant", yAxis, xAxis);

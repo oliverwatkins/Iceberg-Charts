@@ -15,8 +15,8 @@ import com.bluewalrus.chart.PieBubbleChart;
 import com.bluewalrus.chart.PieBubbleChartSettings;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointPieChart;
 import com.bluewalrus.pie.Segment;
@@ -114,8 +114,8 @@ public class TestDataPieBubble extends ChartTester {
 
         XYDataSeries<DataPoint> series = new XYDataSeries<DataPoint>(values, new UIPointPieChart(Color.BLUE, pbcs), null, "1994");
 
-        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 100.0, 10.0, null, null), "GNI ");
-        XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 100.0, 50.0, 10.0, null), "Life Expectancy ");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, 10.0, null, null), "GNI ");
+        XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 100.0, 50.0, 10.0, null), "Life Expectancy ");
 
         xySeriesList.add(series);
 

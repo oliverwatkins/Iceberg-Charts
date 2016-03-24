@@ -8,8 +8,8 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPointBar;
 
 /**
@@ -29,9 +29,9 @@ public class TestDataBar_thinLines extends ChartTester {
         
         
 
-        YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 100.0, 50.0, 10.0, 1.0), "Percent Sunlight");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, 50.0, 10.0, 1.0), "Percent Sunlight");
         
-        XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 365.0), "yadda yadda");
+        XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 365.0), "yadda yadda");
         
         System.out.println("xAxis.axisDraw " + xAxis.axisDraw);
         System.out.println("xAxis.axisDraw.maxValue " + xAxis.axisDraw.getMaxValue());

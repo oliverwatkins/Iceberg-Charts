@@ -8,13 +8,13 @@ import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.XYChart;
 
-public abstract class EnumerationAxisDraw extends AxisDraw{
+public abstract class EnumerationAxisScaling extends AxisDraw{
 
 	//enum has always 0 to 100. It is arbitrary.
 	public double maxValue = 100; 
 	public double minValue = 0; 
 	
-	protected EnumerationAxisDraw(Orientation orientation) {
+	protected EnumerationAxisScaling(Orientation orientation) {
 		super(orientation);
 		
 		maxValue = 100; 

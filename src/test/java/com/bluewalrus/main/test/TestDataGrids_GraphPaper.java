@@ -18,9 +18,9 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisDrawY;
-import com.bluewalrus.chart.draw.TimeSeriesAxisDrawX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
+import com.bluewalrus.chart.draw.TimeSeriesAxisScalingX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointSquare;
 
@@ -28,11 +28,6 @@ public class TestDataGrids_GraphPaper extends ChartTester{
 	
 	@Override
 	public Chart getChart() {
-		
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		values.add(new DataPoint(5, 5));
-		values.add(new DataPoint(7, 8));
-		values.add(new DataPoint(8, 14));
 
 		NumericalInterval yInterval1 = new NumericalInterval(0, 10.0, new GridLine(Color.BLACK, false, 1));
 		NumericalInterval yInterval2 = new NumericalInterval(0, 5.0, new GridLine(Color.GRAY, false, 1));
@@ -43,17 +38,10 @@ public class TestDataGrids_GraphPaper extends ChartTester{
 		NumericalInterval xInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
 
 		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisDrawY(0.0, 100.0, yInterval1, yInterval2, yInterval3), "Y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisDrawX(0.0, 100.0, xInterval1, xInterval2, xInterval3), "X Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, yInterval1, yInterval2, yInterval3), "Y Axis");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 100.0, xInterval1, xInterval2, xInterval3), "X Axis");
 
-
-		XYChart lineChart = new XYChart(values, "Graphpaper", yAxis, xAxis);
-
-		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
-
-		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-//		lineChart.setTitle("Some Kind of XY Chart");
+		XYChart lineChart = new XYChart(new ArrayList<DataPoint>(), "Graphpaper", yAxis, xAxis);
 
 		return lineChart;
 	}

@@ -12,27 +12,27 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
 
-public class LinearNumericalAxisDrawY extends LinearNumericalAxisDraw {
+public class LinearNumericalAxisScalingY extends LinearNumericalAxisScaling {
 
-    public LinearNumericalAxisDrawY() {
+    public LinearNumericalAxisScalingY() {
 		super(Orientation.Y);
 	}
     
-	public LinearNumericalAxisDrawY(double min, double max) {
+	public LinearNumericalAxisScalingY(double min, double max) {
 		super(min, max, Orientation.Y);
 	}
 
-	public LinearNumericalAxisDrawY(Double primaryIncrements,
+	public LinearNumericalAxisScalingY(Double primaryIncrements,
 			Double secondaryIncrements, Double tertiaryIncrements) {
 		super(primaryIncrements, secondaryIncrements, tertiaryIncrements, Orientation.Y);
 	}
 
-	public LinearNumericalAxisDrawY(Double minValue, Double maxValue,
+	public LinearNumericalAxisScalingY(Double minValue, Double maxValue,
 			NumericalInterval interval1, NumericalInterval interval2, NumericalInterval interval3) {
 		super(minValue, maxValue, interval1, interval2, interval3, Orientation.Y);
 	}
 
-	public LinearNumericalAxisDrawY(Double minValue, Double maxValue,
+	public LinearNumericalAxisScalingY(Double minValue, Double maxValue,
 			Double primaryIncrements, Double secondaryIncrements,
 			Double tertiaryIncrements) {
     	

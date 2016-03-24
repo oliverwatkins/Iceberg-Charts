@@ -15,9 +15,9 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.TimeInterval.Type;
 
-public class TimeSeriesAxisDrawX extends TimeSeriesAxisDraw{
+public class TimeSeriesAxisScalingX extends TimeSeriesAxisScaling{
 
-	public TimeSeriesAxisDrawX(Date dateStart, Date dateEnd, TimeInterval timeInt1,
+	public TimeSeriesAxisScalingX(Date dateStart, Date dateEnd, TimeInterval timeInt1,
 			TimeInterval timeInt2, TimeInterval timeInt3) {
 		super(dateStart, dateEnd, timeInt1, timeInt2, timeInt2, Orientation.X);	
 	}

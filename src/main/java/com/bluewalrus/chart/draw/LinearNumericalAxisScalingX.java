@@ -10,37 +10,37 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.NumericalInterval;
 
-public class LinearNumericalAxisDrawX extends LinearNumericalAxisDraw {
+public class LinearNumericalAxisScalingX extends LinearNumericalAxisScaling {
 
-	public LinearNumericalAxisDrawX() {
+	public LinearNumericalAxisScalingX() {
 		super(Orientation.X);
 	}
 
-	public LinearNumericalAxisDrawX(double min, double max) {
+	public LinearNumericalAxisScalingX(double min, double max) {
 		super(min, max, Orientation.X);
 	}
 
-	public LinearNumericalAxisDrawX(Double primaryIncrements,
+	public LinearNumericalAxisScalingX(Double primaryIncrements,
 			Double secondaryIncrements, Double tertiaryIncrements) {
 
 		super(primaryIncrements, secondaryIncrements, tertiaryIncrements, Orientation.X);
 	}
 
-	public LinearNumericalAxisDrawX(int minValue, int maxValue,
+	public LinearNumericalAxisScalingX(int minValue, int maxValue,
 			NumericalInterval interval1, NumericalInterval interval2,
 			NumericalInterval interval3) {
 
 		this((double) minValue, (double) maxValue, interval1, interval2, interval3);
 	}
 
-	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
+	public LinearNumericalAxisScalingX(Double minValue, Double maxValue,
 			NumericalInterval interval1, NumericalInterval interval2,
 			NumericalInterval interval3) {
 
 		super(minValue, maxValue, interval1, interval2, interval3, Orientation.X);
 	}
 
-	public LinearNumericalAxisDrawX(Double minValue, Double maxValue,
+	public LinearNumericalAxisScalingX(Double minValue, Double maxValue,
 			Double primaryIncrements, Double secondaryIncrements,
 			Double tertiaryIncrements) {
 
