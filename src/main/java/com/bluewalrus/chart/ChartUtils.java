@@ -2,6 +2,7 @@ package com.bluewalrus.chart;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
@@ -42,6 +43,27 @@ public class ChartUtils {
 		}
 		return xMin;
 	}
+	
+	static Date getMaxXValueDate(ArrayList<DataPoint> values) {
+		
+		Date xMax = values.get(0).xDate;
+		for (DataPoint dataPoint : values) {
+			if (dataPoint.xDate.getTime() > xMax.getTime())
+				xMax = dataPoint.xDate;
+		}
+		return xMax;
+	}
+	
+	
+	private static Date getMinXValueDate(ArrayList<DataPoint> values) {
+		Date xMin = values.get(0).xDate;
+		for (DataPoint dataPoint : values) {
+			if (dataPoint.xDate.getTime() < xMin.getTime())
+				xMin = dataPoint.xDate;
+		}
+		return xMin;
+	}
+	
 
 	static double getMinYValue(ArrayList<DataPoint> values) {
 		double yMin = values.get(0).y;
@@ -60,6 +82,10 @@ public class ChartUtils {
 		}
 		return yMax;
 	}
+	
+
+	
+	
 
 	static double getMaxXValue(ArrayList<DataPoint> values) {
 		double xMax = values.get(0).x;
@@ -86,12 +112,12 @@ public class ChartUtils {
 	}
 	
 	
-	public static DataRange getDataRange(double yMax, double yMin, int paddingPercent) {
-		double yDiff = yMax - yMin;
+	public static DataRange getDataRange(double max, double min, int paddingPercent) {
+		double yDiff = max - min;
 		
 		// pad out to 10%
-		double yMinAdj = yMin - (yDiff / paddingPercent);
-		double yMaxAdj = yMax + (yDiff / paddingPercent);
+		double yMinAdj = min - (yDiff / paddingPercent);
+		double yMaxAdj = max + (yDiff / paddingPercent);
 		
 		// Needs to be floored. If decimal place then crashes later
 		yMaxAdj = Math.floor(yMaxAdj);
@@ -103,6 +129,23 @@ public class ChartUtils {
 		drY.max = yMaxAdj;
 		return drY;
 	}
+	
+	public static DateRange getDateRange(Date yMax, Date yMin, int paddingPercent) {
+		long yDiff = yMax.getTime() - yMin.getTime();
+		
+		// pad out to 10%
+		long yMinAdj = yMin.getTime() - (yDiff / paddingPercent);
+		long yMaxAdj = yMax.getTime() + (yDiff / paddingPercent);
+		
+		DateRange drY = new DateRange();
+		
+		drY.min = new Date(yMinAdj);
+		drY.max = new Date(yMaxAdj);
+		return drY;
+	}
+	
+	
+	
 
 	public static double calculateYAxisMin(
 			ArrayList<XYDataSeries> xySeriesList, boolean b) {
@@ -134,6 +177,24 @@ public class ChartUtils {
 		}
 		return max;
 	}
+	
+	public static Date calculateXAxisMaxDate(
+			ArrayList<XYDataSeries> xySeriesList, boolean b) {
+		
+		ArrayList<DataPoint> dps = xySeriesList.get(0).dataPoints;
+		
+		Date max = getMaxXValueDate(dps);
+		
+		for (XYDataSeries xyDataSeries : xySeriesList) {
+			
+			Date m = getMaxXValueDate(dps);
+			if (m.getTime() > max.getTime())
+				max = m;
+		}
+		return max;
+	}
+
+
 
 	public static double calculateXAxisMin(ArrayList<XYDataSeries> xySeriesList, boolean b) {
 		
@@ -149,6 +210,25 @@ public class ChartUtils {
 		return min;
 	}
 	
+	
+	public static Date calculateXAxisMinDate(
+			ArrayList<XYDataSeries> xySeriesList, boolean b) {
+		
+		ArrayList<DataPoint> dps = xySeriesList.get(0).dataPoints;
+		
+		Date min = getMinXValueDate(dps);
+		
+		for (XYDataSeries xyDataSeries : xySeriesList) {
+			
+			Date m = getMinXValueDate(dps);
+			if (m.getTime() < min.getTime())
+				min = m;
+		}
+		return min;
+	}
+	
+
+
 	/**
 	 * Set up some default styles
 	 * 
@@ -210,6 +290,5 @@ public class ChartUtils {
 			}
 		}
 	}
-	
 	
 }

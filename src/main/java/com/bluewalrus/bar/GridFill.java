@@ -21,8 +21,15 @@ public class GridFill{
 		this.gradiant = gradiant;
 	}
 	
-	
-    
+    /**
+     * fill Y (TODO similar to fill X. May be able to refactor more)
+     * 
+     * @param g
+     * @param yPos
+     * @param lengthDimension
+     * @param chart
+     * @param incrementNo
+     */
     public void fillAreaY(Graphics2D g, 
     		int yPos, 
             double lengthDimension, 
@@ -49,15 +56,21 @@ public class GridFill{
 
     	Rectangle fillRect = new Rectangle(new Rectangle(xPos, yPos, chart.widthChart, (int)lengthDimension));
     	
-		Shape clip = g.getClip();
-		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
-		
-		g.fill (fillRect);
-
-		g.setClip(clip);
-		
-		g.setColor(colorCached);
+		fillOutRectangle(g, chart, colorCached, fillRect);
 	}
+
+
+
+    /**
+     * Fill X
+     * 
+     * @param g
+     * @param xPos
+     * @param lengthDimension
+     * @param chart
+     * @param incrementNo
+     */
+
 
     public void fillAreaX(Graphics2D g, 
     		int xPos,
@@ -82,6 +95,20 @@ public class GridFill{
 
     	Rectangle fillRect = new Rectangle(xPos, chart.topOffset, (int)lengthDimension, (int)chart.heightChart);
     	
+		fillOutRectangle(g, chart, colorCached, fillRect);
+
+	}
+    
+    /**
+     * Put a clip on the chart boundary so that the fill stays within bounds, then fill the rectangle.
+     * 
+     * @param g
+     * @param chart
+     * @param colorCached
+     * @param fillRect
+     */
+	private void fillOutRectangle(Graphics2D g, Chart chart, Color colorCached,
+			Rectangle fillRect) {
 		Shape clip = g.getClip();
 		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
 		
@@ -90,6 +117,5 @@ public class GridFill{
 		g.setClip(clip);
 		
 		g.setColor(colorCached);
-
 	}
 }

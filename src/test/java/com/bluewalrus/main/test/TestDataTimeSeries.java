@@ -83,7 +83,7 @@ public class TestDataTimeSeries extends ChartTester {
 
 		xySeriesList.add(series);
 
-		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart lineChart = new XYChart(values, "Time Series", "X", "Y"); //yAxis, xAxis);
 
 		lineChart.setSize(1000, 500);
 		lineChart.rightOffset = 200;
@@ -95,6 +95,11 @@ public class TestDataTimeSeries extends ChartTester {
 	}
 	
 	
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataTimeSeries();
+		t.testChart(t.getChart());
+	}
 	
 	
 	

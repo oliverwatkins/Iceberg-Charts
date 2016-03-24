@@ -9,7 +9,7 @@ public class TimeInterval extends AbstractInterval{
 
 	
 	public enum Type {
-		MONTH, YEAR, DAY, HOUR, WEEK, MINUTE, NONE
+		MONTH, YEAR, DAY, HOUR, WEEK, MINUTE, NONE, SECOND
 	}
 	
 	public Type type;

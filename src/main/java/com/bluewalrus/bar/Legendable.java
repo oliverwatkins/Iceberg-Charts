@@ -3,9 +3,10 @@ package com.bluewalrus.bar;
 import java.awt.Graphics2D;
 
 /**
- * A chart that can have a legend. Pretty much all charts
+ * A chart that can have a legend. Pretty much all types of charts
  * 
- * @author lauren
+ * @author Oliver Watkins
+ *
  */
 public interface Legendable {
 

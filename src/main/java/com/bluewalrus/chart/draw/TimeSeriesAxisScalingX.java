@@ -22,6 +22,7 @@ public class TimeSeriesAxisScalingX extends TimeSeriesAxisScaling{
 		super(dateStart, dateEnd, timeInt1, timeInt2, timeInt2, Orientation.X);	
 	}
 
+
 	
 	@Override
 	public void drawAll(Graphics2D g2d, XYChart xyChart, ArrayList<XYDataSeries> data) {
@@ -90,6 +91,8 @@ public class TimeSeriesAxisScalingX extends TimeSeriesAxisScaling{
 			date2 = DateUtils.addMonth(date, incrementNumber);
 		}else if (interval.type == Type.DAY) {
 			date2 = DateUtils.addDay(date, incrementNumber);
+		}else if (interval.type == Type.WEEK) {
+			date2 = DateUtils.addWeek(date, incrementNumber);
 		}else {
 			
 			throw new RuntimeException("Unknown interval type " + interval.type);
@@ -153,6 +156,15 @@ public class TimeSeriesAxisScalingX extends TimeSeriesAxisScaling{
 		
 	}
     
+	
+	
+	public double getMaxValue() {
+		return this.dateEnd.getTime(); //dangerous, casting to double??
+	}
+	public double getMinValue() {
+		return this.dateStart.getTime();
+	}
+	
     
     
 	private double getFromLeft(Chart chart, double toFirstInPixels, double incrementInPixel, int i) {

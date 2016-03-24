@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.GridLine;
@@ -17,8 +18,11 @@ import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.axis.NumericalInterval;
+import com.bluewalrus.chart.axis.TimeInterval;
+import com.bluewalrus.chart.axis.TimeInterval.Type;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.draw.DateUtils;
 import com.bluewalrus.chart.draw.EnumerationAxisScalingX;
 import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
 import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
@@ -28,11 +32,8 @@ import com.bluewalrus.chart.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
-import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
-import com.bluewalrus.point.UIPointTriangle;
 import com.bluewalrus.point.UIPointXY;
-import com.bluewalrus.renderer.XYFactor;
 
 /**
  * XYChart is a chart where data is represented by x,y data. Typically the y
@@ -427,33 +428,61 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	private void initialiseScaling(ArrayList<XYDataSeries> xySeriesList) {
 
+		XAxis xAxis = null;
+		DataPoint o = (DataPoint)xySeriesList.get(0).dataPoints.get(0);
+
+		if (o.xDate != null) {
+			xAxis = initialiseScalingXTime(xySeriesList);
+		}else {
+			xAxis = initialiseScalingX(xySeriesList);
+		}
 		
-		//get padded range
-		DataRange drY = getDataRangeY(xySeriesList);
+		YAxis yAxis = initialiseScalingY(xySeriesList);
+		
+		this.yAxis = yAxis;
+		this.xAxis = xAxis;
+	}
+	
+	private XAxis initialiseScalingXTime(ArrayList<XYDataSeries> xySeriesList) {
+		
+		DateRange drX = getDateRangeX(xySeriesList);
 		
 		//get sensible interval
-		double initialIntervalY = getInterval(drY);
+		TimeInterval.Type interval1 = DateUtils.getIntervalTime(drX);
+		TimeInterval.Type interval2 = DateUtils.getNextInterval(interval1);
+		TimeInterval.Type interval3 = DateUtils.getNextInterval(interval2);
 		
+		TimeInterval t1x = new TimeInterval(4, interval1, null); //, new GridLine(Color.GRAY, false, 1));
+		TimeInterval t2x = new TimeInterval(2, interval2, null); //, new GridLine(Color.LIGHT_GRAY, true, 1));
+		TimeInterval t3x = new TimeInterval(1, interval3, null); //, new GridLine(Color.LIGHT_GRAY, true, 1));
+		
+		t1x.styling.graphLine = new GridLine(Color.GRAY, false, 1);
+		t1x.styling.lineLength = 6; //new GridLine(Color.GRAY, false, 1);
+		
+		t2x.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);		
+		t2x.styling.lineLength = 3; //new GridLine(Color.LIGHT_GRAY, true, 1);		
+
+		//invisible!!! But not null
+		t3x.styling.graphLine = new GridLine(Color.WHITE, false, 0);		
+		t3x.styling.lineLength = 0; 
+		
+		
+		XAxis xAxis = new XAxis(new TimeSeriesAxisScalingX(drX.min, drX.max, t1x, t2x, t3x), "X Ttime to do");
+		return xAxis;
+	}
+
+
+
+
+
+	private XAxis initialiseScalingX(ArrayList<XYDataSeries> xySeriesList) {
 		//get padded range
 		DataRange drX = getDataRangeX(xySeriesList);
 		
 		//get sensible interval
 		double initialIntervalX = getInterval(drX);
 		
-
-		NumericalInterval t1 = new NumericalInterval(initialIntervalY); 
-		NumericalInterval t2 = new NumericalInterval(initialIntervalY/10); 
 		
-		
-		t1.styling.graphLine = new GridLine(Color.GRAY, false, 1);
-		t1.styling.lineLength = 6;
-		
-		t2.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);
-		t2.styling.lineLength = 3;
-		
-
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(drY.min, drY.max, t1, t2, null), "Y TODO");
-
 		NumericalInterval t1x = new NumericalInterval(initialIntervalX); //, new GridLine(Color.GRAY, false, 1));
 		NumericalInterval t2x = new NumericalInterval(initialIntervalX/10); //, new GridLine(Color.LIGHT_GRAY, true, 1));
 		NumericalInterval t3x = new NumericalInterval(initialIntervalX/100); //, new GridLine(Color.LIGHT_GRAY, true, 1));
@@ -470,11 +499,30 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(drX.min, drX.max, t1x, t2x, t3x), "X TODO");
+		return xAxis;
+	}
 
-		this.yAxis = yAxis;
-		this.xAxis = xAxis;
+	private YAxis initialiseScalingY(ArrayList<XYDataSeries> xySeriesList) {
+		//get padded range
+		DataRange drY = getDataRangeY(xySeriesList);
+		
+		//get sensible interval
+		double initialIntervalY = getInterval(drY);
+		
 
+		NumericalInterval t1 = new NumericalInterval(initialIntervalY); 
+		NumericalInterval t2 = new NumericalInterval(initialIntervalY/10); 
+		
+		
+		t1.styling.graphLine = new GridLine(Color.GRAY, false, 1);
+		t1.styling.lineLength = 6;
+		
+		t2.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);
+		t2.styling.lineLength = 3;
+		
 
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(drY.min, drY.max, t1, t2, null), "Y TODO");
+		return yAxis;
 	}
 
 	private DataRange getDataRangeX(ArrayList<XYDataSeries> xySeriesList) {
@@ -487,6 +535,26 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		return drX;
 	}
 
+
+		
+
+	
+	
+	
+	private DateRange getDateRangeX(ArrayList<XYDataSeries> xySeriesList) {
+		
+		//get Max/Min
+		Date xMax = ChartUtils.calculateXAxisMaxDate(xySeriesList, true);
+		Date xMin = ChartUtils.calculateXAxisMinDate(xySeriesList, true);
+
+		//range with padding
+		DateRange drX = ChartUtils.getDateRange(xMax, xMin, 10);
+		return drX;
+	}
+	
+	
+	
+
 	private DataRange getDataRangeY(ArrayList<XYDataSeries> xySeriesList) {
 		//Get Max/Min
 		double yMax = ChartUtils.calculateYAxisMax(xySeriesList, true);
@@ -497,6 +565,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		return drY;
 	}
 
+	
+	
+
+	
+	
 
 
 	

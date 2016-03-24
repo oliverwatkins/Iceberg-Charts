@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import com.bluewalrus.chart.DateRange;
 import com.bluewalrus.chart.axis.TimeInterval.Type;
 
 public class DateUtils {
@@ -60,35 +61,100 @@ public class DateUtils {
 			
 			cal2.setTime(dateStart);
 			
-			
-			
-//			cal2.set(Calendar.MONTH, calDateStart.get(Calendar.MONTH) + 1);
-			
 			cal2.set(Calendar.DAY_OF_YEAR, calDateStart.get(Calendar.DAY_OF_YEAR) + 1);
 			cal2.set(Calendar.HOUR, 0);
 			cal2.set(Calendar.MINUTE, 0);
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
 			
-			
-//			cal2.set(Calendar.DAY_OF_MONTH, 0);
-//			cal2.set(Calendar.HOUR, 0);
-//			cal2.set(Calendar.MINUTE, 0);
-//			cal2.set(Calendar.SECOND, 0);
-//			cal2.set(Calendar.MILLISECOND, 0);
-			
-			
 			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
 			
 			
 			
+		}else if (type == Type.WEEK){
+			
+			Calendar cal2 = Calendar.getInstance();
+			
+			calDateStart.setTime(dateStart);
+			
+			
+			cal2.setTime(dateStart);
+			
+			cal2.set(Calendar.WEEK_OF_YEAR, calDateStart.get(Calendar.WEEK_OF_YEAR) + 1);
+			cal2.set(Calendar.HOUR, 0);
+			cal2.set(Calendar.MINUTE, 0);
+			cal2.set(Calendar.SECOND, 0);
+			cal2.set(Calendar.MILLISECOND, 0);
+			
+			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
+			
+
+			
 		}else {
 			throw new RuntimeException("No type yet " + type);
-			
 		}
 		
 		
 //		return -999;
+	}
+	
+	public static Type getIntervalTime(DateRange drX) {
+
+		long n = drX.howMany(DateUtils.getMsForType(Type.YEAR));
+		
+		if (n>2) {
+			return Type.YEAR;
+		} 
+		
+		n = drX.howMany(DateUtils.getMsForType(Type.WEEK));
+		
+		if (n>2) {
+			return Type.WEEK;
+		}
+		
+		n = drX.howMany(DateUtils.getMsForType(Type.DAY));
+		
+		if (n>2) {
+			return Type.DAY;
+		}
+		
+		n = drX.howMany(DateUtils.getMsForType(Type.HOUR));
+		
+		if (n>2) {
+			return Type.HOUR;
+		}
+
+		n = drX.howMany(DateUtils.getMsForType(Type.MINUTE));
+		
+		if (n>2) {
+			return Type.MINUTE;
+		}
+		
+		throw new RuntimeException("Too small "+ drX + " n == " + n);
+	}
+	
+	
+	
+	public static Type getNextInterval(Type interval1) {
+		
+		switch (interval1) {
+		
+		case YEAR:
+			return Type.MONTH;
+		case MONTH:
+			return Type.DAY;
+		case WEEK:
+			return Type.DAY;
+		case DAY:
+			return Type.HOUR;
+		case HOUR:
+			return Type.MINUTE;
+		case MINUTE:
+			return Type.SECOND;
+		default:
+			break;
+		}
+		return null;
 	}
 	
 	
@@ -150,6 +216,17 @@ public class DateUtils {
 		
 		return cal.getTimeInMillis();
 	}
+	
+	public static long addWeek(long date, int weeks) {
+		
+		
+		Calendar cal = Calendar.getInstance();
+		
+		cal.setTime(new Date(date));
+		cal.set(Calendar.WEEK_OF_YEAR, cal.get(Calendar.WEEK_OF_YEAR) + weeks); //will this work 13-->1 ?
+		
+		return cal.getTimeInMillis();
+	}
 
 
 	public static long addDay(long date, int days) {
@@ -161,5 +238,7 @@ public class DateUtils {
 		
 		return cal.getTimeInMillis();
 	}
+
+
 	
 }

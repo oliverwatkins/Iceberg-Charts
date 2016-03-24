@@ -11,12 +11,17 @@ import java.io.Serializable;
 
 import com.bluewalrus.chart.Chart;
 
+/**
+ * Defines a grid line used in a <code>XYChart</code>
+ * 
+ * @author Oliver Watkins
+ *
+ */
 public class GridLine implements Serializable{
 
     public Color color;
     public boolean dashed = false;
     public int thickness = 1;
-//    public GridFill gridFill;
 
     public GridLine(Color color) {
         this.color = color;
@@ -66,10 +71,5 @@ public class GridLine implements Serializable{
         g.setStroke(oldStroke);
         
         g.setColor(colorCached);
-        
     }
-    
-    
-
-
 }

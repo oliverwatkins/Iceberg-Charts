@@ -7,7 +7,7 @@ import com.bluewalrus.point.UIPointXY;
 
 /**
  * 
- * @author lauren
+ * @author Oliver Watkins
  */
 public class Category {
 

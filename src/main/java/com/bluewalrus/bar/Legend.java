@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.bluewalrus.bar;
 
 import java.awt.Color;
@@ -21,10 +17,11 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.point.UIPointSimpleXY;
 import com.bluewalrus.point.UIPointXY;
 
+
 /**
- * LegendUI
+ * Displays a legend next to the chart
  * 
- * @author lauren
+ * @author Oliver Watkins
  */
 public class Legend implements Serializable{
 
