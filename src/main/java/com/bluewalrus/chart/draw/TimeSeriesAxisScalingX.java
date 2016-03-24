@@ -6,12 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.management.RuntimeErrorException;
+
 import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
-import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.TimeInterval.Type;
 
@@ -152,8 +153,7 @@ public class TimeSeriesAxisScalingX extends TimeSeriesAxisScaling{
     
 	@Override
 	protected void drawGridLineOnZero(Graphics2D g) {
-		// TODO 
-		
+		throw new RuntimeException("This has not yet been implemented");
 	}
     
 	
@@ -224,24 +224,26 @@ public class TimeSeriesAxisScalingX extends TimeSeriesAxisScaling{
 	@Override
 	protected double getToFirstIntervalValueFromMinInPixels(Double interval,
 			double factor) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		throw new RuntimeException("This has not yet been implemented");
 	}
 
-
+	
+	
+//TODO!!! This method is identical to LinearNumerical!!
 	@Override
 	protected double getFromStart(XYChart chart, double toFirstInPixels,
 			double incrementInPixel, int i) {
-		// TODO Auto-generated method stub
-		return 0;
+		double fromLeft = chart.leftOffset + (i * incrementInPixel)
+				+ toFirstInPixels;
+		return fromLeft;
 	}
 
 
 	@Override
 	protected void drawGridFills(AbstractInterval interval12, Graphics2D g,
 			XYChart chart) {
-		// TODO Auto-generated method stub
-		
+		throw new RuntimeException("This has not yet been implemented");
 	}
 
 

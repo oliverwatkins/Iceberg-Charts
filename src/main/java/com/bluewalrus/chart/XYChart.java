@@ -585,7 +585,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	private double getInterval(DataRange dr) {
 
 		double yT = dr.max; 
-		double yT2 = dr.min;;
+		double yT2 = dr.min;
 
 		double magnitude = 10.0;
 
