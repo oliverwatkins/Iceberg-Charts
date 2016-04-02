@@ -53,6 +53,7 @@ public class YAxisDrawUtil {
             x2 = chart.leftOffset - axis.marginOffset - lineLength;
         }
 
+        g.setColor(axis.axisColor);
         g.drawLine(x1, (int)fromTop, x2, (int)fromTop);
 	}
 	/**
@@ -65,12 +66,13 @@ public class YAxisDrawUtil {
 	 * @param yLabel
 	 * @param axis
 	 */
-	public static void drawYLabel(Graphics g, Chart chart, double fromTop,
+	public static void drawYLabel(Graphics g, XYChart chart, double fromTop,
 			String yLabel, YAxis axis) {
 		FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
         int widthStr = fm.stringWidth(yLabel);
         int heightStr = fm.getHeight();
         g.setFont(axis.axisCatFont);
+        g.setColor(axis.axisColor);
 
         int x;
         int y;
@@ -154,21 +156,6 @@ public class YAxisDrawUtil {
         g2d.setTransform(oldTransform);
 	}
 
-	
-//	/**
-//	 * Not sure the point of this here (just one line). But adding for completeness.
-//	 *  
-//	 *  TODO move to AxisDraw
-//	 *  
-//	 *  
-//	 * @param g
-//	 * @param chart
-//	 * @param fromTop
-//	 */
-//	public static void drawYGridLineOnZero(Graphics2D g, Chart chart, int fromTop, Axis axis) {
-//		
-//		axis.axisDraw.zeroLine.drawLine(g, chart.leftOffset, fromTop, chart.leftOffset + chart.widthChart, fromTop);
-//	}
 	
 
 }

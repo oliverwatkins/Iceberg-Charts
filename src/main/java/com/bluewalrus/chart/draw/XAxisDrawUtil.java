@@ -73,6 +73,7 @@ public class XAxisDrawUtil {
         
         int yPos = chart.topOffset + chart.heightChart + axis.tickLabelOffset;
 
+        //TODO
         if (intervalLevel == 1) {
         	
         }else if (intervalLevel == 2) {

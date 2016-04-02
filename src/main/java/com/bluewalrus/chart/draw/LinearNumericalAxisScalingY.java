@@ -57,85 +57,14 @@ public class LinearNumericalAxisScalingY extends LinearNumericalAxisScaling {
 		
 		drawGridFills(g2d, xyChart);
 	}
-
 	
-    protected void drawIntervalLabel(NumericalInterval interval, Graphics g, 
-    		XYChart chart, int i, double incrementInPixel) {
-    	
-    	Double increment = interval.getInterval();
-    	
-    	
-        //divide height of chart by actual height of chart to get the multiplaying factor
-        double factor = getMultiplicationFactor(chart); 
-        
-        //to first increment
-    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(increment, factor);
-    	
-    	double toFirst = getToFirstIntervalValueFromMin(increment);
-
-    	
-    	double fromTop = getFromTop(chart, i, incrementInPixel, toFirstInPixels);
-    	
-    	String yLabel = "" + ((i * increment) + toFirst);
-    	
-    	
-    	/**
-    	 * Draw the label
-    	 */
-    	YAxisDrawUtil.drawYLabel(g, chart, fromTop, yLabel, chart.yAxis); 
-	}
-
-
-
 	@Override
-	protected void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
+	protected double getFromStart(XYChart chart, double toFirstInPixels, double incrementInPixel, int i) {
 		
-        //divide height of chart by actual height of chart to get the multiplaying factor
-        double factor = getMultiplicationFactor(chart); 
 		
-    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
-
-    	double fromTop = getFromTop(chart, i, incrementInPixel, toZeroShift);
-    	
-    	/**
-    	 * Draw the tick
-    	 */
-    	YAxisDrawUtil.drawIntervalTick(interval, g, chart, fromTop, chart.yAxis);
-	}
-	
-	protected void drawGridLine(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
-		
-        //divide height of chart by actual height of chart to get the multiplaying factor
-        double factor = getMultiplicationFactor(chart); 
-		
-    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
-
-        double fromTop = getFromTop(chart, i, incrementInPixel, toZeroShift);
-    	/**
-    	 * Draw the tick
-    	 */
- 
-    	YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromTop);
-	}
-	
-	/**
-	 * Get the pixels from top based on increment number. Add top offset and chart height first,
-	 * then move back multiplying the increment number with pixels, then adding the zeroshift.
-	 * 
-	 * Used for ticks, labels, grid lines.
-	 * 
-	 * @param chart
-	 * @param incrementNo
-	 * @param incrementInPixel
-	 * @param toZeroShift
-	 * @return
-	 */
-	private double getFromTop(Chart chart, int incrementNo, double incrementInPixel,
-			double toZeroShift) {
-		double fromTop = chart.heightChart + chart.topOffset - (incrementNo * incrementInPixel) - toZeroShift;
+		double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel) - toFirstInPixels;
 		return fromTop;
 	}
-	
 	
 	
     /**
@@ -161,15 +90,6 @@ public class LinearNumericalAxisScalingY extends LinearNumericalAxisScaling {
 	@Override
 	protected void drawGridLineOnZero(Graphics2D g) {
 		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	@Override
-	protected double getFromStart(XYChart chart, double toFirstInPixels, double incrementInPixel, int i) {
-		double offset = chart.topOffset + (i * incrementInPixel)
-				+ toFirstInPixels;
-		return offset;
 	}
 
 }

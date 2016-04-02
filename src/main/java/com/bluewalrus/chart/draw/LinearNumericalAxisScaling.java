@@ -3,12 +3,14 @@ package com.bluewalrus.chart.draw;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
+import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
 
 public abstract class LinearNumericalAxisScaling extends AxisDraw{
@@ -82,9 +84,37 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	 * @param i
 	 * @param incrementInPixel
 	 */
-	protected abstract void drawIntervalLabel(NumericalInterval interval, Graphics g,
-			XYChart chart, int i, double incrementInPixel);
+//	protected abstract void drawIntervalLabel(NumericalInterval interval, Graphics g,
+//			XYChart chart, int i, double incrementInPixel);
 	
+	
+	
+	
+
+	
+	
+//	protected abstract void drawLabel(NumericalInterval interval, Graphics g,
+//			XYChart chart, Axis axis, int incrementNumber, double incrementInPixel) {
+//		
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
 	/**
 	 * Draw the tick of the interval. Usually just a small line coming out
 	 * perpendicular to the axis.
@@ -96,13 +126,75 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	 * @param incrementInPixel
 	 */
 
-	protected abstract void drawIntervalTick(NumericalInterval interval, Graphics g,
-			XYChart chart, int i, double incrementInPixel);
-	
-	
-	protected abstract void drawGridLine(NumericalInterval interval, Graphics g,
-			XYChart chart, int i, double incrementInPixel);
+//	protected abstract void drawIntervalTick(NumericalInterval interval, Graphics g,
+//			XYChart chart, int i, double incrementInPixel);
+//	
+//	
+//	protected abstract void drawGridLine(NumericalInterval interval, Graphics g,
+//			XYChart chart, int i, double incrementInPixel);
 
+	
+	
+	
+	protected void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
+		
+        //divide height of chart by actual height of chart to get the multiplaying factor
+        double factor = getMultiplicationFactor(chart); 
+		
+    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
+
+        double fromStart = getFromStart(chart, toZeroShift, incrementInPixel, i);
+    	
+    	/**
+    	 * Draw the tick
+    	 */
+    	
+    	
+		if (orientation == Orientation.X) {
+			XAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, chart.xAxis);
+		}else if (orientation == Orientation.Y) {
+			YAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, chart.yAxis);
+		}else {
+			throw new RuntimeException("not supported");
+		}
+	}
+	
+	protected void drawGridLine(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
+		
+        //divide height of chart by actual height of chart to get the multiplaying factor
+        double factor = getMultiplicationFactor(chart); 
+		
+    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
+
+        double fromStart = getFromStart(chart, toZeroShift, incrementInPixel, i);
+        
+		if (orientation == Orientation.X) {
+			XAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
+		}else if (orientation == Orientation.Y) {
+			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
+		}else {
+			throw new RuntimeException("not supported");
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Draw all the intervals and ticks for all intervals
 	 * @param g
@@ -155,10 +247,68 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 			drawIntervalTick(inter, g, chart, i, incrementInPixel);
 
 			if (showLabel)
-				drawIntervalLabel(inter, g, chart, i, incrementInPixel);
+				drawIntervalLabel(inter, g, chart, getAxis(chart), i, incrementInPixel);
 		}
 
 	}
+	
+	private Axis getAxis(XYChart chart) {
+		if (orientation == Orientation.X) {
+			return chart.xAxis;
+		}else if (orientation == Orientation.Y) {
+			return chart.yAxis;
+		}else {
+			throw new RuntimeException("not supported");
+		}
+	}
+	
+	
+	protected void drawIntervalLabel(NumericalInterval interval, Graphics g,
+			XYChart chart, Axis axis, int incrementNumber, double incrementInPixel) {
+
+		g.setColor(axis.axisColor);
+
+		Double increment = interval.getInterval();
+
+		double factor = getMultiplicationFactor(chart);
+
+		// to first increment
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				increment, factor);
+
+		double toFirst = getToFirstIntervalValueFromMin(increment);
+
+		
+		double value = ((incrementNumber * increment) + toFirst);
+		
+//		DecimalFormat df = new DecimalFormat("###.####");
+		DecimalFormat df = new DecimalFormat("###.0000");
+		df.setRoundingMode(RoundingMode.CEILING);
+		
+		String label = "" + value; // + df.format(value);
+
+		double fromStart = getFromStart(chart, toFirstInPixels, incrementInPixel,
+				incrementNumber);
+
+		
+		if (orientation == Orientation.X) {
+			XAxisDrawUtil.drawXLabel(g, chart, fromStart, label, chart.xAxis, 0);
+		}else if (orientation == Orientation.Y) {
+			YAxisDrawUtil.drawYLabel(g, chart, fromStart, label, chart.yAxis);
+		}else {
+			throw new RuntimeException("not supported");
+		}
+		
+		
+		
+		/**
+		 * Draw X Label
+		 */
+//		drawXLabel(g, chart, fromLeft, label, axis, 0);
+	}
+	
+//	protected abstract void drawXLabel(Graphics g, XYChart chart, double fromLeft,
+//			String label, Axis axis, int i);
 	
 	
 	public void drawGridLines(AbstractInterval interval, Graphics2D g, XYChart chart) {
@@ -291,13 +441,10 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 			multiplicationFactor = multiplicationFactor*10;
 		}
 		
-//		System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor);
 		
 		double adjustedMinValue = this.minValue * multiplicationFactor;
-		
 
 		int multiplicationFactor2 = 1; //reset
-		
 		
 		/**
 		 * 2. Adjust starting point
@@ -308,10 +455,7 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 			multiplicationFactor2 = multiplicationFactor2*10;
 		}
 		
-//		System.out.println("adjusted to whole. and got a multiplicationFactor " + multiplicationFactor2);
-		
 		adjustedInc = adjustedInc * multiplicationFactor2;
-		
 		
 		val = adjustedMinValue;
 		
@@ -320,15 +464,6 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		}
 		
 		val = val / multiplicationFactor / multiplicationFactor2;
-
-
-		
-		DecimalFormat df = new DecimalFormat("##,###");      
-		val = Double.valueOf(df.format(val));
-		
-		//TODO this format converts 1.6 to 2
-//		System.out.println("val = " + val); //returning 2.0. Should return 1.6
-
 		
 		return val;
 	}
