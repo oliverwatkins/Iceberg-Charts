@@ -8,6 +8,8 @@ import java.text.DecimalFormat;
 
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.Orientation;
+import com.bluewalrus.bar.Utils;
+import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
@@ -75,44 +77,6 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	
 
 	public abstract void drawGridLineOnZero(Graphics2D g, XYChart chart);	
-	/**
-	 * Draw the label next to the tick
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param i
-	 * @param incrementInPixel
-	 */
-//	protected abstract void drawIntervalLabel(NumericalInterval interval, Graphics g,
-//			XYChart chart, int i, double incrementInPixel);
-	
-	
-	
-	
-
-	
-	
-//	protected abstract void drawLabel(NumericalInterval interval, Graphics g,
-//			XYChart chart, Axis axis, int incrementNumber, double incrementInPixel) {
-//		
-//	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 
 	/**
@@ -125,17 +89,6 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	 * @param i
 	 * @param incrementInPixel
 	 */
-
-//	protected abstract void drawIntervalTick(NumericalInterval interval, Graphics g,
-//			XYChart chart, int i, double incrementInPixel);
-//	
-//	
-//	protected abstract void drawGridLine(NumericalInterval interval, Graphics g,
-//			XYChart chart, int i, double incrementInPixel);
-
-	
-	
-	
 	protected void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
 		
         //divide height of chart by actual height of chart to get the multiplaying factor
@@ -176,23 +129,6 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 			throw new RuntimeException("not supported");
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	/**
@@ -281,11 +217,11 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		
 		double value = ((incrementNumber * increment) + toFirst);
 		
-//		DecimalFormat df = new DecimalFormat("###.####");
-		DecimalFormat df = new DecimalFormat("###.0000");
-		df.setRoundingMode(RoundingMode.CEILING);
+
 		
-		String label = "" + value; // + df.format(value);
+		
+		
+		String label = ChartUtils.formatNumberValue(value, interval);
 
 		double fromStart = getFromStart(chart, toFirstInPixels, incrementInPixel,
 				incrementNumber);
@@ -299,17 +235,7 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 			throw new RuntimeException("not supported");
 		}
 		
-		
-		
-		/**
-		 * Draw X Label
-		 */
-//		drawXLabel(g, chart, fromLeft, label, axis, 0);
 	}
-	
-//	protected abstract void drawXLabel(Graphics g, XYChart chart, double fromLeft,
-//			String label, Axis axis, int i);
-	
 	
 	public void drawGridLines(AbstractInterval interval, Graphics2D g, XYChart chart) {
 		
@@ -422,13 +348,18 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 
 		double val = this.minValue;
 		
+		if (val == 1.001) {
+
+			System.out.println("");
+		}
+		
 		/**
 		 * Convert increment to a whole number. Get the multiplication factor and
 		 * use that on the axis values. Find the first interval, then divide again.
 		 */
 		
 		
-		int multiplicationFactor = 1;
+  		int multiplicationFactor = 1;
 		
 		double adjustedInc = increment;
 		
@@ -437,6 +368,7 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		 */
 		
 		while (!(isWholeNumber(adjustedInc))) {
+			System.out.println("1");
 			adjustedInc = adjustedInc*10;
 			multiplicationFactor = multiplicationFactor*10;
 		}
@@ -451,15 +383,25 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		 */
 		
 		while (!(isWholeNumber(adjustedMinValue))) {
+			System.out.println("2");
+
 			adjustedMinValue = adjustedMinValue*10;
 			multiplicationFactor2 = multiplicationFactor2*10;
 		}
 		
-		adjustedInc = adjustedInc * multiplicationFactor2;
 		
+		adjustedInc = adjustedInc * multiplicationFactor2;
+
+		if (adjustedInc < 0) {
+			throw new RuntimeException("adjustedInc cannot be less than zero");
+		}
+
+			
 		val = adjustedMinValue;
 		
 		while (val % adjustedInc != 0) {
+			System.out.println("val " + val + " adgjustedInc " + adjustedInc);
+
 			val++;
 		}
 		

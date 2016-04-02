@@ -578,7 +578,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * Get a sensible interval between two points. Ie. (34 --> 10,000) would be 1000 (36 --> 132) would be 10
 	 * 
 	 * 
-	 * TODO less than zero and greater than 10000. Need generic algorithm here
+	 * TODO less than 1 and greater than 10000. Need generic algorithm here
 	 * 
 	 * @return
 	 */

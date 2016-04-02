@@ -1,11 +1,14 @@
 package com.bluewalrus.chart;
 
 import java.awt.Color;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
+import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointCircle;
@@ -289,6 +292,22 @@ public class ChartUtils {
 				}
 			}
 		}
+	}
+
+	public static String formatNumberValue(double value, NumericalInterval interval) {
+		
+		
+		if (interval.getInterval() == 0.1) { //TODO continue with other intervals
+			
+//			DecimalFormat df = new DecimalFormat("###.####");
+			DecimalFormat df = new DecimalFormat("##0.0");
+			df.setRoundingMode(RoundingMode.CEILING);
+			
+			return df.format(value);
+		}else {
+			return "" + value;
+		}
+
 	}
 	
 }
