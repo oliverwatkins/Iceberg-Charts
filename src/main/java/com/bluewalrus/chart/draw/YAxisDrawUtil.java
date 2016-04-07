@@ -81,7 +81,9 @@ public class YAxisDrawUtil {
         
 
 
-        int x;
+        int x; //should position itself exactly between the label space, and the tick space.
+        
+        
         int y; //left baseline of text.
         
         axis.tickLabelOffset = 60; //TODO autogenerate this value.Based on top tick length
@@ -95,14 +97,9 @@ public class YAxisDrawUtil {
             y = (int)fromTop + (heightStr / 2);
         }
         
-//        g.drawRect(x, y - heightStr, widthStr, heightStr);
-        g.drawRect(x, y - (int)rect.getHeight(), (int)rect.getWidth(), (int)rect.getHeight());
+//        g.drawRect(x, y - (int)rect.getHeight(), (int)rect.getWidth(), (int)rect.getHeight());
         
-        
-        
-//        g.drawString("xxxxx", x, y);
-        
-        g.drawString(yLabel, x, y);
+        g.drawString(yLabel, x, y - fm.getDescent());
 	}
 	
 	
