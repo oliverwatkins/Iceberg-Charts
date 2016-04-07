@@ -81,7 +81,7 @@ public class YAxisDrawUtil {
         
 
 
-        int x; //should position itself exactly between the label space, and the tick space.
+        int x; //TODO should position itself exactly between the label space, and the tick space.
         
         
         int y; //left baseline of text.

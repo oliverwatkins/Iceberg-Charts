@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.chart.BubbleChart;
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
@@ -57,7 +57,7 @@ public class TestDataBubble_2_series extends ChartTester {
         xySeriesList.add(series);
         xySeriesList.add(series2);
 
-        BubbleChart chart = new BubbleChart(xySeriesList, yAxis, xAxis, 15);
+        XYChart chart = new XYChart(xySeriesList, yAxis, xAxis, 15);
 
         
 //        chart.width = 700;

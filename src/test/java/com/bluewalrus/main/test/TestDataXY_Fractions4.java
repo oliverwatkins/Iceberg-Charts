@@ -15,7 +15,7 @@ import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
 import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 
-public class TestDataXY_Fractions extends ChartTester {
+public class TestDataXY_Fractions4 extends ChartTester {
 	
 	@Override
 	public Chart getChart() {
@@ -24,26 +24,11 @@ public class TestDataXY_Fractions extends ChartTester {
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		values.add(new DataPoint(0.1, 0.2));
 		values.add(new DataPoint(0.3, 0.42));
-		values.add(new DataPoint(0.76, 0.89));
+		values.add(new DataPoint(0.76, 0.1));
 		
 		ArrayList<XYDataSeries> s = new ArrayList<XYDataSeries>();
-		
-		XAxis xa = new XAxis(
-				new LinearNumericalAxisScalingX(1.505, 3.0, 
-					new NumericalInterval(5, 0.1), 
-					null, 
-					null), 
-				"1");
-		YAxis ya = new YAxis(new LinearNumericalAxisScalingY(0.0,100.0,
-					new NumericalInterval(50, 10.0), 
-					null, 
-					null), 				
-				"2");
-		
-		
-//		ya.axisCatFont = new Font("Arial", Font.PLAIN, 30);
-		
-		XYChart lineChart = new XYChart(s, ya, xa);
+				
+		XYChart lineChart = new XYChart(values, "Big Range", "", "");
 		
 		JFrame frame = new JFrame();
 		frame.add(lineChart);
@@ -56,7 +41,7 @@ public class TestDataXY_Fractions extends ChartTester {
 	
 	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataXY_Fractions();
+		ChartTester t = new TestDataXY_Fractions4();
 		t.testChart(t.getChart());
 	}
 	

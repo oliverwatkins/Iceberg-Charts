@@ -31,6 +31,7 @@ import com.bluewalrus.chart.plotter.DatePlotter;
 import com.bluewalrus.chart.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
+import com.bluewalrus.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.point.UIPointBar;
 import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointXY;
@@ -366,15 +367,37 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 		
 	}
+	
+	
+	/**
+	 * Bubble
+	 * 
+	 * @param listOfSeries
+	 * @param yAxis
+	 * @param xAxis
+	 * @param multipleMagnitudeBy
+	 */
+    public XYChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis,
+            XAxis xAxis, double multipleMagnitudeBy) {
 
+        this(listOfSeries, yAxis, xAxis);
 
+        for (XYDataSeries xyDataSeries : listOfSeries) {
+
+            ArrayList<DataPointWithMagnitude> al = xyDataSeries.dataPoints;
+
+            for (DataPointWithMagnitude dp : al) {
+                dp.magnitude = dp.magnitude * multipleMagnitudeBy;
+            }
+        }
+    }
 
 
 	
 	/**
+	 * 
 	 * @param xySeriesList
 	 */
-	
 	private void initialiseScalingForEnumeration(ArrayList<XYDataSeries> xySeriesList) {
 
 		 // TODO at this point only on X
@@ -565,14 +588,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		return drY;
 	}
 
-	
-	
-
-	
-	
-
-
-	
 
 	/**
 	 * Get a sensible interval between two points. Ie. (34 --> 10,000) would be 1000 (36 --> 132) would be 10
@@ -587,10 +602,34 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		double yT = dr.max; 
 		double yT2 = dr.min;
 
-		double magnitude = 10.0;
+		//start smallest first
+		
+		double magnitude = -99;
+//
+//		boolean ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+		
+		boolean ok = false;
 
-		boolean ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+		if (!ok) {
+			magnitude = 0.01;
+			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+		}
 
+		if (!ok) {
+			magnitude = 0.1;
+			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+		}
+
+		if (!ok) {
+			magnitude = 1.0;
+			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+		}
+
+		if (!ok) {
+			magnitude = 10.0;
+			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+		}
+		
 		if (!ok) {
 			magnitude = 100.0;
 			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
@@ -610,11 +649,33 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	private boolean isOrderMagnitudeAcceptableFirstInterval(double maxValue,
 			double minValue, double orderOfMagnitude) {
-		while (maxValue % orderOfMagnitude != 0) {
+		
+		
+		if (orderOfMagnitude < 1) {
+			
+			int multiplier = 1;
+			//
+			while (orderOfMagnitude != 1) {
+				
+				multiplier = multiplier * 10;
+				
+				orderOfMagnitude = 10 * orderOfMagnitude;
+				
+				System.out.println("orderOfMagnitude is now " + orderOfMagnitude);
+			}
+			
+			maxValue = maxValue * multiplier;
+			minValue = minValue * multiplier;
+		}
+		
+		
+		
+		
+		while ((int)maxValue % orderOfMagnitude != 0) {
 			maxValue--;
 		}
 
-		while (minValue % orderOfMagnitude != 0) {
+		while ((int)minValue % orderOfMagnitude != 0) {
 			minValue++;
 		}
 

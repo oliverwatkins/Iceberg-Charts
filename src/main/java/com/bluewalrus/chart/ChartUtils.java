@@ -115,21 +115,22 @@ public class ChartUtils {
 	}
 	
 	
+	
 	public static DataRange getDataRange(double max, double min, int paddingPercent) {
 		double yDiff = max - min;
 		
 		// pad out to 10%
-		double yMinAdj = min - (yDiff / paddingPercent);
-		double yMaxAdj = max + (yDiff / paddingPercent);
+		double minAdj = min - (yDiff / paddingPercent);
+		double maxAdj = max + (yDiff / paddingPercent);
 		
 		// Needs to be floored. If decimal place then crashes later
-		yMaxAdj = Math.floor(yMaxAdj);
-		yMinAdj = Math.floor(yMinAdj);
+//		maxAdj = Math.floor(maxAdj);
+//		minAdj = Math.floor(minAdj);
 		
 		DataRange drY = new DataRange();
 		
-		drY.min = yMinAdj;
-		drY.max = yMaxAdj;
+		drY.min = minAdj;
+		drY.max = maxAdj;
 		return drY;
 	}
 	
@@ -301,7 +302,7 @@ public class ChartUtils {
 			
 //			DecimalFormat df = new DecimalFormat("###.####");
 			DecimalFormat df = new DecimalFormat("##0.0");
-			df.setRoundingMode(RoundingMode.CEILING);
+			df.setRoundingMode(RoundingMode.HALF_UP);
 			
 			return df.format(value);
 		}else {

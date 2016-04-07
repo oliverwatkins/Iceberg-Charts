@@ -4,11 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.chart.BubbleChart;
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.axis.NumericalInterval;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
@@ -90,7 +88,7 @@ public class TestDataBubble_1_guns extends ChartTester {
 
         double factor = 0.000005;
 
-        BubbleChart chart = new BubbleChart(xySeriesList, yAxis, xAxis, factor);
+        XYChart chart = new XYChart(xySeriesList, yAxis, xAxis, factor);
 
 //        chart.width = 900;
 //        chart.height = 650;

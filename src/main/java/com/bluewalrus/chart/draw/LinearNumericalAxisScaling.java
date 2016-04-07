@@ -217,11 +217,9 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		
 		double value = ((incrementNumber * increment) + toFirst);
 		
-
-		
-		
 		
 		String label = ChartUtils.formatNumberValue(value, interval);
+//		String label = "" + value; //ChartUtils.formatNumberValue(value, interval);
 
 		double fromStart = getFromStart(chart, toFirstInPixels, incrementInPixel,
 				incrementNumber);
