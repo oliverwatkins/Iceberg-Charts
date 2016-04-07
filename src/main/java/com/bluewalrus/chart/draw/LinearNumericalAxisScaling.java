@@ -136,7 +136,7 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	 * @param g
 	 * @param chart
 	 */
-	public void drawAllIntervalTickAndLabels(Graphics g, XYChart chart) {
+	public void drawAllIntervalTickAndLabels(Graphics2D g, XYChart chart) {
 		
 		if (this.interval1.isValid() && this.interval1.isActive()) {
 			drawIntervalTickAndLabels(this.interval1, g, chart, true);
@@ -165,7 +165,7 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	 * @param chart
 	 * @param showLabel
 	 */
-	protected void drawIntervalTickAndLabels(AbstractInterval interval, Graphics g,
+	protected void drawIntervalTickAndLabels(AbstractInterval interval, Graphics2D g,
 			XYChart chart, boolean showLabel) {
 
 		NumericalInterval inter = (NumericalInterval)interval;
@@ -199,7 +199,7 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	}
 	
 	
-	protected void drawIntervalLabel(NumericalInterval interval, Graphics g,
+	protected void drawIntervalLabel(NumericalInterval interval, Graphics2D g,
 			XYChart chart, Axis axis, int incrementNumber, double incrementInPixel) {
 
 		g.setColor(axis.axisColor);
@@ -400,8 +400,6 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		val = adjustedMinValue;
 		
 		while (val % adjustedInc != 0) {
-			System.out.println("val " + val + " adgjustedInc " + adjustedInc);
-
 			val++;
 		}
 		

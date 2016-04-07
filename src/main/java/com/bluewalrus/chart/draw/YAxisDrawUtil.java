@@ -1,15 +1,15 @@
 package com.bluewalrus.chart.draw;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.chart.axis.AbstractInterval;
-import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.YAxis;
 
@@ -66,16 +66,25 @@ public class YAxisDrawUtil {
 	 * @param yLabel
 	 * @param axis
 	 */
-	public static void drawYLabel(Graphics g, XYChart chart, double fromTop,
+	public static void drawYLabel(Graphics2D g, XYChart chart, double fromTop,
 			String yLabel, YAxis axis) {
 		FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
         int widthStr = fm.stringWidth(yLabel);
+        
+        
+        Rectangle2D rect = fm.getStringBounds(yLabel, g);
+        
         int heightStr = fm.getHeight();
         g.setFont(axis.axisCatFont);
         g.setColor(axis.axisColor);
+        
+        
+
 
         int x;
-        int y;
+        int y; //left baseline of text.
+        
+        axis.tickLabelOffset = 60; //TODO autogenerate this value.Based on top tick length
 
         if (axis.rightSide) {
             x = chart.widthChart + chart.leftOffset + (axis.tickLabelOffset / 2 - widthStr / 2);
@@ -85,9 +94,20 @@ public class YAxisDrawUtil {
             x = (chart.leftOffset - axis.tickLabelOffset) + (axis.tickLabelOffset / 2 - widthStr / 2) - axis.marginOffset;
             y = (int)fromTop + (heightStr / 2);
         }
+        
+//        g.drawRect(x, y - heightStr, widthStr, heightStr);
+        g.drawRect(x, y - (int)rect.getHeight(), (int)rect.getWidth(), (int)rect.getHeight());
+        
+        
+        
+//        g.drawString("xxxxx", x, y);
+        
         g.drawString(yLabel, x, y);
 	}
 	
+	
+	
+
 	
 	
 	/**

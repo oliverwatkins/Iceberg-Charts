@@ -57,9 +57,6 @@ public class NumericalPlotter extends AbstractPlotter {
             ArrayList<DataPoint> dataPoints = xYDataSeries.dataPoints;
 
             boolean firstRun = true;
-            for (DataPoint dataPoint : dataPoints) {
-//            	System.out.println("1datapoint.x = " + dataPoint.x + " " + dataPoint.y);
-            }
 
             for (DataPoint dataPoint : dataPoints) {
 //            	System.out.println("2datapoint.x = " + dataPoint.x + " " + dataPoint.y);

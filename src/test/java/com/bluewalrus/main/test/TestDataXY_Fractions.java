@@ -1,5 +1,6 @@
 package com.bluewalrus.main.test;
 
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -38,6 +39,9 @@ public class TestDataXY_Fractions extends ChartTester {
 					null, 
 					null), 				
 				"2");
+		
+		
+		ya.axisCatFont = new Font("Arial", Font.PLAIN, 30);
 		
 		XYChart lineChart = new XYChart(s, ya, xa);
 		

@@ -72,9 +72,6 @@ public class EnumerationAxisScalingX extends EnumerationAxisScaling {
 		int yPosition = chart.topOffset + chart.xAxis.marginOffset
 				+ chart.heightChart + chart.xAxis.labelOffset - heightStr / 2;
 
-		System.out.println("draw dp.xName " + name + " x " + x + " yPosition "
-				+ yPosition);
-
 		// draw tick
 		g.drawString(name, xPosition, yPosition);
 	}
