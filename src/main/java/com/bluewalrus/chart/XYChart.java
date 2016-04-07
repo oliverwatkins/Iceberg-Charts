@@ -647,37 +647,51 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		return magnitude;
 	}
 
+	/**
+	 * Is the magnitude acceptable as a first interval.
+	 * 
+	 * ie. 10 would be acceptable for 8 to 164
+	 * (but not for 0.001 to 0.15)
+	 * 
+	 * This method checks if the magnitude is acceptable
+	 * 
+	 * 
+	 * @param maxValue
+	 * @param minValue
+	 * @param orderOfMagnitude
+	 * @return
+	 */
 	private boolean isOrderMagnitudeAcceptableFirstInterval(double maxValue,
 			double minValue, double orderOfMagnitude) {
 		
 		
-		if (orderOfMagnitude < 1) {
-			
-			int multiplier = 1;
-			//
-			while (orderOfMagnitude != 1) {
-				
-				multiplier = multiplier * 10;
-				
-				orderOfMagnitude = 10 * orderOfMagnitude;
-				
-				System.out.println("orderOfMagnitude is now " + orderOfMagnitude);
-			}
-			
-			maxValue = maxValue * multiplier;
-			minValue = minValue * multiplier;
-		}
-		
-		
-		
-		
-		while ((int)maxValue % orderOfMagnitude != 0) {
-			maxValue--;
-		}
-
-		while ((int)minValue % orderOfMagnitude != 0) {
-			minValue++;
-		}
+//		if (orderOfMagnitude < 1) {
+//			
+//			int multiplier = 1;
+//			//
+//			while (orderOfMagnitude != 1) {
+//				
+//				multiplier = multiplier * 10;
+//				
+//				orderOfMagnitude = 10 * orderOfMagnitude;
+//				
+//				System.out.println("orderOfMagnitude is now " + orderOfMagnitude);
+//			}
+//			
+//			maxValue = maxValue * multiplier;
+//			minValue = minValue * multiplier;
+//		}
+//		
+//		
+//		
+//		
+//		while ((int)maxValue % orderOfMagnitude != 0) {
+//			maxValue--;
+//		}
+//
+//		while ((int)minValue % orderOfMagnitude != 0) {
+//			minValue++;
+//		}
 
 		double numberTicks = (maxValue - minValue) / orderOfMagnitude;
 
