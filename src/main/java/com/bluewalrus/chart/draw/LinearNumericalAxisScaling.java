@@ -343,6 +343,19 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	 * @return
 	 */
 	protected double getToFirstIntervalValueFromMin(Double increment) {
+		
+		
+		System.out.println("getToFirstIntervalValueFromMin " + increment + " " + this.orientation);
+		
+		
+		if (this.orientation == Orientation.X) {
+			System.out.println("");
+		}
+		
+//		Orientation
+		
+
+		
 
 		double val = this.minValue;
 		
@@ -357,7 +370,7 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		 */
 		
 		
-  		int multiplicationFactor = 1;
+  		long multiplicationFactor = 1;
 		
 		double adjustedInc = increment;
 		
@@ -366,7 +379,6 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		 */
 		
 		while (!(isWholeNumber(adjustedInc))) {
-			System.out.println("1");
 			adjustedInc = adjustedInc*10;
 			multiplicationFactor = multiplicationFactor*10;
 		}
@@ -374,26 +386,27 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		
 		double adjustedMinValue = this.minValue * multiplicationFactor;
 
-		int multiplicationFactor2 = 1; //reset
+		long multiplicationFactor2 = 1; //reset
 		
 		/**
 		 * 2. Adjust starting point
 		 */
 		
 		while (!(isWholeNumber(adjustedMinValue))) {
-			System.out.println("2");
-
 			adjustedMinValue = adjustedMinValue*10;
-			multiplicationFactor2 = multiplicationFactor2*10;
+			multiplicationFactor2 = multiplicationFactor2*10; //overflows :(
 		}
 		
 		
 		adjustedInc = adjustedInc * multiplicationFactor2;
 
-		if (adjustedInc < 0) {
-			throw new RuntimeException("adjustedInc cannot be less than zero");
-		}
 
+		if (adjustedInc < 0) {
+			throw new RuntimeException("increment cannot be less than zero");
+		}
+		
+		
+		
 			
 		val = adjustedMinValue;
 		

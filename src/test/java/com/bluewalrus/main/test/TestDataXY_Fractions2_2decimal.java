@@ -29,7 +29,7 @@ public class TestDataXY_Fractions2_2decimal extends ChartTester {
 		
 		XAxis xa = new XAxis(
 				new LinearNumericalAxisScalingX(1.001, 1.002, 
-					new NumericalInterval(5, 0.1), 
+					new NumericalInterval(5, 0.0001), 
 					null, 
 					null), 
 				"1");

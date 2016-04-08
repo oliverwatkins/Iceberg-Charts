@@ -41,6 +41,8 @@ import com.bluewalrus.main.test.TestDataTimeSeries;
 import com.bluewalrus.main.test.TestDataXY_Boxplot;
 import com.bluewalrus.main.test.TestDataXY_Fractions;
 import com.bluewalrus.main.test.TestDataXY_Fractions2;
+import com.bluewalrus.main.test.TestDataXY_Fractions2_2decimal;
+import com.bluewalrus.main.test.TestDataXY_Fractions4;
 import com.bluewalrus.main.test.TestDataXY_LineExamples;
 import com.bluewalrus.main.test.TestDataXY_Math;
 import com.bluewalrus.main.test.TestDataXY_Scatter;
@@ -287,6 +289,16 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
         
+        
+        p = createTabbedPane(tabbedPaneFracNegatives, "Neg to Positive2");
+        chart = new TestDataXY_Fractions2_2decimal().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneFracNegatives, "Neg to Positive3");
+        chart = new TestDataXY_Fractions4().getChart();
+        charts.add(chart);
+        p.add(chart);
         
 
 //        tabbedPaneTime       
