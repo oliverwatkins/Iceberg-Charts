@@ -44,6 +44,8 @@ public class TestDataXY_Fractions extends ChartTester {
 //		ya.axisCatFont = new Font("Arial", Font.PLAIN, 30);
 		
 		XYChart lineChart = new XYChart(s, ya, xa);
+	
+		lineChart.setTitle("(range 1.5005 to 3 with 0.1 interval)");
 		
 		JFrame frame = new JFrame();
 		frame.add(lineChart);

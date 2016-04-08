@@ -498,6 +498,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 
 
+	/**
+	 * Numerical only
+	 * @param xySeriesList
+	 * @return
+	 */
+	
 	private XAxis initialiseScalingX(ArrayList<XYDataSeries> xySeriesList) {
 		//get padded range
 		DataRange drX = getDataRangeX(xySeriesList);
@@ -505,10 +511,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		//get sensible interval
 		double initialIntervalX = getInterval(drX);
 		
+		System.out.println("> For the X data range : " + drX + " a sensible interval was found of " + initialIntervalX);
 		
-		NumericalInterval t1x = new NumericalInterval(initialIntervalX); //, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2x = new NumericalInterval(initialIntervalX/10); //, new GridLine(Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3x = new NumericalInterval(initialIntervalX/100); //, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1x = new NumericalInterval(initialIntervalX); 
+		NumericalInterval t2x = new NumericalInterval(initialIntervalX/10); 
+		NumericalInterval t3x = new NumericalInterval(initialIntervalX/100); 
 
 		t1x.styling.graphLine = new GridLine(Color.GRAY, false, 1);
 		t1x.styling.lineLength = 6; //new GridLine(Color.GRAY, false, 1);
@@ -531,6 +538,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		//get sensible interval
 		double initialIntervalY = getInterval(drY);
+		
+		System.out.println("> For the X data range : " + drY + " a sensible interval was found of " + initialIntervalY);
 		
 
 		NumericalInterval t1 = new NumericalInterval(initialIntervalY); 
@@ -599,50 +608,27 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	private double getInterval(DataRange dr) {
 
-		double yT = dr.max; 
-		double yT2 = dr.min;
-
-		//start smallest first
+		double max = dr.max; 
+		double min = dr.min;
 		
-		double magnitude = -99;
-//
-//		boolean ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+		if (max - min < 0.0000001) {
+			throw new RuntimeException("data range cannot be less than XXXXXX. DataRange = " + dr);
+		}else if (max - min > 100000000) {
+			throw new RuntimeException("data range cannot be more than XXXXXX. DataRange = " + dr);
+		}
+
+
+		// starting at 0.00001 we go up by factors of 10 and check if the interval is acceptable.
+		double magnitude = 0.00001;
 		
-		boolean ok = false;
-
-		if (!ok) {
-			magnitude = 0.01;
-			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
-		}
-
-		if (!ok) {
-			magnitude = 0.1;
-			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
-		}
-
-		if (!ok) {
-			magnitude = 1.0;
-			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
-		}
-
-		if (!ok) {
-			magnitude = 10.0;
-			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
-		}
-		
-		if (!ok) {
-			magnitude = 100.0;
-			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
-		}
-
-		if (!ok) {
-			magnitude = 1000.0;
-			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
-		}
-
-		if (!ok) {
-			magnitude = 10000.0;
-			ok = isOrderMagnitudeAcceptableFirstInterval(yT, yT2, magnitude);
+		while (magnitude != 100000) {
+			magnitude = magnitude * 10;
+			
+			if (isOrderMagnitudeAcceptableFirstInterval(max, min, magnitude)) {
+				
+				//found the correct magnitude
+				break;
+			}
 		}
 		return magnitude;
 	}

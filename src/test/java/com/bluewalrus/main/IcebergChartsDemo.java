@@ -41,7 +41,7 @@ import com.bluewalrus.main.test.TestDataTimeSeries;
 import com.bluewalrus.main.test.TestDataXY_Boxplot;
 import com.bluewalrus.main.test.TestDataXY_Fractions;
 import com.bluewalrus.main.test.TestDataXY_Fractions2;
-import com.bluewalrus.main.test.TestDataXY_Fractions2_2decimal;
+import com.bluewalrus.main.test.TestDataXY_Fractions3_2decimal;
 import com.bluewalrus.main.test.TestDataXY_Fractions4;
 import com.bluewalrus.main.test.TestDataXY_LineExamples;
 import com.bluewalrus.main.test.TestDataXY_Math;
@@ -227,10 +227,10 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
         
-        p = createTabbedPane(tabbedPaneBar, "MultiBar - side by side");
-        chart = new TestDataBar_MultiBar_SideBySide().getChart();
-        charts.add(chart);
-        p.add(chart);
+//        p = createTabbedPane(tabbedPaneBar, "MultiBar - side by side");
+//        chart = new TestDataBar_MultiBar_SideBySide().getChart();
+//        charts.add(chart);
+//        p.add(chart);
         
         p = createTabbedPane(tabbedPaneBar, "MultiBar - stacked");
         chart = new TestDataBar_MultiBar_Stacked().getChart();
@@ -279,23 +279,23 @@ public class IcebergChartsDemo extends JFrame {
          * Fractions and Negatives
          */
 
-        p = createTabbedPane(tabbedPaneFracNegatives, "range 1.5005 to 3 with 0.1 interval");
+        p = createTabbedPane(tabbedPaneFracNegatives, "Frac Neg 1 ");
         chart = new TestDataXY_Fractions().getChart();
         charts.add(chart);
         p.add(chart);
 
-        p = createTabbedPane(tabbedPaneFracNegatives, "Neg to Positive");
+        p = createTabbedPane(tabbedPaneFracNegatives, "Frac Neg 2 - Neg to Positive");
         chart = new TestDataXY_Fractions2().getChart();
         charts.add(chart);
         p.add(chart);
         
         
-        p = createTabbedPane(tabbedPaneFracNegatives, "Neg to Positive2");
-        chart = new TestDataXY_Fractions2_2decimal().getChart();
+        p = createTabbedPane(tabbedPaneFracNegatives, "Frac Neg 3 - Neg to Positive2");
+        chart = new TestDataXY_Fractions3_2decimal().getChart();
         charts.add(chart);
         p.add(chart);
         
-        p = createTabbedPane(tabbedPaneFracNegatives, "Neg to Positive3");
+        p = createTabbedPane(tabbedPaneFracNegatives, "Frac Neg 4 - Neg to Positive3");
         chart = new TestDataXY_Fractions4().getChart();
         charts.add(chart);
         p.add(chart);

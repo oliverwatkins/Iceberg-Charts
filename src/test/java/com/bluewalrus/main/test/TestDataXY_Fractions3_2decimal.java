@@ -14,7 +14,7 @@ import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
 import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 
-public class TestDataXY_Fractions2_2decimal extends ChartTester {
+public class TestDataXY_Fractions3_2decimal extends ChartTester {
 	
 	@Override
 	public Chart getChart() {
@@ -33,7 +33,8 @@ public class TestDataXY_Fractions2_2decimal extends ChartTester {
 					null, 
 					null), 
 				"1");
-		YAxis ya = new YAxis(new LinearNumericalAxisScalingY(0.0,100.0,
+		YAxis ya = new YAxis(
+				new LinearNumericalAxisScalingY(0.0,100.0,
 					new NumericalInterval(5, 10.0), 
 					null, 
 					null), 				
@@ -52,7 +53,7 @@ public class TestDataXY_Fractions2_2decimal extends ChartTester {
 	
 	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataXY_Fractions2_2decimal();
+		ChartTester t = new TestDataXY_Fractions3_2decimal();
 		t.testChart(t.getChart());
 	}
 	

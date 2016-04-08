@@ -41,6 +41,8 @@ public class TestDataXY_Fractions2 extends ChartTester {
 		
 		XYChart lineChart = new XYChart(s, ya, xa);
 		
+		lineChart.setTitle("Negative To Positive");
+		
 		JFrame frame = new JFrame();
 		frame.add(lineChart);
 		frame.setSize(700, 500);
