@@ -8,6 +8,7 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
+import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 
 /**
@@ -43,6 +44,15 @@ public class XAxisDrawUtil {
             g.drawLine((int)fromLeft, y1, (int)fromLeft, y2);
         
  	} 
+	
+	public static void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, double fromStart,
+			XAxis xAxis, Axis axis) {
+		
+		
+		// TODO Auto-generated method stub
+		
+	}
+    
 	
 	/**
 	 * Draw Grid Line
@@ -122,7 +132,8 @@ public class XAxisDrawUtil {
         g2d.drawString(axis.labelText, chart.widthChart / 2 + chart.leftOffset - xAxisStringWidth / 2, 
         		chart.topOffset + chart.heightChart + axis.labelOffset + xAxesLabelHeight / 2);
 	}
-    
+
+
 
 
 }

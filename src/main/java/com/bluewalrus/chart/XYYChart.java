@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.Category;
+import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.chart.axis.XAxis;
@@ -32,11 +33,16 @@ public class XYYChart extends XYChart {
 
     public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries<?>> xySeriesList) {
         this(xAxis, yAxis, yAxis2, bars, xySeriesList, 10);
+        
+        
     }
 
     public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries<?>> lineSeries, int barWidth) {
         super(xAxis, yAxis);
 
+        yAxis2.axisDraw.setOrientation(Orientation.Y2);
+
+        
         this.bars = bars;
 
         this.yAxis2 = yAxis2;

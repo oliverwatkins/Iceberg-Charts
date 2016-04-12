@@ -197,8 +197,6 @@ public class IcebergChartsDemo extends JFrame {
          * 
          */
         
-        
-        
         p = createTabbedPane(tabbedPaneBar, "Bar - postitive negative");
         chart = new TestDataBar_NegativeAndPositive().getChart();
         charts.add(chart);

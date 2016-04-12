@@ -19,6 +19,8 @@ public class YAxis extends Axis {
 	
     public YAxis(AxisDraw axisDraw, String name) {
         super(name, axisDraw);
+        
+//        axisDraw.orientation
     }
 
     

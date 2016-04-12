@@ -20,6 +20,15 @@ public abstract class AxisDraw {
 	Orientation orientation;
 	
 
+	public Orientation getOrientation() {
+		return orientation;
+	}
+
+
+	public void setOrientation(Orientation orientation) {
+		this.orientation = orientation;
+	}
+
 	protected double maxValue = -1; //101; // arbitrary
 	protected double minValue = -1; //0; // arbitrary
 

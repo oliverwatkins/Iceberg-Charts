@@ -42,6 +42,8 @@ public class LinearNumericalAxisScalingY extends LinearNumericalAxisScaling {
 		
 		//NOTE! data is ignored here. It's only used for enumeration axisdraw. TODO better way??
 		
+		
+		
 		drawAllIntervalTickAndLabels(g2d, xyChart);
 		
 		drawGridLines(g2d, xyChart);

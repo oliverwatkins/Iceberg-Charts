@@ -28,6 +28,9 @@ public class MultiBarChart extends XYChart {
     public MultiBarChart(XAxis xAxis, YAxis yAxis, ArrayList<MultiBar> bars,
             boolean stacked) {
         this(xAxis, yAxis, bars, 10, stacked);
+        
+//        
+        
     }
 
     

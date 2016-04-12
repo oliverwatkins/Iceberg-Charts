@@ -125,6 +125,11 @@ public class TestDataBar_2Y extends ChartTester{
         return chart;
 
     }
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataBar_2Y();
+		t.testChart(t.getChart());
+	}
 
 
 }

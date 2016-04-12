@@ -11,6 +11,7 @@ import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.Utils;
 import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
@@ -97,16 +98,16 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
     	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
 
         double fromStart = getFromStart(chart, toZeroShift, incrementInPixel, i);
-    	
+        
     	/**
     	 * Draw the tick
     	 */
-    	
-    	
 		if (orientation == Orientation.X) {
 			XAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, chart.xAxis);
 		}else if (orientation == Orientation.Y) {
 			YAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, chart.yAxis);
+		}else if (orientation == Orientation.Y2) {
+			YAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, ((XYYChart)chart).yAxis2);
 		}else {
 			throw new RuntimeException("not supported");
 		}
@@ -193,6 +194,8 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 			return chart.xAxis;
 		}else if (orientation == Orientation.Y) {
 			return chart.yAxis;
+		}else if (orientation == Orientation.Y2) {
+			return ((XYYChart)chart).yAxis2;
 		}else {
 			throw new RuntimeException("not supported");
 		}
@@ -229,6 +232,8 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 			XAxisDrawUtil.drawXLabel(g, chart, fromStart, label, chart.xAxis, 0);
 		}else if (orientation == Orientation.Y) {
 			YAxisDrawUtil.drawYLabel(g, chart, fromStart, label, chart.yAxis);
+		}else if (orientation == Orientation.Y2) {
+			YAxisDrawUtil.drawYLabel(g, chart, fromStart, label, ((XYYChart)chart).yAxis2);
 		}else {
 			throw new RuntimeException("not supported");
 		}

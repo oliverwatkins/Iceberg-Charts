@@ -10,6 +10,7 @@ import java.awt.geom.Rectangle2D;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.YAxis;
 
@@ -20,6 +21,62 @@ import com.bluewalrus.chart.axis.YAxis;
  */
 public class YAxisDrawUtil {
 
+	
+	
+	public static void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, double fromStart,
+			YAxis yAxis, Axis axis) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	/**
+	 * Draw the label (vertically)
+	 * 
+	 * @param chart
+	 * @param axis
+	 * @param g2d
+	 */
+	public static void drawLabel(Chart chart, YAxis axis, Graphics2D g2d) {
+		AffineTransform oldTransform = g2d.getTransform();
+
+        FontMetrics fmY = chart.getFontMetrics(axis.font);
+        int yAxisStringWidth = fmY.stringWidth(axis.labelText);
+        int yAxisStringHeight = fmY.getHeight();
+
+        g2d.setColor(Color.BLACK);
+
+        g2d.rotate(Math.toRadians(270)); //rotates to above out of screen.
+
+        int translateDown;
+        //starts off being "topOffset" off, so subtract that first
+        int translateLeft;
+        if (axis.rightSide) {
+
+            translateDown = -(chart.topOffset + chart.heightChart / 2 + yAxisStringWidth / 2);
+
+            translateLeft = chart.leftOffset + chart.widthChart + axis.tickLabelOffset + axis.labelOffset
+                    - (axis.labelOffset) / 2;
+
+        } else {
+            translateDown = -(chart.topOffset + chart.heightChart / 2 + yAxisStringWidth / 2);
+            //starts off being "topOffset" off, so subtract that first
+            translateLeft = (chart.leftOffset - axis.tickLabelOffset - axis.marginOffset) / 2 + yAxisStringHeight / 2;
+        }
+
+        //pull down, which is basically the left offset, topOffset, then middle it by 
+        //usin chart height and using text height.
+        g2d.translate(translateDown, translateLeft);
+
+        g2d.setFont(axis.font);
+
+        g2d.drawString(axis.labelText, 0, 0);
+
+        //reset
+        g2d.setTransform(oldTransform);
+	}
+	
 	
 	/**
 	 * Draw the interval tick
@@ -79,6 +136,8 @@ public class YAxisDrawUtil {
         g.setColor(axis.axisColor);
         
         
+        
+        
 
 
         int x; //TODO should position itself exactly between the label space, and the tick space.
@@ -126,52 +185,8 @@ public class YAxisDrawUtil {
 	}
 	
 	
-	
-	/**
-	 * Draw the label (vertically)
-	 * 
-	 * @param chart
-	 * @param axis
-	 * @param g2d
-	 */
-	public static void drawLabel(Chart chart, YAxis axis, Graphics2D g2d) {
-		AffineTransform oldTransform = g2d.getTransform();
 
-        FontMetrics fmY = chart.getFontMetrics(axis.font);
-        int yAxisStringWidth = fmY.stringWidth(axis.labelText);
-        int yAxisStringHeight = fmY.getHeight();
 
-        g2d.setColor(Color.BLACK);
-
-        g2d.rotate(Math.toRadians(270)); //rotates to above out of screen.
-
-        int translateDown;
-        //starts off being "topOffset" off, so subtract that first
-        int translateLeft;
-        if (axis.rightSide) {
-
-            translateDown = -(chart.topOffset + chart.heightChart / 2 + yAxisStringWidth / 2);
-
-            translateLeft = chart.leftOffset + chart.widthChart + axis.tickLabelOffset + axis.labelOffset
-                    - (axis.labelOffset) / 2;
-
-        } else {
-            translateDown = -(chart.topOffset + chart.heightChart / 2 + yAxisStringWidth / 2);
-            //starts off being "topOffset" off, so subtract that first
-            translateLeft = (chart.leftOffset - axis.tickLabelOffset - axis.marginOffset) / 2 + yAxisStringHeight / 2;
-        }
-
-        //pull down, which is basically the left offset, topOffset, then middle it by 
-        //usin chart height and using text height.
-        g2d.translate(translateDown, translateLeft);
-
-        g2d.setFont(axis.font);
-
-        g2d.drawString(axis.labelText, 0, 0);
-
-        //reset
-        g2d.setTransform(oldTransform);
-	}
 
 	
 
