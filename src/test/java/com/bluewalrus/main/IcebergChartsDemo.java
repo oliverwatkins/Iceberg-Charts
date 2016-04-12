@@ -18,6 +18,7 @@ import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.main.test.TestDataBar_2Y;
+import com.bluewalrus.main.test.TestDataBar_2Y_2;
 import com.bluewalrus.main.test.TestDataBar_BarCanBeXY;
 import com.bluewalrus.main.test.TestDataBar_FontFun;
 import com.bluewalrus.main.test.TestDataBar_MultiBar_SideBySide;
@@ -67,6 +68,8 @@ public class IcebergChartsDemo extends JFrame {
         JTabbedPane tabbedPaneGridFills = new JTabbedPane();
         JTabbedPane tabbedPaneFracNegatives = new JTabbedPane();
         JTabbedPane tabbedPaneTime = new JTabbedPane();
+        JTabbedPane tabbedPaneXYY = new JTabbedPane();
+        
         
         tabbedPane.add("General XY Charts", tabbedPaneLine);
         tabbedPane.add("Time Axis", tabbedPaneTime);
@@ -74,8 +77,7 @@ public class IcebergChartsDemo extends JFrame {
         tabbedPane.add("Pie Charts", tabbedPanePie);
         tabbedPane.add("Grids And Fills", tabbedPaneGridFills);
         tabbedPane.add("Fractions and Negatives", tabbedPaneFracNegatives);
-        
-                        
+        tabbedPane.add("XYY", tabbedPaneXYY);
 
         JPanel p = null;
         JComponent chart = null;
@@ -297,6 +299,22 @@ public class IcebergChartsDemo extends JFrame {
         chart = new TestDataXY_Fractions4().getChart();
         charts.add(chart);
         p.add(chart);
+        
+        /**
+         * XYY Charts
+         */
+        p = createTabbedPane(tabbedPaneXYY, "XYY ");
+        chart = new TestDataBar_2Y().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneXYY, "XYY 2");
+        chart = new TestDataBar_2Y_2().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        
+        
         
 
 //        tabbedPaneTime       

@@ -22,6 +22,8 @@ import com.bluewalrus.point.UIPointBar;
  * XXYChart has line/point for one Y axis, and bar for the other Y axis. At this point in time
  * that is all that is planned for this chart.
  * 
+ * Should this be pulled up into XYChart???
+ * 
  * @author Oliver Watkins
  */
 public class XYYChart extends XYChart { 
@@ -31,17 +33,35 @@ public class XYYChart extends XYChart {
     public ArrayList<Bar> bars;
     private XYDataSeries<DataPointBar> barSeries;
 
+    public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis22, ArrayList<XYDataSeries<?>> xySeries,
+			ArrayList<XYDataSeries<?>> xySeriesY2, boolean erasureFixme) {
+    	super(xAxis, yAxis);
+    	
+    	yAxis2.axisDraw.setOrientation(Orientation.Y2);
+    	
+    	/**
+    	 * TODO this constructor to replace bar constructor
+    	 */
+    	
+    	
+	}
+    
+    
+    
     public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries<?>> xySeriesList) {
         this(xAxis, yAxis, yAxis2, bars, xySeriesList, 10);
-        
-        
     }
 
+    
+
+    
+    
+    
+    
     public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries<?>> lineSeries, int barWidth) {
         super(xAxis, yAxis);
 
         yAxis2.axisDraw.setOrientation(Orientation.Y2);
-
         
         this.bars = bars;
 
@@ -82,7 +102,9 @@ public class XYYChart extends XYChart {
         data.addAll(lineSeries);
     }
 
-    @Override
+
+
+	@Override
     protected void drawGraph(Graphics g) {
 
     	//draw bars first

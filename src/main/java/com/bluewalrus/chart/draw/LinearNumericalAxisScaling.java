@@ -3,12 +3,9 @@ package com.bluewalrus.chart.draw;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.Orientation;
-import com.bluewalrus.bar.Utils;
 import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYYChart;
@@ -77,7 +74,7 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	}
 	
 
-	public abstract void drawGridLineOnZero(Graphics2D g, XYChart chart);	
+
 
 
 	/**
@@ -186,20 +183,9 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 			if (showLabel)
 				drawIntervalLabel(inter, g, chart, getAxis(chart), i, incrementInPixel);
 		}
-
 	}
 	
-	private Axis getAxis(XYChart chart) {
-		if (orientation == Orientation.X) {
-			return chart.xAxis;
-		}else if (orientation == Orientation.Y) {
-			return chart.yAxis;
-		}else if (orientation == Orientation.Y2) {
-			return ((XYYChart)chart).yAxis2;
-		}else {
-			throw new RuntimeException("not supported");
-		}
-	}
+
 	
 	
 	protected void drawIntervalLabel(NumericalInterval interval, Graphics2D g,
@@ -349,18 +335,11 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	 */
 	protected double getToFirstIntervalValueFromMin(Double increment) {
 		
-		
 		System.out.println("getToFirstIntervalValueFromMin " + increment + " " + this.orientation);
-		
 		
 		if (this.orientation == Orientation.X) {
 			System.out.println("");
 		}
-		
-//		Orientation
-		
-
-		
 
 		double val = this.minValue;
 		
@@ -402,16 +381,12 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 			multiplicationFactor2 = multiplicationFactor2*10; //overflows :(
 		}
 		
-		
 		adjustedInc = adjustedInc * multiplicationFactor2;
 
 
 		if (adjustedInc < 0) {
 			throw new RuntimeException("increment cannot be less than zero");
 		}
-		
-		
-		
 			
 		val = adjustedMinValue;
 		
@@ -428,5 +403,10 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	private boolean isWholeNumber(double val) {
 		return (val == Math.floor(val)) && !Double.isInfinite(val);
 	}
+	
+	
+	public abstract void drawGridLineOnZero(Graphics2D g, XYChart chart);	
+	
+	
 
 }
