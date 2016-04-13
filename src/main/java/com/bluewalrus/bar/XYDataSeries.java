@@ -17,7 +17,9 @@ import java.util.ArrayList;
  */
 public class XYDataSeries<T extends DataPoint> implements Categorisable, Serializable {
 
-    public ArrayList<? extends DataPoint> dataPoints;
+
+
+	public ArrayList<? extends DataPoint> dataPoints;
 
     public UIPointXY pointType; //describes the type of point UI.
     
@@ -56,6 +58,12 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
         this.line = line;
         this.name = name;
     }
+    
+    @Override
+	public String toString() {
+		return "XYDataSeries [dataPoints=" + dataPoints + ", pointType=" + pointType + ", line=" + line + ", name="
+				+ name + ", type=" + type + ", seriesColor=" + seriesColor + "]";
+	}
 
 
 

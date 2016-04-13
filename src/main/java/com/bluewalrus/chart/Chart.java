@@ -102,7 +102,7 @@ public abstract class Chart extends JPanel {
 	 * 
 	 * @param g
 	 */
-	abstract protected void drawGraph(Graphics g);
+	abstract protected void drawGraphData(Graphics g);
 
 	
 	/**

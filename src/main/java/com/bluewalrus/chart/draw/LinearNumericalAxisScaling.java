@@ -123,6 +123,9 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 			XAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
 		}else if (orientation == Orientation.Y) {
 			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
+		}else if (orientation == Orientation.Y2) {
+			//TODO do we support grids on other Y axis too?
+//			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
 		}else {
 			throw new RuntimeException("not supported");
 		}

@@ -29,7 +29,7 @@ public class TestDataBar_2Y extends ChartTester{
 	@Override
 	public Chart getChart() {
         
-        ArrayList<XYDataSeries<?>> xySeries = new ArrayList<XYDataSeries<?>>();
+        ArrayList<XYDataSeries> xySeries = new ArrayList<XYDataSeries>();
 
         ArrayList<DataPoint> values = new ArrayList<DataPoint>();
         values.add(new DataPoint(17.2));
@@ -96,21 +96,54 @@ public class TestDataBar_2Y extends ChartTester{
 
         GradiantRule rule = new GradiantRule(0, 130, Color.BLUE, Color.RED, 100);
         
-        ArrayList<Bar> barSeries = new ArrayList<Bar>();
-        barSeries.add(new Bar(54.0, rule, "J"));
-        barSeries.add(new Bar(45.2, rule, "F"));
-        barSeries.add(new Bar(60.1, rule, "M"));
-        barSeries.add(new Bar(69.9, rule, "A"));
-        barSeries.add(new Bar(93.4, rule, "M"));
-        barSeries.add(new Bar(123.6, rule, "J"));
-        barSeries.add(new Bar(117.6, rule, "J"));
-        barSeries.add(new Bar(114.5, rule, "A"));
-        barSeries.add(new Bar(90.3, rule, "S"));
-        barSeries.add(new Bar(69.4, rule, "O"));
-        barSeries.add(new Bar(71.0, rule, "N"));
-        barSeries.add(new Bar(58.4, rule, "D"));
+        
+        ArrayList<DataPoint> barValues = new ArrayList<DataPoint>();
+        
+        
+//      ArrayList<Bar> barSeries = new ArrayList<Bar>();
+        barValues.add(new DataPoint(54.0, 1));
 
-        XYYChart chart = new XYYChart(xAxis, yAxis, yAxis2, barSeries, xySeries, 30);
+        
+        barValues.add(new DataPoint(45.2, 2)); //rule, "F"));
+        barValues.add(new DataPoint(60.1, 3));
+        barValues.add(new DataPoint(69.9, 4));
+        barValues.add(new DataPoint(93.4, 5));
+        barValues.add(new DataPoint(123.6,6));
+        barValues.add(new DataPoint(117.6,7));;
+        barValues.add(new DataPoint(114.5,8));
+        barValues.add(new DataPoint(90.3, 9));
+        barValues.add(new DataPoint(69.4, 10));
+        barValues.add(new DataPoint(71.0,11));
+        barValues.add(new DataPoint(58.4, 12));
+        
+//        ArrayList<Bar> barSeries = new ArrayList<Bar>();
+//        barSeries.add(new Bar(54.0, rule, "J"));
+//        barSeries.add(new Bar(45.2, rule, "F"));
+//        barSeries.add(new Bar(60.1, rule, "M"));
+//        barSeries.add(new Bar(69.9, rule, "A"));
+//        barSeries.add(new Bar(93.4, rule, "M"));
+//        barSeries.add(new Bar(123.6, rule, "J"));
+//        barSeries.add(new Bar(117.6, rule, "J"));
+//        barSeries.add(new Bar(114.5, rule, "A"));
+//        barSeries.add(new Bar(90.3, rule, "S"));
+//        barSeries.add(new Bar(69.4, rule, "O"));
+//        barSeries.add(new Bar(71.0, rule, "N"));
+//        barSeries.add(new Bar(58.4, rule, "D"));
+        
+        ArrayList<XYDataSeries> xySeries2 = new ArrayList<XYDataSeries>();
+        
+        XYDataSeries series2_2 = new XYDataSeries(new UIPointCircle(Color.RED), 
+        		new Line(Color.RED), "max");
+        series2_2.dataPoints = barValues;
+        
+        
+        
+        xySeries2.add(series2_2);
+
+//        XYYChart chart = new XYYChart(xAxis, yAxis, yAxis2, barSeries, xySeries, 30);
+        
+        XYYChart chart = new XYYChart("", "", "", xySeries2, xySeries, true);
+        
 
 //        chart.width = 1000;
 //        chart.height = 600;

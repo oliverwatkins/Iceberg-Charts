@@ -25,28 +25,28 @@ public class TestDataBar_2Y_2  extends ChartTester{
 
 	@Override
 	public Chart getChart() {
-        
-        ArrayList<XYDataSeries<?>> xySeries = new ArrayList<XYDataSeries<?>>();
+		
+        ArrayList<XYDataSeries> xySeries = new ArrayList<XYDataSeries>();
 
         ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-        values.add(new DataPoint(17.2));
-        values.add(new DataPoint(21.1));
-        values.add(new DataPoint(23.3));
+        values.add(new DataPoint(2, 17.2));
+        values.add(new DataPoint(3, 21.1));
+        values.add(new DataPoint(4, 23.3));
 
         ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
-        values2.add(new DataPoint(-30.5));
-        values2.add(new DataPoint(-22.7));
-        values2.add(new DataPoint(-15.5));
+        values2.add(new DataPoint(2, -30.5));
+        values2.add(new DataPoint(3, -22.7));
+        values2.add(new DataPoint(4, -15.5));
 
         ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
-        values3.add(new DataPoint(-2.2));
-        values3.add(new DataPoint(-0.4));
-        values3.add(new DataPoint(3.4));
-        values3.add(new DataPoint(7.6));
+        values3.add(new DataPoint(2, -2.2));
+        values3.add(new DataPoint(3, -0.4));
+        values3.add(new DataPoint(4, 3.4));
+        values3.add(new DataPoint(5, 7.6));
 
 
         XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.RED), 
-        		new Line(Color.RED), "max");
+        		new Line(Color.BLACK), "max");
         series.dataPoints = values;
 
         XYDataSeries series2 = new XYDataSeries(new UIPointSquare(Color.BLUE), 
@@ -54,13 +54,13 @@ public class TestDataBar_2Y_2  extends ChartTester{
         series2.dataPoints = values2;
 
         XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.ORANGE), 
-        		new Line(Color.ORANGE), "average");
+        		new Line(Color.BLUE), "average");
         series3.dataPoints = values3;
 
-        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-50.0, 100.0, 50.0, 10.0, 1.0), "Temperature");
-        XAxis xAxis = new XAxis(new EnumerationAxisScalingX(), "Month");
-        
-        YAxis yAxis2 = new YAxis(new LinearNumericalAxisScalingY(0.0, 200.0, 100.0, 20.0, 0.0), "Precipitation");
+//        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-50.0, 100.0, 50.0, 10.0, 1.0), "Temperature");
+//        XAxis xAxis = new XAxis(new EnumerationAxisScalingX(), "Month");
+//        
+//        YAxis yAxis2 = new YAxis(new LinearNumericalAxisScalingY(0.0, 200.0, 100.0, 20.0, 0.0), "Precipitation");
 
         xySeries.add(series);
         xySeries.add(series2);
@@ -69,32 +69,33 @@ public class TestDataBar_2Y_2  extends ChartTester{
         GradiantRule rule = new GradiantRule(0, 130, Color.BLUE, Color.RED, 100);
         
         ArrayList<DataPoint> y2series1 = new ArrayList<DataPoint>();
-        values3.add(new DataPoint(3.4));
-        values3.add(new DataPoint(7.6));
-        values3.add(new DataPoint(3.6));
+        y2series1.add(new DataPoint(2, 310.4));
+        y2series1.add(new DataPoint(3, 720.6));
+        y2series1.add(new DataPoint(4, 350.6));
         
         ArrayList<DataPoint> y2series2 = new ArrayList<DataPoint>();
-        values3.add(new DataPoint(3.4));
-        values3.add(new DataPoint(7.6));
-        values3.add(new DataPoint(3.6));
+        y2series2.add(new DataPoint(2, 370.4));
+        y2series2.add(new DataPoint(3, 790.6));
+        y2series2.add(new DataPoint(4, 330.6));
         
         
         
-        ArrayList<XYDataSeries<?>> xySeriesY2 = new ArrayList<XYDataSeries<?>>();
+        ArrayList<XYDataSeries> xySeriesY2 = new ArrayList<XYDataSeries>();
         
         XYDataSeries seriesY2 = new XYDataSeries(new UIPointCircle(Color.RED), 
-        		new Line(Color.RED), "max");
-        series.dataPoints = values;
+        		new Line(Color.BLACK), "max");
+        seriesY2.dataPoints = y2series1;
 
         XYDataSeries series2Y2 = new XYDataSeries(new UIPointSquare(Color.BLUE), 
         		new Line(Color.BLUE), "min");
-        series2.dataPoints = values2;
+        series2Y2.dataPoints = y2series2;
+        
         xySeriesY2.add(seriesY2);
         xySeriesY2.add(series2Y2);
         
         
 
-        XYYChart chart = new XYYChart(xAxis, yAxis, yAxis2, xySeries, xySeriesY2, true);
+        XYYChart chart = new XYYChart("Title", "x", "y", xySeries, xySeriesY2, true);
 
 //        chart.width = 1000;
 //        chart.height = 600;
@@ -111,7 +112,7 @@ public class TestDataBar_2Y_2  extends ChartTester{
     }
 	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataBar_2Y();
+		ChartTester t = new TestDataBar_2Y_2();
 		t.testChart(t.getChart());
 	}
 

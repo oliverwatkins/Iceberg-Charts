@@ -53,6 +53,10 @@ public class NumericalPlotter extends AbstractPlotter {
         DataPoint lastPoint = null; 
 
         for (XYDataSeries xYDataSeries : xYDataSerieses) {
+        	
+//        	if (xYDataSeries.dataPoints == null)
+//        		throw new RuntimeException("ERROR : XYDataSeries has no dataPoints set. " + xYDataSeries.name);
+        	
 
             ArrayList<DataPoint> dataPoints = xYDataSeries.dataPoints;
 

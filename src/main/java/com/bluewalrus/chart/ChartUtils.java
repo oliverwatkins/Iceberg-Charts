@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
@@ -234,33 +235,44 @@ public class ChartUtils {
 
 
 	/**
-	 * Set up some default styles
+	 * Set up some default styles for the first 5 series, then random
 	 * 
 	 * @param xySeriesList
 	 */
 	public static void setUpSeriesStyle(ArrayList<XYDataSeries> xySeriesList, XYChart chart) {
 		int i = 0;
 		for (XYDataSeries xyDataSeries : xySeriesList) {
-			
 			if (i == 0) {
-				xyDataSeries.pointType = new UIPointSquare(Color.BLUE);
-				xyDataSeries.line = new Line(Color.BLUE, false, 2);
 				
+				if (xyDataSeries.pointType == null)
+					xyDataSeries.pointType = new UIPointSquare(Color.BLUE);
+				if (xyDataSeries.line == null)
+					xyDataSeries.line = new Line(Color.BLUE, false, 2);
 			}else if (i == 1) {
-				xyDataSeries.pointType = new UIPointCircle(Color.GREEN);
-				xyDataSeries.line = new Line(Color.GREEN, false, 2);
+				if (xyDataSeries.pointType == null)
+					xyDataSeries.pointType = new UIPointCircle(Color.GREEN);
+				if (xyDataSeries.line == null)
+					xyDataSeries.line = new Line(Color.GREEN, false, 2);
 			}else if (i == 2) {
-				xyDataSeries.pointType = new UIPointTriangle(Color.RED);
-				xyDataSeries.line = new Line(Color.RED, false, 2);
+				if (xyDataSeries.pointType == null)
+					xyDataSeries.pointType = new UIPointTriangle(Color.RED);
+				if (xyDataSeries.line == null)
+					xyDataSeries.line = new Line(Color.RED, false, 2);
 			}else if (i == 3) {
-				xyDataSeries.pointType = new UIPointTriangle(Color.CYAN);
-				xyDataSeries.line = new Line(Color.CYAN, false, 2);
-				
+				if (xyDataSeries.pointType == null)
+					xyDataSeries.pointType = new UIPointTriangle(Color.CYAN);
+				if (xyDataSeries.line == null)
+					xyDataSeries.line = new Line(Color.CYAN, false, 2);
 			}else if (i == 4) {
+				if (xyDataSeries.pointType == null)
 				xyDataSeries.pointType = new UIPointCircle(Color.MAGENTA);
 				xyDataSeries.line = new Line(Color.MAGENTA, false, 2);
 			}else {
-				//create random TODO
+
+				Color c = ChartUtils.createRandomColor();
+				
+				xyDataSeries.pointType = new UIPointCircle(c);
+				xyDataSeries.line = new Line(c, false, 2);
 			}
 			i++;
 		}
@@ -268,6 +280,18 @@ public class ChartUtils {
 		chart.rightOffset = 200;
 	}
 	
+	private static Color createRandomColor() {
+		
+		
+		Random random = new Random();
+		final float hue = random.nextFloat();
+		final float saturation = (random.nextInt(2000) + 1000) / 10000f;
+		final float luminance = 0.9f;
+		final Color color = Color.getHSBColor(hue, saturation, luminance);
+		
+		return color;
+	}
+
 	/**
 	 * A DataPointBar, should have all its name set to a value, or no values set to name.
 	 * 
