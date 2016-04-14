@@ -4,17 +4,30 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBoxPlot;
 import com.bluewalrus.renderer.XYFactor;
 
 public class UIPointBoxPlot extends UIPointComplexXY{
 
+	private int y1;
+	private int y2;
+	private int y3;
+	private int y4;
+	private int y5;
+	private int x1;
+	private int x2;
+	private int x3;
+	private Color muchmuchdarker;
+
+
+
 	public UIPointBoxPlot(Color color) {
 		super(color);
 	}
 
-	public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor) {
+	public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
 
 		DataPointBoxPlot dp = (DataPointBoxPlot)dataPoint;
 
@@ -33,18 +46,27 @@ public class UIPointBoxPlot extends UIPointComplexXY{
 		int fourthQinPix = (int)(bottomFactored - bottomWhiskerFactored);
 		
 		int width = 20;
-		int y1 = (int)(pointYFactored - (firstQinPix + secondQinPix));
-		int y2 = (int)(pointYFactored - (secondQinPix));
-		int y3 = (int) pointYFactored;
-		int y4 = (int)(pointYFactored + (thirdQinPix));
-		int y5 = (int)(pointYFactored + (thirdQinPix + fourthQinPix));
+		y1 = (int)(pointYFactored - (firstQinPix + secondQinPix));
+		y2 = (int)(pointYFactored - (secondQinPix));
+		y3 = (int) pointYFactored;
+		y4 = (int)(pointYFactored + (thirdQinPix));
+		y5 = (int)(pointYFactored + (thirdQinPix + fourthQinPix));
 		
-		int x1 = (int)point.x - width/2;
-		int x2 = (int)point.x;
-		int x3 = (int)point.x + width/2;
+		x1 = (int)point.x - width/2;
+		x2 = (int)point.x;
+		x3 = (int)point.x + width/2;
 
-        Color muchmuchdarker = color.darker().darker().darker(); 
+        muchmuchdarker = color.darker().darker().darker(); 
 
+        
+        this.clipAndDrawPoint(g, chart);
+        
+	}
+	
+	
+	@Override
+	public void drawPoint(Graphics2D g) {
+		
         g.setColor(muchmuchdarker);
 
         //top
@@ -56,7 +78,6 @@ public class UIPointBoxPlot extends UIPointComplexXY{
         
         g.setColor(color);
         
-        
         //top rect
         g.fillRect(x1,
         		y2,
@@ -70,10 +91,8 @@ public class UIPointBoxPlot extends UIPointComplexXY{
         		y2,
         		x3 - x1,
                 y3-y2);
-
         
         g.setColor(color);
-
         
         //bottom rect
         g.fillRect(x1,
@@ -88,24 +107,24 @@ public class UIPointBoxPlot extends UIPointComplexXY{
         		y3,
         		x3-x1,
                 y4-y3);
-
-        
   
         g.setColor(muchmuchdarker);
-
         
         g.drawLine(x2,
         		y4,
         		x2,
         		y5);
-        
 	}
+	
+	
 
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 
 
 

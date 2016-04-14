@@ -3,7 +3,9 @@ package com.bluewalrus.point;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Shape;
 
+import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
@@ -13,6 +15,13 @@ public class UIPointBar extends UIPointAbstractBar {
 
     boolean doBorder = true;
     Color negativeColor;
+	private int x;
+	private int y;
+	private int width;
+	private int height;
+	private Color muchmuchdarker;
+	private Color colorToUse;
+
 
     public UIPointBar(Color color) {
         super(color);
@@ -24,45 +33,60 @@ public class UIPointBar extends UIPointAbstractBar {
         this.barWidth = barWidth;
     }
 
-    public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor) {
+    public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
 
-        DataPointBar dp = (DataPointBar) dataPoint;
-
+    	
+    	Color dataPointColor = null;
+    	
+    	double yPos = -999;
+    	
+    	if (dataPoint instanceof DataPointBar) {
+            DataPointBar dp = (DataPointBar) dataPoint;
+            yPos = dp.y;
+            dataPointColor = dp.color; 	
+    	}else {
+            DataPoint dp = (DataPoint) dataPoint;
+            yPos = dp.y;
+    	}
         
-//        if (true)return;
-        Color colorToUse;
+        x = 0;
+        y = 0;
+        width = 0;
+        height = 0;
 
-        int x = 0;
-        int y = 0;
-        int width = 0;
-        int height = 0;
-
-        if (dp.y > 0) { // greater than zero
+        if (yPos > 0) { // greater than zero
             x = point.x - (barWidth / 2);
             y = point.y;
             width = barWidth;
-            height = (int) ((dp.y * xyFactor.yFactor));
+            height = (int) ((yPos * xyFactor.yFactor));
 
             colorToUse = color;
 
         } else { // less than zero
 
             x = point.x - (barWidth / 2);
-            y = point.y + (int) (dp.y * xyFactor.yFactor);
+            y = point.y + (int) (yPos * xyFactor.yFactor);
             width = barWidth;
-            height = (int) ((-dp.y * xyFactor.yFactor));
+            height = (int) ((-yPos * xyFactor.yFactor));
 
             colorToUse = negativeColor;
         }
 
-        if (dp.color != null) {
+        if (dataPointColor != null) {
 
-            colorToUse = dp.color;
+            colorToUse = dataPointColor;
         }
 
-        Color muchmuchdarker = colorToUse.darker();
+        muchmuchdarker = colorToUse.darker();
+        
+        
+        this.clipAndDrawPoint(g, chart);
+    }
+    
+	@Override
+	public void drawPoint(Graphics2D g) {
 
-        g.setColor(colorToUse);
+		g.setColor(colorToUse);
 
         //bottom rect
         g.fillRect(x,
@@ -83,12 +107,11 @@ public class UIPointBar extends UIPointAbstractBar {
                     height);
 
         }
-    }
+	}
 
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

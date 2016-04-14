@@ -1,6 +1,9 @@
 package com.bluewalrus.chart;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -333,6 +336,20 @@ public class ChartUtils {
 			return "" + value;
 		}
 
+	}
+
+	/**
+	 * 
+	 * @param g
+	 * @param chart
+	 * @return cached clip
+	 */
+	public static Shape clipChart(Graphics2D g, XYChart chart) {
+		
+		Shape cachedClip = g.getClip();
+		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
+
+		return cachedClip;
 	}
 	
 }

@@ -6,6 +6,7 @@
 package com.bluewalrus.point;
 
 import com.bluewalrus.chart.PieBubbleChartSettings;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointPieChart;
 import com.bluewalrus.pie.Segment;
@@ -27,16 +28,24 @@ public class UIPointPieChart extends UIPointComplexXY {
 
     boolean scaleOnX = false;
 
+	private DataPointPieChart pieChartDataPoint;
+
+	private double magnitude;
+	
+	private Point point;
+
     public UIPointPieChart(Color color, PieBubbleChartSettings pbcs) {
         super();
         this.pbcs = pbcs;
     }
 
-    public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor) {
+    public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
 
-        DataPointPieChart pieChartDataPoint = (DataPointPieChart) dataPoint;
+    	this.point = point;
+    	
+        pieChartDataPoint = (DataPointPieChart) dataPoint;
 
-        double magnitude = 0;
+        magnitude = 0;
 
         if (scaleOnX) {
             magnitude = pieChartDataPoint.magnitude * xyFactor.xFactor;
@@ -51,15 +60,20 @@ public class UIPointPieChart extends UIPointComplexXY {
         int x = (int) (point.x - (magnitude / 2));
         int y = (int) (point.y - (magnitude / 2));
 
-        drawPieChart(pieChartDataPoint, g, point, magnitude);
+        
+        clipAndDrawPoint(g, chart);
 
         g.setPaint(gp);
 
         g.setColor(Color.BLACK);
         g.drawString(pieChartDataPoint.name, x, y);
-
-//        Utils.outlineText(g, "hi there", x, y);
     }
+    
+	@Override
+	public void drawPoint(Graphics2D g) {
+		drawPieChart(pieChartDataPoint, g, point, magnitude);
+	}
+	
 
     private void drawPieChart(DataPointPieChart pieChartDataPoint, Graphics2D g2d, Point point, double magnitude) {
 
@@ -116,10 +130,14 @@ public class UIPointPieChart extends UIPointComplexXY {
             startAngle += angleOfThisSegment;
         }
     }
+    
+	
 
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 }

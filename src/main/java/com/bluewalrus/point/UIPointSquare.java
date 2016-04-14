@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
 
@@ -27,13 +28,12 @@ public class UIPointSquare extends UIPointSimpleXY {
         super(color, size, transparancyFraction);
     }
 
-    public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor) {
+    public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
 
         int alpha = (int) (transparancyFraction * 255);
         Color c = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
 
         g.setColor(c);
-        
 
         rectangle = new Rectangle((int) point.x - radiusOrWidthOfPointShape / 2,
                 point.y - radiusOrWidthOfPointShape / 2,
@@ -41,8 +41,16 @@ public class UIPointSquare extends UIPointSimpleXY {
                 radiusOrWidthOfPointShape
         );
         
-        g.fill(rectangle);
+        clipAndDrawPoint(g, chart);
+    }
     
+    
+    
+	@Override
+	public void drawPoint(Graphics2D g) {
+		
+        g.fill(rectangle);
+        
         if (mouseIsOverPoint) {
         	g.setColor(Color.GREEN);
         	g.fill(rectangle);
@@ -50,7 +58,9 @@ public class UIPointSquare extends UIPointSimpleXY {
         	g.setColor(color);
         	g.fill(rectangle);
         }
-    }
+	}
+	
+	
 
     
 	@Override
@@ -64,5 +74,7 @@ public class UIPointSquare extends UIPointSimpleXY {
 			return false;
 		}
 	}
+
+
 
 }

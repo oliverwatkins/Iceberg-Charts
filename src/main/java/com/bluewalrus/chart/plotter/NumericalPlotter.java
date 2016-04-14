@@ -125,7 +125,7 @@ public class NumericalPlotter extends AbstractPlotter {
     		}
             dataPoint.setPoinUI(xyInstance);
         }
-        dataPoint.uiPointXY.draw(g, new Point(x, y), dataPoint, xyFactor);
+        dataPoint.uiPointXY.draw(g, new Point(x, y), dataPoint, xyFactor, chart);
     }
 
 

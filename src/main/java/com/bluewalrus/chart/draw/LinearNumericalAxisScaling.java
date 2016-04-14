@@ -365,6 +365,8 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		while (!(isWholeNumber(adjustedInc))) { 
 			adjustedInc = adjustedInc*10;
 			multiplicationFactor = multiplicationFactor*10;
+			
+			System.out.println("adjustedInc " + adjustedInc);
 		}
 		
 		
@@ -377,9 +379,12 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		 * 2. Adjust starting point. Convert it to a whole number
 		 */
 		
-		while (!(isAboveOrBelow1andMinus1(adjustedMinValue))) {
+		while (!(isAboveOrBelow1andMinus1OrZero(adjustedMinValue))) {
 			adjustedMinValue = adjustedMinValue*10;
 			multiplicationFactor2 = multiplicationFactor2*10; //overflows :(
+			
+			System.out.println("adjustedMinValue " + adjustedMinValue);
+			
 		}
 		
 		adjustedMinValue = Math.round(adjustedMinValue); //round up??
@@ -403,6 +408,8 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		
 		while (val % adjustedInc != 0) {
 			val++;
+			
+			System.out.println("val " + val);
 		}
 		
 		val = val / multiplicationFactor / multiplicationFactor2;
@@ -415,11 +422,8 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		return (val == Math.floor(val)) && !Double.isInfinite(val);
 	}
 	
-	private boolean isAboveOrBelow1andMinus1(double val) {
-		
-		return (val > 1 || val < -1);
-		
-//		return (val == Math.floor(val)) && !Double.isInfinite(val);
+	private boolean isAboveOrBelow1andMinus1OrZero(double val) {
+		return ((val > 1 || val < -1) || (val == 0.0));
 	}
 	
 	

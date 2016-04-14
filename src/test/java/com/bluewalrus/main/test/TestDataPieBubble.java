@@ -133,4 +133,10 @@ public class TestDataPieBubble extends ChartTester {
 
         return chart;
     }
+	
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataPieBubble();
+		t.testChart(t.getChart());
+	}
 }
