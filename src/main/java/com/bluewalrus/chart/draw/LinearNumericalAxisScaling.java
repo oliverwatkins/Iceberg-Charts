@@ -329,6 +329,8 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	 * 
 	 * if min/max range is 3.0005/4 and the interval is 0.1, then should be 3.1
 	 * 
+	 * if min/max range is -0.0001/4 ....
+	 * 
 	 * 
 	 * @param increment
 	 * @param maxValue
@@ -338,18 +340,13 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	 */
 	protected double getToFirstIntervalValueFromMin(Double increment) {
 		
-		System.out.println("getToFirstIntervalValueFromMin " + increment + " " + this.orientation);
+		System.out.println("getToFirstIntervalValueFromMin " + increment + " minVal = " + this.minValue + " orientation : " + this.orientation);
 		
 		if (this.orientation == Orientation.X) {
 			System.out.println("");
 		}
 
 		double val = this.minValue;
-		
-		if (val == 1.001) {
-
-			System.out.println("");
-		}
 		
 		/**
 		 * Convert increment to a whole number. Get the multiplication factor and
@@ -365,7 +362,7 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 		 * 1. Adjust the increment
 		 */
 		
-		while (!(isWholeNumber(adjustedInc))) {
+		while (!(isWholeNumber(adjustedInc))) { 
 			adjustedInc = adjustedInc*10;
 			multiplicationFactor = multiplicationFactor*10;
 		}
@@ -375,13 +372,24 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 
 		long multiplicationFactor2 = 1; //reset
 		
+		
 		/**
-		 * 2. Adjust starting point
+		 * 2. Adjust starting point. Convert it to a whole number
 		 */
 		
-		while (!(isWholeNumber(adjustedMinValue))) {
+		while (!(isAboveOrBelow1andMinus1(adjustedMinValue))) {
 			adjustedMinValue = adjustedMinValue*10;
 			multiplicationFactor2 = multiplicationFactor2*10; //overflows :(
+		}
+		
+		adjustedMinValue = Math.round(adjustedMinValue); //round up??
+		
+		
+		
+		System.out.println("finished adjusting " );
+		
+		if (this.orientation == Orientation.X) {
+			System.out.println("fi " );
 		}
 		
 		adjustedInc = adjustedInc * multiplicationFactor2;
@@ -405,6 +413,13 @@ public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	
 	private boolean isWholeNumber(double val) {
 		return (val == Math.floor(val)) && !Double.isInfinite(val);
+	}
+	
+	private boolean isAboveOrBelow1andMinus1(double val) {
+		
+		return (val > 1 || val < -1);
+		
+//		return (val == Math.floor(val)) && !Double.isInfinite(val);
 	}
 	
 	
