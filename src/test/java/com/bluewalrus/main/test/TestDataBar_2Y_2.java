@@ -46,15 +46,15 @@ public class TestDataBar_2Y_2  extends ChartTester{
 
 
         XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.RED), 
-        		new Line(Color.BLACK), "max");
+        		new Line(Color.BLACK), "left1");
         series.dataPoints = values;
 
         XYDataSeries series2 = new XYDataSeries(new UIPointSquare(Color.BLUE), 
-        		new Line(Color.BLUE), "min");
+        		new Line(Color.BLUE), "left2");
         series2.dataPoints = values2;
 
         XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.ORANGE), 
-        		new Line(Color.BLUE), "average");
+        		new Line(Color.BLUE), "left3");
         series3.dataPoints = values3;
 
 //        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-50.0, 100.0, 50.0, 10.0, 1.0), "Temperature");
@@ -69,25 +69,25 @@ public class TestDataBar_2Y_2  extends ChartTester{
         GradiantRule rule = new GradiantRule(0, 130, Color.BLUE, Color.RED, 100);
         
         ArrayList<DataPoint> y2series1 = new ArrayList<DataPoint>();
-        y2series1.add(new DataPoint(2, 310.4));
-        y2series1.add(new DataPoint(3, 720.6));
-        y2series1.add(new DataPoint(4, 350.6));
+        y2series1.add(new DataPoint(2, 760.4));
+        y2series1.add(new DataPoint(3, 620.6));
+        y2series1.add(new DataPoint(4, 550.6));
         
         ArrayList<DataPoint> y2series2 = new ArrayList<DataPoint>();
-        y2series2.add(new DataPoint(2, 370.4));
-        y2series2.add(new DataPoint(3, 790.6));
-        y2series2.add(new DataPoint(4, 330.6));
+        y2series2.add(new DataPoint(2, 570.4));
+        y2series2.add(new DataPoint(3, 690.6));
+        y2series2.add(new DataPoint(4, 710.6));
         
         
         
         ArrayList<XYDataSeries> xySeriesY2 = new ArrayList<XYDataSeries>();
         
-        XYDataSeries seriesY2 = new XYDataSeries(new UIPointCircle(Color.RED), 
-        		new Line(Color.BLACK), "max");
+        XYDataSeries seriesY2 = new XYDataSeries(new UIPointCircle(Color.PINK), 
+        		new Line(Color.PINK, true, 4), "max");
         seriesY2.dataPoints = y2series1;
 
-        XYDataSeries series2Y2 = new XYDataSeries(new UIPointSquare(Color.BLUE), 
-        		new Line(Color.BLUE), "min");
+        XYDataSeries series2Y2 = new XYDataSeries(new UIPointSquare(Color.PINK), 
+        		new Line(Color.PINK, true, 4), "min");
         series2Y2.dataPoints = y2series2;
         
         xySeriesY2.add(seriesY2);
