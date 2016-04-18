@@ -1,7 +1,6 @@
 package com.bluewalrus.chart;
 
 import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Font;
@@ -11,8 +10,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Shape;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -102,7 +99,7 @@ public abstract class Chart extends JPanel {
 	 * 
 	 * @param g
 	 */
-	abstract protected void drawGraph(Graphics g);
+	abstract protected void drawGraphData(Graphics g);
 
 	
 	/**

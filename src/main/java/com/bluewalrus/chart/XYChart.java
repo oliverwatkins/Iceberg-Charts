@@ -14,12 +14,12 @@ import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.bar.Legendable;
 import com.bluewalrus.bar.Line;
+import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
-import com.bluewalrus.chart.axis.TimeInterval.Type;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.DateUtils;
@@ -55,6 +55,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public XAxis xAxis;
 
 	public ArrayList<XYDataSeries> data = new ArrayList<XYDataSeries>();
+	
+	public ArrayList<XYDataSeries> dataY2 = new ArrayList<XYDataSeries>();
+	
+	
+	
 
 	/**
 	 * Create an XY chart passing in also the data set.
@@ -129,6 +134,30 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		yAxis.labelText = yLabel;
 				
 	}
+	
+	
+	//XYY
+	public XYChart(String title, String xLabel, String yLabel, ArrayList<XYDataSeries> xySeries,
+			ArrayList<XYDataSeries> xySeriesY2) {
+		
+		
+		this.data.addAll(xySeries);
+		this.dataY2.addAll(xySeriesY2);
+		
+		ChartUtils.setUpSeriesStyle(xySeries, this);
+
+		initialiseScaling(xySeries);
+		
+		this.xAxis.labelText = xLabel;
+		this.yAxis.labelText = yLabel;
+		
+		this.addMouseMotionListener(this);
+
+
+
+		this.setTitle(title);
+	}
+	
 	
 	/**
 	 * Simple Mutliple Series Constructor
@@ -394,6 +423,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 
 	
+
+
 	/**
 	 * 
 	 * @param xySeriesList
@@ -464,6 +495,15 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		this.yAxis = yAxis;
 		this.xAxis = xAxis;
+
+		
+		if (this instanceof XYYChart) {
+			
+			XYYChart d = (XYYChart)this;
+			d.yAxis2 = initialiseScalingY(this.dataY2);
+			d.yAxis2.axisDraw.setOrientation(Orientation.Y2);
+		}
+		
 	}
 	
 	private XAxis initialiseScalingXTime(ArrayList<XYDataSeries> xySeriesList) {
@@ -475,16 +515,16 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		TimeInterval.Type interval2 = DateUtils.getNextInterval(interval1);
 		TimeInterval.Type interval3 = DateUtils.getNextInterval(interval2);
 		
-		TimeInterval t1x = new TimeInterval(4, interval1, null); //, new GridLine(Color.GRAY, false, 1));
-		TimeInterval t2x = new TimeInterval(2, interval2, null); //, new GridLine(Color.LIGHT_GRAY, true, 1));
-		TimeInterval t3x = new TimeInterval(1, interval3, null); //, new GridLine(Color.LIGHT_GRAY, true, 1));
+		TimeInterval t1x = new TimeInterval(4, interval1, null); 
+		TimeInterval t2x = new TimeInterval(2, interval2, null);
+		TimeInterval t3x = new TimeInterval(1, interval3, null);
 		
 		t1x.styling.graphLine = new GridLine(Color.GRAY, false, 1);
-		t1x.styling.lineLength = 6; //new GridLine(Color.GRAY, false, 1);
+		t1x.styling.lineLength = 6; 
 		
 		t2x.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);		
-		t2x.styling.lineLength = 3; //new GridLine(Color.LIGHT_GRAY, true, 1);		
-
+		t2x.styling.lineLength = 3; 
+		
 		//invisible!!! But not null
 		t3x.styling.graphLine = new GridLine(Color.WHITE, false, 0);		
 		t3x.styling.lineLength = 0; 
@@ -734,12 +774,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		// draws axis, frame etc
 		this.prePaint(g2d, data);
 
-		// draws actual data
-		drawGraph(g2d);
+		// draws actual data 
+		drawGraphData(g2d);
 	}
 
 	@Override
-	protected void drawGraph(Graphics g) {
+	protected void drawGraphData(Graphics g) {
 			
         if (xAxis.axisDraw.getMaxValue() == xAxis.axisDraw.getMinValue()) {
         	
@@ -756,6 +796,16 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		} else {
 			new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this,
 					yAxis, xAxis, data);
+		}
+		
+		
+		
+		if (this instanceof XYYChart) {
+			XYYChart d = (XYYChart)this;
+			
+			new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this,
+					d.yAxis2, xAxis, dataY2);
+			
 		}
 
 	}

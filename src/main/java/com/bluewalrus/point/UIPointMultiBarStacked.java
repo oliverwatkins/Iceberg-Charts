@@ -21,22 +21,26 @@ import com.bluewalrus.renderer.XYFactor;
 public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 
 	XYChart chart; //Two way reference here :( Not good :(
+	private int height;
+	private int width;
+	private int y;
+	private Color muchmuchdarker;
+	private Color colorToUse;
+	private int startDrawLeft;
 	
 	public UIPointMultiBarStacked(XYChart chart) {
 		super(Color.BLACK);
 		this.chart = chart;		
 	}
 
-	public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor) {
+	public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
 
 		DataPointMultiBar dpX = (DataPointMultiBar)dataPoint;
 	    
-		Color colorToUse;
-
-        int leftPosition = 0;
-        int y = 0;
-        int width = 0;
-        int height = 0;
+		int leftPosition = 0;
+        y = 0;
+        width = 0;
+        height = 0;
 
         double distance = 0;
         
@@ -47,7 +51,7 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
     	 */
         for (DataPointBar dataPointBar : dpX.datapointBars) {
         	
-        	int startDrawLeft = leftPosition  - (barWidth/2);
+        	startDrawLeft = leftPosition  - (barWidth/2);
         	
         	/**
         	 * Calculate rectangle dimensions.
@@ -85,32 +89,59 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
             	colorToUse = dataPointBar.color;
             }
             
-            Color muchmuchdarker = colorToUse.darker(); 
+            muchmuchdarker = colorToUse.darker(); 
             
-            g.setColor(colorToUse);
+            clipAndDrawPoint(g, chart);
             
-            //bottom rect
-            g.fillRect(startDrawLeft,
-            		y,
-            		width,
-            		height);
-            
-            g.setColor(muchmuchdarker);
-            
-            //bottom rect
-            g.drawRect(startDrawLeft,
-            		y,
-            		width,
-            		height);
+//            g.setColor(colorToUse);
+//            
+//            //bottom rect
+//            g.fillRect(startDrawLeft,
+//            		y,
+//            		width,
+//            		height);
+//            
+//            g.setColor(muchmuchdarker);
+//            
+//            //bottom rect
+//            g.drawRect(startDrawLeft,
+//            		y,
+//            		width,
+//            		height);
             
 		}
 	}
+	
+	@Override
+	public void drawPoint(Graphics2D g) {
+		
+        g.setColor(colorToUse);
+        
+        //bottom rect
+        g.fillRect(startDrawLeft,
+        		y,
+        		width,
+        		height);
+        
+        g.setColor(muchmuchdarker);
+        
+        //bottom rect
+        g.drawRect(startDrawLeft,
+        		y,
+        		width,
+        		height);
+		
+	}
+	
+	
 
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 	
 
 }

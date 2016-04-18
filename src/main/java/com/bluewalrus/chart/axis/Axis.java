@@ -26,7 +26,10 @@ public abstract class Axis implements Serializable {
 	 */
 	public AxisDraw axisDraw;
 	
-    public Font font = new Font("Arial", Font.PLAIN, 12);
+
+
+
+	public Font font = new Font("Arial", Font.PLAIN, 12);
 	public String labelText = "";
 
 	public Color axisColor = Color.BLACK;
@@ -52,6 +55,17 @@ public abstract class Axis implements Serializable {
 		
 		this.axisDraw = axisDraw;
 	}
+	
+	
+    public AxisDraw getAxisDraw() {
+		return axisDraw;
+	}
+
+	public void setAxisDraw(AxisDraw axisDraw) {
+		this.axisDraw = axisDraw;
+	}
+	
+	
 
 	/**
 	 * The overall label for the axis, eg: Temperature, Day of Week.
@@ -71,5 +85,7 @@ public abstract class Axis implements Serializable {
 
 
 	public abstract String getName();
+	
+	
 
 }

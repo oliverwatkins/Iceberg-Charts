@@ -4,11 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
 
 public class UIPointCircle extends UIPointSimpleXY {
 
+    private Point point = null;
+
+    
     public UIPointCircle(Color color) {
         super(color);
     }
@@ -21,24 +25,40 @@ public class UIPointCircle extends UIPointSimpleXY {
         super(color, size, transparancyFraction);
     }
 
-    public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor) {
+    
+    
+    public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
 
+    	this.point = point;
+    	
         int alpha = (int) (transparancyFraction * 255);
         Color c = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
 
         g.setColor(c);
+        
+        this.clipAndDrawPoint(g, chart);
 
+    }
+    
+    
+	@Override
+	public void drawPoint(Graphics2D g) {
+		
         g.fillOval((int) point.x - radiusOrWidthOfPointShape / 2,
                 point.y - radiusOrWidthOfPointShape / 2,
                 radiusOrWidthOfPointShape,
                 radiusOrWidthOfPointShape
         );
-    }
+	}
+	
+	
 
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 
 }

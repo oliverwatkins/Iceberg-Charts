@@ -12,6 +12,7 @@ import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
 import com.bluewalrus.chart.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
@@ -31,14 +32,54 @@ public class XYYChart extends XYChart {
     public int barWidth = 30;
     public YAxis yAxis2;
     public ArrayList<Bar> bars;
-    private XYDataSeries<DataPointBar> barSeries;
+    public XYDataSeries<DataPointBar> barSeries;
 
-    public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis22, ArrayList<XYDataSeries<?>> xySeries,
-			ArrayList<XYDataSeries<?>> xySeriesY2, boolean erasureFixme) {
-    	super(xAxis, yAxis);
+    public ArrayList<XYDataSeries> xySeriesY2;
+
+    
+    
+    public XYYChart(String title, 
+    		String xLabel, 
+    		String yLabel,
+    		ArrayList<XYDataSeries> xySeries,
+			ArrayList<XYDataSeries> xySeriesY2, boolean erasureFixme) {
     	
-    	yAxis2.axisDraw.setOrientation(Orientation.Y2);
     	
+//    	super(xAxis, yAxis);
+    	
+    	
+    	super(title, xLabel, yLabel, xySeries, xySeriesY2);
+    	
+    	
+    	
+    	
+//    	yAxis2 = new YAxis(new LinearNumericalAxisScalingX(0, 100), "hi");
+//    	
+//    	yAxis2.axisDraw.setOrientation(Orientation.Y2);
+//    	
+//    	
+//    	
+//    	this.xySeriesY2  = xySeriesY2;
+    	
+//    	yAxis2.setAxisDraw(new LinearNumericalAxisScalingX(0, 100));
+    	
+//		ChartUtils.setUpSeriesStyle(xySeriesList, this);
+//
+//		initialiseScaling(xySeriesList);
+//		
+//		this.xAxis.labelText = xLabel;
+//		this.yAxis.labelText = yLabel;
+//		
+//		this.addMouseMotionListener(this);
+//
+//		this.data.addAll(xySeriesList);
+//
+//		this.setTitle(title);
+		
+		
+//		yAxis2.axisDraw.setOrientation(Orientation.Y2);
+		
+		
     	/**
     	 * TODO this constructor to replace bar constructor
     	 * 
@@ -106,17 +147,23 @@ public class XYYChart extends XYChart {
 
 
 
+
+
+
+
 	@Override
-    protected void drawGraph(Graphics g) {
-
-    	//draw bars first
-        drawLinesOrPointsXXY((Graphics2D) g, this, yAxis2, xAxis, barSeries);
-
-        //...then the other series.
-        new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
-
+    protected void drawGraphData(Graphics g) {
+		
+		super.drawGraphData(g);
+		
+//    	//draw bars first
+//        drawLinesOrPointsXXY((Graphics2D) g, this, yAxis2, xAxis, barSeries);
+//
+//        //...then the other series.
+//        new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
+//
         Graphics2D g2d = (Graphics2D) g;
-
+//
         drawRightLine(g2d);
         
         yAxis2.rightSide = true;
@@ -124,8 +171,9 @@ public class XYYChart extends XYChart {
         yAxis2.axisDraw.drawAll(g2d, this, null); //drawTicksAndLabels(g, this);
         
         yAxis2.drawLabel(g, this);
-
-        drawLegend(g2d);
+//
+        drawLegend((Graphics2D) g);
+        
     }
     
     

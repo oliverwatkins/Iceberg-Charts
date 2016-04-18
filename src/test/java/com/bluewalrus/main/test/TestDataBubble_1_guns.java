@@ -102,6 +102,11 @@ public class TestDataBubble_1_guns extends ChartTester {
 
         return chart;
     }
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataBubble_1_guns();
+		t.testChart(t.getChart());
+	}
 
 
 }

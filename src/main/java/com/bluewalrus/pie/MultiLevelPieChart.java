@@ -58,12 +58,12 @@ public class MultiLevelPieChart extends AbstractPieChart {
     
     @Override
     protected void paintComponent(Graphics g) {
-    	drawGraph(g);
+    	drawGraphData(g);
     }
     
 
 	@Override
-	protected void drawGraph(Graphics g) {
+	protected void drawGraphData(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         
         calculateHeighAndWidthOfChart();

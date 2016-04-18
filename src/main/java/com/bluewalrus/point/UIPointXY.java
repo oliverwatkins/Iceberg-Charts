@@ -3,8 +3,11 @@ package com.bluewalrus.point;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Shape;
 import java.io.Serializable;
 
+import com.bluewalrus.chart.ChartUtils;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
 
@@ -19,7 +22,8 @@ public abstract class UIPointXY implements Serializable, Cloneable {
     public Color color; //default color
     public double transparancyFraction = 0.7;
 
-    public UIPointXY() {
+
+	public UIPointXY() {
         super();
     }
     
@@ -45,11 +49,32 @@ public abstract class UIPointXY implements Serializable, Cloneable {
 	public UIPointXY createNewInstanceOfSelf() throws CloneNotSupportedException {
 		return (UIPointXY)this.clone();
 	}
+	
+	
+	protected void clipAndDrawPoint(Graphics2D g, XYChart chart) {
+		if (chart != null) { 
+			
+			Shape cachedClip = ChartUtils.clipChart(g, chart);
+
+			drawPoint(g);
+			
+			g.setClip(cachedClip);
+			
+		}else { //in legend
+			drawPoint(g);
+		}
+	}
+	
+
 
 	
 	
-    public abstract void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor);
+    public abstract void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart);
 
+    public abstract void drawPoint(Graphics2D g);
+
+    
+    
     /**
      * Checks if the point is contained within the shape of the Point. For example
      * looks at whether the X,Y lie within the bounds of a rectangle if the point

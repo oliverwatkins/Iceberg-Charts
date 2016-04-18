@@ -75,4 +75,9 @@ public class TestDataBubble_2_series extends ChartTester {
 
         return chart;
     }
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataBubble_2_series();
+		t.testChart(t.getChart());
+	}
 }

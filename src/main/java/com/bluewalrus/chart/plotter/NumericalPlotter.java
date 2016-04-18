@@ -53,6 +53,10 @@ public class NumericalPlotter extends AbstractPlotter {
         DataPoint lastPoint = null; 
 
         for (XYDataSeries xYDataSeries : xYDataSerieses) {
+        	
+//        	if (xYDataSeries.dataPoints == null)
+//        		throw new RuntimeException("ERROR : XYDataSeries has no dataPoints set. " + xYDataSeries.name);
+        	
 
             ArrayList<DataPoint> dataPoints = xYDataSeries.dataPoints;
 
@@ -121,7 +125,7 @@ public class NumericalPlotter extends AbstractPlotter {
     		}
             dataPoint.setPoinUI(xyInstance);
         }
-        dataPoint.uiPointXY.draw(g, new Point(x, y), dataPoint, xyFactor);
+        dataPoint.uiPointXY.draw(g, new Point(x, y), dataPoint, xyFactor, chart);
     }
 
 

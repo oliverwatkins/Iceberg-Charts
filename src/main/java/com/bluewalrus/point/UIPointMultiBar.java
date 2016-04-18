@@ -5,7 +5,9 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Shape;
 
+import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
 import com.bluewalrus.datapoint.DataPoint;
@@ -15,25 +17,30 @@ import com.bluewalrus.renderer.XYFactor;
 
 public class UIPointMultiBar extends UIPointAbstractMultiBar{
 
-	XYChart chart; //Two way reference here :( Not good :(
+	XYChart chart; //Two way reference here :( Not good :( TODO use singleton reference to chart?
+	private int x;
+	private int y;
+	private int width;
+	private int height;
+	private int shift;
+	private Color colorToUse;
+	private Color muchmuchdarker;
 	
 	public UIPointMultiBar(XYChart chart) {
 		super(Color.BLACK); //unimportant, never used.
 		this.chart = chart;		
 	}
 
-	public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor) {
+	public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
 
 		DataPointMultiBar dpX = (DataPointMultiBar)dataPoint;
 	    
-		Color colorToUse;
+		x = 0;
+        y = 0;
+        width = 0;
+        height = 0;
 
-        int x = 0;
-        int y = 0;
-        int width = 0;
-        int height = 0;
-
-        int shift = 0;
+        shift = 0;
         
         int totalWidthOfBars = dpX.datapointBars.size() * barWidth;
         
@@ -68,32 +75,48 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
             	colorToUse = dpb.color;
             }
             
-            Color muchmuchdarker = colorToUse.darker(); 
+            muchmuchdarker = colorToUse.darker(); 
             
-            g.setColor(colorToUse);
             
-            //bottom rect
-            g.fillRect(x + shift,
-            		y,
-            		width,
-            		height); // - xyFactor.yZeroOffsetInPixel));
-            
-            g.setColor(muchmuchdarker);
-            
-            //bottom rect
-            g.drawRect(x + shift,
-            		y,
-            		width,
-            		height);
+    		clipAndDrawPoint(g, chart);
             
             
             shift = shift+barWidth;
 		}
 	}
 
+
+	
+	@Override
+	public void drawPoint(Graphics2D g) {
+		
+		
+        g.setColor(colorToUse);
+        
+        //bottom rect
+        g.fillRect(x + shift,
+        		y,
+        		width,
+        		height); // - xyFactor.yZeroOffsetInPixel));
+        
+        g.setColor(muchmuchdarker);
+        
+        //bottom rect
+        g.drawRect(x + shift,
+        		y,
+        		width,
+        		height);
+		
+	}
+	
+	
+	
+
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 }

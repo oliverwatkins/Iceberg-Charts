@@ -3,14 +3,22 @@ package com.bluewalrus.point;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Shape;
 
+import com.bluewalrus.chart.ChartUtils;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.renderer.XYFactor;
 
 public class UIPointTriangle extends UIPointSimpleXY{
 
 	
-    public UIPointTriangle(Color color) {
+    private int[] xPoints;
+	private int[] yPoints;
+	private int numberPoints;
+
+	public UIPointTriangle(Color color) {
 		super(color);
 	}
     public UIPointTriangle(Color color, int size) {
@@ -19,13 +27,10 @@ public class UIPointTriangle extends UIPointSimpleXY{
     public UIPointTriangle(Color color, int size, double transparancyFraction) {
 		super(color, size, transparancyFraction);
 	}
-    
-
 
 	@Override
 	public void draw(Graphics2D g, Point point, DataPoint dataPoint,
-			XYFactor xyFactor) {
-		
+			XYFactor xyFactor, XYChart chart) {
 		
 		int alpha = (int)(transparancyFraction * 255);
 		Color c = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
@@ -33,19 +38,26 @@ public class UIPointTriangle extends UIPointSimpleXY{
     	g.setColor(c);
     	
     	int w = radiusOrWidthOfPointShape/2;
-		
     	
-    	int[] xPoints = new int[]{point.x - w, point.x, point.x + w};
-    	int[] yPoints = new int[]{point.y + w, point.y - w, point.y + w};
-    	int numberPoints = 3;
+    	xPoints = new int[]{point.x - w, point.x, point.x + w};
+    	yPoints = new int[]{point.y + w, point.y - w, point.y + w};
+    	numberPoints = 3;
     	
-    	g.fillPolygon(xPoints, yPoints, numberPoints);
-		
+    	clipAndDrawPoint(g, chart);
 	}
+	
+	@Override
+	public void drawPoint(Graphics2D g) {
+		
+		g.fillPolygon(xPoints, yPoints, numberPoints);
+	}
+	
+	
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }
