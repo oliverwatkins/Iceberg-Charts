@@ -24,7 +24,6 @@ public class ChartAnimation extends AnimationSupport{
 		
 //		chart
 		
-		System.out.println("render with value : " + value);
 		
 		
 //		sideBarSection.setMaximumSize(new Dimension(Integer.MAX_VALUE, value));

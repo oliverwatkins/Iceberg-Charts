@@ -550,8 +550,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		//get sensible interval
 		double initialIntervalX = getInterval(drX);
 		
-		System.out.println("> For the X data range : " + drX + " a sensible interval was found of " + initialIntervalX);
-		
 		NumericalInterval t1x = new NumericalInterval(initialIntervalX); 
 		NumericalInterval t2x = new NumericalInterval(initialIntervalX/10); 
 		NumericalInterval t3x = new NumericalInterval(initialIntervalX/100); 
@@ -578,9 +576,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		//get sensible interval
 		double initialIntervalY = getInterval(drY);
 		
-		System.out.println("> For the X data range : " + drY + " a sensible interval was found of " + initialIntervalY);
-		
-
 		NumericalInterval t1 = new NumericalInterval(initialIntervalY); 
 		NumericalInterval t2 = new NumericalInterval(initialIntervalY/10); 
 		
@@ -782,18 +777,14 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			
         if (xAxis.axisDraw.getMaxValue() == xAxis.axisDraw.getMinValue()) {
         	
-        	System.out.println("xAxis.axisDraw " + xAxis.axisDraw.toString());
-        	System.out.println("xAxis.axisDraw " + xAxis.axisDraw.getMaxValue());
-        	
-        	
         	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisDraw.getMinValue());
         }
 
 		if (xAxis.axisDraw instanceof TimeSeriesAxisScalingX) {
-			new ChartPlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis,
+			new ChartPlotter().plotData((Graphics2D) g, this, yAxis,
 					xAxis, data);
 		} else {
-			new ChartPlotter().drawLinesOrPoints((Graphics2D) g, this,
+			new ChartPlotter().plotData((Graphics2D) g, this,
 					yAxis, xAxis, data);
 		}
 		
@@ -802,7 +793,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		if (this instanceof XYYChart) {
 			XYYChart d = (XYYChart)this;
 			
-			new ChartPlotter().drawLinesOrPoints((Graphics2D) g, this,
+			new ChartPlotter().plotData((Graphics2D) g, this,
 					d.yAxis2, xAxis, dataY2);
 			
 		}

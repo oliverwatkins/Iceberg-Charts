@@ -37,10 +37,7 @@ public class PieBubbleChart extends XYChart {
 			ArrayList<DataPointPieChart> al = xyDataSeries.dataPoints;
 
 			for (DataPointPieChart dp : al) {
-
-				System.out.println("dp.magnitude before " + dp.magnitude);
 				dp.magnitude = dp.magnitude * multipleMagnitudeBy;
-				System.out.println("dp.magnitude after " + dp.magnitude);
 			}
 		}
 	}

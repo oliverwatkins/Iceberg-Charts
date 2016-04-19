@@ -5,10 +5,6 @@ package com.bluewalrus.renderer;
 
 public class XYFactor {
 	
-	
-	
-	
-
 	/**
 	 * Converting factor. Basically equal to :
 	 *

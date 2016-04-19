@@ -59,8 +59,6 @@ public abstract class AbstractPieChart extends Chart  {
         g2d.setFont(textFontOnSlices);
         g2d.setColor(textColorOnSlices);
 
-        System.out.println(s.name + " s.getRelativeMagnitude() " + s.getRelativeMagnitude());
-
         if (s.midpoint != null) {
             g2d.drawString(s.name, (int) s.midpoint.getX(), (int) s.midpoint.getY());
         }

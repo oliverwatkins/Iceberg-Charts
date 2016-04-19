@@ -76,8 +76,6 @@ public class Segment implements Categorisable{
             
             double d = parent.getRelativeMagnitude() * magnitude/100;
 
-            System.out.println("parent.getRelativeMagnitude() " + d);
-            
             return d;
         }
     }

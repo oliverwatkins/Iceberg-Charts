@@ -117,7 +117,7 @@ public class XYYChart extends XYChart {
         ArrayList al = new ArrayList<>();
         al.add(barSeries);
 
-        new ChartPlotter().drawLinesOrPoints(g, chart, yAxis, xAxis, al);
+        new ChartPlotter().plotData(g, chart, yAxis, xAxis, al);
     }
 
     /**

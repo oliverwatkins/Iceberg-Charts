@@ -106,10 +106,6 @@ public class UIPointPieChart extends UIPointComplexXY {
                     colors);
 
             g2d.setPaint(rgp);
-
-            
-            System.out.println(" x " + x);
-            System.out.println(" y " + y);
             
             g2d.fillOval(x, y, (int) width, (int) width);
 

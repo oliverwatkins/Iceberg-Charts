@@ -342,12 +342,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 	 */
 	protected double getToFirstIntervalValueFromMin(Double increment) {
 		
-		System.out.println("getToFirstIntervalValueFromMin " + increment + " minVal = " + this.minValue + " orientation : " + this.orientation);
-		
-		if (this.orientation == Orientation.X) {
-			System.out.println("");
-		}
-
 		double val = this.minValue;
 		
 		/**
@@ -367,8 +361,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		while (!(isWholeNumber(adjustedInc))) { 
 			adjustedInc = adjustedInc*10;
 			multiplicationFactor = multiplicationFactor*10;
-			
-			System.out.println("adjustedInc " + adjustedInc);
 		}
 		
 		
@@ -384,20 +376,9 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		while (!(isAboveOrBelow1andMinus1OrZero(adjustedMinValue))) {
 			adjustedMinValue = adjustedMinValue*10;
 			multiplicationFactor2 = multiplicationFactor2*10; //overflows :(
-			
-			System.out.println("adjustedMinValue " + adjustedMinValue);
-			
 		}
 		
 		adjustedMinValue = Math.round(adjustedMinValue); //round up??
-		
-		
-		
-		System.out.println("finished adjusting " );
-		
-		if (this.orientation == Orientation.X) {
-			System.out.println("fi " );
-		}
 		
 		adjustedInc = adjustedInc * multiplicationFactor2;
 
@@ -410,8 +391,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		
 		while (val % adjustedInc != 0) {
 			val++;
-			
-			System.out.println("val " + val);
 		}
 		
 		val = val / multiplicationFactor / multiplicationFactor2;

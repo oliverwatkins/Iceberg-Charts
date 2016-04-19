@@ -25,8 +25,15 @@ public class ChartPlotter {
 
 	protected Point lastPoint;
 	
-	
-	public void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
+	/**
+	 * Entry point
+	 * @param g
+	 * @param chart
+	 * @param yAxis
+	 * @param xAxis
+	 * @param xYDataSerieses
+	 */
+	public void plotData(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
         
         XYFactor xyFactor = getXYFactor(chart, xAxis, yAxis);
@@ -197,6 +204,13 @@ public class ChartPlotter {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * @param chart
+	 * @param xAxis
+	 * @return
+	 */
 
 	protected double getXZeroOffsetInPixel(XYChart chart, XAxis xAxis) {
 		

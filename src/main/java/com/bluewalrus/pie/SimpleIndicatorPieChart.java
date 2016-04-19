@@ -108,8 +108,6 @@ public class SimpleIndicatorPieChart extends AbstractPieChart {
                  */
                 if (gradingAccum > percent) {
 
-                    System.out.println("gradingAccum > percent");
-
 					// get the previous accumulated segments. Segments minus
                     // last one
                     double gradingAccumMinusOneSegment = gradingAccum - val;
@@ -126,19 +124,14 @@ public class SimpleIndicatorPieChart extends AbstractPieChart {
 
                 } else {
 
-                    System.out.println("normal");
                     angle = (val / 100) * 360;
 
                     g2d.fillArc(0, 0, getWidth(), getWidth(), lastPoint,
                             -angle.intValue());
 
-                    System.out.println("fill arc " + lastPoint + " "
-                            + -angle.intValue());
-
                     lastPoint = lastPoint + -angle.intValue();
                 }
             }
         }
-        System.out.println("centerPoint " + centerPoint);
     }
 }

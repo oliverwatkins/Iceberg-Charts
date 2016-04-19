@@ -81,8 +81,6 @@ public class PieChart extends AbstractPieChart implements Legendable {
 
         calculateCenterPoint();
 
-        System.out.println("centerPoint " + centerPoint);
-
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, // Anti-alias!
                 RenderingHints.VALUE_ANTIALIAS_ON);
 

@@ -71,9 +71,6 @@ public class MultiLevelPieChart extends AbstractPieChart {
         calculateCenterPoint();
         
 
-    	
-        System.out.println("centerPoint " + centerPoint);
-        
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, // Anti-alias!
                 RenderingHints.VALUE_ANTIALIAS_ON);
 

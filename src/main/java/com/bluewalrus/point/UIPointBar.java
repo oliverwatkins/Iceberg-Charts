@@ -56,17 +56,8 @@ public class UIPointBar extends UIPointAbstractBar {
     	}else {
     		barWidth = 50; //default
     	}
-
-    	
-		System.out.println("1 bar width = " + barWidth);
-
     	
     	barWidth = pixBtnFirst2Pts;
-    	
-		System.out.println("2 bar width = " + barWidth);
-
-    	
-//    	barWidth = 100;
     	
     	Color dataPointColor = null;
     	
