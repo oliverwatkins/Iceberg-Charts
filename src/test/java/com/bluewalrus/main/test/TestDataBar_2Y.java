@@ -12,13 +12,13 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.EnumerationAxisScalingX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointBar;
 import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointTriangle;
+import com.bluewalrus.scaling.EnumerationAxisScalingX;
+import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
@@ -131,8 +131,8 @@ public class TestDataBar_2Y extends ChartTester{
         
         ArrayList<XYDataSeries> xySeries2 = new ArrayList<XYDataSeries>();
         
-        XYDataSeries series2_2 = new XYDataSeries(new UIPointBar(Color.RED), 
-        		new Line(Color.RED), "xxxx");
+        XYDataSeries series2_2 = new XYDataSeries(new UIPointBar(Color.PINK), 
+        		null, "Rainfall");
         series2_2.dataPoints = barValues;
         
         
@@ -141,7 +141,7 @@ public class TestDataBar_2Y extends ChartTester{
 
 //        XYYChart chart = new XYYChart(xAxis, yAxis, yAxis2, barSeries, xySeries, 30);
         
-        XYYChart chart = new XYYChart("", "", "", xySeries2, xySeries, true);
+        XYYChart chart = new XYYChart("Munich Weather", "Month", "Temperature" ,"Rainfall", xySeries2, xySeries, true);
         
 
 //        chart.width = 1000;

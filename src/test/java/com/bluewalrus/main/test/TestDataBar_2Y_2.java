@@ -12,12 +12,12 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.EnumerationAxisScalingX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointTriangle;
+import com.bluewalrus.scaling.EnumerationAxisScalingX;
+import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 public class TestDataBar_2Y_2  extends ChartTester{
 

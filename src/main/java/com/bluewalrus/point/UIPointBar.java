@@ -15,16 +15,24 @@ public class UIPointBar extends UIPointAbstractBar {
 
     boolean doBorder = true;
     Color negativeColor;
+    
 	private int x;
 	private int y;
 	private int width;
 	private int height;
+	
+	
 	private Color muchmuchdarker;
 	private Color colorToUse;
 
 
     public UIPointBar(Color color) {
         super(color);
+    }
+    public UIPointBar(Color color, int barWidthPercent) {
+        super(color);
+        this.barWidthPercent = barWidthPercent;
+        
     }
 
     public UIPointBar(Color color, Color negativeColor, int barWidth) {
@@ -35,6 +43,9 @@ public class UIPointBar extends UIPointAbstractBar {
 
     public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
 
+    	if (barWidthPercent != 0) {
+    		
+    	}
     	
     	Color dataPointColor = null;
     	

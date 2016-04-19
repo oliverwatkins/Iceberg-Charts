@@ -23,18 +23,18 @@ import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.DateUtils;
-import com.bluewalrus.chart.draw.EnumerationAxisScalingX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
-import com.bluewalrus.chart.draw.TimeSeriesAxisScalingX;
-import com.bluewalrus.chart.plotter.DatePlotter;
-import com.bluewalrus.chart.plotter.NumericalPlotter;
+import com.bluewalrus.chart.draw.plotter.DatePlotter;
+import com.bluewalrus.chart.draw.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.point.UIPointBar;
 import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointXY;
+import com.bluewalrus.scaling.EnumerationAxisScalingX;
+import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
+import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 
 /**
  * XYChart is a chart where data is represented by x,y data. Typically the y
@@ -137,7 +137,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	
 	
 	//XYY
-	public XYChart(String title, String xLabel, String yLabel, ArrayList<XYDataSeries> xySeries,
+	public XYChart(String title, String xLabel, String yLabel, String y2Label, ArrayList<XYDataSeries> xySeries,
 			ArrayList<XYDataSeries> xySeriesY2) {
 		
 		

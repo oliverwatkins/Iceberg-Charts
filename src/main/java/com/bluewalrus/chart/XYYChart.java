@@ -12,8 +12,7 @@ import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
-import com.bluewalrus.chart.plotter.NumericalPlotter;
+import com.bluewalrus.chart.draw.plotter.NumericalPlotter;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
@@ -31,7 +30,7 @@ public class XYYChart extends XYChart {
 
     public int barWidth = 30;
     public YAxis yAxis2;
-    public ArrayList<Bar> bars;
+//    public ArrayList<Bar> bars;
     public XYDataSeries<DataPointBar> barSeries;
 
     public ArrayList<XYDataSeries> xySeriesY2;
@@ -41,14 +40,11 @@ public class XYYChart extends XYChart {
     public XYYChart(String title, 
     		String xLabel, 
     		String yLabel,
+    		String y2Label, 
     		ArrayList<XYDataSeries> xySeries,
 			ArrayList<XYDataSeries> xySeriesY2, boolean erasureFixme) {
     	
-    	
-//    	super(xAxis, yAxis);
-    	
-    	
-    	super(title, xLabel, yLabel, xySeries, xySeriesY2);
+    	super(title, xLabel, yLabel, y2Label, xySeries, xySeriesY2);
     	
     	
     	
@@ -90,60 +86,60 @@ public class XYYChart extends XYChart {
 	}
     
     
-    
-    public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries<?>> xySeriesList) {
-        this(xAxis, yAxis, yAxis2, bars, xySeriesList, 10);
-    }
-
-    
-
-    
-    
-    
-    
-    public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries<?>> lineSeries, int barWidth) {
-        super(xAxis, yAxis);
-
-        yAxis2.axisDraw.setOrientation(Orientation.Y2);
-        
-        this.bars = bars;
-
-        this.yAxis2 = yAxis2;
-
-        data = new ArrayList<XYDataSeries>();
-
-        ArrayList<DataPointBar> dataPoints = new ArrayList<DataPointBar>();
-
-        double xRange = (double) (this.xAxis.axisDraw.getMaxValue() - this.xAxis.axisDraw.getMinValue());
-
-//        space out
-        //distance between points
-        double pointDistance = (double) (xRange / (bars.size() + 1));
-
-        int i = 1;
-        for (Bar bar : bars) {
-
-            int xPoint = (int) (pointDistance * i);
-
-            for (XYDataSeries s : lineSeries) {
-
-                DataPoint dp = (DataPoint) s.dataPoints.get(i - 1);
-                dp.x = xPoint;
-
-            }
-
-            dataPoints.add(new DataPointBar(xPoint, (int) bar.value, bar.color, bar.name));
-            i++;
-        }
-
-        barSeries = new XYDataSeries<DataPointBar>(
-                dataPoints,
-                new UIPointBar(Color.PINK, Color.YELLOW, barWidth),
-                null,
-                "");
-
-        data.addAll(lineSeries);
-    }
+//    
+//    public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries<?>> xySeriesList) {
+//        this(xAxis, yAxis, yAxis2, bars, xySeriesList, 10);
+//    }
+//
+//    
+//
+//    
+//    
+//    
+//    
+//    public XYYChart(XAxis xAxis, YAxis yAxis, YAxis yAxis2, ArrayList<Bar> bars, ArrayList<XYDataSeries<?>> lineSeries, int barWidth) {
+//        super(xAxis, yAxis);
+//
+//        yAxis2.axisDraw.setOrientation(Orientation.Y2);
+//        
+//        this.bars = bars;
+//
+//        this.yAxis2 = yAxis2;
+//
+//        data = new ArrayList<XYDataSeries>();
+//
+//        ArrayList<DataPointBar> dataPoints = new ArrayList<DataPointBar>();
+//
+//        double xRange = (double) (this.xAxis.axisDraw.getMaxValue() - this.xAxis.axisDraw.getMinValue());
+//
+////        space out
+//        //distance between points
+//        double pointDistance = (double) (xRange / (bars.size() + 1));
+//
+//        int i = 1;
+//        for (Bar bar : bars) {
+//
+//            int xPoint = (int) (pointDistance * i);
+//
+//            for (XYDataSeries s : lineSeries) {
+//
+//                DataPoint dp = (DataPoint) s.dataPoints.get(i - 1);
+//                dp.x = xPoint;
+//
+//            }
+//
+//            dataPoints.add(new DataPointBar(xPoint, (int) bar.value, bar.color, bar.name));
+//            i++;
+//        }
+//
+//        barSeries = new XYDataSeries<DataPointBar>(
+//                dataPoints,
+//                new UIPointBar(Color.PINK, Color.YELLOW, barWidth),
+//                null,
+//                "");
+//
+//        data.addAll(lineSeries);
+//    }
 
 
 

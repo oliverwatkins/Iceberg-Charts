@@ -1,4 +1,4 @@
-package com.bluewalrus.chart.draw;
+package com.bluewalrus.scaling;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,6 +15,8 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.TimeInterval.Type;
+import com.bluewalrus.chart.draw.DateUtils;
+import com.bluewalrus.chart.draw.XAxisDrawUtil;
 
 public class TimeSeriesAxisScalingX extends TimeSeriesAxisScaling{
 

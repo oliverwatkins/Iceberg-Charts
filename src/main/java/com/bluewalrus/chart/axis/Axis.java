@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.draw.AxisDraw;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScaling;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 /**
  * Abstract Axis. Sub types are X and Y. Possible Z Axis in future

@@ -1,4 +1,4 @@
-package com.bluewalrus.chart.plotter;
+package com.bluewalrus.chart.draw.plotter;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -14,11 +14,11 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.TimeSeriesAxisScalingX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointXY;
 import com.bluewalrus.renderer.XYFactor;
+import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 
 /**
  * 

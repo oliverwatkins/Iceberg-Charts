@@ -17,10 +17,10 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
-import com.bluewalrus.chart.draw.TimeSeriesAxisScalingX;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointSquare;
+import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 
 public class TestDataTimeSeries2 extends ChartTester {
 

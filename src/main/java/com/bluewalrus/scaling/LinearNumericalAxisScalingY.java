@@ -1,4 +1,4 @@
-package com.bluewalrus.chart.draw;
+package com.bluewalrus.scaling;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;

@@ -9,11 +9,11 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.point.UIPointBubble;
+import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
+import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 public class TestDataBubble_1_guns extends ChartTester {
 	@Override

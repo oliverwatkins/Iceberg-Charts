@@ -14,14 +14,14 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScalingX;
-import com.bluewalrus.chart.draw.LinearNumericalAxisScalingY;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBoxPlot;
 import com.bluewalrus.point.UIPointBoxPlot;
 import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointTriangle;
+import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
+import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 public class TestDataXY_Boxplot extends ChartTester {
 

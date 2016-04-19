@@ -1,4 +1,4 @@
-package com.bluewalrus.chart.plotter;
+package com.bluewalrus.chart.draw.plotter;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;

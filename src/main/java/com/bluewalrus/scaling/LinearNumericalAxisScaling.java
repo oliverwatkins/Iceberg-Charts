@@ -1,4 +1,4 @@
-package com.bluewalrus.chart.draw;
+package com.bluewalrus.scaling;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,6 +12,9 @@ import com.bluewalrus.chart.XYYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
+import com.bluewalrus.chart.draw.AxisDraw;
+import com.bluewalrus.chart.draw.XAxisDrawUtil;
+import com.bluewalrus.chart.draw.YAxisDrawUtil;
 
 public abstract class LinearNumericalAxisScaling extends AxisDraw{
 	

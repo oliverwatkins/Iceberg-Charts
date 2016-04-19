@@ -1,4 +1,4 @@
-package com.bluewalrus.chart.draw;
+package com.bluewalrus.scaling;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
