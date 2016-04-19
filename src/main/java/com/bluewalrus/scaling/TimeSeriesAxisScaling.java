@@ -8,10 +8,9 @@ import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
-import com.bluewalrus.chart.draw.AxisDraw;
 import com.bluewalrus.chart.draw.DateUtils;
 
-public abstract class TimeSeriesAxisScaling extends AxisDraw{
+public abstract class TimeSeriesAxisScaling extends AxisScaling{
 
 	
 	public Date dateStart;

@@ -4,15 +4,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.draw.AxisDraw;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
+import com.bluewalrus.scaling.AxisScaling;
 
 public class XAxis extends Axis {
 
     /**
      * @param name axis name
      */
-    public XAxis(AxisDraw axisDraw, String name) {
+    public XAxis(AxisScaling axisDraw, String name) {
         super(name, axisDraw);
     }
 

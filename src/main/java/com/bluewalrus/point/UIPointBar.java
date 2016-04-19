@@ -3,9 +3,7 @@ package com.bluewalrus.point;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Shape;
 
-import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
@@ -18,8 +16,8 @@ public class UIPointBar extends UIPointAbstractBar {
     
 	private int x;
 	private int y;
-	private int width;
-	private int height;
+	private double width;
+	private double height;
 	
 	
 	private Color muchmuchdarker;
@@ -38,14 +36,37 @@ public class UIPointBar extends UIPointAbstractBar {
     public UIPointBar(Color color, Color negativeColor, int barWidth) {
         super(color);
         this.negativeColor = negativeColor;
-        this.barWidth = barWidth;
+        this.pointDiffWidth = barWidth;
     }
 
-    public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
+    public void draw(Graphics2D g, 
+    		Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
-    	if (barWidthPercent != 0) {
-    		
+    	
+    	double barWidth = 10; //px
+    	
+    	barWidthPercent = 100;
+    	
+    	if (lastPoint != null) {
+        	pointDiffWidth = (point.x - lastPoint.x);
     	}
+    	
+    	if (barWidthPercent != 0) {
+    		barWidth = ((barWidthPercent * (double)pointDiffWidth)/ 100.0); 
+    	}else {
+    		barWidth = 50; //default
+    	}
+
+    	
+		System.out.println("1 bar width = " + barWidth);
+
+    	
+    	barWidth = pixBtnFirst2Pts;
+    	
+		System.out.println("2 bar width = " + barWidth);
+
+    	
+//    	barWidth = 100;
     	
     	Color dataPointColor = null;
     	
@@ -66,7 +87,7 @@ public class UIPointBar extends UIPointAbstractBar {
         height = 0;
 
         if (yPos > 0) { // greater than zero
-            x = point.x - (barWidth / 2);
+            x = (int)(point.x - (barWidth / 2));
             y = point.y;
             width = barWidth;
             height = (int) ((yPos * xyFactor.yFactor));
@@ -75,7 +96,7 @@ public class UIPointBar extends UIPointAbstractBar {
 
         } else { // less than zero
 
-            x = point.x - (barWidth / 2);
+            x = (int)(point.x - (barWidth / 2));
             y = point.y + (int) (yPos * xyFactor.yFactor);
             width = barWidth;
             height = (int) ((-yPos * xyFactor.yFactor));
@@ -102,8 +123,8 @@ public class UIPointBar extends UIPointAbstractBar {
         //bottom rect
         g.fillRect(x,
                 y,
-                width,
-                height); // - xyFactor.yZeroOffsetInPixel));
+                (int)width,
+                (int)height); // - xyFactor.yZeroOffsetInPixel));
 
         g.setColor(muchmuchdarker);
 
@@ -114,8 +135,8 @@ public class UIPointBar extends UIPointAbstractBar {
             //bottom rect
             g.drawRect(x,
                     y,
-                    width,
-                    height);
+                    (int)width,
+                    (int)height);
 
         }
 	}

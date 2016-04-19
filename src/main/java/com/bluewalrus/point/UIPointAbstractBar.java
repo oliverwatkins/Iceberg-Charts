@@ -8,8 +8,8 @@ import com.bluewalrus.chart.XYChart;
 
 public abstract class UIPointAbstractBar extends UIPointComplexXY {
 
-    int barWidth = 10;
-    int barWidthPercent = 0;
+    int pointDiffWidth = 10;
+    double barWidthPercent = 0;
 
     public UIPointAbstractBar(Color color, int size) {
         super(color, size);

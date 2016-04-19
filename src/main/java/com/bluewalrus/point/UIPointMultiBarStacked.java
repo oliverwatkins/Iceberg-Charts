@@ -33,7 +33,8 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 		this.chart = chart;		
 	}
 
-	public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
+	public void draw(Graphics2D g, Point point, Point lastPoint, 
+			DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
 		DataPointMultiBar dpX = (DataPointMultiBar)dataPoint;
 	    
@@ -51,7 +52,7 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
     	 */
         for (DataPointBar dataPointBar : dpX.datapointBars) {
         	
-        	startDrawLeft = leftPosition  - (barWidth/2);
+        	startDrawLeft = leftPosition  - (pointDiffWidth/2);
         	
         	/**
         	 * Calculate rectangle dimensions.
@@ -62,7 +63,7 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
             	
                 y = (int)(chart.topOffset + chart.heightChart - scaledYPoint - distance);
 
-                width = barWidth;
+                width = pointDiffWidth;
                 height = (int)((dataPointBar.y * xyFactor.yFactor));
                 
                 distance = distance + (dataPointBar.y * xyFactor.yFactor);

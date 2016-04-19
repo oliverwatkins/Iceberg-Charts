@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.draw.AxisDraw;
 import com.bluewalrus.chart.draw.YAxisDrawUtil;
+import com.bluewalrus.scaling.AxisScaling;
 
 /**
  * @copyright 2014
@@ -17,7 +17,7 @@ public class YAxis extends Axis {
 
     public boolean rightSide = false;
 	
-    public YAxis(AxisDraw axisDraw, String name) {
+    public YAxis(AxisScaling axisDraw, String name) {
         super(name, axisDraw);
         
 //        axisDraw.orientation

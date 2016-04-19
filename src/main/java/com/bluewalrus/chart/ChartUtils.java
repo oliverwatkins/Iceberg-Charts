@@ -246,36 +246,43 @@ public class ChartUtils {
 		int i = 0;
 		for (XYDataSeries xyDataSeries : xySeriesList) {
 			if (i == 0) {
-				
-				if (xyDataSeries.pointType == null)
+
+				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointSquare(Color.BLUE);
-				if (xyDataSeries.line == null)
 					xyDataSeries.line = new Line(Color.BLUE, false, 2);
+				}
 			}else if (i == 1) {
-				if (xyDataSeries.pointType == null)
+				
+				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointCircle(Color.GREEN);
-				if (xyDataSeries.line == null)
 					xyDataSeries.line = new Line(Color.GREEN, false, 2);
+				}
 			}else if (i == 2) {
-				if (xyDataSeries.pointType == null)
+				
+				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointTriangle(Color.RED);
-				if (xyDataSeries.line == null)
 					xyDataSeries.line = new Line(Color.RED, false, 2);
+				}
 			}else if (i == 3) {
-				if (xyDataSeries.pointType == null)
+				
+				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointTriangle(Color.CYAN);
-				if (xyDataSeries.line == null)
 					xyDataSeries.line = new Line(Color.CYAN, false, 2);
+				}
 			}else if (i == 4) {
-				if (xyDataSeries.pointType == null)
-				xyDataSeries.pointType = new UIPointCircle(Color.MAGENTA);
-				xyDataSeries.line = new Line(Color.MAGENTA, false, 2);
+				
+				
+				if (!xyDataSeries.hasStyleBeenSet()) {
+					xyDataSeries.pointType = new UIPointCircle(Color.MAGENTA);
+					xyDataSeries.line = new Line(Color.MAGENTA, false, 2);
+				}
 			}else {
 
 				Color c = ChartUtils.createRandomColor();
-				
-				xyDataSeries.pointType = new UIPointCircle(c);
-				xyDataSeries.line = new Line(c, false, 2);
+				if (!xyDataSeries.hasStyleBeenSet()) {
+					xyDataSeries.pointType = new UIPointCircle(c);
+					xyDataSeries.line = new Line(c, false, 2);
+				}
 			}
 			i++;
 		}

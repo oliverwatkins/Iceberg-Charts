@@ -11,7 +11,7 @@ import java.awt.Graphics;
 import java.io.Serializable;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.draw.AxisDraw;
+import com.bluewalrus.scaling.AxisScaling;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 /**
@@ -24,7 +24,7 @@ public abstract class Axis implements Serializable {
 	/**
 	 * determines the schema of the Axis. How it is drawn, ie linear , time , logarithmic
 	 */
-	public AxisDraw axisDraw;
+	public AxisScaling axisDraw;
 	
 
 
@@ -49,7 +49,7 @@ public abstract class Axis implements Serializable {
 	 * @param name
 	 * @param type
 	 */
-	public Axis(String name, AxisDraw axisDraw) {
+	public Axis(String name, AxisScaling axisDraw) {
 
 		labelText = name;
 		
@@ -57,11 +57,11 @@ public abstract class Axis implements Serializable {
 	}
 	
 	
-    public AxisDraw getAxisDraw() {
+    public AxisScaling getAxisDraw() {
 		return axisDraw;
 	}
 
-	public void setAxisDraw(AxisDraw axisDraw) {
+	public void setAxisDraw(AxisScaling axisDraw) {
 		this.axisDraw = axisDraw;
 	}
 	

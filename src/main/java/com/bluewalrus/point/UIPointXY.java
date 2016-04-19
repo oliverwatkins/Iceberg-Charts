@@ -69,7 +69,7 @@ public abstract class UIPointXY implements Serializable, Cloneable {
 
 	
 	
-    public abstract void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart);
+    public abstract void draw(Graphics2D g, Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts);
 
     public abstract void drawPoint(Graphics2D g);
 

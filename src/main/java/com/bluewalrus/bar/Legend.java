@@ -154,7 +154,7 @@ public class Legend implements Serializable{
         Point p = new Point(xPos, yPos);
 
         if (point instanceof UIPointSimpleXY) {
-            point.draw(g, p, null, null, null);
+            point.draw(g, p, null, null, null, null, 0);
         }
 
     }

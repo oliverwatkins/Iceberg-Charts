@@ -29,8 +29,8 @@ public class UIPointTriangle extends UIPointSimpleXY{
 	}
 
 	@Override
-	public void draw(Graphics2D g, Point point, DataPoint dataPoint,
-			XYFactor xyFactor, XYChart chart) {
+	public void draw(Graphics2D g, Point point, Point lastPoint, DataPoint dataPoint,
+			XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 		
 		int alpha = (int)(transparancyFraction * 255);
 		Color c = new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);

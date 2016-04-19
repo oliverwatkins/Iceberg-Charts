@@ -95,7 +95,7 @@ public class TestDataBar_2Y_2  extends ChartTester{
         
         
 
-        XYYChart chart = new XYYChart("Title", "x", "y", xySeries, xySeriesY2, true);
+        XYYChart chart = new XYYChart("Title", "x", "y", "y2", xySeries, xySeriesY2, true);
 
 //        chart.width = 1000;
 //        chart.height = 600;

@@ -12,11 +12,10 @@ import com.bluewalrus.chart.XYYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
-import com.bluewalrus.chart.draw.AxisDraw;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
 import com.bluewalrus.chart.draw.YAxisDrawUtil;
 
-public abstract class LinearNumericalAxisScaling extends AxisDraw{
+public abstract class LinearNumericalAxisScaling extends AxisScaling{
 	
 	public Line zeroLine = new Line(Color.GRAY, false, 1);
 	

@@ -1,4 +1,4 @@
-package com.bluewalrus.chart.draw;
+package com.bluewalrus.scaling;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -12,14 +12,13 @@ import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
 
 /**
- * TODO rename to Scale?
  * 
  * @author Oliver Watkins
  *
  */
-public abstract class AxisDraw {
+public abstract class AxisScaling {
 	
-	Orientation orientation;
+	protected Orientation orientation;
 	
 
 	public Orientation getOrientation() {
@@ -39,7 +38,7 @@ public abstract class AxisDraw {
 	public AbstractInterval interval3; 
 
 	
-	protected AxisDraw(Orientation orientation) {
+	protected AxisScaling(Orientation orientation) {
 		this.orientation = orientation;
 	}
 	

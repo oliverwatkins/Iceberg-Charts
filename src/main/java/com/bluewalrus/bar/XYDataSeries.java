@@ -59,6 +59,19 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
         this.name = name;
     }
     
+    
+    /**
+     * Has line or point been set
+     * 
+     * @return
+     */
+    public boolean hasStyleBeenSet() {
+    	if (pointType != null || line != null) {
+    		return true;
+    	}
+    	return false;
+    }
+    
     @Override
 	public String toString() {
 		return "XYDataSeries [dataPoints=" + dataPoints + ", pointType=" + pointType + ", line=" + line + ", name="

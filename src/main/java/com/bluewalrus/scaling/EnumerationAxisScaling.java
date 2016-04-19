@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.chart.draw.AxisDraw;
 
-public abstract class EnumerationAxisScaling extends AxisDraw{
+public abstract class EnumerationAxisScaling extends AxisScaling{
 
 	//enum has always 0 to 100. It is arbitrary.
 	public double maxValue = 100; 

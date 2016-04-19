@@ -31,7 +31,7 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
 		this.chart = chart;		
 	}
 
-	public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart) {
+	public void draw(Graphics2D g, Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
 		DataPointMultiBar dpX = (DataPointMultiBar)dataPoint;
 	    
@@ -42,7 +42,7 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
 
         shift = 0;
         
-        int totalWidthOfBars = dpX.datapointBars.size() * barWidth;
+        int totalWidthOfBars = dpX.datapointBars.size() * pointDiffWidth;
         
         point.x = (int) dataPoint.x;
         
@@ -54,7 +54,7 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
             if (dpb.y > 0) { // greater than zero
                 x = point.x - (totalWidthOfBars/2);
                 y = chart.topOffset + chart.heightChart - (int)(dpb.y * xyFactor.yFactor);
-                width = barWidth;
+                width = pointDiffWidth;
                 height = (int)((dpb.y * xyFactor.yFactor));
                 
                 colorToUse = color;
@@ -63,7 +63,7 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
             	
                 x = point.x - (totalWidthOfBars/2);
                 y = point.y + (int)( dpb.y * xyFactor.yFactor);
-                width = barWidth;
+                width = pointDiffWidth;
                 height = (int)((- dpb.y * xyFactor.yFactor)); 
                 
                 colorToUse = color;
@@ -81,7 +81,7 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
     		clipAndDrawPoint(g, chart);
             
             
-            shift = shift+barWidth;
+            shift = shift+pointDiffWidth;
 		}
 	}
 
