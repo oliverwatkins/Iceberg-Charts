@@ -12,46 +12,20 @@ import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointXY;
 import com.bluewalrus.renderer.XYFactor;
+import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
+import com.bluewalrus.scaling.TimeSeriesAxisScalingY;
 
-public abstract class AbstractPlotter {
+/**
+ * Plots chart data
+ * 
+ * @author Oliver Watkins
+ *
+ */
+public class ChartPlotter {
 
 	protected Point lastPoint;
-    
-	protected void drawLine(Graphics2D g, XYFactor xyFactor,
-            int xShift, int yShift, DataPoint lastPoint,
-            XYDataSeries xYDataSeries, DataPoint dataPoint) {
-
-        Line line = xYDataSeries.line;
-
-        int adjustedX1 = (int) ((lastPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
-        int adjustedY1 = (int) (yShift - (int) (lastPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
-
-        int adjustedX2 = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
-        int adjustedY2 = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
-
-        //hack
-        if (xyFactor.yFactor * adjustedY2 > 200000) {
-            return;
-        }
-        if (xyFactor.xFactor * adjustedX2 > 200000) {
-            return;
-        }
-
-        line.drawLine(g, adjustedX1, adjustedY1, adjustedX2, adjustedY2);
-    }
-    
-    
-    protected int calculateDistanceBetweenFirstTwoPoints(DataPoint dataPoint,
-			DataPoint dataPoint2, int xShift, XYFactor xyFactor) {
-    	
-    	
-    	int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
-    	int x2 = (int) ((dataPoint2.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
-    	
-		return (x2 - x);
-	}
-    
-
+	
+	
 	public void drawLinesOrPoints(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
         
@@ -102,15 +76,7 @@ public abstract class AbstractPlotter {
             }
         }
     }
-
-
-	protected abstract double getYZeroOffsetInPixel(XYChart chart, YAxis yAxis);
-
-	protected abstract double getXZeroOffsetInPixel(XYChart chart, XAxis xAxis);
-
-	protected abstract XYFactor getXYFactor(XYChart chart, XAxis xAxis, YAxis yAxis);
-
-
+	
 	protected void drawPoint(Graphics2D g, 
     		XYFactor xyFactor,
             int xShift,
@@ -145,9 +111,111 @@ public abstract class AbstractPlotter {
         }
         dataPoint.uiPointXY.draw(g, new Point(x, y), lastPoint, dataPoint, xyFactor, chart, pixBtnFirst2Pts);
         
-        
         lastPoint = new Point(x,y);
     }
-            
+	
+	protected void drawLine(Graphics2D g, XYFactor xyFactor,
+            int xShift, int yShift, DataPoint lastPoint,
+            XYDataSeries xYDataSeries, DataPoint dataPoint) {
+
+        Line line = xYDataSeries.line;
+
+        int adjustedX1 = (int) ((lastPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
+        int adjustedY1 = (int) (yShift - (int) (lastPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
+
+        int adjustedX2 = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
+        int adjustedY2 = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
+
+        //hack
+        if (xyFactor.yFactor * adjustedY2 > 200000) {
+            return;
+        }
+        if (xyFactor.xFactor * adjustedX2 > 200000) {
+            return;
+        }
+
+        line.drawLine(g, adjustedX1, adjustedY1, adjustedX2, adjustedY2);
+    }
+	
+    
+    protected int calculateDistanceBetweenFirstTwoPoints(DataPoint dataPoint,
+			DataPoint dataPoint2, int xShift, XYFactor xyFactor) {
+    	
+    	
+    	int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
+    	int x2 = (int) ((dataPoint2.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
+    	
+		return (x2 - x);
+	}
+
+
+	protected XYFactor getXYFactor(XYChart chart, XAxis xAxis, YAxis yAxis) {
+		
+    	double yMax = yAxis.axisDraw.getMaxValue();
+    	double yMin = yAxis.axisDraw.getMinValue();
+    	
+    	double xFactor = -1;
+    	
+		if (xAxis.axisDraw instanceof TimeSeriesAxisScalingX) {
+	    	long xMax = ((TimeSeriesAxisScalingX)xAxis.axisDraw).dateEnd.getTime();
+	    	long xMin = ((TimeSeriesAxisScalingX)xAxis.axisDraw).dateStart.getTime();
+	    	
+	    	double diffX = xMax - xMin;
+	    	
+	    	xFactor = ((double) chart.widthChart / diffX);
+	    	
+		}else {
+	    	double xMax = xAxis.axisDraw.getMaxValue();
+	    	double xMin = xAxis.axisDraw.getMinValue();
+	    	
+	    	double diffX = xMax - xMin;
+	    	
+	    	xFactor = ((double) chart.widthChart / diffX);
+		}
+
+    	double diffY = yMax - yMin;
+
+        double yfactor = ((double) chart.heightChart / diffY);
+
+        return new XYFactor(xFactor, yfactor);
+	}
+
+
+
+	
+	protected double getYZeroOffsetInPixel(XYChart chart, YAxis yAxis) {
+		
+		if (yAxis.axisDraw instanceof TimeSeriesAxisScalingY) {
+			throw new RuntimeException("TODO");
+
+			
+		}else {
+	    	double yMax = yAxis.axisDraw.getMaxValue();
+	    	double yMin = yAxis.axisDraw.getMinValue();
+	    	
+	    	return (double) ((-yMin / (yMax - yMin)) * chart.heightChart);
+		}
+	}
+
+
+	protected double getXZeroOffsetInPixel(XYChart chart, XAxis xAxis) {
+		
+		if (xAxis.axisDraw instanceof TimeSeriesAxisScalingX) {
+	    	long xMax = ((TimeSeriesAxisScalingX)xAxis.axisDraw).dateEnd.getTime();
+	    	long xMin = ((TimeSeriesAxisScalingX)xAxis.axisDraw).dateStart.getTime();
+	    	
+	    	double diffX = xMax - xMin;
+	    	
+			return (double) ((-xMin / (double) diffX) * chart.widthChart);
+	    	
+		}else {
+
+	    	double xMax = xAxis.axisDraw.getMaxValue();
+	    	double xMin = xAxis.axisDraw.getMinValue();
+	    	
+	    	double diffX = xMax - xMin;
+			return (double) ((-xMin / (double) diffX) * chart.widthChart);
+		}
+	}
     
 }

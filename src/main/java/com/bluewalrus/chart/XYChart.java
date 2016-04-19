@@ -23,8 +23,7 @@ import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.draw.DateUtils;
-import com.bluewalrus.chart.draw.plotter.DatePlotter;
-import com.bluewalrus.chart.draw.plotter.NumericalPlotter;
+import com.bluewalrus.chart.draw.plotter.ChartPlotter;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.DataPointWithMagnitude;
@@ -791,10 +790,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         }
 
 		if (xAxis.axisDraw instanceof TimeSeriesAxisScalingX) {
-			new DatePlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis,
+			new ChartPlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis,
 					xAxis, data);
 		} else {
-			new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this,
+			new ChartPlotter().drawLinesOrPoints((Graphics2D) g, this,
 					yAxis, xAxis, data);
 		}
 		
@@ -803,7 +802,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		if (this instanceof XYYChart) {
 			XYYChart d = (XYYChart)this;
 			
-			new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this,
+			new ChartPlotter().drawLinesOrPoints((Graphics2D) g, this,
 					d.yAxis2, xAxis, dataY2);
 			
 		}
