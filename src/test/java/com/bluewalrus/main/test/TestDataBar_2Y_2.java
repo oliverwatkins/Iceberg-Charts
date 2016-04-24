@@ -8,7 +8,7 @@ import com.bluewalrus.bar.GradiantRule;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.XYYChart;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
@@ -89,7 +89,7 @@ public class TestDataBar_2Y_2  extends ChartTester{
         xySeriesY2.add(series2Y2);
         
 
-        XYYChart chart = new XYYChart("Title", "x", "y", "y2", xySeries, xySeriesY2, true);
+        XYChart chart = new XYChart("Title", "x", "y", "y2", xySeries, xySeriesY2);
 
         chart.setSize(1000, 600);
         

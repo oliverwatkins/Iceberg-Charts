@@ -8,7 +8,6 @@ import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.chart.XYYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
@@ -106,7 +105,7 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		}else if (orientation == Orientation.Y) {
 			YAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, chart.yAxis);
 		}else if (orientation == Orientation.Y2) {
-			YAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, ((XYYChart)chart).yAxis2);
+			YAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, chart.yAxis2);
 		}else {
 			throw new RuntimeException("not supported");
 		}
@@ -224,7 +223,7 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		}else if (orientation == Orientation.Y) {
 			YAxisDrawUtil.drawYLabel(g, chart, fromStart, label, chart.yAxis);
 		}else if (orientation == Orientation.Y2) {
-			YAxisDrawUtil.drawYLabel(g, chart, fromStart, label, ((XYYChart)chart).yAxis2);
+			YAxisDrawUtil.drawYLabel(g, chart, fromStart, label, chart.yAxis2);
 		}else {
 			throw new RuntimeException("not supported");
 		}

@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.chart.XYYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
-import com.bluewalrus.chart.axis.NumericalInterval;
 
 /**
  * 
@@ -131,7 +129,7 @@ public abstract class AxisScaling {
 		}else if (orientation == Orientation.Y) {
 			return chart.yAxis;
 		}else if (orientation == Orientation.Y2) {
-			return ((XYYChart)chart).yAxis2;
+			return chart.yAxis2;
 		}else {
 			throw new RuntimeException("not supported");
 		}

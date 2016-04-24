@@ -55,14 +55,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public Color borderLineColor = Color.BLACK;
 
 	public YAxis yAxis;
-    public YAxis yAxis2;
+    public YAxis yAxis2; //special case
 	public XAxis xAxis;
 
 	public ArrayList<XYDataSeries> data = new ArrayList<XYDataSeries>();
-	
 	public ArrayList<XYDataSeries> dataY2 = new ArrayList<XYDataSeries>();
-	
-	
 	
 
 	/**
@@ -139,20 +136,24 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				
 	}
 	
+	boolean isYAxis2 = false;
 	
 	//XYY
-	public XYChart(String title, String xLabel, String yLabel, String y2Label, ArrayList<XYDataSeries> xySeries,
-			ArrayList<XYDataSeries> xySeriesY2) {
+	public XYChart(String title, 
+						String xLabel, 
+						String yLabel, 
+						String y2Label, 
+						ArrayList<XYDataSeries> xySeries,
+						ArrayList<XYDataSeries> xySeriesY2) {
 		
+		isYAxis2 = true;
 		
 		this.data.addAll(xySeries);
 		this.dataY2.addAll(xySeriesY2);
 		
 		ChartUtils.setUpSeriesStyle(xySeries, this);
 
-		initEnum(xySeries);
 		initialiseScaling(xySeries);
-//		initialiseScaling(xySeriesY2);
 		
 		initialiseScalingX_enumeration(xySeriesY2);
 		
@@ -163,15 +164,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.addMouseMotionListener(this);
 
 		this.setTitle(title);
-	}
-	
-	
-	private void initEnum(ArrayList<XYDataSeries> xySeries) {
-		
-		if (isSeriesListEnumerable(xySeries)) {
-			xAxis = initialiseScalingX_enumeration(xySeries);
-		}
-		
 	}
 
 	/**
@@ -364,7 +356,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.data.addAll(xySeriesList);
 		
 	}
-
 	
 	/**
 	 * 
@@ -414,7 +405,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 	}
 	
-	
 	/**
 	 * Bubble
 	 * 
@@ -437,11 +427,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
             }
         }
     }
-
-
-	
-
-	
 	
 	/**
 	 * Initialize, calculating best x,y scalings and intervals.
@@ -476,9 +461,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		/**
 		 * Initialise Y2
 		 */
-		if (this instanceof XYYChart) {
-			
-//			XYYChart d = (XYYChart)this;
+		if (isYAxis2) {
 			
 			yAxis2 = initialiseScalingY_numerical(this.dataY2);
 			yAxis2.axisDraw.setOrientation(Orientation.Y2);
@@ -491,27 +474,19 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 	}
 
+
+
 	/**
-	 * Check if XYDataSeries are enumerable or not.
-	 * @param xySeriesList
-	 * @return
+	 * Initialise the X Axis by adding a time scaling with max/min values calculated from the
+	 * XY data.
+	 * 
+	 * @param xySeriesList list of chart data
+	 * @return x-axis
 	 */
-	private boolean isSeriesListEnumerable(ArrayList<XYDataSeries> xySeriesList) {
-		
-		XYDataSeries first = xySeriesList.get(0);
-		
-		DataPoint dp = (DataPoint)first.dataPoints.get(0);
-
-		if (dp.valueType == ValueType.X_ENUMARABLE) {
-			return true;
-		}
-		
-		return false;
-	}
-
 	private XAxis initialiseScalingX_time(ArrayList<XYDataSeries> xySeriesList) {
 		
-		DateRange drX = getDateRangeX(xySeriesList);
+		//get date range on the x axis
+		DateRange drX = ChartUtils.getDateRangeX(xySeriesList);
 		
 		//get sensible interval
 		TimeInterval.Type interval1 = DateUtils.getIntervalTime(drX);
@@ -571,28 +546,20 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         //distance between points (bars)
         double pointDistance = (double) (xRange / (dps.size() + 1));
 
-        
-    	
     	for (XYDataSeries xyDataSeries : xySeriesList) {
     		ArrayList<DataPoint> dps2 = xyDataSeries.dataPoints;
 
             int i = 1;
             for (DataPoint dp : dps2) {
-            	dp.x = (int) (pointDistance * i);
+            	dp.x = (double) (pointDistance * i);
                 i++;
             }
 		}
-    	
-    	
 
         ChartUtils.validityCheck(dps);
-    	
-
         
         return xAxis;
 	}
-
-
 
 
 	/**
@@ -600,13 +567,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @param xySeriesList
 	 * @return
 	 */
-	
 	private XAxis initialiseScalingX_numerical(ArrayList<XYDataSeries> xySeriesList) {
 		//get padded range
-		DataRange drX = getDataRangeX(xySeriesList);
+		DataRange drX = ChartUtils.getDataRangeX(xySeriesList);
 		
 		//get sensible interval
-		double initialIntervalX = getInterval(drX);
+		double initialIntervalX = ChartUtils.getInterval(drX);
 		
 		NumericalInterval t1x = new NumericalInterval(initialIntervalX); 
 		NumericalInterval t2x = new NumericalInterval(initialIntervalX/10); 
@@ -629,10 +595,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	private YAxis initialiseScalingY_numerical(ArrayList<XYDataSeries> xySeriesList) {
 		//get padded range
-		DataRange drY = getDataRangeY(xySeriesList);
+		DataRange drY = ChartUtils.getDataRangeY(xySeriesList);
 		
 		//get sensible interval
-		double initialIntervalY = getInterval(drY);
+		double initialIntervalY = ChartUtils.getInterval(drY);
 		
 		NumericalInterval t1 = new NumericalInterval(initialIntervalY); 
 		NumericalInterval t2 = new NumericalInterval(initialIntervalY/10); 
@@ -649,136 +615,25 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		return yAxis;
 	}
 
-	private DataRange getDataRangeX(ArrayList<XYDataSeries> xySeriesList) {
-		//get Max/Min
-		double xMax = ChartUtils.calculateXAxisMax(xySeriesList, true);
-		double xMin = ChartUtils.calculateXAxisMin(xySeriesList, true);
-
-		//range with padding
-		DataRange drX = ChartUtils.getDataRange(xMax, xMin, 10);
-		return drX;
-	}
-
-
-		
-
 	
-	
-	
-	private DateRange getDateRangeX(ArrayList<XYDataSeries> xySeriesList) {
-		
-		//get Max/Min
-		Date xMax = ChartUtils.calculateXAxisMaxDate(xySeriesList, true);
-		Date xMin = ChartUtils.calculateXAxisMinDate(xySeriesList, true);
-
-		//range with padding
-		DateRange drX = ChartUtils.getDateRange(xMax, xMin, 10);
-		return drX;
-	}
-	
-	
-	
-
-	private DataRange getDataRangeY(ArrayList<XYDataSeries> xySeriesList) {
-		//Get Max/Min
-		double yMax = ChartUtils.calculateYAxisMax(xySeriesList, true);
-		double yMin = ChartUtils.calculateYAxisMin(xySeriesList, true);
-		
-		//range with padding
-		DataRange drY = ChartUtils.getDataRange(yMax, yMin, 10);
-		return drY;
-	}
-
-
 	/**
-	 * Get a sensible interval between two points. Ie. (34 --> 10,000) would be 1000 (36 --> 132) would be 10
-	 * 
-	 * 
-	 * TODO less than 1 and greater than 10000. Need generic algorithm here
-	 * 
+	 * Check if XYDataSeries are enumerable or not.
+	 * @param xySeriesList
 	 * @return
 	 */
-	private double getInterval(DataRange dr) {
-
-		double max = dr.max; 
-		double min = dr.min;
+	private boolean isSeriesListEnumerable(ArrayList<XYDataSeries> xySeriesList) {
 		
-		if (max - min < 0.0000001) {
-			throw new RuntimeException("data range cannot be less than XXXXXX. DataRange = " + dr);
-		}else if (max - min > 100000000) {
-			throw new RuntimeException("data range cannot be more than XXXXXX. DataRange = " + dr);
-		}
-
-
-		// starting at 0.00001 we go up by factors of 10 and check if the interval is acceptable.
-		double magnitude = 0.00001;
+		XYDataSeries first = xySeriesList.get(0);
 		
-		while (magnitude != 100000) {
-			magnitude = magnitude * 10;
-			
-			if (isOrderMagnitudeAcceptableFirstInterval(max, min, magnitude)) {
-				
-				//found the correct magnitude
-				break;
-			}
-		}
-		return magnitude;
-	}
+		DataPoint dp = (DataPoint)first.dataPoints.get(0);
 
-	/**
-	 * Is the magnitude acceptable as a first interval.
-	 * 
-	 * ie. 10 would be acceptable for 8 to 164
-	 * (but not for 0.001 to 0.15)
-	 * 
-	 * This method checks if the magnitude is acceptable
-	 * 
-	 * 
-	 * @param maxValue
-	 * @param minValue
-	 * @param orderOfMagnitude
-	 * @return
-	 */
-	private boolean isOrderMagnitudeAcceptableFirstInterval(double maxValue,
-			double minValue, double orderOfMagnitude) {
-		
-		
-//		if (orderOfMagnitude < 1) {
-//			
-//			int multiplier = 1;
-//			//
-//			while (orderOfMagnitude != 1) {
-//				
-//				multiplier = multiplier * 10;
-//				
-//				orderOfMagnitude = 10 * orderOfMagnitude;
-//				
-//				System.out.println("orderOfMagnitude is now " + orderOfMagnitude);
-//			}
-//			
-//			maxValue = maxValue * multiplier;
-//			minValue = minValue * multiplier;
-//		}
-//		
-//		
-//		
-//		
-//		while ((int)maxValue % orderOfMagnitude != 0) {
-//			maxValue--;
-//		}
-//
-//		while ((int)minValue % orderOfMagnitude != 0) {
-//			minValue++;
-//		}
-
-		double numberTicks = (maxValue - minValue) / orderOfMagnitude;
-
-		if (numberTicks < 10) { 
+		if (dp.valueType == ValueType.X_ENUMARABLE) {
 			return true;
 		}
+		
 		return false;
 	}
-
+	
 	/**
 	 * Paint the background, Title, Grid and Axis. All the elements of the chart
 	 * except for the actual data.
@@ -838,22 +693,26 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisDraw.getMinValue());
         }
 
-//		if (xAxis.axisDraw instanceof TimeSeriesAxisScalingX) {
-			new ChartPlotter().plotData((Graphics2D) g, this, yAxis, xAxis, data);
-//		} else {
-//			new ChartPlotter().plotData((Graphics2D) g, this, yAxis, xAxis, data);
-//		}
+		new ChartPlotter().plotData((Graphics2D) g, this, yAxis, xAxis, data);
 		
-		
-		
-		if (this instanceof XYYChart) {
-//			XYYChart d = (XYYChart)this;
+		if (isYAxis2) {
 			
 			new ChartPlotter().plotData((Graphics2D) g, this,
 					yAxis2, xAxis, dataY2);
 			
+	        Graphics2D g2d = (Graphics2D) g;
+	        
+	        drawRightLine(g2d);
+	        
+	        yAxis2.rightSide = true;
+	        
+	        yAxis2.axisDraw.drawAll(g2d, this, null); //drawTicksAndLabels(g, this);
+	        
+	        yAxis2.drawLabel(g, this);
+	        
+	        drawLegend((Graphics2D) g);
+			
 		}
-
 	}
 
 
@@ -879,6 +738,45 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			}
 			categories.add(category);
 		}
+		
+		
+		if (isYAxis2) {
+	        categories = new ArrayList<Category>();
+
+	        for (XYDataSeries series : data) {
+
+	            Category category;
+
+	            if (series.type == XYDataSeriesType.BUBBLE) {
+	                category = new Category(series.name, series.seriesColor);
+	            } else {
+	                category = new Category(series.name, series.pointType, series.line);
+	            }
+
+	            categories.add(category);
+	        }
+
+	        int offset = yAxis2.tickLabelOffset + yAxis2.labelOffset;
+		}
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		super.drawLegend(g, categories);
 	}
 

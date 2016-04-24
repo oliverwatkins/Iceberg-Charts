@@ -119,6 +119,42 @@ public class ChartUtils {
 	}
 	
 	
+	public static DataRange getDataRangeX(ArrayList<XYDataSeries> xySeriesList) {
+		//get Max/Min
+		double xMax = ChartUtils.calculateXAxisMax(xySeriesList, true);
+		double xMin = ChartUtils.calculateXAxisMin(xySeriesList, true);
+
+		//range with padding
+		DataRange drX = ChartUtils.getDataRange(xMax, xMin, 10);
+		return drX;
+	}
+
+
+	public static DataRange getDataRangeY(ArrayList<XYDataSeries> xySeriesList) {
+		//Get Max/Min
+		double yMax = ChartUtils.calculateYAxisMax(xySeriesList, true);
+		double yMin = ChartUtils.calculateYAxisMin(xySeriesList, true);
+		
+		//range with padding
+		DataRange drY = ChartUtils.getDataRange(yMax, yMin, 10);
+		return drY;
+	}
+		
+
+	
+	
+	
+	public static DateRange getDateRangeX(ArrayList<XYDataSeries> xySeriesList) {
+		
+		//get Max/Min
+		Date xMax = ChartUtils.calculateXAxisMaxDate(xySeriesList, true);
+		Date xMin = ChartUtils.calculateXAxisMinDate(xySeriesList, true);
+
+		//range with padding
+		DateRange drX = ChartUtils.getDateRange(xMax, xMin, 10);
+		return drX;
+	}
+	
 	
 	public static DataRange getDataRange(double max, double min, int paddingPercent) {
 		double yDiff = max - min;
@@ -357,6 +393,68 @@ public class ChartUtils {
 		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
 
 		return cachedClip;
+	}
+	
+	
+
+	/**
+	 * Get a sensible interval between two points. Ie. (34 --> 10,000) would be 1000 (36 --> 132) would be 10
+	 * 
+	 * 
+	 * TODO less than 1 and greater than 10000. Need generic algorithm here
+	 * 
+	 * @return
+	 */
+	public static double getInterval(DataRange dr) {
+
+		double max = dr.max; 
+		double min = dr.min;
+		
+		if (max - min < 0.0000001) {
+			throw new RuntimeException("data range cannot be less than XXXXXX. DataRange = " + dr);
+		}else if (max - min > 100000000) {
+			throw new RuntimeException("data range cannot be more than XXXXXX. DataRange = " + dr);
+		}
+
+
+		// starting at 0.00001 we go up by factors of 10 and check if the interval is acceptable.
+		double magnitude = 0.00001;
+		
+		while (magnitude != 100000) {
+			magnitude = magnitude * 10;
+			
+			if (isOrderMagnitudeAcceptableFirstInterval(max, min, magnitude)) {
+				
+				//found the correct magnitude
+				break;
+			}
+		}
+		return magnitude;
+	}
+
+	/**
+	 * Is the magnitude acceptable as a first interval.
+	 * 
+	 * ie. 10 would be acceptable for 8 to 164
+	 * (but not for 0.001 to 0.15)
+	 * 
+	 * This method checks if the magnitude is acceptable
+	 * 
+	 * 
+	 * @param maxValue
+	 * @param minValue
+	 * @param orderOfMagnitude
+	 * @return
+	 */
+	public static boolean isOrderMagnitudeAcceptableFirstInterval(double maxValue,
+			double minValue, double orderOfMagnitude) {
+
+		double numberTicks = (maxValue - minValue) / orderOfMagnitude;
+
+		if (numberTicks < 10) { 
+			return true;
+		}
+		return false;
 	}
 	
 }

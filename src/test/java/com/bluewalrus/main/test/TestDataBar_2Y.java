@@ -8,17 +8,13 @@ import com.bluewalrus.bar.GradiantRule;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.XYYChart;
-import com.bluewalrus.chart.axis.XAxis;
-import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.point.UIPointBar;
 import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointTriangle;
-import com.bluewalrus.scaling.EnumerationAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
@@ -77,17 +73,6 @@ public class TestDataBar_2Y extends ChartTester{
       values3.add(new DataPoint("D", -0.9));
         
         
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
 
         XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.RED), 
         		new Line(Color.RED), "max");
@@ -113,34 +98,37 @@ public class TestDataBar_2Y extends ChartTester{
         GradiantRule rule = new GradiantRule(0, 130, Color.BLUE, Color.RED, 100);
         
         ArrayList<DataPointBar> barSeries = new ArrayList<DataPointBar>();
-        barSeries.add(new DataPointBar("J", 54.0, Color.RED));
-        barSeries.add(new DataPointBar("F", 45.2, Color.RED));
-        barSeries.add(new DataPointBar("M", 60.1, Color.RED));
-        barSeries.add(new DataPointBar("A", 69.9, Color.RED));
-        barSeries.add(new DataPointBar("M", 93.4, Color.RED));
-        barSeries.add(new DataPointBar("J", 123.6, Color.RED));
-        barSeries.add(new DataPointBar("J", 117.6, Color.RED));
-        barSeries.add(new DataPointBar("A", 114.5, Color.RED));
-        barSeries.add(new DataPointBar("S", 90.3, Color.RED));
-        barSeries.add(new DataPointBar("O", 69.4, Color.RED));
-        barSeries.add(new DataPointBar("N", 71.0, Color.RED));
-        barSeries.add(new DataPointBar("D", 58.4, Color.RED ));
+        barSeries.add(new DataPointBar("J", 54.0, rule.getColor(54.0)));
+        barSeries.add(new DataPointBar("F", 45.2, rule.getColor(45.2)));
+        barSeries.add(new DataPointBar("M", 60.1, rule.getColor(60.1)));
+        barSeries.add(new DataPointBar("A", 69.9, rule.getColor(69.9)));
+        barSeries.add(new DataPointBar("M", 93.4, rule.getColor(93.4)));
+        barSeries.add(new DataPointBar("J", 123.6, rule.getColor(123.6)));
+        barSeries.add(new DataPointBar("J", 117.6, rule.getColor(117.6)));
+        barSeries.add(new DataPointBar("A", 114.5, rule.getColor(114.5)));
+        barSeries.add(new DataPointBar("S", 90.3, rule.getColor(90.3)));
+        barSeries.add(new DataPointBar("O", 69.4, rule.getColor(69.4)));
+        barSeries.add(new DataPointBar("N", 71.0, rule.getColor(71.0)));
+        barSeries.add(new DataPointBar("D", 58.4, rule.getColor(58.4) ));
         
         
         XYDataSeries rainfallSeries = new XYDataSeries(barSeries, 
-        		new UIPointBar(Color.BLACK, 50), 
+        		new UIPointBar(Color.BLACK, 80), 
         		null, 
         		"Rainfall");
 
         ArrayList<XYDataSeries> rainfallSeriesList = new ArrayList<XYDataSeries>();
         rainfallSeriesList.add(rainfallSeries);
 
-        XYYChart chart = new XYYChart("Munich Weather", 
+        XYChart chart = new XYChart("Munich Weather", 
         		"Month", 
         		"Temperature",
         		"Rainfall", 
         		rainfallSeriesList, 
-        		temperatureSeriesList, true);
+        		temperatureSeriesList);
+        
+        chart.yAxis.axisDraw.interval1.styling.graphLine = null;
+        chart.yAxis.axisDraw.interval2.styling.graphLine = null;
         
         chart.setSize(1000, 600);
         
