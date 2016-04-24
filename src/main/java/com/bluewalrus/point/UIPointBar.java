@@ -11,7 +11,7 @@ import com.bluewalrus.renderer.XYFactor;
 
 public class UIPointBar extends UIPointAbstractBar {
 
-    boolean doBorder = true;
+    boolean doBorder = false;
     Color negativeColor;
     
 	private int x;
@@ -23,7 +23,10 @@ public class UIPointBar extends UIPointAbstractBar {
 	private Color muchmuchdarker;
 	private Color colorToUse;
 
-
+    public UIPointBar() {
+    	super();
+	}
+    
     public UIPointBar(Color color) {
         super(color);
     }
@@ -39,25 +42,26 @@ public class UIPointBar extends UIPointAbstractBar {
         this.pointDiffWidth = barWidth;
     }
 
-    public void draw(Graphics2D g, 
+
+	public void draw(Graphics2D g, 
     		Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
     	
-    	double barWidth = 10; //px
+    	double barWidth = -123; //px
     	
-    	barWidthPercent = 100;
+//    	barWidthPercent = 100;
     	
-    	if (lastPoint != null) {
-        	pointDiffWidth = (point.x - lastPoint.x);
-    	}
+//    	if (lastPoint != null) {
+//        	pointDiffWidth = (point.x - lastPoint.x);
+//    	}
     	
     	if (barWidthPercent != 0) {
-    		barWidth = ((barWidthPercent * (double)pointDiffWidth)/ 100.0); 
+    		barWidth = ((barWidthPercent * (double)pixBtnFirst2Pts)/ 100.0); 
     	}else {
     		barWidth = 50; //default
     	}
     	
-    	barWidth = pixBtnFirst2Pts;
+//    	barWidth = pixBtnFirst2Pts;
     	
     	Color dataPointColor = null;
     	

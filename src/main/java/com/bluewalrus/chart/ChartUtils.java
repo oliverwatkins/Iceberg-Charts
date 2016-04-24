@@ -307,13 +307,13 @@ public class ChartUtils {
 	 * 
 	 * @param bars
 	 */
-	public static void validityCheck(ArrayList<DataPointBar> bars) {
+	public static void validityCheck(ArrayList<DataPoint> bars) {
 		
-		DataPointBar firstElem = bars.get(0);
+		DataPoint firstElem = bars.get(0);
 		if (firstElem.name != null) {
 			//enumerable
-			for (DataPointBar dataPointBar : bars) {
-				if (dataPointBar.name == null) {
+			for (DataPoint dp : bars) {
+				if (dp.name == null) {
 					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
 				}
 			}
@@ -321,8 +321,8 @@ public class ChartUtils {
 		
 		if (firstElem.name == null) {
 			//numerical
-			for (DataPointBar dataPointBar : bars) {
-				if (dataPointBar.name != null) {
+			for (DataPoint dp : bars) {
+				if (dp.name != null) {
 					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
 				}
 			}

@@ -45,12 +45,12 @@ public class TestDataBar_BarNegativeAndPositiveNumerical extends ChartTester {
         bars.add(new DataPointBar(60, 30, colors.get(4)));
         bars.add(new DataPointBar(70, 54, colors.get(4)));
         
-        XYChart barChart = new XYChart(bars, "Change In Commodity Price" ,"Commodity", "Price USD", 40);
+        XYChart xyChart = new XYChart(bars, "Change In Commodity Price" ,"Commodity", "Price USD", 40);
         
-        barChart.setTitle("Change In Commodity Price");
-        barChart.setSize(800, 200);
+        xyChart.setTitle("Change In Commodity Price");
+        xyChart.setSize(800, 200);
         		
-        return barChart;
+        return xyChart;
 	}
 	
 	

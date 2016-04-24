@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.GridLine;
@@ -17,6 +18,7 @@ import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.Orientation;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.bar.XYDataSeriesType;
+import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
@@ -27,6 +29,7 @@ import com.bluewalrus.chart.draw.plotter.ChartPlotter;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;
 import com.bluewalrus.datapoint.DataPointWithMagnitude;
+import com.bluewalrus.datapoint.ValueType;
 import com.bluewalrus.point.UIPointBar;
 import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointXY;
@@ -43,6 +46,7 @@ import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
  */
 public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
+	
 	transient BasicStroke chartBorderLine = new BasicStroke(1,
 			BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, new float[] {
 					2, 0 }, // no dash
@@ -51,6 +55,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public Color borderLineColor = Color.BLACK;
 
 	public YAxis yAxis;
+    public YAxis yAxis2;
 	public XAxis xAxis;
 
 	public ArrayList<XYDataSeries> data = new ArrayList<XYDataSeries>();
@@ -145,19 +150,30 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		ChartUtils.setUpSeriesStyle(xySeries, this);
 
+		initEnum(xySeries);
 		initialiseScaling(xySeries);
+//		initialiseScaling(xySeriesY2);
+		
+		initialiseScalingX_enumeration(xySeriesY2);
+		
 		
 		this.xAxis.labelText = xLabel;
 		this.yAxis.labelText = yLabel;
 		
 		this.addMouseMotionListener(this);
 
-
-
 		this.setTitle(title);
 	}
 	
 	
+	private void initEnum(ArrayList<XYDataSeries> xySeries) {
+		
+		if (isSeriesListEnumerable(xySeries)) {
+			xAxis = initialiseScalingX_enumeration(xySeries);
+		}
+		
+	}
+
 	/**
 	 * Simple Mutliple Series Constructor
 	 * 
@@ -198,9 +214,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		XYDataSeries<DataPoint> xy = new XYDataSeries<DataPoint>(bars,
 				new UIPointBar(Color.RED, Color.YELLOW, pixelBarWidth), null, "");
+		
 		xySeriesList.add(xy);
 
-		initialiseScalingForEnumeration(xySeriesList);
+		xAxis = initialiseScalingX_enumeration(xySeriesList);
+		yAxis = initialiseScalingY_numerical(xySeriesList);
 		
 		this.setTitle(title);
 		
@@ -423,54 +441,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	
 
-
-	/**
-	 * 
-	 * @param xySeriesList
-	 */
-	private void initialiseScalingForEnumeration(ArrayList<XYDataSeries> xySeriesList) {
-
-		 // TODO at this point only on X
-
-		
-		DataRange drY = getDataRangeY(xySeriesList); //just the y
-		
-		//get sensible interval
-		double initialIntervalY = getInterval(drY);
-		
-		NumericalInterval t1 = new NumericalInterval(initialIntervalY); 
-		
-		t1.styling.graphLine = new GridLine(Color.GRAY, false, 1);
-		t1.styling.lineLength = 6;
-		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(drY.min, drY.max, t1, null, null), "Y TODO");
-		
-		
-		this.yAxis = yAxis;
-    	
-    	EnumerationAxisScalingX xd = new EnumerationAxisScalingX();
-    	xAxis = new XAxis(xd, "");
-    	
-    	double xMax = xd.maxValue;
-    	double xMin = xd.minValue;
-	
-		ArrayList<DataPointBar> bars = xySeriesList.get(0).dataPoints; //will only have one series
-
-        double xRange = (double) (xMax - xMin);
-
-        //distance between points (bars)
-        double pointDistance = (double) (xRange / (bars.size() + 1));
-
-        ChartUtils.validityCheck(bars);
-    	
-        ArrayList<DataPointBar> dataPoints = new ArrayList<DataPointBar>();
-    	
-        int i = 1;
-        for (DataPointBar bar : bars) {
-        	bar.x = (int) (pointDistance * i);
-            i++;
-        }
-	}
 	
 	
 	/**
@@ -482,30 +452,64 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	private void initialiseScaling(ArrayList<XYDataSeries> xySeriesList) {
 
 		XAxis xAxis = null;
+		YAxis yAxis = null;
+		YAxis yAxis2 = null;
+		
+		
 		DataPoint o = (DataPoint)xySeriesList.get(0).dataPoints.get(0);
 
+		/**
+		 * Initialise X
+		 */
 		if (o.xDate != null) {
-			xAxis = initialiseScalingXTime(xySeriesList);
-		}else {
-			xAxis = initialiseScalingX(xySeriesList);
+			xAxis = initialiseScalingX_time(xySeriesList);
+		} else if (isSeriesListEnumerable(xySeriesList)) {
+			xAxis = initialiseScalingX_enumeration(xySeriesList);
+		} else {
+			xAxis = initialiseScalingX_numerical(xySeriesList);
 		}
+		/**
+		 * Initialise Y
+		 */
+		yAxis = initialiseScalingY_numerical(xySeriesList);
 		
-		YAxis yAxis = initialiseScalingY(xySeriesList);
-		
-		this.yAxis = yAxis;
-		this.xAxis = xAxis;
-
-		
+		/**
+		 * Initialise Y2
+		 */
 		if (this instanceof XYYChart) {
 			
-			XYYChart d = (XYYChart)this;
-			d.yAxis2 = initialiseScalingY(this.dataY2);
-			d.yAxis2.axisDraw.setOrientation(Orientation.Y2);
+//			XYYChart d = (XYYChart)this;
+			
+			yAxis2 = initialiseScalingY_numerical(this.dataY2);
+			yAxis2.axisDraw.setOrientation(Orientation.Y2);
 		}
 		
+		this.xAxis = xAxis;
+		this.yAxis = yAxis;
+		this.yAxis2 = yAxis2;
+		
+		
 	}
-	
-	private XAxis initialiseScalingXTime(ArrayList<XYDataSeries> xySeriesList) {
+
+	/**
+	 * Check if XYDataSeries are enumerable or not.
+	 * @param xySeriesList
+	 * @return
+	 */
+	private boolean isSeriesListEnumerable(ArrayList<XYDataSeries> xySeriesList) {
+		
+		XYDataSeries first = xySeriesList.get(0);
+		
+		DataPoint dp = (DataPoint)first.dataPoints.get(0);
+
+		if (dp.valueType == ValueType.X_ENUMARABLE) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	private XAxis initialiseScalingX_time(ArrayList<XYDataSeries> xySeriesList) {
 		
 		DateRange drX = getDateRangeX(xySeriesList);
 		
@@ -533,6 +537,60 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		return xAxis;
 	}
 
+	
+
+
+	/**
+	 * 
+	 * @param xySeriesList
+	 */
+	private XAxis initialiseScalingX_enumeration(ArrayList<XYDataSeries> xySeriesList) {
+    	
+    	EnumerationAxisScalingX xd = new EnumerationAxisScalingX();
+    	xAxis = new XAxis(xd, "");
+    	
+    	double xMax = xd.maxValue; //100
+    	double xMin = xd.minValue; //0
+    	
+
+    	int lastLength = xySeriesList.get(0).dataPoints.size();
+    	for (XYDataSeries xyDataSeries : xySeriesList) {
+    		
+    		int sizeXPoints = xyDataSeries.dataPoints.size();
+    		if (sizeXPoints != lastLength) {
+    			throw new RuntimeException("A list of series for an enumerable/category X Axis requires the exact "
+    					+ "same number of data points for each series. "
+    					+ "Variable number of series data points not currently supported");
+    		}
+		}
+	
+		ArrayList<DataPoint> dps = xySeriesList.get(0).dataPoints; //will only have one series
+    	
+        double xRange = (double) (xMax - xMin);
+		
+        //distance between points (bars)
+        double pointDistance = (double) (xRange / (dps.size() + 1));
+
+        
+    	
+    	for (XYDataSeries xyDataSeries : xySeriesList) {
+    		ArrayList<DataPoint> dps2 = xyDataSeries.dataPoints;
+
+            int i = 1;
+            for (DataPoint dp : dps2) {
+            	dp.x = (int) (pointDistance * i);
+                i++;
+            }
+		}
+    	
+    	
+
+        ChartUtils.validityCheck(dps);
+    	
+
+        
+        return xAxis;
+	}
 
 
 
@@ -543,7 +601,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @return
 	 */
 	
-	private XAxis initialiseScalingX(ArrayList<XYDataSeries> xySeriesList) {
+	private XAxis initialiseScalingX_numerical(ArrayList<XYDataSeries> xySeriesList) {
 		//get padded range
 		DataRange drX = getDataRangeX(xySeriesList);
 		
@@ -569,7 +627,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		return xAxis;
 	}
 
-	private YAxis initialiseScalingY(ArrayList<XYDataSeries> xySeriesList) {
+	private YAxis initialiseScalingY_numerical(ArrayList<XYDataSeries> xySeriesList) {
 		//get padded range
 		DataRange drY = getDataRangeY(xySeriesList);
 		
@@ -780,21 +838,19 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisDraw.getMinValue());
         }
 
-		if (xAxis.axisDraw instanceof TimeSeriesAxisScalingX) {
-			new ChartPlotter().plotData((Graphics2D) g, this, yAxis,
-					xAxis, data);
-		} else {
-			new ChartPlotter().plotData((Graphics2D) g, this,
-					yAxis, xAxis, data);
-		}
+//		if (xAxis.axisDraw instanceof TimeSeriesAxisScalingX) {
+			new ChartPlotter().plotData((Graphics2D) g, this, yAxis, xAxis, data);
+//		} else {
+//			new ChartPlotter().plotData((Graphics2D) g, this, yAxis, xAxis, data);
+//		}
 		
 		
 		
 		if (this instanceof XYYChart) {
-			XYYChart d = (XYYChart)this;
+//			XYYChart d = (XYYChart)this;
 			
 			new ChartPlotter().plotData((Graphics2D) g, this,
-					d.yAxis2, xAxis, dataY2);
+					yAxis2, xAxis, dataY2);
 			
 		}
 

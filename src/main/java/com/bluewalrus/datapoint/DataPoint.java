@@ -12,13 +12,18 @@ import com.bluewalrus.point.UIPointXY;
  */
 public class DataPoint implements Serializable{
 
+	//the types of X
     public double x;
     public Date xDate;
+	public String xName;
+    
     
     public double y;
 
     public String name; //may have a name
     
+    public ValueType valueType;
+
     
     public UIPointXY uiPointXY;
 
@@ -42,13 +47,16 @@ public class DataPoint implements Serializable{
         this.xDate = date;
         this.y = y;
     }
-
-
+	public DataPoint(String xString, double y) {
+		
+		valueType = ValueType.X_ENUMARABLE;
+        this.y = y;
+        this.xName = xString;
+	}
+    
 
 	public void setPoinUI(UIPointXY uiPointXY) {
-		
 		this.uiPointXY = uiPointXY;
-		
 	}
 
 	@Override

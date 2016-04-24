@@ -5,10 +5,15 @@ import java.awt.Color;
 
 public class DataPointBar extends DataPoint {
 
-    public Color color; //TODO get rid of this
+    public Color color;
     
-    public ValueType valueType;
-    
+    /**
+     * Enumerable version
+     * 
+     * @param xName
+     * @param y
+     * @param color
+     */
 	public DataPointBar(String xName, double y, Color color) {
 		super(-9999, y); 
 		this.color = color;
@@ -18,6 +23,13 @@ public class DataPointBar extends DataPoint {
 		this.name = xName;
 	}
 	
+	/**
+	 * Linear version
+	 * 
+	 * @param x
+	 * @param y
+	 * @param name
+	 */
     public DataPointBar(double x, double y, String name) {
         super(x, y);
         this.name = name;

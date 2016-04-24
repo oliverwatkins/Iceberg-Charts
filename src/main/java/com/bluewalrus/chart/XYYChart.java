@@ -23,13 +23,11 @@ import com.bluewalrus.datapoint.DataPointBar;
  */
 public class XYYChart extends XYChart { 
 
-    public int barWidth = 30;
-    public YAxis yAxis2;
-//    public ArrayList<Bar> bars;
+    
+
     public XYDataSeries<DataPointBar> barSeries;
 
     public ArrayList<XYDataSeries> xySeriesY2;
-
     
     
     public XYYChart(String title, 
@@ -40,44 +38,6 @@ public class XYYChart extends XYChart {
 			ArrayList<XYDataSeries> xySeriesY2, boolean erasureFixme) {
     	
     	super(title, xLabel, yLabel, y2Label, xySeries, xySeriesY2);
-    	
-    	
-    	
-    	
-//    	yAxis2 = new YAxis(new LinearNumericalAxisScalingX(0, 100), "hi");
-//    	
-//    	yAxis2.axisDraw.setOrientation(Orientation.Y2);
-//    	
-//    	
-//    	
-//    	this.xySeriesY2  = xySeriesY2;
-    	
-//    	yAxis2.setAxisDraw(new LinearNumericalAxisScalingX(0, 100));
-    	
-//		ChartUtils.setUpSeriesStyle(xySeriesList, this);
-//
-//		initialiseScaling(xySeriesList);
-//		
-//		this.xAxis.labelText = xLabel;
-//		this.yAxis.labelText = yLabel;
-//		
-//		this.addMouseMotionListener(this);
-//
-//		this.data.addAll(xySeriesList);
-//
-//		this.setTitle(title);
-		
-		
-//		yAxis2.axisDraw.setOrientation(Orientation.Y2);
-		
-		
-    	/**
-    	 * TODO this constructor to replace bar constructor
-    	 * 
-    	 * 
-    	 */
-    	
-    	
 	}
     
 
@@ -96,6 +56,8 @@ public class XYYChart extends XYChart {
 //        //...then the other series.
 //        new NumericalPlotter().drawLinesOrPoints((Graphics2D) g, this, yAxis, xAxis, data);
 //
+		
+		
         Graphics2D g2d = (Graphics2D) g;
 //
         drawRightLine(g2d);

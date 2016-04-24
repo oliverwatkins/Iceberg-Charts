@@ -10,6 +10,10 @@ public abstract class UIPointAbstractBar extends UIPointComplexXY {
 
     int pointDiffWidth = 10;
     double barWidthPercent = 0;
+    
+    public UIPointAbstractBar() {
+        super();
+    }
 
     public UIPointAbstractBar(Color color, int size) {
         super(color, size);

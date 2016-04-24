@@ -4,20 +4,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Bar;
 import com.bluewalrus.bar.GradiantRule;
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYYChart;
-import com.bluewalrus.chart.axis.XAxis;
-import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;
 import com.bluewalrus.point.UIPointTriangle;
-import com.bluewalrus.scaling.EnumerationAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 public class TestDataBar_2Y_2  extends ChartTester{
 
@@ -93,14 +88,10 @@ public class TestDataBar_2Y_2  extends ChartTester{
         xySeriesY2.add(seriesY2);
         xySeriesY2.add(series2Y2);
         
-        
 
         XYYChart chart = new XYYChart("Title", "x", "y", "y2", xySeries, xySeriesY2, true);
 
-//        chart.width = 1000;
-//        chart.height = 600;
         chart.setSize(1000, 600);
-        chart.barWidth = 39;
         
         chart.rightOffset = 340;
         

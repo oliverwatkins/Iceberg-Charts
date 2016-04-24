@@ -2,8 +2,6 @@ package com.bluewalrus.datapoint;
 
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Bar;
-
 
 /**
  * A set of bars.
