@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.Random;
 
 import com.bluewalrus.bar.Line;
-import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.datapoint.DataPointBar;

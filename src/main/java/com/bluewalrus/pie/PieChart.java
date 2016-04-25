@@ -5,9 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Category;
-import com.bluewalrus.bar.Legend;
-import com.bluewalrus.bar.Legendable;
+import com.bluewalrus.chart.Category;
+import com.bluewalrus.chart.Legend;
+import com.bluewalrus.chart.Legendable;
 
 public class PieChart extends AbstractPieChart implements Legendable {
 

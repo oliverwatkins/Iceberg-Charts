@@ -11,7 +11,7 @@ import java.awt.Point;
 import java.awt.geom.Area;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Categorisable;
+import com.bluewalrus.chart.Categorisable;
 
 public class Segment implements Categorisable{
     

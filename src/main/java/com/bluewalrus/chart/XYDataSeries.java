@@ -1,7 +1,8 @@
-package com.bluewalrus.bar;
+package com.bluewalrus.chart;
 
 import com.bluewalrus.point.UIPointBubble;
 import com.bluewalrus.point.UIPointXY;
+import com.bluewalrus.bar.Line;
 import com.bluewalrus.datapoint.DataPoint;
 
 import java.awt.Color;

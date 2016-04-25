@@ -3,9 +3,9 @@ package com.bluewalrus.scaling;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Orientation;
-import com.bluewalrus.bar.XYDataSeries;
+import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 

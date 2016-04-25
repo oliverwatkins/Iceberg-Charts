@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 import com.bluewalrus.bar.GradiantRule;
 import com.bluewalrus.bar.Line;
-import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.datapoint.DataPoint;
 import com.bluewalrus.point.UIPointCircle;
 import com.bluewalrus.point.UIPointSquare;

@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Utils;
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.Utils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;

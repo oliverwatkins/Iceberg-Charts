@@ -1,5 +1,5 @@
 
-package com.bluewalrus.bar;
+package com.bluewalrus.chart;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,7 +13,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.bluewalrus.chart.Chart;
+import com.bluewalrus.bar.Line;
 import com.bluewalrus.point.UIPointSimpleXY;
 import com.bluewalrus.point.UIPointXY;
 

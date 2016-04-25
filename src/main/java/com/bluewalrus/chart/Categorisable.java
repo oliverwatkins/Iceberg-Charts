@@ -1,4 +1,4 @@
-package com.bluewalrus.bar;
+package com.bluewalrus.chart;
 
 /**
  * Defines whether a class can be assigned to a category

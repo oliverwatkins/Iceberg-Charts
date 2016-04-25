@@ -9,10 +9,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.PieBubbleChart;
 import com.bluewalrus.chart.PieBubbleChartSettings;
+import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.datapoint.DataPoint;

@@ -5,8 +5,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import com.bluewalrus.bar.Line;
-import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.datapoint.DataPoint;

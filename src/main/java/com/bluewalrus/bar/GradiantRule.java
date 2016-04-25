@@ -3,6 +3,8 @@ package com.bluewalrus.bar;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import com.bluewalrus.chart.Utils;
+
 /**
  * A gradient rule creates an array of colors based on a range between two colors, and a range of integers. 
  *

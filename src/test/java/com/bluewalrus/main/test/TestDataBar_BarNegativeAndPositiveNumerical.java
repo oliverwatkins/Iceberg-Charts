@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import com.bluewalrus.bar.GridLine;
-import com.bluewalrus.bar.Utils;
+import com.bluewalrus.chart.Utils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;

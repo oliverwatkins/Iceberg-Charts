@@ -11,13 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-import com.bluewalrus.bar.Category;
 import com.bluewalrus.bar.GridLine;
-import com.bluewalrus.bar.Legendable;
 import com.bluewalrus.bar.Line;
-import com.bluewalrus.bar.Orientation;
-import com.bluewalrus.bar.XYDataSeries;
-import com.bluewalrus.bar.XYDataSeriesType;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.axis.NumericalInterval;

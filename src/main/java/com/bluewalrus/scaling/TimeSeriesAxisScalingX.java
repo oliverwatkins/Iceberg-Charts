@@ -8,10 +8,10 @@ import java.util.Date;
 
 import javax.management.RuntimeErrorException;
 
-import com.bluewalrus.bar.Orientation;
-import com.bluewalrus.bar.XYDataSeries;
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.TimeInterval.Type;

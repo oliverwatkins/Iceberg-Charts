@@ -17,8 +17,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.bluewalrus.bar.Utils;
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.Utils;
 import com.bluewalrus.pie.MultiLevelPieChart;
 import com.bluewalrus.pie.PieChart;
 import com.bluewalrus.pie.Segment;

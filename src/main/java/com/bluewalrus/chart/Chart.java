@@ -14,9 +14,6 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import com.bluewalrus.bar.Category;
-import com.bluewalrus.bar.Legend;
-
 /**
  * <code>Chart<code> is an abstract chart for all charts.   
  * 

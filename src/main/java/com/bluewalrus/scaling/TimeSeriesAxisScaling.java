@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Date;
 
-import com.bluewalrus.bar.Orientation;
+import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.TimeInterval;

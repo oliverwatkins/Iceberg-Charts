@@ -1,4 +1,4 @@
-package com.bluewalrus.bar;
+package com.bluewalrus.chart;
 
 public enum XYDataSeriesType {
 
