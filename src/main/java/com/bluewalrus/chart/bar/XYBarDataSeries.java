@@ -18,9 +18,26 @@ public class XYBarDataSeries extends XYDataSeries<DataPoint>{
 		super(name);
 	}
 
-	public XYBarDataSeries(ArrayList<DataPointBar> barSeries,
+	public XYBarDataSeries(ArrayList barSeries,
 			BarDisplayOptions bdo, Object object, String string) {
-		// TODO Auto-generated constructor stub
+		
+		super(barSeries, string);
+		
+	}
+
+	public XYBarDataSeries() {
+		super("");
+		
+//		this.dataPoints = new ArrayList<DataPoint>();
+	}
+
+	public void add(DataPointBar dataPointBar) {
+		
+		this.dataPoints.add(dataPointBar);
+		
+		
+		// TODO Auto-generated method stub
+		
 	} 
 
 }

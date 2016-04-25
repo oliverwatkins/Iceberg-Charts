@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.pie;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.pie.Segment;
 import com.bluewalrus.pie.SimpleIndicatorPieChart;
 

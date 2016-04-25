@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.pie;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.Utils;
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.pie.MultiLevelPieChart;
 import com.bluewalrus.pie.PieChart;
 import com.bluewalrus.pie.Segment;

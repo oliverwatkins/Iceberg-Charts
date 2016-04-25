@@ -1,10 +1,11 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.bar;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
+import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.Utils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.NumericalInterval;
@@ -14,23 +15,25 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointBar;
+import com.bluewalrus.main.test.ChartTester;
+import com.bluewalrus.scaling.EnumerationAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
  */
-public class TestDataBar_BarCanBeXY extends ChartTester {
+public class TestDataBar_zero_offchart extends ChartTester {
 
 	@Override
-	public JPanel getChart() {
+	public Chart getChart() {
 
         
         NumericalInterval tick1 = new NumericalInterval(20, 10.0, new GridLine(Color.GRAY,true,1)); //grid line
         NumericalInterval tick2 = new NumericalInterval(10, 1.0, null); //no grid line
 //        Interval tick3 = new Interval(5, 5.0, null);
         
-        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-80.0, 100.0, tick1, tick2, null), "Y value");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-14.2, 16.7, tick1, tick2, null), "Y value");
         XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 25.0, tick1, tick2, null), "X Value - must be even spaced");
         
         
@@ -41,9 +44,9 @@ public class TestDataBar_BarCanBeXY extends ChartTester {
         bars.add(new DataPointBar(3, -40, Color.YELLOW, ""));
         bars.add(new DataPointBar(4, -30, Color.YELLOW, ""));
         bars.add(new DataPointBar(5, -20, Color.YELLOW, ""));
-        bars.add(new DataPointBar(6, -10, Color.YELLOW, ""));
+        bars.add(new DataPointBar(6, -12, Color.YELLOW, ""));
         bars.add(new DataPointBar(7, 0, Color.PINK, ""));
-        bars.add(new DataPointBar(8, 10, Color.PINK, ""));
+        bars.add(new DataPointBar(8, 13, Color.PINK, ""));
         bars.add(new DataPointBar(9, 20, Color.PINK, ""));
         bars.add(new DataPointBar(10, 30, Color.PINK, "ten"));
         bars.add(new DataPointBar(11, 40, Color.PINK, ""));
@@ -83,8 +86,14 @@ public class TestDataBar_BarCanBeXY extends ChartTester {
         return lineChart;
     }
 	
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataBar_zero_offchart();
+		t.testChart(t.getChart());
+	}
+	
 
-
+	
 
 
 }

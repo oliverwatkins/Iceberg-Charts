@@ -34,7 +34,7 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
         this.name = name;
     }
 
-	public XYDataSeries(ArrayList<DataPoint> dataPoints, String name) {
+	public XYDataSeries(ArrayList<? extends DataPoint> dataPoints, String name) {
 		this.name = name;
 		this.dataPoints = dataPoints;
 	}

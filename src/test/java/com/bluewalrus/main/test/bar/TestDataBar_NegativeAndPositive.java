@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.bar;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.EnumerationAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 

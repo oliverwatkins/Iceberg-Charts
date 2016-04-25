@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.bar;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -12,6 +12,7 @@ import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.EnumerationAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
@@ -37,13 +38,13 @@ public class TestDataBar_BarNegativeAndPositiveNumerical extends ChartTester {
         XAxis xAxis = new XAxis(new EnumerationAxisScalingX(), "Commodity");
 
         ArrayList<DataPointBar> bars = new ArrayList<DataPointBar>();
-        bars.add(new DataPointBar(10, 90, colors.get(0)));
-        bars.add(new DataPointBar(20, 14, colors.get(1)));
-        bars.add(new DataPointBar(30, -7, colors.get(2)));
-        bars.add(new DataPointBar(40, 30, colors.get(3)));
-        bars.add(new DataPointBar(50, 10, colors.get(4)));
-        bars.add(new DataPointBar(60, 30, colors.get(4)));
-        bars.add(new DataPointBar(70, 54, colors.get(4)));
+        bars.add(new DataPointBar("Bananas", 90, colors.get(0)));
+        bars.add(new DataPointBar("Grapes", 14, colors.get(1)));
+        bars.add(new DataPointBar("Wheat", -7, colors.get(2)));
+        bars.add(new DataPointBar("Oranges", 30, colors.get(3)));
+        bars.add(new DataPointBar("Pineapple", 10, colors.get(4)));
+        bars.add(new DataPointBar("Asparagus", 30, colors.get(4)));
+        bars.add(new DataPointBar("Strawberrys", 54, colors.get(4)));
         
         XYChart xyChart = new XYChart(bars, "Change In Commodity Price" ,"Commodity", "Price USD", 40);
         
