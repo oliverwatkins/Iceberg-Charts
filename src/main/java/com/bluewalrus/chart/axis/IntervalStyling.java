@@ -1,7 +1,7 @@
 package com.bluewalrus.chart.axis;
 
-import com.bluewalrus.chart.bar.GridFill;
-import com.bluewalrus.chart.bar.GridLine;
+import com.bluewalrus.chart.draw.GridFill;
+import com.bluewalrus.chart.draw.GridLine;
 
 public class IntervalStyling {
 

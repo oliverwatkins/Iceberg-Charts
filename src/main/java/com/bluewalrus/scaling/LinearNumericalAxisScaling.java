@@ -10,7 +10,7 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
-import com.bluewalrus.chart.bar.Line;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
 import com.bluewalrus.chart.draw.YAxisDrawUtil;
 

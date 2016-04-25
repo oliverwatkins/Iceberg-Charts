@@ -1,7 +1,7 @@
 package com.bluewalrus.chart;
 
-import com.bluewalrus.chart.bar.Line;
 import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointBubble;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 

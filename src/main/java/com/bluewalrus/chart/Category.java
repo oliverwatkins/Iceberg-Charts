@@ -2,7 +2,7 @@ package com.bluewalrus.chart;
 
 import java.awt.Color;
 
-import com.bluewalrus.chart.bar.Line;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointBubble;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 

@@ -1,4 +1,4 @@
-package com.bluewalrus.chart.bar;
+package com.bluewalrus.chart.draw;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

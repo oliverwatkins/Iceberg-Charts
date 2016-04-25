@@ -11,9 +11,8 @@ import java.util.Date;
 import java.util.Random;
 
 import com.bluewalrus.chart.axis.NumericalInterval;
-import com.bluewalrus.chart.bar.Line;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.datapoint.DataPointBar;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
