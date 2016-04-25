@@ -7,9 +7,9 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.MultiBarChart;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.datapoint.DataPointBar;
-import com.bluewalrus.datapoint.MultiBar;
-import com.bluewalrus.datapoint.MultiBar.MultiBarMode;
+import com.bluewalrus.chart.datapoint.DataPointBar;
+import com.bluewalrus.chart.datapoint.MultiBar;
+import com.bluewalrus.chart.datapoint.MultiBar.MultiBarMode;
 import com.bluewalrus.scaling.EnumerationAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 

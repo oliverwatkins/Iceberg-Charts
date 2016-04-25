@@ -1,4 +1,4 @@
-package com.bluewalrus.datapoint;
+package com.bluewalrus.chart.datapoint;
 
 public class DataPointBoxPlot extends DataPoint {
 

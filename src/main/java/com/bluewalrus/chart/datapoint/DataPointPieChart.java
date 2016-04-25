@@ -1,4 +1,4 @@
-package com.bluewalrus.datapoint;
+package com.bluewalrus.chart.datapoint;
 
 import com.bluewalrus.pie.Segment;
 import java.util.ArrayList;

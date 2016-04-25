@@ -14,8 +14,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.bluewalrus.bar.Line;
-import com.bluewalrus.point.UIPointSimpleXY;
-import com.bluewalrus.point.UIPointXY;
+import com.bluewalrus.chart.draw.point.UIPointSimpleXY;
+import com.bluewalrus.chart.draw.point.UIPointXY;
 
 
 /**

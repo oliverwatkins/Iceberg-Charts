@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bluewalrus.point;
+package com.bluewalrus.chart.draw.point;
 
 import com.bluewalrus.chart.PieBubbleChartSettings;
 import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.datapoint.DataPointPieChart;
+import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPointPieChart;
 import com.bluewalrus.pie.Segment;
 import com.bluewalrus.renderer.XYFactor;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Paint;

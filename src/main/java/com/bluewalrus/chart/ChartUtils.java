@@ -12,11 +12,11 @@ import java.util.Random;
 
 import com.bluewalrus.bar.Line;
 import com.bluewalrus.chart.axis.NumericalInterval;
-import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.datapoint.DataPointBar;
-import com.bluewalrus.point.UIPointCircle;
-import com.bluewalrus.point.UIPointSquare;
-import com.bluewalrus.point.UIPointTriangle;
+import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPointBar;
+import com.bluewalrus.chart.draw.point.UIPointCircle;
+import com.bluewalrus.chart.draw.point.UIPointSquare;
+import com.bluewalrus.chart.draw.point.UIPointTriangle;
 
 public class ChartUtils {
 

@@ -3,8 +3,8 @@ package com.bluewalrus.bar;
 import java.util.ArrayList;
 
 import com.bluewalrus.chart.XYDataSeries;
-import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.datapoint.DataPointBar;
+import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPointBar;
 
 /**
  * A special case of XYDataSeries for bars. Contains extra rendering information

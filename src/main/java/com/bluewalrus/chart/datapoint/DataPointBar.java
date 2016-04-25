@@ -1,4 +1,4 @@
-package com.bluewalrus.datapoint;
+package com.bluewalrus.chart.datapoint;
 
 import java.awt.Color;
 

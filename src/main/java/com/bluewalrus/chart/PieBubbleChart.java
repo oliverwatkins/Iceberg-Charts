@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.datapoint.DataPointPieChart;
+import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPointPieChart;
 
 /**
  * ShowpieBubbleChartSettings piepieBubbleChartSettings apieBubbleChartSettings

@@ -14,12 +14,12 @@ import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.datapoint.DataPointBoxPlot;
-import com.bluewalrus.point.UIPointBoxPlot;
-import com.bluewalrus.point.UIPointCircle;
-import com.bluewalrus.point.UIPointSquare;
-import com.bluewalrus.point.UIPointTriangle;
+import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPointBoxPlot;
+import com.bluewalrus.chart.draw.point.UIPointBoxPlot;
+import com.bluewalrus.chart.draw.point.UIPointCircle;
+import com.bluewalrus.chart.draw.point.UIPointSquare;
+import com.bluewalrus.chart.draw.point.UIPointTriangle;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.bluewalrus.point;
+package com.bluewalrus.chart.draw.point;
 
 /**
  * hmmm...

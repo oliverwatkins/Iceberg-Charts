@@ -1,4 +1,4 @@
-package com.bluewalrus.point;
+package com.bluewalrus.chart.draw.point;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -9,10 +9,10 @@ import java.awt.Shape;
 
 import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPointBar;
+import com.bluewalrus.chart.datapoint.DataPointMultiBar;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
-import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.datapoint.DataPointBar;
-import com.bluewalrus.datapoint.DataPointMultiBar;
 import com.bluewalrus.renderer.XYFactor;
 
 public class UIPointMultiBar extends UIPointAbstractMultiBar{

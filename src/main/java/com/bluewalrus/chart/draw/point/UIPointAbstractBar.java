@@ -1,4 +1,4 @@
-package com.bluewalrus.point;
+package com.bluewalrus.chart.draw.point;
 
 import java.awt.Color;
 import java.awt.FontMetrics;

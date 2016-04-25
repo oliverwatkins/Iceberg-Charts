@@ -9,10 +9,10 @@ import com.bluewalrus.bar.Line;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
-import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.point.UIPointCircle;
-import com.bluewalrus.point.UIPointSquare;
-import com.bluewalrus.point.UIPointTriangle;
+import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.draw.point.UIPointCircle;
+import com.bluewalrus.chart.draw.point.UIPointSquare;
+import com.bluewalrus.chart.draw.point.UIPointTriangle;
 
 public class TestDataBar_2Y_2  extends ChartTester{
 

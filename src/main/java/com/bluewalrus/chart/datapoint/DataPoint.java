@@ -1,9 +1,9 @@
-package com.bluewalrus.datapoint;
+package com.bluewalrus.chart.datapoint;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import com.bluewalrus.point.UIPointXY;
+import com.bluewalrus.chart.draw.point.UIPointXY;
 
 /**
  * Super type for boxplots, bar, multibar, piechart, bubble etc. But used individually for

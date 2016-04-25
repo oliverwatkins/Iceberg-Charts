@@ -15,10 +15,10 @@ import com.bluewalrus.chart.PieBubbleChartSettings;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.datapoint.DataPointPieChart;
+import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPointPieChart;
+import com.bluewalrus.chart.draw.point.UIPointPieChart;
 import com.bluewalrus.pie.Segment;
-import com.bluewalrus.point.UIPointPieChart;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 

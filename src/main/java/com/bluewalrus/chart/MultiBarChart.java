@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.datapoint.DataPointBar;
-import com.bluewalrus.datapoint.DataPointMultiBar;
-import com.bluewalrus.datapoint.MultiBar;
-import com.bluewalrus.point.UIPointMultiBar;
-import com.bluewalrus.point.UIPointMultiBarStacked;
+import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPointBar;
+import com.bluewalrus.chart.datapoint.DataPointMultiBar;
+import com.bluewalrus.chart.datapoint.MultiBar;
+import com.bluewalrus.chart.draw.point.UIPointMultiBar;
+import com.bluewalrus.chart.draw.point.UIPointMultiBarStacked;
 
 /**
  * Multibar chart can be stacked or side by side. It currently is only enumerable

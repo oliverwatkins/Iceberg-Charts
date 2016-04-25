@@ -1,14 +1,14 @@
-package com.bluewalrus.point;
+package com.bluewalrus.chart.draw.point;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPointBar;
+import com.bluewalrus.chart.datapoint.DataPointMultiBar;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
-import com.bluewalrus.datapoint.DataPoint;
-import com.bluewalrus.datapoint.DataPointBar;
-import com.bluewalrus.datapoint.DataPointMultiBar;
 import com.bluewalrus.renderer.XYFactor;
 
 

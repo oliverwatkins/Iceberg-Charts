@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPoint;
 
 public class TestDataXY_Simple extends ChartTester {
 	
