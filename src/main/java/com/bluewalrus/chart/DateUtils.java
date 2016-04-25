@@ -1,10 +1,9 @@
-package com.bluewalrus.chart.draw;
+package com.bluewalrus.chart;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import com.bluewalrus.chart.DateRange;
 import com.bluewalrus.chart.axis.TimeInterval.Type;
 
 public class DateUtils {

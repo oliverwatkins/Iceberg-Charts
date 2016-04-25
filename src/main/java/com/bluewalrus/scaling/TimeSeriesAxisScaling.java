@@ -4,11 +4,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Date;
 
+import com.bluewalrus.chart.DateUtils;
 import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
-import com.bluewalrus.chart.draw.DateUtils;
 
 public abstract class TimeSeriesAxisScaling extends AxisScaling{
 

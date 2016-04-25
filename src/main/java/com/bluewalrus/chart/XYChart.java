@@ -23,7 +23,6 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.chart.datapoint.ValueType;
-import com.bluewalrus.chart.draw.DateUtils;
 import com.bluewalrus.chart.draw.plotter.ChartPlotter;
 import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
