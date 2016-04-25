@@ -65,7 +65,7 @@ public class TestDataBar_zero_offchart extends ChartTester {
         
         XYChart lineChart = new XYChart(xAxis, yAxis);
         
-        XYDataSeries<DataPoint> series = new XYDataSeries<DataPoint>(
+        XYDataSeries<DataPointBar> series = new XYDataSeries<DataPointBar>(
         		new UIPointBar(Color.RED),
         		null,
         		"");

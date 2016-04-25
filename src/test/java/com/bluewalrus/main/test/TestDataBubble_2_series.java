@@ -24,8 +24,8 @@ public class TestDataBubble_2_series extends ChartTester {
 
         ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
-        ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-        ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
+        ArrayList<DataPointWithMagnitude> values = new ArrayList<DataPointWithMagnitude>();
+        ArrayList<DataPointWithMagnitude> values2 = new ArrayList<DataPointWithMagnitude>();
 
         values.add(new DataPointWithMagnitude("A", 15, 12, 40));
         values.add(new DataPointWithMagnitude("B", 40, 20, 50));

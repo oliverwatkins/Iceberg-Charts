@@ -8,15 +8,13 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 
-import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.bar.XYBarDataSeries;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
@@ -86,6 +84,21 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		this.data.add(series);
 	}
+	
+	
+	public XYChart(XYDataSeries series, String title, String yLabel,
+			String xLabel) {
+		
+		this.setTitle(title);
+		
+		this.data.add(series);
+		
+		initialiseScaling(this.data);
+		
+		this.xAxis.labelText = xLabel;
+		this.yAxis.labelText = yLabel;
+	}
+
 
 	/**
 	 * Create an XY chart by passing in the two axis. This is the default
@@ -198,7 +211,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			String yLabel, int pixelBarWidth) {
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
-		XYDataSeries<DataPoint> xy = new XYDataSeries<DataPoint>(bars,
+		XYDataSeries<DataPointBar> xy = new XYDataSeries<DataPointBar>(bars,
 				new UIPointBar(Color.RED, Color.YELLOW, pixelBarWidth), null, "");
 		
 		xySeriesList.add(xy);
@@ -422,6 +435,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         }
     }
 	
+
+
 	/**
 	 * Initialize, calculating best x,y scalings and intervals.
 	 * 

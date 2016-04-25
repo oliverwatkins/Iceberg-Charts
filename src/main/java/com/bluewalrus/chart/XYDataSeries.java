@@ -1,8 +1,10 @@
 package com.bluewalrus.chart;
 
 import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.DataPointMultiBar;
 import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointBubble;
+import com.bluewalrus.chart.draw.point.UIPointMultiBarStacked;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 
 import java.awt.Color;
@@ -20,7 +22,7 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
 
 
 
-	public ArrayList<? extends DataPoint> dataPoints;
+	public ArrayList<T> dataPoints;
 
     public UIPointXY pointType; //describes the type of point UI.
     
@@ -34,12 +36,17 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
         this.name = name;
     }
 
-	public XYDataSeries(ArrayList<? extends DataPoint> dataPoints, String name) {
+	public XYDataSeries(ArrayList<T> dataPoints, String name) {
 		this.name = name;
 		this.dataPoints = dataPoints;
 	}
     
-    public XYDataSeries(ArrayList<? extends DataPoint> dataPoints, UIPointXY point, Line line, String name) {
+//    public XYDataSeries(ArrayList<DataPointMultiBar> dataPoints2,
+//			UIPointMultiBarStacked point, Object line2, String name2) {
+//		// TODO Auto-generated constructor stub
+//	}
+	
+    public XYDataSeries(ArrayList<T> dataPoints, UIPointXY point, Line line, String name) {
 
         this(point, line, name);
 
@@ -61,7 +68,9 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
     }
     
     
-    /**
+
+
+	/**
      * Has line or point been set
      * 
      * @return
