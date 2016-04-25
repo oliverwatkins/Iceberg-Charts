@@ -8,8 +8,8 @@ import java.io.Serializable;
 
 import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.renderer.XYFactor;
 
 /**
  * Base class for all X/Y UI points. 

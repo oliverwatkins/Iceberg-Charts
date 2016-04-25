@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import com.bluewalrus.bar.GridLine;
-import com.bluewalrus.bar.Line;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.bar.GridLine;
+import com.bluewalrus.chart.bar.Line;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBoxPlot;
 import com.bluewalrus.chart.draw.point.UIPointBoxPlot;

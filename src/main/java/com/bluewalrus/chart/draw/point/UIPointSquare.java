@@ -6,8 +6,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.renderer.XYFactor;
 
 public class UIPointSquare extends UIPointSimpleXY {
 

@@ -10,9 +10,9 @@ import java.awt.geom.Ellipse2D;
 
 import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
-import com.bluewalrus.renderer.XYFactor;
 
 /**
  * TODO offer option of setting magnitude as radius or area!!!

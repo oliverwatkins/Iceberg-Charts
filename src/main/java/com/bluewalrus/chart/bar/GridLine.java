@@ -1,27 +1,38 @@
-package com.bluewalrus.bar;
+package com.bluewalrus.chart.bar;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.Stroke;
 import java.io.Serializable;
 
-public class Line implements Serializable{
+import com.bluewalrus.chart.Chart;
+
+/**
+ * Defines a grid line used in a <code>XYChart</code>
+ * 
+ * @author Oliver Watkins
+ *
+ */
+public class GridLine implements Serializable{
 
     public Color color;
     public boolean dashed = false;
     public int thickness = 1;
 
-    public Line(Color color) {
+    public GridLine(Color color) {
         this.color = color;
     }
 
-    public Line(Color color, boolean dashed) {
+    public GridLine(Color color, boolean dashed) {
         this.color = color;
         this.dashed = dashed;
     }
-
-    public Line(Color color, boolean dashed, int thickness) {
+    
+    public GridLine(Color color, boolean dashed, int thickness) {
         this.color = color;
         this.dashed = dashed;
         this.thickness = thickness;
@@ -29,6 +40,12 @@ public class Line implements Serializable{
 
     public void drawLine(Graphics2D g, int x1, int y1,
             int x2, int y2) {
+    	
+    	if (thickness == 0)
+    		return;
+    	
+    	Color colorCached = g.getColor();
+    	
         g.setColor(color);
 
         Stroke oldStroke = g.getStroke();
@@ -52,6 +69,7 @@ public class Line implements Serializable{
         g.drawLine(x1, y1, x2, y2);
 
         g.setStroke(oldStroke);
+        
+        g.setColor(colorCached);
     }
-
 }

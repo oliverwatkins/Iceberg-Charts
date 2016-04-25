@@ -1,4 +1,4 @@
-package com.bluewalrus.bar;
+package com.bluewalrus.chart.bar;
 
 public class BarDisplayOptions {
 

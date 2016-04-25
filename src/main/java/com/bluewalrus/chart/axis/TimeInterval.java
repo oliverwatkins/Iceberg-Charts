@@ -2,8 +2,8 @@ package com.bluewalrus.chart.axis;
 
 import java.text.SimpleDateFormat;
 
-import com.bluewalrus.bar.GridLine;
-import com.bluewalrus.bar.Line;
+import com.bluewalrus.chart.bar.GridLine;
+import com.bluewalrus.chart.bar.Line;
 
 public class TimeInterval extends AbstractInterval{
 

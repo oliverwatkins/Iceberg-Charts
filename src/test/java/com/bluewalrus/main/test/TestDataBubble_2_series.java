@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.bar.GridLine;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.chart.draw.point.UIPointBubble;

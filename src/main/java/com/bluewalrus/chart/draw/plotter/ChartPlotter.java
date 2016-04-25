@@ -4,14 +4,14 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Line;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
+import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.bar.Line;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.point.UIPointXY;
-import com.bluewalrus.renderer.XYFactor;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingY;
 

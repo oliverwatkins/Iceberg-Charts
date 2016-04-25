@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import com.bluewalrus.bar.GridLine;
 import com.bluewalrus.chart.Utils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.bar.GridLine;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.scaling.EnumerationAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;

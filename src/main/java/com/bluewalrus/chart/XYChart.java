@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-import com.bluewalrus.bar.GridLine;
-import com.bluewalrus.bar.Line;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
+import com.bluewalrus.chart.bar.GridLine;
+import com.bluewalrus.chart.bar.Line;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;

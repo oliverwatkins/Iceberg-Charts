@@ -13,7 +13,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.bluewalrus.bar.Line;
+import com.bluewalrus.chart.bar.Line;
 import com.bluewalrus.chart.draw.point.UIPointSimpleXY;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 

@@ -8,7 +8,7 @@ package com.bluewalrus.chart.axis;
 
 import java.io.Serializable;
 
-import com.bluewalrus.bar.GridLine;
+import com.bluewalrus.chart.bar.GridLine;
 
 /**
  * Describes a graphical interval along an axis. 

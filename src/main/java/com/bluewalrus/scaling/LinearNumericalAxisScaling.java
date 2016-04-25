@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import com.bluewalrus.bar.Line;
 import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
+import com.bluewalrus.chart.bar.Line;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
 import com.bluewalrus.chart.draw.YAxisDrawUtil;
 

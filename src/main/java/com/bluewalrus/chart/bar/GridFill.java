@@ -1,4 +1,4 @@
-package com.bluewalrus.bar;
+package com.bluewalrus.chart.bar;
 
 import java.awt.Color;
 import java.awt.GradientPaint;

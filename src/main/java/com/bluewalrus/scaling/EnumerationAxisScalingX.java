@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
+import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
-import com.bluewalrus.renderer.XYFactor;
 
 public class EnumerationAxisScalingX extends EnumerationAxisScaling {
 

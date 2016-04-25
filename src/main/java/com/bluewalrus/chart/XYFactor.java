@@ -1,4 +1,4 @@
-package com.bluewalrus.renderer;
+package com.bluewalrus.chart;
 
 
 //Convert real values to pixels.

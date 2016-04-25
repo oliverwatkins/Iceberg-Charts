@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.renderer.XYFactor;
 
 public class UIPointCircle extends UIPointSimpleXY {
 

@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-import com.bluewalrus.bar.Line;
 import com.bluewalrus.chart.axis.NumericalInterval;
+import com.bluewalrus.chart.bar.Line;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
