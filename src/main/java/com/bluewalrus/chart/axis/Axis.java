@@ -86,6 +86,11 @@ public abstract class Axis implements Serializable {
 
 	public abstract String getName();
 	
+	public void turnOffGridLines() {
+		axisDraw.interval1.styling.graphLine = null;
+		axisDraw.interval2.styling.graphLine = null;
+		axisDraw.interval3.styling.graphLine = null;
+	}
 	
 
 }

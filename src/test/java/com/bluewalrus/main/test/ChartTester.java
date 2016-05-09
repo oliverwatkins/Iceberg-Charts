@@ -22,7 +22,7 @@ public abstract class ChartTester extends JFrame{
 
 		getContentPane().add(tabbedPaneBar);
 
-		setSize(1300, 800);
+		setSize(700, 700);
 		setVisible(true);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

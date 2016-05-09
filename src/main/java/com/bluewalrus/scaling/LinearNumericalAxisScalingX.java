@@ -66,8 +66,7 @@ public class LinearNumericalAxisScalingX extends LinearNumericalAxisScaling {
 	
 
 	protected double getFromStart(XYChart chart, double toFirstInPixels, double incrementInPixel, int i) {
-		double fromLeft = chart.leftOffset + (i * incrementInPixel)
-				+ toFirstInPixels;
+		double fromLeft = chart.leftOffset + (i * incrementInPixel) + toFirstInPixels;
 		return fromLeft;
 	}
 

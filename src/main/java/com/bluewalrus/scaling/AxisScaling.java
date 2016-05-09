@@ -3,6 +3,7 @@ package com.bluewalrus.scaling;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
@@ -136,6 +137,30 @@ public abstract class AxisScaling {
 	}
 	
 	
+	/**
+	 * Check if pixel point is within the bounds of the chart.
+	 * 
+	 * @param pixelsFromEdge
+	 * @param chart
+	 * @return
+	 */
+	protected boolean inBounds(double pixelsFromEdge, Chart chart) {
+		if (orientation == Orientation.X) {
+			
+			if (pixelsFromEdge > chart.leftOffset && pixelsFromEdge < (chart.rightOffset + chart.widthChart)) {
+				return true;
+			}
+		
+		}else if (orientation == Orientation.Y) {
+			
+			if (pixelsFromEdge > chart.topOffset && pixelsFromEdge < (chart.topOffset + chart.heightChart)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 	protected abstract void drawGridLineOnZero(Graphics2D g);
 
 	protected abstract double getMultiplicationFactor(XYChart chart);
@@ -155,6 +180,8 @@ public abstract class AxisScaling {
 	protected abstract double getToFirstIntervalValueFromMinInPixels(Double interval, double factor);
 
 	/**
+	 * TODO rename
+	 * 
 	 * Get from left, or from bottom
 	 * @param chart
 	 * @param toFirstInPixels

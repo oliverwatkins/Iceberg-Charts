@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.xyy;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -17,6 +17,7 @@ import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
+import com.bluewalrus.main.test.ChartTester;
 
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
@@ -106,9 +107,6 @@ public class TestDataBar_2Y extends ChartTester {
 		
 		XYBarDataSeries rainfallSeries = new XYBarDataSeries(barSeries,
 				bdo, null, "Rainfall");
-		
-		
-		
 		
 
 		ArrayList<XYDataSeries> rainfallSeriesList = new ArrayList<XYDataSeries>();

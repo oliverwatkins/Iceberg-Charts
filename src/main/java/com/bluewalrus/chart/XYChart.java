@@ -173,30 +173,30 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 	}
 
-	/**
-	 * Simple Mutliple Series Constructor
-	 * 
-	 * @param title
-	 * @param xLabel
-	 * @param yLabel
-	 * @param xySeriesList
-	 */
-	public XYChart(String title, String xLabel, String yLabel,
-			ArrayList<XYDataSeries> xySeriesList) {
-
-		ChartUtils.setUpSeriesStyle(xySeriesList, this);
-
-		initialiseScaling(xySeriesList);
-		
-		this.xAxis.labelText = xLabel;
-		this.yAxis.labelText = yLabel;
-		
-		this.addMouseMotionListener(this);
-
-		this.data.addAll(xySeriesList);
-
-		this.setTitle(title);
-	}
+//	/**
+//	 * Simple Mutliple Series Constructor
+//	 * 
+//	 * @param title
+//	 * @param xLabel
+//	 * @param yLabel
+//	 * @param xySeriesList
+//	 */
+//	public XYChart(String title, String xLabel, String yLabel,
+//			ArrayList<XYDataSeries> xySeriesList) {
+//
+//		ChartUtils.setUpSeriesStyle(xySeriesList, this);
+//
+//		initialiseScaling(xySeriesList);
+//		
+//		this.xAxis.labelText = xLabel;
+//		this.yAxis.labelText = yLabel;
+//		
+//		this.addMouseMotionListener(this);
+//
+//		this.data.addAll(xySeriesList);
+//
+//		this.setTitle(title);
+//	}
 	
 	/**
 	 * Simple Bar Chart constructor
@@ -251,6 +251,27 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		this.setTitle(title);
 	}
+	
+	
+
+	public XYChart(String title,
+			String xTitle, String yTitle, ArrayList<XYDataSeries> xySeriesList) {
+		
+		initialiseScaling(xySeriesList);
+		
+		
+		yAxis.labelText = yTitle;
+		xAxis.labelText = xTitle;
+				
+		
+		this.addMouseMotionListener(this);
+
+		this.data.addAll(xySeriesList);
+
+		this.setTitle(title);
+	}
+	
+	
 	
 	/**
 	 * Set up a chart with specific stylings.
@@ -435,6 +456,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         }
     }
 	
+
 
 
 	/**

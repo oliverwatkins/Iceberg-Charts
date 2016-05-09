@@ -17,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.TestDataBar_2Y;
-import com.bluewalrus.main.test.TestDataBar_2Y_2;
 import com.bluewalrus.main.test.TestDataBubble_1_guns;
 import com.bluewalrus.main.test.TestDataBubble_2_series;
 import com.bluewalrus.main.test.TestDataGrids_Gradiant;
@@ -49,6 +47,8 @@ import com.bluewalrus.main.test.pie.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_Multi;
 import com.bluewalrus.main.test.pie.TestDataPie_SimplePie;
+import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
+import com.bluewalrus.main.test.xyy.TestDataBar_2Y_2;
 
 public class IcebergChartsDemo extends JFrame {
 

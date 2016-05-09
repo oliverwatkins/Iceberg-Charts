@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.xyy;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,6 +13,7 @@ import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
+import com.bluewalrus.main.test.ChartTester;
 
 public class TestDataBar_2Y_2  extends ChartTester{
 

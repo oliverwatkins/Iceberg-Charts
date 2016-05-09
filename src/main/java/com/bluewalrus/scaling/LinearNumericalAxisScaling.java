@@ -74,65 +74,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		}
 	}
 	
-
-
-
-
-	/**
-	 * Draw the tick of the interval. Usually just a small line coming out
-	 * perpendicular to the axis.
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param i
-	 * @param incrementInPixel
-	 */
-	protected void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
-		
-        //divide height of chart by actual height of chart to get the multiplaying factor
-        double factor = getMultiplicationFactor(chart); 
-		
-    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
-
-        double fromStart = getFromStart(chart, toZeroShift, incrementInPixel, i);
-        
-    	/**
-    	 * Draw the tick
-    	 */
-		if (orientation == Orientation.X) {
-			XAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, chart.xAxis);
-		}else if (orientation == Orientation.Y) {
-			YAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, chart.yAxis);
-		}else if (orientation == Orientation.Y2) {
-			YAxisDrawUtil.drawIntervalTick(interval, g, chart, fromStart, chart.yAxis2);
-		}else {
-			throw new RuntimeException("not supported");
-		}
-	}
-	
-	protected void drawGridLine(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
-		
-        //divide height of chart by actual height of chart to get the multiplaying factor
-        double factor = getMultiplicationFactor(chart); 
-		
-    	double toZeroShift = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
-
-        double fromStart = getFromStart(chart, toZeroShift, incrementInPixel, i);
-        
-		if (orientation == Orientation.X) {
-			XAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
-		}else if (orientation == Orientation.Y) {
-			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
-		}else if (orientation == Orientation.Y2) {
-			//TODO do we support grids on other Y axis too?
-//			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
-		}else {
-			throw new RuntimeException("not supported");
-		}
-	}
-	
-	
 	/**
 	 * Draw all the intervals and ticks for all intervals
 	 * @param g
@@ -180,54 +121,122 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 
 		double incrementInPixel = (double) (increment * factor);
 
+		
+		
+		
+		
 		for (int i = 0; i < (incrementNo + 1); i++) {
 			
-			drawIntervalTick(inter, g, chart, i, incrementInPixel);
+			double pixelsFromEdge = getPixelPositionFromEdge(inter, chart, i, incrementInPixel);
+			
+			if (!inBounds(pixelsFromEdge, chart)) {
+				continue;
+			}
+			
+			
+			drawIntervalTick(inter, g, chart, pixelsFromEdge);
 
 			if (showLabel)
-				drawIntervalLabel(inter, g, chart, getAxis(chart), i, incrementInPixel);
+				drawIntervalLabel(inter, g, chart, getAxis(chart), pixelsFromEdge, i);
 		}
 	}
+	
+	
+
+
+
+
+
+
+	/**
+	 * Draw the tick of the interval. Usually just a small line coming out
+	 * perpendicular to the axis.
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 * @param i
+	 * @param incrementInPixel
+	 */
+	protected void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, double pixelsFromEdge) {
+		
+//        double pixelsFromEdge = getPixelPositionFromEdge(interval, chart, i, incrementInPixel);
+        
+        
+    	/**
+    	 * Draw the tick
+    	 */
+		if (orientation == Orientation.X) {
+			XAxisDrawUtil.drawIntervalTick(interval, g, chart, pixelsFromEdge, chart.xAxis);
+		}else if (orientation == Orientation.Y) {
+			YAxisDrawUtil.drawIntervalTick(interval, g, chart, pixelsFromEdge, chart.yAxis);
+		}else if (orientation == Orientation.Y2) {
+			YAxisDrawUtil.drawIntervalTick(interval, g, chart, pixelsFromEdge, chart.yAxis2);
+		}else {
+			throw new RuntimeException("not supported");
+		}
+	}
+
+
+	
+	protected void drawGridLine(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
+		
+        double pixelsFromEdge = getPixelPositionFromEdge(interval, chart, i, incrementInPixel);
+        
+        
+		if (orientation == Orientation.X) {
+			XAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, pixelsFromEdge);
+		}else if (orientation == Orientation.Y) {
+			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, pixelsFromEdge);
+		}else if (orientation == Orientation.Y2) {
+			//TODO do we support grids on other Y axis too?
+//			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
+		}else {
+			throw new RuntimeException("not supported");
+		}
+	}
+
+	
+
+	
+
 	
 
 	
 	
 	protected void drawIntervalLabel(NumericalInterval interval, Graphics2D g,
-			XYChart chart, Axis axis, int incrementNumber, double incrementInPixel) {
+			XYChart chart, Axis axis, double pixelsFromEdge, int incrementNumber) {
 
 		g.setColor(axis.axisColor);
 
-		Double increment = interval.getInterval();
-
-		double factor = getMultiplicationFactor(chart);
-
-		// to first increment
-		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
-				increment, factor);
-
-		double toFirst = getToFirstIntervalValueFromMin(increment);
-
 		
-		double value = ((incrementNumber * increment) + toFirst);
+//		double pixelsFromEdge = getPixelPositionFromEdge(interval, chart, incrementNumber, incrementInPixel);
 		
 		
-		String label = ChartUtils.formatNumberValue(value, interval);
-//		String label = "" + value; //ChartUtils.formatNumberValue(value, interval);
-
-		double fromStart = getFromStart(chart, toFirstInPixels, incrementInPixel,
-				incrementNumber);
-
+		String labelValueFormatted = getLabelValue(interval, incrementNumber);
+		
 		
 		if (orientation == Orientation.X) {
-			XAxisDrawUtil.drawXLabel(g, chart, fromStart, label, chart.xAxis, 0);
+			XAxisDrawUtil.drawXLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.xAxis, 0);
 		}else if (orientation == Orientation.Y) {
-			YAxisDrawUtil.drawYLabel(g, chart, fromStart, label, chart.yAxis);
+			YAxisDrawUtil.drawYLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.yAxis);
 		}else if (orientation == Orientation.Y2) {
-			YAxisDrawUtil.drawYLabel(g, chart, fromStart, label, chart.yAxis2);
+			YAxisDrawUtil.drawYLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.yAxis2);
 		}else {
 			throw new RuntimeException("not supported");
 		}
 		
+	}
+
+	private String getLabelValue(NumericalInterval interval, int incrementNumber) {
+		Double increment = interval.getInterval();
+		
+		double toFirst = getToFirstIntervalValueFromMin(increment);
+		
+		double labelValue = ((incrementNumber * increment) + toFirst);
+
+		String labelValueFormatted = ChartUtils.formatNumberValue(labelValue, interval);
+		return labelValueFormatted;
 	}
 	
 	public void drawGridLines(AbstractInterval interval, Graphics2D g, XYChart chart) {
@@ -255,8 +264,7 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		double factor = getMultiplicationFactor(chart);
 	
 		// to first increment
-		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
-				((NumericalInterval) interval).getInterval(), factor);
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(((NumericalInterval) interval).getInterval(), factor);
 	
 		int incrementNo = (int) ((maxValue - minValue) / ((NumericalInterval) interval).getInterval());
 		
@@ -286,7 +294,7 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 				
 				interval.styling.graphFill.fillAreaY(g, (int)fromStart, incrementInPixel, chart, i);
 			else {
-				throw new RuntimeException("asdfasdf");
+				throw new RuntimeException("asdf");
 			}
 		}
 	}
@@ -315,6 +323,31 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		double val = getToFirstIntervalValueFromMin(increment);
 
 		return (val - minValue) * factor;
+	}
+	
+	/**
+	 * 
+	 * @param interval
+	 * @param chart
+	 * @param i
+	 * @param incrementInPixel
+	 * @return
+	 */
+	private double getPixelPositionFromEdge(NumericalInterval interval, XYChart chart,
+			int i, double incrementInPixel) {
+		
+		
+		//divide height of chart by actual height of chart to get the multiplaying factor
+        double factor = getMultiplicationFactor(chart); 
+		
+    	double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(interval.getInterval(), factor);
+
+        double fromStart = getFromStart(chart, toFirstInPixels, incrementInPixel, i);
+		
+        System.out.println("getFromStart = " + fromStart);
+        
+        
+        return fromStart;
 	}
 	
 	

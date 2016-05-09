@@ -59,8 +59,6 @@ public class LinearNumericalAxisScalingY extends LinearNumericalAxisScaling {
 	
 	@Override
 	protected double getFromStart(XYChart chart, double toFirstInPixels, double incrementInPixel, int i) {
-		
-		
 		double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel) - toFirstInPixels;
 		return fromTop;
 	}

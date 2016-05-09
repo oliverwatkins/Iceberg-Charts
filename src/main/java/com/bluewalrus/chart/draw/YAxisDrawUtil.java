@@ -123,8 +123,8 @@ public class YAxisDrawUtil {
 	 * @param yLabel
 	 * @param axis
 	 */
-	public static void drawYLabel(Graphics2D g, XYChart chart, double fromTop,
-			String yLabel, YAxis axis) {
+	public static void drawYLabel(Graphics2D g, XYChart chart, double fromTop, String yLabel, YAxis axis) {
+		
 		FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
         int widthStr = fm.stringWidth(yLabel);
         
@@ -134,14 +134,8 @@ public class YAxisDrawUtil {
         int heightStr = fm.getHeight();
         g.setFont(axis.axisCatFont);
         g.setColor(axis.axisColor);
-        
-        
-        
-        
-
 
         int x; //TODO should position itself exactly between the label space, and the tick space.
-        
         
         int y; //left baseline of text.
         
