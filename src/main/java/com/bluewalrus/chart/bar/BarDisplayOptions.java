@@ -9,6 +9,9 @@ public class BarDisplayOptions {
 	UIPointBar point = new UIPointBar(Color.PINK, 50);
 
 	GradiantRule gradiantRule;
+
+	public Color positiveColor;
+	public Color negativeColor;
 	
 	public void setGradiantRule(GradiantRule gradiantRule) {
 		this.gradiantRule = gradiantRule;

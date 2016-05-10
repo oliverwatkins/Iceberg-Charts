@@ -76,6 +76,19 @@ public class XYBarDataSeries extends XYDataSeries<DataPointBar>{
 				
 				dataPointBar.color = this.barDisplayOptions.gradiantRule.getColor(percentChange);
 			}
+		}else if (this.barDisplayOptions.positiveColor != null && this.barDisplayOptions.negativeColor != null ) {
+			
+			for (DataPointBar dataPointBar : dataPoints) {
+				
+				if (dataPointBar.y < 0) {
+					dataPointBar.color = this.barDisplayOptions.negativeColor;
+				}else {
+					dataPointBar.color = this.barDisplayOptions.positiveColor;
+				}
+				
+				
+//				dataPointBar.color = this.barDisplayOptions.gradiantRule.getColor(percentChange);
+			}
 		}
 	} 
 

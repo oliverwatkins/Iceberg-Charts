@@ -50,6 +50,12 @@ public class ChartPlotter {
 
             ArrayList<DataPoint> dataPoints = xYDataSeries.dataPoints;
 
+            if (dataPoints.size() == 0){
+            	System.out.println("No datapoints!!");
+            	continue;
+            }
+            
+            
             boolean firstRun = true;
             
             //only bar

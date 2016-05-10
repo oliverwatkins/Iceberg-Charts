@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test.bar;
+package com.bluewalrus.main;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
@@ -17,38 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.TestDataBubble_1_guns;
-import com.bluewalrus.main.test.TestDataBubble_2_series;
-import com.bluewalrus.main.test.TestDataGrids_Gradiant;
-import com.bluewalrus.main.test.TestDataGrids_GraphPaper;
-import com.bluewalrus.main.test.TestDataGrids_TimeSeries;
-import com.bluewalrus.main.test.TestDataGrids_alternateGridFillX;
-import com.bluewalrus.main.test.TestDataGrids_alternateGridFillY;
-import com.bluewalrus.main.test.TestDataGrids_gridSimple;
-import com.bluewalrus.main.test.TestDataPieBubble;
-import com.bluewalrus.main.test.TestDataTimeSeries;
-import com.bluewalrus.main.test.TestDataXY_Boxplot;
-import com.bluewalrus.main.test.TestDataXY_Fractions;
-import com.bluewalrus.main.test.TestDataXY_Fractions2;
-import com.bluewalrus.main.test.TestDataXY_Fractions3_2decimal;
-import com.bluewalrus.main.test.TestDataXY_Fractions4;
-import com.bluewalrus.main.test.TestDataXY_LineExamples;
-import com.bluewalrus.main.test.TestDataXY_Math;
-import com.bluewalrus.main.test.TestDataXY_Scatter;
-import com.bluewalrus.main.test.TestDataXY_Simple;
-import com.bluewalrus.main.test.TestDataXY_Simple_Series;
+import com.bluewalrus.main.test.bar.TestDataBar_1_Simple;
+import com.bluewalrus.main.test.bar.TestDataBar_2_Simple_negative;
 import com.bluewalrus.main.test.bar.TestDataBar_BarCanBeXY;
-import com.bluewalrus.main.test.bar.TestDataBar_FontFun;
-import com.bluewalrus.main.test.bar.TestDataBar_MultiBar_SideBySide;
 import com.bluewalrus.main.test.bar.TestDataBar_MultiBar_Stacked;
-import com.bluewalrus.main.test.bar.TestDataBar_NegativeAndPositive;
 import com.bluewalrus.main.test.bar.TestDataBar_thinLines;
-import com.bluewalrus.main.test.pie.TestDataPie_IndicatorMany;
-import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
-import com.bluewalrus.main.test.pie.TestDataPie_Multi;
-import com.bluewalrus.main.test.pie.TestDataPie_SimplePie;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
-import com.bluewalrus.main.test.xyy.TestDataBar_2Y_2;
 
 public class BarsTester extends JFrame {
 
@@ -92,7 +66,7 @@ public class BarsTester extends JFrame {
 
         
         p = createTabbedPane(tabbedPaneBar, "Bar - postitive negative (category)");
-        chart = new TestDataBar_NegativeAndPositive().getChart();
+        chart = new TestDataBar_2_Simple_negative().getChart();
         charts.add(chart);
         p.add(chart);
         

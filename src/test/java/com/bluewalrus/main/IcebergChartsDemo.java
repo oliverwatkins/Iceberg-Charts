@@ -37,11 +37,14 @@ import com.bluewalrus.main.test.TestDataXY_Math;
 import com.bluewalrus.main.test.TestDataXY_Scatter;
 import com.bluewalrus.main.test.TestDataXY_Simple;
 import com.bluewalrus.main.test.TestDataXY_Simple_Series;
+import com.bluewalrus.main.test.bar.TestDataBar_1_Simple;
+import com.bluewalrus.main.test.bar.TestDataBar_2_Simple_negative;
+import com.bluewalrus.main.test.bar.TestDataBar_3_Simple_fixed_axis;
+import com.bluewalrus.main.test.bar.TestDataBar_4_GradientColor;
+import com.bluewalrus.main.test.bar.TestDataBar_5_PosNegColor;
 import com.bluewalrus.main.test.bar.TestDataBar_BarCanBeXY;
 import com.bluewalrus.main.test.bar.TestDataBar_FontFun;
-import com.bluewalrus.main.test.bar.TestDataBar_MultiBar_SideBySide;
 import com.bluewalrus.main.test.bar.TestDataBar_MultiBar_Stacked;
-import com.bluewalrus.main.test.bar.TestDataBar_NegativeAndPositive;
 import com.bluewalrus.main.test.bar.TestDataBar_thinLines;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
@@ -199,48 +202,73 @@ public class IcebergChartsDemo extends JFrame {
          * 
          */
         
-        p = createTabbedPane(tabbedPaneBar, "Bar - postitive negative");
-        chart = new TestDataBar_NegativeAndPositive().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Bar - Can be XY");
+        chart = new TestDataBar_1_Simple().getChart();
         charts.add(chart);
         p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneBar, "Bar - Negative");
+        chart = new TestDataBar_2_Simple_negative().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneBar, "Bar - Fixed Axis");
+        chart = new TestDataBar_3_Simple_fixed_axis().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneBar, "Bar - Gradiant Color");
+        chart = new TestDataBar_4_GradientColor().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneBar, "Bar - Positive/Negative Color");
+        chart = new TestDataBar_5_PosNegColor().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+//        p = createTabbedPane(tabbedPaneBar, "Bar - postitive negative");
+//        chart = new TestDataBar_NegativeAndPositive().getChart();
+//        charts.add(chart);
+//        p.add(chart);
         
 //        setSize(1300, 800);
 //        
 //        if(true)
 //        	return;
-        
-        p = createTabbedPane(tabbedPaneBar, "Bar - Can be XY");
-        chart = new TestDataBar_BarCanBeXY().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Thin Lines");
-        chart = new TestDataBar_thinLines().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        
-        
-        
-        p = createTabbedPane(tabbedPaneBar, "Bar - 2 Y Axes");
-        chart = new TestDataBar_2Y().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-//        p = createTabbedPane(tabbedPaneBar, "MultiBar - side by side");
-//        chart = new TestDataBar_MultiBar_SideBySide().getChart();
+//        
+//        p = createTabbedPane(tabbedPaneBar, "Bar - Can be XY");
+//        chart = new TestDataBar_BarCanBeXY().getChart();
 //        charts.add(chart);
 //        p.add(chart);
+//        
+//        p = createTabbedPane(tabbedPaneBar, "Thin Lines");
+//        chart = new TestDataBar_thinLines().getChart();
+//        charts.add(chart);
+//        p.add(chart);
+//        
         
-        p = createTabbedPane(tabbedPaneBar, "MultiBar - stacked");
-        chart = new TestDataBar_MultiBar_Stacked().getChart();
-        charts.add(chart);
-        p.add(chart);
         
-        p = createTabbedPane(tabbedPaneBar, "Font fun");
-        chart = new TestDataBar_FontFun().getChart();
-        charts.add(chart);
-        p.add(chart);
+        
+//        p = createTabbedPane(tabbedPaneBar, "Bar - 2 Y Axes");
+//        chart = new TestDataBar_2Y().getChart();
+//        charts.add(chart);
+//        p.add(chart);
+//        
+////        p = createTabbedPane(tabbedPaneBar, "MultiBar - side by side");
+////        chart = new TestDataBar_MultiBar_SideBySide().getChart();
+////        charts.add(chart);
+////        p.add(chart);
+//        
+//        p = createTabbedPane(tabbedPaneBar, "MultiBar - stacked");
+//        chart = new TestDataBar_MultiBar_Stacked().getChart();
+//        charts.add(chart);
+//        p.add(chart);
+//        
+//        p = createTabbedPane(tabbedPaneBar, "Font fun");
+//        chart = new TestDataBar_FontFun().getChart();
+//        charts.add(chart);
+//        p.add(chart);
         
         
 
