@@ -12,19 +12,20 @@ import com.bluewalrus.chart.Utils;
  */
 public class GradiantRule {
 
-    ArrayList<Color> colors;
-    int totalRange;
-    int numberOfShades;
     double minValue;
+    double maxValue;
+    
+    Color color1;
+    Color color2;
 
-    public GradiantRule(int minValue, int maxValue, Color color1, Color color2, int numberOfShades) {
+
+    public GradiantRule(int minValue, int maxValue, Color color1, Color color2) {
 
         this.minValue = minValue;
-
-        totalRange = (maxValue - minValue);
-        this.numberOfShades = numberOfShades;
-
-        colors = Utils.makeGradients(color1, color2, numberOfShades);
+        this.maxValue = minValue;
+        this.color1 = color1;
+        this.color2 = color2;
+  
     }
 
     /**
@@ -33,13 +34,26 @@ public class GradiantRule {
      * @param value
      * @return 
      */
-    public Color getColor(double value) {
+    public Color getColor(double percentChange) {
+    	
+        int red = color1.getRed();
+        int blue = color1.getBlue();
+        int green = color1.getGreen();
 
-        double x = (value + minValue) / totalRange;
+        int red2 = color2.getRed();
+        int blue2 = color2.getBlue();
+        int green2 = color2.getGreen();
 
-        double i = (double) (x * this.numberOfShades);
+        int incrementRed = (int)((red2 - red) * percentChange);
+        int incrementBlue = (int)((blue2 - blue) * percentChange);
+        int incrementGreen = (int)((green2 - green) * percentChange);
 
-        return colors.get((int) i);
+        int newRed = red + incrementRed;
+        int newGreen = green + incrementGreen;
+        int newBlue = blue + incrementBlue;
+        Color c = new Color(newRed, newGreen, newBlue);
+            
+        return c;
     }
 
 }

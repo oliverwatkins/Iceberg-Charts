@@ -34,6 +34,23 @@ public class DataPointBar extends DataPoint {
         super(x, y);
         this.name = name;
     }
+    
+    
+    /**
+     * Enumerable version
+     * 
+     * @param xName
+     * @param y
+     * @param color
+     */
+	public DataPointBar(String xName, double y) {
+		super(-9999, y); 
+		this.color = Color.BLACK;
+		
+		valueType = ValueType.X_ENUMARABLE;
+		
+		this.name = xName;
+	}
 
     public DataPointBar(int x, int y, Color color2, String string) {
         super(x, y);

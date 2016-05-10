@@ -24,9 +24,7 @@ public abstract class Axis implements Serializable {
 	/**
 	 * determines the schema of the Axis. How it is drawn, ie linear , time , logarithmic
 	 */
-	public AxisScaling axisDraw;
-	
-
+	public AxisScaling axisScaling;
 
 
 	public Font font = new Font("Arial", Font.PLAIN, 12);
@@ -53,16 +51,16 @@ public abstract class Axis implements Serializable {
 
 		labelText = name;
 		
-		this.axisDraw = axisDraw;
+		this.axisScaling = axisDraw;
 	}
 	
 	
     public AxisScaling getAxisDraw() {
-		return axisDraw;
+		return axisScaling;
 	}
 
 	public void setAxisDraw(AxisScaling axisDraw) {
-		this.axisDraw = axisDraw;
+		this.axisScaling = axisDraw;
 	}
 	
 	
@@ -87,9 +85,9 @@ public abstract class Axis implements Serializable {
 	public abstract String getName();
 	
 	public void turnOffGridLines() {
-		axisDraw.interval1.styling.graphLine = null;
-		axisDraw.interval2.styling.graphLine = null;
-		axisDraw.interval3.styling.graphLine = null;
+		axisScaling.interval1.styling.graphLine = null;
+		axisScaling.interval2.styling.graphLine = null;
+		axisScaling.interval3.styling.graphLine = null;
 	}
 	
 

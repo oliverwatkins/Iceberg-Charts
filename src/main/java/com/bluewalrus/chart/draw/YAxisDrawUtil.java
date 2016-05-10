@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
@@ -20,15 +22,6 @@ import com.bluewalrus.chart.axis.YAxis;
  * @author Oliver Watkins
  */
 public class YAxisDrawUtil {
-
-	
-	
-	public static void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, double fromStart,
-			YAxis yAxis, Axis axis) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	
 	
 	/**
@@ -50,6 +43,7 @@ public class YAxisDrawUtil {
         g2d.rotate(Math.toRadians(270)); //rotates to above out of screen.
 
         int translateDown;
+        
         //starts off being "topOffset" off, so subtract that first
         int translateLeft;
         if (axis.rightSide) {
@@ -91,7 +85,6 @@ public class YAxisDrawUtil {
 			double fromTop, YAxis axis) {
 		
 		if (interval.styling == null) {
-//			System.out.println("interval.styling == null ");
 			return;
 		}
 		
@@ -128,9 +121,6 @@ public class YAxisDrawUtil {
 		FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
         int widthStr = fm.stringWidth(yLabel);
         
-        
-        Rectangle2D rect = fm.getStringBounds(yLabel, g);
-        
         int heightStr = fm.getHeight();
         g.setFont(axis.axisCatFont);
         g.setColor(axis.axisColor);
@@ -150,14 +140,10 @@ public class YAxisDrawUtil {
             y = (int)fromTop + (heightStr / 2);
         }
         
-//        g.drawRect(x, y - (int)rect.getHeight(), (int)rect.getWidth(), (int)rect.getHeight());
-        
         g.drawString(yLabel, x, y - fm.getDescent());
 	}
 	
 	
-	
-
 	
 	
 	/**
@@ -168,20 +154,17 @@ public class YAxisDrawUtil {
 	 * @param chart
 	 * @param fromTop
 	 */
-	
 	public static void drawGridLine(NumericalInterval interval, Graphics2D g, Chart chart,
 			double fromTop) {
 		int x1 = chart.leftOffset;
 		
 		int x2 = chart.leftOffset + chart.widthChart;
 
+		Shape clip = g.getClip();
+		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
+		
 		interval.styling.graphLine.drawLine(g, x1, (int)fromTop, x2, (int)fromTop);
+		g.setClip(clip);
 	}
-	
-	
-
-
-
-	
 
 }

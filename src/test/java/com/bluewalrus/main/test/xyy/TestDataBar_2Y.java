@@ -9,6 +9,7 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.bar.BarDisplayOptions;
 import com.bluewalrus.chart.bar.GradiantRule;
+import com.bluewalrus.chart.bar.GradiantRule_old;
 import com.bluewalrus.chart.bar.XYBarDataSeries;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
@@ -87,7 +88,7 @@ public class TestDataBar_2Y extends ChartTester {
 		temperatureSeriesList.add(series2);
 		temperatureSeriesList.add(series3);
 
-		GradiantRule rule = new GradiantRule(0, 130, Color.BLUE, Color.RED, 100);
+		GradiantRule_old rule = new GradiantRule_old(0, 130, Color.BLUE, Color.RED, 100);
 
 		ArrayList<DataPointBar> barSeries = new ArrayList<DataPointBar>();
 		barSeries.add(new DataPointBar("J", 54.0, rule.getColor(54.0)));
@@ -115,8 +116,8 @@ public class TestDataBar_2Y extends ChartTester {
 		XYChart chart = new XYChart("Munich Weather", "Month", "Temperature",
 				"Rainfall", rainfallSeriesList, temperatureSeriesList);
 
-		chart.yAxis.axisDraw.interval1.styling.graphLine = null;
-		chart.yAxis.axisDraw.interval2.styling.graphLine = null;
+		chart.yAxis.axisScaling.interval1.styling.graphLine = null;
+		chart.yAxis.axisScaling.interval2.styling.graphLine = null;
 
 		chart.setSize(1000, 600);
 

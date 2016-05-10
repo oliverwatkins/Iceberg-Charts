@@ -8,6 +8,7 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.bar.GradiantRule;
+import com.bluewalrus.chart.bar.GradiantRule_old;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
@@ -62,7 +63,7 @@ public class TestDataBar_2Y_2  extends ChartTester{
         xySeries.add(series2);
         xySeries.add(series3);
 
-        GradiantRule rule = new GradiantRule(0, 130, Color.BLUE, Color.RED, 100);
+        GradiantRule_old rule = new GradiantRule_old(0, 130, Color.BLUE, Color.RED, 100);
         
         ArrayList<DataPoint> y2series1 = new ArrayList<DataPoint>();
         y2series1.add(new DataPoint(2, 760.4));

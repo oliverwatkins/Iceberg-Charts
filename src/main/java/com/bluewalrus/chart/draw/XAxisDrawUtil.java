@@ -3,6 +3,8 @@ package com.bluewalrus.chart.draw;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
@@ -33,7 +35,6 @@ public class XAxisDrawUtil {
 			double fromLeft, Axis axis) {
 		
 		if (interval.styling == null) {
-//			System.out.println("Styling is null");
 			return;
 		}
 		
@@ -45,14 +46,6 @@ public class XAxisDrawUtil {
         
  	} 
 	
-	public static void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, double fromStart,
-			XAxis xAxis, Axis axis) {
-		
-		
-		// TODO Auto-generated method stub
-		
-	}
-    
 	
 	/**
 	 * Draw Grid Line
@@ -65,13 +58,21 @@ public class XAxisDrawUtil {
 	public static void drawGridLine(AbstractInterval interval, Graphics2D g, Chart chart,
 			double fromLeft) {
 		
+		
 		int y1 = chart.topOffset + chart.heightChart;
 		int y2 = chart.topOffset;
-
-        if (isXPositionInsideChart(chart, fromLeft))
-        	interval.styling.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
 		
+		Shape clip = g.getClip();
+		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
+		
+		interval.styling.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
+		g.setClip(clip);
 	}
+	
+	
+	
+	
+	
 	
 	public static void drawXLabel(Graphics g, Chart chart, double fromLeft,
 			String xLabel, Axis axis, int intervalLevel) {

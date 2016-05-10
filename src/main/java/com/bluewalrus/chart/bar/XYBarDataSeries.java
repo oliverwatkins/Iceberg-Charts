@@ -43,6 +43,40 @@ public class XYBarDataSeries extends XYDataSeries<DataPointBar>{
 			this.dataPoints = new ArrayList();	
 		}
 		this.dataPoints.add(dataPointBar);
+	}
+
+	public void setUpBarDisplayOptions(BarDisplayOptions barDisplayOptions2) {
+		
+		this.barDisplayOptions = barDisplayOptions2;
+		
+		initBarDisplayOptions();
+	}
+
+	private void initBarDisplayOptions() {
+		if (this.barDisplayOptions.gradiantRule != null) {
+			
+			double minY = dataPoints.get(0).y;
+			double maxY = dataPoints.get(0).y;
+			for (DataPointBar dataPointBar : dataPoints) {
+				
+				if (dataPointBar.y < minY) {
+					minY = dataPointBar.y;
+				}
+				if (dataPointBar.y > maxY) {
+					maxY = dataPointBar.y;
+				}
+			}
+			
+			double diff = maxY - minY;
+
+			
+			for (DataPointBar dataPointBar : dataPoints) {
+				
+				double percentChange = (double)((dataPointBar.y - minY) / diff);
+				
+				dataPointBar.color = this.barDisplayOptions.gradiantRule.getColor(percentChange);
+			}
+		}
 	} 
 
 }

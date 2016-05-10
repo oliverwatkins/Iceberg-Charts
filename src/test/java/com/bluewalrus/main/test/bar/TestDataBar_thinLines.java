@@ -34,9 +34,9 @@ public class TestDataBar_thinLines extends ChartTester {
         
         XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 365.0), "yadda yadda");
         
-        System.out.println("xAxis.axisDraw " + xAxis.axisDraw);
-        System.out.println("xAxis.axisDraw.maxValue " + xAxis.axisDraw.getMaxValue());
-        xAxis.axisDraw.setMaxValue(365.0);
+        System.out.println("xAxis.axisDraw " + xAxis.axisScaling);
+        System.out.println("xAxis.axisDraw.maxValue " + xAxis.axisScaling.getMaxValue());
+        xAxis.axisScaling.setMaxValue(365.0);
         
         xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
         xAxis.labelText = "Day of Year"; 

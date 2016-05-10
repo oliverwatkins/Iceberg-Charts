@@ -41,41 +41,7 @@ public abstract class AxisScaling {
 		this.orientation = orientation;
 	}
 	
-
-	public void setMaxValue(double d) {
-		this.maxValue = d;
-	}
-		
-	public void setMinValue(double d) {
-		this.minValue = d;
-	}
 	
-	
-	public double getMaxValue() {
-		return maxValue;
-	}
-	public double getMinValue() {
-		return minValue;
-	}
-	
-	
-	/**
-	 * Pre-rendering. Things that can overpaint things of another axis such as grid fills should go in here.
-	 * 
-	 * For example the grid fill of X would overpaint the grid lines of Y if they were in the drawAll. All drawAllPre are
-	 * performed together followed by the drawAll.
-	 * 
-	 * @param g2d
-	 * @param xyChart
-	 * @param data
-	 */
-	public abstract void drawAllPre(Graphics2D g2d, XYChart xyChart,
-			ArrayList<XYDataSeries> data);
-	
-	public abstract void drawAll(Graphics2D g2d, XYChart xyChart,
-			ArrayList<XYDataSeries> data);
-
-
 
 
 	public void drawGridFills(Graphics2D g, XYChart chart) {
@@ -97,8 +63,6 @@ public abstract class AxisScaling {
 		}
 	}
 
-	
-
 
 
 	public void drawGridLines(Graphics2D g, XYChart chart) {
@@ -119,7 +83,6 @@ public abstract class AxisScaling {
 				&& interval1.styling.graphLine != null) {
 			this.drawGridLines(interval1, g, chart);
 		}
-
 	}
 
 
@@ -138,7 +101,7 @@ public abstract class AxisScaling {
 	
 	
 	/**
-	 * Check if pixel point is within the bounds of the chart.
+	 * Check if pixel "point" is within the bounds of the chart.
 	 * 
 	 * @param pixelsFromEdge
 	 * @param chart
@@ -147,31 +110,46 @@ public abstract class AxisScaling {
 	protected boolean inBounds(double pixelsFromEdge, Chart chart) {
 		if (orientation == Orientation.X) {
 			
-			if (pixelsFromEdge > chart.leftOffset && pixelsFromEdge < (chart.rightOffset + chart.widthChart)) {
+			if (pixelsFromEdge >= chart.leftOffset && pixelsFromEdge <= (chart.rightOffset + chart.widthChart)) {
 				return true;
 			}
 		
 		}else if (orientation == Orientation.Y) {
 			
-			if (pixelsFromEdge > chart.topOffset && pixelsFromEdge < (chart.topOffset + chart.heightChart)) {
+			if (pixelsFromEdge >= chart.topOffset && pixelsFromEdge <= (chart.topOffset + chart.heightChart)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
+	/**
+	 * Pre-rendering. Things that can overpaint things of another axis such as grid fills should go in here.
+	 * 
+	 * For example the grid fill of X would overpaint the grid lines of Y if they were in the drawAll. All drawAllPre are
+	 * performed together followed by the drawAll.
+	 * 
+	 * @param g2d
+	 * @param xyChart
+	 * @param data
+	 */
+	public abstract void drawAllPre(Graphics2D g2d, XYChart xyChart, ArrayList<XYDataSeries> data);
+	
+	public abstract void drawAll(Graphics2D g2d, XYChart xyChart, ArrayList<XYDataSeries> data);
 	
 	protected abstract void drawGridLineOnZero(Graphics2D g);
 
+	/**
+	 * In order to convert a value interval into pixels, it needs to be multipled by a factor
+	 * 
+	 * @param chart
+	 * @return
+	 */
 	protected abstract double getMultiplicationFactor(XYChart chart);
 
+	protected abstract void drawGridFills(AbstractInterval interval12, Graphics2D g, XYChart chart);
 	
-	protected abstract void drawGridFills(AbstractInterval interval12, Graphics2D g,
-			XYChart chart);
-	
-	
-	protected abstract void drawGridLines(AbstractInterval interval,
-			Graphics2D g, XYChart chart);
+	protected abstract void drawGridLines(AbstractInterval interval, Graphics2D g, XYChart chart);
 	
 
 	
@@ -192,6 +170,22 @@ public abstract class AxisScaling {
 	 */
 	protected abstract double getFromStart(XYChart chart, double toFirstInPixels, double incrementInPixel, int incrementNo);
 
+	
+	public void setMaxValue(double d) {
+		this.maxValue = d;
+	}
+		
+	public void setMinValue(double d) {
+		this.minValue = d;
+	}
+	
+	public double getMaxValue() {
+		return maxValue;
+	}
+	public double getMinValue() {
+		return minValue;
+	}
+	
 }
 
 

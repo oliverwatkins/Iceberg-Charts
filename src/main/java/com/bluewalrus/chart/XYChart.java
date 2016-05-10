@@ -86,8 +86,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 	
 	
-	public XYChart(XYDataSeries series, String title, String yLabel,
-			String xLabel) {
+	public XYChart(XYDataSeries series, String title, String xLabel, String yLabel) {
 		
 		this.setTitle(title);
 		
@@ -242,8 +241,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.data.addAll(xySeriesList);
 		initialiseScaling(xySeriesList);
 		
-		xAxis.axisDraw.interval1.styling = stylingX;
-		yAxis.axisDraw.interval1.styling = stylingY;
+		xAxis.axisScaling.interval1.styling = stylingX;
+		yAxis.axisScaling.interval1.styling = stylingY;
 		
 		this.addMouseMotionListener(this);
 
@@ -294,12 +293,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		initialiseScaling(xySeriesList);
 		
 		//replace the stylings defined in the intialise
-		xAxis.axisDraw.interval1.styling = stylingX;
-		yAxis.axisDraw.interval1.styling = stylingY;
-		xAxis.axisDraw.interval2.styling = stylingX2;
-		yAxis.axisDraw.interval2.styling = stylingY2;
-		xAxis.axisDraw.interval3.styling = stylingX3;
-		yAxis.axisDraw.interval3.styling = stylingY3;
+		xAxis.axisScaling.interval1.styling = stylingX;
+		yAxis.axisScaling.interval1.styling = stylingY;
+		xAxis.axisScaling.interval2.styling = stylingX2;
+		yAxis.axisScaling.interval2.styling = stylingY2;
+		xAxis.axisScaling.interval3.styling = stylingX3;
+		yAxis.axisScaling.interval3.styling = stylingY3;
 		
 		yAxis.labelText = yTitle;
 		xAxis.labelText = xTitle;
@@ -416,13 +415,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.xAxis.labelText = xAxisTitle;
 		this.yAxis.labelText = yAxisTitle;
 		
-		this.xAxis.axisDraw.interval1.styling = intervalStylingX1;
-		this.xAxis.axisDraw.interval2.styling = intervalStylingX2;
-		this.xAxis.axisDraw.interval3.styling = intervalStylingX3;
+		this.xAxis.axisScaling.interval1.styling = intervalStylingX1;
+		this.xAxis.axisScaling.interval2.styling = intervalStylingX2;
+		this.xAxis.axisScaling.interval3.styling = intervalStylingX3;
 
-		this.yAxis.axisDraw.interval1.styling = intervalStylingY1;
-		this.yAxis.axisDraw.interval2.styling = intervalStylingY2;
-		this.yAxis.axisDraw.interval3.styling = intervalStylingY3;
+		this.yAxis.axisScaling.interval1.styling = intervalStylingY1;
+		this.yAxis.axisScaling.interval2.styling = intervalStylingY2;
+		this.yAxis.axisScaling.interval3.styling = intervalStylingY3;
 
 		
 		this.addMouseMotionListener(this);
@@ -495,7 +494,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		if (isYAxis2) {
 			
 			yAxis2 = initialiseScalingY_numerical(this.dataY2);
-			yAxis2.axisDraw.setOrientation(Orientation.Y2);
+			yAxis2.axisScaling.setOrientation(Orientation.Y2);
 		}
 		
 		this.xAxis = xAxis;
@@ -689,16 +688,16 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		drawLegend(g2d);
 
 		// fills
-		yAxis.axisDraw.drawAllPre(g2d, this, data);
-		xAxis.axisDraw.drawAllPre(g2d, this, data);
+		yAxis.axisScaling.drawAllPre(g2d, this, data);
+		xAxis.axisScaling.drawAllPre(g2d, this, data);
 
 		// y axis
-		yAxis.axisDraw.drawAll(g2d, this, data);
+		yAxis.axisScaling.drawAll(g2d, this, data);
 		yAxis.drawLabel(g2d, this);
 		yAxis.drawBorderLine(g2d, this);
 
 		// x axis
-		xAxis.axisDraw.drawAll(g2d, this, data);
+		xAxis.axisScaling.drawAll(g2d, this, data);
 		xAxis.drawLabel(g2d, this);
 		xAxis.drawBorderLine(g2d, this);
 
@@ -719,9 +718,9 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	@Override
 	protected void drawGraphData(Graphics g) {
 			
-        if (xAxis.axisDraw.getMaxValue() == xAxis.axisDraw.getMinValue()) {
+        if (xAxis.axisScaling.getMaxValue() == xAxis.axisScaling.getMinValue()) {
         	
-        	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisDraw.getMinValue());
+        	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisScaling.getMinValue());
         }
 
 		new ChartPlotter().plotData((Graphics2D) g, this, yAxis, xAxis, data);
@@ -737,7 +736,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	        
 	        yAxis2.rightSide = true;
 	        
-	        yAxis2.axisDraw.drawAll(g2d, this, null); //drawTicksAndLabels(g, this);
+	        yAxis2.axisScaling.drawAll(g2d, this, null); //drawTicksAndLabels(g, this);
 	        
 	        yAxis2.drawLabel(g, this);
 	        

@@ -158,22 +158,22 @@ public class ChartPlotter {
 
 	protected XYFactor getXYFactor(XYChart chart, XAxis xAxis, YAxis yAxis) {
 		
-    	double yMax = yAxis.axisDraw.getMaxValue();
-    	double yMin = yAxis.axisDraw.getMinValue();
+    	double yMax = yAxis.axisScaling.getMaxValue();
+    	double yMin = yAxis.axisScaling.getMinValue();
     	
     	double xFactor = -1;
     	
-		if (xAxis.axisDraw instanceof TimeSeriesAxisScalingX) {
-	    	long xMax = ((TimeSeriesAxisScalingX)xAxis.axisDraw).dateEnd.getTime();
-	    	long xMin = ((TimeSeriesAxisScalingX)xAxis.axisDraw).dateStart.getTime();
+		if (xAxis.axisScaling instanceof TimeSeriesAxisScalingX) {
+	    	long xMax = ((TimeSeriesAxisScalingX)xAxis.axisScaling).dateEnd.getTime();
+	    	long xMin = ((TimeSeriesAxisScalingX)xAxis.axisScaling).dateStart.getTime();
 	    	
 	    	double diffX = xMax - xMin;
 	    	
 	    	xFactor = ((double) chart.widthChart / diffX);
 	    	
 		}else {
-	    	double xMax = xAxis.axisDraw.getMaxValue();
-	    	double xMin = xAxis.axisDraw.getMinValue();
+	    	double xMax = xAxis.axisScaling.getMaxValue();
+	    	double xMin = xAxis.axisScaling.getMinValue();
 	    	
 	    	double diffX = xMax - xMin;
 	    	
@@ -192,13 +192,13 @@ public class ChartPlotter {
 	
 	protected double getYZeroOffsetInPixel(XYChart chart, YAxis yAxis) {
 		
-		if (yAxis.axisDraw instanceof TimeSeriesAxisScalingY) {
+		if (yAxis.axisScaling instanceof TimeSeriesAxisScalingY) {
 			throw new RuntimeException("TODO");
 
 			
 		}else {
-	    	double yMax = yAxis.axisDraw.getMaxValue();
-	    	double yMin = yAxis.axisDraw.getMinValue();
+	    	double yMax = yAxis.axisScaling.getMaxValue();
+	    	double yMin = yAxis.axisScaling.getMinValue();
 	    	
 	    	return (double) ((-yMin / (yMax - yMin)) * chart.heightChart);
 		}
@@ -214,9 +214,9 @@ public class ChartPlotter {
 
 	protected double getXZeroOffsetInPixel(XYChart chart, XAxis xAxis) {
 		
-		if (xAxis.axisDraw instanceof TimeSeriesAxisScalingX) {
-	    	long xMax = ((TimeSeriesAxisScalingX)xAxis.axisDraw).dateEnd.getTime();
-	    	long xMin = ((TimeSeriesAxisScalingX)xAxis.axisDraw).dateStart.getTime();
+		if (xAxis.axisScaling instanceof TimeSeriesAxisScalingX) {
+	    	long xMax = ((TimeSeriesAxisScalingX)xAxis.axisScaling).dateEnd.getTime();
+	    	long xMin = ((TimeSeriesAxisScalingX)xAxis.axisScaling).dateStart.getTime();
 	    	
 	    	double diffX = xMax - xMin;
 	    	
@@ -224,8 +224,8 @@ public class ChartPlotter {
 	    	
 		}else {
 
-	    	double xMax = xAxis.axisDraw.getMaxValue();
-	    	double xMin = xAxis.axisDraw.getMinValue();
+	    	double xMax = xAxis.axisScaling.getMaxValue();
+	    	double xMin = xAxis.axisScaling.getMinValue();
 	    	
 	    	double diffX = xMax - xMin;
 			return (double) ((-xMin / (double) diffX) * chart.widthChart);

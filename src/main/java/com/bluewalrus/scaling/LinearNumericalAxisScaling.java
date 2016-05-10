@@ -120,19 +120,17 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		double factor = this.getMultiplicationFactor(chart);
 
 		double incrementInPixel = (double) (increment * factor);
-
-		
-		
-		
 		
 		for (int i = 0; i < (incrementNo + 1); i++) {
 			
 			double pixelsFromEdge = getPixelPositionFromEdge(inter, chart, i, incrementInPixel);
 			
+			/**
+			 * check if the pixel position is within the bounds of the chart. If not ignore it.
+			 */
 			if (!inBounds(pixelsFromEdge, chart)) {
 				continue;
 			}
-			
 			
 			drawIntervalTick(inter, g, chart, pixelsFromEdge);
 
@@ -141,12 +139,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		}
 	}
 	
-	
-
-
-
-
-
 
 	/**
 	 * Draw the tick of the interval. Usually just a small line coming out
@@ -160,12 +152,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 	 */
 	protected void drawIntervalTick(NumericalInterval interval, Graphics g, XYChart chart, double pixelsFromEdge) {
 		
-//        double pixelsFromEdge = getPixelPositionFromEdge(interval, chart, i, incrementInPixel);
-        
-        
-    	/**
-    	 * Draw the tick
-    	 */
 		if (orientation == Orientation.X) {
 			XAxisDrawUtil.drawIntervalTick(interval, g, chart, pixelsFromEdge, chart.xAxis);
 		}else if (orientation == Orientation.Y) {
@@ -207,14 +193,10 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 	protected void drawIntervalLabel(NumericalInterval interval, Graphics2D g,
 			XYChart chart, Axis axis, double pixelsFromEdge, int incrementNumber) {
 
-		g.setColor(axis.axisColor);
-
+//		g.setColor(axis.axisColor);
 		
-//		double pixelsFromEdge = getPixelPositionFromEdge(interval, chart, incrementNumber, incrementInPixel);
-		
-		
+		//text to display
 		String labelValueFormatted = getLabelValue(interval, incrementNumber);
-		
 		
 		if (orientation == Orientation.X) {
 			XAxisDrawUtil.drawXLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.xAxis, 0);

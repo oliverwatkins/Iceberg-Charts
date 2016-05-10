@@ -19,8 +19,6 @@ public class YAxis extends Axis {
 	
     public YAxis(AxisScaling axisDraw, String name) {
         super(name, axisDraw);
-        
-//        axisDraw.orientation
     }
 
     
@@ -52,4 +50,12 @@ public class YAxis extends Axis {
         return "Y Axis";
     }
 
+
+	public void setMinValue(int val) {
+		axisScaling.setMinValue(val);
+	}
+
+	public void setMaxValue(int val) {
+		axisScaling.setMaxValue(val);
+	}
 }
