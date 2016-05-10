@@ -46,16 +46,10 @@ public class TestDataBar_4_GradientColor extends ChartTester {
 		barSeries.add(new DataPointBar("y", 11));
 		barSeries.add(new DataPointBar("z", 41));
 
-
-
-		
-		
-		
 		BarDisplayOptions barDisplayOptions = new BarDisplayOptions();
 		
 		barDisplayOptions.setGradiantRule(new GradiantRule(0, 100, Color.BLUE, Color.RED));
 		
-//		barSeries.barDisplayOptions = barDisplayOptions;
 		barSeries.setUpBarDisplayOptions(barDisplayOptions);
 		
 		XYChart barChart = new XYChart(barSeries, "Simple Bar Chart (Gradient Color)", "Commodity", "Price Change % (USD)");
