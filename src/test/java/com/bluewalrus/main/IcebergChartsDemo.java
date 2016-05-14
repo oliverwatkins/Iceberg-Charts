@@ -19,33 +19,31 @@ import javax.swing.JTabbedPane;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.main.test.TestDataBubble_1_guns;
 import com.bluewalrus.main.test.TestDataBubble_2_series;
-import com.bluewalrus.main.test.TestDataGrids_Gradiant;
-import com.bluewalrus.main.test.TestDataGrids_GraphPaper;
-import com.bluewalrus.main.test.TestDataGrids_TimeSeries;
-import com.bluewalrus.main.test.TestDataGrids_alternateGridFillX;
-import com.bluewalrus.main.test.TestDataGrids_alternateGridFillY;
-import com.bluewalrus.main.test.TestDataGrids_gridSimple;
 import com.bluewalrus.main.test.TestDataPieBubble;
 import com.bluewalrus.main.test.TestDataTimeSeries;
 import com.bluewalrus.main.test.TestDataXY_Boxplot;
-import com.bluewalrus.main.test.TestDataXY_Fractions;
-import com.bluewalrus.main.test.TestDataXY_Fractions2;
-import com.bluewalrus.main.test.TestDataXY_Fractions3_2decimal;
-import com.bluewalrus.main.test.TestDataXY_Fractions4;
 import com.bluewalrus.main.test.TestDataXY_LineExamples;
 import com.bluewalrus.main.test.TestDataXY_Math;
 import com.bluewalrus.main.test.TestDataXY_Scatter;
 import com.bluewalrus.main.test.TestDataXY_Simple;
 import com.bluewalrus.main.test.TestDataXY_Simple_Series;
+import com.bluewalrus.main.test.bar.BarsTester;
 import com.bluewalrus.main.test.bar.TestDataBar_1_Simple;
 import com.bluewalrus.main.test.bar.TestDataBar_2_Simple_negative;
 import com.bluewalrus.main.test.bar.TestDataBar_3_Simple_fixed_axis;
 import com.bluewalrus.main.test.bar.TestDataBar_4_GradientColor;
 import com.bluewalrus.main.test.bar.TestDataBar_5_PosNegColor;
-import com.bluewalrus.main.test.bar.TestDataBar_BarCanBeXY;
-import com.bluewalrus.main.test.bar.TestDataBar_FontFun;
-import com.bluewalrus.main.test.bar.TestDataBar_MultiBar_Stacked;
-import com.bluewalrus.main.test.bar.TestDataBar_thinLines;
+import com.bluewalrus.main.test.fractions.FractionTester;
+import com.bluewalrus.main.test.fractions.TestDataXY_Fractions;
+import com.bluewalrus.main.test.fractions.TestDataXY_Fractions2;
+import com.bluewalrus.main.test.fractions.TestDataXY_Fractions3_2decimal;
+import com.bluewalrus.main.test.fractions.TestDataXY_Fractions4;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_Gradiant;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_GraphPaper;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_TimeSeries;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_alternateGridFillX;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_alternateGridFillY;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_gridSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_Multi;
@@ -69,7 +67,6 @@ public class IcebergChartsDemo extends JFrame {
         JTabbedPane tabbedPaneLine = new JTabbedPane();
         JTabbedPane tabbedPanePie = new JTabbedPane();
         JTabbedPane tabbedPaneGridFills = new JTabbedPane();
-        JTabbedPane tabbedPaneFracNegatives = new JTabbedPane();
         JTabbedPane tabbedPaneTime = new JTabbedPane();
         JTabbedPane tabbedPaneXYY = new JTabbedPane();
         
@@ -79,7 +76,6 @@ public class IcebergChartsDemo extends JFrame {
         tabbedPane.add("Bar Charts", tabbedPaneBar);
         tabbedPane.add("Pie Charts", tabbedPanePie);
         tabbedPane.add("Grids And Fills", tabbedPaneGridFills);
-        tabbedPane.add("Fractions and Negatives", tabbedPaneFracNegatives);
         tabbedPane.add("XYY", tabbedPaneXYY);
 
         JPanel p = null;
@@ -192,91 +188,16 @@ public class IcebergChartsDemo extends JFrame {
         
         
         
-        
-        
-        
         /***
-         * 
-         * 
          * BARS
-         * 
          */
         
-        p = createTabbedPane(tabbedPaneBar, "Bar - Can be XY");
-        chart = new TestDataBar_1_Simple().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Bar - Negative");
-        chart = new TestDataBar_2_Simple_negative().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Bar - Fixed Axis");
-        chart = new TestDataBar_3_Simple_fixed_axis().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Bar - Gradiant Color");
-        chart = new TestDataBar_4_GradientColor().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Bar - Positive/Negative Color");
-        chart = new TestDataBar_5_PosNegColor().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-//        p = createTabbedPane(tabbedPaneBar, "Bar - postitive negative");
-//        chart = new TestDataBar_NegativeAndPositive().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-        
-//        setSize(1300, 800);
-//        
-//        if(true)
-//        	return;
-//        
-//        p = createTabbedPane(tabbedPaneBar, "Bar - Can be XY");
-//        chart = new TestDataBar_BarCanBeXY().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-//        
-//        p = createTabbedPane(tabbedPaneBar, "Thin Lines");
-//        chart = new TestDataBar_thinLines().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-//        
-        
-        
-        
-//        p = createTabbedPane(tabbedPaneBar, "Bar - 2 Y Axes");
-//        chart = new TestDataBar_2Y().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-//        
-////        p = createTabbedPane(tabbedPaneBar, "MultiBar - side by side");
-////        chart = new TestDataBar_MultiBar_SideBySide().getChart();
-////        charts.add(chart);
-////        p.add(chart);
-//        
-//        p = createTabbedPane(tabbedPaneBar, "MultiBar - stacked");
-//        chart = new TestDataBar_MultiBar_Stacked().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-//        
-//        p = createTabbedPane(tabbedPaneBar, "Font fun");
-//        chart = new TestDataBar_FontFun().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-        
+        tabbedPane.add("Bar Charts2", new BarsTester().createPanel());
         
 
         /**
          * PIE
          */
-
-        
         
         
         p = createTabbedPane(tabbedPanePie, "Multi Level Pie");
@@ -306,28 +227,10 @@ public class IcebergChartsDemo extends JFrame {
         /**
          * Fractions and Negatives
          */
+        
+        tabbedPane.add("Fractions/Decimals and Negatives", new FractionTester().createPanel());
+        
 
-        p = createTabbedPane(tabbedPaneFracNegatives, "Frac Neg 1 ");
-        chart = new TestDataXY_Fractions().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-        p = createTabbedPane(tabbedPaneFracNegatives, "Frac Neg 2 - Neg to Positive");
-        chart = new TestDataXY_Fractions2().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        
-        p = createTabbedPane(tabbedPaneFracNegatives, "Frac Neg 3 - Neg to Positive2");
-        chart = new TestDataXY_Fractions3_2decimal().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneFracNegatives, "Frac Neg 4 - Neg to Positive3");
-        chart = new TestDataXY_Fractions4().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
         /**
          * XYY Charts
          */

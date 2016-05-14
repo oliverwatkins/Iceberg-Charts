@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.gridlinefill;
 
 
 import java.awt.Color;
@@ -21,51 +21,49 @@ import com.bluewalrus.chart.draw.GridFill;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 
-/**
- * introduction to grids
- * 
- * @author Oliver Watkins
- */
-public class TestDataGrids_gridSimple extends ChartTester {
+public class TestDataGrids_alternateGridFillY extends ChartTester {
 
 	
-	public Chart getChart() {
+	@Override
+	public Chart getChart() throws ParseException {
 
+		
+		XYDataSeries series = new XYDataSeries(null, new Line(Color.BLUE, false, 3), "Blue");
+		series.dataPoints = getSeries1();
+		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		values.add(new DataPoint(5, 30));
-		values.add(new DataPoint(10, 11));
-		values.add(new DataPoint(15, 14));
-		values.add(new DataPoint(20, 5));
-		values.add(new DataPoint(25, 8));
-
-		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
-		values2.add(new DataPoint(5, 2));
-		values2.add(new DataPoint(10, 33));
-		values2.add(new DataPoint(15, 6));
-		values2.add(new DataPoint(20, 14));
-		values2.add(new DataPoint(25, 17));
-
-		XYDataSeries series = new XYDataSeries(values, "");
+		xySeriesList.add(series);
 		
-		XYChart lineChart = new XYChart("Grid Examples", 
-				"My X Axis", 
-				"My Y Axis", 
-				new IntervalStyling(5, new GridLine(Color.GRAY, false, 3), null), 		//first X interval styling
-				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second X interval styling
-				null,																	//third X interval styling
-				new IntervalStyling(5, new GridLine(Color.GRAY, true, 3), null),		//first Y interval styling
-				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second Y interval styling
-				null, 																	//third Y interval styling
-				series);
+		IntervalStyling xStyling = new IntervalStyling(1, new GridLine(Color.GRAY, false, 1),
+				null);
 		
-		return lineChart;
+		IntervalStyling yStyling = new IntervalStyling(1, new GridLine(Color.GRAY, false, 0),
+				new GridFill(
+						new Color(179, 209, 255), 
+						new Color(172, 109, 215), false));
+
+		XYChart chart = new XYChart(xySeriesList, "Alternate Grid Fill Y", 
+				null, 
+				xStyling, //second level interval
+				null, 
+				null, 
+				yStyling, //second level interval
+				null, "X axis", "Y Axis");
+		
+		chart.setSize(1000, 500);
+		chart.rightOffset = 200;
+
+		return chart;
 	}
+
+
+
 
 
 
@@ -116,33 +114,33 @@ public class TestDataGrids_gridSimple extends ChartTester {
 
 	private ArrayList<DataPoint> getSeries1() {
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		values.add(new DataPoint(5, 94));
-		values.add(new DataPoint(7, 92));
-		values.add(new DataPoint(8, 94));
-		values.add(new DataPoint(10, 91));
-		values.add(new DataPoint(15, 90));
-		values.add(new DataPoint(21, 91));
-		values.add(new DataPoint(24, 92));
-		values.add(new DataPoint(26, 88));
-		values.add(new DataPoint(29, 83));
-		values.add(new DataPoint(30, 81));
-		values.add(new DataPoint(32, 77));
-		values.add(new DataPoint(33, 68));
-		values.add(new DataPoint(34, 61));
-		values.add(new DataPoint(37, 57));
-		values.add(new DataPoint(43, 61));
-		values.add(new DataPoint(46, 68));
-		values.add(new DataPoint(51, 52));
-		values.add(new DataPoint(53, 46));
-		values.add(new DataPoint(54, 41));
-		values.add(new DataPoint(57, 42));
-		values.add(new DataPoint(58, 45));
-		values.add(new DataPoint(62, 52));
-		values.add(new DataPoint(66, 32));
-		values.add(new DataPoint(69, 34));
-		values.add(new DataPoint(72, 25));
-		values.add(new DataPoint(74, 38));
-		values.add(new DataPoint(76, 24));
+//		values.add(new DataPoint(5, 94));
+//		values.add(new DataPoint(7, 92));
+//		values.add(new DataPoint(8, 94));
+//		values.add(new DataPoint(10, 91));
+//		values.add(new DataPoint(15, 90));
+//		values.add(new DataPoint(21, 91));
+//		values.add(new DataPoint(24, 92));
+//		values.add(new DataPoint(26, 88));
+//		values.add(new DataPoint(29, 83));
+//		values.add(new DataPoint(30, 81));
+//		values.add(new DataPoint(32, 77));
+//		values.add(new DataPoint(33, 68));
+//		values.add(new DataPoint(34, 61));
+//		values.add(new DataPoint(37, 57));
+//		values.add(new DataPoint(43, 61));
+//		values.add(new DataPoint(46, 68));
+//		values.add(new DataPoint(51, 52));
+//		values.add(new DataPoint(53, 46));
+//		values.add(new DataPoint(54, 41));
+//		values.add(new DataPoint(57, 42));
+//		values.add(new DataPoint(58, 45));
+//		values.add(new DataPoint(62, 52));
+//		values.add(new DataPoint(66, 32));
+//		values.add(new DataPoint(69, 34));
+//		values.add(new DataPoint(72, 25));
+//		values.add(new DataPoint(74, 38));
+//		values.add(new DataPoint(76, 24));
 		values.add(new DataPoint(77, 21));
 		values.add(new DataPoint(81, 12));
 		values.add(new DataPoint(82, 13));
@@ -155,10 +153,21 @@ public class TestDataGrids_gridSimple extends ChartTester {
 	}
 	
 	
+	
+	
+	
+	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataGrids_gridSimple();
+		ChartTester t = new TestDataGrids_alternateGridFillY();
 		t.testChart(t.getChart());
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 }
 

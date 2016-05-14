@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.TestDataGrids_GraphPaper;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_GraphPaper;
 
 public class SingleChartDemo extends JFrame {
 

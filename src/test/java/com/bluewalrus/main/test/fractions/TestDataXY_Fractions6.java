@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.fractions;
 
 import java.awt.Font;
 import java.util.ArrayList;
@@ -12,40 +12,24 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
-public class TestDataXY_Fractions extends ChartTester {
+public class TestDataXY_Fractions6 extends ChartTester {
 	
 	@Override
 	public Chart getChart() {
 
 
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		values.add(new DataPoint(0.1, 0.2));
-		values.add(new DataPoint(0.3, 0.42));
-		values.add(new DataPoint(0.76, 0.89));
+		values.add(new DataPoint(-0.10000009, 0.001));
+		values.add(new DataPoint(0.002, 0.002));
+		values.add(new DataPoint(0.003, 0.003));
 		
 		ArrayList<XYDataSeries> s = new ArrayList<XYDataSeries>();
-		
-		XAxis xa = new XAxis(
-				new LinearNumericalAxisScalingX(1.505, 3.0, 
-					new NumericalInterval(5, 0.1), 
-					null, 
-					null), 
-				"1");
-		YAxis ya = new YAxis(new LinearNumericalAxisScalingY(0.0,100.0,
-					new NumericalInterval(50, 10.0), 
-					null, 
-					null), 				
-				"2");
-		
-		
-//		ya.axisCatFont = new Font("Arial", Font.PLAIN, 30);
-		
-		XYChart lineChart = new XYChart(s, ya, xa);
-	
-		lineChart.setTitle("(range 1.5005 to 3 with 0.1 interval)");
+				
+		XYChart lineChart = new XYChart(values, "", "", "");
 		
 		JFrame frame = new JFrame();
 		frame.add(lineChart);
@@ -58,7 +42,7 @@ public class TestDataXY_Fractions extends ChartTester {
 	
 	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataXY_Fractions();
+		ChartTester t = new TestDataXY_Fractions6();
 		t.testChart(t.getChart());
 	}
 	

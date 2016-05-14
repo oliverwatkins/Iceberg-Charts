@@ -1,6 +1,7 @@
-package com.bluewalrus.main;
+package com.bluewalrus.main.test.bar;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,35 +18,40 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.bar.TestDataBar_1_Simple;
-import com.bluewalrus.main.test.bar.TestDataBar_2_Simple_negative;
-import com.bluewalrus.main.test.bar.TestDataBar_BarCanBeXY;
-import com.bluewalrus.main.test.bar.TestDataBar_MultiBar_Stacked;
-import com.bluewalrus.main.test.bar.TestDataBar_thinLines;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
 
 public class BarsTester extends JFrame {
 
+	
+    public static void main(String[] args) throws Exception {
+        BarsTester frame = new BarsTester();
+        frame.setVisible(true);
+    }
+    
 	/**
 	 * 
 	 * @throws Exception
 	 */
     public BarsTester() throws Exception {
+    	JTabbedPane p = createPanel();
+    	
+        getContentPane().add(p);
+
+    }
+    	
+    	
+	public JTabbedPane createPanel() {
+    		
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
-        JTabbedPane tabbedPane = new JTabbedPane();
+//        JTabbedPane tabbedPane = new JTabbedPane();
     	
         JTabbedPane tabbedPaneBar = new JTabbedPane();
-        JTabbedPane tabbedPaneLine = new JTabbedPane();
-        JTabbedPane tabbedPanePie = new JTabbedPane();
-        JTabbedPane tabbedPaneGridFills = new JTabbedPane();
-        JTabbedPane tabbedPaneFracNegatives = new JTabbedPane();
-        JTabbedPane tabbedPaneTime = new JTabbedPane();
-        JTabbedPane tabbedPaneXYY = new JTabbedPane();
+
         
         
-        tabbedPane.add("Bar Charts", tabbedPaneBar);
+//        tabbedPane.add("Bar Charts", tabbedPaneBar);
 
         JPanel p = null;
         JComponent chart = null;
@@ -59,29 +65,31 @@ public class BarsTester extends JFrame {
          * 
          */
 
-        p = createTabbedPane(tabbedPaneBar, "Bar - postitive negative (category)");
+        p = createTabbedPane(tabbedPaneBar, "Simple Bar");
         chart = new TestDataBar_1_Simple().getChart();
         charts.add(chart);
         p.add(chart);
 
         
-        p = createTabbedPane(tabbedPaneBar, "Bar - postitive negative (category)");
+        p = createTabbedPane(tabbedPaneBar, "Simple Negative");
         chart = new TestDataBar_2_Simple_negative().getChart();
         charts.add(chart);
         p.add(chart);
         
-        
-        p = createTabbedPane(tabbedPaneBar, "Bar - Can be XY (non category)");
-        chart = new TestDataBar_BarCanBeXY().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Fixed Axis");
+        chart = new TestDataBar_3_Simple_fixed_axis().getChart();
         charts.add(chart);
         p.add(chart);
         
-        p = createTabbedPane(tabbedPaneBar, "Thin Lines");
-        chart = new TestDataBar_thinLines().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Gradiant Color");
+        chart = new TestDataBar_4_GradientColor().getChart();
         charts.add(chart);
         p.add(chart);
         
-        
+        p = createTabbedPane(tabbedPaneBar, "Pos Neg Color");
+        chart = new TestDataBar_5_PosNegColor().getChart();
+        charts.add(chart);
+        p.add(chart);
         
         
         p = createTabbedPane(tabbedPaneBar, "Bar - 2 Y Axes");
@@ -89,26 +97,13 @@ public class BarsTester extends JFrame {
         charts.add(chart);
         p.add(chart);
         
-//        p = createTabbedPane(tabbedPaneBar, "MultiBar - side by side");
-//        chart = new TestDataBar_MultiBar_SideBySide().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-        
         p = createTabbedPane(tabbedPaneBar, "MultiBar - stacked");
         chart = new TestDataBar_MultiBar_Stacked().getChart();
         charts.add(chart);
         p.add(chart);
         
-        
-
-
-        
-
-
-//        tabbedPaneTime       
         JButton b = new JButton("Create PNG");
-        
-        getContentPane().add(tabbedPane);
+
         getContentPane().add(b, BorderLayout.SOUTH);
 
         b.addActionListener(new ActionListener() {
@@ -155,12 +150,12 @@ public class BarsTester extends JFrame {
         setSize(1300, 800);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
+        return tabbedPaneBar;
     }
 
-    public static void main(String[] args) throws Exception {
-        BarsTester frame = new BarsTester();
-        frame.setVisible(true);
-    }
+
 
     private JPanel createTabbedPane(JTabbedPane tabbedPane, String string) {
 
