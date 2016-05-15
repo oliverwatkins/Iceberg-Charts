@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.math;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -20,13 +20,19 @@ import com.bluewalrus.chart.draw.point.UIPointBoxPlot;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 public class TestDataXY_Math extends ChartTester {
 
-	public static void main(String[] s) {
-//		getChart();
+//	public static void main(String[] s) {
+////		getChart();
+//	}
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataXY_Math();
+		t.testChart(t.getChart());
 	}
 
 

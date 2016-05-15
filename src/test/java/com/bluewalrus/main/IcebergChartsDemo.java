@@ -22,7 +22,6 @@ import com.bluewalrus.main.test.TestDataBubble_2_series;
 import com.bluewalrus.main.test.TestDataPieBubble;
 import com.bluewalrus.main.test.TestDataXY_Boxplot;
 import com.bluewalrus.main.test.TestDataXY_LineExamples;
-import com.bluewalrus.main.test.TestDataXY_Math;
 import com.bluewalrus.main.test.TestDataXY_Scatter;
 import com.bluewalrus.main.test.TestDataXY_Simple;
 import com.bluewalrus.main.test.TestDataXY_Simple_Series;
@@ -34,12 +33,15 @@ import com.bluewalrus.main.test.gridlinefill.TestDataGrids_2_GraphPaper;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_3_alternateGridFillX;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_4_alternateGridFillY;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_5_Gradiant;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_7_TimeSeries;
+import com.bluewalrus.main.test.math.MathTester;
+import com.bluewalrus.main.test.math.TestDataXY_Math;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_Multi;
 import com.bluewalrus.main.test.pie.TestDataPie_SimplePie;
-import com.bluewalrus.main.test.timeseries.TestDataTimeSeries;
+import com.bluewalrus.main.test.timeseries.TestDataGrids_7_TimeSeries;
+import com.bluewalrus.main.test.timeseries.TestDataTimeSeries_MonthDay;
+import com.bluewalrus.main.test.timeseries.TimeSeriesTester;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y_2;
 
@@ -58,12 +60,12 @@ public class IcebergChartsDemo extends JFrame {
         JTabbedPane tabbedPaneBar = new JTabbedPane();
         JTabbedPane tabbedPaneLine = new JTabbedPane();
         JTabbedPane tabbedPanePie = new JTabbedPane();
-        JTabbedPane tabbedPaneTime = new JTabbedPane();
+//        JTabbedPane tabbedPaneTime = new JTabbedPane();
         JTabbedPane tabbedPaneXYY = new JTabbedPane();
         
         
         tabbedPane.add("General XY Charts", tabbedPaneLine);
-        tabbedPane.add("Time Axis", tabbedPaneTime);
+//        tabbedPane.add("Time Axis", tabbedPaneTime);
         tabbedPane.add("Bar Charts", tabbedPaneBar);
         tabbedPane.add("Pie Charts", tabbedPanePie);
         tabbedPane.add("XYY", tabbedPaneXYY);
@@ -124,48 +126,26 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
  
+        
         /**
          * TIME
          */
-        
-        p = createTabbedPane(tabbedPaneTime, "Time Series 1 ");
-        chart = new TestDataTimeSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneTime, "Time Series 2 ");
-        chart = new TestDataTimeSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneTime, "Grids Time Series");
-        chart = new TestDataGrids_7_TimeSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        
-        
-
+        tabbedPane.add("Time Series", new TimeSeriesTester().createPanel());
         /**
          * GRIDS
          */
-
-        
-        
-        
         tabbedPane.add("Grid Line Fill", new GridLineTester().createPanel());
         /***
          * BARS
          */
-        
         tabbedPane.add("Bar Charts2", new BarsTester().createPanel());
-        
-
+        /***
+         * MATH
+         */
+        tabbedPane.add("Maths", new MathTester().createPanel());
         /**
          * PIE
          */
-        
-        
         p = createTabbedPane(tabbedPanePie, "Multi Level Pie");
         chart = new TestDataPie_Multi().getChart();
         charts.add(chart);
@@ -209,7 +189,6 @@ public class IcebergChartsDemo extends JFrame {
         chart = new TestDataBar_2Y_2().getChart();
         charts.add(chart);
         p.add(chart);
-        
         
         
         

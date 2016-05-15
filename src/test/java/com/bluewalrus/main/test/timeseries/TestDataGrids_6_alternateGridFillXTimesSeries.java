@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test.gridlinefill;
+package com.bluewalrus.main.test.timeseries;
 
 
 import java.awt.Color;
@@ -25,8 +25,9 @@ import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 
-public class TestDataGrids_7_TimeSeries extends ChartTester {
+public class TestDataGrids_6_alternateGridFillXTimesSeries extends ChartTester {
 
+	
 	@Override
 	public Chart getChart() throws ParseException {
 
@@ -34,17 +35,17 @@ public class TestDataGrids_7_TimeSeries extends ChartTester {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
-		Date startDate = df.parse("1997-01-01 01-00-00"); 
-		Date endDate = df.parse("2002-01-20 05-33-00");
+		Date startDate = df.parse("2001-05-3 01-00-00"); 
+		Date endDate = df.parse("2001-07-12 05-33-00");
 		
 		
-		String time = "1985-01-01 00-33-00";                              
+		String time = "2001-03-01 00-33-00";                              
 		Date dt4 = df.parse(time);                                      
 
-		time = "1992-01-01 00-33-00";                                                
+		time = "2001-04-01 00-33-00";                                                
 		Date dt5 = df.parse(time);                                      
 
-		time = "1999-07-20 05-33-00";                              
+		time = "2001-07-20 05-33-00";                              
 		Date dt6 = df.parse(time);                                      
 		
 		
@@ -55,22 +56,41 @@ public class TestDataGrids_7_TimeSeries extends ChartTester {
 
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
+		
+		
 
-		NumericalInterval t1 = new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2 = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
+		NumericalInterval yInterval = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-90.0, 100.0, t1, t2, t3), "Y Axis");
 		
-		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-		SimpleDateFormat monthFormat = new SimpleDateFormat("");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-90.0, 100.0, yInterval, null, null), "Y Axis");
+
 		
-		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new GridLine(Color.GRAY, false, 6), yearFormat);
-		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 3), monthFormat);
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.NONE, new GridLine(Color.GRAY, false, 1));
-//		
+		GridFill gf = new GridFill(new Color(179, 209, 255), Color.RED, false);
 		
-		XAxis xAxis = new XAxis(new TimeSeriesAxisScalingX(startDate, endDate, timeInt1, timeInt2, timeInt3), "Time Series"); //timeInt2, timeInt3), "Time Series");
+		NumericalInterval x1 = new NumericalInterval(2, 
+				5.0, new GridLine(Color.GRAY, true, 2));
+
+		x1.styling.graphFill = gf;
+		
+		
+		NumericalInterval x2 = new NumericalInterval(6, 
+				20.0, new GridLine(Color.GRAY, false, 3));
+
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		//TODO
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(3, 97, x1, x2, null), "Time Series"); 
 
 		xySeriesList.add(series);
 
@@ -85,10 +105,21 @@ public class TestDataGrids_7_TimeSeries extends ChartTester {
 		return lineChart;
 	}
 	
+	
+	
+	
+	
+	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataGrids_7_TimeSeries();
+		ChartTester t = new TestDataGrids_6_alternateGridFillXTimesSeries();
 		t.testChart(t.getChart());
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

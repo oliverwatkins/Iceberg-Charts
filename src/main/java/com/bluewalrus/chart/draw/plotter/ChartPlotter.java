@@ -104,11 +104,13 @@ public class ChartPlotter {
         //hack TODO 
         if (xyFactor.yFactor * y > 200000) {
         	System.err.println("ERROR!!! xyFactor.yFactor * y > 200000");
-            return;
+        	System.err.println("Computer is probably going to crash now?");
+//            return;
         }
         if (xyFactor.xFactor * x > 200000) {
         	System.err.println("ERROR!!! xyFactor.xFactor * x > 200000");
-            return;
+        	System.err.println("Computer is probably going to crash now?");
+//            return;
         }
         
         if (dataPoint.uiPointXY == null) {

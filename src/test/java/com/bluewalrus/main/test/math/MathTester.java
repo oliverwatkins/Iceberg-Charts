@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test.gridlinefill;
+package com.bluewalrus.main.test.math;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
@@ -18,14 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.timeseries.TestDataGrids_6_alternateGridFillXTimesSeries;
-import com.bluewalrus.main.test.timeseries.TestDataGrids_7_TimeSeries;
 
-public class GridLineTester extends JFrame {
+public class MathTester extends JFrame {
 
 	
     public static void main(String[] args) throws Exception {
-    	GridLineTester frame = new GridLineTester();
+    	MathTester frame = new MathTester();
         frame.setVisible(true);
     }
     
@@ -33,7 +31,7 @@ public class GridLineTester extends JFrame {
 	 * 
 	 * @throws Exception
 	 */
-    public GridLineTester() throws Exception {
+    public MathTester() throws Exception {
     	JTabbedPane p = createPanel();
     	
         getContentPane().add(p);
@@ -67,41 +65,23 @@ public class GridLineTester extends JFrame {
          * 
          */
 
-        p = createTabbedPane(tabbedPaneBar, "Simple Grids");
-        chart = new TestDataGrids_1_gridSimple().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Simple ");
+        chart = new TestDataXY_Math().getChart();
         charts.add(chart);
         p.add(chart);
 
         
-        p = createTabbedPane(tabbedPaneBar, "Graph Paper");
-        chart = new TestDataGrids_2_GraphPaper().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Polynomals");
+        chart = new TestDataXY_Polynomals().getChart();
         charts.add(chart);
         p.add(chart);
         
-        p = createTabbedPane(tabbedPaneBar, "Fill X");
-        chart = new TestDataGrids_3_alternateGridFillX().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Sin/Cos");
+        chart = new TestDataXY_SineCurve().getChart();
         charts.add(chart);
         p.add(chart);
         
-        p = createTabbedPane(tabbedPaneBar, "Fill Y");
-        chart = new TestDataGrids_4_alternateGridFillY().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Gradiant");
-        chart = new TestDataGrids_5_Gradiant().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-//        p = createTabbedPane(tabbedPaneBar, "6 time series");
-//        chart = new TestDataGrids_6_alternateGridFillXTimesSeries().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-//
-//        p = createTabbedPane(tabbedPaneBar, "7");
-//        chart = new TestDataGrids_7_TimeSeries().getChart();
-//        charts.add(chart);
-//        p.add(chart);
+
 
         JButton b = new JButton("Create PNG");
 

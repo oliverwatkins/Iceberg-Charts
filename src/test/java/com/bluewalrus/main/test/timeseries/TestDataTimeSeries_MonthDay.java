@@ -23,7 +23,7 @@ import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 
-public class TestDataTimeSeries extends ChartTester {
+public class TestDataTimeSeries_MonthDay extends ChartTester {
 
 	
 
@@ -34,8 +34,8 @@ public class TestDataTimeSeries extends ChartTester {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
-		Date startDate = df.parse("2001-05-3 01-00-00"); 
-		Date endDate = df.parse("2001-07-12 05-33-00");
+		Date startDate = df.parse("2001-01-3 01-00-00"); 
+		Date endDate = df.parse("2001-3-12 05-33-00");
 		
 		
 		String time = "2001-03-01 00-33-00";                              
@@ -56,9 +56,9 @@ public class TestDataTimeSeries extends ChartTester {
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
-		NumericalInterval t1 = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
+//		NumericalInterval t1 = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-90.0, 100.0, t1, null, null), "Y Axis");
+//		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-90.0, 100.0, t1, null, null), "Y Axis");
 		
 		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
 		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
@@ -80,17 +80,10 @@ public class TestDataTimeSeries extends ChartTester {
 						endDate, 
 						timeInt2, 
 						timeInt3, 
-						null), "Time Series"); 
+						null), "Time Series 1"); 
 
-		xySeriesList.add(series);
-
-		XYChart lineChart = new XYChart(values, "Time Series", "X", "Y"); //yAxis, xAxis);
-
-		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
-
-		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-		lineChart.setTitle("Some Kind of XY Chart");
+		XYChart lineChart = new XYChart(values, "Time Series 1", "X", "Y"); //yAxis, xAxis);
+		lineChart.xAxis = xAxis;
 
 		return lineChart;
 	}
@@ -98,7 +91,7 @@ public class TestDataTimeSeries extends ChartTester {
 	
 	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataTimeSeries();
+		ChartTester t = new TestDataTimeSeries_MonthDay();
 		t.testChart(t.getChart());
 	}
 	

@@ -332,7 +332,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 	private double getPixelPositionFromEdge(NumericalInterval interval, XYChart chart,
 			int i, double incrementInPixel) {
 		
-		
 		//divide height of chart by actual height of chart to get the multiplaying factor
         double factor = getMultiplicationFactor(chart); 
 		
@@ -340,9 +339,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 
         double fromStart = getFromStart(chart, toFirstInPixels, incrementInPixel, i);
 		
-        System.out.println("getFromStart = " + fromStart);
-        
-        
         return fromStart;
 	}
 	
