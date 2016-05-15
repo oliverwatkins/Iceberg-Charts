@@ -42,6 +42,7 @@ public class GridLineTester extends JFrame {
 	public JTabbedPane createPanel() throws ParseException {
     		
 
+		
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
 //        JTabbedPane tabbedPane = new JTabbedPane();

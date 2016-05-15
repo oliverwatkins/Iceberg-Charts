@@ -51,7 +51,7 @@ public class LinearNumericalAxisScalingX extends LinearNumericalAxisScaling {
 	public void drawAll(Graphics2D g2d, XYChart xyChart,
 			ArrayList<XYDataSeries> data) {
 
-		// NOTE! data is ignored here. It's only used for enumeration
+		
 		drawAllIntervalTickAndLabels(g2d, xyChart);
 
 		drawGridLines(g2d, xyChart);

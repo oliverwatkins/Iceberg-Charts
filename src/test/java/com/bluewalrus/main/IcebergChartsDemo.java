@@ -27,22 +27,14 @@ import com.bluewalrus.main.test.TestDataXY_Scatter;
 import com.bluewalrus.main.test.TestDataXY_Simple;
 import com.bluewalrus.main.test.TestDataXY_Simple_Series;
 import com.bluewalrus.main.test.bar.BarsTester;
-import com.bluewalrus.main.test.bar.TestDataBar_1_Simple;
-import com.bluewalrus.main.test.bar.TestDataBar_2_Simple_negative;
-import com.bluewalrus.main.test.bar.TestDataBar_3_Simple_fixed_axis;
-import com.bluewalrus.main.test.bar.TestDataBar_4_GradientColor;
-import com.bluewalrus.main.test.bar.TestDataBar_5_PosNegColor;
 import com.bluewalrus.main.test.fractions.FractionTester;
-import com.bluewalrus.main.test.fractions.TestDataXY_Fractions;
-import com.bluewalrus.main.test.fractions.TestDataXY_Fractions2;
-import com.bluewalrus.main.test.fractions.TestDataXY_Fractions3_2decimal;
-import com.bluewalrus.main.test.fractions.TestDataXY_Fractions4;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_5_Gradiant;
+import com.bluewalrus.main.test.gridlinefill.GridLineTester;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_1_gridSimple;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_2_GraphPaper;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_7_TimeSeries;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_3_alternateGridFillX;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_4_alternateGridFillY;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_1_gridSimple;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_5_Gradiant;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_7_TimeSeries;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_Multi;
@@ -66,7 +58,6 @@ public class IcebergChartsDemo extends JFrame {
         JTabbedPane tabbedPaneBar = new JTabbedPane();
         JTabbedPane tabbedPaneLine = new JTabbedPane();
         JTabbedPane tabbedPanePie = new JTabbedPane();
-        JTabbedPane tabbedPaneGridFills = new JTabbedPane();
         JTabbedPane tabbedPaneTime = new JTabbedPane();
         JTabbedPane tabbedPaneXYY = new JTabbedPane();
         
@@ -75,7 +66,6 @@ public class IcebergChartsDemo extends JFrame {
         tabbedPane.add("Time Axis", tabbedPaneTime);
         tabbedPane.add("Bar Charts", tabbedPaneBar);
         tabbedPane.add("Pie Charts", tabbedPanePie);
-        tabbedPane.add("Grids And Fills", tabbedPaneGridFills);
         tabbedPane.add("XYY", tabbedPaneXYY);
 
         JPanel p = null;
@@ -154,40 +144,16 @@ public class IcebergChartsDemo extends JFrame {
         p.add(chart);
         
         
+        
 
         /**
          * GRIDS
          */
 
-        p = createTabbedPane(tabbedPaneGridFills, "Grids Graph Paper");
-        chart = new TestDataGrids_1_gridSimple().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-        
-        p = createTabbedPane(tabbedPaneGridFills, "Grids Graph Paper");
-        chart = new TestDataGrids_2_GraphPaper().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-        
-        p = createTabbedPane(tabbedPaneGridFills, "Grid Alternate X Fill");
-        chart = new TestDataGrids_3_alternateGridFillX().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-        p = createTabbedPane(tabbedPaneGridFills, "Grid Alternate Y Fill");
-        chart = new TestDataGrids_4_alternateGridFillY().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneGridFills, "Gradiant Fill");
-        chart = new TestDataGrids_5_Gradiant().getChart();
-        charts.add(chart);
-        p.add(chart);
         
         
         
+        tabbedPane.add("Grid Line Fill", new GridLineTester().createPanel());
         /***
          * BARS
          */

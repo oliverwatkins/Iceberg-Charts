@@ -110,7 +110,7 @@ public abstract class AxisScaling {
 	protected boolean inBounds(double pixelsFromEdge, Chart chart) {
 		if (orientation == Orientation.X) {
 			
-			if (pixelsFromEdge >= chart.leftOffset && pixelsFromEdge <= (chart.rightOffset + chart.widthChart)) {
+			if ((pixelsFromEdge >= chart.leftOffset) && (pixelsFromEdge <= (chart.leftOffset + chart.widthChart))) {
 				return true;
 			}
 		

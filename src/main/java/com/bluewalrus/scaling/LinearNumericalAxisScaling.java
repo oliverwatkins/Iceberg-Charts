@@ -128,12 +128,26 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 			/**
 			 * check if the pixel position is within the bounds of the chart. If not ignore it.
 			 */
+
+
 			if (!inBounds(pixelsFromEdge, chart)) {
+				
+				String labelValueFormatted = getLabelValue((NumericalInterval)interval, i);
+				System.out.println("labelValueFormatted = " + labelValueFormatted + " is out of range and wont be displayed");
+				System.out.println("pixelsFromEdge = " + pixelsFromEdge + " ");
+				System.out.println("chart left offset = " + chart.leftOffset + " ");
+				System.out.println("chart width = " + chart.widthChart + " ");
+				System.out.println("width = " + chart.getWidth() + " ");
+				
+				
+				
+				
 				continue;
 			}
 			
 			drawIntervalTick(inter, g, chart, pixelsFromEdge);
 
+			
 			if (showLabel)
 				drawIntervalLabel(inter, g, chart, getAxis(chart), pixelsFromEdge, i);
 		}
