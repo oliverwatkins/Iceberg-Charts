@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_GraphPaper;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_2_GraphPaper;
 
 public class SingleChartDemo extends JFrame {
 
@@ -18,7 +18,7 @@ public class SingleChartDemo extends JFrame {
 
 		JTabbedPane tabbedPaneBar = new JTabbedPane();
 
-		Chart chart2 = new TestDataGrids_GraphPaper().getChart();
+		Chart chart2 = new TestDataGrids_2_GraphPaper().getChart();
 
 		tabbedPaneBar.addTab("1", chart2);
 

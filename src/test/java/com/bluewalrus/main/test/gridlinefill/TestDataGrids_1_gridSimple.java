@@ -26,47 +26,45 @@ import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 
-public class TestDataGrids_alternateGridFillX extends ChartTester {
+/**
+ * introduction to grids
+ * 
+ * @author Oliver Watkins
+ */
+public class TestDataGrids_1_gridSimple extends ChartTester {
 
 	
-	@Override
-	public Chart getChart() throws ParseException {
-		
-		XYDataSeries series = new XYDataSeries(null, 
-				new Line(Color.BLUE, false, 3), 
-				"Blue Series");
-		series.dataPoints = getSeries1();
-		
-		XYDataSeries series2 = new XYDataSeries(null, 
-				new Line(Color.RED, false, 3), 
-				"Red Series");
-		series2.dataPoints = getSeries2();
-		
+	public Chart getChart() {
+
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
-		xySeriesList.add(series);
-		xySeriesList.add(series2);
+		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		values.add(new DataPoint(5, 30));
+		values.add(new DataPoint(10, 11));
+		values.add(new DataPoint(15, 14));
+		values.add(new DataPoint(20, 5));
+		values.add(new DataPoint(25, 8));
 
-		IntervalStyling stylingX = new IntervalStyling(2, 
-				new GridLine(Color.GRAY, false, 0),
-				new GridFill(
-						new Color(179, 209, 255), 
-						new Color(172, 109, 215), false));
-		
-		IntervalStyling stylingY = new IntervalStyling(8,
-				new GridLine(Color.GRAY, false, 1), 
-				null);
-		
-		XYChart lineChart = new XYChart(xySeriesList, "Alternate Grid Fill", null, 
-				stylingX, 
-				null, 
-				null, 
-				stylingY, 
-				null, "X Axis", "Y Axis");
-		
-		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
+		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
+		values2.add(new DataPoint(5, 2));
+		values2.add(new DataPoint(10, 33));
+		values2.add(new DataPoint(15, 6));
+		values2.add(new DataPoint(20, 14));
+		values2.add(new DataPoint(25, 17));
 
+		XYDataSeries series = new XYDataSeries(values, "");
+		
+		XYChart lineChart = new XYChart("Grid Examples", 
+				"My X Axis", 
+				"My Y Axis", 
+				new IntervalStyling(5, new GridLine(Color.GRAY, false, 3), null), 		//first X interval styling
+				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second X interval styling
+				null,																	//third X interval styling
+				new IntervalStyling(5, new GridLine(Color.GRAY, true, 3), null),		//first Y interval styling
+				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second Y interval styling
+				null, 																	//third Y interval styling
+				series);
+		
 		return lineChart;
 	}
 
@@ -159,7 +157,7 @@ public class TestDataGrids_alternateGridFillX extends ChartTester {
 	
 	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataGrids_alternateGridFillX();
+		ChartTester t = new TestDataGrids_1_gridSimple();
 		t.testChart(t.getChart());
 	}
 	

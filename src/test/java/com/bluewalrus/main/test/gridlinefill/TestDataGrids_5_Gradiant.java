@@ -25,7 +25,7 @@ import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 
-public class TestDataGrids_Gradiant extends ChartTester{
+public class TestDataGrids_5_Gradiant extends ChartTester{
 	
 	@Override
 	public Chart getChart() {
@@ -61,7 +61,7 @@ public class TestDataGrids_Gradiant extends ChartTester{
 	
 	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataGrids_Gradiant();
+		ChartTester t = new TestDataGrids_5_Gradiant();
 		t.testChart(t.getChart());
 	}
 	

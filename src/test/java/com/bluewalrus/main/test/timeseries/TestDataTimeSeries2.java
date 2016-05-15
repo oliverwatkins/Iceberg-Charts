@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.timeseries;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -19,6 +19,7 @@ import com.bluewalrus.chart.draw.GridFill;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 

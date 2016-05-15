@@ -20,7 +20,6 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.main.test.TestDataBubble_1_guns;
 import com.bluewalrus.main.test.TestDataBubble_2_series;
 import com.bluewalrus.main.test.TestDataPieBubble;
-import com.bluewalrus.main.test.TestDataTimeSeries;
 import com.bluewalrus.main.test.TestDataXY_Boxplot;
 import com.bluewalrus.main.test.TestDataXY_LineExamples;
 import com.bluewalrus.main.test.TestDataXY_Math;
@@ -38,16 +37,17 @@ import com.bluewalrus.main.test.fractions.TestDataXY_Fractions;
 import com.bluewalrus.main.test.fractions.TestDataXY_Fractions2;
 import com.bluewalrus.main.test.fractions.TestDataXY_Fractions3_2decimal;
 import com.bluewalrus.main.test.fractions.TestDataXY_Fractions4;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_Gradiant;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_GraphPaper;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_TimeSeries;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_alternateGridFillX;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_alternateGridFillY;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_gridSimple;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_5_Gradiant;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_2_GraphPaper;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_7_TimeSeries;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_3_alternateGridFillX;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_4_alternateGridFillY;
+import com.bluewalrus.main.test.gridlinefill.TestDataGrids_1_gridSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_Multi;
 import com.bluewalrus.main.test.pie.TestDataPie_SimplePie;
+import com.bluewalrus.main.test.timeseries.TestDataTimeSeries;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y_2;
 
@@ -149,7 +149,7 @@ public class IcebergChartsDemo extends JFrame {
         p.add(chart);
         
         p = createTabbedPane(tabbedPaneTime, "Grids Time Series");
-        chart = new TestDataGrids_TimeSeries().getChart();
+        chart = new TestDataGrids_7_TimeSeries().getChart();
         charts.add(chart);
         p.add(chart);
         
@@ -160,29 +160,29 @@ public class IcebergChartsDemo extends JFrame {
          */
 
         p = createTabbedPane(tabbedPaneGridFills, "Grids Graph Paper");
-        chart = new TestDataGrids_gridSimple().getChart();
+        chart = new TestDataGrids_1_gridSimple().getChart();
         charts.add(chart);
         p.add(chart);
 
         
         p = createTabbedPane(tabbedPaneGridFills, "Grids Graph Paper");
-        chart = new TestDataGrids_GraphPaper().getChart();
+        chart = new TestDataGrids_2_GraphPaper().getChart();
         charts.add(chart);
         p.add(chart);
 
         
         p = createTabbedPane(tabbedPaneGridFills, "Grid Alternate X Fill");
-        chart = new TestDataGrids_alternateGridFillX().getChart();
+        chart = new TestDataGrids_3_alternateGridFillX().getChart();
         charts.add(chart);
         p.add(chart);
 
         p = createTabbedPane(tabbedPaneGridFills, "Grid Alternate Y Fill");
-        chart = new TestDataGrids_alternateGridFillY().getChart();
+        chart = new TestDataGrids_4_alternateGridFillY().getChart();
         charts.add(chart);
         p.add(chart);
         
         p = createTabbedPane(tabbedPaneGridFills, "Gradiant Fill");
-        chart = new TestDataGrids_Gradiant().getChart();
+        chart = new TestDataGrids_5_Gradiant().getChart();
         charts.add(chart);
         p.add(chart);
         

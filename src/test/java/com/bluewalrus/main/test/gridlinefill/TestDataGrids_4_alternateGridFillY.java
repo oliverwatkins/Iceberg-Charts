@@ -26,7 +26,7 @@ import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 
-public class TestDataGrids_alternateGridFillY extends ChartTester {
+public class TestDataGrids_4_alternateGridFillY extends ChartTester {
 
 	
 	@Override
@@ -158,7 +158,7 @@ public class TestDataGrids_alternateGridFillY extends ChartTester {
 	
 	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataGrids_alternateGridFillY();
+		ChartTester t = new TestDataGrids_4_alternateGridFillY();
 		t.testChart(t.getChart());
 	}
 	
