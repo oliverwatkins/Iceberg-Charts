@@ -385,7 +385,7 @@ public class ChartUtils {
 	 * @param chart
 	 * @return cached clip
 	 */
-	public static Shape clipChart(Graphics2D g, XYChart chart) {
+	public static Shape clipChart(Graphics2D g, Chart chart) {
 		
 		Shape cachedClip = g.getClip();
 		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));

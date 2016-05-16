@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.ChartUtils;
 
 public class GridFill{
 	
@@ -109,8 +110,11 @@ public class GridFill{
      */
 	private void fillOutRectangle(Graphics2D g, Chart chart, Color colorCached,
 			Rectangle fillRect) {
-		Shape clip = g.getClip();
-		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
+		
+		Shape clip = ChartUtils.clipChart(g, chart);
+		
+//		Shape clip = g.getClip();
+//		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
 		
 		g.fill (fillRect);
 

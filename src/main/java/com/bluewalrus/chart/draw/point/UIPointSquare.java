@@ -52,7 +52,7 @@ public class UIPointSquare extends UIPointSimpleXY {
         g.fill(rectangle);
         
         if (mouseIsOverPoint) {
-        	g.setColor(Color.GREEN);
+        	g.setColor(Color.ORANGE);
         	g.fill(rectangle);
         }else {
         	g.setColor(color);

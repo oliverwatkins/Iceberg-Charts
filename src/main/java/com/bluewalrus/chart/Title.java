@@ -17,7 +17,7 @@ public class Title {
 	public Font titleFont = new Font("Arial", Font.PLAIN, 24);
 	
 	public Color titleColor = Color.BLACK;
-	public String title = "My Fruits";
+	public String title = "No Title Defined";
 	
 	protected void drawTitle(Graphics g, Chart chart) {
 

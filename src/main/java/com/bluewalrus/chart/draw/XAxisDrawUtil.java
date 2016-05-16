@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
@@ -33,6 +34,11 @@ public class XAxisDrawUtil {
 	 */
 	public static void drawIntervalTick(AbstractInterval interval, Graphics g, Chart chart,
 			double fromLeft, Axis axis) {
+		
+		
+//		if (chart == null) {
+//			throw new RuntimeException("");
+//		}
 		
 		if (interval.styling == null) {
 			return;
@@ -62,8 +68,10 @@ public class XAxisDrawUtil {
 		int y1 = chart.topOffset + chart.heightChart;
 		int y2 = chart.topOffset;
 		
-		Shape clip = g.getClip();
-		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
+		
+		Shape clip = ChartUtils.clipChart(g, chart);
+//		Shape clip = g.getClip();
+//		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
 		
 		interval.styling.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
 		g.setClip(clip);
@@ -103,11 +111,12 @@ public class XAxisDrawUtil {
 
 	private static boolean isXPositionInsideChart(Chart chart, double fromLeft) {
 		
-		int rightSideChart = (chart.getWidth() - chart.rightOffset);
+		int rightSideChart = (chart.widthChart + chart.leftOffset);
 		
 		if (fromLeft < rightSideChart && fromLeft > chart.leftOffset) {
 			return true;
 		}
+		System.out.println("ERROR : fromLeft " + fromLeft + " is not inside chart. rightSideChart " + rightSideChart + " chart.leftOffset " + chart.leftOffset);
 		return false;
 	}
 

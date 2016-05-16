@@ -1,18 +1,16 @@
 package com.bluewalrus.chart.draw;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
 
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.YAxis;
 
@@ -160,8 +158,10 @@ public class YAxisDrawUtil {
 		
 		int x2 = chart.leftOffset + chart.widthChart;
 
-		Shape clip = g.getClip();
-		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
+		
+		Shape clip = ChartUtils.clipChart(g, chart);
+//		Shape clip = g.getClip();
+//		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
 		
 		interval.styling.graphLine.drawLine(g, x1, (int)fromTop, x2, (int)fromTop);
 		g.setClip(clip);

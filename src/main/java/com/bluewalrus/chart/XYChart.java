@@ -53,6 +53,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public ArrayList<XYDataSeries> data = new ArrayList<XYDataSeries>();
 	public ArrayList<XYDataSeries> dataY2 = new ArrayList<XYDataSeries>();
 	
+	
+	/**
+	 * For stacked chart
+	 */
+	public XYChart() {
+
+	}
 
 	/**
 	 * Create an XY chart passing in also the data set.
@@ -85,7 +92,16 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.data.add(series);
 	}
 	
-	
+//	public XYChart(ArrayList<XYDataSeries> data, String title, YAxis yAxis,
+//			XAxis xAxis) {
+//		
+//		this.setTitle(title);
+//		
+//		this.xAxis = xAxis;
+//		this.yAxis = yAxis;
+//		
+//		this.data.add(series);
+//	}
 	public XYChart(XYDataSeries series, String title, String xLabel, String yLabel) {
 		
 		this.setTitle(title);
@@ -789,23 +805,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	        int offset = yAxis2.tickLabelOffset + yAxis2.labelOffset;
 		}
 
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		super.drawLegend(g, categories);
 	}

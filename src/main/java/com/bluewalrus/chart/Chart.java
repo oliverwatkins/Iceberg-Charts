@@ -34,7 +34,7 @@ public abstract class Chart extends JPanel {
 
 	public Color backgroundColor = Color.WHITE;
 
-	// offsets (padding of actual chart to its border)
+//	// offsets (padding of actual chart to its border)
 	public int leftOffset = 140;
 	public int topOffset = 120;
 	public int bottomOffset = 100;
