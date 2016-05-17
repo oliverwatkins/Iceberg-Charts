@@ -11,6 +11,7 @@ import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.Line;
+import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
@@ -18,14 +19,14 @@ import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 public class TestStackedChart extends ChartTester {
 	public Chart getChart() {
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(), "Y");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(), "Y1");
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(), "X");
 		
 		yAxis.axisScaling.setMinValue(0);
-		yAxis.axisScaling.setMaxValue(100);
+		yAxis.axisScaling.setMaxValue(50);
 		
 		xAxis.axisScaling.setMinValue(0);
-		xAxis.axisScaling.setMaxValue(100);
+		xAxis.axisScaling.setMaxValue(30);
 		
 		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -84,27 +85,41 @@ public class TestStackedChart extends ChartTester {
 		values4.add(new DataPoint(23, 90));
 		
 		XYDataSeries series3 = new XYDataSeries(values3, "Third");
-		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
+//		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
 		
 
-		series3.pointType = new UIPointCircle(Color.GREEN);
-		series3.line = new Line(Color.GREEN);
-		series4.pointType = new UIPointCircle(Color.BLUE);
-		series4.line = new Line(Color.BLUE);
+		series3.pointType = new UIPointBar(Color.GREEN, 50);
+//		series3.line = new Line(Color.GREEN);
+//		series4.pointType = new UIPointBar(Color.BLUE);
+//		series4.line = new Line(Color.BLUE);
 		
 
 		
 		list = new ArrayList<XYDataSeries>();
 		list.add(series3);
-		list.add(series4);
+//		list.add(series4);
 		
-		XYChart lineChart2 = new XYChart(xAxis, yAxis); 
+		YAxis yAxis2 = new YAxis(new LinearNumericalAxisScalingY(), "Y2");
+		yAxis2.axisScaling.setMinValue(0);
+		yAxis2.axisScaling.setMaxValue(100);
+		
+		
+		XYChart lineChart2 = new XYChart(xAxis, yAxis2); 
 		lineChart2.data = list;
 		
 
 
 		
-		StackedXYChart stackedXYChart = new StackedXYChart(lineChart, lineChart2);
+		ArrayList charts = new ArrayList<XYChart>();
+		charts.add(lineChart);
+		charts.add(lineChart2);
+		
+		ArrayList percentages = new ArrayList<Integer>();
+		percentages.add(30);
+		percentages.add(70);
+		
+		
+		StackedXYChart stackedXYChart = new StackedXYChart("Stacked Chart", charts, percentages);
 		
 		
 		return stackedXYChart;
