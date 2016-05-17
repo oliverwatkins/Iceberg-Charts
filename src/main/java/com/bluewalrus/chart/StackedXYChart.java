@@ -5,31 +5,23 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.bluewalrus.chart.axis.XAxis;
 
 public class StackedXYChart extends XYChart{
 
-	List<XYChart> charts;
-
 	public XAxis xAxis;
-	private ArrayList percentages; 
-	
-	public StackedXYChart(XYChart... lineChart) {
-		
-		charts = Arrays.asList(lineChart);
-		
-	}
 
+	private ArrayList<Integer> percentages; 
+	private ArrayList<XYChart> charts;
 	
-	public StackedXYChart(String string, ArrayList charts2,
-			ArrayList percentages) {
+	
+	public StackedXYChart(String string, ArrayList<XYChart> charts,
+			ArrayList<Integer> percentages) {
 		
-		charts = charts2;
+		this.charts = charts;
 		this.percentages = percentages;
-		
 	}
 
 
@@ -48,49 +40,39 @@ public class StackedXYChart extends XYChart{
 	
 	@Override
 	protected void drawGraphData(Graphics g) {
-		// TODO Auto-generated method stub
+		// ?
 		
 	}
 	
-	public void prePaint(Graphics2D g2d) {
+	public void prePaint(Graphics2D g) {
 		this.calculateHeighAndWidthOfChart();
 
 		/**
 		 * Maybe we want a filled colored area instead of some lines???
 		 */
-		drawBackground(g2d);
-		drawBottomLine(g2d);
+		drawBackground(g);
+		drawBottomLine(g);
 
 		// title
-		drawTitle(g2d);
+		drawTitle(g);
 
-
-		boolean isLastChart = false;
 		int i = 0;
 		int tOffset = this.topOffset;
 		for (XYChart chart : charts) {
 			
-			
 			int chartHeight = (int)((this.heightChart*(int)this.percentages.get(i))/100);
 			
-			if (i == (charts.size()-1)) {
-				drawStackedChart(g2d, chart, tOffset, chartHeight, true );
-				
+			if (i == (charts.size()-1)) { //if the last chart then we draw X axis
+				drawStackedChart(g, chart, tOffset, chartHeight, true );
 			}else {
-				drawStackedChart(g2d, chart, tOffset, chartHeight, false );
+				drawStackedChart(g, chart, tOffset, chartHeight, false );
 			}
-			 
-			
-			i++;
+			chart.drawGraphData(g);
 			
 			tOffset = tOffset + chartHeight;
+			
+			i++;
 		}
-
-//		drawStackedChart(g2d, charts.get(1), this.topOffset + (this.heightChart / 3),(this.heightChart*2 / 3), true );
-		
-		charts.get(0).drawGraphData(g2d);
-		
-		charts.get(1).drawGraphData(g2d);
 		
 	}
 
