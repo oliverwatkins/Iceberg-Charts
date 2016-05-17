@@ -57,8 +57,9 @@ public class ChartPlotter {
             
             
             boolean firstRun = true;
-            
-            //only bar
+
+            //TODO this will crash if only ONE point is used in a chart!!
+            //only for bar
             int pixBtnFirst2Pts = calculateDistanceBetweenFirstTwoPoints(dataPoints.get(0), dataPoints.get(1), xShift, xyFactor);
 
             for (DataPoint dataPoint : dataPoints) {
