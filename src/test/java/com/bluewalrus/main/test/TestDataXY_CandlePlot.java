@@ -51,7 +51,17 @@ public class TestDataXY_CandlePlot extends ChartTester {
 
 		values.add(new DataPointCandleStick(10, 80, 70, 60, 50, true));
 		values.add(new DataPointCandleStick(20, 80, 75, 50, 15, true));
-		values.add(new DataPointCandleStick(30, 67, 45, 55, 41, false));
+		values.add(new DataPointCandleStick(30, 67, 45, 55, 41, false)); //3rd has to be less than 4th!!
+		values.add(new DataPointCandleStick(40, 63, 61, 56, 50, true));
+		values.add(new DataPointCandleStick(50, 69, 56, 50, 43, true));
+		values.add(new DataPointCandleStick(60, 78, 70, 64, 50, true));
+		values.add(new DataPointCandleStick(70, 99, 75, 44, 31, true));
+		values.add(new DataPointCandleStick(80, 80, 60, 70, 50, false)); //3rd has to be less than 4th!!
+		values.add(new DataPointCandleStick(90, 80, 75, 50, 25, true));
+		values.add(new DataPointCandleStick(100, 80, 70, 60, 50, true));
+		values.add(new DataPointCandleStick(110, 80, 75, 50, 15, true));
+		
+		
 //		values.add(new DataPointCandleStick(40, 54, 40, 46, 73, true));
 //		values.add(new DataPointCandleStick(50, 30, 34, 39, 72, false));
 //		values.add(new DataPointCandleStick(60, 45, 36, 45, 58, true));
