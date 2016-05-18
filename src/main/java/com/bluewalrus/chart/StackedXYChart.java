@@ -19,6 +19,7 @@ public class StackedXYChart extends XYChart{
 	
 	public StackedXYChart(String string, ArrayList<XYChart> charts,
 			ArrayList<Integer> percentages) {
+		setTitle(string);
 		
 		this.charts = charts;
 		this.percentages = percentages;

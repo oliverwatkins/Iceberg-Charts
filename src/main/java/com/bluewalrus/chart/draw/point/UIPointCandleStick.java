@@ -63,7 +63,7 @@ public class UIPointCandleStick  extends UIPointComplexXY{
 			bottomWhiskerFactored = point.y + (dp.high - dp.low)  * xyFactor.yFactor;
 		}
 		
-		int width = 20;
+		int width = 6;
 		y1 = (int)(point.y) ; 
 		y2 = (int)topFactored ; 
 		y4 = (int)bottomFactored ; 
@@ -74,34 +74,7 @@ public class UIPointCandleStick  extends UIPointComplexXY{
 		x3 = (int)point.x + width/2;
 
         this.clipAndDrawPoint(g, chart);
-        
-//        g.setColor(Color.CYAN);
-//        g.fillOval((int) point.x - radiusOrWidthOfPointShape / 2,
-//                point.y - radiusOrWidthOfPointShape / 2,
-//                radiusOrWidthOfPointShape,
-//                radiusOrWidthOfPointShape
-//        );
-//        g.setColor(Color.GREEN);
-//        g.fillOval((int) point.x - radiusOrWidthOfPointShape / 2,
-//                y2 - radiusOrWidthOfPointShape / 2,
-//                radiusOrWidthOfPointShape,
-//                radiusOrWidthOfPointShape
-//        );
-//        g.setColor(Color.ORANGE);
-//        
-//        g.fillOval((int) point.x - radiusOrWidthOfPointShape / 2,
-//                y4 - radiusOrWidthOfPointShape / 2,
-//                radiusOrWidthOfPointShape,
-//                radiusOrWidthOfPointShape
-//        );
-//        g.setColor(Color.BLUE);
-//        
-//        g.fillOval((int) point.x - radiusOrWidthOfPointShape / 2,
-//                y5 - radiusOrWidthOfPointShape / 2,
-//                radiusOrWidthOfPointShape,
-//                radiusOrWidthOfPointShape
-//        );
-        
+
         
 	}
 	

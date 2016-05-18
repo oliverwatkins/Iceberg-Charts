@@ -22,146 +22,144 @@ import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 public class TestStackedChart2 extends ChartTester {
 	public Chart getChart() {
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(), "Y1");
+		//xAxis needs to be shared
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(), "X");
-		
-		yAxis.axisScaling.setMinValue(0);
-		yAxis.axisScaling.setMaxValue(50);
-		
 		xAxis.axisScaling.setMinValue(0);
-		xAxis.axisScaling.setMaxValue(30);
-		
-		
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
-
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		values.add(new DataPoint(5, 30));
-		values.add(new DataPoint(10, 11));
-		values.add(new DataPoint(15, 14));
-		values.add(new DataPoint(20, 5));
-		values.add(new DataPoint(25, 8));
-
-		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
-		values2.add(new DataPoint(5, 2));
-		values2.add(new DataPoint(10, 33));
-		values2.add(new DataPoint(15, 6));
-		values2.add(new DataPoint(20, 14));
-		values2.add(new DataPoint(25, 17));
-
-
-		XYDataSeries series = new XYDataSeries(values, "First");
-		XYDataSeries series2 = new XYDataSeries(values2, "Second");
-
-		series.pointType = new UIPointCircle(Color.ORANGE);
-		series.line = new Line(Color.ORANGE);
-		series2.pointType = new UIPointCircle(Color.RED);
-		series2.line = new Line(Color.RED);
-		
-		
-		ArrayList<XYDataSeries> list = new ArrayList<XYDataSeries>();
-		list.add(series);
-		list.add(series2);
-
-		XYChart lineChart = new XYChart(xAxis, yAxis); 
-		lineChart.data = list;
-		
-		
-		
-		
-		
-		
-		
-		
-
-		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
-		values3.add(new DataPoint(5, 91));
-		values3.add(new DataPoint(10, 74));
-		values3.add(new DataPoint(15, 67));
-		values3.add(new DataPoint(20, 22));
-		values3.add(new DataPoint(25, 68));
-		
-		ArrayList<DataPoint> values4 = new ArrayList<DataPoint>();
-		values4.add(new DataPoint(5, 90));
-		values4.add(new DataPoint(10, 65));
-		values4.add(new DataPoint(15, 80));
-		values4.add(new DataPoint(20, 83));
-		values4.add(new DataPoint(23, 90));
-		
-		XYDataSeries series3 = new XYDataSeries(values3, "Third");
-//		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
-		
-
-		series3.pointType = new UIPointBar(Color.GREEN, 50);
-//		series3.line = new Line(Color.GREEN);
-//		series4.pointType = new UIPointBar(Color.BLUE);
-//		series4.line = new Line(Color.BLUE);
-		
-
-		
-		list = new ArrayList<XYDataSeries>();
-		list.add(series3);
-//		list.add(series4);
-		
-		YAxis yAxis2 = new YAxis(new LinearNumericalAxisScalingY(), "Y2");
-		yAxis2.axisScaling.setMinValue(0);
-		yAxis2.axisScaling.setMaxValue(100);
-		
-		
-		XYChart lineChart2 = new XYChart(xAxis, yAxis2); 
-		lineChart2.data = list;
-		
-
-
+		xAxis.axisScaling.setMaxValue(400);
 		
 		ArrayList charts = new ArrayList<XYChart>();
-		charts.add(getCandleChart());
-		charts.add(lineChart2);
+		charts.add(getCandleChart(xAxis));
+		charts.add(getBarChart(xAxis));
 		
 		ArrayList percentages = new ArrayList<Integer>();
-		percentages.add(30);
 		percentages.add(70);
+		percentages.add(30);
 		
 		
-		StackedXYChart stackedXYChart = new StackedXYChart("Stacked Chart", charts, percentages);
+		StackedXYChart stackedXYChart = new StackedXYChart("Candlestick Chart", charts, percentages);
 		
 		
 		return stackedXYChart;
 	}
 	
 	
-	public XYChart getCandleChart() {
+	public XYChart getBarChart(XAxis xAxis) {
+		
+		ArrayList<XYDataSeries> list = new ArrayList<XYDataSeries>();
+		
+		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
+		values3.add(new DataPoint(10, 74));
+		values3.add(new DataPoint(20, 55));
+		values3.add(new DataPoint(30, 55));
+		values3.add(new DataPoint(40, 22));
+		values3.add(new DataPoint(50, 33));
+		values3.add(new DataPoint(60, 44));
+		values3.add(new DataPoint(70, 42));
+		values3.add(new DataPoint(80, 41));
+		values3.add(new DataPoint(90, 25));
+		values3.add(new DataPoint(100, 22));
+		values3.add(new DataPoint(110, 26));
+		values3.add(new DataPoint(120, 23));
+		values3.add(new DataPoint(130, 34));
+		values3.add(new DataPoint(140, 67));
+		values3.add(new DataPoint(150, 76));
+		values3.add(new DataPoint(160, 76));
+		values3.add(new DataPoint(170, 32));
+		values3.add(new DataPoint(180, 67));
+		values3.add(new DataPoint(190, 66));
+		values3.add(new DataPoint(200, 22));
+		values3.add(new DataPoint(210, 25));
+		values3.add(new DataPoint(220, 32));
+		values3.add(new DataPoint(230, 33));
+		values3.add(new DataPoint(240, 13));
+		values3.add(new DataPoint(250, 11));
+		values3.add(new DataPoint(260, 13));
+		values3.add(new DataPoint(270, 62));
+		values3.add(new DataPoint(280, 41));
+		values3.add(new DataPoint(290, 26));
+		values3.add(new DataPoint(300, 21));
+		values3.add(new DataPoint(310, 51));
+		values3.add(new DataPoint(320, 14));
+		values3.add(new DataPoint(330, 12));
+		values3.add(new DataPoint(340, 22));
+		values3.add(new DataPoint(350, 23));
+		values3.add(new DataPoint(360, 26));
+		values3.add(new DataPoint(370, 21));
+		values3.add(new DataPoint(380, 45));
+		values3.add(new DataPoint(390, 22));
+		values3.add(new DataPoint(400, 22));
+		
+		XYDataSeries series3 = new XYDataSeries(values3, "Third");
 
-		// TEST_DATA_START
+		series3.pointType = new UIPointBar(Color.GRAY, 60);
+		
+		list = new ArrayList<XYDataSeries>();
+		list.add(series3);
+		
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(), "Trade Volume");
+		yAxis.axisScaling.setMinValue(0);
+		yAxis.axisScaling.setMaxValue(100);
+//		yAxis.axisScaling.interval1 = new Interval
+		
+		XYChart lineChart2 = new XYChart(xAxis, yAxis); 
+		lineChart2.data = list;
+		
+		return lineChart2;
+	}
+	
+	public XYChart getCandleChart(XAxis xAxis) {
+
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 //		values.add(new DataPointBoxPlot(5, 53, 15, 26, 37, 49, 70));
 
-		values.add(new DataPointCandleStick(10, 80, 70, 60, 50, true));
-		values.add(new DataPointCandleStick(20, 80, 75, 50, 15, true));
-		values.add(new DataPointCandleStick(30, 67, 45, 55, 41, false)); //3rd has to be less than 4th!!
-		values.add(new DataPointCandleStick(40, 63, 61, 56, 50, true));
-		values.add(new DataPointCandleStick(50, 69, 56, 50, 43, true));
+		values.add(new DataPointCandleStick(10, 83, 70, 60, 50, true));
+		values.add(new DataPointCandleStick(20, 90, 75, 50, 15, true));
+		values.add(new DataPointCandleStick(30, 87, 45, 55, 41, false)); //3rd has to be less than 4th!!
+		values.add(new DataPointCandleStick(40, 83, 61, 56, 50, true));
+		values.add(new DataPointCandleStick(50, 89, 56, 50, 43, true));
 		values.add(new DataPointCandleStick(60, 78, 70, 64, 50, true));
 		values.add(new DataPointCandleStick(70, 99, 75, 44, 31, true));
 		values.add(new DataPointCandleStick(80, 80, 60, 70, 50, false)); //3rd has to be less than 4th!!
-		values.add(new DataPointCandleStick(90, 80, 75, 50, 25, true));
-		values.add(new DataPointCandleStick(100, 80, 70, 60, 50, true));
-		values.add(new DataPointCandleStick(110, 80, 75, 50, 15, true));
-		
-		
-//		values.add(new DataPointCandleStick(40, 54, 40, 46, 73, true));
-//		values.add(new DataPointCandleStick(50, 30, 34, 39, 72, false));
-//		values.add(new DataPointCandleStick(60, 45, 36, 45, 58, true));
-//		values.add(new DataPointCandleStick(70, 47, 41, 45, 49, false));
-//		values.add(new DataPointCandleStick(80, 70, 68, 64, 50, false));
+		values.add(new DataPointCandleStick(90, 99, 75, 50, 25, true));
+		values.add(new DataPointCandleStick(100, 93, 70, 60, 50, true));
+		values.add(new DataPointCandleStick(110, 95, 71, 55, 44, true));
+		values.add(new DataPointCandleStick(120, 94, 67, 53, 41, true));
+		values.add(new DataPointCandleStick(130, 81, 65, 51, 42, true));
+		values.add(new DataPointCandleStick(140, 85, 61, 41, 31, true));
+		values.add(new DataPointCandleStick(150, 81, 61, 44, 35, true));
+		values.add(new DataPointCandleStick(160, 55, 53, 50, 49, true));
+		values.add(new DataPointCandleStick(170, 71, 48, 41, 15, true));
+		values.add(new DataPointCandleStick(180, 70, 41, 36, 15, true));
+		values.add(new DataPointCandleStick(190, 68, 75, 50, 15, true));
+		values.add(new DataPointCandleStick(200, 67, 95, 60, 55, true));
+		values.add(new DataPointCandleStick(210, 73, 77, 66, 52, true));
+		values.add(new DataPointCandleStick(220, 75, 74, 50, 15, true));
+		values.add(new DataPointCandleStick(230, 77, 45, 55, 41, false)); //3rd has to be less than 4th!!
+		values.add(new DataPointCandleStick(240, 78, 45, 56, 35, false)); //3rd has to be less than 4th!!
+		values.add(new DataPointCandleStick(250, 75, 56, 50, 43, true));
+		values.add(new DataPointCandleStick(260, 78, 70, 64, 50, true));
+		values.add(new DataPointCandleStick(270, 99, 75, 44, 31, true));
+		values.add(new DataPointCandleStick(280, 80, 60, 70, 50, false)); //3rd has to be less than 4th!!
+		values.add(new DataPointCandleStick(290, 77, 51, 41, 25, true));
+		values.add(new DataPointCandleStick(300, 41, 31, 13, 11, true));
+		values.add(new DataPointCandleStick(310, 35, 31, 17, 15, true));
+		values.add(new DataPointCandleStick(320, 14, 12, 9, 5, true));
+		values.add(new DataPointCandleStick(330, 17, 13, 11, 2, true));
+		values.add(new DataPointCandleStick(340, 16, 11, 10, 9, true));
+		values.add(new DataPointCandleStick(350, 19, 15, 13, 11, true));
+		values.add(new DataPointCandleStick(360, 23, 21, 20, 15, true));
+		values.add(new DataPointCandleStick(370, 41, 40, 31, 30, true));
+		values.add(new DataPointCandleStick(380, 54, 51, 50, 49, true));
+		values.add(new DataPointCandleStick(390, 67, 56, 50, 17, true));
+		values.add(new DataPointCandleStick(400, 63, 61, 50, 15, true));
 
 		XYDataSeries series = new XYDataSeries(values, new UIPointCandleStick(
 				new Color(181, 197, 207, 100)), null, "1994");
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, 50.0, 10.0, null), "y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 100.0, 50.0, 10.0, null), "x Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, 50.0, 10.0, null), "Price (USD)");
 
 		xySeriesList.add(series);
 
