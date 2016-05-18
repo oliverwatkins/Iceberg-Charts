@@ -166,11 +166,11 @@ public class DateUtils {
 		
 		switch (i) {
 		case MONTH:
-			return TimeUnit.DAYS.toMillis(30); //TODO 30, 31, 28, 29
+			return TimeUnit.DAYS.toMillis(30); //TODO wrong!!! 30, 31, 28, 29
 		case YEAR:
 			return TimeUnit.DAYS.toMillis(365); //TODO wrong!!! leap years??
 		case DAY:
-			return TimeUnit.DAYS.toMillis(1);     // 1 day to milliseconds.
+			return TimeUnit.DAYS.toMillis(1); // 1 day to milliseconds.
 		case HOUR:
 			return TimeUnit.HOURS.toMillis(1); // 23 minutes to milliseconds.
 		case WEEK:

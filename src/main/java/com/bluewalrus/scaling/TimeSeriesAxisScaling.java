@@ -57,8 +57,15 @@ public abstract class TimeSeriesAxisScaling extends AxisScaling{
 		
 		int incrementNo = getIncrementNumber(interval);
 		
-		double incrementInPixel = getIncrementInPixels(interval, chart); //(double) (increment * factor);
+		double incrementInPixel = getIncrementInPixels(interval, chart); 
 
+		/**
+		 * TODO!
+		 * This logic in incorrect for month and year. Both month and year are not the same size over time. They vary.
+		 * 
+		 * incrementInPixel varies if 28,29,30,21 days... same with leap years.
+		 * 
+		 */
 		for (int i = 0; i < (incrementNo + 1); i++) {
 			
 			drawIntervalTick(interval, g, chart, i, incrementInPixel);
@@ -75,7 +82,7 @@ public abstract class TimeSeriesAxisScaling extends AxisScaling{
 		
 		TimeInterval.Type t = inter.getInterval();
 //		
-		long increment = DateUtils.getMsForType(t); // :(
+		long increment = DateUtils.getMsForType(t); // :( what about year and month....
 		
 		double factor = this.getMultiplicationFactor(chart);
 		
