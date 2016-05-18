@@ -114,7 +114,7 @@ public class YAxisDrawUtil {
 	 * @param yLabel
 	 * @param axis
 	 */
-	public static void drawYLabel(Graphics2D g, XYChart chart, double fromTop, String yLabel, YAxis axis) {
+	public static void drawYIntervalLabel(Graphics2D g, XYChart chart, double fromTop, String yLabel, YAxis axis) {
 		
 		FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
         int widthStr = fm.stringWidth(yLabel);

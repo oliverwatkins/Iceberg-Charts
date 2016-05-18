@@ -24,7 +24,8 @@ import com.bluewalrus.chart.axis.XAxis;
 public class XAxisDrawUtil {
 
 	/**
-	 * Draw Tick. If the position (from left) is passed the edge of the chart, then don't draw it.
+	 * Draw Tick. If the position (from left) is passed the edge of the chart,
+	 * then don't draw it.
 	 * 
 	 * @param interval
 	 * @param g
@@ -32,27 +33,21 @@ public class XAxisDrawUtil {
 	 * @param fromLeft
 	 * @param axis
 	 */
-	public static void drawIntervalTick(AbstractInterval interval, Graphics g, Chart chart,
-			double fromLeft, Axis axis) {
-		
-		
-//		if (chart == null) {
-//			throw new RuntimeException("");
-//		}
-		
+	public static void drawIntervalTick(AbstractInterval interval, Graphics g,
+			Chart chart, double fromLeft, Axis axis) {
+
 		if (interval.styling == null) {
 			return;
 		}
-		
-		int y1 = (chart.topOffset + chart.heightChart + axis.marginOffset);
-        int y2 = (chart.topOffset + chart.heightChart + axis.marginOffset + interval.styling.lineLength);
 
-        if (isXPositionInsideChart(chart, fromLeft))
-            g.drawLine((int)fromLeft, y1, (int)fromLeft, y2);
-        
- 	} 
-	
-	
+		int y1 = (chart.topOffset + chart.heightChart + axis.marginOffset);
+		int y2 = (chart.topOffset + chart.heightChart + axis.marginOffset + interval.styling.lineLength);
+
+		if (isXPositionInsideChart(chart, fromLeft))
+			g.drawLine((int) fromLeft, y1, (int) fromLeft, y2);
+
+	}
+
 	/**
 	 * Draw Grid Line
 	 * 
@@ -61,66 +56,48 @@ public class XAxisDrawUtil {
 	 * @param chart
 	 * @param fromLeft
 	 */
-	public static void drawGridLine(AbstractInterval interval, Graphics2D g, Chart chart,
-			double fromLeft) {
-		
-		
+	public static void drawGridLine(AbstractInterval interval, Graphics2D g,
+			Chart chart, double fromLeft) {
+
 		int y1 = chart.topOffset + chart.heightChart;
 		int y2 = chart.topOffset;
-		
-		
+
 		Shape clip = ChartUtils.clipChart(g, chart);
-//		Shape clip = g.getClip();
-//		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
-		
-		interval.styling.graphLine.drawLine(g, (int)fromLeft, y1, (int)fromLeft, y2);
+
+		interval.styling.graphLine.drawLine(g, (int) fromLeft, y1,
+				(int) fromLeft, y2);
 		g.setClip(clip);
 	}
-	
-	
-	
-	
-	
-	
-	public static void drawXLabel(Graphics g, Chart chart, double fromLeft,
-			String xLabel, Axis axis, int intervalLevel) {
-		
-        FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
-        int widthStr = fm.stringWidth(xLabel);
-        		
-		fromLeft = fromLeft - (widthStr / 2); //move back half text length
-        
-        int yPos = chart.topOffset + chart.heightChart + axis.tickLabelOffset;
 
-        //TODO
-        if (intervalLevel == 1) {
-        	
-        }else if (intervalLevel == 2) {
-        	yPos = yPos -5;
-        }else if (intervalLevel == 3) {
-        	yPos = yPos -10;
-        }
-        
-        g.setFont(axis.axisCatFont);
-        
-        if (isXPositionInsideChart(chart, fromLeft))
-            g.drawString(xLabel, (int)fromLeft, yPos);
-    }
-        
-	
+	public static void drawXIntervalLabel(Graphics g, Chart chart, double fromLeft,
+			String xLabel, Axis axis, AbstractInterval interval) {
 
-	private static boolean isXPositionInsideChart(Chart chart, double fromLeft) {
 		
-		int rightSideChart = (chart.widthChart + chart.leftOffset);
+		int level = interval.getLevel();
 		
-		if (fromLeft < rightSideChart && fromLeft > chart.leftOffset) {
-			return true;
+		FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
+		int widthStr = fm.stringWidth(xLabel);
+
+		fromLeft = fromLeft - (widthStr / 2); // move back half text length
+
+		int yPos = chart.topOffset + chart.heightChart + axis.tickLabelOffset;
+
+		// TODO
+		if (level == 1) {
+//			yPos = yPos + 100;
+
+		} else if (level == 2) {
+			yPos = yPos - 5;
+		} else if (level == 3) {
+			yPos = yPos - 10;
 		}
-		System.out.println("ERROR : fromLeft " + fromLeft + " is not inside chart. rightSideChart " + rightSideChart + " chart.leftOffset " + chart.leftOffset);
-		return false;
+
+		g.setFont(axis.axisCatFont);
+
+		if (isXPositionInsideChart(chart, fromLeft))
+			g.drawString(xLabel + "", (int) fromLeft, yPos);
 	}
 
-	
 	/**
 	 * 
 	 * @param chart
@@ -129,21 +106,31 @@ public class XAxisDrawUtil {
 	 */
 	public static void drawLabel(Chart chart, XAxis axis, Graphics2D g2d) {
 
-        FontMetrics fmX = chart.getFontMetrics(axis.font);
-        int xAxisStringWidth = fmX.stringWidth(axis.labelText);
+		FontMetrics fmX = chart.getFontMetrics(axis.font);
+		int xAxisStringWidth = fmX.stringWidth(axis.labelText);
 
-        //X Label
-        int xAxesLabelHeight = chart.bottomOffset - axis.labelOffset;
+		// X Label
+		int xAxesLabelHeight = chart.bottomOffset - axis.labelOffset;
 
-        //x label        
-        g2d.setFont(axis.font);
-        
+		// x label
+		g2d.setFont(axis.font);
 
-        g2d.drawString(axis.labelText, chart.widthChart / 2 + chart.leftOffset - xAxisStringWidth / 2, 
-        		chart.topOffset + chart.heightChart + axis.labelOffset + xAxesLabelHeight / 2);
+		g2d.drawString(axis.labelText, chart.widthChart / 2 + chart.leftOffset
+				- xAxisStringWidth / 2, chart.topOffset + chart.heightChart
+				+ axis.labelOffset + xAxesLabelHeight / 2);
 	}
 
+	private static boolean isXPositionInsideChart(Chart chart, double fromLeft) {
 
+		int rightSideChart = (chart.widthChart + chart.leftOffset);
 
+		if (fromLeft < rightSideChart && fromLeft > chart.leftOffset) {
+			return true;
+		}
+		System.out.println("ERROR : fromLeft " + fromLeft
+				+ " is not inside chart. rightSideChart " + rightSideChart
+				+ " chart.leftOffset " + chart.leftOffset);
+		return false;
+	}
 
 }

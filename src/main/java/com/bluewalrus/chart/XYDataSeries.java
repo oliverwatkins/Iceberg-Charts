@@ -20,11 +20,11 @@ import java.util.ArrayList;
  */
 public class XYDataSeries<T extends DataPoint> implements Categorisable, Serializable {
 
-
-
+	//data points
 	public ArrayList<T> dataPoints;
 
-    public UIPointXY pointType; //describes the type of point UI.
+	//describes the type of point UI.
+    public UIPointXY pointType; 
     
     public Line line;
     public String name;
@@ -40,11 +40,6 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
 		this.name = name;
 		this.dataPoints = dataPoints;
 	}
-    
-//    public XYDataSeries(ArrayList<DataPointMultiBar> dataPoints2,
-//			UIPointMultiBarStacked point, Object line2, String name2) {
-//		// TODO Auto-generated constructor stub
-//	}
 	
     public XYDataSeries(ArrayList<T> dataPoints, UIPointXY point, Line line, String name) {
 
@@ -61,13 +56,10 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
         } else {
             type = XYDataSeriesType.LINE;
         }
-
         this.pointType = point;
         this.line = line;
         this.name = name;
     }
-    
-    
 
 
 	/**
@@ -87,7 +79,6 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
 		return "XYDataSeries [dataPoints=" + dataPoints + ", pointType=" + pointType + ", line=" + line + ", name="
 				+ name + ", type=" + type + ", seriesColor=" + seriesColor + "]";
 	}
-
 
 
 }

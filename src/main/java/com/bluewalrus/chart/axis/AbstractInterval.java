@@ -7,8 +7,10 @@ public abstract class AbstractInterval {
 	public IntervalStyling styling = new IntervalStyling();
 	
 	
-	public int level = -1;
+	private int level = -1;
 	
+
+
 	/**
 	 * Can be active, and inactive
 	 */
@@ -24,6 +26,15 @@ public abstract class AbstractInterval {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	
 	
 	public abstract boolean isValid();
 	

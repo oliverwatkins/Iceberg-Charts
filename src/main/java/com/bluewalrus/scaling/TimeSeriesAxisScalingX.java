@@ -116,7 +116,7 @@ public class TimeSeriesAxisScalingX extends TimeSeriesAxisScaling{
 		 * Draw X Label
 		 */
 		
-		XAxisDrawUtil.drawXLabel(g, chart, pixFromLeft, xLabel, chart.xAxis, interval.level);
+		XAxisDrawUtil.drawXIntervalLabel(g, chart, pixFromLeft, xLabel, chart.xAxis, interval);
 	}
 	
 

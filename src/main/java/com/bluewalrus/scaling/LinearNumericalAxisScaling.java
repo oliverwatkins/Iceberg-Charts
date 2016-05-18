@@ -207,17 +207,15 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 	protected void drawIntervalLabel(NumericalInterval interval, Graphics2D g,
 			XYChart chart, Axis axis, double pixelsFromEdge, int incrementNumber) {
 
-//		g.setColor(axis.axisColor);
-		
 		//text to display
 		String labelValueFormatted = getLabelValue(interval, incrementNumber);
 		
 		if (orientation == Orientation.X) {
-			XAxisDrawUtil.drawXLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.xAxis, 0);
+			XAxisDrawUtil.drawXIntervalLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.xAxis, interval);
 		}else if (orientation == Orientation.Y) {
-			YAxisDrawUtil.drawYLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.yAxis);
+			YAxisDrawUtil.drawYIntervalLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.yAxis);
 		}else if (orientation == Orientation.Y2) {
-			YAxisDrawUtil.drawYLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.yAxis2);
+			YAxisDrawUtil.drawYIntervalLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.yAxis2);
 		}else {
 			throw new RuntimeException("not supported");
 		}

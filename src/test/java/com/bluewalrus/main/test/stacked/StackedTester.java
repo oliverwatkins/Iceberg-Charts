@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test.timeseries;
+package com.bluewalrus.main.test.stacked;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -19,11 +18,11 @@ import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
 
-public class TimeSeriesTester extends JFrame {
+public class StackedTester extends JFrame {
 
 	
     public static void main(String[] args) throws Exception {
-    	TimeSeriesTester frame = new TimeSeriesTester();
+    	StackedTester frame = new StackedTester();
         frame.setVisible(true);
     }
     
@@ -31,7 +30,7 @@ public class TimeSeriesTester extends JFrame {
 	 * 
 	 * @throws Exception
 	 */
-    public TimeSeriesTester() throws Exception {
+    public StackedTester() throws Exception {
     	JTabbedPane p = createPanel();
     	
         getContentPane().add(p);
@@ -39,12 +38,18 @@ public class TimeSeriesTester extends JFrame {
     }
     	
     	
-	public JTabbedPane createPanel() throws ParseException {
+	public JTabbedPane createPanel() {
     		
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
+//        JTabbedPane tabbedPane = new JTabbedPane();
+    	
         JTabbedPane tabbedPaneBar = new JTabbedPane();
+
+        
+        
+//        tabbedPane.add("Bar Charts", tabbedPaneBar);
 
         JPanel p = null;
         JComponent chart = null;
@@ -54,42 +59,22 @@ public class TimeSeriesTester extends JFrame {
         /***
          * 
          * 
-         * Time Series
+         * BARS
          * 
          */
 
-        p = createTabbedPane(tabbedPaneBar, " Month Day");
-        chart = new TestDataTimeSeries_MonthDay().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Stacked 1");
+        chart = new TestStackedChart().getChart();
         charts.add(chart);
         p.add(chart);
 
         
-        p = createTabbedPane(tabbedPaneBar, " Year Month");
-        chart = new TestDataTimeSeries_YearMonth().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, " Month Week");
-        chart = new TestDataTimeSeries_MonthWeek().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-        p = createTabbedPane(tabbedPaneBar, " Week Day");
-        chart = new TestDataTimeSeries_WeekDay().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Stacked 2");
+        chart = new TestStackedChart2().getChart();
         charts.add(chart);
         p.add(chart);
 
         
-        
-        p = createTabbedPane(tabbedPaneBar, " 3");
-        chart = new TestDataGrids_6_alternateGridFillXTimesSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, " 4");
-        chart = new TestDataGrids_7_TimeSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
         
         JButton b = new JButton("Create PNG");
 

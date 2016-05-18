@@ -28,6 +28,11 @@ public abstract class TimeSeriesAxisScaling extends AxisScaling{
 		this.interval1 = timeInt1;
 		this.interval2 = timeInt2;
 		this.interval3 = timeInt3;
+		
+		this.interval1.setLevel(1);
+		this.interval2.setLevel(2);
+		this.interval3.setLevel(3);
+		
 	}
 	
 	

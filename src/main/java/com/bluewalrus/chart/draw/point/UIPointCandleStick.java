@@ -21,7 +21,7 @@ public class UIPointCandleStick  extends UIPointComplexXY{
 	private int x1;
 	private int x2;
 	private int x3;
-	private Color color = Color.RED;
+//	private Color color = Color.RED;
 	private DataPointCandleStick dp;
 
 

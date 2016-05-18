@@ -39,6 +39,7 @@ import com.bluewalrus.main.test.pie.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_Multi;
 import com.bluewalrus.main.test.pie.TestDataPie_SimplePie;
+import com.bluewalrus.main.test.stacked.StackedTester;
 import com.bluewalrus.main.test.timeseries.TestDataGrids_7_TimeSeries;
 import com.bluewalrus.main.test.timeseries.TestDataTimeSeries_MonthDay;
 import com.bluewalrus.main.test.timeseries.TimeSeriesTester;
@@ -143,6 +144,12 @@ public class IcebergChartsDemo extends JFrame {
          * MATH
          */
         tabbedPane.add("Maths", new MathTester().createPanel());
+        /***
+         * STACKED
+         */
+        tabbedPane.add("Stacked", new StackedTester().createPanel());
+        
+        
         /**
          * PIE
          */
