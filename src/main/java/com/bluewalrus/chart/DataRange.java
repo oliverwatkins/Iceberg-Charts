@@ -8,5 +8,4 @@ public class DataRange {
 	}
 
 	double min, max;
-	
 }

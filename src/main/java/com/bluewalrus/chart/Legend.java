@@ -37,7 +37,6 @@ public class Legend implements Serializable{
     int squareWidth = 30;
 
     Color legendBackgroundColor = new Color(243, 239, 239);
-//  Color legendBackgroundColor = Color.WHITE;
 
     Chart chart;
 

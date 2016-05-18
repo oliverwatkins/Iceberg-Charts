@@ -17,6 +17,11 @@ import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
 
+/**
+ * Utility class for geometric calculations on the chart.
+ * @author Oliver Watkins
+ *
+ */
 public class ChartUtils {
 
 	
@@ -138,9 +143,6 @@ public class ChartUtils {
 		return drY;
 	}
 		
-
-	
-	
 	
 	public static DateRange getDateRangeX(ArrayList<XYDataSeries> xySeriesList) {
 		
@@ -160,10 +162,6 @@ public class ChartUtils {
 		// pad out to 10%
 		double minAdj = min - (yDiff / paddingPercent);
 		double maxAdj = max + (yDiff / paddingPercent);
-		
-		// Needs to be floored. If decimal place then crashes later
-//		maxAdj = Math.floor(maxAdj);
-//		minAdj = Math.floor(minAdj);
 		
 		DataRange drY = new DataRange();
 		
@@ -368,7 +366,6 @@ public class ChartUtils {
 		
 		if (interval.getInterval() == 0.1) { //TODO continue with other intervals
 			
-//			DecimalFormat df = new DecimalFormat("###.####");
 			DecimalFormat df = new DecimalFormat("##0.0");
 			df.setRoundingMode(RoundingMode.HALF_UP);
 			
@@ -376,7 +373,6 @@ public class ChartUtils {
 		}else {
 			return "" + value;
 		}
-
 	}
 
 	/**

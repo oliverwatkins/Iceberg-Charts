@@ -22,13 +22,9 @@ import com.bluewalrus.chart.draw.point.UIPointMultiBarStacked;
 public class MultiBarChart extends XYChart { 
 
 
-
     public MultiBarChart(XAxis xAxis, YAxis yAxis, ArrayList<MultiBar> bars,
             boolean stacked) {
         this(xAxis, yAxis, bars, 10, stacked);
-        
-//        
-        
     }
 
     
@@ -36,7 +32,6 @@ public class MultiBarChart extends XYChart {
 			String yLabel) {
     	
         this(bars, 10, false, title, xLabel, yLabel);
-    	
 	}
     
     
@@ -47,9 +42,6 @@ public class MultiBarChart extends XYChart {
 		super(bars, "Tit", "x", "y");
 	}
 
-	
-    
-    
     
     public MultiBarChart(XAxis xAxis, YAxis yAxis, ArrayList<MultiBar> bars, int barWidth, boolean stacked) {
         super(xAxis, yAxis);

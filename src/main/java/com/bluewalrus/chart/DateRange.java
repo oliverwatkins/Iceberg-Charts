@@ -4,8 +4,6 @@ import java.util.Date;
 
 public class DateRange {
 
-
-
 	Date min, max;
 
 	public long howMany(long msRange) {
@@ -22,6 +20,4 @@ public class DateRange {
 	public String toString() {
 		return "DateRange [min=" + min + ", max=" + max + "] ";
 	}
-	
-	
 }

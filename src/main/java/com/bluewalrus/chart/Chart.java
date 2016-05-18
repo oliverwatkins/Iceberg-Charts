@@ -149,8 +149,6 @@ public abstract class Chart extends JPanel {
 	}
 	
 	
-	
-	
 	private void drawTrialVersion(Graphics2D g2d) {
 		String trialVersion = "Trial Version : ";
 		String trialVersion2 = "If you would like a free copy without watermark";

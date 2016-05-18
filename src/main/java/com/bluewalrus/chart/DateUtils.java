@@ -8,7 +8,6 @@ import com.bluewalrus.chart.axis.TimeInterval.Type;
 
 public class DateUtils {
 
-	
 	public static long getMsToNearestDataType(Date dateStart, Type type) {
 		
 		Calendar calDateStart = Calendar.getInstance();
@@ -29,7 +28,7 @@ public class DateUtils {
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
 			
-			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
+			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); 
 		}else if (type == Type.MONTH) {
 			
 			/**
@@ -66,7 +65,7 @@ public class DateUtils {
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
 			
-			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
+			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); 
 			
 			
 			
@@ -76,7 +75,6 @@ public class DateUtils {
 			
 			calDateStart.setTime(dateStart);
 			
-			
 			cal2.setTime(dateStart);
 			
 			cal2.set(Calendar.WEEK_OF_YEAR, calDateStart.get(Calendar.WEEK_OF_YEAR) + 1);
@@ -85,16 +83,11 @@ public class DateUtils {
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
 			
-			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
-			
-
+			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); 
 			
 		}else {
 			throw new RuntimeException("No type yet " + type);
 		}
-		
-		
-//		return -999;
 	}
 	
 	public static Type getIntervalTime(DateRange drX) {
@@ -172,11 +165,11 @@ public class DateUtils {
 		case DAY:
 			return TimeUnit.DAYS.toMillis(1); // 1 day to milliseconds.
 		case HOUR:
-			return TimeUnit.HOURS.toMillis(1); // 23 minutes to milliseconds.
+			return TimeUnit.HOURS.toMillis(1); 
 		case WEEK:
-			return TimeUnit.DAYS.toMillis(7); // 23 minutes to milliseconds.
+			return TimeUnit.DAYS.toMillis(7); 
 		case MINUTE:
-			return TimeUnit.MINUTES.toMillis(1); // 23 minutes to milliseconds.
+			return TimeUnit.MINUTES.toMillis(1);
 		case NONE:
 			break;
 		default:
