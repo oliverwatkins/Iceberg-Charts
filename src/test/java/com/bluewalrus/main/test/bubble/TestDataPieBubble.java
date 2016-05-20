@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.bubble;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -18,6 +18,7 @@ import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointPieChart;
 import com.bluewalrus.chart.draw.point.UIPointPieChart;
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.pie.Segment;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;

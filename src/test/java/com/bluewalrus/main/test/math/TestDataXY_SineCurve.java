@@ -51,8 +51,11 @@ public class TestDataXY_SineCurve extends ChartTester {
 			values3.add(dp);
 		}
 		
-		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.BLUE, 1),
+//		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.BLUE, 1),
+//				new Line(Color.BLUE), "x^2");
+		XYDataSeries series = new XYDataSeries(null,
 				new Line(Color.BLUE), "x^2");
+		
 		series.dataPoints = values;
 
 		XYDataSeries series3 = new XYDataSeries(
@@ -62,8 +65,16 @@ public class TestDataXY_SineCurve extends ChartTester {
 		xySeriesList.add(series);
 		xySeriesList.add(series3);
 
+		
+		
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(), "X");
+		xAxis.axisScaling.setMinValue(0);
+		xAxis.axisScaling.setMaxValue(400);
+		
 		XYChart lineChart = new XYChart("Sine/Cos Curve", "x", "y", xySeriesList);//, yAxis, xAxis);
 
+		lineChart.xAxis = xAxis;
+		
 		return lineChart;
 	}
 

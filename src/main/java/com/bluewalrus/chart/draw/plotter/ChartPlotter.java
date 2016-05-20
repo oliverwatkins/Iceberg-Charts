@@ -2,8 +2,10 @@ package com.bluewalrus.chart.draw.plotter;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Shape;
 import java.util.ArrayList;
 
+import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.XYFactor;
@@ -24,6 +26,7 @@ import com.bluewalrus.scaling.TimeSeriesAxisScalingY;
 public class ChartPlotter {
 
 	protected Point lastPoint;
+	private XYChart chart;
 	
 	/**
 	 * Entry point
@@ -35,6 +38,8 @@ public class ChartPlotter {
 	 */
 	public void plotData(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
             ArrayList<? extends XYDataSeries> xYDataSerieses) {
+		
+		this.chart = chart;
         
         XYFactor xyFactor = getXYFactor(chart, xAxis, yAxis);
         
@@ -106,15 +111,14 @@ public class ChartPlotter {
         if (xyFactor.yFactor * y > 200000) {
         	System.err.println("ERROR!!! xyFactor.yFactor * y > 200000");
         	System.err.println("Computer is probably going to crash now?");
-//            return;
         }
         if (xyFactor.xFactor * x > 200000) {
         	System.err.println("ERROR!!! xyFactor.xFactor * x > 200000");
         	System.err.println("Computer is probably going to crash now?");
-//            return;
         }
         
         if (dataPoint.uiPointXY == null) {
+        	
             UIPointXY pointType = xYDataSeries.pointType;
             
             UIPointXY xyInstance = null;
@@ -125,6 +129,9 @@ public class ChartPlotter {
     		}
             dataPoint.setPoinUI(xyInstance);
         }
+        
+        //TODO I do not know why the clipping is happening in the point. It is probably better to clip here in this method
+        //see draw line.
         dataPoint.uiPointXY.draw(g, new Point(x, y), lastPoint, dataPoint, xyFactor, chart, pixBtnFirst2Pts);
         
         lastPoint = new Point(x,y);
@@ -150,13 +157,16 @@ public class ChartPlotter {
             return;
         }
 
+		Shape cachedClip = ChartUtils.clipChart(g, chart);
+
+		//clip away everything that is not in the chart.
         line.drawLine(g, adjustedX1, adjustedY1, adjustedX2, adjustedY2);
+        
+        g.setClip(cachedClip);
     }
-	
     
     protected int calculateDistanceBetweenFirstTwoPoints(DataPoint dataPoint,
 			DataPoint dataPoint2, int xShift, XYFactor xyFactor) {
-    	
     	
     	int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
     	int x2 = (int) ((dataPoint2.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);

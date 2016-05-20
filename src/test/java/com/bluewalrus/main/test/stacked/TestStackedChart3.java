@@ -44,7 +44,7 @@ public class TestStackedChart3 extends ChartTester {
 		percentages.add(30);
 		
 		
-		StackedXYChart stackedXYChart = new StackedXYChart("Candlestick Chart", charts, percentages);
+		StackedXYChart stackedXYChart = new StackedXYChart("Three random charts with same X Axis", charts, percentages);
 		
 		
 		return stackedXYChart;
@@ -53,12 +53,10 @@ public class TestStackedChart3 extends ChartTester {
 	
 	public XYChart getBarChart(XAxis xAxis) {
 		
-//		return (XYChart) 
 				
-				XYChart xy = (XYChart)new TestDataXY_SineCurve().getChart();
-				
-				xy.xAxis = xAxis;
-				return xy;
+		XYChart xy = (XYChart)new TestDataXY_SineCurve().getChart();
+		xy.xAxis = xAxis;
+		return xy;
 
 	}
 	

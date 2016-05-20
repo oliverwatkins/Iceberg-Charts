@@ -3,7 +3,7 @@ package com.bluewalrus.chart.datapoint;
 /**
  * Used for bubble chart as bubble point (magnitutde is size of bubble)
  * 
- * @author lauren
+ * @author oliver.watkins
  */
 public class DataPointWithMagnitude extends DataPoint {
 

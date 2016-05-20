@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.bubble;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -12,6 +12,7 @@ import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.chart.draw.point.UIPointBubble;
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 

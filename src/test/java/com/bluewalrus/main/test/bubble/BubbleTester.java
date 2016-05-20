@@ -1,6 +1,7 @@
-package com.bluewalrus.main.test.stacked;
+package com.bluewalrus.main.test.bubble;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,12 +18,13 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
 
-public class StackedTester extends JFrame {
+public class BubbleTester extends JFrame {
 
 	
     public static void main(String[] args) throws Exception {
-    	StackedTester frame = new StackedTester();
+        BubbleTester frame = new BubbleTester();
         frame.setVisible(true);
     }
     
@@ -30,7 +32,7 @@ public class StackedTester extends JFrame {
 	 * 
 	 * @throws Exception
 	 */
-    public StackedTester() throws Exception {
+    public BubbleTester() throws Exception {
     	JTabbedPane p = createPanel();
     	
         getContentPane().add(p);
@@ -63,21 +65,23 @@ public class StackedTester extends JFrame {
          * 
          */
 
-        p = createTabbedPane(tabbedPaneBar, "Stacked 1");
-        chart = new TestStackedChart().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Bubble Guns");
+        chart = new TestDataBubble_1_guns().getChart();
         charts.add(chart);
         p.add(chart);
 
         
-        p = createTabbedPane(tabbedPaneBar, "Stacked 2");
-        chart = new TestStackedChart2().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Bubble Series");
+        chart = new TestDataBubble_2_series().getChart();
         charts.add(chart);
         p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneBar, "Pie Bubble");
+        chart = new TestDataPieBubble().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
 
-        p = createTabbedPane(tabbedPaneBar, "Stacked 3");
-        chart = new TestStackedChart3().getChart();
-        charts.add(chart);
-        p.add(chart);
         
         JButton b = new JButton("Create PNG");
 

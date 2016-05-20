@@ -17,15 +17,15 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.TestDataBubble_1_guns;
-import com.bluewalrus.main.test.TestDataBubble_2_series;
-import com.bluewalrus.main.test.TestDataPieBubble;
 import com.bluewalrus.main.test.TestDataXY_Boxplot;
 import com.bluewalrus.main.test.TestDataXY_LineExamples;
 import com.bluewalrus.main.test.TestDataXY_Scatter;
 import com.bluewalrus.main.test.TestDataXY_Simple;
 import com.bluewalrus.main.test.TestDataXY_Simple_Series;
 import com.bluewalrus.main.test.bar.BarsTester;
+import com.bluewalrus.main.test.bubble.TestDataBubble_1_guns;
+import com.bluewalrus.main.test.bubble.TestDataBubble_2_series;
+import com.bluewalrus.main.test.bubble.TestDataPieBubble;
 import com.bluewalrus.main.test.fractions.FractionTester;
 import com.bluewalrus.main.test.gridlinefill.GridLineTester;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_1_gridSimple;
