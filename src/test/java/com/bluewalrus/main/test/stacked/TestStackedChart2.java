@@ -30,17 +30,15 @@ public class TestStackedChart2 extends ChartTester {
 		xAxis.axisScaling.setMinValue(0);
 		xAxis.axisScaling.setMaxValue(400);
 		
-		ArrayList charts = new ArrayList<XYChart>();
+		ArrayList<XYChart> charts = new ArrayList<XYChart>();
 		charts.add(getCandleChart(xAxis));
 		charts.add(getBarChart(xAxis));
 		
-		ArrayList percentages = new ArrayList<Integer>();
+		ArrayList<Integer> percentages = new ArrayList<Integer>();
 		percentages.add(70);
 		percentages.add(30);
 		
-		
 		StackedXYChart stackedXYChart = new StackedXYChart("Candlestick Chart", charts, percentages);
-		
 		
 		return stackedXYChart;
 	}
@@ -94,8 +92,6 @@ public class TestStackedChart2 extends ChartTester {
 		
 		XYDataSeries series3 = new XYDataSeries(values3, "Third");
 
-//		rgb(153, 153, 102)
-		
 		series3.pointType = new UIPointBar(new Color(153, 153, 102), 60);
 		
 		list = new ArrayList<XYDataSeries>();
@@ -119,7 +115,6 @@ public class TestStackedChart2 extends ChartTester {
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-//		values.add(new DataPointBoxPlot(5, 53, 15, 26, 37, 49, 70));
 
 		values.add(new DataPointCandleStick(10, 83, 70, 60, 50, true));
 		values.add(new DataPointCandleStick(20, 90, 75, 50, 15, true));
@@ -167,13 +162,9 @@ public class TestStackedChart2 extends ChartTester {
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, 50.0, 10.0, null), "Price (USD)");
 
-		
-		
-		
 		yAxis.axisScaling.interval1.styling = new IntervalStyling(5, new GridLine(Color.LIGHT_GRAY, true), null);
 		yAxis.axisScaling.interval2.styling = new IntervalStyling(2, new GridLine(Color.LIGHT_GRAY, true), null);
 
-		
 		xySeriesList.add(series);
 
 		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);

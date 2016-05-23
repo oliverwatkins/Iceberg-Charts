@@ -8,13 +8,14 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.bar.XYBarDataSeries;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.main.test.ChartTester;
+import com.bluewalrus.main.test.Showcase;
 
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
  */
 public class TestDataBar_2_Simple_negative extends ChartTester {
 
-	@Override
+	@Showcase
 	public Chart getChart() {
 		
 		XYBarDataSeries barSeries = new XYBarDataSeries();

@@ -42,7 +42,6 @@ public class StackedXYChart extends XYChart{
 	@Override
 	protected void drawGraphData(Graphics g) {
 		// ?
-		
 	}
 	
 	public void prePaint(Graphics2D g) {
@@ -100,7 +99,6 @@ public class StackedXYChart extends XYChart{
 		chart.yAxis.axisScaling.drawAll(g, chart, chart.data);
 		chart.yAxis.drawLabel(g, chart);
 		
-//		
 		chart.drawBottomLine(g);
 
 		if (drawXAxis) {

@@ -10,6 +10,9 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 
 public class TestDataXY_Simple extends ChartTester {
 	
+
+
+
 	@Override
 	public Chart getChart() {
 

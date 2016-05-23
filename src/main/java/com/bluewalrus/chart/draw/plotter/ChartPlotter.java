@@ -69,26 +69,23 @@ public class ChartPlotter {
 
             for (DataPoint dataPoint : dataPoints) {
                 if (firstRun) {
+                	
                     firstRun = false;
                     lastPoint = dataPoint;
 
                     if (xYDataSeries.pointType != null) {
 
-                        drawPoint(g, xyFactor, xShift, yShift,
-                                xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
+                        drawPoint(g, xyFactor, xShift, yShift, xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
                     }
-
                 } else {
 
                     if (xYDataSeries.line != null) {
 
-                        drawLine(g, xyFactor, xShift, yShift,
-                                lastPoint, xYDataSeries, dataPoint);
+                        drawLine(g, xyFactor, xShift, yShift, lastPoint, xYDataSeries, dataPoint);
                     }
                     if (xYDataSeries.pointType != null) {
 
-                        drawPoint(g, xyFactor, xShift, yShift,
-                                xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
+                        drawPoint(g, xyFactor, xShift, yShift, xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
                     }
                     lastPoint = dataPoint;
                 }

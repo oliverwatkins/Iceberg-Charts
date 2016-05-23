@@ -15,6 +15,7 @@ import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
 import com.bluewalrus.main.test.ChartTester;
+import com.bluewalrus.main.test.Showcase;
 import com.bluewalrus.main.test.fractions.TestDataXY_Fractions;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
@@ -27,20 +28,18 @@ public class TestDataXY_Polynomals extends ChartTester {
 	}
 	
 
+	@Showcase
 	public Chart getChart() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
-
 		
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-
 		
 		for (int x = -300; x <= 300; x++) {
 			
 			double xd = ((double)(x))/100;
 			
 			DataPoint dp = new DataPoint(xd, f(xd));
-			System.out.println("dp " + dp);
 			
 			values.add(dp);
 		}
@@ -49,37 +48,23 @@ public class TestDataXY_Polynomals extends ChartTester {
 		
 		for (int x = -300; x <= 300; x++) {
 			
-			
 			double xd = ((double)(x))/100;
 			
 			DataPoint dp = new DataPoint(xd, gCos(xd));
-			System.out.println("dp " + dp);
 			
 			values3.add(dp);
-			
-//			double xd = x/100;
-			
-//			values3.add(new DataPoint(xd, gCos(xd)));
-			
-//			DataPoint dp = new DataPoint(x, (int) (50 * gCos((x / 100.0) * 2
-//					* Math.PI)));
-//			
-//			System.out.println("dp = " + dp);
-//			values3.add(dp);
 		}
 		
-		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.BLUE, 1),
-				new Line(Color.BLUE), "x^2");
+		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.BLUE, 1), new Line(Color.BLUE), "x^2");
 		series.dataPoints = values;
 
-		XYDataSeries series3 = new XYDataSeries(
-				new UIPointCircle(Color.RED, 1), new Line(Color.RED), "e^x");
+		XYDataSeries series3 = new XYDataSeries(new UIPointCircle(Color.RED, 1), new Line(Color.RED), "e^x");
 		series3.dataPoints = values3;
 
 		xySeriesList.add(series);
 		xySeriesList.add(series3);
 
-		XYChart lineChart = new XYChart("Polynomals", "x", "y", xySeriesList);//, yAxis, xAxis);
+		XYChart lineChart = new XYChart("Polynomals", "x", "y", xySeriesList);
 
 		return lineChart;
 	}

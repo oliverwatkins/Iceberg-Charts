@@ -26,15 +26,10 @@ import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 public class TestDataXY_Math extends ChartTester {
 
-//	public static void main(String[] s) {
-////		getChart();
-//	}
-	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataXY_Math();
 		t.testChart(t.getChart());
 	}
-
 
 	public Chart getChart() {
 
@@ -46,12 +41,10 @@ public class TestDataXY_Math extends ChartTester {
 			values.add(new DataPoint(i, i * i));
 		}
 
-
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
 		for (int i = -5; i < 5; i++) {
 
 			double x = Math.exp(i);
-			System.out.println(" x = " + x);
 
 			values3.add(new DataPoint(i, x));
 		}
@@ -60,17 +53,22 @@ public class TestDataXY_Math extends ChartTester {
 				new Line(Color.BLUE), "x^2");
 		series.dataPoints = values;
 
-		XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.PINK),
-				new Line(Color.PINK), "e^x");
+		XYDataSeries series3 = new XYDataSeries(
+				new UIPointTriangle(Color.PINK), new Line(Color.PINK), "e^x");
 		series3.dataPoints = values3;
 
-		NumericalInterval t1x = new NumericalInterval(6, 10.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2x = new NumericalInterval(3, 5.0, new GridLine(Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3x = new NumericalInterval(1, 1.0, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1x = new NumericalInterval(6, 10.0, new GridLine(
+				Color.GRAY, false, 1));
+		NumericalInterval t2x = new NumericalInterval(3, 5.0, new GridLine(
+				Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t3x = new NumericalInterval(1, 1.0, new GridLine(
+				Color.LIGHT_GRAY, true, 1));
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-10.0, 10.0, t1x, t2x, t3x), "Y Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-10.0, 10.0,
+				t1x, t2x, t3x), "Y Axis");
 
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(-10.0, 10.0, t1x, t2x, t3x), "X Value");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(-10.0, 10.0,
+				t1x, t2x, t3x), "X Value");
 
 		xySeriesList.add(series);
 		xySeriesList.add(series3);

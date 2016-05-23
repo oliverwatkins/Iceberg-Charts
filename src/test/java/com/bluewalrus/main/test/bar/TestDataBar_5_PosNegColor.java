@@ -10,13 +10,14 @@ import com.bluewalrus.chart.bar.GradiantRule;
 import com.bluewalrus.chart.bar.XYBarDataSeries;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.main.test.ChartTester;
+import com.bluewalrus.main.test.Showcase;
 
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
  */
 public class TestDataBar_5_PosNegColor extends ChartTester {
 
-	@Override
+	@Showcase
 	public Chart getChart() {
 		
 		XYBarDataSeries barSeries = new XYBarDataSeries();

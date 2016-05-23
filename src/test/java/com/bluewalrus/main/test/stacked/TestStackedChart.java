@@ -86,19 +86,11 @@ public class TestStackedChart extends ChartTester {
 		values4.add(new DataPoint(23, 90));
 		
 		XYDataSeries series3 = new XYDataSeries(values3, "Third");
-//		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
-		
 
 		series3.pointType = new UIPointBar(Color.GREEN, 50);
-//		series3.line = new Line(Color.GREEN);
-//		series4.pointType = new UIPointBar(Color.BLUE);
-//		series4.line = new Line(Color.BLUE);
-		
-
 		
 		list = new ArrayList<XYDataSeries>();
 		list.add(series3);
-//		list.add(series4);
 		
 		YAxis yAxis2 = new YAxis(new LinearNumericalAxisScalingY(), "Y2");
 		yAxis2.axisScaling.setMinValue(0);

@@ -15,6 +15,7 @@ import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
 import com.bluewalrus.main.test.ChartTester;
+import com.bluewalrus.main.test.Showcase;
 import com.bluewalrus.main.test.fractions.TestDataXY_Fractions;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
@@ -27,6 +28,7 @@ public class TestDataXY_SineCurve extends ChartTester {
 	}
 	
 
+	@Showcase
 	public Chart getChart() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
