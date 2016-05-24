@@ -8,8 +8,7 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
-import com.bluewalrus.chart.datapoint.DataPointMultiBar;
-import com.bluewalrus.chart.draw.XAxisDrawUtil;
+import com.bluewalrus.chart.datapoint.MultiBar;
 
 
 /**
@@ -36,7 +35,7 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 	public void draw(Graphics2D g, Point point, Point lastPoint, 
 			DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
-		DataPointMultiBar dpX = (DataPointMultiBar)dataPoint;
+		MultiBar dpX = (MultiBar)dataPoint;
 	    
 		int leftPosition = 0;
         y = 0;
@@ -50,7 +49,7 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
     	/**
     	 * Draw each of the (multi) bars
     	 */
-        for (DataPointBar dataPointBar : dpX.datapointBars) {
+        for (DataPointBar dataPointBar : dpX.bars) {
         	
         	startDrawLeft = leftPosition  - (pointDiffWidth/2);
         	

@@ -449,7 +449,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 	
 	/**
-	 * Bubble
+	 * Bubble ONLY!!!!!!!
 	 * 
 	 * @param listOfSeries
 	 * @param yAxis

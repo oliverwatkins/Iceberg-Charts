@@ -1,23 +1,18 @@
 package com.bluewalrus.chart.draw.point;
 
 import java.awt.Color;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Shape;
 
-import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
-import com.bluewalrus.chart.datapoint.DataPointMultiBar;
-import com.bluewalrus.chart.draw.XAxisDrawUtil;
+import com.bluewalrus.chart.datapoint.MultiBar;
 
 public class UIPointMultiBar extends UIPointAbstractMultiBar{
 
-	XYChart chart; //Two way reference here :( Not good :( TODO use singleton reference to chart?
+//	XYChart chart; //Two way reference here :( Not good :( TODO use singleton reference to chart?
 	private int x;
 	private int y;
 	private int width;
@@ -28,12 +23,12 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
 	
 	public UIPointMultiBar(XYChart chart) {
 		super(Color.BLACK); //unimportant, never used.
-		this.chart = chart;		
+//		this.chart = chart;		
 	}
 
 	public void draw(Graphics2D g, Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
-		DataPointMultiBar dpX = (DataPointMultiBar)dataPoint;
+		MultiBar dpX = (MultiBar)dataPoint;
 	    
 		x = 0;
         y = 0;
@@ -42,14 +37,19 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
 
         shift = 0;
         
-        int totalWidthOfBars = dpX.datapointBars.size() * pointDiffWidth;
+        int totalWidthOfBars = dpX.bars.size() * pointDiffWidth;
         
         point.x = (int) dataPoint.x;
         
+        
+//        g.drawRect((int)(point.x * xyFactor.xFactor) + chart.leftOffset, 100, 5, 5);
+        
+        
+        point.x = (int)(point.x * xyFactor.xFactor) + chart.leftOffset;
     	/**
     	 * Draw each of the (multi) bars
     	 */
-        for (DataPointBar dpb : dpX.datapointBars) {
+        for (DataPointBar dpb : dpX.bars) {
         	
             if (dpb.y > 0) { // greater than zero
                 x = point.x - (totalWidthOfBars/2);

@@ -22,7 +22,7 @@ public class TestDataBar_MultiBar_Stacked extends ChartTester {
 	@Override
 	public Chart getChart() {
     	
-        ArrayList<MultiBar> ml = new ArrayList<MultiBar>();
+        ArrayList<MultiBar> multiBarList = new ArrayList<MultiBar>();
 
         ArrayList<DataPointBar> values = new ArrayList<DataPointBar>();
         values.add(new DataPointBar("Automobile", 50, Color.RED));
@@ -32,7 +32,7 @@ public class TestDataBar_MultiBar_Stacked extends ChartTester {
         values.add(new DataPointBar("Government", 67, Color.GRAY ));
         
         MultiBar mb1 = new MultiBar(values, "2007", MultiBarMode.STACK_ON_TOP);
-        ml.add(mb1);
+        multiBarList.add(mb1);
 
         ArrayList<DataPointBar> values2 = new ArrayList<DataPointBar>();
         values2.add(new DataPointBar("Automobile", 80, Color.RED ));
@@ -42,7 +42,7 @@ public class TestDataBar_MultiBar_Stacked extends ChartTester {
         values2.add(new DataPointBar("Government", 10, Color.GRAY ));
         
         MultiBar mb2 = new MultiBar(values2, "2008", MultiBarMode.STACK_ON_TOP);
-        ml.add(mb2);
+        multiBarList.add(mb2);
 
         ArrayList<DataPointBar> values3 = new ArrayList<DataPointBar>();
         values3.add(new DataPointBar("Automobile", 70, Color.RED ));
@@ -52,7 +52,7 @@ public class TestDataBar_MultiBar_Stacked extends ChartTester {
         values3.add(new DataPointBar("Government", 2, Color.GRAY));
         
         MultiBar mb3 = new MultiBar(values3, "2009", MultiBarMode.STACK_ON_TOP);
-        ml.add(mb3);
+        multiBarList.add(mb3);
         
         
         
@@ -60,11 +60,19 @@ public class TestDataBar_MultiBar_Stacked extends ChartTester {
 
         XAxis xAxis = new XAxis(new EnumerationAxisScalingX(), "Year");
 
-        MultiBarChart chart = new MultiBarChart(xAxis,yAxis,ml,true);
+        MultiBarChart chart = new MultiBarChart(xAxis,yAxis,multiBarList,true);
 //        chart.barWidth = 30;
         chart.setTitle("Advertising Revenue By Sector");
         chart.rightOffset = 170;
         
         return chart;
     }
+	
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataBar_MultiBar_Stacked();
+		t.testChart(t.getChart());
+	}
+	
+	
 }

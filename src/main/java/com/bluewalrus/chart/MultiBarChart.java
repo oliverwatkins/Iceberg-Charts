@@ -48,7 +48,7 @@ public class MultiBarChart extends XYChart {
 
         data = new ArrayList<XYDataSeries>();
         
-        ArrayList<DataPointMultiBar> dataPoints = new ArrayList<DataPointMultiBar>();
+        ArrayList<MultiBar> dataPoints = new ArrayList<MultiBar>();
 
 		double pointDistance = (double) (this.widthChart / (dataPoints.size() + 1));
 
@@ -57,20 +57,20 @@ public class MultiBarChart extends XYChart {
             ArrayList<DataPointBar> dataPointArray = new ArrayList<DataPointBar>();
             
             //arbitrary x/y values at this stage because it will be enumerable
-            DataPointMultiBar dpmb = new DataPointMultiBar(-9999, 42); //CANNOT GUARANTEE X HERE :(((
+            MultiBar dpmb = new MultiBar(null, null, null); //-9999, 42); //CANNOT GUARANTEE X HERE :(((
 
             for (DataPointBar bar : multibar.bars) {
                 dataPointArray.add(bar);
             }
 
-            dpmb.datapointBars = dataPointArray;
+            dpmb.bars = dataPointArray;
             dpmb.name = multibar.name + "";
 
             dataPoints.add(dpmb);
         }
 
         if (stacked) {
-            XYDataSeries<DataPointMultiBar> series = new XYDataSeries<DataPointMultiBar>(
+            XYDataSeries<MultiBar> series = new XYDataSeries<MultiBar>(
                     dataPoints,
                     new UIPointMultiBarStacked(this),
                     null,
@@ -78,7 +78,7 @@ public class MultiBarChart extends XYChart {
 
             data.add(series);
         } else {
-            XYDataSeries<DataPointMultiBar> series = new XYDataSeries<DataPointMultiBar>(
+            XYDataSeries<MultiBar> series = new XYDataSeries<MultiBar>(
                     dataPoints,
                     new UIPointMultiBar(this),
                     null,
@@ -96,9 +96,9 @@ public class MultiBarChart extends XYChart {
         ArrayList<Category> categories = new ArrayList<Category>();
 
         XYDataSeries series = data.get(0);
-        DataPointMultiBar p = (DataPointMultiBar) series.dataPoints.get(0);
+        MultiBar p = (MultiBar) series.dataPoints.get(0);
 
-        ArrayList<DataPointBar> dps = p.datapointBars;
+        ArrayList<DataPointBar> dps = p.bars;
         for (DataPointBar dpb : dps) {
             Category category;
 
