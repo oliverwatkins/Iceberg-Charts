@@ -17,8 +17,9 @@ public class Title {
 	public Font titleFont = new Font("Arial", Font.PLAIN, 24);
 	
 	public Color titleColor = Color.BLACK;
-	public String title = "No Title Defined";
+	private String title = "No Title Defined";
 	
+
 	protected void drawTitle(Graphics g, Chart chart) {
 
 		Graphics2D g2d = (Graphics2D) g;
@@ -37,4 +38,13 @@ public class Title {
 
 		// drawTrialVersion(g2d);
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 }

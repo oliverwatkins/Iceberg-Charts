@@ -50,12 +50,6 @@ public abstract class Chart extends JPanel {
 	public Chart() {
 	}
 	
-	public void setTitle(String t) {
-		title.title = t;
-	}
-	public String getTitle() {
-		return title.title;
-	}
 
 	public void setTitleFont(String string, int plain, int i) {
 		title.titleFont = new Font(string, plain, i);
@@ -148,6 +142,13 @@ public abstract class Chart extends JPanel {
 		return null;
 	}
 	
+	public void setTitle(String t) {
+		title.setTitle(t); 
+	}
+	public String getTitle() {
+		return title.getTitle();
+	}
+
 	
 	private void drawTrialVersion(Graphics2D g2d) {
 		String trialVersion = "Trial Version : ";

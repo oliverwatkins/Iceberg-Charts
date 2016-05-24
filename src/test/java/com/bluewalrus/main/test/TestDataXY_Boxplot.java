@@ -2,40 +2,29 @@ package com.bluewalrus.main.test;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
+import javax.management.RuntimeErrorException;
 
-import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
-import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBoxPlot;
-import com.bluewalrus.chart.draw.GridLine;
-import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointBoxPlot;
-import com.bluewalrus.chart.draw.point.UIPointCircle;
-import com.bluewalrus.chart.draw.point.UIPointSquare;
-import com.bluewalrus.chart.draw.point.UIPointTriangle;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 public class TestDataXY_Boxplot extends ChartTester {
 
 	public static void main(String[] s) {
-//		getChart();
+//		 getChart();
 	}
 
-	
-
-
-
 	public XYChart getChart() {
-
-		// TEST_DATA_START
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
@@ -54,8 +43,10 @@ public class TestDataXY_Boxplot extends ChartTester {
 		XYDataSeries series = new XYDataSeries(values, new UIPointBoxPlot(
 				new Color(181, 197, 207, 100)), null, "1994");
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, 50.0, 10.0, null), "y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 100.0, 50.0, 10.0, null), "x Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0,
+				50.0, 10.0, null), "y Axis");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 100.0,
+				50.0, 10.0, null), "x Axis");
 
 		xySeriesList.add(series);
 
@@ -69,5 +60,7 @@ public class TestDataXY_Boxplot extends ChartTester {
 
 		return chart;
 	}
+
+
 
 }
