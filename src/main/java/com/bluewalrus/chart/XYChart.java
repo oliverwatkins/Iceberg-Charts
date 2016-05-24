@@ -18,6 +18,7 @@ import com.bluewalrus.chart.bar.XYBarDataSeries;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
+import com.bluewalrus.chart.datapoint.MultiBar;
 import com.bluewalrus.chart.datapoint.ValueType;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.Line;
@@ -767,10 +768,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		ArrayList<Category> categories = new ArrayList<Category>();
 
-		//only one series. no need for legend
-		if (data.size() == 1) {
-			return;
-		}
+		//only one series. no need for legend TODO put this logic back in!!
+//		if (data.size() == 1) {
+//			return;
+//		}
+		
+//		if (data.)
 
 		for (XYDataSeries series : data) {
 
@@ -778,10 +781,37 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 			if (series.type == XYDataSeriesType.BUBBLE) {
 				category = new Category(series.name, series.seriesColor);
-			} else {
+			} 
+			else if(series.type == XYDataSeriesType.MULTI_BAR){
+				
+				this.rightOffset = 200; //TODO why do have to put in offset here??
+				
+				
+				MultiBar mb = (MultiBar)series.dataPoints.get(0);
+		        ArrayList<DataPointBar> dps = mb.bars;
+		        for (DataPointBar dpb : dps) {
+//		            Category category;
+
+		        	category = new Category("asdfasdfasdf" + dpb.name, series.pointType, null);
+
+		            category.block = true;
+		            category.color = dpb.color;
+		            categories.add(category);
+		        }
+		        
+		        
+				category = new Category(series.name, series.pointType,
+						series.line);
+				
+				
+			}
+			
+			else {
 				category = new Category(series.name, series.pointType,
 						series.line);
 			}
+			
+			
 			categories.add(category);
 		}
 		
@@ -804,6 +834,42 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	        int offset = yAxis2.tickLabelOffset + yAxis2.labelOffset;
 		}
+		
+		
+		
+		//////////////////// if multibar
+		
+//        ArrayList<Category> categories = new ArrayList<Category>();
+//
+//        XYDataSeries series = data.get(0);
+//        MultiBar p = (MultiBar) series.dataPoints.get(0);
+//
+//        ArrayList<DataPointBar> dps = p.bars;
+//        for (DataPointBar dpb : dps) {
+//            Category category;
+//
+//        	category = new Category(dpb.name, series.pointType, null);
+//
+//            category.block = true;
+//            category.color = dpb.color;
+//            categories.add(category);
+//        }
+//
+//        super.drawLegend(g, categories);
+        
+        ///////////////////
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		
 		super.drawLegend(g, categories);

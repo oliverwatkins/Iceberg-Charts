@@ -4,6 +4,7 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointMultiBar;
 import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointBubble;
+import com.bluewalrus.chart.draw.point.UIPointMultiBar;
 import com.bluewalrus.chart.draw.point.UIPointMultiBarStacked;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 
@@ -53,6 +54,9 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
         if (point instanceof UIPointBubble) {
             type = XYDataSeriesType.BUBBLE;
             seriesColor = point.color;
+        } else if (point instanceof UIPointMultiBar) {
+            type = XYDataSeriesType.MULTI_BAR;
+//            seriesColor = point.color;
         } else {
             type = XYDataSeriesType.LINE;
         }
