@@ -27,9 +27,9 @@ public class TestDataBar_1_Simple extends ChartTester {
 		barSeries.add(new DataPointBar("Oranges", 30, Color.BLACK));
 		barSeries.add(new DataPointBar("Corn", 54, Color.CYAN));
 		
-		XYChart barChart = new XYChart(barSeries, "Simple Bar Chart", "Commodity", "Price (USD)");
+		XYChart chart = new XYChart(barSeries, "Simple Bar Chart", "Commodity", "Price (USD)");
 		
-		return barChart;
+		return chart;
 	}
 
 	public static void main(String[] args) throws Exception {

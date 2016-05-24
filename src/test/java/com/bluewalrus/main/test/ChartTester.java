@@ -1,5 +1,7 @@
 package com.bluewalrus.main.test;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,10 +10,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.main.GenerateShowcase;
 
 public abstract class ChartTester extends JFrame{
@@ -60,7 +65,8 @@ public abstract class ChartTester extends JFrame{
 		    
 		    while (line != null) {
 		    	
-		    	if (snippet || line.contains("public XYChart getChart()")) {
+		    	if (snippet || (line.contains("public XYChart getChart()") || 
+		    			line.contains("public Chart getChart()"))) {
 		    		snippet = true;
 		    		sbCodeSnippet.append(line);
 		    		sbCodeSnippet.append("\n");
@@ -74,17 +80,30 @@ public abstract class ChartTester extends JFrame{
 		        sb.append(System.lineSeparator());
 		        line = br.readLine();
 		    }
-//		    String everything = sb.toString();
 		    System.out.println("sbCodeSnippet " + sbCodeSnippet);
 		} finally {
 		    br.close();
 		}
+		
+		
+		if (sbCodeSnippet.length() < 10)
+			throw new RuntimeException("Code snipped must be more than 10 chars " + sbCodeSnippet);
 		
 		writeFile(sbCodeSnippet, lastWord + ".txt");
 
 		return null;
 	}
 
+	
+
+	public void createImageAndTextFile() throws IOException, ParseException {
+		
+        XYChart chart = (XYChart)this.getChart();
+        this.generateCodeSnippetFile();
+        this.appendFileNameToChart(chart);
+
+        this.writeChart(chart, GenerateShowcase.path);
+	}
 
 	private void writeFile(StringBuilder sbCodeSnippet, String fileName){
 		BufferedWriter writer = null;
@@ -98,8 +117,9 @@ public abstract class ChartTester extends JFrame{
 			file.createNewFile();
 			
 			System.out.println("file.getCanonicalFile " + file.getCanonicalFile());
+			System.out.println("sbCodeSnippet length " + sbCodeSnippet.length());
 			
-			writer = new BufferedWriter(new FileWriter(file)); //GenerateShowcase.path + fileName));
+			writer = new BufferedWriter(new FileWriter(file)); 
 			writer.write(sbCodeSnippet.toString());
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -112,6 +132,47 @@ public abstract class ChartTester extends JFrame{
 		}
 	}
 
+	
+	public String getClassName() {
+		String className = this.getClass().getName();
+
+		String lastWord = className.substring(className.lastIndexOf(".") + 1);
+
+		return lastWord;
+	}
+
+	public void appendFileNameToChart(XYChart chart) {
+        String s = this.getClassName();
+        chart.fileLocation = s;
+	}
+
+	public void writeChart(Chart chart, String path) {
+		int width = chart.getWidth(); 
+		int height = chart.getHeight();
+		if (chart.getWidth() == 0) {
+			width = 300;
+		}
+		if (chart.getHeight() == 0) {
+			height = 300;
+		}
+		
+		BufferedImage image = new BufferedImage(width, height, 
+				BufferedImage.TYPE_INT_ARGB);
+
+		Graphics g2 = image.getGraphics();
+		chart.paint(g2);
+		
+//		String fileName = getFileFriendlyString(chart, i);
+
+		try {
+			ImageIO.write(image, "PNG", new File(path + chart.fileLocation + ".PNG"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+		System.out.println("saving ");
+	}
+	
 
 	
 

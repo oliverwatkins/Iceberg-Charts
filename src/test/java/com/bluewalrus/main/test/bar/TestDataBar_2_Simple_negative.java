@@ -27,9 +27,9 @@ public class TestDataBar_2_Simple_negative extends ChartTester {
 		barSeries.add(new DataPointBar("Oranges", 30, Color.BLACK));
 		barSeries.add(new DataPointBar("Corn", 54, Color.CYAN));
 		
-		XYChart barChart = new XYChart(barSeries, "Simple Bar Chart With Negatives", "Commodity", "Price Change % (USD)");
+		XYChart chart = new XYChart(barSeries, "Simple Bar Chart With Negatives", "Commodity", "Price Change % (USD)");
 
-		return barChart;
+		return chart;
 	}
 
 	public static void main(String[] args) throws Exception {
