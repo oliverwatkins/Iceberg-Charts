@@ -12,9 +12,9 @@ import java.io.Serializable;
 import com.bluewalrus.chart.Chart;
 
 /**
- * Defines a grid line used in a <code>XYChart</code>
+ * Defines a line used in a <code>XYChart</code>
  * 
- * TODO this is almost identical to Line.java. Needs to be refactored!!
+ * TODO this needs to be renamed to Line! But eclipse wont let me
  * 
  * @author Oliver Watkins
  *

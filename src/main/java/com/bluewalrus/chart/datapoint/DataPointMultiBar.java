@@ -12,7 +12,6 @@ public class DataPointMultiBar extends DataPoint{
 
     public MultiBarMode mode;
 
-    public String name;
     public ArrayList<DataPointBar> bars;
 
     public DataPointMultiBar(ArrayList<DataPointBar> bars, String name, MultiBarMode mode) {

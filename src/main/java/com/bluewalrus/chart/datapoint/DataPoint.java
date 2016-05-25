@@ -15,12 +15,11 @@ public class DataPoint implements Serializable{
 	//the types of X
     public double x;
     public Date xDate;
-	public String xName;
     
     
     public double y;
 
-    public String name; //may have a name
+    public String name; //may have a name for enumeration
     
     public ValueType valueType;
 
@@ -51,7 +50,7 @@ public class DataPoint implements Serializable{
 		
 		valueType = ValueType.X_ENUMARABLE;
         this.y = y;
-        this.xName = xString;
+        this.name = xString;
 	}
     
 

@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.sound.sampled.Line;
-
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointBubble;

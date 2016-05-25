@@ -775,10 +775,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		for (XYDataSeries series : data) {
 
-			Category category;
+			Category category = null;
 
 			if (series.type == XYDataSeriesType.BUBBLE) {
 				category = new Category(series.name, series.seriesColor);
+				categories.add(category);
 			} 
 			else if(series.type == XYDataSeriesType.MULTI_BAR){
 				
@@ -795,21 +796,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		            category.color = dpb.color;
 		            categories.add(category);
 		        }
-		        
-		        
+			} else {
 				category = new Category(series.name, series.pointType,
 						series.line);
-				
-				
-			}
-			
-			else {
-				category = new Category(series.name, series.pointType,
-						series.line);
+				categories.add(category);
 			}
 			
 			
-			categories.add(category);
 		}
 		
 		
