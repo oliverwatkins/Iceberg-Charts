@@ -4,22 +4,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
-import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.datapoint.DataPointBoxPlot;
 import com.bluewalrus.chart.draw.GridLine;
-import com.bluewalrus.chart.draw.Line;
-import com.bluewalrus.chart.draw.point.UIPointBoxPlot;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
-import com.bluewalrus.chart.draw.point.UIPointTriangle;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
@@ -51,16 +44,16 @@ public class TestDataXY_LineExamples extends ChartTester {
 
 		XYDataSeries<DataPoint> series1 = new XYDataSeries<DataPoint>(
 				new UIPointCircle(Color.ORANGE, 15),
-				new Line(Color.RED, true, 11), "1");
+				new GridLine(Color.RED, true, 11), "1");
 		XYDataSeries<DataPoint> series2 = new XYDataSeries<DataPoint>(
-				new UIPointSquare(Color.PINK), new Line(Color.PINK, true), "2");
+				new UIPointSquare(Color.PINK), new GridLine(Color.PINK, true), "2");
 		XYDataSeries<DataPoint> series3 = new XYDataSeries<DataPoint>(
 				new UIPointCircle(Color.BLACK, 23),
-				new Line(Color.BLACK, true, 1), "3");
+				new GridLine(Color.BLACK, true, 1), "3");
 		XYDataSeries<DataPoint> series4 = new XYDataSeries<DataPoint>(
-				new UIPointCircle(Color.GRAY), new Line(Color.GRAY), "4");
+				new UIPointCircle(Color.GRAY), new GridLine(Color.GRAY), "4");
 		XYDataSeries<DataPoint> series5 = new XYDataSeries<DataPoint>(
-				new UIPointSquare(Color.CYAN), new Line(Color.CYAN), "5");
+				new UIPointSquare(Color.CYAN), new GridLine(Color.CYAN), "5");
 
 		series1.dataPoints = values1;
 		series2.dataPoints = values2;

@@ -1,24 +1,18 @@
 package com.bluewalrus.main.test.math;
 
 import java.awt.Color;
-import java.awt.Polygon;
 import java.util.ArrayList;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.XAxis;
-import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.Line;
+import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
-import com.bluewalrus.chart.draw.point.UIPointSquare;
-import com.bluewalrus.chart.draw.point.UIPointTriangle;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.main.test.Showcase;
-import com.bluewalrus.main.test.fractions.TestDataXY_Fractions;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 public class TestDataXY_SineCurve extends ChartTester {
 
@@ -56,12 +50,12 @@ public class TestDataXY_SineCurve extends ChartTester {
 //		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.BLUE, 1),
 //				new Line(Color.BLUE), "x^2");
 		XYDataSeries series = new XYDataSeries(null,
-				new Line(Color.BLUE), "x^2");
+				new GridLine(Color.BLUE), "x^2");
 		
 		series.dataPoints = values;
 
 		XYDataSeries series3 = new XYDataSeries(
-				new UIPointCircle(Color.PINK, 1), new Line(Color.PINK), "e^x");
+				new UIPointCircle(Color.PINK, 1), new GridLine(Color.PINK), "e^x");
 		series3.dataPoints = values3;
 
 		xySeriesList.add(series);

@@ -1,16 +1,17 @@
 package com.bluewalrus.chart;
 
+import java.awt.Color;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import javax.sound.sampled.Line;
+
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.datapoint.DataPointMultiBar;
-import com.bluewalrus.chart.draw.Line;
+import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointBubble;
 import com.bluewalrus.chart.draw.point.UIPointMultiBarSideBySide;
 import com.bluewalrus.chart.draw.point.UIPointMultiBarStacked;
 import com.bluewalrus.chart.draw.point.UIPointXY;
-
-import java.awt.Color;
-import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * TODO figure out how to implement generics. Not so easy
@@ -27,7 +28,7 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
 	//describes the type of point UI.
     public UIPointXY pointType; 
     
-    public Line line;
+    public GridLine line;
     public String name;
 
     public XYDataSeriesType type;
@@ -42,14 +43,14 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
 		this.dataPoints = dataPoints;
 	}
 	
-    public XYDataSeries(ArrayList<T> dataPoints, UIPointXY point, Line line, String name) {
+    public XYDataSeries(ArrayList<T> dataPoints, UIPointXY point, GridLine line, String name) {
 
         this(point, line, name);
 
         this.dataPoints = dataPoints;
     }
 
-    public XYDataSeries(UIPointXY point, Line line, String name) {
+    public XYDataSeries(UIPointXY point, GridLine line, String name) {
 
         if (point instanceof UIPointBubble) {
             type = XYDataSeriesType.BUBBLE;

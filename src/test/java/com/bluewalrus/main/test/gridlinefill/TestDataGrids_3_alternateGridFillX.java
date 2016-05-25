@@ -2,29 +2,17 @@ package com.bluewalrus.main.test.gridlinefill;
 
 
 import java.awt.Color;
-import java.awt.Font;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.IntervalStyling;
-import com.bluewalrus.chart.axis.NumericalInterval;
-import com.bluewalrus.chart.axis.TimeInterval;
-import com.bluewalrus.chart.axis.XAxis;
-import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridFill;
 import com.bluewalrus.chart.draw.GridLine;
-import com.bluewalrus.chart.draw.Line;
-import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
-import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 
 public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 
@@ -33,12 +21,12 @@ public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 	public Chart getChart() throws ParseException {
 		
 		XYDataSeries series = new XYDataSeries(null, 
-				new Line(Color.BLUE, false, 3), 
+				new GridLine(Color.BLUE, false, 3), 
 				"Blue Series");
 		series.dataPoints = getSeries1();
 		
 		XYDataSeries series2 = new XYDataSeries(null, 
-				new Line(Color.RED, false, 3), 
+				new GridLine(Color.RED, false, 3), 
 				"Red Series");
 		series2.dataPoints = getSeries2();
 		

@@ -10,7 +10,7 @@ import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.Line;
+import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.main.test.ChartTester;
@@ -51,9 +51,9 @@ public class TestStackedChart extends ChartTester {
 		XYDataSeries series2 = new XYDataSeries(values2, "Second");
 
 		series.pointType = new UIPointCircle(Color.ORANGE);
-		series.line = new Line(Color.ORANGE);
+		series.line = new GridLine(Color.ORANGE);
 		series2.pointType = new UIPointCircle(Color.RED);
-		series2.line = new Line(Color.RED);
+		series2.line = new GridLine(Color.RED);
 		
 		
 		ArrayList<XYDataSeries> list = new ArrayList<XYDataSeries>();

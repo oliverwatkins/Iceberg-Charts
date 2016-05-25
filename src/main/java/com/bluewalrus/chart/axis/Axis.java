@@ -89,6 +89,14 @@ public abstract class Axis implements Serializable {
 		axisScaling.interval2.styling.graphLine = null;
 		axisScaling.interval3.styling.graphLine = null;
 	}
+
+	public double getMinValue() {
+		return axisScaling.getMinValue();
+	}
+
+	public double getMaxValue() {
+		return axisScaling.getMaxValue();
+	}
 	
 
 }

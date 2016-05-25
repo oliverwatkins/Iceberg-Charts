@@ -4,24 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
-import com.bluewalrus.chart.axis.NumericalInterval;
-import com.bluewalrus.chart.axis.XAxis;
-import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.datapoint.DataPointBoxPlot;
-import com.bluewalrus.chart.draw.GridLine;
-import com.bluewalrus.chart.draw.Line;
-import com.bluewalrus.chart.draw.point.UIPointBoxPlot;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
-import com.bluewalrus.chart.draw.point.UIPointSquare;
-import com.bluewalrus.chart.draw.point.UIPointTriangle;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 public class TestDataXY_Scatter extends ChartTester {
 

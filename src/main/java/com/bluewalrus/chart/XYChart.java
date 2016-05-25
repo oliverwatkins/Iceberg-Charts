@@ -14,14 +14,12 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.bar.XYBarDataSeries;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
-import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.chart.datapoint.DataPointMultiBar;
+import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.chart.datapoint.ValueType;
 import com.bluewalrus.chart.draw.GridLine;
-import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.plotter.ChartPlotter;
 import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
@@ -143,7 +141,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		XYDataSeries<DataPoint> xy = new XYDataSeries<DataPoint>(values,
-				new UIPointSquare(Color.BLACK), new Line(Color.BLACK), "");
+				new UIPointSquare(Color.BLACK), new GridLine(Color.BLACK), "");
 		xySeriesList.add(xy);
 
 		initialiseScaling(xySeriesList);

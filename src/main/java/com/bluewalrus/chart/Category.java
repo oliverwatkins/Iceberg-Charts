@@ -2,7 +2,7 @@ package com.bluewalrus.chart;
 
 import java.awt.Color;
 
-import com.bluewalrus.chart.draw.Line;
+import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointBubble;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 
@@ -13,7 +13,7 @@ import com.bluewalrus.chart.draw.point.UIPointXY;
 public class Category {
 
     public UIPointXY point;
-    public Line line;
+    public GridLine line;
     public String name;
 
     public Color color;
@@ -28,7 +28,7 @@ public class Category {
         this.color = color;
     }
 
-    public Category(String name, UIPointXY point, Line line) {
+    public Category(String name, UIPointXY point, GridLine line) {
 
         this.name = name;
 

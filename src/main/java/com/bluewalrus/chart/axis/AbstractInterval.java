@@ -18,7 +18,6 @@ public abstract class AbstractInterval {
 
 
     
-    
     public boolean isActive() {
 		return active;
 	}
@@ -39,5 +38,8 @@ public abstract class AbstractInterval {
 	public abstract boolean isValid();
 	
 	public abstract Object getInterval();
+	
+	public abstract void setIncrement(Object interval);
+		
 	
 }

@@ -14,6 +14,8 @@ import com.bluewalrus.chart.Chart;
 /**
  * Defines a grid line used in a <code>XYChart</code>
  * 
+ * TODO this is almost identical to Line.java. Needs to be refactored!!
+ * 
  * @author Oliver Watkins
  *
  */

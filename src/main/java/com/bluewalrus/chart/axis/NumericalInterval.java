@@ -51,8 +51,16 @@ public class NumericalInterval extends AbstractInterval implements Serializable{
 		return increment;
 	}
 
-	public void setIncrement(Double increment) {
-		this.increment = increment;
+//	public void setIncrement(Double increment) {
+//		this.increment = increment;
+//	}
+	
+
+	@Override
+	public void setIncrement(Object interval) {
+		this.increment = (Double)interval;
+		// TODO Auto-generated method stub
+		
 	}
 	
     /**
@@ -73,4 +81,6 @@ public class NumericalInterval extends AbstractInterval implements Serializable{
 				+ ", lineLength=" + styling.lineLength + ", increment=" + increment
 				+ "]";
 	}
+
+
 }

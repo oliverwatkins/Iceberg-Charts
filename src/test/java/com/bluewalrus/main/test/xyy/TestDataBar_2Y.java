@@ -8,13 +8,11 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.bar.BarDisplayOptions;
-import com.bluewalrus.chart.bar.GradiantRule;
 import com.bluewalrus.chart.bar.GradiantRule_old;
 import com.bluewalrus.chart.bar.XYBarDataSeries;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
-import com.bluewalrus.chart.draw.Line;
-import com.bluewalrus.chart.draw.point.UIPointBar;
+import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
@@ -73,15 +71,15 @@ public class TestDataBar_2Y extends ChartTester {
 		tempAvg.add(new DataPoint("D", -0.9));
 
 		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.RED),
-				new Line(Color.RED), "max");
+				new GridLine(Color.RED), "max");
 		series.dataPoints = tempMax;
 
 		XYDataSeries series2 = new XYDataSeries(new UIPointSquare(Color.BLUE),
-				new Line(Color.BLUE), "min");
+				new GridLine(Color.BLUE), "min");
 		series2.dataPoints = tempMin;
 
 		XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(
-				Color.ORANGE), new Line(Color.ORANGE), "average");
+				Color.ORANGE), new GridLine(Color.ORANGE), "average");
 		series3.dataPoints = tempAvg;
 
 		temperatureSeriesList.add(series);

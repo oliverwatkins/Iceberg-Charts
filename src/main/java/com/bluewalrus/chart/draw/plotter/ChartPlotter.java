@@ -12,7 +12,7 @@ import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.Line;
+import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
 import com.bluewalrus.scaling.TimeSeriesAxisScalingY;
@@ -138,7 +138,7 @@ public class ChartPlotter {
             int xShift, int yShift, DataPoint lastPoint,
             XYDataSeries xYDataSeries, DataPoint dataPoint) {
 
-        Line line = xYDataSeries.line;
+        GridLine line = xYDataSeries.line;
 
         int adjustedX1 = (int) ((lastPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
         int adjustedY1 = (int) (yShift - (int) (lastPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
