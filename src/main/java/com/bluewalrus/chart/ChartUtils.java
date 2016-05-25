@@ -93,10 +93,6 @@ public class ChartUtils {
 		return yMax;
 	}
 	
-
-	
-	
-
 	static double getMaxXValue(ArrayList<DataPoint> values) {
 		double xMax = values.get(0).x;
 		for (DataPoint dataPoint : values) {

@@ -8,7 +8,7 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
-import com.bluewalrus.chart.datapoint.MultiBar;
+import com.bluewalrus.chart.datapoint.DataPointMultiBar;
 
 
 /**
@@ -19,7 +19,6 @@ import com.bluewalrus.chart.datapoint.MultiBar;
  */
 public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 
-	XYChart chart; //Two way reference here :( Not good :(
 	private int height;
 	private int width;
 	private int y;
@@ -27,24 +26,22 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 	private Color colorToUse;
 	private int startDrawLeft;
 	
-	public UIPointMultiBarStacked(XYChart chart) {
+	public UIPointMultiBarStacked() {
 		super(Color.BLACK);
-		this.chart = chart;		
 	}
 
 	public void draw(Graphics2D g, Point point, Point lastPoint, 
 			DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
-		MultiBar dpX = (MultiBar)dataPoint;
+		DataPointMultiBar dpX = (DataPointMultiBar)dataPoint;
 	    
-		int leftPosition = 0;
         y = 0;
         width = 0;
         height = 0;
 
         double distance = 0;
         
-    	leftPosition = (int) dataPoint.x;
+        int leftPosition = (int)(dataPoint.x * xyFactor.xFactor) + chart.leftOffset;
     	
     	/**
     	 * Draw each of the (multi) bars
@@ -92,23 +89,6 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
             muchmuchdarker = colorToUse.darker(); 
             
             clipAndDrawPoint(g, chart);
-            
-//            g.setColor(colorToUse);
-//            
-//            //bottom rect
-//            g.fillRect(startDrawLeft,
-//            		y,
-//            		width,
-//            		height);
-//            
-//            g.setColor(muchmuchdarker);
-//            
-//            //bottom rect
-//            g.drawRect(startDrawLeft,
-//            		y,
-//            		width,
-//            		height);
-            
 		}
 	}
 	
@@ -140,8 +120,5 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
-	
 
 }

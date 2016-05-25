@@ -8,11 +8,10 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
-import com.bluewalrus.chart.datapoint.MultiBar;
+import com.bluewalrus.chart.datapoint.DataPointMultiBar;
 
-public class UIPointMultiBar extends UIPointAbstractMultiBar{
+public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
 
-//	XYChart chart; //Two way reference here :( Not good :( TODO use singleton reference to chart?
 	private int x;
 	private int y;
 	private int width;
@@ -21,14 +20,13 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
 	private Color colorToUse;
 	private Color muchmuchdarker;
 	
-	public UIPointMultiBar(XYChart chart) {
+	public UIPointMultiBarSideBySide() {
 		super(Color.BLACK); //unimportant, never used.
-//		this.chart = chart;		
 	}
 
 	public void draw(Graphics2D g, Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
-		MultiBar dpX = (MultiBar)dataPoint;
+		DataPointMultiBar multiBarDataPoint = (DataPointMultiBar)dataPoint;
 	    
 		x = 0;
         y = 0;
@@ -37,19 +35,12 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
 
         shift = 0;
         
-        int totalWidthOfBars = dpX.bars.size() * pointDiffWidth;
+        int totalWidthOfBars = multiBarDataPoint.bars.size() * pointDiffWidth;
         
-        point.x = (int) dataPoint.x;
-        
-        
-//        g.drawRect((int)(point.x * xyFactor.xFactor) + chart.leftOffset, 100, 5, 5);
-        
-        
-        point.x = (int)(point.x * xyFactor.xFactor) + chart.leftOffset;
     	/**
     	 * Draw each of the (multi) bars
     	 */
-        for (DataPointBar dpb : dpX.bars) {
+        for (DataPointBar dpb : multiBarDataPoint.bars) {
         	
             if (dpb.y > 0) { // greater than zero
                 x = point.x - (totalWidthOfBars/2);
@@ -67,7 +58,6 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
                 height = (int)((- dpb.y * xyFactor.yFactor)); 
                 
                 colorToUse = color;
-//                colorToUse = negativeColor;
             }
 
             if (dpb.color != null) {
@@ -77,14 +67,11 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
             
             muchmuchdarker = colorToUse.darker(); 
             
-            
     		clipAndDrawPoint(g, chart);
-            
             
             shift = shift+pointDiffWidth;
 		}
 	}
-
 
 	
 	@Override
@@ -97,7 +84,7 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
         g.fillRect(x + shift,
         		y,
         		width,
-        		height); // - xyFactor.yZeroOffsetInPixel));
+        		height);
         
         g.setColor(muchmuchdarker);
         
@@ -106,10 +93,7 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
         		y,
         		width,
         		height);
-		
 	}
-	
-	
 	
 
 	@Override
@@ -117,6 +101,5 @@ public class UIPointMultiBar extends UIPointAbstractMultiBar{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 }

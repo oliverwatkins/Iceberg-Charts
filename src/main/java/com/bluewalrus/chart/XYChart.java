@@ -18,7 +18,7 @@ import com.bluewalrus.chart.bar.XYBarDataSeries;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
-import com.bluewalrus.chart.datapoint.MultiBar;
+import com.bluewalrus.chart.datapoint.DataPointMultiBar;
 import com.bluewalrus.chart.datapoint.ValueType;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.Line;
@@ -787,12 +787,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				this.rightOffset = 200; //TODO why do have to put in offset here??
 				
 				
-				MultiBar mb = (MultiBar)series.dataPoints.get(0);
+				DataPointMultiBar mb = (DataPointMultiBar)series.dataPoints.get(0);
 		        ArrayList<DataPointBar> dps = mb.bars;
 		        for (DataPointBar dpb : dps) {
-//		            Category category;
 
-		        	category = new Category("asdfasdfasdf" + dpb.name, series.pointType, null);
+		        	category = new Category(dpb.name, series.pointType, null);
 
 		            category.block = true;
 		            category.color = dpb.color;
