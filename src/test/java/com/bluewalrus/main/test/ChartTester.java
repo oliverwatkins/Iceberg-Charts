@@ -1,6 +1,8 @@
 package com.bluewalrus.main.test;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -150,27 +153,66 @@ public abstract class ChartTester extends JFrame{
 		int width = chart.getWidth(); 
 		int height = chart.getHeight();
 		if (chart.getWidth() == 0) {
-			width = 300;
+			width = 700;
+//			chart.widthChart = 300;
 		}
 		if (chart.getHeight() == 0) {
-			height = 300;
+			height = 700;
+//			chart.heightChart = 300;
 		}
+		
+		chart.setSize(width,height);
 		
 		BufferedImage image = new BufferedImage(width, height, 
 				BufferedImage.TYPE_INT_ARGB);
 
+		
 		Graphics g2 = image.getGraphics();
 		chart.paint(g2);
+
+
+//		t.paint(g2);
+//		Graphics2D g2d = (Graphics2D) g;
+		
+
+//
+//		// draws axis, frame etc
+//		this.prePaint(g2d, data);
+//
+//		// draws actual data 
+//		drawGraphData(g2d);
+		
+//		g2d.setColor(Color.RED);
+//		g2d.fillRect(0, 0, 1000, 1000);
+		
+		
+		
 		
 //		String fileName = getFileFriendlyString(chart, i);
 
 		try {
+			
+			
 			ImageIO.write(image, "PNG", new File(path + chart.fileLocation + ".PNG"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	
 		System.out.println("saving ");
+	}
+	
+	
+	class Test extends JComponent {
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			
+			
+			g.setColor(Color.BLUE);
+			g.fillRect(0, 0, 1000, 1000);
+			
+			
+		}
 	}
 	
 

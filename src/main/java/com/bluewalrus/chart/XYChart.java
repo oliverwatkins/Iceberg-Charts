@@ -722,12 +722,17 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	protected void paintComponent(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
+		
+
 
 		// draws axis, frame etc
 		this.prePaint(g2d, data);
 
 		// draws actual data 
 		drawGraphData(g2d);
+		
+//		g2d.setColor(Color.RED);
+//		g2d.fillRect(0, 0, 1000, 1000);
 	}
 
 	@Override
