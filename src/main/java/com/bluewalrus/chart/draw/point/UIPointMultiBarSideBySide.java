@@ -22,6 +22,12 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
 	
 	public UIPointMultiBarSideBySide() {
 		super(Color.BLACK); //unimportant, never used.
+//		barWidthPercent = 90;
+	}
+
+	public UIPointMultiBarSideBySide(int totalBarWidthPercent) {
+		super(Color.BLACK); //unimportant, never used.
+		barWidthPercent = totalBarWidthPercent;
 	}
 
 	public void draw(Graphics2D g, Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
@@ -35,7 +41,17 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
 
         shift = 0;
         
+        int distanceBetweenXPoints = 40;
+        if (lastPoint != null) {
+            distanceBetweenXPoints = lastPoint.x - point.x;
+        	
+        }
+        
+        
         int totalWidthOfBars = multiBarDataPoint.bars.size() * pointDiffWidth;
+        
+        totalWidthOfBars = distanceBetweenXPoints;
+        
         
     	/**
     	 * Draw each of the (multi) bars

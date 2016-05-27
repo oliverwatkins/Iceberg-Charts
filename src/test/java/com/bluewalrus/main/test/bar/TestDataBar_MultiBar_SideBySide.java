@@ -55,11 +55,11 @@ public class TestDataBar_MultiBar_SideBySide extends ChartTester {
         
         ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
-        XYDataSeries series = new XYDataSeries(multiBarList, new UIPointMultiBarSideBySide(), null, "1994");
+        XYDataSeries series = new XYDataSeries(multiBarList, new UIPointMultiBarSideBySide(70), null, "1994");
 
         xySeriesList.add(series);
         
-        XYChart chart = new XYChart("Side by Side", "Year", "y", xySeriesList);
+        XYChart chart = new XYChart("Side by Side", "Year", "Percent Taxed", xySeriesList);
         
         return chart;
 

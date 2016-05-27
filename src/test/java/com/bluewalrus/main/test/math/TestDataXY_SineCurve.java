@@ -33,14 +33,14 @@ public class TestDataXY_SineCurve extends ChartTester {
 		
 		for (int x = -170; x <= 170; x++) {
 			
-			values.add(new DataPoint(x, (int) (50 * f((x / 100.0) * 2 * Math.PI))));
+			values.add(new DataPoint(x, (int) (50 * sin((x / 100.0) * 2 * Math.PI))));
 		}
 
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
 		
 		for (int x = -170; x <= 170; x++) {
 			
-			DataPoint dp = new DataPoint(x, (int) (50 * gCos((x / 100.0) * 2
+			DataPoint dp = new DataPoint(x, (int) (50 * cos((x*10 / 100.0) * 2
 					* Math.PI)));
 			
 			System.out.println("dp = " + dp);
@@ -74,11 +74,11 @@ public class TestDataXY_SineCurve extends ChartTester {
 		return lineChart;
 	}
 
-	double f(double x) {
+	double sin(double x) {
 		return Math.sin(x);
 	}
 
-	double gCos(double y) {
+	double cos(double y) {
 		return Math.cos(y);
 	}
 

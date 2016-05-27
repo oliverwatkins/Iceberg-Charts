@@ -1,13 +1,9 @@
 package com.bluewalrus.main;
 
-import java.util.ArrayList;
-
-import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.main.test.TestDataXY_Boxplot;
 import com.bluewalrus.main.test.bar.TestDataBar_1_Simple;
 import com.bluewalrus.main.test.bar.TestDataBar_4_GradientColor;
-import com.bluewalrus.main.test.bar.TestDataBar_5_PosNegColor;
+import com.bluewalrus.main.test.stacked.TestStackedChart2;
+import com.bluewalrus.main.test.stacked.TestStackedChart3;
 
 public class GenerateShowcase {
 
@@ -19,10 +15,17 @@ public class GenerateShowcase {
     	
 //    	new TestDataXY_Boxplot().createImageAndTextFile();
     	new TestDataBar_1_Simple().createImageAndTextFile();
-//    	new TestDataBar_4_GradientColor().createImageAndTextFile();
+    	new TestDataBar_4_GradientColor().createImageAndTextFile();
 //    	new TestDataBar_5_PosNegColor().createImageAndTextFile();
 //    	new TestDataBar_.createImageAndTextFile();
 //    	new TestDataBar_1_Simple().createImageAndTextFile();
+
+    	
+    	//these two stacked
+    	new TestStackedChart2().createImageAndTextFile();
+    	new TestStackedChart3().createImageAndTextFile();
+
+    	
 
     }
 

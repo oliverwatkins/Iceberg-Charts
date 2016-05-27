@@ -35,6 +35,7 @@ public class TestDataBar_5_PosNegColor extends ChartTester {
 		barSeries.add(new DataPointBar("w", 3));
 		barSeries.add(new DataPointBar("x", 14));
 		barSeries.add(new DataPointBar("z", 41));
+
 		
 		BarDisplayOptions barDisplayOptions = new BarDisplayOptions();
 		

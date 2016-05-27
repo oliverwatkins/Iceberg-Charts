@@ -17,6 +17,8 @@ import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointCandleStick;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.main.test.TestDataXY_Scatter;
+import com.bluewalrus.main.test.bar.TestDataBar_2_Simple_negative;
+import com.bluewalrus.main.test.bar.TestDataBar_5_PosNegColor;
 import com.bluewalrus.main.test.math.TestDataXY_SineCurve;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
@@ -27,10 +29,10 @@ public class TestStackedChart3 extends ChartTester {
 		//xAxis needs to be shared
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(), "X");
 		xAxis.axisScaling.setMinValue(0);
-		xAxis.axisScaling.setMaxValue(400);
+		xAxis.axisScaling.setMaxValue(100);
 		
 		ArrayList<XYChart> charts = new ArrayList<XYChart>();
-		charts.add(getCandleChart(xAxis));
+		charts.add(getTopChart(xAxis));
 		charts.add(getScatterChart(xAxis));
 		charts.add(getBarChart(xAxis));
 		
@@ -45,7 +47,14 @@ public class TestStackedChart3 extends ChartTester {
 		
 		return stackedXYChart;
 	}
-	
+	public XYChart getTopChart(XAxis xAxis) {
+		
+		
+		XYChart xy = (XYChart)new TestDataBar_5_PosNegColor().getChart();
+		xy.xAxis = xAxis;
+		return xy;
+
+	}
 	
 	public XYChart getBarChart(XAxis xAxis) {
 		
