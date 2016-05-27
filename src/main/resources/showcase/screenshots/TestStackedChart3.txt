@@ -1,16 +1,26 @@
 	public Chart getChart() {
 
-		//xAxis needs to be shared
+		//x-Axis needs to be shared
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(), "X");
 		xAxis.axisScaling.setMinValue(0);
 		xAxis.axisScaling.setMaxValue(100);
 		
+		
+		XYChart topChart = (XYChart)new TestDataBar_5_PosNegColor().getChart();
+		topChart.xAxis = xAxis;
+		
+		XYChart bottomChart = (XYChart)new TestDataXY_SineCurve().getChart();
+		bottomChart.xAxis = xAxis;
+		
+		XYChart middleChart = (XYChart)new TestDataXY_Scatter().getChart();
+		middleChart.xAxis = xAxis;
+		
 		ArrayList<XYChart> charts = new ArrayList<XYChart>();
-		charts.add(getTopChart(xAxis));
-		charts.add(getScatterChart(xAxis));
-		charts.add(getBarChart(xAxis));
-		
-		
+		charts.add(topChart);
+		charts.add(middleChart);
+		charts.add(bottomChart);
+
+		//height percentages
 		ArrayList<Integer> percentages = new ArrayList<Integer>();
 		percentages.add(40);
 		percentages.add(30);
@@ -18,32 +28,31 @@
 		
 		StackedXYChart stackedXYChart = new StackedXYChart("Three random charts with same X Axis", charts, percentages);
 		
-		
 		return stackedXYChart;
 	}
 	public XYChart getTopChart(XAxis xAxis) {
 		
 		
-		XYChart xy = (XYChart)new TestDataBar_5_PosNegColor().getChart();
-		xy.xAxis = xAxis;
-		return xy;
+		XYChart topChart = (XYChart)new TestDataBar_5_PosNegColor().getChart();
+		topChart.xAxis = xAxis;
+		return topChart;
 
 	}
 	
 	public XYChart getBarChart(XAxis xAxis) {
 		
 				
-		XYChart xy = (XYChart)new TestDataXY_SineCurve().getChart();
-		xy.xAxis = xAxis;
-		return xy;
+		XYChart bottomChart = (XYChart)new TestDataXY_SineCurve().getChart();
+		bottomChart.xAxis = xAxis;
+		return bottomChart;
 
 	}
 	
 	public XYChart getScatterChart(XAxis xAxis) {
 		
-		XYChart xy = (XYChart)new TestDataXY_Scatter().getChart();
-		xy.xAxis = xAxis;
-		return xy;
+		XYChart middleChart = (XYChart)new TestDataXY_Scatter().getChart();
+		middleChart.xAxis = xAxis;
+		return middleChart;
 
 	}
 	

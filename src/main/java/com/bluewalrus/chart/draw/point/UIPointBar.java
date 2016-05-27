@@ -39,7 +39,7 @@ public class UIPointBar extends UIPointAbstractBar {
     public UIPointBar(Color color, Color negativeColor, int barWidth) {
         super(color);
         this.negativeColor = negativeColor;
-        this.pointDiffWidth = barWidth;
+        this.barWidthInPixels = barWidth;
     }
 
 

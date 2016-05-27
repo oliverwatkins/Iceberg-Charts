@@ -22,32 +22,39 @@ public class TestDataBar_MultiBar_SideBySide extends ChartTester {
         
         ArrayList<DataPointMultiBar> multiBarList = new ArrayList<DataPointMultiBar>();
 
+        
+        Color c1 = new Color(112,12,52);
+        Color c2 = new Color(62,82,212);
+        Color c3 = new Color(72,52,112);
+        Color c4 = new Color(82,112,32);
+        Color c5 = new Color(170,62,22);
+        
         ArrayList<DataPointBar> values = new ArrayList<DataPointBar>();
-        values.add(new DataPointBar("Automobile", 51, Color.RED));
-        values.add(new DataPointBar("Food Industry", 25, Color.BLUE ));
-        values.add(new DataPointBar("Cosmetics", 10, Color.GREEN));
-        values.add(new DataPointBar("Travel Products", 5, Color.ORANGE ));
-        values.add(new DataPointBar("Government", 67, Color.GRAY ));
+        values.add(new DataPointBar("Automobile", 51, c1));
+        values.add(new DataPointBar("Food Industry", 25, c2 ));
+        values.add(new DataPointBar("Cosmetics", 10, c3));
+        values.add(new DataPointBar("Travel Products", 5, c4 ));
+        values.add(new DataPointBar("Government", 67, c5 ));
         
         DataPointMultiBar mb1 = new DataPointMultiBar(values, "2007", MultiBarMode.SIDE_BY_SIDE);
         multiBarList.add(mb1);
 
         ArrayList<DataPointBar> values2 = new ArrayList<DataPointBar>();
-        values2.add(new DataPointBar("Automobile", 80, Color.RED ));
-        values2.add(new DataPointBar("Food Industry", 45, Color.BLUE ));
-        values2.add(new DataPointBar("Cosmetics", 12, Color.GREEN ));
-        values2.add(new DataPointBar("Travel Products", 14, Color.ORANGE ));
-        values2.add(new DataPointBar("Government", 10, Color.GRAY ));
+        values2.add(new DataPointBar("Automobile", 80,  c1));
+        values2.add(new DataPointBar("Food Industry", 45,  c2));
+        values2.add(new DataPointBar("Cosmetics", 12, c3));
+        values2.add(new DataPointBar("Travel Products", 14, c4));
+        values2.add(new DataPointBar("Government", 10, c5));
         
         DataPointMultiBar mb2 = new DataPointMultiBar(values2, "2008", MultiBarMode.SIDE_BY_SIDE);
         multiBarList.add(mb2);
 
         ArrayList<DataPointBar> values3 = new ArrayList<DataPointBar>();
-        values3.add(new DataPointBar("Automobile", 5, Color.RED ));
-        values3.add(new DataPointBar("Food Industry", 4, Color.BLUE ));
-        values3.add(new DataPointBar("Cosmetics",  3, Color.GREEN ));
-        values3.add(new DataPointBar("Travel Products", 1, Color.ORANGE ));
-        values3.add(new DataPointBar("Government", 2, Color.GRAY));
+        values3.add(new DataPointBar("Automobile", 5,  c1));
+        values3.add(new DataPointBar("Food Industry", 4,  c2));
+        values3.add(new DataPointBar("Cosmetics",  3,  c3));
+        values3.add(new DataPointBar("Travel Products", 1,  c4));
+        values3.add(new DataPointBar("Government", 2, c5));
         
         DataPointMultiBar mb3 = new DataPointMultiBar(values3, "2009", MultiBarMode.SIDE_BY_SIDE);
         multiBarList.add(mb3);

@@ -30,10 +30,27 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 		super(Color.BLACK);
 	}
 
+	public UIPointMultiBarStacked(int i) {
+		super(Color.BLACK);
+		
+		this.barWidthPercent = i;
+	}
+	
+	double barWidth = -123; //px
+
 	public void draw(Graphics2D g, Point point, Point lastPoint, 
 			DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
 		DataPointMultiBar dpX = (DataPointMultiBar)dataPoint;
+		
+
+		
+    	if (barWidthPercent != 0) {
+    		barWidth = ((barWidthPercent * (double)pixBtnFirst2Pts)/ 100.0); 
+    	}else {
+    		barWidth = 50; //default
+    	}
+    	
 	    
         y = 0;
         width = 0;
@@ -48,7 +65,7 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
     	 */
         for (DataPointBar dataPointBar : dpX.bars) {
         	
-        	startDrawLeft = leftPosition  - (pointDiffWidth/2);
+        	startDrawLeft = leftPosition  - ((int)barWidth/2);
         	
         	/**
         	 * Calculate rectangle dimensions.
@@ -59,7 +76,7 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
             	
                 y = (int)(chart.topOffset + chart.heightChart - scaledYPoint - distance);
 
-                width = pointDiffWidth;
+                width = (int)barWidth;
                 height = (int)((dataPointBar.y * xyFactor.yFactor));
                 
                 distance = distance + (dataPointBar.y * xyFactor.yFactor);
@@ -100,16 +117,16 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
         //bottom rect
         g.fillRect(startDrawLeft,
         		y,
-        		width,
-        		height);
+        		(int)barWidth, //width
+        		height+1); //add one pixel so we don't get a white line. It's wrong doing this.. in a way :(
         
-        g.setColor(muchmuchdarker);
-        
-        //bottom rect
-        g.drawRect(startDrawLeft,
-        		y,
-        		width,
-        		height);
+//        g.setColor(muchmuchdarker);
+//        
+//        //bottom rect
+//        g.drawRect(startDrawLeft,
+//        		y,
+//        		width,
+//        		height);
 		
 	}
 	

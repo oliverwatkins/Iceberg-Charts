@@ -41,16 +41,16 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
 
         shift = 0;
         
-        int distanceBetweenXPoints = 40;
-        if (lastPoint != null) {
-            distanceBetweenXPoints = lastPoint.x - point.x;
-        	
-        }
+//        int distanceBetweenXPoints = 40;
+//        if (lastPoint != null) {
+//            distanceBetweenXPoints = lastPoint.x - point.x;
+//        	
+//        }
         
         
-        int totalWidthOfBars = multiBarDataPoint.bars.size() * pointDiffWidth;
+        int totalWidthOfBars = multiBarDataPoint.bars.size() * barWidthInPixels;
         
-        totalWidthOfBars = distanceBetweenXPoints;
+//        totalWidthOfBars = distanceBetweenXPoints;
         
         
     	/**
@@ -61,7 +61,7 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
             if (dpb.y > 0) { // greater than zero
                 x = point.x - (totalWidthOfBars/2);
                 y = chart.topOffset + chart.heightChart - (int)(dpb.y * xyFactor.yFactor);
-                width = pointDiffWidth;
+                width = barWidthInPixels;
                 height = (int)((dpb.y * xyFactor.yFactor));
                 
                 colorToUse = color;
@@ -70,7 +70,7 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
             	
                 x = point.x - (totalWidthOfBars/2);
                 y = point.y + (int)( dpb.y * xyFactor.yFactor);
-                width = pointDiffWidth;
+                width = barWidthInPixels;
                 height = (int)((- dpb.y * xyFactor.yFactor)); 
                 
                 colorToUse = color;
@@ -85,7 +85,7 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
             
     		clipAndDrawPoint(g, chart);
             
-            shift = shift+pointDiffWidth;
+            shift = shift+barWidthInPixels;
 		}
 	}
 
@@ -104,11 +104,11 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
         
         g.setColor(muchmuchdarker);
         
-        //bottom rect
-        g.drawRect(x + shift,
-        		y,
-        		width,
-        		height);
+//        //bottom rect
+//        g.drawRect(x + shift,
+//        		y,
+//        		width,
+//        		height);
 	}
 	
 
