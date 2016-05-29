@@ -17,12 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.TestDataXY_Boxplot;
-import com.bluewalrus.main.test.TestDataXY_LineExamples;
-import com.bluewalrus.main.test.TestDataXY_Scatter;
-import com.bluewalrus.main.test.TestDataXY_Simple;
-import com.bluewalrus.main.test.TestDataXY_Simple_Series;
 import com.bluewalrus.main.test.bar.BarsTester;
+import com.bluewalrus.main.test.bubble.BubbleTester;
 import com.bluewalrus.main.test.bubble.TestDataBubble_1_guns;
 import com.bluewalrus.main.test.bubble.TestDataBubble_2_series;
 import com.bluewalrus.main.test.bubble.TestDataPieBubble;
@@ -35,6 +31,7 @@ import com.bluewalrus.main.test.gridlinefill.TestDataGrids_4_alternateGridFillY;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_5_Gradiant;
 import com.bluewalrus.main.test.math.MathTester;
 import com.bluewalrus.main.test.math.TestDataXY_Math;
+import com.bluewalrus.main.test.multibar.MultiBarTester;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorMany;
 import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_Multi;
@@ -43,6 +40,11 @@ import com.bluewalrus.main.test.stacked.StackedTester;
 import com.bluewalrus.main.test.timeseries.TestDataGrids_7_TimeSeries;
 import com.bluewalrus.main.test.timeseries.TestDataTimeSeries_MonthDay;
 import com.bluewalrus.main.test.timeseries.TimeSeriesTester;
+import com.bluewalrus.main.test.xy.TestDataXY_Boxplot;
+import com.bluewalrus.main.test.xy.TestDataXY_LineExamples;
+import com.bluewalrus.main.test.xy.TestDataXY_Scatter;
+import com.bluewalrus.main.test.xy.TestDataXY_Simple;
+import com.bluewalrus.main.test.xy.TestDataXY_Simple_Series;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y_2;
 
@@ -58,16 +60,14 @@ public class IcebergChartsDemo extends JFrame {
     	
         JTabbedPane tabbedPane = new JTabbedPane();
     	
-        JTabbedPane tabbedPaneBar = new JTabbedPane();
+//        JTabbedPane tabbedPaneBar = new JTabbedPane();
         JTabbedPane tabbedPaneLine = new JTabbedPane();
         JTabbedPane tabbedPanePie = new JTabbedPane();
-//        JTabbedPane tabbedPaneTime = new JTabbedPane();
         JTabbedPane tabbedPaneXYY = new JTabbedPane();
         
         
         tabbedPane.add("General XY Charts", tabbedPaneLine);
-//        tabbedPane.add("Time Axis", tabbedPaneTime);
-        tabbedPane.add("Bar Charts", tabbedPaneBar);
+//        tabbedPane.add("Bar Charts", tabbedPaneBar);
         tabbedPane.add("Pie Charts", tabbedPanePie);
         tabbedPane.add("XYY", tabbedPaneXYY);
 
@@ -93,21 +93,12 @@ public class IcebergChartsDemo extends JFrame {
         charts.add(chart);
         p.add(chart);
 
-        p = createTabbedPane(tabbedPaneLine, "Bubble");
-        chart = new TestDataBubble_2_series().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
 
-        p = createTabbedPane(tabbedPaneLine, "Bubble2");
-        chart = new TestDataBubble_1_guns().getChart();
-        charts.add(chart);
-        p.add(chart);
 
-        p = createTabbedPane(tabbedPaneLine, "Pie Bubble");
-        chart = new TestDataPieBubble().getChart();
-        charts.add(chart);
-        p.add(chart);
+//        p = createTabbedPane(tabbedPaneLine, "Pie Bubble");
+//        chart = new TestDataPieBubble().getChart();
+//        charts.add(chart);
+//        p.add(chart);
         
         p = createTabbedPane(tabbedPaneLine, "Box Plot");
         chart = new TestDataXY_Boxplot().getChart();
@@ -139,7 +130,7 @@ public class IcebergChartsDemo extends JFrame {
         /***
          * BARS
          */
-        tabbedPane.add("Bar Charts2", new BarsTester().createPanel());
+        tabbedPane.add("Bar Charts", new BarsTester().createPanel());
         /***
          * MATH
          */
@@ -148,7 +139,14 @@ public class IcebergChartsDemo extends JFrame {
          * STACKED
          */
         tabbedPane.add("Stacked", new StackedTester().createPanel());
-        
+        /***
+         * MULTI BAR
+         */
+        tabbedPane.add("Multi Bar", new MultiBarTester().createPanel());
+        /***
+         * BUBBLE
+         */
+        tabbedPane.add("Bubble", new BubbleTester().createPanel());
         
         /**
          * PIE

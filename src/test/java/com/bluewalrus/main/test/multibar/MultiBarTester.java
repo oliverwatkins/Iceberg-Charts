@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test.bar;
+package com.bluewalrus.main.test.multibar;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -21,11 +21,11 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.main.test.multibar.TestDataBar_MultiBar_Stacked;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
 
-public class BarsTester extends JFrame {
+public class MultiBarTester extends JFrame {
 
 	
     public static void main(String[] args) throws Exception {
-        BarsTester frame = new BarsTester();
+        MultiBarTester frame = new MultiBarTester();
         frame.setVisible(true);
     }
     
@@ -33,7 +33,7 @@ public class BarsTester extends JFrame {
 	 * 
 	 * @throws Exception
 	 */
-    public BarsTester() throws Exception {
+    public MultiBarTester() throws Exception {
     	JTabbedPane p = createPanel();
     	
         getContentPane().add(p);
@@ -66,42 +66,19 @@ public class BarsTester extends JFrame {
          * 
          */
 
-        p = createTabbedPane(tabbedPaneBar, "Simple Bar");
-        chart = new TestDataBar_1_Simple().getChart();
+        p = createTabbedPane(tabbedPaneBar, " Multi-Bar : Side by Side");
+        chart = new TestDataBar_MultiBar_SideBySide().getChart();
         charts.add(chart);
         p.add(chart);
 
         
-        p = createTabbedPane(tabbedPaneBar, "Simple Negative");
-        chart = new TestDataBar_2_Simple_negative().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Fixed Axis");
-        chart = new TestDataBar_3_Simple_fixed_axis().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Gradiant Color");
-        chart = new TestDataBar_4_GradientColor().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Pos Neg Color");
-        chart = new TestDataBar_5_PosNegColor().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        
-        p = createTabbedPane(tabbedPaneBar, "Bar - 2 Y Axes");
-        chart = new TestDataBar_2Y().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "MultiBar - stacked");
+        p = createTabbedPane(tabbedPaneBar, "Multi-Bar : Stacked");
         chart = new TestDataBar_MultiBar_Stacked().getChart();
         charts.add(chart);
         p.add(chart);
+
+        
+
         
         JButton b = new JButton("Create PNG");
 
@@ -115,7 +92,6 @@ public class BarsTester extends JFrame {
 					
 					int width = 0;
 					int height = 0;
-					
 					
 					if (chart2 instanceof Chart) {
 						width = ((Chart)chart2).getWidth(); 

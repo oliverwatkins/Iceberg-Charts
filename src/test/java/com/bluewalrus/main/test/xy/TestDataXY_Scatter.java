@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.xy;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,6 +9,7 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
+import com.bluewalrus.main.test.ChartTester;
 
 public class TestDataXY_Scatter extends ChartTester {
 

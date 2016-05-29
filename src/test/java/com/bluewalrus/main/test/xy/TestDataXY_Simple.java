@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.xy;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.main.test.ChartTester;
 
 public class TestDataXY_Simple extends ChartTester {
 	

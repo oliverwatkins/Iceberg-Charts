@@ -16,10 +16,10 @@ import com.bluewalrus.chart.datapoint.DataPointCandleStick;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointCandleStick;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.main.test.TestDataXY_Scatter;
 import com.bluewalrus.main.test.bar.TestDataBar_2_Simple_negative;
 import com.bluewalrus.main.test.bar.TestDataBar_5_PosNegColor;
 import com.bluewalrus.main.test.math.TestDataXY_SineCurve;
+import com.bluewalrus.main.test.xy.TestDataXY_Scatter;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 

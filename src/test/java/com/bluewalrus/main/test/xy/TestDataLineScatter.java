@@ -1,3 +1,4 @@
+package com.bluewalrus.main.test.xy;
 //package com.bluewalrus.main.test;
 //
 //import java.awt.Color;

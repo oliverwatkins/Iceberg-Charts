@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test;
+package com.bluewalrus.main.test.xy;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,6 +13,7 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBoxPlot;
 import com.bluewalrus.chart.draw.point.UIPointBoxPlot;
 import com.bluewalrus.main.GenerateShowcase;
+import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
 import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
