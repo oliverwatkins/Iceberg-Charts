@@ -57,12 +57,13 @@ public class TestDataTimeSeries_YearMonth extends ChartTester {
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, null, null), "Y Axis");
 		
-		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
+		SimpleDateFormat monthFormat = new SimpleDateFormat("M");
+		SimpleDateFormat yearFormat = new SimpleDateFormat("YY");
 		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
 		
-		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.YEAR, new GridLine(Color.GRAY, false, 2));
+		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.YEAR, new GridLine(Color.GRAY, false, 2), yearFormat);
 		
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 1), dayFormat);
+		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 1), monthFormat);
 
 		
 		XAxis xAxis = new XAxis(
@@ -76,7 +77,7 @@ public class TestDataTimeSeries_YearMonth extends ChartTester {
 		xySeriesList.add(series);
 
 		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
-
+		lineChart.setTitle("Year Month (May 1991, July 2001)");
 //		lineChart.setSize(1000, 500);
 //		lineChart.rightOffset = 200;
 

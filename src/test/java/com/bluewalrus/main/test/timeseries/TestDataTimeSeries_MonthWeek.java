@@ -31,8 +31,8 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
-		Date startDate = df.parse("1991-05-3 01-00-00"); 
-		Date endDate = df.parse("2001-07-12 05-33-00");
+		Date startDate = df.parse("2004-04-3 01-00-00"); 
+		Date endDate = df.parse("2004-08-12 05-33-00");
 		
 		
 		String time = "2001-03-01 00-33-00";                              
@@ -58,11 +58,11 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, null, null), "Y Axis");
 		
 		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
-		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
+		SimpleDateFormat weekFormat = new SimpleDateFormat("'week'ww");
 		
-		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.YEAR, new GridLine(Color.GRAY, false, 2));
+		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
 		
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 1), dayFormat);
+		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.WEEK, new GridLine(Color.GRAY, false, 1), weekFormat);
 
 		
 		XAxis xAxis = new XAxis(
@@ -75,7 +75,9 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 
 		xySeriesList.add(series);
 
-		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+		
+		chart.setTitle("Month Week - 2004, 3 Apr - 2004, 12 August");
 
 //		lineChart.setSize(1000, 500);
 //		lineChart.rightOffset = 200;
@@ -83,7 +85,7 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 //		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 //		lineChart.setTitle("asdfasdf");
 
-		return lineChart;
+		return chart;
 	}
 	
 	

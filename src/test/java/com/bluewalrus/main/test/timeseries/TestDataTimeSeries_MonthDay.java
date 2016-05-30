@@ -31,7 +31,7 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
 		Date startDate = df.parse("2001-01-3 01-00-00"); //3rd jan
-		Date endDate = df.parse("2001-03-12 05-33-00"); //12th march
+		Date endDate = df.parse("2001-05-12 05-33-00"); //12th march
 		
 		
 		String time = "2001-03-01 00-33-00";                              
@@ -56,20 +56,19 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
 
 		
-		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
+		TimeInterval timeInt1 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
+		timeInt1.styling = new IntervalStyling(100, new GridLine(Color.BLACK, false, 2), new GridFill(Color.GRAY, Color.WHITE, false));
+		
+		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1), dayFormat);
 		timeInt2.styling = new IntervalStyling(2, new GridLine(Color.GRAY, false, 1), new GridFill(Color.GRAY, Color.WHITE, false));
-		
-		
-//				new GridFill(new Color(179, 209, 255), Color.WHITE, true)), monthFormat);
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1), dayFormat);
 
 		
 		XAxis xAxis = new XAxis(
 				new TimeSeriesAxisScaling(
 						startDate, 
 						endDate, 
+						timeInt1, 
 						timeInt2, 
-						timeInt3, 
 						null), "Time Series 1"); 
 
 		XYChart lineChart = new XYChart(values, "Time Series 1", "X", "Y"); //yAxis, xAxis);

@@ -20,7 +20,6 @@ import com.bluewalrus.chart.axis.XAxis;
  * @author Oliver Watkins
  *
  */
-
 public class XAxisDrawUtil {
 
 	/**
@@ -87,9 +86,9 @@ public class XAxisDrawUtil {
 //			yPos = yPos + 100;
 
 		} else if (level == 2) {
-			yPos = yPos - 5;
-		} else if (level == 3) {
 			yPos = yPos - 10;
+		} else if (level == 3) {
+			yPos = yPos - 15;
 		}
 
 		g.setFont(axis.axisCatFont);

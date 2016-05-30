@@ -152,7 +152,8 @@ public abstract class AxisScaling {
 	/**
 	 * TODO rename
 	 * 
-	 * Get from left, or from bottom
+	 * Get from left, or from top
+	 * 
 	 * @param chart
 	 * @param toFirstInPixels
 	 * @param incrementInPixel
