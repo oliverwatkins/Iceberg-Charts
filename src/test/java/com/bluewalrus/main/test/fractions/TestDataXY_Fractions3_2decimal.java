@@ -12,8 +12,7 @@ import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestDataXY_Fractions3_2decimal extends ChartTester {
 	
@@ -29,13 +28,13 @@ public class TestDataXY_Fractions3_2decimal extends ChartTester {
 		ArrayList<XYDataSeries> s = new ArrayList<XYDataSeries>();
 		
 		XAxis xa = new XAxis(
-				new LinearNumericalAxisScalingX(1.001, 1.002, 
+				new LinearNumericalAxisScaling(1.001, 1.002, 
 					new NumericalInterval(5, 0.0001), 
 					null, 
 					null), 
 				"1");
 		YAxis ya = new YAxis(
-				new LinearNumericalAxisScalingY(0.0,100.0,
+				new LinearNumericalAxisScaling(0.0,100.0,
 					new NumericalInterval(5, 10.0), 
 					null, 
 					null), 				

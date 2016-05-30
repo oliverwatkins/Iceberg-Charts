@@ -3,10 +3,13 @@ package com.bluewalrus.scaling;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.Orientation;
+import com.bluewalrus.chart.Utils;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
@@ -14,7 +17,7 @@ import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
 import com.bluewalrus.chart.draw.YAxisDrawUtil;
 
-public abstract class LinearNumericalAxisScaling extends AxisScaling{
+public class LinearNumericalAxisScaling extends AxisScaling{
 	
 	public GridLine zeroLine = new GridLine(Color.GRAY, false, 1);
 	
@@ -24,32 +27,36 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 	 * @param name
 	 * @param type
 	 */
-	public LinearNumericalAxisScaling(Orientation orientation) {
-		this(0.0, 100.0, 50.0, 10.0, 5.0, orientation); //arbitrary values
+	public LinearNumericalAxisScaling() {
+		this(0.0, 100.0, 50.0, 10.0, 5.0); //arbitrary values
 	}
 	
-	public LinearNumericalAxisScaling(double min, double max, Orientation orientation) {
+	public LinearNumericalAxisScaling(double min, double max) {
 		
-		this(min, max, new NumericalInterval(0,0.0), new NumericalInterval(0,0.0), new NumericalInterval(0,0.0), orientation);
+		this(min, max, new NumericalInterval(0,0.0), new NumericalInterval(0,0.0), new NumericalInterval(0,0.0));
 	}
 
-	public LinearNumericalAxisScaling(Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements, Orientation orientation) {
+	public LinearNumericalAxisScaling(Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements) {
 		
-		this(0.0, 100.0, primaryIncrements, secondaryIncrements, tertiaryIncrements, orientation);
+		this(0.0, 100.0, primaryIncrements, secondaryIncrements, tertiaryIncrements);
 	}
 
 
-	public LinearNumericalAxisScaling(Double minValue, Double maxValue, Double primaryIncrements, Double secondaryIncrements, Double tertiaryIncrements, Orientation orientation) {
+	public LinearNumericalAxisScaling(Double minValue, 
+			Double maxValue, 
+			Double primaryIncrements, 
+			Double secondaryIncrements, 
+			Double tertiaryIncrements) {
 
 		this(minValue, maxValue, new NumericalInterval(8, primaryIncrements), 
 								new NumericalInterval(4, secondaryIncrements), 
-								new NumericalInterval(2, tertiaryIncrements), orientation);
+								new NumericalInterval(2, tertiaryIncrements));
 	}
 
 	public LinearNumericalAxisScaling(Double minValue, Double maxValue, 
-			NumericalInterval interval1, NumericalInterval interval2, NumericalInterval interval3, Orientation orientation) {
+			NumericalInterval interval1, NumericalInterval interval2, NumericalInterval interval3) {
 
-		super(orientation);
+		super();
 		
 		this.maxValue = maxValue;
 		this.minValue = minValue;
@@ -90,6 +97,23 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		if (this.interval3.isValid() && this.interval3.isActive()) {
 			drawIntervalTickAndLabels(this.interval3, g, chart, false);
 		}
+	}
+	
+	@Override
+	public void drawAll(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+
+		
+		drawAllIntervalTickAndLabels(g2d, xyChart);
+
+		drawGridLines(g2d, xyChart);
+	}
+
+	@Override
+	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+
+		drawGridFills(g2d, xyChart);
 	}
 	
 	
@@ -196,14 +220,7 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		}
 	}
 
-	
 
-	
-
-	
-
-	
-	
 	protected void drawIntervalLabel(NumericalInterval interval, Graphics2D g,
 			XYChart chart, Axis axis, double pixelsFromEdge, int incrementNumber) {
 
@@ -294,13 +311,21 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 	}
 	
 	
+	protected double getFromStart(XYChart chart, double toFirstInPixels, double incrementInPixel, int i) {
+		if (this.orientation == Orientation.X) {
+			double fromLeft = chart.leftOffset + (i * incrementInPixel) + toFirstInPixels;
+			return fromLeft;
+		}else if (this.orientation == Orientation.Y) {
+			double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel) - toFirstInPixels;
+			return fromTop;	
+		}else if (this.orientation == Orientation.Y2) {
+			double fromTop = chart.heightChart + chart.topOffset - (i * incrementInPixel) - toFirstInPixels;
+			return fromTop;	
+		}else {
+			throw new RuntimeException();
+		}
+	}
 	
-	/**
-	 * Basically the width (or height) of the chart in pixels, divided by difference in max and min values.
-	 * @param chart
-	 * @return
-	 */
-	protected abstract double getMultiplicationFactor(XYChart chart);
 
 	/**
 	 * The distance in pixels to the first displayable interval
@@ -371,7 +396,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		 * use that on the axis values. Find the first interval, then divide again.
 		 */
 		
-		
   		long multiplicationFactor = 1;
 		
 		double adjustedInc = increment;
@@ -384,7 +408,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 			adjustedInc = adjustedInc*10;
 			multiplicationFactor = multiplicationFactor*10;
 		}
-		
 		
 		double adjustedMinValue = this.minValue * multiplicationFactor;
 
@@ -420,7 +443,6 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		return val;
 	}
 	
-	
 	private boolean isWholeNumber(double val) {
 		return (val == Math.floor(val)) && !Double.isInfinite(val);
 	}
@@ -429,9 +451,45 @@ public abstract class LinearNumericalAxisScaling extends AxisScaling{
 		return ((val > 1 || val < -1) || (val == 0.0));
 	}
 	
+	@Override
+	protected void drawGridLineOnZero(Graphics2D g) {
+		// TODO
+	}
 	
-	public abstract void drawGridLineOnZero(Graphics2D g, XYChart chart);	
-	
-	
+	public void drawGridLineOnZero(Graphics2D g, XYChart chart) {
 
+		// TODO draw X Line
+//		 XAxisDrawUtil.drawXGridLineOnZero(g, chart, -999, chart.xAxis);
+		
+		if (orientation == Orientation.Y) {
+	        double factor = Utils.getFactor(chart.heightChart, maxValue, minValue);
+
+	        if (minValue < 0) {
+
+	            int fromTop = (int) (chart.heightChart + chart.topOffset + (minValue * factor));
+	            
+	            //TODO draw Y Line
+//			            YAxisDrawUtil.drawYGridLineOnZero(g, chart, fromTop, chart.yAxis);
+	        }
+		}
+	}
+	
+	/**
+	 * Basically the width (or height) of the chart in pixels, divided by difference in max and min values.
+	 * @param chart
+	 * @return
+	 */
+	@Override
+	protected double getMultiplicationFactor(XYChart chart) {
+		
+		if (orientation == Orientation.X) {
+			return ((double) chart.widthChart / (double) (maxValue - minValue));
+		}else if (orientation == Orientation.Y) {
+			return ((double) chart.heightChart / (double) (getMaxValue() - minValue));
+		}else if (orientation == Orientation.Y2){
+			return ((double) chart.heightChart / (double) (getMaxValue() - minValue));
+		}else {
+			throw new RuntimeException("");
+		}
+	}
 }

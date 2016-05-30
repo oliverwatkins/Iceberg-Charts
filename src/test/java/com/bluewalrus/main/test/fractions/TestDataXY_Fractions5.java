@@ -1,6 +1,5 @@
 package com.bluewalrus.main.test.fractions;
 
-import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -8,13 +7,8 @@ import javax.swing.JFrame;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
-import com.bluewalrus.chart.axis.NumericalInterval;
-import com.bluewalrus.chart.axis.XAxis;
-import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
 
 public class TestDataXY_Fractions5 extends ChartTester {
 	

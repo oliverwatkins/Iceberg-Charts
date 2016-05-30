@@ -17,8 +17,8 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
-import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
+import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 
 public class TestDataTimeSeries_WeekDay  extends ChartTester {
 
@@ -56,7 +56,7 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 
 		NumericalInterval t1 = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-90.0, 100.0, t1, null, null), "Y Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, null, null), "Y Axis");
 		
 		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
 		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
@@ -67,7 +67,7 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 
 		
 		XAxis xAxis = new XAxis(
-				new TimeSeriesAxisScalingX(
+				new TimeSeriesAxisScaling(
 						startDate, 
 						endDate, 
 						timeInt2, 

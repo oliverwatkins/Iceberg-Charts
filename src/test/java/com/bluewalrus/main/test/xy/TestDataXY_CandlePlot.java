@@ -13,8 +13,7 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointCandleStick;
 import com.bluewalrus.chart.draw.point.UIPointCandleStick;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestDataXY_CandlePlot extends ChartTester {
 
@@ -61,8 +60,8 @@ public class TestDataXY_CandlePlot extends ChartTester {
 		XYDataSeries series = new XYDataSeries(values, new UIPointCandleStick(
 				new Color(181, 197, 207, 100)), null, "1994");
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, 50.0, 10.0, null), "y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 100.0, 50.0, 10.0, null), "x Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "y Axis");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "x Axis");
 
 		xySeriesList.add(series);
 

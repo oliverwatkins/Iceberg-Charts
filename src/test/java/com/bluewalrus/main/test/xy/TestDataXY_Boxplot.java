@@ -2,7 +2,6 @@ package com.bluewalrus.main.test.xy;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import com.bluewalrus.chart.XYChart;
@@ -12,10 +11,8 @@ import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBoxPlot;
 import com.bluewalrus.chart.draw.point.UIPointBoxPlot;
-import com.bluewalrus.main.GenerateShowcase;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestDataXY_Boxplot extends ChartTester {
 
@@ -42,9 +39,9 @@ public class TestDataXY_Boxplot extends ChartTester {
 		XYDataSeries series = new XYDataSeries(values, new UIPointBoxPlot(
 				new Color(181, 197, 207, 100)), null, "1994");
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0,
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0,
 				50.0, 10.0, null), "y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 100.0,
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0,
 				50.0, 10.0, null), "x Axis");
 
 		xySeriesList.add(series);

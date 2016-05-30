@@ -16,18 +16,16 @@ import com.bluewalrus.chart.datapoint.DataPointCandleStick;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointCandleStick;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.main.test.bar.TestDataBar_2_Simple_negative;
 import com.bluewalrus.main.test.bar.TestDataBar_5_PosNegColor;
 import com.bluewalrus.main.test.math.TestDataXY_SineCurve;
 import com.bluewalrus.main.test.xy.TestDataXY_Scatter;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestStackedChart3 extends ChartTester {
 	public Chart getChart() {
 
 		//x-Axis needs to be shared
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(), "X");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(), "X");
 		xAxis.axisScaling.setMinValue(0);
 		xAxis.axisScaling.setMaxValue(100);
 		
@@ -133,7 +131,7 @@ public class TestStackedChart3 extends ChartTester {
 		XYDataSeries series = new XYDataSeries(values, new UIPointCandleStick(
 				new Color(255, 51, 0)), null, "1994");
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, 50.0, 10.0, null), "Price (USD)");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "Price (USD)");
 		
 		yAxis.axisScaling.interval1.styling = new IntervalStyling(5, new GridLine(Color.LIGHT_GRAY, true), null);
 		yAxis.axisScaling.interval2.styling = new IntervalStyling(2, new GridLine(Color.LIGHT_GRAY, true), null);

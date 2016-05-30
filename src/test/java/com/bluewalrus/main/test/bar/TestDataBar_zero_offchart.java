@@ -1,24 +1,19 @@
 package com.bluewalrus.main.test.bar;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.Utils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.EnumerationAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 /**
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
@@ -33,8 +28,8 @@ public class TestDataBar_zero_offchart extends ChartTester {
         NumericalInterval tick2 = new NumericalInterval(10, 1.0, null); //no grid line
 //        Interval tick3 = new Interval(5, 5.0, null);
         
-        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-14.2, 16.7, tick1, tick2, null), "Y value");
-        XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 25.0, tick1, tick2, null), "X Value - must be even spaced");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-14.2, 16.7, tick1, tick2, null), "Y value");
+        XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 25.0, tick1, tick2, null), "X Value - must be even spaced");
         
         
         

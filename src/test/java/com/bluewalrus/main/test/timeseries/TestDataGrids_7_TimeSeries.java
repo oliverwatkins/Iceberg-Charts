@@ -19,8 +19,8 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
-import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
+import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 
 public class TestDataGrids_7_TimeSeries extends ChartTester {
 
@@ -57,7 +57,7 @@ public class TestDataGrids_7_TimeSeries extends ChartTester {
 		NumericalInterval t2 = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
 		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-90.0, 100.0, t1, t2, t3), "Y Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, t2, t3), "Y Axis");
 		
 		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
 		SimpleDateFormat monthFormat = new SimpleDateFormat("");
@@ -65,9 +65,11 @@ public class TestDataGrids_7_TimeSeries extends ChartTester {
 		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new GridLine(Color.GRAY, false, 6), yearFormat);
 		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 3), monthFormat);
 		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.NONE, new GridLine(Color.GRAY, false, 1));
+		
+		
 //		
 		
-		XAxis xAxis = new XAxis(new TimeSeriesAxisScalingX(startDate, endDate, timeInt1, timeInt2, timeInt3), "Time Series"); //timeInt2, timeInt3), "Time Series");
+		XAxis xAxis = new XAxis(new TimeSeriesAxisScaling(startDate, endDate, timeInt1, timeInt2, timeInt3), "Time Series"); //timeInt2, timeInt3), "Time Series");
 
 		xySeriesList.add(series);
 

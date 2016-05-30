@@ -14,14 +14,13 @@ import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestStackedChart extends ChartTester {
 	public Chart getChart() {
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(), "Y1");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(), "X");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(), "Y1");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(), "X");
 		
 		yAxis.axisScaling.setMinValue(0);
 		yAxis.axisScaling.setMaxValue(50);
@@ -92,7 +91,7 @@ public class TestStackedChart extends ChartTester {
 		list = new ArrayList<XYDataSeries>();
 		list.add(series3);
 		
-		YAxis yAxis2 = new YAxis(new LinearNumericalAxisScalingY(), "Y2");
+		YAxis yAxis2 = new YAxis(new LinearNumericalAxisScaling(), "Y2");
 		yAxis2.axisScaling.setMinValue(0);
 		yAxis2.axisScaling.setMaxValue(100);
 		

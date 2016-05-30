@@ -24,10 +24,9 @@ import com.bluewalrus.chart.draw.plotter.ChartPlotter;
 import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointXY;
-import com.bluewalrus.scaling.EnumerationAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
-import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
+import com.bluewalrus.scaling.EnumerationAxisScaling;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
+import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 
 /**
  * XYChart is a chart where data is represented by x,y data. Typically the y
@@ -553,7 +552,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		t3x.styling.lineLength = 0; 
 		
 		
-		XAxis xAxis = new XAxis(new TimeSeriesAxisScalingX(drX.min, drX.max, t1x, t2x, t3x), "X Ttime to do");
+		XAxis xAxis = new XAxis(new TimeSeriesAxisScaling(drX.min, drX.max, t1x, t2x, t3x), "X Ttime to do");
 		return xAxis;
 	}
 
@@ -566,7 +565,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	private XAxis initialiseScalingX_enumeration(ArrayList<XYDataSeries> xySeriesList) {
     	
-    	EnumerationAxisScalingX xd = new EnumerationAxisScalingX();
+    	EnumerationAxisScaling xd = new EnumerationAxisScaling();
     	xAxis = new XAxis(xd, "");
     	
     	double xMax = xd.maxValue; //100
@@ -634,7 +633,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		t3x.styling.lineLength = 0; 
 
 		
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(drX.min, drX.max, t1x, t2x, t3x), "X TODO");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(drX.min, drX.max, t1x, t2x, t3x), "X TODO");
 		return xAxis;
 	}
 
@@ -656,7 +655,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		t2.styling.lineLength = 3;
 		
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(drY.min, drY.max, t1, t2, null), "Y TODO");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(drY.min, drY.max, t1, t2, null), "Y TODO");
 		return yAxis;
 	}
 
@@ -855,15 +854,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         ///////////////////
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 
 		
@@ -941,6 +932,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			}
 		}
 		this.updateUI();
+	}
+
+	public void setChartBackground(Color green) {
+		this.backgroundColor = green;
 	}
 
 }

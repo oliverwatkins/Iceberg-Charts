@@ -79,10 +79,13 @@ public abstract class Chart extends JPanel {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, // Anti-alias!
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		
-		g.drawRect(0, 0, this.getWidth(), this.getHeight());
-		g2d.setColor(backgroundColor);
+		g2d.setColor(Color.WHITE);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		g2d.setColor(Color.BLACK);
+		
+		g2d.setColor(backgroundColor);
+		g.fillRect(leftOffset, topOffset, this.getWidth() - leftOffset - rightOffset, this.getHeight() - topOffset - bottomOffset);
+		
+		
 	}
 
 	/**

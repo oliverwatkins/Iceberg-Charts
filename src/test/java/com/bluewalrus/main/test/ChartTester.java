@@ -101,7 +101,7 @@ public abstract class ChartTester extends JFrame{
 
 	public void createImageAndTextFile() throws IOException, ParseException {
 		
-        XYChart chart = (XYChart)this.getChart();
+        Chart chart = (Chart)this.getChart();
         this.generateCodeSnippetFile();
         this.appendFileNameToChart(chart);
 
@@ -144,7 +144,7 @@ public abstract class ChartTester extends JFrame{
 		return lastWord;
 	}
 
-	public void appendFileNameToChart(XYChart chart) {
+	public void appendFileNameToChart(Chart chart) {
         String s = this.getClassName();
         chart.fileLocation = s;
 	}

@@ -12,8 +12,7 @@ import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestDataGrids_2_GraphPaper extends ChartTester{
 	
@@ -29,8 +28,8 @@ public class TestDataGrids_2_GraphPaper extends ChartTester{
 		NumericalInterval xInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
 
 		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 100.0, yInterval1, yInterval2, yInterval3), "Y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 100.0, xInterval1, xInterval2, xInterval3), "X Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, yInterval1, yInterval2, yInterval3), "Y Axis");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0, xInterval1, xInterval2, xInterval3), "X Axis");
 
 		XYChart lineChart = new XYChart(new ArrayList<DataPoint>(), "Graphpaper", yAxis, xAxis);
 

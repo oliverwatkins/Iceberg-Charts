@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.draw.YAxisDrawUtil;
 import com.bluewalrus.scaling.AxisScaling;
 
@@ -19,6 +20,9 @@ public class YAxis extends Axis {
 	
     public YAxis(AxisScaling axisDraw, String name) {
         super(name, axisDraw);
+        
+        axisDraw.setOrientation(Orientation.Y);
+
     }
 
     

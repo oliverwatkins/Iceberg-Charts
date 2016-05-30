@@ -28,7 +28,7 @@ import com.bluewalrus.pie.SimpleIndicatorPieChart;
 public class TestDataPie_Multi extends ChartTester {
 	
 
-    public MultiLevelPieChart getChart() {
+    public Chart getChart() {
 
         ArrayList<Segment> values = new ArrayList<Segment>();
         values.add(new Segment(15, "music", Color.RED));
@@ -94,18 +94,18 @@ public class TestDataPie_Multi extends ChartTester {
         
             Utils.makeGradients(Color.BLUE, Color.GREEN, s10.children);
         }
-        MultiLevelPieChart pieChart = new MultiLevelPieChart(values, "Disk Space Usage");
+        MultiLevelPieChart chart = new MultiLevelPieChart(values, "Disk Space Usage");
         
-        pieChart.setSize(600,600);
+        chart.setSize(600,600);
         
-        pieChart.topOffset = 50;
-        pieChart.leftOffset = 50;
-        pieChart.rightOffset = 50;
-        pieChart.bottomOffset = 50;
-        pieChart.initialWidth = 100;
-        pieChart.incrementWidth = 50;
+        chart.topOffset = 50;
+        chart.leftOffset = 50;
+        chart.rightOffset = 50;
+        chart.bottomOffset = 50;
+        chart.initialWidth = 100;
+        chart.incrementWidth = 50;
         
-        return pieChart;
+        return chart;
     }
     
     private static Color darken(Color c) {

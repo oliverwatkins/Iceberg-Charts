@@ -10,13 +10,11 @@ import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointBubble;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestDataBubble_2_series extends ChartTester {
 
@@ -55,11 +53,11 @@ public class TestDataBubble_2_series extends ChartTester {
         XYDataSeries<DataPointWithMagnitude> series = new XYDataSeries<DataPointWithMagnitude>(values, new UIPointBubble(Color.BLUE), null, "Series 1");
         XYDataSeries<DataPointWithMagnitude> series2 = new XYDataSeries<DataPointWithMagnitude>(values2, new UIPointBubble(Color.ORANGE), null, "Series 2");
 
-        NumericalInterval i1 = new NumericalInterval(5, 50.0, new GridLine(Color.GRAY, false, 1));
+        NumericalInterval i1 = new NumericalInterval(5, 50.0, new GridLine(Color.WHITE, false, 1));
         NumericalInterval i2 = new NumericalInterval(2, 10.0, null);
         
-        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-44.0, 400.0, i1, i2, null), "Y Axis");
-        XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(-12.0, 400.0, i1, i2, null), "X Axis");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-44.0, 400.0, i1, i2, null), "Y Axis");
+        XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(-12.0, 400.0, i1, i2, null), "X Axis");
 
         xySeriesList.add(series);
         xySeriesList.add(series2);
@@ -73,7 +71,7 @@ public class TestDataBubble_2_series extends ChartTester {
         chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
         chart.setTitle("Two Series Bubble Chart");
         
-        chart.setBackground(Color.PINK);
+        chart.setChartBackground(Color.LIGHT_GRAY);
 
         return chart;
     }

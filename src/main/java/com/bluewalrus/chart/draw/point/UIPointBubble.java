@@ -19,7 +19,6 @@ import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
  * 
  * At the moment is radius only.
  * 
- * @author lauren
  */
 
 public class UIPointBubble extends UIPointComplexXY {
@@ -32,7 +31,7 @@ public class UIPointBubble extends UIPointComplexXY {
 	private boolean mouseIsOverPoint = false;
 	private RadialGradientPaint paint;
 
-	private Paint gp;
+	private Paint graphicsPaint;
 
 	private DataPointWithMagnitude dpWithM;
 
@@ -68,13 +67,11 @@ public class UIPointBubble extends UIPointComplexXY {
 		 * 
 		 * radius = sqrt(area / pie)
 		 */
-		// double radius = mag/2;
-		// double radius = mag/2;
 		double radius = Math.sqrt(mag / Math.PI);
 
 		g.setColor(color);
 
-		gp = g.getPaint();
+		graphicsPaint = g.getPaint();
 
 		Color c = new Color(color.getRed(), color.getGreen(), color.getBlue(), 100);
 		Color c2 = new Color(Color.RED.getRed(), Color.RED.getGreen(), Color.RED.getBlue(), 100);
@@ -103,7 +100,7 @@ public class UIPointBubble extends UIPointComplexXY {
 
 		g.fill(oval);
 
-		g.setPaint(gp);
+		g.setPaint(graphicsPaint);
 
 		// draw text
 		g.setColor(Color.BLACK);

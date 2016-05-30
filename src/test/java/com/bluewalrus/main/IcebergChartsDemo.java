@@ -19,16 +19,8 @@ import javax.swing.JTabbedPane;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.main.test.bar.BarsTester;
 import com.bluewalrus.main.test.bubble.BubbleTester;
-import com.bluewalrus.main.test.bubble.TestDataBubble_1_guns;
-import com.bluewalrus.main.test.bubble.TestDataBubble_2_series;
-import com.bluewalrus.main.test.bubble.TestDataPieBubble;
 import com.bluewalrus.main.test.fractions.FractionTester;
 import com.bluewalrus.main.test.gridlinefill.GridLineTester;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_1_gridSimple;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_2_GraphPaper;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_3_alternateGridFillX;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_4_alternateGridFillY;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_5_Gradiant;
 import com.bluewalrus.main.test.math.MathTester;
 import com.bluewalrus.main.test.math.TestDataXY_Math;
 import com.bluewalrus.main.test.multibar.MultiBarTester;
@@ -37,14 +29,13 @@ import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_Multi;
 import com.bluewalrus.main.test.pie.TestDataPie_SimplePie;
 import com.bluewalrus.main.test.stacked.StackedTester;
-import com.bluewalrus.main.test.timeseries.TestDataGrids_7_TimeSeries;
-import com.bluewalrus.main.test.timeseries.TestDataTimeSeries_MonthDay;
 import com.bluewalrus.main.test.timeseries.TimeSeriesTester;
 import com.bluewalrus.main.test.xy.TestDataXY_Boxplot;
 import com.bluewalrus.main.test.xy.TestDataXY_LineExamples;
 import com.bluewalrus.main.test.xy.TestDataXY_Scatter;
 import com.bluewalrus.main.test.xy.TestDataXY_Simple;
 import com.bluewalrus.main.test.xy.TestDataXY_Simple_Series;
+import com.bluewalrus.main.test.xy.XYTester;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y_2;
 
@@ -59,65 +50,16 @@ public class IcebergChartsDemo extends JFrame {
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
         JTabbedPane tabbedPane = new JTabbedPane();
-    	
-//        JTabbedPane tabbedPaneBar = new JTabbedPane();
-        JTabbedPane tabbedPaneLine = new JTabbedPane();
         JTabbedPane tabbedPanePie = new JTabbedPane();
         JTabbedPane tabbedPaneXYY = new JTabbedPane();
-        
-        
-        tabbedPane.add("General XY Charts", tabbedPaneLine);
-//        tabbedPane.add("Bar Charts", tabbedPaneBar);
-        tabbedPane.add("Pie Charts", tabbedPanePie);
-        tabbedPane.add("XYY", tabbedPaneXYY);
 
         JPanel p = null;
         JComponent chart = null;
-        
+
         /**
          * XY
          */
-        
-        p = createTabbedPane(tabbedPaneLine, "XY Simple");
-        chart = new TestDataXY_Simple().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneLine, "XY Chart");
-        chart = new TestDataXY_Simple_Series().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneLine, "Scatter chart");
-        chart = new TestDataXY_Scatter().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-
-
-//        p = createTabbedPane(tabbedPaneLine, "Pie Bubble");
-//        chart = new TestDataPieBubble().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneLine, "Box Plot");
-        chart = new TestDataXY_Boxplot().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-        
-        p = createTabbedPane(tabbedPaneLine, "Math");
-        chart = new TestDataXY_Math().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        
-        
-        p = createTabbedPane(tabbedPaneLine, "Lines");
-        chart = new TestDataXY_LineExamples().getChart();
-        charts.add(chart);
-        p.add(chart);
- 
+        tabbedPane.add("XY", new XYTester().createPanel());
         
         /**
          * TIME
@@ -147,6 +89,14 @@ public class IcebergChartsDemo extends JFrame {
          * BUBBLE
          */
         tabbedPane.add("Bubble", new BubbleTester().createPanel());
+        
+        /***
+         * XY
+         */
+        tabbedPane.add("Bubble", new XYTester().createPanel());
+        
+        tabbedPane.add("Pie Charts", tabbedPanePie);
+        tabbedPane.add("XYY", tabbedPaneXYY);
         
         /**
          * PIE

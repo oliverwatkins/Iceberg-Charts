@@ -18,8 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.timeseries.TestDataGrids_6_alternateGridFillXTimesSeries;
-import com.bluewalrus.main.test.timeseries.TestDataGrids_7_TimeSeries;
 
 public class GridLineTester extends JFrame {
 

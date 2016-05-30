@@ -14,8 +14,7 @@ import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointXY;
-import com.bluewalrus.scaling.TimeSeriesAxisScalingX;
-import com.bluewalrus.scaling.TimeSeriesAxisScalingY;
+import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 
 /**
  * Plots chart data
@@ -179,9 +178,9 @@ public class ChartPlotter {
     	
     	double xFactor = -1;
     	
-		if (xAxis.axisScaling instanceof TimeSeriesAxisScalingX) {
-	    	long xMax = ((TimeSeriesAxisScalingX)xAxis.axisScaling).dateEnd.getTime();
-	    	long xMin = ((TimeSeriesAxisScalingX)xAxis.axisScaling).dateStart.getTime();
+		if (xAxis.axisScaling instanceof TimeSeriesAxisScaling) {
+	    	long xMax = ((TimeSeriesAxisScaling)xAxis.axisScaling).dateEnd.getTime();
+	    	long xMin = ((TimeSeriesAxisScaling)xAxis.axisScaling).dateStart.getTime();
 	    	
 	    	double diffX = xMax - xMin;
 	    	
@@ -208,16 +207,16 @@ public class ChartPlotter {
 	
 	protected double getYZeroOffsetInPixel(XYChart chart, YAxis yAxis) {
 		
-		if (yAxis.axisScaling instanceof TimeSeriesAxisScalingY) {
-			throw new RuntimeException("TODO");
-
-			
-		}else {
+//		if (yAxis.axisScaling instanceof TimeSeriesAxisScalingY) {
+//			throw new RuntimeException("TODO");
+//
+//			
+//		}else {
 	    	double yMax = yAxis.axisScaling.getMaxValue();
 	    	double yMin = yAxis.axisScaling.getMinValue();
 	    	
 	    	return (double) ((-yMin / (yMax - yMin)) * chart.heightChart);
-		}
+//		}
 	}
 
 	
@@ -230,9 +229,9 @@ public class ChartPlotter {
 
 	protected double getXZeroOffsetInPixel(XYChart chart, XAxis xAxis) {
 		
-		if (xAxis.axisScaling instanceof TimeSeriesAxisScalingX) {
-	    	long xMax = ((TimeSeriesAxisScalingX)xAxis.axisScaling).dateEnd.getTime();
-	    	long xMin = ((TimeSeriesAxisScalingX)xAxis.axisScaling).dateStart.getTime();
+		if (xAxis.axisScaling instanceof TimeSeriesAxisScaling) {
+	    	long xMax = ((TimeSeriesAxisScaling)xAxis.axisScaling).dateEnd.getTime();
+	    	long xMin = ((TimeSeriesAxisScaling)xAxis.axisScaling).dateStart.getTime();
 	    	
 	    	double diffX = xMax - xMin;
 	    	

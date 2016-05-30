@@ -13,8 +13,7 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.chart.draw.point.UIPointBubble;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestDataBubble_1_guns extends ChartTester {
 	@Override
@@ -82,8 +81,8 @@ public class TestDataBubble_1_guns extends ChartTester {
         XYDataSeries series = new XYDataSeries(values, new UIPointBubble(Color.BLUE),
                 null, "1994");
 
-        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 10.0, 1.0, null, null), "No. of Homicides per 100,000 ");
-        XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 100.0, 50.0, 10.0, null), "Gun Ownership (%)");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 10.0, 1.0, null, null), "No. of Homicides per 100,000 ");
+        XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "Gun Ownership (%)");
 
         xySeriesList.add(series);
 

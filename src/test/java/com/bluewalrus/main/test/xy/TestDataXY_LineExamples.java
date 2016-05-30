@@ -14,8 +14,7 @@ import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestDataXY_LineExamples extends ChartTester {
 
@@ -62,9 +61,9 @@ public class TestDataXY_LineExamples extends ChartTester {
 		series4.dataPoints = values4;
 		series5.dataPoints = values5;
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-5.0, 10.0, new NumericalInterval(4, 1.0), new NumericalInterval(
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-5.0, 10.0, new NumericalInterval(4, 1.0), new NumericalInterval(
 				2, 0.5), null), "y");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(0.0, 10.0, 1.0, null, null), "x");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 10.0, 1.0, null, null), "x");
 
 		xySeriesList.add(series1);
 		xySeriesList.add(series2);

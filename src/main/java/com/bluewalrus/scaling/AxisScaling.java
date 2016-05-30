@@ -19,16 +19,6 @@ public abstract class AxisScaling {
 	
 	protected Orientation orientation;
 	
-
-	public Orientation getOrientation() {
-		return orientation;
-	}
-
-
-	public void setOrientation(Orientation orientation) {
-		this.orientation = orientation;
-	}
-
 	protected double maxValue = -1; //101; // arbitrary
 	protected double minValue = -1; //0; // arbitrary
 
@@ -40,8 +30,9 @@ public abstract class AxisScaling {
 	protected AxisScaling(Orientation orientation) {
 		this.orientation = orientation;
 	}
-	
-	
+	public AxisScaling() {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	public void drawGridFills(Graphics2D g, XYChart chart) {
@@ -100,6 +91,7 @@ public abstract class AxisScaling {
 	}
 	
 	
+
 	/**
 	 * Check if pixel "point" is within the bounds of the chart.
 	 * 
@@ -185,7 +177,12 @@ public abstract class AxisScaling {
 	public double getMinValue() {
 		return minValue;
 	}
-	
+	public Orientation getOrientation() {
+		return orientation;
+	}
+	public void setOrientation(Orientation orientation) {
+		this.orientation = orientation;
+	}	
 }
 
 

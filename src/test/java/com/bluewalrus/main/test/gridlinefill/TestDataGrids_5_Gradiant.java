@@ -13,8 +13,7 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridFill;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingY;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestDataGrids_5_Gradiant extends ChartTester{
 	
@@ -36,8 +35,8 @@ public class TestDataGrids_5_Gradiant extends ChartTester{
 		
 		NumericalInterval xInterval2 = new NumericalInterval(0, 2.0, new GridLine(Color.LIGHT_GRAY, false, 1));
 		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(0.0, 35.0, yInterval1, yInterval2, yInterval3), "Y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(15.0, 68.0, xInterval1, xInterval2, null), "X Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 35.0, yInterval1, yInterval2, yInterval3), "Y Axis");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(15.0, 68.0, xInterval1, xInterval2, null), "X Axis");
 
 
 		XYChart lineChart = new XYChart(values, "Gradiant", yAxis, xAxis);

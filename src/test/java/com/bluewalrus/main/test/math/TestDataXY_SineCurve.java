@@ -12,7 +12,7 @@ import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.main.test.Showcase;
-import com.bluewalrus.scaling.LinearNumericalAxisScalingX;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestDataXY_SineCurve extends ChartTester {
 
@@ -63,7 +63,7 @@ public class TestDataXY_SineCurve extends ChartTester {
 
 		
 		
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(), "X");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(), "X");
 		xAxis.axisScaling.setMinValue(0);
 		xAxis.axisScaling.setMaxValue(400);
 		
