@@ -23,6 +23,8 @@ public class GridFill{
 	}
 	
     /**
+     * move to UTILS classes!!!
+     * 
      * fill Y (TODO similar to fill X. May be able to refactor more)
      * 
      * @param g
@@ -31,6 +33,8 @@ public class GridFill{
      * @param chart
      * @param incrementNo
      */
+	
+    @Deprecated
     public void fillAreaY(Graphics2D g, 
     		int yPos, 
             double lengthDimension, 
@@ -63,7 +67,7 @@ public class GridFill{
 
 
     /**
-     * Fill X
+     * FILL X
      * 
      * @param g
      * @param xPos
@@ -71,10 +75,8 @@ public class GridFill{
      * @param chart
      * @param incrementNo
      */
-
-
     public void fillAreaX(Graphics2D g, 
-    		int xPos,
+    		double xPos,
             double lengthDimension, //increment in pixels
             Chart chart, 
             int incrementNo) {
@@ -84,7 +86,7 @@ public class GridFill{
     	Color colorCached = g.getColor();
     	
     	if (gradiant) {
-			GradientPaint redtowhite2 = new GradientPaint(xPos,0, color1, (int)(xPos + lengthDimension), 0, color2);
+			GradientPaint redtowhite2 = new GradientPaint((int)xPos,0, color1, (int)(xPos + lengthDimension), 0, color2);
 			g.setPaint(redtowhite2);
     	}else {
         	if((incrementNo%2)==0) {
@@ -94,7 +96,7 @@ public class GridFill{
         	}
     	}
 
-    	Rectangle fillRect = new Rectangle(xPos, chart.topOffset, (int)lengthDimension, (int)chart.heightChart);
+    	Rectangle fillRect = new Rectangle((int)xPos, chart.topOffset, (int)lengthDimension, (int)chart.heightChart);
     	
 		fillOutRectangle(g, chart, colorCached, fillRect);
 

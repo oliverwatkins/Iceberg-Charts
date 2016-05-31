@@ -32,8 +32,8 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
 		Date startDate = df.parse("2001-01-03 10-00-00"); //3rd jan
-		Date endDate = df.parse("2001-03-12 05-33-00"); //12th march
-//		Date endDate = df.parse("2001-01-7 05-33-00"); //12th march
+//		Date endDate = df.parse("2001-03-12 05-33-00"); //12th march
+		Date endDate = df.parse("2001-09-7 05-33-00"); //12th march
 		
 		
 		String time = "2001-03-01 00-33-00";                              

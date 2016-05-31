@@ -12,6 +12,7 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
+import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 
 /**
@@ -67,6 +68,24 @@ public class XAxisDrawUtil {
 				(int) fromLeft, y2);
 		g.setClip(clip);
 	}
+	
+	public static void drawGridFill(TimeInterval interval, Graphics2D g,
+			Chart chart, double fromLeft, double width, int incrementNo) {
+		
+//		int y1 = chart.topOffset + chart.heightChart;
+//		int y2 = chart.topOffset;
+
+		Shape clip = ChartUtils.clipChart(g, chart);
+
+		interval.styling.graphFill.fillAreaX(g, fromLeft, width, chart, incrementNo);
+		
+		
+//		(g, (int) fromLeft, y1,
+//				(int) fromLeft, y2);
+		g.setClip(clip);
+	}
+
+	
 
 	public static void drawXIntervalLabel(Graphics g, Chart chart, double fromLeft,
 			String xLabel, Axis axis, AbstractInterval interval) {
@@ -132,5 +151,6 @@ public class XAxisDrawUtil {
 //				+ " chart.leftOffset " + chart.leftOffset);
 		return false;
 	}
+
 
 }

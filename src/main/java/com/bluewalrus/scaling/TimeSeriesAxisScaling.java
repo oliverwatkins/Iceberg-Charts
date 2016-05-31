@@ -122,17 +122,26 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 //		XAxisDrawUtil.drawGridLine(interval, g, chart,
 //				totalDistanceFromEdge);
 		
+//		int width = 20;
+		double width = (double)(totalIncrementPixs - lastPix);
 		
-		if (this.orientation == Orientation.X)
-
-			interval.styling.graphFill.fillAreaX(g, (int)lastPix, totalIncrementPixs-lastPix, chart, i);
+		
+		totalDistanceFromEdge = totalDistanceFromEdge-width;
+		
+		XAxisDrawUtil.drawGridFill(interval, g, chart,
+				totalDistanceFromEdge, width, i);
+		
+//		if (this.orientation == Orientation.X) {
+//			interval.styling.graphFill.fillAreaX(g, (int)lastPix, totalIncrementPixs-lastPix, chart, i);
+//		}
+//		else if (this.orientation == Orientation.Y) {
+//			interval.styling.graphFill.fillAreaY(g, (int)lastPix, totalIncrementPixs-lastPix, chart, i);
+//		}
 			
-		else if (this.orientation == Orientation.Y)
-			
-			interval.styling.graphFill.fillAreaY(g, (int)lastPix, totalIncrementPixs-lastPix, chart, i);
 		
 	}
-
+	
+	
 	private void drawGridLine(TimeInterval interval, Graphics2D g,
 			XYChart chart, int i, double totalIncrementPixs) {
 		
@@ -151,6 +160,46 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 				totalDistanceFromEdge);
 		
 	}
+	
+	
+	@Override
+	protected void drawGridFills(AbstractInterval intv, Graphics2D g,
+			XYChart chart) {
+		
+		TimeInterval interval = (TimeInterval)intv;
+		
+		int incrementNo = getIncrementNumber(interval);
+
+		double totalIncrementPixs = 0;
+		double lastPix = chart.leftOffset;
+
+		double dayInPixel = getIncrementInPixels(TimeInterval.Type.DAY, chart);
+
+		for (int i = 1; i < (incrementNo + 1); i++) {
+
+			double intervalInPixels = 0;
+			
+			
+			
+			/**
+			 * FILL
+			 */
+			drawGridFill(interval, g, chart, i, totalIncrementPixs, lastPix);
+						
+			if (interval.type.equals(TimeInterval.Type.MONTH)) {
+				intervalInPixels = (int) getIncrementInPixelsForMonthAfterStartDate(i, dayInPixel);
+			} else if (interval.type.equals(TimeInterval.Type.YEAR)) {
+				intervalInPixels = (int) getIncrementInPixelsForYearAfterStartDate(i, dayInPixel);
+			} else {
+				intervalInPixels = (double) getIncrementInPixels(interval.type, chart);
+			}
+			lastPix = totalIncrementPixs;
+			totalIncrementPixs = totalIncrementPixs + intervalInPixels;
+		}
+		
+	}
+
+
 
 	/**
 	 * TODO : (see super class comments)
@@ -281,42 +330,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		drawGridFills(g2d, xyChart);
 	}
-	@Override
-	protected void drawGridFills(AbstractInterval intv, Graphics2D g,
-			XYChart chart) {
-		
-		TimeInterval interval = (TimeInterval)intv;
-		
-		int incrementNo = getIncrementNumber(interval);
 
-		double totalIncrementPixs = 0;
-		double lastPix = 0;
-
-		double dayInPixel = getIncrementInPixels(TimeInterval.Type.DAY, chart);
-
-		for (int i = 1; i < (incrementNo + 1); i++) {
-
-			double intervalInPixels = 0;
-			
-			
-			
-			/**
-			 * FILL
-			 */
-			drawGridFill(interval, g, chart, i, totalIncrementPixs, lastPix);
-						
-			if (interval.type.equals(TimeInterval.Type.MONTH)) {
-				intervalInPixels = (int) getIncrementInPixelsForMonthAfterStartDate(i, dayInPixel);
-			} else if (interval.type.equals(TimeInterval.Type.YEAR)) {
-				intervalInPixels = (int) getIncrementInPixelsForYearAfterStartDate(i, dayInPixel);
-			} else {
-				intervalInPixels = (double) getIncrementInPixels(interval.type, chart);
-			}
-			lastPix = totalIncrementPixs;
-			totalIncrementPixs = totalIncrementPixs + intervalInPixels;
-		}
-		
-	}
 
 
 	/**
