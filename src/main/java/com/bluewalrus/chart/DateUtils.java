@@ -246,6 +246,30 @@ public class DateUtils {
 	}
 	
 	
+	
+	public static int getDaysInYear(Date date) {
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		
+		boolean isLeapYear = false;
+		if (cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365) {
+			isLeapYear = true;
+		}
+
+		int days = -1;
+
+		if (isLeapYear)
+			days = 366;
+		else
+			days = 365;
+
+		return days;
+	}
+	
+	
+	
+	
 	/**
 	 * Given a date ( which should be in the for 01.01.00:00 19XX ) add years such that
 	 * the date returned is 01.01.00:00 (19XX+years) 
@@ -297,6 +321,8 @@ public class DateUtils {
 		
 		return cal.getTimeInMillis();
 	}
+
+
 
 
 	

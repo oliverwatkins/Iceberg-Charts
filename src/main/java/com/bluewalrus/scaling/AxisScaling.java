@@ -141,6 +141,12 @@ public abstract class AxisScaling {
 
 	protected abstract void drawGridFills(AbstractInterval interval12, Graphics2D g, XYChart chart);
 	
+	/**
+	 * TODO remove this from the super class. In TimeScaling the grid lines are drawn with the intervals and labels.
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 */
 	protected abstract void drawGridLines(AbstractInterval interval, Graphics2D g, XYChart chart);
 	
 
