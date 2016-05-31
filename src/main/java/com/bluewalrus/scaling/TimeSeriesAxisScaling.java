@@ -85,18 +85,13 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 			 */
 			drawGridLine(interval, g, chart, i, totalIncrementPixs);
 			
-			
-			/**
-			 * FILL
-			 */
-//			drawGridFill(interval, g, chart, i, totalIncrementPixs, lastPix);
 						
 			if (interval.type.equals(TimeInterval.Type.MONTH)) {
-				intervalInPixels = (double) getIncrementInPixelsForMonthAfterStartDate(i, dayInPixel);
+				intervalInPixels = getIncrementInPixelsForMonthAfterStartDate(i, dayInPixel);
 			} else if (interval.type.equals(TimeInterval.Type.YEAR)) {
-				intervalInPixels = (double) getIncrementInPixelsForYearAfterStartDate(i, dayInPixel);
+				intervalInPixels = getIncrementInPixelsForYearAfterStartDate(i, dayInPixel);
 			} else {
-				intervalInPixels = (double) getIncrementInPixels(interval.type, chart);
+				intervalInPixels = getIncrementInPixels(interval.type, chart);
 			}
 			lastPix = totalIncrementPixs;
 			totalIncrementPixs = totalIncrementPixs + intervalInPixels;
@@ -104,6 +99,16 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	}
 
 
+	/**
+	 * TODO not working correctly!!!
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 * @param i
+	 * @param totalIncrementPixs
+	 * @param lastPix
+	 */
 
 	private void drawGridFill(TimeInterval interval, Graphics2D g,
 			XYChart chart, int i, double totalIncrementPixs, double lastPix) {
@@ -119,25 +124,12 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		double totalDistanceFromEdge = chart.leftOffset + toFirstInPixels
 				+ totalIncrementPixs;
 		
-//		XAxisDrawUtil.drawGridLine(interval, g, chart,
-//				totalDistanceFromEdge);
-		
-//		int width = 20;
 		double width = (double)(totalIncrementPixs - lastPix);
-		
 		
 		totalDistanceFromEdge = totalDistanceFromEdge-width;
 		
 		XAxisDrawUtil.drawGridFill(interval, g, chart,
 				totalDistanceFromEdge, width, i);
-		
-//		if (this.orientation == Orientation.X) {
-//			interval.styling.graphFill.fillAreaX(g, (int)lastPix, totalIncrementPixs-lastPix, chart, i);
-//		}
-//		else if (this.orientation == Orientation.Y) {
-//			interval.styling.graphFill.fillAreaY(g, (int)lastPix, totalIncrementPixs-lastPix, chart, i);
-//		}
-			
 		
 	}
 	

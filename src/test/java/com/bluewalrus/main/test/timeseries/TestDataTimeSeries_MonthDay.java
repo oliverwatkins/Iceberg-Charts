@@ -84,6 +84,10 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		timeInt1.styling.intervalFont =  new Font("Blackadder ITC", Font.BOLD, 16);
 		timeInt2.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 12);
 		
+		timeInt1.styling.graphFill =  new GridFill(Color.WHITE, Color.LIGHT_GRAY, false);
+		
+		
+		
 
 		return lineChart;
 	}

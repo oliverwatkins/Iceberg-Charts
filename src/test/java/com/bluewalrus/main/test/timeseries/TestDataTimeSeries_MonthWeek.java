@@ -15,6 +15,7 @@ import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.draw.GridFill;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
@@ -84,6 +85,9 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 		timeInt2.styling.intervalFont =  new Font("Blackadder ITC", Font.BOLD, 16);
 		timeInt1.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 12);
 		
+		
+		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, Color.LIGHT_GRAY, false);
+
 //		lineChart.setSize(1000, 500);
 //		lineChart.rightOffset = 200;
 

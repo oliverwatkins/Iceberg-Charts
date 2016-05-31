@@ -14,6 +14,7 @@ import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.draw.GridFill;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
@@ -75,6 +76,9 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 						null), "Time Series"); 
 
 		xySeriesList.add(series);
+		
+		
+		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, Color.LIGHT_GRAY, false);
 
 		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
 		lineChart.setTitle("Week Day Time Series");
