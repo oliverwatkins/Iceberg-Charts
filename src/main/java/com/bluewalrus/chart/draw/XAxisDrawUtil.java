@@ -86,9 +86,9 @@ public class XAxisDrawUtil {
 //			yPos = yPos + 100;
 
 		} else if (level == 2) {
-			yPos = yPos - 10;
+			yPos = yPos - 20;
 		} else if (level == 3) {
-			yPos = yPos - 15;
+			yPos = yPos - 35;
 		}
 
 		g.setFont(axis.axisCatFont);

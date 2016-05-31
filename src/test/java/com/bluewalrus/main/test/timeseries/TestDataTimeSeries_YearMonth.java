@@ -31,7 +31,8 @@ public class TestDataTimeSeries_YearMonth extends ChartTester {
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
-		Date startDate = df.parse("1991-05-3 01-00-00"); 
+		Date startDate = df.parse("1991-05-15 01-00-00"); 
+//		Date startDate = df.parse("1999-07-12 05-33-00");
 		Date endDate = df.parse("2001-07-12 05-33-00");
 		
 		

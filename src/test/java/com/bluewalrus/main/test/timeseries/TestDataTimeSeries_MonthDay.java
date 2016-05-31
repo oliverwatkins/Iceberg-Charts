@@ -57,11 +57,11 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
 
 		
-		TimeInterval timeInt1 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
-		timeInt1.styling = new IntervalStyling(10, new GridLine(Color.BLACK, false, 2), new GridFill(Color.GRAY, Color.WHITE, false));
+		TimeInterval timeInt1 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
+		timeInt1.styling = new IntervalStyling(10, new GridLine(Color.BLACK, false, 2), new GridFill(Color.LIGHT_GRAY, Color.WHITE, false));
 		
 		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1), dayFormat);
-		timeInt2.styling = new IntervalStyling(2, new GridLine(Color.GRAY, false, 1), new GridFill(Color.GRAY, Color.WHITE, false));
+		timeInt2.styling = new IntervalStyling(2, new GridLine(Color.GRAY, false, 1), null);
 
 		
 		XAxis xAxis = new XAxis(

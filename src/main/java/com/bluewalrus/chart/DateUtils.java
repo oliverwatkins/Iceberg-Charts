@@ -154,13 +154,14 @@ public class DateUtils {
 	 * TODO this code isn't very correct. The method getMsForType is incorrect for year and month because they are both variable
 	 * and this could lead to the incrementNo below being incorrectly calculated. incrementNo could be out by one.
 	 */
-	
 	public static long getMsForType(Type i) {
 		
 		switch (i) {
 		case MONTH:
+//			throw new RuntimeException("Month does not have constant length");
 			return TimeUnit.DAYS.toMillis(30); //TODO wrong!!! 30, 31, 28, 29
 		case YEAR:
+//			throw new RuntimeException("Year does not have constant length");
 			return TimeUnit.DAYS.toMillis(365); //TODO wrong!!! leap years??
 		case DAY:
 			return TimeUnit.DAYS.toMillis(1); // 1 day to milliseconds.
@@ -181,11 +182,9 @@ public class DateUtils {
 	/**
 	 * For a given date, get the number of days in the month of that date. (ie 28,29,20 or 31)
 	 * 
-	 * 
 	 * @param date
-	 * @return
+	 * @return number of days
 	 */
-	
 	public static int getDaysInMonth(Date date) {
 		
 		Calendar cal = Calendar.getInstance();

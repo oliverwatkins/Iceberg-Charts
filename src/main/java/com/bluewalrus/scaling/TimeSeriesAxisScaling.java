@@ -13,6 +13,7 @@ import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.AbstractInterval;
+import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.TimeInterval.Type;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
@@ -60,6 +61,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		int incrementNo = getIncrementNumber(interval);
 
 		double totalIncrementPixs = 0;
+		double lastPix = 0;
 
 		double dayInPixel = getIncrementInPixels(TimeInterval.Type.DAY, chart);
 
@@ -67,27 +69,69 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 			double intervalInPixels = 0;
 			
+			/**
+			 * TICK
+			 */
 			drawIntervalTick(interval, g, chart, i, totalIncrementPixs);
-			
+
+			/**
+			 * LABEL
+			 */
 			if (showLabel)
 				drawIntervalLabel(interval, g, chart, i, totalIncrementPixs);
 			
+			/**
+			 * LINE
+			 */
 			drawGridLine(interval, g, chart, i, totalIncrementPixs);
 			
 			
+			/**
+			 * FILL
+			 */
+//			drawGridFill(interval, g, chart, i, totalIncrementPixs, lastPix);
+						
 			if (interval.type.equals(TimeInterval.Type.MONTH)) {
-				intervalInPixels = (int) getIncrementInPixelsForMonthAfterStartDate(i, dayInPixel);
+				intervalInPixels = (double) getIncrementInPixelsForMonthAfterStartDate(i, dayInPixel);
 			} else if (interval.type.equals(TimeInterval.Type.YEAR)) {
-				intervalInPixels = (int) getIncrementInPixelsForYearAfterStartDate(i, dayInPixel);
+				intervalInPixels = (double) getIncrementInPixelsForYearAfterStartDate(i, dayInPixel);
 			} else {
 				intervalInPixels = (double) getIncrementInPixels(interval.type, chart);
 			}
-			
+			lastPix = totalIncrementPixs;
 			totalIncrementPixs = totalIncrementPixs + intervalInPixels;
 		}
 	}
 
 
+
+	private void drawGridFill(TimeInterval interval, Graphics2D g,
+			XYChart chart, int i, double totalIncrementPixs, double lastPix) {
+		
+		g.setColor(chart.xAxis.axisColor);
+
+		double factor = getMultiplicationFactor(chart);
+
+		// to first increment (edge of chart to first interval value)
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				interval, factor);
+
+		double totalDistanceFromEdge = chart.leftOffset + toFirstInPixels
+				+ totalIncrementPixs;
+		
+//		XAxisDrawUtil.drawGridLine(interval, g, chart,
+//				totalDistanceFromEdge);
+		
+		
+		if (this.orientation == Orientation.X)
+
+			interval.styling.graphFill.fillAreaX(g, (int)lastPix, totalIncrementPixs-lastPix, chart, i);
+			
+		else if (this.orientation == Orientation.Y)
+			
+			interval.styling.graphFill.fillAreaY(g, (int)lastPix, totalIncrementPixs-lastPix, chart, i);
+		
+	}
 
 	private void drawGridLine(TimeInterval interval, Graphics2D g,
 			XYChart chart, int i, double totalIncrementPixs) {
@@ -170,9 +214,8 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 	protected double getIncrementInPixels(TimeInterval.Type t, XYChart chart) {
 
-		long increment = DateUtils.getMsForType(t); // :( what about year and
-													// month....
-
+		long increment = DateUtils.getMsForType(t);
+		
 		double factor = this.getMultiplicationFactor(chart);
 
 		double incrementInPixel = (double) (increment * factor);
@@ -238,12 +281,43 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		drawGridFills(g2d, xyChart);
 	}
-
 	@Override
-	protected void drawGridFills(AbstractInterval interval12, Graphics2D g,
+	protected void drawGridFills(AbstractInterval intv, Graphics2D g,
 			XYChart chart) {
-		// throw new RuntimeException("This has not yet been implemented");
+		
+		TimeInterval interval = (TimeInterval)intv;
+		
+		int incrementNo = getIncrementNumber(interval);
+
+		double totalIncrementPixs = 0;
+		double lastPix = 0;
+
+		double dayInPixel = getIncrementInPixels(TimeInterval.Type.DAY, chart);
+
+		for (int i = 1; i < (incrementNo + 1); i++) {
+
+			double intervalInPixels = 0;
+			
+			
+			
+			/**
+			 * FILL
+			 */
+			drawGridFill(interval, g, chart, i, totalIncrementPixs, lastPix);
+						
+			if (interval.type.equals(TimeInterval.Type.MONTH)) {
+				intervalInPixels = (int) getIncrementInPixelsForMonthAfterStartDate(i, dayInPixel);
+			} else if (interval.type.equals(TimeInterval.Type.YEAR)) {
+				intervalInPixels = (int) getIncrementInPixelsForYearAfterStartDate(i, dayInPixel);
+			} else {
+				intervalInPixels = (double) getIncrementInPixels(interval.type, chart);
+			}
+			lastPix = totalIncrementPixs;
+			totalIncrementPixs = totalIncrementPixs + intervalInPixels;
+		}
+		
 	}
+
 
 	/**
 	 * Draw all the intervals and ticks for all intervals
@@ -431,5 +505,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	public double getMinValue() {
 		return this.dateStart.getTime();
 	}
+
 
 }
