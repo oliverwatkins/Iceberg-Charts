@@ -1,6 +1,7 @@
 package com.bluewalrus.main.test.timeseries;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 		
 		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
 		
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.WEEK, new GridLine(Color.GRAY, false, 1), weekFormat);
+		TimeInterval timeInt1 = new TimeInterval(2, TimeInterval.Type.WEEK, new GridLine(Color.GRAY, false, 1), weekFormat);
 
 		
 		XAxis xAxis = new XAxis(
@@ -70,7 +71,7 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 						startDate, 
 						endDate, 
 						timeInt2, 
-						timeInt3, 
+						timeInt1, 
 						null), "Time Series"); 
 
 		xySeriesList.add(series);
@@ -79,6 +80,10 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 		
 		chart.setTitle("Month Week - 2004, 3 Apr - 2004, 12 August");
 
+		
+		timeInt2.styling.intervalFont =  new Font("Blackadder ITC", Font.BOLD, 16);
+		timeInt1.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 12);
+		
 //		lineChart.setSize(1000, 500);
 //		lineChart.rightOffset = 200;
 

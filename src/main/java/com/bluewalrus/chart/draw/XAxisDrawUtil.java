@@ -90,15 +90,10 @@ public class XAxisDrawUtil {
 		} else if (level == 3) {
 			yPos = yPos - 35;
 		}
+		
+		if (interval.styling.intervalFont != null)
+			g.setFont(interval.styling.intervalFont);
 
-		g.setFont(axis.axisCatFont);
-
-		
-		
-//		System.out.println("drawString " + xLabel + " at " + fromLeft);
-
-		
-		
 		if (isXPositionInsideChart(chart, fromLeft))
 			g.drawString(xLabel + "", (int) fromLeft, yPos);
 	}

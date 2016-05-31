@@ -1,6 +1,7 @@
 package com.bluewalrus.main.test.timeseries;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,12 +61,16 @@ public class TestDataTimeSeries_YearMonth extends ChartTester {
 		
 		SimpleDateFormat monthFormat = new SimpleDateFormat("M");
 		SimpleDateFormat yearFormat = new SimpleDateFormat("YY");
-		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
 		
 		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.YEAR, new GridLine(Color.GRAY, false, 2), yearFormat);
 		
 		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 1), monthFormat);
 
+		
+		timeInt2.styling.intervalFont =  new Font("Blackadder ITC", Font.BOLD, 16);
+		timeInt3.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 12);
+		
+		
 		
 		XAxis xAxis = new XAxis(
 				new TimeSeriesAxisScaling(

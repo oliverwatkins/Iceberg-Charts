@@ -1,6 +1,7 @@
 package com.bluewalrus.main.test.timeseries;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,6 +64,9 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1), dayFormat);
 		timeInt2.styling = new IntervalStyling(2, new GridLine(Color.GRAY, false, 1), null);
 
+//        barChart.yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
+		timeInt2.styling.intervalFont = new Font("Blackadder ITC", Font.PLAIN, 20);
+
 		
 		XAxis xAxis = new XAxis(
 				new TimeSeriesAxisScaling(
@@ -75,6 +79,10 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		XYChart lineChart = new XYChart(values, "Time Series 1", "X", "Y"); //yAxis, xAxis);
 		lineChart.xAxis = xAxis;
 		lineChart.setTitle("Month Day Time Series (3rd Jan to 12th March)");
+		
+		
+		timeInt1.styling.intervalFont =  new Font("Blackadder ITC", Font.BOLD, 16);
+		timeInt2.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 12);
 		
 
 		return lineChart;
