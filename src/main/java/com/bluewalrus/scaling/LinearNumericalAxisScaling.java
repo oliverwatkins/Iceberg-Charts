@@ -158,14 +158,6 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 				
 				String labelValueFormatted = getLabelValue((NumericalInterval)interval, i);
 				System.out.println("labelValueFormatted = " + labelValueFormatted + " is out of range and wont be displayed");
-				System.out.println("pixelsFromEdge = " + pixelsFromEdge + " ");
-				System.out.println("chart left offset = " + chart.leftOffset + " ");
-				System.out.println("chart width = " + chart.widthChart + " ");
-				System.out.println("width = " + chart.getWidth() + " ");
-				
-				
-				
-				
 				continue;
 			}
 			

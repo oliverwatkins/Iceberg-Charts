@@ -93,6 +93,12 @@ public class XAxisDrawUtil {
 
 		g.setFont(axis.axisCatFont);
 
+		
+		
+//		System.out.println("drawString " + xLabel + " at " + fromLeft);
+
+		
+		
 		if (isXPositionInsideChart(chart, fromLeft))
 			g.drawString(xLabel + "", (int) fromLeft, yPos);
 	}
@@ -126,9 +132,9 @@ public class XAxisDrawUtil {
 		if (fromLeft < rightSideChart && fromLeft > chart.leftOffset) {
 			return true;
 		}
-		System.out.println("ERROR : fromLeft " + fromLeft
-				+ " is not inside chart. rightSideChart " + rightSideChart
-				+ " chart.leftOffset " + chart.leftOffset);
+//		System.out.println("ERROR : fromLeft " + fromLeft
+//				+ " is not inside chart. rightSideChart " + rightSideChart
+//				+ " chart.leftOffset " + chart.leftOffset);
 		return false;
 	}
 

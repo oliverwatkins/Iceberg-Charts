@@ -43,9 +43,7 @@ public class DataPointMultiBar extends DataPoint{
     			maxY = maxY + dataPointBar.y;
     		}
     	}
-    	
 
-    	System.out.println("maxY == " + maxY);
 		return maxY;
 	}
 

@@ -178,6 +178,73 @@ public class DateUtils {
 		return -1l;
 	}
 	
+	/**
+	 * For a given date, get the number of days in the month of that date. (ie 28,29,20 or 31)
+	 * 
+	 * 
+	 * @param date
+	 * @return
+	 */
+	
+	public static int getDaysInMonth(Date date) {
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		
+		boolean isLeapYear = false;
+		if (cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365) {
+			isLeapYear = true;
+		}
+
+		int days = -1;
+		int m2 = cal.get(Calendar.MONTH);
+		switch (m2) {
+		case 0:
+			days = 31;
+			break;
+		case 1:
+			if (isLeapYear)
+				days = 29;
+			else
+				days = 28;
+			break;
+		case 2:
+			days = 31;
+			break;
+		case 3:
+			days = 30;
+			break;
+		case 4:
+			days = 31;
+			break;
+		case 5:
+			days = 30;
+			break;
+		case 6:
+			days = 31;
+			break;
+		case 7:
+			days = 30;
+			break;
+		case 8:
+			days = 31;
+			break;
+		case 9:
+			days = 31;
+			break;
+		case 10:
+			days = 30;
+			break;
+		case 11:
+			days = 31;
+			break;
+
+		default:
+			break;
+		}
+		return days;
+	}
+	
 	
 	/**
 	 * Given a date ( which should be in the for 01.01.00:00 19XX ) add years such that
@@ -190,23 +257,23 @@ public class DateUtils {
 	 */
 	public static long addYear(long date, int years) {
 		
-		Calendar cal = Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date(date));
+		calendar.add(Calendar.YEAR, years);
 		
-		cal.setTime(new Date(date));
-		cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) + years);
-		
-		return cal.getTimeInMillis();
+		return calendar.getTimeInMillis();
 	}
 	
 	
 	public static long addMonth(long date, int months) {
 		
-		Calendar cal = Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance();   
+		calendar.setTime(new Date(date));
+		calendar.add(Calendar.MONTH, months);
+
+//		cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + months); //will this work 13-->1 ?
 		
-		cal.setTime(new Date(date));
-		cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + months); //will this work 13-->1 ?
-		
-		return cal.getTimeInMillis();
+		return calendar.getTimeInMillis();
 	}
 	
 	public static long addWeek(long date, int weeks) {
