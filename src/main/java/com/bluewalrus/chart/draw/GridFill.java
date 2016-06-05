@@ -85,6 +85,7 @@ public class GridFill{
 
     	Color colorCached = g.getColor();
     	
+    	
     	if (gradiant) {
 			GradientPaint redtowhite2 = new GradientPaint((int)xPos,0, color1, (int)(xPos + lengthDimension), 0, color2);
 			g.setPaint(redtowhite2);

@@ -28,7 +28,7 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 	 * @param type
 	 */
 	public LinearNumericalAxisScaling() {
-		this(0.0, 100.0, 50.0, 10.0, 5.0); //arbitrary values
+		this(0.0, 100.0, 50.0, 10.0, 5.0); //arbitrary values!!
 	}
 	
 	public LinearNumericalAxisScaling(double min, double max) {

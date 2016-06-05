@@ -55,7 +55,8 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new GridLine(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
-		NumericalInterval t1 = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
+//		rgb(224, 235, 235)
+		NumericalInterval t1 = new NumericalInterval(8, 10.0, new GridLine(Color.LIGHT_GRAY));
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, null, null), "Y Axis");
 		
@@ -78,7 +79,7 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 		xySeriesList.add(series);
 		
 		
-		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, Color.LIGHT_GRAY, false);
+		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, new Color(224,235,235), false);
 
 		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
 		lineChart.setTitle("Week Day Time Series");

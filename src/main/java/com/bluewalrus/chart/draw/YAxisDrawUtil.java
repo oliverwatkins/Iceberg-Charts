@@ -152,16 +152,12 @@ public class YAxisDrawUtil {
 	 * @param chart
 	 * @param fromTop
 	 */
-	public static void drawGridLine(NumericalInterval interval, Graphics2D g, Chart chart,
-			double fromTop) {
-		int x1 = chart.leftOffset;
+	public static void drawGridLine(NumericalInterval interval, Graphics2D g, Chart chart, double fromTop) {
 		
+		int x1 = chart.leftOffset;
 		int x2 = chart.leftOffset + chart.widthChart;
-
 		
 		Shape clip = ChartUtils.clipChart(g, chart);
-//		Shape clip = g.getClip();
-//		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
 		
 		interval.styling.graphLine.drawLine(g, x1, (int)fromTop, x2, (int)fromTop);
 		g.setClip(clip);

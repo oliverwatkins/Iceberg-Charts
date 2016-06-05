@@ -372,6 +372,7 @@ public class ChartUtils {
 	}
 
 	/**
+	 * Clip the chart area based on offsets
 	 * 
 	 * @param g
 	 * @param chart

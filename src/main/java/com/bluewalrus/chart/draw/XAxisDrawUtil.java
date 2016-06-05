@@ -71,25 +71,28 @@ public class XAxisDrawUtil {
 	
 	public static void drawGridFill(TimeInterval interval, Graphics2D g,
 			Chart chart, double fromLeft, double width, int incrementNo) {
-		
-//		int y1 = chart.topOffset + chart.heightChart;
-//		int y2 = chart.topOffset;
 
 		Shape clip = ChartUtils.clipChart(g, chart);
 
 		interval.styling.graphFill.fillAreaX(g, fromLeft, width, chart, incrementNo);
 		
-		
-//		(g, (int) fromLeft, y1,
-//				(int) fromLeft, y2);
 		g.setClip(clip);
 	}
 
 	
 
+	/**
+	 * Draw interval label. By default only first level labels are drawn in. 
+	 * 
+	 * @param g
+	 * @param chart
+	 * @param fromLeft
+	 * @param xLabel
+	 * @param axis
+	 * @param interval
+	 */
 	public static void drawXIntervalLabel(Graphics g, Chart chart, double fromLeft,
 			String xLabel, Axis axis, AbstractInterval interval) {
-
 		
 		int level = interval.getLevel();
 		
