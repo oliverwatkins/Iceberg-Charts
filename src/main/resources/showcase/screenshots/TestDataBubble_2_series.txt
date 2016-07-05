@@ -35,15 +35,15 @@
         NumericalInterval i1 = new NumericalInterval(5, 50.0, new GridLine(Color.WHITE, false, 1));
         NumericalInterval i2 = new NumericalInterval(2, 10.0, null);
         
-        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-44.0, 400.0, i1, i2, null), "Y Axis");
-        XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(-12.0, 400.0, i1, i2, null), "X Axis");
+        YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-44.0, 400.0, i1, i2, null), "Y Axis");
+        XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(-12.0, 400.0, i1, i2, null), "X Axis");
 
         xySeriesList.add(series);
         xySeriesList.add(series2);
 
         XYChart chart = new XYChart(xySeriesList, yAxis, xAxis, 15);
 
-        chart.setSize(700, 200);
+        chart.setSize(700, 400);
         
         chart.rightOffset = 200;
 

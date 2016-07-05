@@ -172,6 +172,14 @@ public class ChartPlotter {
 
 	protected XYFactor getXYFactor(XYChart chart, XAxis xAxis, YAxis yAxis) {
 		
+		if (chart.heightChart < 0)
+			throw new RuntimeException("Chart cannot have negative height");
+		if (chart.widthChart < 0)
+			throw new RuntimeException("Chart cannot have negative width");
+		
+		
+		
+		
     	double yMax = yAxis.axisScaling.getMaxValue();
     	double yMin = yAxis.axisScaling.getMinValue();
     	

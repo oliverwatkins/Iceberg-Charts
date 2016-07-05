@@ -32,6 +32,8 @@ public class XYFactor {
 	public double xZeroOffsetInPixel = 200; //what is this???
 	
 	public XYFactor(double xFactor, double yFactor) {
+		
+
 		this.xFactor = xFactor;
 		this.yFactor = yFactor;
 	}

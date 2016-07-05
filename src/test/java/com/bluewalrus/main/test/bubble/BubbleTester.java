@@ -41,35 +41,18 @@ public class BubbleTester extends JFrame {
     	
     	
 	public JTabbedPane createPanel() {
-    		
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
-//        JTabbedPane tabbedPane = new JTabbedPane();
-    	
         JTabbedPane tabbedPaneBar = new JTabbedPane();
-
-        
-        
-//        tabbedPane.add("Bar Charts", tabbedPaneBar);
 
         JPanel p = null;
         JComponent chart = null;
-
-        
-        
-        /***
-         * 
-         * 
-         * BARS
-         * 
-         */
 
         p = createTabbedPane(tabbedPaneBar, "Bubble Guns");
         chart = new TestDataBubble_1_guns().getChart();
         charts.add(chart);
         p.add(chart);
-
         
         p = createTabbedPane(tabbedPaneBar, "Bubble Series");
         chart = new TestDataBubble_2_series().getChart();
@@ -80,8 +63,6 @@ public class BubbleTester extends JFrame {
         chart = new TestDataPieBubble().getChart();
         charts.add(chart);
         p.add(chart);
-        
-
         
         JButton b = new JButton("Create PNG");
 
@@ -95,7 +76,6 @@ public class BubbleTester extends JFrame {
 					
 					int width = 0;
 					int height = 0;
-					
 					
 					if (chart2 instanceof Chart) {
 						width = ((Chart)chart2).getWidth(); 
@@ -132,10 +112,8 @@ public class BubbleTester extends JFrame {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
         return tabbedPaneBar;
     }
-
 
 
     private JPanel createTabbedPane(JTabbedPane tabbedPane, String string) {

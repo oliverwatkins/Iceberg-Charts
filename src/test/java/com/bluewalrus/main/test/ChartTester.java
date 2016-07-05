@@ -1,6 +1,7 @@
 package com.bluewalrus.main.test;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -105,7 +106,7 @@ public abstract class ChartTester extends JFrame{
         this.generateCodeSnippetFile();
         this.appendFileNameToChart(chart);
 
-        this.writeChart(chart, GenerateShowcase.path);
+        this.writeChart(chart, GenerateShowcase.path, null);
 	}
 
 	private void writeFile(StringBuilder sbCodeSnippet, String fileName){
@@ -148,22 +149,21 @@ public abstract class ChartTester extends JFrame{
         String s = this.getClassName();
         chart.fileLocation = s;
 	}
+	
+	Dimension defaultDimension = new Dimension(1000, 700);
 
-	public void writeChart(Chart chart, String path) {
+	public void writeChart(Chart chart, String path, Dimension dimension) {
+		
 		int width = chart.getWidth(); 
 		int height = chart.getHeight();
-		if (chart.getWidth() == 0) {
-			width = 700;
-//			chart.widthChart = 300;
-		}
-		if (chart.getHeight() == 0) {
-			height = 700;
-//			chart.heightChart = 300;
+
+		if (dimension == null) {
+			chart.setSize(defaultDimension);
+			chart.setMinimumSize(defaultDimension);
+			chart.setPreferredSize(defaultDimension);
 		}
 		
-		chart.setSize(width,height);
-		
-		BufferedImage image = new BufferedImage(width, height, 
+		BufferedImage image = new BufferedImage(chart.getWidth(), chart.getHeight(), 
 				BufferedImage.TYPE_INT_ARGB);
 
 		

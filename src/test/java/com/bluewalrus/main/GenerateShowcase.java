@@ -75,8 +75,8 @@ public class GenerateShowcase {
     	
     	//BUBBLE
     	new TestDataBubble_1_guns().createImageAndTextFile();
-//    	new TestDataBubble_2_series().createImageAndTextFile(); //error!
-    	new TestDataPieBubble().createImageAndTextFile();
+    	new TestDataBubble_2_series().createImageAndTextFile(); //error!
+//    	new TestDataPieBubble().createImageAndTextFile();
     	
     	//PIE
     	new TestDataPie_SimplePie().createImageAndTextFile();
