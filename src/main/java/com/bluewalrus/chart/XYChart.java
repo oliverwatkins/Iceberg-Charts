@@ -476,7 +476,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @param title
 	 */
 	private void initialiseScaling(ArrayList<XYDataSeries> xySeriesList) {
-
 		XAxis xAxis = null;
 		YAxis yAxis = null;
 		YAxis yAxis2 = null;
@@ -503,7 +502,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		 * Initialise Y2
 		 */
 		if (isYAxis2) {
-			
 			yAxis2 = initialiseScalingY_numerical(this.dataY2);
 			yAxis2.axisScaling.setOrientation(Orientation.Y2);
 		}
@@ -511,8 +509,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.xAxis = xAxis;
 		this.yAxis = yAxis;
 		this.yAxis2 = yAxis2;
-		
-		
 	}
 
 
@@ -768,11 +764,14 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		ArrayList<Category> categories = new ArrayList<Category>();
 
 		//only one series. no need for legend TODO put this logic back in!!
-//		if (data.size() == 1) {
-//			return;
-//		}
+		if (data.size() == 1) {
+			return;
+		}
 		
-//		if (data.)
+		this.rightOffset = 200; //TODO why do have to put in offset here??
+		
+		
+		
 
 		for (XYDataSeries series : data) {
 
@@ -784,8 +783,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			} 
 			else if(series.type == XYDataSeriesType.MULTI_BAR){
 				
-				this.rightOffset = 200; //TODO why do have to put in offset here??
-				
+
 				
 				DataPointMultiBar mb = (DataPointMultiBar)series.dataPoints.get(0);
 		        ArrayList<DataPointBar> dps = mb.bars;
@@ -802,10 +800,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 						series.line);
 				categories.add(category);
 			}
-			
-			
 		}
-		
 		
 		if (isYAxis2) {
 	        categories = new ArrayList<Category>();

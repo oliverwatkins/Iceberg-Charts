@@ -12,6 +12,7 @@ import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
+import com.bluewalrus.chart.datapoint.ValueType;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 import com.bluewalrus.scaling.TimeSeriesAxisScaling;
@@ -99,7 +100,20 @@ public class ChartPlotter {
             DataPoint dataPoint, 
             XYChart chart, int pixBtnFirst2Pts) {
 		
-        int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
+		
+		System.out.println("Pulling back (or pushing by this offset) = " + xyFactor.xZeroOffsetInPixel);
+		System.out.println("dataPoint.x * xyFactor.xFactor = " + (dataPoint.x * xyFactor.xFactor));
+		System.out.println("xShift = " + xShift);
+		System.out.println("");
+		
+		
+		int x = 0;
+		if (dataPoint.valueType == ValueType.X_TIME) {
+	        x = (int) ((dataPoint.xDate.getTime() * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
+		}else {
+	        x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
+		}
+		
         int y = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
 
         //hack TODO 
@@ -209,25 +223,31 @@ public class ChartPlotter {
         return new XYFactor(xFactor, yfactor);
 	}
 
-
-
-	
+	 /**
+	  * TODO this method is completely wrong
+	  * @param chart
+	  * @param yAxis
+	  * @return
+	  */
 	protected double getYZeroOffsetInPixel(XYChart chart, YAxis yAxis) {
 		
-//		if (yAxis.axisScaling instanceof TimeSeriesAxisScalingY) {
-//			throw new RuntimeException("TODO");
-//
-//			
-//		}else {
-	    	double yMax = yAxis.axisScaling.getMaxValue();
-	    	double yMin = yAxis.axisScaling.getMinValue();
-	    	
-	    	return (double) ((-yMin / (yMax - yMin)) * chart.heightChart);
-//		}
+    	double yMax = yAxis.axisScaling.getMaxValue();
+    	double yMin = yAxis.axisScaling.getMinValue();
+    	
+    	return (double) ((-yMin / (yMax - yMin)) * chart.heightChart);
 	}
 
 	
 	/**
+	 * I 
+	 * DO
+	 * NOT 
+	 * UNDERSTAND
+	 * THIS METHOD
+	 * 
+	 * TODO this method is completely wrong
+	 * 
+	 * Negative value : 
 	 * 
 	 * @param chart
 	 * @param xAxis
@@ -236,13 +256,19 @@ public class ChartPlotter {
 
 	protected double getXZeroOffsetInPixel(XYChart chart, XAxis xAxis) {
 		
+		double offset = -1;
+		
 		if (xAxis.axisScaling instanceof TimeSeriesAxisScaling) {
 	    	long xMax = ((TimeSeriesAxisScaling)xAxis.axisScaling).dateEnd.getTime();
 	    	long xMin = ((TimeSeriesAxisScaling)xAxis.axisScaling).dateStart.getTime();
 	    	
-	    	double diffX = xMax - xMin;
+	    	long diffX = xMax - xMin;
 	    	
-			return (double) ((-xMin / (double) diffX) * chart.widthChart);
+	    	double v = (-xMin / (double) diffX);
+	    	
+	    	System.out.println("v = " + v);
+	    	
+	    	offset =  (double) (v * chart.widthChart);
 	    	
 		}else {
 
@@ -250,8 +276,14 @@ public class ChartPlotter {
 	    	double xMin = xAxis.axisScaling.getMinValue();
 	    	
 	    	double diffX = xMax - xMin;
-			return (double) ((-xMin / (double) diffX) * chart.widthChart);
+	    	
+	    	double v = (double) ((-xMin / (double) diffX) * chart.widthChart);
+	    	
+	    	offset =   v;
 		}
+		System.out.println("offset = " + offset);
+		
+		return offset;
 	}
     
 }

@@ -43,6 +43,7 @@ public class DataPoint implements Serializable{
     }
     
     public DataPoint(Date date, double y) {
+		valueType = ValueType.X_TIME;
         this.xDate = date;
         this.y = y;
     }

@@ -69,7 +69,7 @@ public class TestDataBar_MultiBar_SideBySide extends ChartTester {
         XYChart chart = new XYChart("Side by Side", "Year", "Percent Taxed", xySeriesList);
         
         
-        chart.rightOffset = 200;
+//        chart.rightOffset = 200;
         chart.yAxis.setMinValue(0);
         chart.yAxis.setMaxValue(100);
         

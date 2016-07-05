@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  * 
  * Additionally a Chart is composed of a <code>Title</code> and optionally a <code>Legend</code>
  * 
- * 
+ *  
  * @author oliver
  */
 public abstract class Chart extends JPanel {

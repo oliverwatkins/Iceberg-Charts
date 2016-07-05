@@ -331,7 +331,7 @@ public class ChartUtils {
 	}
 
 	/**
-	 * A DataPointBar, should have all its name set to a value, or no values set to name.
+	 * A DataPointBar, should have all its names set to a value, or no values set to name.
 	 * 
 	 * @param bars
 	 */

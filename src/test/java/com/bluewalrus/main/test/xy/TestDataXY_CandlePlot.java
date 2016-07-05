@@ -21,22 +21,13 @@ public class TestDataXY_CandlePlot extends ChartTester {
 		
 		ChartTester t = new TestDataXY_CandlePlot();
 		t.testChart(t.getChart());
-		
-//		getChart();
 	}
 
-	
-
-
-
 	public XYChart getChart() {
-
-		// TEST_DATA_START
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-//		values.add(new DataPointBoxPlot(5, 53, 15, 26, 37, 49, 70));
 
 		values.add(new DataPointCandleStick(10, 80, 70, 60, 50, true));
 		values.add(new DataPointCandleStick(20, 80, 75, 50, 15, true));
@@ -49,13 +40,6 @@ public class TestDataXY_CandlePlot extends ChartTester {
 		values.add(new DataPointCandleStick(90, 80, 75, 50, 25, true));
 		values.add(new DataPointCandleStick(100, 80, 70, 60, 50, true));
 		values.add(new DataPointCandleStick(110, 80, 75, 50, 15, true));
-		
-		
-//		values.add(new DataPointCandleStick(40, 54, 40, 46, 73, true));
-//		values.add(new DataPointCandleStick(50, 30, 34, 39, 72, false));
-//		values.add(new DataPointCandleStick(60, 45, 36, 45, 58, true));
-//		values.add(new DataPointCandleStick(70, 47, 41, 45, 49, false));
-//		values.add(new DataPointCandleStick(80, 70, 68, 64, 50, false));
 
 		XYDataSeries series = new XYDataSeries(values, new UIPointCandleStick(
 				new Color(181, 197, 207, 100)), null, "1994");
@@ -68,12 +52,10 @@ public class TestDataXY_CandlePlot extends ChartTester {
 		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
 
 		chart.setSize(1000, 500);
-		chart.rightOffset = 200;
 
 		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-		chart.setTitle("Box Plot");
+		chart.setTitle("Candle Plot");
 
 		return chart;
 	}
-
 }

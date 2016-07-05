@@ -33,7 +33,7 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		
 		Date startDate = df.parse("2001-01-03 10-00-00"); //3rd jan
 //		Date endDate = df.parse("2001-03-12 05-33-00"); //12th march
-		Date endDate = df.parse("2001-09-7 05-33-00"); //12th march
+		Date endDate = df.parse("2001-04-7 05-33-00"); //12th march
 		
 		
 		String time = "2001-03-01 00-33-00";                              
@@ -42,16 +42,16 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		time = "2001-04-01 00-33-00";                                                
 		Date dt5 = df.parse(time);                                      
 
-		time = "2001-07-20 05-33-00";                              
-		Date dt6 = df.parse(time);                                      
+//		time = "2001-07-20 05-33-00";                              
+//		Date dt6 = df.parse(time);                                      
 		
 		
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		values.add(new DataPoint(dt4, 5));
 		values.add(new DataPoint(dt5, 8));
-		values.add(new DataPoint(dt6, 14));
+//		values.add(new DataPoint(dt6, 14));
 
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new GridLine(Color.BLUE), "Something Blue");
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE,4), new GridLine(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
 		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
@@ -76,18 +76,14 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 						timeInt2, 
 						null), "Time Series 1"); 
 
-		XYChart lineChart = new XYChart(values, "Time Series 1", "X", "Y"); //yAxis, xAxis);
+		XYChart lineChart = new XYChart(series, "Time Series 1", "X", "Y"); //yAxis, xAxis);
 		lineChart.xAxis = xAxis;
-		lineChart.setTitle("Month Day Time Series (3rd Jan to 12th March)");
-		
+		lineChart.setTitle("Month Day Time Series (3rd Jan - 12th March)");
 		
 		timeInt1.styling.intervalFont =  new Font("Blackadder ITC", Font.BOLD, 16);
 		timeInt2.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 12);
 		
 		timeInt1.styling.graphFill =  new GridFill(Color.WHITE, new Color(224,235,235), false);
-		
-		
-		
 
 		return lineChart;
 	}

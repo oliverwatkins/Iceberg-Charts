@@ -69,7 +69,7 @@ public class TestDataBar_MultiBar_Stacked extends ChartTester {
         xySeriesList.add(series);
         
         XYChart chart = new XYChart("Stacked", "Year", "y", xySeriesList);
-        chart.rightOffset = 200;
+//        chart.rightOffset = 200;
         
         return chart;
     }

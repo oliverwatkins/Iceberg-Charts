@@ -49,7 +49,6 @@ public class TestDataXY_Boxplot extends ChartTester {
 		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
 
 		chart.setSize(1000, 500);
-		chart.rightOffset = 200;
 
 		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 		chart.setTitle("Box Plot");
