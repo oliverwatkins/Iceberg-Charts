@@ -113,7 +113,8 @@ public class XAxisDrawUtil {
 			yPos = yPos - 35;
 		}
 		
-		if (interval.styling.intervalFont != null)
+		
+		if (interval.styling != null && interval.styling.intervalFont != null)
 			g.setFont(interval.styling.intervalFont);
 
 		if (isXPositionInsideChart(chart, fromLeft))

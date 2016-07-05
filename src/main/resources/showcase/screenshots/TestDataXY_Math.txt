@@ -31,10 +31,10 @@
 		NumericalInterval t3x = new NumericalInterval(1, 1.0, new GridLine(
 				Color.LIGHT_GRAY, true, 1));
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-10.0, 10.0,
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-10.0, 10.0,
 				t1x, t2x, t3x), "Y Axis");
 
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(-10.0, 10.0,
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(-10.0, 10.0,
 				t1x, t2x, t3x), "X Value");
 
 		xySeriesList.add(series);

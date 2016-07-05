@@ -87,6 +87,7 @@ public class GenerateShowcase {
     	//XYY
     	new TestDataBar_2Y().createImageAndTextFile();
     	
+    	System.out.println("Completed Image Code Genereration !!!!");
     	
     	
 

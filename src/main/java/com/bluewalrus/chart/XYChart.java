@@ -270,16 +270,13 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public XYChart(String title,
 			String xTitle, String yTitle, ArrayList<XYDataSeries> xySeriesList) {
 		
+		this.data.addAll(xySeriesList);
 		initialiseScaling(xySeriesList);
-		
 		
 		yAxis.labelText = yTitle;
 		xAxis.labelText = xTitle;
-				
 		
 		this.addMouseMotionListener(this);
-
-		this.data.addAll(xySeriesList);
 
 		this.setTitle(title);
 	}
