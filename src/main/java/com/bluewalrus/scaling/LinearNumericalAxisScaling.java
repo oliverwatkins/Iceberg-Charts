@@ -157,7 +157,6 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 			if (!inBounds(pixelsFromEdge, chart)) {
 				
 				String labelValueFormatted = getLabelValue((NumericalInterval)interval, i);
-				System.out.println("labelValueFormatted = " + labelValueFormatted + " is out of range and wont be displayed");
 				continue;
 			}
 			

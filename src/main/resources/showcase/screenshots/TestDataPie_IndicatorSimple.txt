@@ -1,0 +1,10 @@
+	public Chart getChart() {
+
+        ArrayList<Segment> values = new ArrayList<Segment>();
+        values.add(new Segment(15, Color.RED));
+        values.add(new Segment(52, Color.BLUE));
+        values.add(new Segment(33, Color.GREEN));
+    	
+    	SimpleIndicatorPieChart chart = new SimpleIndicatorPieChart(34, values, "Simple Indicator");
+        
+        return chart;

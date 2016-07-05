@@ -1,0 +1,32 @@
+	public Chart getChart() {
+
+		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+
+		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
+
+		XYDataSeries series = new XYDataSeries(
+				new UIPointCircle(Color.RED, 4), null, "1994");
+
+		series.dataPoints = getData1();
+
+		XYDataSeries series2 = new XYDataSeries(
+				new UIPointCircle(Color.ORANGE, 4), null, "1995");
+
+		series2.dataPoints = getData2();
+
+		xySeriesList.add(series);
+		xySeriesList.add(series2);
+		XYChart chart = new XYChart("Sea Lion Height versus Weight", 
+			"Length (inches)", "Weight (kg)", xySeriesList);
+		
+		chart.yAxis.turnOffGridLines();
+		chart.xAxis.turnOffGridLines();
+		
+
+		chart.rightOffset = 200;
+
+		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+		chart.setTitle("Sea Lion Height versus Weight");
+
+		return chart;

@@ -174,11 +174,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 				totalDistanceFromEdge);
 		
 	}
-	
-	
-
-
-
 
 	/**
 	 * TODO : (see super class comments)

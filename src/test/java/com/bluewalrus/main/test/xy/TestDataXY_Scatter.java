@@ -33,17 +33,14 @@ public class TestDataXY_Scatter extends ChartTester {
 
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
-		XYChart chart = new XYChart("Sea Lion Height versus Weight", "Length (inches)", "Weight (kg)", xySeriesList);
+		XYChart chart = new XYChart("Sea Lion Height versus Weight", "Length (inches)", "Weight (kg)", 
+				xySeriesList);
 		
 		chart.yAxis.turnOffGridLines();
 		chart.xAxis.turnOffGridLines();
 		
-//		chart.setSize(400, 400);
-		chart.rightOffset = 200;
-
 		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 		chart.setTitle("Sea Lion Height versus Weight");
-
 		return chart;
 	}
 

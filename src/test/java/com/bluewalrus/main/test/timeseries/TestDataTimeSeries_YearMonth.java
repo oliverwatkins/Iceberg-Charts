@@ -71,7 +71,7 @@ public class TestDataTimeSeries_YearMonth extends ChartTester {
 		timeInt2.styling.intervalFont =  new Font("Blackadder ITC", Font.BOLD, 16);
 		timeInt3.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 12);
 		
-		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, Color.LIGHT_GRAY, false);
+		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, new Color(224,235,235), false);
 		
 		XAxis xAxis = new XAxis(
 				new TimeSeriesAxisScaling(

@@ -1,28 +1,3 @@
-package com.bluewalrus.main.test.math;
-
-import java.awt.Color;
-import java.util.ArrayList;
-
-import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.chart.XYDataSeries;
-import com.bluewalrus.chart.axis.XAxis;
-import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
-import com.bluewalrus.chart.draw.point.UIPointCircle;
-import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.main.test.Showcase;
-import com.bluewalrus.scaling.LinearNumericalAxisScaling;
-
-public class TestDataXY_SineCurve extends ChartTester {
-
-	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataXY_SineCurve();
-		t.testChart(t.getChart());
-	}
-	
-
-	@Showcase
 	public Chart getChart() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -43,6 +18,7 @@ public class TestDataXY_SineCurve extends ChartTester {
 			DataPoint dp = new DataPoint(x, (int) (50 * cos((x*10 / 100.0) * 2
 					* Math.PI)));
 			
+			System.out.println("dp = " + dp);
 			values3.add(dp);
 		}
 		
@@ -62,7 +38,7 @@ public class TestDataXY_SineCurve extends ChartTester {
 
 		
 		
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(), "X");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScalingX(), "X");
 		xAxis.axisScaling.setMinValue(0);
 		xAxis.axisScaling.setMaxValue(400);
 		
