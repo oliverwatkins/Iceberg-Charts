@@ -137,7 +137,7 @@ public abstract class AxisScaling {
 	 * @param chart
 	 * @return
 	 */
-	protected abstract double getMultiplicationFactor(XYChart chart);
+	public abstract double getMultiplicationFactor(XYChart chart);
 
 	protected abstract void drawGridFills(AbstractInterval interval12, Graphics2D g, XYChart chart);
 	

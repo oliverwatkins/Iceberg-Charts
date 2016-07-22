@@ -2,10 +2,10 @@ package com.bluewalrus.chart.axis;
 
 import java.text.SimpleDateFormat;
 
+import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.draw.GridLine;
 
 public class TimeInterval extends AbstractInterval{
-
 	
 	public enum Type {
 		MONTH, YEAR, DAY, HOUR, WEEK, MINUTE, NONE, SECOND
@@ -14,21 +14,23 @@ public class TimeInterval extends AbstractInterval{
 	public Type type;
 	public SimpleDateFormat dateFormat;
 
-
-	public TimeInterval(int lineLength, Type intervalType, GridLine line) {
+	public TimeInterval(int lineLength, Type intervalType, GridLine graphLine) {
 		
 		this.styling.lineLength = lineLength;
-		styling.graphLine = line;
+		styling.graphLine = graphLine;
 		type = intervalType;
+		
+		//per default. Time intervals have centered labels.
+		this.centered = true;
 	}
 	
 	
     public TimeInterval(int lineLength, Type intervalType, GridLine graphLine, SimpleDateFormat dateFormat) {
+    	
     	this(lineLength, intervalType, graphLine);
     	
     	this.dateFormat = dateFormat;
 	}
-
 
 	/**
      * increment cannot be zero or less than zero
@@ -49,4 +51,12 @@ public class TimeInterval extends AbstractInterval{
 	public void setIncrement(Object interval) {
 		type = (Type)interval;
 	}
+	
+	public int getIntervalInPixels(Chart chart) {
+		
+		
+		return -1;
+	}
+	
+	
 }

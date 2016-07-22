@@ -1,5 +1,7 @@
 package com.bluewalrus.chart.axis;
 
+import com.bluewalrus.chart.Chart;
+
 
 public abstract class AbstractInterval {
 
@@ -16,6 +18,7 @@ public abstract class AbstractInterval {
 	 */
 	public boolean active = true;
 
+	protected boolean centered = false;
 
     
     public boolean isActive() {
@@ -40,6 +43,11 @@ public abstract class AbstractInterval {
 	public abstract Object getInterval();
 	
 	public abstract void setIncrement(Object interval);
-		
+
+	public boolean isCentered() {
+		return centered ;
+	}
+
+//	public abstract int getIntervalInPixels(Chart chart);		
 	
 }

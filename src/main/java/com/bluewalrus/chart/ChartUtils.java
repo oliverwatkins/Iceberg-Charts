@@ -10,12 +10,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
+import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridLine;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
+import com.bluewalrus.scaling.AxisScaling;
+import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 /**
  * Utility class for geometric calculations on the chart.
@@ -23,7 +27,6 @@ import com.bluewalrus.chart.draw.point.UIPointTriangle;
  *
  */
 public class ChartUtils {
-
 	
 	static double calculateXAxisMax(ArrayList<DataPoint> values) {
 		double d = getMaxXValue(values);
@@ -117,7 +120,6 @@ public class ChartUtils {
 		return max;
 	}
 	
-	
 	public static DataRange getDataRangeX(ArrayList<XYDataSeries> xySeriesList) {
 		//get Max/Min
 		double xMax = ChartUtils.calculateXAxisMax(xySeriesList, true);
@@ -128,7 +130,6 @@ public class ChartUtils {
 		return drX;
 	}
 
-
 	public static DataRange getDataRangeY(ArrayList<XYDataSeries> xySeriesList) {
 		//Get Max/Min
 		double yMax = ChartUtils.calculateYAxisMax(xySeriesList, true);
@@ -138,7 +139,6 @@ public class ChartUtils {
 		DataRange drY = ChartUtils.getDataRange(yMax, yMin, 10);
 		return drY;
 	}
-		
 	
 	public static DateRange getDateRangeX(ArrayList<XYDataSeries> xySeriesList) {
 		
@@ -179,9 +179,6 @@ public class ChartUtils {
 		drY.max = new Date(yMaxAdj);
 		return drY;
 	}
-	
-	
-	
 
 	public static double calculateYAxisMin(
 			ArrayList<XYDataSeries> xySeriesList, boolean b) {
@@ -229,8 +226,6 @@ public class ChartUtils {
 		}
 		return max;
 	}
-
-
 
 	public static double calculateXAxisMin(ArrayList<XYDataSeries> xySeriesList, boolean b) {
 		
@@ -421,6 +416,31 @@ public class ChartUtils {
 			}
 		}
 		return magnitude;
+	}
+	
+	
+	
+	public static double getIncrementInPixels(AbstractInterval interval,
+			XYChart chart, AxisScaling scaling) {
+		
+		double incrementInPixel = -1;
+		double factor = scaling.getMultiplicationFactor(chart);
+		
+		
+		if (scaling instanceof LinearNumericalAxisScaling) {
+			incrementInPixel = (double) (((NumericalInterval) interval)
+					.getInterval() * factor);
+		}else {
+			
+			TimeInterval inter = (TimeInterval) interval;
+
+			TimeInterval.Type t = inter.getInterval();
+
+			long increment = DateUtils.getMsForType(t);
+			
+			incrementInPixel = (double) (increment * factor);
+		}
+		return incrementInPixel;
 	}
 
 	/**

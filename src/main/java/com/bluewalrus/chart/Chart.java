@@ -34,7 +34,7 @@ public abstract class Chart extends JPanel {
 
 	public Color backgroundColor = Color.WHITE;
 
-//	// offsets (padding of actual chart to its border)
+	// offsets (padding of actual chart to its border)
 	public int leftOffset = 140;
 	public int topOffset = 120;
 	public int bottomOffset = 100;
@@ -50,15 +50,6 @@ public abstract class Chart extends JPanel {
 	public Chart() {
 	}
 	
-
-	public void setTitleFont(String string, int plain, int i) {
-		title.titleFont = new Font(string, plain, i);
-	}
-
-	public void setTitleFont(Font font) {
-		title.titleFont = font;
-	}
-	
 	/**
 	 * Must be called at every paint() call.
 	 */
@@ -67,7 +58,6 @@ public abstract class Chart extends JPanel {
 		this.heightChart = getHeight() - (topOffset + bottomOffset);
 		this.widthChart = getWidth() - (leftOffset + rightOffset);
 	}
-
 	
 	/**
 	 * Draw the background. Just a blank white rectangle.
@@ -84,8 +74,6 @@ public abstract class Chart extends JPanel {
 		
 		g2d.setColor(backgroundColor);
 		g.fillRect(leftOffset, topOffset, this.getWidth() - leftOffset - rightOffset, this.getHeight() - topOffset - bottomOffset);
-		
-		
 	}
 
 	/**
@@ -94,7 +82,6 @@ public abstract class Chart extends JPanel {
 	 * @param g
 	 */
 	abstract protected void drawGraphData(Graphics g);
-
 	
 	/**
 	 * Get the bounds of the actual chart (not the background canvas).
@@ -110,20 +97,13 @@ public abstract class Chart extends JPanel {
 	}
 
 	protected void drawLegend(Graphics2D g, ArrayList<Category> data) {
-		
 		legend = new Legend(legendFont, this);
 
 		legend.drawLegend(g, this, data);
 	}
 
-	
-	protected void drawTitle(Graphics g) {
-		title.drawTitle(g, this);
-	}
-
 	public void drawLegend(Graphics2D g, ArrayList<Category> categories,
 			int offset) {
-
 		legend = new Legend(legendFont, this, offset);
 
 		legend.drawLegend(g, this, categories);
@@ -134,7 +114,6 @@ public abstract class Chart extends JPanel {
 
 		this.firePropertyChange("location", fileLocation, location);
 		this.fileLocation = location;
-		
 	}
 
 
@@ -144,14 +123,6 @@ public abstract class Chart extends JPanel {
 		}
 		return null;
 	}
-	
-	public void setTitle(String t) {
-		title.setTitle(t); 
-	}
-	public String getTitle() {
-		return title.getTitle();
-	}
-
 	
 	private void drawTrialVersion(Graphics2D g2d) {
 		String trialVersion = "Trial Version : ";
@@ -185,7 +156,25 @@ public abstract class Chart extends JPanel {
 		g2d.setComposite(c);
 	}
 
+	protected void drawTitle(Graphics g) {
+		title.drawTitle(g, this);
+	}
+	
 	public Font getTitleFont() {
 		return title.titleFont;
 	}
+	public void setTitleFont(String string, int plain, int i) {
+		title.titleFont = new Font(string, plain, i);
+	}
+
+	public void setTitleFont(Font font) {
+		title.titleFont = font;
+	}
+	public void setTitle(String t) {
+		title.setTitle(t); 
+	}
+	public String getTitle() {
+		return title.getTitle();
+	}
+
 }

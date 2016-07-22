@@ -3,7 +3,6 @@ package com.bluewalrus.chart.draw;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.Shape;
 
 import com.bluewalrus.chart.Chart;
@@ -11,9 +10,9 @@ import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
-import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
+import com.bluewalrus.scaling.XXX;
 
 /**
  * Tick, GridLine, Label, XLabel
@@ -91,7 +90,7 @@ public class XAxisDrawUtil {
 	 * @param axis
 	 * @param interval
 	 */
-	public static void drawXIntervalLabel(Graphics g, Chart chart, double fromLeft,
+	public static void drawXIntervalLabel(Graphics g, XYChart chart, double fromLeft,
 			String xLabel, Axis axis, AbstractInterval interval) {
 		
 		int level = interval.getLevel();
@@ -103,6 +102,9 @@ public class XAxisDrawUtil {
 
 		int yPos = chart.topOffset + chart.heightChart + axis.tickLabelOffset;
 
+		
+//		int xxx = interval.getIntervalInPixels(chart);
+		
 		// TODO
 		if (level == 1) {
 //			yPos = yPos + 100;
@@ -112,6 +114,19 @@ public class XAxisDrawUtil {
 		} else if (level == 3) {
 			yPos = yPos - 35;
 		}
+		
+		
+		if (interval.isCentered()) {
+						
+			double pics = ChartUtils.getIncrementInPixels(interval, chart, axis.axisScaling);
+			
+			fromLeft = fromLeft + pics/2;
+			
+			//center to the right.
+			//move exactly 50% right in interval
+			
+		}
+		
 		
 		
 		if (interval.styling != null && interval.styling.intervalFont != null)
