@@ -8,116 +8,138 @@ import com.bluewalrus.chart.axis.TimeInterval.Type;
 
 public class DateUtils {
 
-	public static long getMsToNearestDataType(Date dateStart, Type type) {
+	/**
+	 * ie. if 3rd January, then return 1st January at 00:00
+	 * 
+	 * @param dateStart
+	 * @param type
+	 * @param intoFuture
+	 * @return
+	 */
+	public static Date getDatePointToNearestDataType(Date dateStart, Type type, boolean intoFuture) {
+		
+		long ms = getMsToNearestDataType(dateStart, type, intoFuture);
+
+		Date d = null;
+		if (intoFuture) {
+			d = new Date(dateStart.getTime() + ms);
+		}else {
+			d = new Date(dateStart.getTime() - ms);
+		}
+		return d;
+	}
+	
+	/**
+	 * Given a date (dateStart) get a time amount (in this case milliseconds) to the nearest interval
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param dateStart
+	 * @param type
+	 * @return
+	 */
+	public static long getMsToNearestDataType(Date dateStart, Type type, boolean intoFuture) {
 		
 		Calendar calDateStart = Calendar.getInstance();
+		calDateStart.setTime(dateStart);
+		Calendar cal2 = Calendar.getInstance();
+		cal2.setTime(dateStart);
+		
+		int increment = 0;
+		
+		if (intoFuture) {
+			increment = 1;
+		}else {
+			increment = -1;
+		}
+		
+		long diff = 0;
+		
+
 
 		if (type == Type.YEAR) {
-			
 			/**
 			 * Given a date "dateStart", find the milliseconds to the next year (ie. YYYY-01-01-00:00)
 			 */
-			Calendar cal2 = Calendar.getInstance();
+			if (intoFuture)
+				cal2.add(Calendar.YEAR, increment);
 			
-			calDateStart.setTime(dateStart);
-			
-			cal2.set(Calendar.YEAR, calDateStart.get(Calendar.YEAR) + 1);
 			cal2.set(Calendar.DAY_OF_YEAR, 1);
 			cal2.set(Calendar.HOUR_OF_DAY, 0);
 			cal2.set(Calendar.MINUTE, 0);
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
-			
-			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); 
-		}else if (type == Type.MONTH) {
-			
+		} else if (type == Type.MONTH) {
 			/**
 			 * Given a date "dateStart", find the milliseconds to the next month (ie. YYYY-01-01-00:00)
 			 */
-			Calendar cal2 = Calendar.getInstance();
-			
-			calDateStart.setTime(dateStart);
-			cal2.setTime(dateStart);
-			cal2.set(Calendar.MONTH, calDateStart.get(Calendar.MONTH) + 1);
-			cal2.set(Calendar.DAY_OF_MONTH, 0);
+			if (intoFuture)
+				cal2.add(Calendar.MONTH, increment);
+						
+			cal2.set(Calendar.DAY_OF_MONTH, 1);
 			cal2.set(Calendar.HOUR, 0);
 			cal2.set(Calendar.MINUTE, 0);
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
-			
-			
-			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); //getMsForType(Type.YEAR) - msToStart;
-		}else if (type == Type.DAY){
+		} else if (type == Type.DAY){
 			
 			/**
 			 * Given a date "dateStart", find the milliseconds to the next day (ie. YYYY-01-01-00:00)
 			 */
-			Calendar cal2 = Calendar.getInstance();
+			if (intoFuture)
+				cal2.add(Calendar.DAY_OF_YEAR, increment);
 			
-			calDateStart.setTime(dateStart);
-			
-			
-			cal2.setTime(dateStart);
-			
-			cal2.set(Calendar.DAY_OF_YEAR, calDateStart.get(Calendar.DAY_OF_YEAR) + 1);
 			cal2.set(Calendar.HOUR, 0);
 			cal2.set(Calendar.MINUTE, 0);
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
+		} else if (type == Type.WEEK){
 			
-			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); 
+			if (intoFuture)
+				cal2.add(Calendar.WEEK_OF_YEAR, increment);
 			
-			
-			
-		}else if (type == Type.WEEK){
-			
-			Calendar cal2 = Calendar.getInstance();
-			
-			calDateStart.setTime(dateStart);
-			
-			cal2.setTime(dateStart);
-			
-			cal2.set(Calendar.WEEK_OF_YEAR, calDateStart.get(Calendar.WEEK_OF_YEAR) + 1);
 			cal2.set(Calendar.HOUR, 0);
 			cal2.set(Calendar.MINUTE, 0);
 			cal2.set(Calendar.SECOND, 0);
 			cal2.set(Calendar.MILLISECOND, 0);
-			
-			return cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); 
-			
-		}else {
+		} else {
 			throw new RuntimeException("No type yet " + type);
 		}
+		
+		if (intoFuture)
+			diff = cal2.getTimeInMillis() - calDateStart.getTimeInMillis(); 
+		else
+			diff = calDateStart.getTimeInMillis() - cal2.getTimeInMillis(); 
+			
+		return diff;
+		
 	}
 	
 	public static Type getIntervalTime(DateRange drX) {
 
 		long n = drX.howMany(DateUtils.getMsForType(Type.YEAR));
-		
 		if (n>2) {
 			return Type.YEAR;
 		} 
 		
 		n = drX.howMany(DateUtils.getMsForType(Type.WEEK));
-		
 		if (n>2) {
 			return Type.WEEK;
 		}
 		
 		n = drX.howMany(DateUtils.getMsForType(Type.DAY));
-		
 		if (n>2) {
 			return Type.DAY;
 		}
 		
 		n = drX.howMany(DateUtils.getMsForType(Type.HOUR));
-		
 		if (n>2) {
 			return Type.HOUR;
 		}
 
 		n = drX.howMany(DateUtils.getMsForType(Type.MINUTE));
-		
 		if (n>2) {
 			return Type.MINUTE;
 		}

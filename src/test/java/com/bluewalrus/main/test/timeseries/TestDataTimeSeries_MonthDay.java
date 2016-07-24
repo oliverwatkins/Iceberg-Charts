@@ -77,7 +77,7 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 
 		XYChart lineChart = new XYChart(series, "Time Series 1", "X", "Y"); //yAxis, xAxis);
 		lineChart.xAxis = xAxis;
-		lineChart.setTitle("Month Day Time Series (3rd Jan - 12th March)");
+		lineChart.setTitle("Month Day Time Series (3rd Jan - 7th April)");
 		
 		timeInt1.styling.intervalFont =  new Font("Blackadder ITC", Font.BOLD, 16);
 		timeInt2.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 12);

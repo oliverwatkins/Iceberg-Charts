@@ -426,7 +426,6 @@ public class ChartUtils {
 		double incrementInPixel = -1;
 		double factor = scaling.getMultiplicationFactor(chart);
 		
-		
 		if (scaling instanceof LinearNumericalAxisScaling) {
 			incrementInPixel = (double) (((NumericalInterval) interval)
 					.getInterval() * factor);
@@ -467,5 +466,4 @@ public class ChartUtils {
 		}
 		return false;
 	}
-	
 }

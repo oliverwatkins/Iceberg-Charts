@@ -471,7 +471,7 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 	 * @return
 	 */
 	@Override
-	protected double getMultiplicationFactor(XYChart chart) {
+	public double getMultiplicationFactor(XYChart chart) {
 		
 		if (orientation == Orientation.X) {
 			return ((double) chart.widthChart / (double) (maxValue - minValue));

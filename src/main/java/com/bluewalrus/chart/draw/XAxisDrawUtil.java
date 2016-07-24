@@ -12,7 +12,6 @@ import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
-import com.bluewalrus.scaling.XXX;
 
 /**
  * Tick, GridLine, Label, XLabel
@@ -102,13 +101,9 @@ public class XAxisDrawUtil {
 
 		int yPos = chart.topOffset + chart.heightChart + axis.tickLabelOffset;
 
-		
-//		int xxx = interval.getIntervalInPixels(chart);
-		
 		// TODO
 		if (level == 1) {
 //			yPos = yPos + 100;
-
 		} else if (level == 2) {
 			yPos = yPos - 20;
 		} else if (level == 3) {

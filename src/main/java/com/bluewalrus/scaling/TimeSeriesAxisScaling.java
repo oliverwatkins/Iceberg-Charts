@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.DateUtils;
 import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.XYChart;
@@ -52,7 +53,11 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	/**
 	 * Draw the intervals ticks and labels for one particular interval:
 	 * 
-	 * 10--| | | 20--| |
+	 * 10--| 
+	 * 	   | 
+	 * 	   | 
+	 * 20--| 
+	 *     |
 	 * 
 	 * 
 	 * @param interval
@@ -69,6 +74,11 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		double dayInPixel = getIncrementInPixels(TimeInterval.Type.DAY, chart);
 
+		if (interval.isCentered() && showLabel) {
+			//we may need to show label that is being cut by the y axis
+			drawFirstCenteredLabel(interval, g, chart);
+		}
+		
 		for (int i = 1; i < (incrementNo + 1); i++) {
 
 			double intervalInPixels = 0;
@@ -100,6 +110,69 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 			}
 			totalIncrementPixs = totalIncrementPixs + intervalInPixels;
 		}
+	}
+
+	private void drawFirstCenteredLabel(TimeInterval interval, Graphics2D g, XYChart chart) {
+		
+		double factor = getMultiplicationFactor(chart);
+		
+		double toFirstPointOffTheChart = getToFirstPointOffTheChart(
+				interval, factor, chart); 
+
+		double xxxxx = chart.leftOffset - toFirstPointOffTheChart;
+		
+		
+		Date d = DateUtils.getDatePointToNearestDataType(dateStart, interval.type, false);
+
+//		System.out.println(); 
+		
+//		long ms = DateUtils.getMsToNearestDataType(dateStart, interval.type, false);
+//		
+//		long newDate = dateStart.getTime() - ms;
+		
+		
+//		String label = new Date(newDate).toString();
+		
+		System.out.println("          Start Date = " + dateStart);
+		System.out.println("          Left of Start Date = " + d);
+		
+		
+		// FORMAT
+		SimpleDateFormat df;
+
+		if (interval.dateFormat != null) {
+			df = interval.dateFormat;
+		} else {
+			df = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+		}
+
+		String xLabel = df.format(d);
+
+		
+		System.out.println("xLabel = " + xLabel);
+
+		XAxisDrawUtil.drawXIntervalLabel(g, chart, xxxxx,
+				xLabel, // + label,
+				chart.xAxis, interval);
+		
+	}
+
+	private double getToFirstPointOffTheChart(TimeInterval interval,
+			double factor, XYChart chart) {
+		
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				interval, factor);
+		
+		System.out.println("toFirstInPixels " + toFirstInPixels);
+		
+		double dd = ChartUtils.getIncrementInPixels(interval, chart, this);
+		System.out.println("getIncrementInPixels " + dd);
+		
+		double diff = (dd - toFirstInPixels);
+
+		System.out.println("diff " + diff);
+		
+		return diff;
 	}
 
 	@Override
@@ -315,6 +388,9 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	protected void drawIntervalLabel(TimeInterval interval, Graphics g,
 			XYChart chart, int incrementNumber, double totalIncrementPixs) {
 
+		if (interval.type == Type.MONTH) {
+			System.out.println("");
+		}
 		g.setColor(chart.xAxis.axisColor);
 
 		double factor = getMultiplicationFactor(chart);
@@ -323,8 +399,9 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
 				interval, factor);
 
+		//get ms to next point
 		long ms = DateUtils.getMsToNearestDataType(this.dateStart,
-				interval.type);
+				interval.type, true);
 
 		long timePointAtFirstInterval = dateStart.getTime() + ms;
 
@@ -342,6 +419,8 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		String xLabel = df.format(totalTime);
 
+		System.out.println("xLabel = " + xLabel);
+		
 		// DRAW
 		double totalDistanceFromEdge = chart.leftOffset + toFirstInPixels + totalIncrementPixs;
 
@@ -395,7 +474,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		TimeInterval inter = (TimeInterval) increment;
 
-		long ms = DateUtils.getMsToNearestDataType(this.dateStart, inter.type);
+		long ms = DateUtils.getMsToNearestDataType(this.dateStart, inter.type, true);
 
 		double pix = (ms) * factor; // convert to pixels
 
@@ -413,7 +492,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	}
 
 	@Override
-	protected double getMultiplicationFactor(XYChart chart) {
+	public double getMultiplicationFactor(XYChart chart) {
 		return ((double) chart.widthChart / (double) (dateEnd.getTime() - dateStart
 				.getTime()));
 	}

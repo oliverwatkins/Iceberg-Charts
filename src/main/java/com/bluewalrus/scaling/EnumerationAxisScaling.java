@@ -101,7 +101,7 @@ public class EnumerationAxisScaling extends AxisScaling{
 	}
 
 	@Override
-	protected double getMultiplicationFactor(XYChart chart) {
+	public double getMultiplicationFactor(XYChart chart) {
 		// ???
 		return 0;
 	}
