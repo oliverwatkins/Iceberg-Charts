@@ -23,6 +23,8 @@ public class StackedXYChart extends XYChart{
 		
 		this.charts = charts;
 		this.percentages = percentages;
+		
+		this.xAxis = charts.get(0).xAxis; //all xAxis are shared
 	}
 
 

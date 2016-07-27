@@ -379,9 +379,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	protected void drawIntervalLabel(TimeInterval interval, Graphics g,
 			XYChart chart, int incrementNumber, double totalIncrementPixs) {
 
-		if (interval.type == Type.MONTH) {
-			System.out.println("");
-		}
 		g.setColor(chart.xAxis.axisColor);
 
 		double factor = getMultiplicationFactor(chart);
@@ -410,8 +407,8 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		String xLabel = df.format(totalTime);
 
-		if (interval.getLevel() == 1)
-			System.out.println("xLabel = " + xLabel + " date " + new Date(totalTime) + " >>increment number : " + incrementNumber);
+//		if (interval.getLevel() == 1)
+//			System.out.println("xLabel = " + xLabel + " date " + new Date(totalTime) + " >>increment number : " + incrementNumber);
 		
 		// DRAW
 		double totalDistanceFromEdge = chart.leftOffset + toFirstInPixels + totalIncrementPixs;

@@ -34,8 +34,7 @@ public class TestDataTimeSeries_YearMonth extends ChartTester {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		
 		Date startDate = df.parse("1991-05-15 01-00-00"); 
-//		Date startDate = df.parse("1999-07-12 05-33-00");
-		Date endDate = df.parse("2001-07-12 05-33-00");
+		Date endDate = df.parse("1997-07-12 05-33-00");
 		
 		
 		String time = "2001-03-01 00-33-00";                              
@@ -69,7 +68,7 @@ public class TestDataTimeSeries_YearMonth extends ChartTester {
 
 		
 		timeInt2.styling.intervalFont =  new Font("Blackadder ITC", Font.BOLD, 16);
-		timeInt3.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 12);
+		timeInt3.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 8);
 		
 		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, new Color(224,235,235), false);
 		
@@ -85,30 +84,12 @@ public class TestDataTimeSeries_YearMonth extends ChartTester {
 
 		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
 		lineChart.setTitle("Year Month (May 1991, July 2001)");
-//		lineChart.setSize(1000, 500);
-//		lineChart.rightOffset = 200;
-
-//		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-//		lineChart.setTitle("asdfasdf");
 
 		return lineChart;
 	}
 	
-	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataTimeSeries_YearMonth();
 		t.testChart(t.getChart());
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }

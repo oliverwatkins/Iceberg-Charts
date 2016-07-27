@@ -74,7 +74,6 @@ public abstract class ChartTester extends JFrame{
 		    		snippet = true;
 		    		sbCodeSnippet.append(line);
 		    		sbCodeSnippet.append("\n");
-		    		
 		    	}
 		    	if (line.contains("return chart;")) {
 		    		snippet = false;
@@ -170,29 +169,7 @@ public abstract class ChartTester extends JFrame{
 		Graphics g2 = image.getGraphics();
 		chart.paint(g2);
 
-
-//		t.paint(g2);
-//		Graphics2D g2d = (Graphics2D) g;
-		
-
-//
-//		// draws axis, frame etc
-//		this.prePaint(g2d, data);
-//
-//		// draws actual data 
-//		drawGraphData(g2d);
-		
-//		g2d.setColor(Color.RED);
-//		g2d.fillRect(0, 0, 1000, 1000);
-		
-		
-		
-		
-//		String fileName = getFileFriendlyString(chart, i);
-
 		try {
-			
-			
 			ImageIO.write(image, "PNG", new File(path + chart.fileLocation + ".PNG"));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -207,15 +184,9 @@ public abstract class ChartTester extends JFrame{
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			
-			
 			g.setColor(Color.BLUE);
 			g.fillRect(0, 0, 1000, 1000);
-			
-			
 		}
 	}
-	
-
-	
 
 }

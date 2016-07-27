@@ -100,13 +100,6 @@ public class ChartPlotter {
             DataPoint dataPoint, 
             XYChart chart, int pixBtnFirst2Pts) {
 		
-		
-		System.out.println("Pulling back (or pushing by this offset) = " + xyFactor.xZeroOffsetInPixel);
-		System.out.println("dataPoint.x * xyFactor.xFactor = " + (dataPoint.x * xyFactor.xFactor));
-		System.out.println("xShift = " + xShift);
-		System.out.println("");
-		
-		
 		int x = 0;
 		if (dataPoint.valueType == ValueType.X_TIME) {
 	        x = (int) ((dataPoint.xDate.getTime() * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
@@ -266,8 +259,6 @@ public class ChartPlotter {
 	    	
 	    	double v = (-xMin / (double) diffX);
 	    	
-	    	System.out.println("v = " + v);
-	    	
 	    	offset =  (double) (v * chart.widthChart);
 	    	
 		}else {
@@ -281,7 +272,6 @@ public class ChartPlotter {
 	    	
 	    	offset =   v;
 		}
-		System.out.println("offset = " + offset);
 		
 		return offset;
 	}

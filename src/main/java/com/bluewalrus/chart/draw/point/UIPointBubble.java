@@ -61,10 +61,7 @@ public class UIPointBubble extends UIPointComplexXY {
 		}
 
 		if (mag <= 0){
-
-			System.out.println("mag");
 			throw new RuntimeException("magnitude cannot be zero or less : " + mag);
-
 		}
 		/**
 		 * Magnitude is equivalent to area of circle.
