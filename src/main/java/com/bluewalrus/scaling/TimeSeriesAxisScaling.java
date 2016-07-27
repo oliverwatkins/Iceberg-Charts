@@ -405,7 +405,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		long timePointAtFirstInterval = dateStart.getTime() + ms;
 
-		long totalTime = getTotalTime(interval, incrementNumber,
+		long totalTime = getTotalTime(interval, incrementNumber-1,
 				timePointAtFirstInterval);
 
 		// FORMAT
@@ -419,7 +419,8 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		String xLabel = df.format(totalTime);
 
-		System.out.println("xLabel = " + xLabel);
+		if (interval.getLevel() == 1)
+			System.out.println("xLabel = " + xLabel + " date " + new Date(totalTime) + " >>increment number : " + incrementNumber);
 		
 		// DRAW
 		double totalDistanceFromEdge = chart.leftOffset + toFirstInPixels + totalIncrementPixs;
