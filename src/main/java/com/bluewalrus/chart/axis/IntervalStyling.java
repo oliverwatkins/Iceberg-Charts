@@ -26,11 +26,5 @@ public class IntervalStyling {
 		
 		this.graphLine = gridLine;
 		this.graphFill = gridFill;
-		
 	}
-
-
-
-
-    
 }

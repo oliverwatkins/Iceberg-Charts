@@ -34,21 +34,15 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		Date startDate = df.parse("2001-01-03 10-00-00"); //3 Jan
 		Date endDate = df.parse("2001-04-7 05-33-00"); //7 april
 		
-		
 		String time = "2001-03-01 00-33-00";                              
 		Date dt4 = df.parse(time);                                      
 
 		time = "2001-04-01 00-33-00";                                                
 		Date dt5 = df.parse(time);                                      
 
-//		time = "2001-07-20 05-33-00";                              
-//		Date dt6 = df.parse(time);                                      
-		
-		
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		values.add(new DataPoint(dt4, 5));
 		values.add(new DataPoint(dt5, 8));
-//		values.add(new DataPoint(dt6, 14));
 
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE,4), new GridLine(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
@@ -87,22 +81,8 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		return lineChart;
 	}
 	
-	
-	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataTimeSeries_MonthDay();
 		t.testChart(t.getChart());
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

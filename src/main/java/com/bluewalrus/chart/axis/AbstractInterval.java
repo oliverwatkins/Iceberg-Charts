@@ -4,15 +4,11 @@ import com.bluewalrus.chart.Chart;
 
 
 public abstract class AbstractInterval {
-
 	
 	public IntervalStyling styling = new IntervalStyling();
 	
-	
 	private int level = -1;
 	
-
-
 	/**
 	 * Can be active, and inactive
 	 */
@@ -47,7 +43,4 @@ public abstract class AbstractInterval {
 	public boolean isCentered() {
 		return centered ;
 	}
-
-//	public abstract int getIntervalInPixels(Chart chart);		
-	
 }

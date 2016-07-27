@@ -92,7 +92,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 			 * LABEL
 			 */
 			if (showLabel)
-				drawIntervalLabel(interval, g, chart, i, totalIncrementPixs);
+				drawIntervalLabel(interval, g, chart, i-1, totalIncrementPixs);
 
 			/**
 			 * LINE
@@ -111,35 +111,27 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 			totalIncrementPixs = totalIncrementPixs + intervalInPixels;
 		}
 	}
-
+	
+	/**
+	 * Draw the first label of a centered label interval.
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 */
 	private void drawFirstCenteredLabel(TimeInterval interval, Graphics2D g, XYChart chart) {
 		
 		double factor = getMultiplicationFactor(chart);
 		
-		double toFirstPointOffTheChart = getToFirstPointOffTheChart(
+		//pixels to the left
+		double pixelsDistanceToFirstLeftPointOffTheChart = getToFirstPointOffTheChart(
 				interval, factor, chart); 
 
-		double xxxxx = chart.leftOffset - toFirstPointOffTheChart;
-		
+		double pixelsToFirstIntervalPoint = chart.leftOffset - pixelsDistanceToFirstLeftPointOffTheChart;
 		
 		Date d = DateUtils.getDatePointToNearestDataType(dateStart, interval.type, false);
 
-//		System.out.println(); 
-		
-//		long ms = DateUtils.getMsToNearestDataType(dateStart, interval.type, false);
-//		
-//		long newDate = dateStart.getTime() - ms;
-		
-		
-//		String label = new Date(newDate).toString();
-		
-		System.out.println("          Start Date = " + dateStart);
-		System.out.println("          Left of Start Date = " + d);
-		
-		
-		// FORMAT
 		SimpleDateFormat df;
-
 		if (interval.dateFormat != null) {
 			df = interval.dateFormat;
 		} else {
@@ -148,29 +140,28 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		String xLabel = df.format(d);
 
-		
-		System.out.println("xLabel = " + xLabel);
-
-		XAxisDrawUtil.drawXIntervalLabel(g, chart, xxxxx,
+		XAxisDrawUtil.drawXIntervalLabel(g, chart, pixelsToFirstIntervalPoint,
 				xLabel, // + label,
 				chart.xAxis, interval);
-		
 	}
 
+	/**
+	 * Get the pixels going to the left to the next interval point.
+	 * 
+	 * @param interval
+	 * @param factor
+	 * @param chart
+	 * @return
+	 */
 	private double getToFirstPointOffTheChart(TimeInterval interval,
 			double factor, XYChart chart) {
 		
 		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
 				interval, factor);
 		
-		System.out.println("toFirstInPixels " + toFirstInPixels);
+		double incrementInPixels = ChartUtils.getIncrementInPixels(interval, chart, this);
 		
-		double dd = ChartUtils.getIncrementInPixels(interval, chart, this);
-		System.out.println("getIncrementInPixels " + dd);
-		
-		double diff = (dd - toFirstInPixels);
-
-		System.out.println("diff " + diff);
+		double diff = (incrementInPixels - toFirstInPixels);
 		
 		return diff;
 	}
@@ -405,7 +396,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		long timePointAtFirstInterval = dateStart.getTime() + ms;
 
-		long totalTime = getTotalTime(interval, incrementNumber-1,
+		long totalTime = getTotalTime(interval, incrementNumber,
 				timePointAtFirstInterval);
 
 		// FORMAT
