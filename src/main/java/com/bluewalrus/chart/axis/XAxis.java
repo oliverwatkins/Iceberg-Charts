@@ -20,16 +20,13 @@ public class XAxis extends Axis {
         
     }
 
-
 	@Override
     public void drawLabel(Graphics g, Chart chart) {
-
     	XAxis axis = this;
     	
         Graphics2D g2d = (Graphics2D) g;
         
         XAxisDrawUtil.drawLabel(chart, axis, g2d);
-
     }
 
     @Override
@@ -43,13 +40,8 @@ public class XAxis extends Axis {
     	g.setColor(axisColor);
         g.drawLine(x1, y1, x2, y2);
     }
-
     
     public String getName() {
         return "X Axis";
     }
-
-
-
-
 }

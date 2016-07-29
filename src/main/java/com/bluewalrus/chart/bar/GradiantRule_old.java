@@ -36,18 +36,6 @@ public class GradiantRule_old {
 
         colors = Utils.makeGradients(color1, color2, numberOfShades);
     }
-    
-    
-//    public GradiantRule(int minValue, int maxValue, Color color1, Color color2) {
-//
-//        this.minValue = minValue;
-////        this.maxValue = minValue;
-//        
-//
-//        totalRange = (maxValue - minValue);
-//
-//        colors = Utils.makeGradients(color1, color2, numberOfShades);
-//    }
 
     /**
      * Return the color in color array based on numerical value.

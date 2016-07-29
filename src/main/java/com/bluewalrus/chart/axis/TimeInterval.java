@@ -53,10 +53,6 @@ public class TimeInterval extends AbstractInterval{
 	}
 	
 	public int getIntervalInPixels(Chart chart) {
-		
-		
 		return -1;
 	}
-	
-	
 }

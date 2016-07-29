@@ -16,5 +16,4 @@ public class BarDisplayOptions {
 	public void setGradiantRule(GradiantRule gradiantRule) {
 		this.gradiantRule = gradiantRule;
 	}
-
 }

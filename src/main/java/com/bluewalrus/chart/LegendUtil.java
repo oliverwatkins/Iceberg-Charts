@@ -17,7 +17,7 @@ public class LegendUtil {
 		
 		categories = new ArrayList<Category>();
 
-		for (XYDataSeries series : chart.data) {
+		for (XYDataSeries series : chart.dataY2) {
 
 		    Category category;
 
@@ -41,7 +41,6 @@ public class LegendUtil {
 		chart.rightOffset = 200;
 		
 		legend.drawLegend(g, chart, categories);
-		
 		
 		return categories;
 	}

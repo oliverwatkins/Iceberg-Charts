@@ -17,7 +17,6 @@ import com.bluewalrus.chart.draw.GridLine;
  */
 public class NumericalInterval extends AbstractInterval implements Serializable{
 
-
     /**
      * Spacing of interval. If increment = 10.0, then the tick will appear
      * at 0,10,20,30 etc.
@@ -28,32 +27,23 @@ public class NumericalInterval extends AbstractInterval implements Serializable{
     public NumericalInterval(double increment) {
         this.increment = increment;
 	}
-	
     
 	public NumericalInterval(int lineLength, Double increment) {
-		
         this.increment = increment;
     
         styling.lineLength = lineLength;
     }
-
 	
     public NumericalInterval(int lineLength, Double increment, GridLine graphLine) {
-		
         this.increment = increment;
         
 		styling.lineLength = lineLength;
 		styling.graphLine = graphLine;
     }
-    
 
 	public Double getInterval() {
 		return increment;
 	}
-
-//	public void setIncrement(Double increment) {
-//		this.increment = increment;
-//	}
 	
 
 	@Override
@@ -71,14 +61,10 @@ public class NumericalInterval extends AbstractInterval implements Serializable{
 		return false;
 	}
 	
-
-	
 	@Override
 	public String toString() {
 		return "Interval [active=" + active + ", graphLine=" + styling.graphLine
 				+ ", lineLength=" + styling.lineLength + ", increment=" + increment
 				+ "]";
 	}
-
-
 }

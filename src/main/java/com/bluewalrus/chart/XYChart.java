@@ -705,6 +705,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		ArrayList<Category> categories = new ArrayList<Category>();
 		
+		if (data.isEmpty())
+			return;
+		if (data.get(0).dataPoints.isEmpty())
+			return;
+		
 		XYDataSeries series = data.get(0);
 		DataPoint dp = (DataPoint) series.dataPoints.get(0);
 		
