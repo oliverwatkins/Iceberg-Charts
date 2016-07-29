@@ -9,6 +9,11 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.datapoint.DataPoint;
 
+/**
+ * UI for a square shape
+ * 
+ * @author Oliver Watkins
+ */
 public class UIPointSquare extends UIPointSimpleXY {
 
 	//shape that represents the point

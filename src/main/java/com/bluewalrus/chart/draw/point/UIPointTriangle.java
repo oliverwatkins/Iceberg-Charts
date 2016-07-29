@@ -52,7 +52,6 @@ public class UIPointTriangle extends UIPointSimpleXY{
 		g.fillPolygon(xPoints, yPoints, numberPoints);
 	}
 	
-	
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
 		// TODO Auto-generated method stub

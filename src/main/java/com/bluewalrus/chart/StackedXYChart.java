@@ -9,6 +9,14 @@ import java.util.List;
 
 import com.bluewalrus.chart.axis.XAxis;
 
+
+/**
+ * A stacked XY Chart is a number of charts that are stacked on top of each other that 
+ * share the same X axis. 
+ * 
+ * @author Oliver Watkins
+ *
+ */
 public class StackedXYChart extends XYChart{
 
 	public XAxis xAxis;
@@ -17,6 +25,9 @@ public class StackedXYChart extends XYChart{
 	private ArrayList<XYChart> charts;
 	
 	
+
+
+
 	public StackedXYChart(String string, ArrayList<XYChart> charts,
 			ArrayList<Integer> percentages) {
 		setTitle(string);
@@ -155,9 +166,13 @@ public class StackedXYChart extends XYChart{
 		g.setColor(borderLineColor);
 		g.drawLine(leftOffset+50, topOffset, leftOffset, heightChart + topOffset);
 	}
+	
+	public ArrayList<XYChart> getCharts() {
+		return charts;
+	}
 
-	
-	
-	
 
+	public void setCharts(ArrayList<XYChart> charts) {
+		this.charts = charts;
+	}
 }

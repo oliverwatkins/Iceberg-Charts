@@ -92,10 +92,7 @@ public class UIPointBubble extends UIPointComplexXY {
 
 		oval = new Ellipse2D.Double(x, y, (int) radius * 2, (int) radius * 2);
 		
-		
         this.clipAndDrawPoint(g, chart);
-		
-		
 	}
 
 	@Override
@@ -119,7 +116,6 @@ public class UIPointBubble extends UIPointComplexXY {
 		} else {
 			g.setPaint(paint);
 		}
-
 	}
 
 	private Paint getHighlightedPaint(Point point, double mag) {

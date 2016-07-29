@@ -96,19 +96,26 @@ public abstract class Chart extends JPanel {
 		super.paintComponent(g);
 	}
 
-	protected void drawLegend(Graphics2D g, ArrayList<Category> data) {
-		legend = new Legend(legendFont, this);
+//	protected void createLegend(Graphics2D g, ArrayList<Category> data) {
+//		legend = new Legend(legendFont, this);
+//
+//		legend.drawLegend(g, this, data);
+//	}
+//	
+//	public void drawLegend(Graphics2D g, ArrayList<Category> categories,
+//			int offset) {
+	
+	
+	
+	
 
-		legend.drawLegend(g, this, data);
-	}
-
-	public void drawLegend(Graphics2D g, ArrayList<Category> categories,
-			int offset) {
-		legend = new Legend(legendFont, this, offset);
-
-		legend.drawLegend(g, this, categories);
-
-	}
+//	public void drawLegend(Graphics2D g, ArrayList<Category> categories,
+//			int offset) {
+//		legend = new Legend(legendFont, this, offset);
+//
+//		legend.drawLegend(g, this, categories);
+//
+//	}
 	
 	public void setLocation(String location) {
 

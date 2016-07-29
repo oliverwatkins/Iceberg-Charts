@@ -124,7 +124,11 @@ public class PieChart extends AbstractPieChart implements Legendable {
             Category category = new Category(bar.name, bar.color);
             categories.add(category);
         }
-
-        super.drawLegend(g, categories);
+        
+		Legend legend = new Legend(this.legendFont, this);
+		
+		this.rightOffset = 200;
+		
+		legend.drawLegend(g, this, categories);
     }
 }

@@ -67,7 +67,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @param xAxis
 	 */
 	public XYChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis, XAxis xAxis) {
-
 		this(xAxis, yAxis);
 		this.data.addAll(listOfSeries);
 	}
@@ -81,7 +80,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	public XYChart(XYDataSeries series, String title, YAxis yAxis,
 			XAxis xAxis) {
-		
 		this.setTitle(title);
 		
 		this.xAxis = xAxis;
@@ -90,18 +88,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.data.add(series);
 	}
 	
-//	public XYChart(ArrayList<XYDataSeries> data, String title, YAxis yAxis,
-//			XAxis xAxis) {
-//		
-//		this.setTitle(title);
-//		
-//		this.xAxis = xAxis;
-//		this.yAxis = yAxis;
-//		
-//		this.data.add(series);
-//	}
 	public XYChart(XYDataSeries series, String title, String xLabel, String yLabel) {
-		
 		this.setTitle(title);
 		
 		this.data.add(series);
@@ -186,31 +173,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 	}
 
-//	/**
-//	 * Simple Mutliple Series Constructor
-//	 * 
-//	 * @param title
-//	 * @param xLabel
-//	 * @param yLabel
-//	 * @param xySeriesList
-//	 */
-//	public XYChart(String title, String xLabel, String yLabel,
-//			ArrayList<XYDataSeries> xySeriesList) {
-//
-//		ChartUtils.setUpSeriesStyle(xySeriesList, this);
-//
-//		initialiseScaling(xySeriesList);
-//		
-//		this.xAxis.labelText = xLabel;
-//		this.yAxis.labelText = yLabel;
-//		
-//		this.addMouseMotionListener(this);
-//
-//		this.data.addAll(xySeriesList);
-//
-//		this.setTitle(title);
-//	}
-	
 	/**
 	 * Simple Bar Chart constructor
 	 * 
@@ -465,9 +427,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
             }
         }
     }
-	
-
-
 
 	/**
 	 * Initialize, calculating best x,y scalings and intervals.
@@ -479,7 +438,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		XAxis xAxis = null;
 		YAxis yAxis = null;
 		YAxis yAxis2 = null;
-		
 		
 		DataPoint o = (DataPoint)xySeriesList.get(0).dataPoints.get(0);
 
@@ -548,9 +506,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		XAxis xAxis = new XAxis(new TimeSeriesAxisScaling(drX.min, drX.max, t1x, t2x, t3x), "X Ttime to do");
 		return xAxis;
 	}
-
-	
-
 
 	/**
 	 * 
@@ -640,18 +595,15 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		NumericalInterval t1 = new NumericalInterval(initialIntervalY); 
 		NumericalInterval t2 = new NumericalInterval(initialIntervalY/10); 
 		
-		
 		t1.styling.graphLine = new GridLine(Color.GRAY, false, 1);
 		t1.styling.lineLength = 6;
 		
 		t2.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);
 		t2.styling.lineLength = 3;
-		
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(drY.min, drY.max, t1, t2, null), "Y TODO");
 		return yAxis;
 	}
-
 	
 	/**
 	 * Check if XYDataSeries are enumerable or not.
@@ -659,7 +611,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * @return
 	 */
 	private boolean isSeriesListEnumerable(ArrayList<XYDataSeries> xySeriesList) {
-		
 		XYDataSeries first = xySeriesList.get(0);
 		
 		DataPoint dp = (DataPoint)first.dataPoints.get(0);
@@ -667,7 +618,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		if (dp.valueType == ValueType.X_ENUMARABLE) {
 			return true;
 		}
-		
 		return false;
 	}
 	
@@ -714,31 +664,24 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	protected void paintComponent(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
-		
-
 
 		// draws axis, frame etc
 		this.prePaint(g2d, data);
 
 		// draws actual data 
 		drawGraphData(g2d);
-		
-//		g2d.setColor(Color.RED);
-//		g2d.fillRect(0, 0, 1000, 1000);
 	}
 
 	@Override
 	protected void drawGraphData(Graphics g) {
 			
         if (xAxis.axisScaling.getMaxValue() == xAxis.axisScaling.getMinValue()) {
-        	
         	throw new RuntimeException("Bummer! range has not been set for enum axis " + xAxis.axisScaling.getMinValue());
         }
 
 		new ChartPlotter().plotData((Graphics2D) g, this, yAxis, xAxis, data);
 		
 		if (isYAxis2) {
-			
 			new ChartPlotter().plotData((Graphics2D) g, this,
 					yAxis2, xAxis, dataY2);
 			
@@ -753,7 +696,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	        yAxis2.drawLabel(g, this);
 	        
 	        drawLegend((Graphics2D) g);
-			
 		}
 	}
 
@@ -762,96 +704,33 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public void drawLegend(Graphics2D g) {
 
 		ArrayList<Category> categories = new ArrayList<Category>();
-
-		//only one series. no need for legend TODO put this logic back in!!
-		if (data.size() == 1) {
-			return;
+		
+		XYDataSeries series = data.get(0);
+		DataPoint dp = (DataPoint) series.dataPoints.get(0);
+		
+		if (dp instanceof DataPointMultiBar) {
+			LegendUtil.setupLegendMultiBar(this, g);
+		} 
+		if (data.size() > 1) {
+			LegendUtil.setupLegendManySeries(this, g);
 		}
-		
-		this.rightOffset = 200; //TODO why do have to put in offset here??
-		
-		
-		
-
-		for (XYDataSeries series : data) {
-
-			Category category = null;
-
-			if (series.type == XYDataSeriesType.BUBBLE) {
-				category = new Category(series.name, series.seriesColor);
-				categories.add(category);
-			} 
-			else if(series.type == XYDataSeriesType.MULTI_BAR){
-				
-
-				
-				DataPointMultiBar mb = (DataPointMultiBar)series.dataPoints.get(0);
-		        ArrayList<DataPointBar> dps = mb.bars;
-		        for (DataPointBar dpb : dps) {
-
-		        	category = new Category(dpb.name, series.pointType, null);
-
-		            category.block = true;
-		            category.color = dpb.color;
-		            categories.add(category);
-		        }
-			} else {
-				category = new Category(series.name, series.pointType,
-						series.line);
-				categories.add(category);
-			}
-		}
-		
 		if (isYAxis2) {
-	        categories = new ArrayList<Category>();
-
-	        for (XYDataSeries series : data) {
-
-	            Category category;
-
-	            if (series.type == XYDataSeriesType.BUBBLE) {
-	                category = new Category(series.name, series.seriesColor);
-	            } else {
-	                category = new Category(series.name, series.pointType, series.line);
-	            }
-
-	            categories.add(category);
-	        }
-
-	        int offset = yAxis2.tickLabelOffset + yAxis2.labelOffset;
+			LegendUtil.setupLegendYAxis2(this, g);
 		}
 		
-		
-		
-		//////////////////// if multibar
-		
-//        ArrayList<Category> categories = new ArrayList<Category>();
-//
-//        XYDataSeries series = data.get(0);
-//        MultiBar p = (MultiBar) series.dataPoints.get(0);
-//
-//        ArrayList<DataPointBar> dps = p.bars;
-//        for (DataPointBar dpb : dps) {
-//            Category category;
-//
-//        	category = new Category(dpb.name, series.pointType, null);
-//
-//            category.block = true;
-//            category.color = dpb.color;
-//            categories.add(category);
-//        }
-//
-//        super.drawLegend(g, categories);
-        
-        ///////////////////
-		
-		
+		if (data.size() == 1) {
+			
+			/**
+			 * In all other cases (except DataPointMultBar) if there is just one series
+			 * then show nothing. ie. break out.
+			 */
+			
+//			return;
+		}
 
-		
-
-		
-		super.drawLegend(g, categories);
 	}
+
+
 
 	/**
 	 * Inner line just inside of the axis line. Potentially optional??
@@ -865,7 +744,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 																			// dash
 					0.0f);
 		}
-
 		g.setStroke(chartBorderLine);
 		g.setColor(borderLineColor);
 		g.drawLine(leftOffset, heightChart + topOffset,
@@ -929,5 +807,4 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public void setChartBackground(Color green) {
 		this.backgroundColor = green;
 	}
-
 }

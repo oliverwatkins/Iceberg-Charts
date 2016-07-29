@@ -10,9 +10,7 @@ import com.bluewalrus.scaling.AxisScaling;
 
 /**
  * @copyright 2014
- * @author Oliver Watkins (www.blue-walrus.com)
-
- All Rights Reserved
+ * @author Oliver Watkins (www.frontangle.com) All Rights Reserved
  */
 public class YAxis extends Axis {
 
@@ -22,38 +20,30 @@ public class YAxis extends Axis {
         super(name, axisDraw);
         
         axisDraw.setOrientation(Orientation.Y);
-
     }
-
     
     @Override
     public void drawBorderLine(Graphics g, Chart chart) {
-
         int x1 = chart.leftOffset - marginOffset;
         int y1 = chart.topOffset;
-        int x2 = x1; //chart.leftOffset + chart.widthChart;
+        int x2 = x1; 
         int y2 = chart.topOffset + chart.heightChart;
 
         g.setColor(axisColor);
         g.drawLine(x1, y1, x2, y2);
     }
-
-    
   
     public void drawLabel(Graphics g, Chart chart) {
-
     	YAxis axis = this;
     	
         Graphics2D g2d = (Graphics2D) g;
         
         YAxisDrawUtil.drawLabel(chart, axis, g2d);
     }
-
     
     public String getName() {
         return "Y Axis";
     }
-
 
 	public void setMinValue(int val) {
 		axisScaling.setMinValue(val);
