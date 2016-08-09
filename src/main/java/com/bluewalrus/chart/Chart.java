@@ -95,27 +95,6 @@ public abstract class Chart extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 	}
-
-//	protected void createLegend(Graphics2D g, ArrayList<Category> data) {
-//		legend = new Legend(legendFont, this);
-//
-//		legend.drawLegend(g, this, data);
-//	}
-//	
-//	public void drawLegend(Graphics2D g, ArrayList<Category> categories,
-//			int offset) {
-	
-	
-	
-	
-
-//	public void drawLegend(Graphics2D g, ArrayList<Category> categories,
-//			int offset) {
-//		legend = new Legend(legendFont, this, offset);
-//
-//		legend.drawLegend(g, this, categories);
-//
-//	}
 	
 	public void setLocation(String location) {
 
@@ -130,6 +109,29 @@ public abstract class Chart extends JPanel {
 		}
 		return null;
 	}
+
+
+	protected void drawTitle(Graphics g) {
+		title.drawTitle(g, this);
+	}
+	
+	public Font getTitleFont() {
+		return title.titleFont;
+	}
+	public void setTitleFont(String string, int plain, int i) {
+		title.titleFont = new Font(string, plain, i);
+	}
+
+	public void setTitleFont(Font font) {
+		title.titleFont = font;
+	}
+	public void setTitle(String t) {
+		title.setTitle(t); 
+	}
+	public String getTitle() {
+		return title.getTitle();
+	}
+	
 	
 	private void drawTrialVersion(Graphics2D g2d) {
 		String trialVersion = "Trial Version : ";
@@ -161,27 +163,6 @@ public abstract class Chart extends JPanel {
 		g2d.drawString(trialVersion5, x, y + 60);
 
 		g2d.setComposite(c);
-	}
-
-	protected void drawTitle(Graphics g) {
-		title.drawTitle(g, this);
-	}
-	
-	public Font getTitleFont() {
-		return title.titleFont;
-	}
-	public void setTitleFont(String string, int plain, int i) {
-		title.titleFont = new Font(string, plain, i);
-	}
-
-	public void setTitleFont(Font font) {
-		title.titleFont = font;
-	}
-	public void setTitle(String t) {
-		title.setTitle(t); 
-	}
-	public String getTitle() {
-		return title.getTitle();
 	}
 
 }

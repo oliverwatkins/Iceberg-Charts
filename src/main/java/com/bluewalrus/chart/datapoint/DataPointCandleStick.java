@@ -30,7 +30,11 @@ public class DataPointCandleStick extends DataPoint{
 		this.open = open;
 		this.close = close;
 		this.low = low;
-		this.filled = filled;
+		
+		if (open > close)
+			this.filled = true;
+		else
+			this.filled = false;
 	}
 
 	public double high;

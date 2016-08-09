@@ -32,10 +32,6 @@ public class DateUtils {
 	/**
 	 * Given a date (dateStart) get a time amount (in this case milliseconds) to the nearest interval
 	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 * @param dateStart
 	 * @param type
 	 * @return
@@ -56,8 +52,6 @@ public class DateUtils {
 		}
 		
 		long diff = 0;
-		
-
 
 		if (type == Type.YEAR) {
 			/**
@@ -148,25 +142,23 @@ public class DateUtils {
 	}
 	
 	
-	
 	public static Type getNextInterval(Type interval1) {
 		
 		switch (interval1) {
-		
-		case YEAR:
-			return Type.MONTH;
-		case MONTH:
-			return Type.DAY;
-		case WEEK:
-			return Type.DAY;
-		case DAY:
-			return Type.HOUR;
-		case HOUR:
-			return Type.MINUTE;
-		case MINUTE:
-			return Type.SECOND;
-		default:
-			break;
+			case YEAR:
+				return Type.MONTH;
+			case MONTH:
+				return Type.DAY;
+			case WEEK:
+				return Type.DAY;
+			case DAY:
+				return Type.HOUR;
+			case HOUR:
+				return Type.MINUTE;
+			case MINUTE:
+				return Type.SECOND;
+			default:
+				break;
 		}
 		return null;
 	}
@@ -179,24 +171,24 @@ public class DateUtils {
 	public static long getMsForType(Type i) {
 		
 		switch (i) {
-		case MONTH:
-//			throw new RuntimeException("Month does not have constant length");
-			return TimeUnit.DAYS.toMillis(30); //TODO wrong!!! 30, 31, 28, 29
-		case YEAR:
-//			throw new RuntimeException("Year does not have constant length");
-			return TimeUnit.DAYS.toMillis(365); //TODO wrong!!! leap years??
-		case DAY:
-			return TimeUnit.DAYS.toMillis(1); // 1 day to milliseconds.
-		case HOUR:
-			return TimeUnit.HOURS.toMillis(1); 
-		case WEEK:
-			return TimeUnit.DAYS.toMillis(7); 
-		case MINUTE:
-			return TimeUnit.MINUTES.toMillis(1);
-		case NONE:
-			break;
-		default:
-			break;
+			case MONTH:
+	//			throw new RuntimeException("Month does not have constant length");
+				return TimeUnit.DAYS.toMillis(30); //TODO wrong!!! 30, 31, 28, 29
+			case YEAR:
+	//			throw new RuntimeException("Year does not have constant length");
+				return TimeUnit.DAYS.toMillis(365); //TODO wrong!!! leap years??
+			case DAY:
+				return TimeUnit.DAYS.toMillis(1); // 1 day to milliseconds.
+			case HOUR:
+				return TimeUnit.HOURS.toMillis(1); 
+			case WEEK:
+				return TimeUnit.DAYS.toMillis(7); 
+			case MINUTE:
+				return TimeUnit.MINUTES.toMillis(1);
+			case NONE:
+				break;
+			default:
+				break;
 		}
 		return -1l;
 	}
@@ -316,13 +308,10 @@ public class DateUtils {
 		calendar.setTime(new Date(date));
 		calendar.add(Calendar.MONTH, months);
 
-//		cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + months); //will this work 13-->1 ?
-		
 		return calendar.getTimeInMillis();
 	}
 	
 	public static long addWeek(long date, int weeks) {
-		
 		
 		Calendar cal = Calendar.getInstance();
 		
@@ -342,9 +331,4 @@ public class DateUtils {
 		
 		return cal.getTimeInMillis();
 	}
-
-
-
-
-	
 }

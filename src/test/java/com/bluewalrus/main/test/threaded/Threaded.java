@@ -21,11 +21,8 @@ public class Threaded extends JFrame {
 		
 		
 		TestStackedChart2 t2 = new TestStackedChart2();
-		
-		
 
 		Threaded t = new Threaded();
-//		t.testChart();
 		
 		JTabbedPane tabbedPaneBar = new JTabbedPane();
 
@@ -39,10 +36,6 @@ public class Threaded extends JFrame {
 		t.setVisible(true);
 
 		t.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		
-
 		
 		
 		class Runner extends Thread {
@@ -62,16 +55,17 @@ public class Threaded extends JFrame {
 						this.t.incrementChart(chart, i);
 						
 //						Threaded.this.incrementChart(chart);
-						
+
+						/**
+						 * Update UI
+						 */
+						chart.updateUI(); //iteration is happening in here
 						
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
 			}
-
-
 		}
 		
 		Runner runner = new Runner(t);
@@ -79,32 +73,18 @@ public class Threaded extends JFrame {
 		runner.start();
 	}
 	
-	private void incrementChart(final Chart chart, int i)
+	private synchronized void incrementChart(final Chart chart, int i)
 			throws InterruptedException {
 		
 		StackedXYChart syxy = (StackedXYChart)chart;
 		
-		
 		addSomeRandomData(syxy, i);
-		
-		
-
 
 		double ddd = syxy.xAxis.axisScaling.getMinValue();
-
-		syxy.xAxis.axisScaling.setMinValue(ddd + 2);
-
+		syxy.xAxis.axisScaling.setMinValue(ddd + 10);
 		double ddd2 = syxy.xAxis.axisScaling.getMaxValue();
+		syxy.xAxis.axisScaling.setMaxValue(ddd2 + 10);
 
-		syxy.xAxis.axisScaling.setMaxValue(ddd2 + 2);
-		
-		
-		
-
-		/**
-		 * Update UI
-		 */
-		syxy.updateUI();
 	}
 
 	private void addSomeRandomData(StackedXYChart syxy, int i) {
@@ -113,28 +93,26 @@ public class Threaded extends JFrame {
 		XYChart c2 = syxy.getCharts().get(1);
 		
 		double rand = Math.random();
+		
 		XYDataSeries<DataPoint> s = c2.data.get(0);
 			
-		synchronized (s.dataPoints) {
-			s.dataPoints.add(new DataPoint(400 + (i*10), 40*rand));
-			s.dataPoints.remove(0);
-		}
-		
-
-		
-		
+		s.dataPoints.add(new DataPoint(400 + (i*10), 40*rand));
+		s.dataPoints.remove(0);
 		
 		XYDataSeries<DataPoint> s2 = c1.data.get(0);
+			
+		double top = 60;
+		double open = 40;
+		double close = 20;
+		double bottom = 10;
 		
+		top = top*rand;
+		open = open*rand;
+		close = close*rand;
+		bottom = bottom*rand;
 		
-		synchronized (s2.dataPoints) {
-			s2.dataPoints.add(new DataPointCandleStick(400 + (i*10), 40, 40, 23, 40, true));
-			s2.dataPoints.remove(0);
-		}
-		
-
-		// TODO Auto-generated method stub
-		
+		s2.dataPoints.add(new DataPointCandleStick(400 + (i*10), top, open, close, bottom, true));
+		s2.dataPoints.remove(0);
 	}
 	
 	

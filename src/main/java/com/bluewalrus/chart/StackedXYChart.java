@@ -23,10 +23,6 @@ public class StackedXYChart extends XYChart{
 
 	private ArrayList<Integer> percentages; 
 	private ArrayList<XYChart> charts;
-	
-	
-
-
 
 	public StackedXYChart(String string, ArrayList<XYChart> charts,
 			ArrayList<Integer> percentages) {
