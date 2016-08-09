@@ -1,7 +1,7 @@
 	public Chart getChart() {
 
 
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 		values.add(new DataPoint(5, 96));
 		values.add(new DataPoint(58, 43));
 		values.add(new DataPoint(101, 90));

@@ -1,8 +1,8 @@
 	public Chart getChart() {
 
-		ArrayList<XYDataSeries> temperatureSeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; temperatureSeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-		ArrayList<DataPoint> tempMax = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; tempMax = new ArrayList&lt;DataPoint&gt;();
 		tempMax.add(new DataPoint("J", 17.2));
 		tempMax.add(new DataPoint("F", 21.1));
 		tempMax.add(new DataPoint("M", 23.3));
@@ -16,7 +16,7 @@
 		tempMax.add(new DataPoint("N", 18.8));
 		tempMax.add(new DataPoint("D", 20.5));
 
-		ArrayList<DataPoint> tempMin = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; tempMin = new ArrayList&lt;DataPoint&gt;();
 		tempMin.add(new DataPoint("J", -30.5));
 		tempMin.add(new DataPoint("F", -22.7));
 		tempMin.add(new DataPoint("M", -15.5));
@@ -30,7 +30,7 @@
 		tempMin.add(new DataPoint("N", -14.4));
 		tempMin.add(new DataPoint("D", -21.1));
 
-		ArrayList<DataPoint> tempAvg = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; tempAvg = new ArrayList&lt;DataPoint&gt;();
 		tempAvg.add(new DataPoint("J", -2.2));
 		tempAvg.add(new DataPoint("F", -0.4));
 		tempAvg.add(new DataPoint("M", 3.4));
@@ -62,7 +62,7 @@
 
 		GradiantRule_old rule = new GradiantRule_old(0, 130, Color.BLUE, Color.RED, 100);
 
-		ArrayList<DataPointBar> barSeries = new ArrayList<DataPointBar>();
+		ArrayList&lt;DataPointBar&gt; barSeries = new ArrayList&lt;DataPointBar&gt;();
 		barSeries.add(new DataPointBar("J", 54.0, rule.getColor(54.0)));
 		barSeries.add(new DataPointBar("F", 45.2, rule.getColor(45.2)));
 		barSeries.add(new DataPointBar("M", 60.1, rule.getColor(60.1)));
@@ -82,7 +82,7 @@
 				bdo, null, "Rainfall");
 		
 
-		ArrayList<XYDataSeries> rainfallSeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; rainfallSeriesList = new ArrayList&lt;XYDataSeries&gt;();
 		rainfallSeriesList.add(rainfallSeries);
 
 		XYChart chart = new XYChart("Munich Weather", "Month", "Temperature",

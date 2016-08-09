@@ -20,7 +20,7 @@ public class Threaded extends JFrame {
 	public static void main(String[] args) throws Exception {
 		
 		
-		TestStackedChart2 t2 = new TestStackedChart2();
+		TestStackedChart_threaded t2 = new TestStackedChart_threaded();
 
 		Threaded t = new Threaded();
 		

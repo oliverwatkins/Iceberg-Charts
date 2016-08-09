@@ -1,6 +1,6 @@
 	public Chart getChart() {
 		
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 		values.add(new DataPoint(5, 5));
 		values.add(new DataPoint(7, 8));
 		values.add(new DataPoint(8, 14));

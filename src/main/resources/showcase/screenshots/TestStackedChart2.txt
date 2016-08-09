@@ -5,11 +5,11 @@
 		xAxis.axisScaling.setMinValue(0);
 		xAxis.axisScaling.setMaxValue(400);
 		
-		ArrayList<XYChart> charts = new ArrayList<XYChart>();
+		ArrayList&lt;XYChart&gt; charts = new ArrayList&lt;XYChart&gt;();
 		charts.add(getCandleChart(xAxis));
 		charts.add(getBarChart(xAxis));
 		
-		ArrayList<Integer> percentages = new ArrayList<Integer>();
+		ArrayList&lt;Integer&gt; percentages = new ArrayList&lt;Integer&gt;();
 		percentages.add(70);
 		percentages.add(30);
 		
@@ -21,9 +21,9 @@
 	
 	public XYChart getBarChart(XAxis xAxis) {
 		
-		ArrayList<XYDataSeries> list = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; list = new ArrayList&lt;XYDataSeries&gt;();
 		
-		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values3 = new ArrayList&lt;DataPoint&gt;();
 		values3.add(new DataPoint(10, 74));
 		values3.add(new DataPoint(20, 55));
 		values3.add(new DataPoint(30, 55));
@@ -69,7 +69,7 @@
 
 		series3.pointType = new UIPointBar(new Color(153, 153, 102), 60);
 		
-		list = new ArrayList<XYDataSeries>();
+		list = new ArrayList&lt;XYDataSeries&gt;();
 		list.add(series3);
 		
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(), "Trade Volume");
@@ -87,9 +87,9 @@
 	public XYChart getCandleChart(XAxis xAxis) {
 
 
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 
 		values.add(new DataPointCandleStick(10, 83, 70, 60, 50, true));
 		values.add(new DataPointCandleStick(20, 90, 75, 50, 15, true));

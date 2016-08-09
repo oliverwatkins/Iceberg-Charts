@@ -1,29 +1,29 @@
 	public Chart getChart() {
 
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 		values.add(new DataPoint(5, 30));
 		values.add(new DataPoint(10, 11));
 		values.add(new DataPoint(15, 14));
 		values.add(new DataPoint(20, 5));
 		values.add(new DataPoint(25, 8));
 
-		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values2 = new ArrayList&lt;DataPoint&gt;();
 		values2.add(new DataPoint(5, 2));
 		values2.add(new DataPoint(10, 33));
 		values2.add(new DataPoint(15, 6));
 		values2.add(new DataPoint(20, 14));
 		values2.add(new DataPoint(25, 17));
 
-		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values3 = new ArrayList&lt;DataPoint&gt;();
 		values3.add(new DataPoint(5, 130));
 		values3.add(new DataPoint(10, 74));
 		values3.add(new DataPoint(15, 67));
 		values3.add(new DataPoint(20, 22));
 		values3.add(new DataPoint(25, 68));
 		
-		ArrayList<DataPoint> values4 = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values4 = new ArrayList&lt;DataPoint&gt;();
 		values4.add(new DataPoint(5, 90));
 		values4.add(new DataPoint(10, 65));
 		values4.add(new DataPoint(15, 80));

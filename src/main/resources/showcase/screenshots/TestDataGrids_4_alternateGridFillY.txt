@@ -4,7 +4,7 @@
 		XYDataSeries series = new XYDataSeries(null, new GridLine(Color.BLUE, false, 3), "Blue");
 		series.dataPoints = getSeries1();
 		
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
 		xySeriesList.add(series);
 		

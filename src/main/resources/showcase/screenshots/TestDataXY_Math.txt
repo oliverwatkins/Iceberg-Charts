@@ -1,15 +1,15 @@
 	public Chart getChart() {
 
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 
-		for (int i = -10; i < 10; i++) {
+		for (int i = -10; i &lt; 10; i++) {
 			values.add(new DataPoint(i, i * i));
 		}
 
-		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
-		for (int i = -5; i < 5; i++) {
+		ArrayList&lt;DataPoint&gt; values3 = new ArrayList&lt;DataPoint&gt;();
+		for (int i = -5; i &lt; 5; i++) {
 
 			double x = Math.exp(i);
 

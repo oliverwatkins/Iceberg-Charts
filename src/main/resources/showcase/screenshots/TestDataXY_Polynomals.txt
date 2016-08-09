@@ -1,10 +1,10 @@
 	public Chart getChart() {
 
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 		
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 		
-		for (int x = -300; x <= 300; x++) {
+		for (int x = -300; x &lt;= 300; x++) {
 			
 			double xd = ((double)(x))/100;
 			
@@ -13,9 +13,9 @@
 			values.add(dp);
 		}
 
-		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values3 = new ArrayList&lt;DataPoint&gt;();
 		
-		for (int x = -300; x <= 300; x++) {
+		for (int x = -300; x &lt;= 300; x++) {
 			
 			double xd = ((double)(x))/100;
 			

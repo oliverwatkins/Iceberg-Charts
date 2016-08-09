@@ -15,13 +15,13 @@
 		XYChart middleChart = (XYChart)new TestDataXY_Scatter().getChart();
 		middleChart.xAxis = xAxis;
 		
-		ArrayList<XYChart> charts = new ArrayList<XYChart>();
+		ArrayList&lt;XYChart&gt; charts = new ArrayList&lt;XYChart&gt;();
 		charts.add(topChart);
 		charts.add(middleChart);
 		charts.add(bottomChart);
 
 		//height percentages
-		ArrayList<Integer> percentages = new ArrayList<Integer>();
+		ArrayList&lt;Integer&gt; percentages = new ArrayList&lt;Integer&gt;();
 		percentages.add(40);
 		percentages.add(30);
 		percentages.add(30);
@@ -59,9 +59,9 @@
 	public XYChart getCandleChart(XAxis xAxis) {
 
 
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 
 		values.add(new DataPointCandleStick(10, 83, 70, 60, 50, true));
 		values.add(new DataPointCandleStick(20, 90, 75, 50, 15, true));

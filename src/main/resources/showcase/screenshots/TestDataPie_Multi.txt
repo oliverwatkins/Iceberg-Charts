@@ -1,6 +1,6 @@
     public Chart getChart() {
 
-        ArrayList<Segment> values = new ArrayList<Segment>();
+        ArrayList&lt;Segment&gt; values = new ArrayList&lt;Segment&gt;();
         values.add(new Segment(15, "music", Color.RED));
         values.add(new Segment(52, "photos", Color.BLUE));
         values.add(new Segment(33, "applications", Color.GREEN));

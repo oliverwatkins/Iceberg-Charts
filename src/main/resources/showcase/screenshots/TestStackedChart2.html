@@ -1,37 +1,15 @@
-package com.bluewalrus.main.test.threaded;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.util.ArrayList;
-
-import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.StackedXYChart;
-import com.bluewalrus.chart.XYChart;
-import com.bluewalrus.chart.XYDataSeries;
-import com.bluewalrus.chart.axis.IntervalStyling;
-import com.bluewalrus.chart.axis.XAxis;
-import com.bluewalrus.chart.axis.YAxis;
-import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.datapoint.DataPointCandleStick;
-import com.bluewalrus.chart.draw.GridLine;
-import com.bluewalrus.chart.draw.point.UIPointBar;
-import com.bluewalrus.chart.draw.point.UIPointCandleStick;
-import com.bluewalrus.main.test.ChartTester;
-import com.bluewalrus.scaling.LinearNumericalAxisScaling;
-
-public class TestStackedChart2 extends ChartTester {
-	public Chart getChart() {
+<img src=src\main\resources\showcase\screenshots\TestStackedChart2.PNG/><div>	public Chart getChart() {
 
 		//xAxis needs to be shared
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(), "X");
 		xAxis.axisScaling.setMinValue(0);
 		xAxis.axisScaling.setMaxValue(400);
 		
-		ArrayList<XYChart> charts = new ArrayList<XYChart>();
+		ArrayList&lt;XYChart&gt; charts = new ArrayList&lt;XYChart&gt;();
 		charts.add(getCandleChart(xAxis));
 		charts.add(getBarChart(xAxis));
 		
-		ArrayList<Integer> percentages = new ArrayList<Integer>();
+		ArrayList&lt;Integer&gt; percentages = new ArrayList&lt;Integer&gt;();
 		percentages.add(70);
 		percentages.add(30);
 		
@@ -43,9 +21,9 @@ public class TestStackedChart2 extends ChartTester {
 	
 	public XYChart getBarChart(XAxis xAxis) {
 		
-		ArrayList<XYDataSeries> list = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; list = new ArrayList&lt;XYDataSeries&gt;();
 		
-		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values3 = new ArrayList&lt;DataPoint&gt;();
 		values3.add(new DataPoint(10, 74));
 		values3.add(new DataPoint(20, 55));
 		values3.add(new DataPoint(30, 55));
@@ -91,7 +69,7 @@ public class TestStackedChart2 extends ChartTester {
 
 		series3.pointType = new UIPointBar(new Color(153, 153, 102), 60);
 		
-		list = new ArrayList<XYDataSeries>();
+		list = new ArrayList&lt;XYDataSeries&gt;();
 		list.add(series3);
 		
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(), "Trade Volume");
@@ -109,9 +87,9 @@ public class TestStackedChart2 extends ChartTester {
 	public XYChart getCandleChart(XAxis xAxis) {
 
 
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 
 		values.add(new DataPointCandleStick(10, 83, 70, 60, 50, true));
 		values.add(new DataPointCandleStick(20, 90, 75, 50, 15, true));
@@ -173,10 +151,4 @@ public class TestStackedChart2 extends ChartTester {
 		chart.setTitle("Box Plot");
 
 		return chart;
-	}
-
-	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestStackedChart2();
-		t.testChart(t.getChart());
-	}
-}
+</div>

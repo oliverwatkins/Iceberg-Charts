@@ -1,9 +1,9 @@
 	public Chart getChart() {
 
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
+		ArrayList&lt;DataPoint&gt; values2 = new ArrayList&lt;DataPoint&gt;();
 
 		XYDataSeries series = new XYDataSeries(
 				new UIPointCircle(Color.RED, 4), null, "1994");

@@ -1,9 +1,9 @@
 	public Chart getChart() {
 
     	
-        ArrayList<Color> colors = Utils.makeGradients(Color.RED, Color.BLUE, 12);
+        ArrayList&lt;Color&gt; colors = Utils.makeGradients(Color.RED, Color.BLUE, 12);
         
-        ArrayList<DataPointBar> values = new ArrayList<DataPointBar>();
+        ArrayList&lt;DataPointBar&gt; values = new ArrayList&lt;DataPointBar&gt;();
         values.add(new DataPointBar("One", 10, colors.get(0)));
         values.add(new DataPointBar("Two", 14, colors.get(1)));
         values.add(new DataPointBar("Three", 12, colors.get(3)));

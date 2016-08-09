@@ -2,9 +2,9 @@
 
         System.out.println("getTestData_Bubble2");
 
-        ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+        ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-        ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+        ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 
         //homicide
         values.add(new DataPointWithMagnitude("Alabama", 51.70, 2.8, 4779736));

@@ -1,9 +1,9 @@
 	public Chart getChart() {
 
-        ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+        ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-        ArrayList<DataPointWithMagnitude> values = new ArrayList<DataPointWithMagnitude>();
-        ArrayList<DataPointWithMagnitude> values2 = new ArrayList<DataPointWithMagnitude>();
+        ArrayList&lt;DataPointWithMagnitude&gt; values = new ArrayList&lt;DataPointWithMagnitude&gt;();
+        ArrayList&lt;DataPointWithMagnitude&gt; values2 = new ArrayList&lt;DataPointWithMagnitude&gt;();
 
         values.add(new DataPointWithMagnitude(15, 12, 40));
         values.add(new DataPointWithMagnitude(40, 20, 50));
@@ -29,8 +29,8 @@
         values2.add(new DataPointWithMagnitude(370, 134, 40));
         values2.add(new DataPointWithMagnitude(400, 349, 80));
 
-        XYDataSeries<DataPointWithMagnitude> series = new XYDataSeries<DataPointWithMagnitude>(values, new UIPointBubble(Color.BLUE), null, "Series 1");
-        XYDataSeries<DataPointWithMagnitude> series2 = new XYDataSeries<DataPointWithMagnitude>(values2, new UIPointBubble(Color.ORANGE), null, "Series 2");
+        XYDataSeries&lt;DataPointWithMagnitude&gt; series = new XYDataSeries&lt;DataPointWithMagnitude&gt;(values, new UIPointBubble(Color.BLUE), null, "Series 1");
+        XYDataSeries&lt;DataPointWithMagnitude&gt; series2 = new XYDataSeries&lt;DataPointWithMagnitude&gt;(values2, new UIPointBubble(Color.ORANGE), null, "Series 2");
 
         NumericalInterval i1 = new NumericalInterval(5, 50.0, new GridLine(Color.WHITE, false, 1));
         NumericalInterval i2 = new NumericalInterval(2, 10.0, null);

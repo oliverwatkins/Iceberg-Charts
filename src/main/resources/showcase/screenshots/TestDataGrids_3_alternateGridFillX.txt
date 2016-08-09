@@ -10,7 +10,7 @@
 				"Red Series");
 		series2.dataPoints = getSeries2();
 		
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
@@ -40,8 +40,8 @@
 
 
 
-	private ArrayList<DataPoint> getSeries2() {
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+	private ArrayList&lt;DataPoint&gt; getSeries2() {
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 		values.add(new DataPoint(5, 91));
 		values.add(new DataPoint(7, 92));
 		values.add(new DataPoint(8, 93));
@@ -85,8 +85,8 @@
 
 
 
-	private ArrayList<DataPoint> getSeries1() {
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+	private ArrayList&lt;DataPoint&gt; getSeries1() {
+		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 		values.add(new DataPoint(5, 94));
 		values.add(new DataPoint(7, 92));
 		values.add(new DataPoint(8, 94));

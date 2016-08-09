@@ -1,0 +1,40 @@
+<img src=src\main\resources\showcase\screenshots\TestDataGrids_2_GraphPaper.PNG/><div>	public Chart getChart() {
+
+		NumericalInterval yInterval1 = new NumericalInterval(0, 10.0, new GridLine(Color.BLACK, false, 1));
+		NumericalInterval yInterval2 = new NumericalInterval(0, 5.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval yInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
+
+		NumericalInterval xInterval1 = new NumericalInterval(0, 10.0, new GridLine(Color.BLACK, false, 1));
+		NumericalInterval xInterval2 = new NumericalInterval(0, 5.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval xInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
+
+		
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, yInterval1, yInterval2, yInterval3), "Y Axis");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0, xInterval1, xInterval2, xInterval3), "X Axis");
+
+		XYChart lineChart = new XYChart(new ArrayList&lt;DataPoint&gt;(), "Graphpaper", yAxis, xAxis);
+
+		return lineChart;
+	}
+	
+	
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataGrids_2_GraphPaper();
+		t.testChart(t.getChart());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+</div>
