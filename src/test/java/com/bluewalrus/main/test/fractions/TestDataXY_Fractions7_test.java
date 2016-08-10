@@ -62,8 +62,12 @@ public class TestDataXY_Fractions7_test extends ChartTester {
 		frame.setSize(700, 500);
 		frame.setVisible(true);
 		
-		
 		return lineChart;
+	}
+	
+	@Override
+	public String getNiceTitle()  {
+		return "Fractions 7";
 	}
 	
 	

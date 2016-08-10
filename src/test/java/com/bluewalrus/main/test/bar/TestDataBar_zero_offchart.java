@@ -22,16 +22,12 @@ public class TestDataBar_zero_offchart extends ChartTester {
 
 	@Override
 	public Chart getChart() {
-
         
         NumericalInterval tick1 = new NumericalInterval(20, 10.0, new GridLine(Color.GRAY,true,1)); //grid line
         NumericalInterval tick2 = new NumericalInterval(10, 1.0, null); //no grid line
-//        Interval tick3 = new Interval(5, 5.0, null);
         
         YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-14.2, 16.7, tick1, tick2, null), "Y value");
         XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 25.0, tick1, tick2, null), "X Value - must be even spaced");
-        
-        
         
         ArrayList<DataPointBar> bars = new ArrayList<DataPointBar>();
         bars.add(new DataPointBar(1, -60, Color.YELLOW, ""));
@@ -74,9 +70,7 @@ public class TestDataBar_zero_offchart extends ChartTester {
         lineChart.data = a;
         lineChart.setTitle("Bars Can Be Treated as XY");
         
-        
         lineChart.setSize(800, 400);
-//        lineChart.width = 800;
 
         return lineChart;
     }
@@ -87,8 +81,8 @@ public class TestDataBar_zero_offchart extends ChartTester {
 		t.testChart(t.getChart());
 	}
 	
-
-	
-
-
+	@Override
+	public String getNiceTitle()  {
+		return "Bar: zero off chart";
+	}
 }

@@ -25,6 +25,7 @@ public abstract class ChartTester extends JFrame{
 	
 	public abstract JPanel getChart() throws ParseException;
 	
+	public abstract String getNiceTitle();
 
 	
 	public void testChart(JPanel chart) throws ParseException {
@@ -54,32 +55,25 @@ public abstract class ChartTester extends JFrame{
         
         this.writeHTML(s, urlChart, chart);
         
-        
-        sBuilder.append("\"title\": \"" + "Some kind of title" + "\",");
+        sBuilder.append("\"title\": \"" + this.getNiceTitle() + "\",");
         sBuilder.append("\"url\": \"" + "partials/" + chart.fileLocation +  ".html" + "\" ");
         
         sBuilder.append("}, {");
-        
-        
-        
 	}
-	
 	
 	
 	private void writeHTML(String s, String urlChart, Chart chart) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<img src=" + urlChart + "/>");
+		sb.append("<img src='partials/" + chart.fileLocation  + ".PNG' style='width:400px;float:right'>");
 		sb.append("<div>");
+		sb.append("<pre>");
 		sb.append(s);
+		sb.append("</pre>");
 		sb.append("</div>");
 		
 		String lastWord = chart.fileLocation;
 		
 		FileUtils.writeFile(sb, GenerateShowcase.path, lastWord + ".html");
-
-		
-//		this.writeFile(sb, lastWord + ".html");
-		
 	}
 
 
@@ -100,28 +94,34 @@ public abstract class ChartTester extends JFrame{
 		
 		StringBuilder sbCodeSnippet = new StringBuilder();
 		
-		
+	    StringBuilder sb = new StringBuilder();
+	    
 		BufferedReader br = new BufferedReader(new FileReader(fSearch.getResult().get(0)));
 		try {
-		    StringBuilder sb = new StringBuilder();
+
 		    String line = br.readLine();
 
 		    boolean snippet = false;
 		    
 		    while (line != null) {
 		    	
-		    	if (snippet || (line.contains("public XYChart getChart()") || 
-		    			line.contains("public Chart getChart()"))) {
-		    		snippet = true;
-		    		sbCodeSnippet.append(line);
-		    		sbCodeSnippet.append("\n");
-		    	}
+
 		    	if (line.contains("return chart;")) {
-		    		snippet = false;
+//		    		snippet = false;
+		    		break;
 		    	}
 		    	
-		        sb.append(line);
-		        sb.append(System.lineSeparator());
+		    	if (snippet == true) {
+			        sb.append(line);
+			        sb.append(System.lineSeparator());
+		    	}
+		    	
+		    	if ( (line.contains("public XYChart getChart()") || 
+		    			line.contains("public Chart getChart()"))) {
+		    		snippet = true;
+//		    		sbCodeSnippet.append("\n");
+		    	}
+
 		        line = br.readLine();
 		        if (line != null) {
 				    line = line.replace("<", "&lt;");
@@ -129,18 +129,18 @@ public abstract class ChartTester extends JFrame{
 		        }
 			    
 		    }
-		    System.out.println("sbCodeSnippet " + sbCodeSnippet);
+		    System.out.println("sbCodeSnippet " + sb);
 		} finally {
 		    br.close();
 		}
 		
-		
-		if (sbCodeSnippet.length() < 10)
-			throw new RuntimeException("Code snipped must be more than 10 chars " + sbCodeSnippet);
-		
+//		
+//		if (sbCodeSnippet.length() < 10)
+//			throw new RuntimeException("Code snipped must be more than 10 chars " + sbCodeSnippet);
+//		
 		FileUtils.writeFile(sbCodeSnippet, GenerateShowcase.path, lastWord + ".txt");
 
-		return sbCodeSnippet.toString();
+		return sb.toString();
 	}
 
 	

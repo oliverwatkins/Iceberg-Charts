@@ -1,5 +1,7 @@
 package com.bluewalrus.main;
 
+import java.util.concurrent.Future;
+
 import com.bluewalrus.main.test.FileUtils;
 import com.bluewalrus.main.test.bar.TestDataBar_1_Simple;
 import com.bluewalrus.main.test.bar.TestDataBar_4_GradientColor;
@@ -40,9 +42,7 @@ public class GenerateShowcase {
 
     public static void main(String[] args) throws Exception {
     	
-
     	StringBuilder sBuilder = new StringBuilder();
-    	
     	
     	sBuilder.append("{");
     	sBuilder.append(" \"samples\": [{");
@@ -101,10 +101,6 @@ public class GenerateShowcase {
     	
     	
     	System.out.println("Completed Image Code Genereration !!!!");
-    	
-    	
-
-    	
 
     }
 

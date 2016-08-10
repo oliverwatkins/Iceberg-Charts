@@ -84,6 +84,11 @@ public class TestDataGrids_7_TimeSeries extends ChartTester {
 		return lineChart;
 	}
 	
+	@Override
+	public String getNiceTitle() {
+		return "Time Series: ???";
+	}
+	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataGrids_7_TimeSeries();
 		t.testChart(t.getChart());

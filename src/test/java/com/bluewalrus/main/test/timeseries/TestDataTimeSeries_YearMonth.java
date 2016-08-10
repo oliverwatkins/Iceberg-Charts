@@ -82,10 +82,15 @@ public class TestDataTimeSeries_YearMonth extends ChartTester {
 
 		xySeriesList.add(series);
 
-		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
-		lineChart.setTitle("Year Month (May 1991, July 2001)");
+		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+		chart.setTitle("Year Month (May 1991, July 2001)");
 
-		return lineChart;
+		return chart;
+	}
+	
+	@Override
+	public String getNiceTitle() {
+		return "Time Series: Year Month";
 	}
 	
 	public static void main(String[] args) throws Exception {

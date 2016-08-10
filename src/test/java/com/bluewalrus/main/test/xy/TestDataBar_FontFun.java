@@ -29,20 +29,20 @@ public class TestDataBar_FontFun extends ChartTester {
         values.add(new DataPointBar("Five", 18, colors.get(5)));
         values.add(new DataPointBar("Six", 40, colors.get(6)));        
         
-        XYChart barChart = new XYChart(values, "Really Big Text", "yadda yadda", "yadda yadda", 40);
+        XYChart chart = new XYChart(values, "Really Big Text", "yadda yadda", "yadda yadda", 40);
         
-        barChart.xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
-        barChart.xAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
-        barChart.xAxis.labelText = "Playing with fonts";
+        chart.xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
+        chart.xAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
+        chart.xAxis.labelText = "Playing with fonts";
 
-        barChart.yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
-        barChart.yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
+        chart.yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
+        chart.yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
         
-        barChart.setTitleFont("Ravie", Font.PLAIN, 70);
-        barChart.setTitle("Really Big Text");
-        barChart.setSize(900, 500);
+        chart.setTitleFont("Ravie", Font.PLAIN, 70);
+        chart.setTitle("Really Big Text");
+        chart.setSize(900, 500);
 
-        return barChart;
+        return chart;
     }
 	
 	
@@ -51,6 +51,11 @@ public class TestDataBar_FontFun extends ChartTester {
 		t.testChart(t.getChart());
 	}
 	
+	
+	@Override
+	public String getNiceTitle() {
+		return "XY: Font Fun";
+	}
 
 	
 

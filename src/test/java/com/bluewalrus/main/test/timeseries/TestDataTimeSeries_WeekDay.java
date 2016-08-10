@@ -46,7 +46,6 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 		time = "2001-07-07 05-33-00";                              
 		Date dt6 = df.parse(time);                                      
 		
-		
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		values.add(new DataPoint(dt4, 5));
 		values.add(new DataPoint(dt5, 8));
@@ -55,7 +54,6 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new GridLine(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
-//		rgb(224, 235, 235)
 		NumericalInterval t1 = new NumericalInterval(8, 10.0, new GridLine(Color.LIGHT_GRAY));
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, null, null), "Y Axis");
@@ -81,24 +79,20 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 		
 		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, new Color(224,235,235), false);
 
-		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
-		lineChart.setTitle("Week Day Time Series");
+		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+		chart.setTitle("Week Day Time Series");
 
-		return lineChart;
+		return chart;
 	}
 	
+	
+	@Override
+	public String getNiceTitle() {
+		return "Time Series: Week Day";
+	}
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataTimeSeries_WeekDay();
 		t.testChart(t.getChart());
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

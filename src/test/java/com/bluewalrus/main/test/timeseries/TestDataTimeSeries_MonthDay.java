@@ -81,6 +81,11 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		return lineChart;
 	}
 	
+	@Override
+	public String getNiceTitle() {
+		return "Time Series: Month Day";
+	}
+	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataTimeSeries_MonthDay();
 		t.testChart(t.getChart());

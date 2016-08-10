@@ -15,7 +15,6 @@ public class TestDataXY_Fractions6 extends ChartTester {
 	@Override
 	public Chart getChart() {
 
-
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		values.add(new DataPoint(-0.10000009, 0.001));
 		values.add(new DataPoint(0.002, 0.002));
@@ -25,15 +24,13 @@ public class TestDataXY_Fractions6 extends ChartTester {
 				
 		XYChart lineChart = new XYChart(values, "", "", "");
 		
-		JFrame frame = new JFrame();
-		frame.add(lineChart);
-		frame.setSize(700, 500);
-		frame.setVisible(true);
-		
-		
 		return lineChart;
 	}
 	
+	@Override
+	public String getNiceTitle()  {
+		return "Fractions 6";
+	}
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataXY_Fractions6();

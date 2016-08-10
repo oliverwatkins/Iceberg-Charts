@@ -10,13 +10,9 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.main.test.ChartTester;
 
 public class TestDataXY_Simple extends ChartTester {
-	
-
-
 
 	@Override
 	public Chart getChart() {
-
 
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		values.add(new DataPoint(5, 96));
@@ -25,17 +21,15 @@ public class TestDataXY_Simple extends ChartTester {
 		values.add(new DataPoint(135, 67));
 		values.add(new DataPoint(150, 70));
 		
-		XYChart lineChart = new XYChart(values, "My Easy Example", "X Axis", "Y Axis");
+		XYChart chart = new XYChart(values, "My Easy Example", "X Axis", "Y Axis");
 		
-		JFrame frame = new JFrame();
-		frame.add(lineChart);
-		frame.setSize(700, 500);
-		frame.setVisible(true);
-		
-		
-		return lineChart;
+		return chart;
 	}
 	
+	@Override
+	public String getNiceTitle() {
+		return "XY: Simple";
+	}
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataXY_Simple();

@@ -53,10 +53,6 @@ public class TestDataBar_2Y_2  extends ChartTester{
         		new GridLine(Color.BLUE), "left3");
         series3.dataPoints = values3;
 
-//        YAxis yAxis = new YAxis(new LinearNumericalAxisScalingY(-50.0, 100.0, 50.0, 10.0, 1.0), "Temperature");
-//        XAxis xAxis = new XAxis(new EnumerationAxisScalingX(), "Month");
-//        
-//        YAxis yAxis2 = new YAxis(new LinearNumericalAxisScalingY(0.0, 200.0, 100.0, 20.0, 0.0), "Precipitation");
 
         xySeries.add(series);
         xySeries.add(series2);
@@ -106,6 +102,12 @@ public class TestDataBar_2Y_2  extends ChartTester{
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataBar_2Y_2();
 		t.testChart(t.getChart());
+	}
+
+	@Override
+	public String getNiceTitle() {
+		// TODO Auto-generated method stub
+		return "XYY ????";
 	}
 
 

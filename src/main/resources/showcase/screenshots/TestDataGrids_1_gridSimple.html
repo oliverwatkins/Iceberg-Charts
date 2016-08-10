@@ -1,5 +1,4 @@
-<img src=src\main\resources\showcase\screenshots\TestDataGrids_1_gridSimple.PNG/><div>	public Chart getChart() {
-
+<img src='partials/TestDataGrids_1_gridSimple.PNG' style='width:400px;float:right'><div><pre>
 		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
 		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
@@ -32,6 +31,13 @@
 		return lineChart;
 	}
 
+	
+
+
+	@Override
+	public String getNiceTitle() {
+		return "Grids: simple";
+	}
 
 
 	private ArrayList&lt;DataPoint&gt; getSeries2() {
@@ -124,7 +130,9 @@
 		ChartTester t = new TestDataGrids_1_gridSimple();
 		t.testChart(t.getChart());
 	}
+
+
 	
 }
 
-</div>
+</pre></div>

@@ -107,6 +107,12 @@ public class TestDataBubble_1_guns extends ChartTester {
 		ChartTester t = new TestDataBubble_1_guns();
 		t.testChart(t.getChart());
 	}
+	
+	@Override
+	public String getNiceTitle()  {
+		return "Bubble: Single series";
+	}
+    
 
 
 }

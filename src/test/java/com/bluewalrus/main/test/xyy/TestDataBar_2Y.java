@@ -131,4 +131,9 @@ public class TestDataBar_2Y extends ChartTester {
 		t.testChart(t.getChart());
 	}
 
+	@Override
+	public String getNiceTitle() {
+		return "XYY";
+	}
+
 }

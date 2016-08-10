@@ -49,11 +49,14 @@ public class TestDataXY_Simple_Series extends ChartTester {
 		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
 		
 
-		XYChart lineChart = new XYChart("Many Series Example", "My X Axis", "My Y Axis", series, series2, series3, series4); 
+		XYChart chart = new XYChart("Many Series Example", "My X Axis", "My Y Axis", series, series2, series3, series4); 
 
-		return lineChart;
+		return chart;
 	}
-	
+	@Override
+	public String getNiceTitle() {
+		return "XY: Simple Series";
+	}
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataXY_Simple_Series();

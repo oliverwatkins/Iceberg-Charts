@@ -134,6 +134,10 @@ public class TestDataPieBubble extends ChartTester {
         return chart;
     }
 	
+	@Override
+	public String getNiceTitle()  {
+		return "Bubble: Pie Bubble";
+	}
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataPieBubble();

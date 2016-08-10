@@ -36,5 +36,12 @@ public class TestDataBar_2_Simple_negative extends ChartTester {
 		ChartTester t = new TestDataBar_2_Simple_negative();
 		t.testChart(t.getChart());
 	}
+	
+	@Override
+	public String getNiceTitle()  {
+		return "Bar: negative";
+	}
+
+	
 
 }

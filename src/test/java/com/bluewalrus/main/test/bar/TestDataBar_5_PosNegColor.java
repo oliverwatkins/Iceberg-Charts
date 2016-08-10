@@ -36,7 +36,6 @@ public class TestDataBar_5_PosNegColor extends ChartTester {
 		barSeries.add(new DataPointBar("x", 14));
 		barSeries.add(new DataPointBar("z", 41));
 
-		
 		BarDisplayOptions barDisplayOptions = new BarDisplayOptions();
 		
 		barDisplayOptions.positiveColor = Color.DARK_GRAY;
@@ -53,5 +52,11 @@ public class TestDataBar_5_PosNegColor extends ChartTester {
 		ChartTester t = new TestDataBar_5_PosNegColor();
 		t.testChart(t.getChart());
 	}
+	
+	@Override
+	public String getNiceTitle()  {
+		return "Bar: pos/neg color";
+	}
+	
 
 }

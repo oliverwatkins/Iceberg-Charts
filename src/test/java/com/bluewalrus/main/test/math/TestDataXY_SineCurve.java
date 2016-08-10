@@ -26,28 +26,22 @@ public class TestDataXY_SineCurve extends ChartTester {
 	public Chart getChart() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
-
 		
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-
 		
 		for (int x = -170; x <= 170; x++) {
-			
 			values.add(new DataPoint(x, (int) (50 * sin((x / 100.0) * 2 * Math.PI))));
 		}
 
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
 		
 		for (int x = -170; x <= 170; x++) {
-			
 			DataPoint dp = new DataPoint(x, (int) (50 * cos((x*10 / 100.0) * 2
 					* Math.PI)));
 			
 			values3.add(dp);
 		}
-		
-//		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.BLUE, 1),
-//				new Line(Color.BLUE), "x^2");
+
 		XYDataSeries series = new XYDataSeries(null,
 				new GridLine(Color.BLUE), "x^2");
 		
@@ -59,8 +53,6 @@ public class TestDataXY_SineCurve extends ChartTester {
 
 		xySeriesList.add(series);
 		xySeriesList.add(series3);
-
-		
 		
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(), "X");
 		xAxis.axisScaling.setMinValue(0);
@@ -79,6 +71,11 @@ public class TestDataXY_SineCurve extends ChartTester {
 
 	double cos(double y) {
 		return Math.cos(y);
+	}
+	
+	@Override
+	public String getNiceTitle() {
+		return "Maths 3";
 	}
 
 }

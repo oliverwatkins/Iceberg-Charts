@@ -44,4 +44,9 @@ public class TestDataPie_SimplePie extends ChartTester {
         
         return pieChart;
     }
+	
+	@Override
+	public String getNiceTitle() {
+		return "Pie : Simple";
+	}
 }

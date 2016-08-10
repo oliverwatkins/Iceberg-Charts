@@ -108,6 +108,11 @@ public class TestDataPie_Multi extends ChartTester {
         return chart;
     }
     
+	@Override
+	public String getNiceTitle() {
+		return "Pie : Multi Level";
+	}
+    
     private static Color darken(Color c) {
         return c.darker();
     }

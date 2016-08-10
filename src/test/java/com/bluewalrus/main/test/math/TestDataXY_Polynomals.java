@@ -28,7 +28,6 @@ public class TestDataXY_Polynomals extends ChartTester {
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		
 		for (int x = -300; x <= 300; x++) {
-			
 			double xd = ((double)(x))/100;
 			
 			DataPoint dp = new DataPoint(xd, f(xd));
@@ -39,7 +38,6 @@ public class TestDataXY_Polynomals extends ChartTester {
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
 		
 		for (int x = -300; x <= 300; x++) {
-			
 			double xd = ((double)(x))/100;
 			
 			DataPoint dp = new DataPoint(xd, gCos(xd));
@@ -68,5 +66,9 @@ public class TestDataXY_Polynomals extends ChartTester {
 	double gCos(double x) {
 		return Math.pow(x, 4) - 8*Math.pow(x, 2);
 	}
-
+	
+	@Override
+	public String getNiceTitle() {
+		return "Maths 2";
+	}
 }

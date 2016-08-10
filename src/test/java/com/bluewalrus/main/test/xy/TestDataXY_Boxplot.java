@@ -55,6 +55,11 @@ public class TestDataXY_Boxplot extends ChartTester {
 
 		return chart;
 	}
+	
+	@Override
+	public String getNiceTitle() {
+		return "XY: Boxplot";
+	}
 
 
 

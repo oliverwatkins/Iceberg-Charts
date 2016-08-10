@@ -1,11 +1,9 @@
-<img src=src\main\resources\showcase\screenshots\TestDataXY_Polynomals.PNG/><div>	public Chart getChart() {
-
+<img src='partials/TestDataXY_Polynomals.PNG' style='width:400px;float:right'><div><pre>
 		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 		
 		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 		
 		for (int x = -300; x &lt;= 300; x++) {
-			
 			double xd = ((double)(x))/100;
 			
 			DataPoint dp = new DataPoint(xd, f(xd));
@@ -16,7 +14,6 @@
 		ArrayList&lt;DataPoint&gt; values3 = new ArrayList&lt;DataPoint&gt;();
 		
 		for (int x = -300; x &lt;= 300; x++) {
-			
 			double xd = ((double)(x))/100;
 			
 			DataPoint dp = new DataPoint(xd, gCos(xd));
@@ -45,6 +42,10 @@
 	double gCos(double x) {
 		return Math.pow(x, 4) - 8*Math.pow(x, 2);
 	}
-
+	
+	@Override
+	public String getNiceTitle() {
+		return "Maths 2";
+	}
 }
-</div>
+</pre></div>

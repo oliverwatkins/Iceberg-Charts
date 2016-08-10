@@ -39,18 +39,9 @@ public class TestDataXY_Fractions extends ChartTester {
 					null), 				
 				"2");
 		
-		
-//		ya.axisCatFont = new Font("Arial", Font.PLAIN, 30);
-		
 		XYChart lineChart = new XYChart(s, ya, xa);
 	
 		lineChart.setTitle("(range 1.5005 to 3 with 0.1 interval)");
-		
-		JFrame frame = new JFrame();
-		frame.add(lineChart);
-		frame.setSize(700, 500);
-		frame.setVisible(true);
-		
 		
 		return lineChart;
 	}
@@ -59,6 +50,11 @@ public class TestDataXY_Fractions extends ChartTester {
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataXY_Fractions();
 		t.testChart(t.getChart());
+	}
+	
+	@Override
+	public String getNiceTitle()  {
+		return "Fractions 1";
 	}
 	
 }

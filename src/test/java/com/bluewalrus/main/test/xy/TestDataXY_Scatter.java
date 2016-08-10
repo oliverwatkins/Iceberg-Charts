@@ -41,7 +41,13 @@ public class TestDataXY_Scatter extends ChartTester {
 		
 		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 		chart.setTitle("Sea Lion Height versus Weight");
+		
 		return chart;
+	}
+	
+	@Override
+	public String getNiceTitle() {
+		return "XY: Scatter";
 	}
 
 	private ArrayList<DataPoint> getData2() {

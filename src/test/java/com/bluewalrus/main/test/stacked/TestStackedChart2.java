@@ -106,6 +106,11 @@ public class TestStackedChart2 extends ChartTester {
 		return lineChart2;
 	}
 	
+	@Override
+	public String getNiceTitle() {
+		return "Stacked 2";
+	}
+	
 	public XYChart getCandleChart(XAxis xAxis) {
 
 

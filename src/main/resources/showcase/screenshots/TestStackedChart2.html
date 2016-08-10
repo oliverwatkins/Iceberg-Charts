@@ -1,5 +1,4 @@
-<img src=src\main\resources\showcase\screenshots\TestStackedChart2.PNG/><div>	public Chart getChart() {
-
+<img src='partials/TestStackedChart2.PNG' style='width:400px;float:right'><div><pre>
 		//xAxis needs to be shared
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(), "X");
 		xAxis.axisScaling.setMinValue(0);
@@ -84,6 +83,11 @@
 		return lineChart2;
 	}
 	
+	@Override
+	public String getNiceTitle() {
+		return "Stacked 2";
+	}
+	
 	public XYChart getCandleChart(XAxis xAxis) {
 
 
@@ -150,5 +154,4 @@
 		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 		chart.setTitle("Box Plot");
 
-		return chart;
-</div>
+</pre></div>

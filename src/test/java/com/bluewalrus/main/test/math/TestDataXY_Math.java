@@ -76,5 +76,13 @@ public class TestDataXY_Math extends ChartTester {
 
 		return lineChart;
 	}
+	
+	@Override
+	public String getNiceTitle() {
+		return "Maths 1";
+	}
+
+	
+	
 
 }

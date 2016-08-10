@@ -102,6 +102,11 @@ public class TestDataGrids_6_alternateGridFillXTimesSeries extends ChartTester {
 	}
 	
 	
+	@Override
+	public String getNiceTitle() {
+		return "Time Series: ???";
+	}
+	
 	
 	
 	

@@ -54,6 +54,13 @@ public class TestDataGrids_1_gridSimple extends ChartTester {
 		return lineChart;
 	}
 
+	
+
+
+	@Override
+	public String getNiceTitle() {
+		return "Grids: simple";
+	}
 
 
 	private ArrayList<DataPoint> getSeries2() {
@@ -146,6 +153,8 @@ public class TestDataGrids_1_gridSimple extends ChartTester {
 		ChartTester t = new TestDataGrids_1_gridSimple();
 		t.testChart(t.getChart());
 	}
+
+
 	
 }
 

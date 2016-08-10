@@ -76,6 +76,11 @@ public class TestDataBubble_2_series extends ChartTester {
         return chart;
     }
 	
+	@Override
+	public String getNiceTitle()  {
+		return "Bubble: Multiple series";
+	}
+	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataBubble_2_series();
 		t.testChart(t.getChart());

@@ -81,5 +81,10 @@ public class TestDataXY_LineExamples extends ChartTester {
 
 		return chart;
 	}
+	
+	@Override
+	public String getNiceTitle() {
+		return "XY: Line Examples";
+	}
 
 }

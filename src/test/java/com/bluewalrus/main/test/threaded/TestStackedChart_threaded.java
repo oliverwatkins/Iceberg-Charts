@@ -179,4 +179,11 @@ public class TestStackedChart_threaded extends ChartTester {
 		ChartTester t = new TestStackedChart_threaded();
 		t.testChart(t.getChart());
 	}
+
+
+	@Override
+	public String getNiceTitle() {
+		// TODO Auto-generated method stub
+		return "??";
+	}
 }

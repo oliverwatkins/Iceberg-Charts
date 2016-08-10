@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.XAxis;
@@ -23,7 +24,7 @@ public class TestDataXY_CandlePlot extends ChartTester {
 		t.testChart(t.getChart());
 	}
 
-	public XYChart getChart() {
+	public Chart getChart() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
@@ -57,5 +58,10 @@ public class TestDataXY_CandlePlot extends ChartTester {
 		chart.setTitle("Candle Plot");
 
 		return chart;
+	}
+	
+	@Override
+	public String getNiceTitle() {
+		return "XY: Candle plot";
 	}
 }

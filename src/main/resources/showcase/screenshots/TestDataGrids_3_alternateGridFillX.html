@@ -1,5 +1,4 @@
-<img src=src\main\resources\showcase\screenshots\TestDataGrids_3_alternateGridFillX.PNG/><div>	public Chart getChart() throws ParseException {
-		
+<img src='partials/TestDataGrids_3_alternateGridFillX.PNG' style='width:400px;float:right'><div><pre>		
 		XYDataSeries series = new XYDataSeries(null, 
 				new GridLine(Color.BLUE, false, 3), 
 				"Blue Series");
@@ -36,6 +35,11 @@
 		lineChart.rightOffset = 200;
 
 		return lineChart;
+	}
+
+	@Override
+	public String getNiceTitle() {
+		return "Grids: alternate Grid Fill X";
 	}
 
 
@@ -79,11 +83,6 @@
 		values.add(new DataPoint(95, -26));
 		return values;
 	}
-
-
-
-
-
 
 	private ArrayList&lt;DataPoint&gt; getSeries1() {
 		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
@@ -133,4 +132,4 @@
 	
 }
 
-</div>
+</pre></div>

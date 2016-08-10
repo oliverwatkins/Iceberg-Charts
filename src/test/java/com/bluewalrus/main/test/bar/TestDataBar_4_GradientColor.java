@@ -62,5 +62,10 @@ public class TestDataBar_4_GradientColor extends ChartTester {
 		ChartTester t = new TestDataBar_4_GradientColor();
 		t.testChart(t.getChart());
 	}
+	
+	@Override
+	public String getNiceTitle()  {
+		return "Bar: color gradients";
+	}
 
 }

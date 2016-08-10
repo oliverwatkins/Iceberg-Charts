@@ -32,7 +32,6 @@ public class TestDataBar_3_Simple_fixed_axis extends ChartTester {
 		chart.yAxis.setMinValue(0);
 		chart.yAxis.setMaxValue(100);
 		
-		
 		return chart;
 	}
 
@@ -40,5 +39,8 @@ public class TestDataBar_3_Simple_fixed_axis extends ChartTester {
 		ChartTester t = new TestDataBar_3_Simple_fixed_axis();
 		t.testChart(t.getChart());
 	}
-
+	@Override
+	public String getNiceTitle()  {
+		return "Bar with fixed axis";
+	}
 }

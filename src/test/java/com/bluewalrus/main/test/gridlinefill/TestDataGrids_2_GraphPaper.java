@@ -36,7 +36,11 @@ public class TestDataGrids_2_GraphPaper extends ChartTester{
 		return lineChart;
 	}
 	
-	
+	@Override
+	public String getNiceTitle() {
+		return "Grids: Graph paper";
+	}
+
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataGrids_2_GraphPaper();

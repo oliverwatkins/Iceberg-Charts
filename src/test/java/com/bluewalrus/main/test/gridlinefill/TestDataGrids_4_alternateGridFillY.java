@@ -52,8 +52,10 @@ public class TestDataGrids_4_alternateGridFillY extends ChartTester {
 
 
 
-
-
+	@Override
+	public String getNiceTitle() {
+		return "Grids: alternate Grid Fill Y";
+	}
 
 	private ArrayList<DataPoint> getSeries2() {
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();

@@ -43,17 +43,10 @@ public class FractionTester extends JFrame {
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
-//        JTabbedPane tabbedPane = new JTabbedPane();
-    	
         JTabbedPane tabbedPaneBar = new JTabbedPane();
-
-        
-        
-//        tabbedPane.add("Bar Charts", tabbedPaneBar);
 
         JPanel p = null;
         JComponent chart = null;
-
         
         
         /***

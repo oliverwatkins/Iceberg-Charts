@@ -13,6 +13,9 @@ import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 /**
+ * 
+ * TODO
+ * 
  * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
  */
 public class TestDataBar_thinLines extends ChartTester {
@@ -26,33 +29,32 @@ public class TestDataBar_thinLines extends ChartTester {
             values.add(new DataPointBar("", (int) (100 * d), Color.GRAY));
         }
         
-        
-        
-
         YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, 1.0), "Percent Sunlight");
         
         XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 365.0), "yadda yadda");
         
-        System.out.println("xAxis.axisDraw " + xAxis.axisScaling);
-        System.out.println("xAxis.axisDraw.maxValue " + xAxis.axisScaling.getMaxValue());
         xAxis.axisScaling.setMaxValue(365.0);
         
         xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
         xAxis.labelText = "Day of Year"; 
         
-        
-        
         XYChart barChart = new XYChart(values, "Annual Sunlight Variability", "Day of Year", "Percent Sunlight", 1);
         
-//        BarChart barChart = new BarChart(xAxis, yAxis, values, 1);
-
-//        barChart.setSize(1000, 500);
         barChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-//        barChart.setTitle("Annual Sunlight Variability");
 
         return barChart;
     }
 
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataBar_thinLines();
+		t.testChart(t.getChart());
+	}
+	
+	
+	@Override
+	public String getNiceTitle()  {
+		return "Bar: thin lines";
+	}
     
 
 

@@ -1,5 +1,4 @@
-<img src=src\main\resources\showcase\screenshots\TestDataGrids_2_GraphPaper.PNG/><div>	public Chart getChart() {
-
+<img src='partials/TestDataGrids_2_GraphPaper.PNG' style='width:400px;float:right'><div><pre>
 		NumericalInterval yInterval1 = new NumericalInterval(0, 10.0, new GridLine(Color.BLACK, false, 1));
 		NumericalInterval yInterval2 = new NumericalInterval(0, 5.0, new GridLine(Color.GRAY, false, 1));
 		NumericalInterval yInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
@@ -17,7 +16,11 @@
 		return lineChart;
 	}
 	
-	
+	@Override
+	public String getNiceTitle() {
+		return "Grids: Graph paper";
+	}
+
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataGrids_2_GraphPaper();
@@ -37,4 +40,4 @@
 	
 }
 
-</div>
+</pre></div>

@@ -38,7 +38,6 @@ public class TestDataGrids_5_Gradiant extends ChartTester{
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 35.0, yInterval1, yInterval2, yInterval3), "Y Axis");
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(15.0, 68.0, xInterval1, xInterval2, null), "X Axis");
 
-
 		XYChart lineChart = new XYChart(values, "Gradiant", yAxis, xAxis);
 
 		lineChart.setSize(1000, 500);
@@ -46,21 +45,14 @@ public class TestDataGrids_5_Gradiant extends ChartTester{
 		return lineChart;
 	}
 	
-	
-	
-	
+	@Override
+	public String getNiceTitle() {
+		return "Grids: Gradient fill";
+	}
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataGrids_5_Gradiant();
 		t.testChart(t.getChart());
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }
 

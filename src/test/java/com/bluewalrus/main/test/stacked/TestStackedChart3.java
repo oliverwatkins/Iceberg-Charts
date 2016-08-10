@@ -148,6 +148,11 @@ public class TestStackedChart3 extends ChartTester {
 
 		return chart;
 	}
+	
+	@Override
+	public String getNiceTitle() {
+		return "Stacked 3";
+	}
 
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestStackedChart3();

@@ -23,8 +23,6 @@ import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 
 public class TestDataTimeSeries_MonthWeek  extends ChartTester {
-
-
 	
 	@Override
 	public Chart getChart() throws ParseException {
@@ -36,7 +34,6 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 		Date startDate = df.parse("2004-04-3 01-00-00"); 
 		Date endDate = df.parse("2004-08-12 05-33-00");
 		
-		
 		String time = "2001-03-01 00-33-00";                              
 		Date dt4 = df.parse(time);                                      
 
@@ -45,7 +42,6 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 
 		time = "2001-07-20 05-33-00";                              
 		Date dt6 = df.parse(time);                                      
-		
 		
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		values.add(new DataPoint(dt4, 5));
@@ -65,7 +61,6 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
 		
 		TimeInterval timeInt1 = new TimeInterval(2, TimeInterval.Type.WEEK, new GridLine(Color.GRAY, false, 1), weekFormat);
-
 		
 		XAxis xAxis = new XAxis(
 				new TimeSeriesAxisScaling(
@@ -80,23 +75,20 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
 		
 		chart.setTitle("Month Week - 2004, 3 Apr - 2004, 12 August");
-
 		
 		timeInt2.styling.intervalFont =  new Font("Blackadder ITC", Font.BOLD, 16);
 		timeInt1.styling.intervalFont =  new Font("Blackadder ITC", Font.PLAIN, 12);
 		
-		
 		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, new Color(224,235,235), false);
-
-//		lineChart.setSize(1000, 500);
-//		lineChart.rightOffset = 200;
-
-//		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-//		lineChart.setTitle("asdfasdf");
 
 		return chart;
 	}
 	
+	
+	@Override
+	public String getNiceTitle() {
+		return "Time Series: Month Week";
+	}
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataTimeSeries_YearMonth();

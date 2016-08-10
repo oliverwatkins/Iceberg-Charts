@@ -78,6 +78,11 @@ public class TestDataBar_MultiBar_SideBySide extends ChartTester {
 
     }
 	
+	@Override
+	public String getNiceTitle() {
+		return "Multibar : side by side";
+	}
+	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataBar_MultiBar_SideBySide();
 		t.testChart(t.getChart());

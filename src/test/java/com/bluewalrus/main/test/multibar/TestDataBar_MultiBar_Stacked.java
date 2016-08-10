@@ -74,6 +74,10 @@ public class TestDataBar_MultiBar_Stacked extends ChartTester {
         return chart;
     }
 	
+	@Override
+	public String getNiceTitle() {
+		return "Multibar : stacked";
+	}
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataBar_MultiBar_Stacked();

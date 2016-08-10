@@ -25,13 +25,12 @@ public class TestDataXY_Fractions4 extends ChartTester {
 				
 		XYChart lineChart = new XYChart(values, "Big Range", "", "");
 		
-		JFrame frame = new JFrame();
-		frame.add(lineChart);
-		frame.setSize(700, 500);
-		frame.setVisible(true);
-		
-		
 		return lineChart;
+	}
+	
+	@Override
+	public String getNiceTitle()  {
+		return "Fractions 4";
 	}
 	
 	

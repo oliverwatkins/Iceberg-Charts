@@ -1,5 +1,4 @@
-<img src=src\main\resources\showcase\screenshots\TestDataXY_Simple_Series.PNG/><div>	public Chart getChart() {
-
+<img src='partials/TestDataXY_Simple_Series.PNG' style='width:400px;float:right'><div><pre>
 		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
 		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
@@ -36,16 +35,6 @@
 		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
 		
 
-		XYChart lineChart = new XYChart("Many Series Example", "My X Axis", "My Y Axis", series, series2, series3, series4); 
+		XYChart chart = new XYChart("Many Series Example", "My X Axis", "My Y Axis", series, series2, series3, series4); 
 
-		return lineChart;
-	}
-	
-	
-	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataXY_Simple_Series();
-		t.testChart(t.getChart());
-	}
-	
-}
-</div>
+</pre></div>

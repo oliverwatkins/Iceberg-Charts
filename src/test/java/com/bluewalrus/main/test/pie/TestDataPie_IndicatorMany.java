@@ -123,6 +123,11 @@ public class TestDataPie_IndicatorMany extends ChartTester {
         
         return panel;
     }
+	
+	@Override
+	public String getNiceTitle() {
+		return "Pie : indicator many";
+	}
     
     
     private static Component createLittleIndicatorPanel(int i) {

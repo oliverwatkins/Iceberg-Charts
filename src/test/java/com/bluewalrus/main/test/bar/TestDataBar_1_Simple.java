@@ -1,6 +1,7 @@
 package com.bluewalrus.main.test.bar;
 
 import java.awt.Color;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import com.bluewalrus.chart.Chart;
@@ -35,6 +36,11 @@ public class TestDataBar_1_Simple extends ChartTester {
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataBar_1_Simple();
 		t.testChart(t.getChart());
+	}
+
+	@Override
+	public String getNiceTitle()  {
+		return "Bar: Simple";
 	}
 
 }

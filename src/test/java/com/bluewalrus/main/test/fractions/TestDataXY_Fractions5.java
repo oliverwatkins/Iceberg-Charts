@@ -25,15 +25,13 @@ public class TestDataXY_Fractions5 extends ChartTester {
 				
 		XYChart lineChart = new XYChart(values, "", "", "");
 		
-		JFrame frame = new JFrame();
-		frame.add(lineChart);
-		frame.setSize(700, 500);
-		frame.setVisible(true);
-		
-		
 		return lineChart;
 	}
 	
+	@Override
+	public String getNiceTitle()  {
+		return "Fractions 5";
+	}
 	
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataXY_Fractions5();

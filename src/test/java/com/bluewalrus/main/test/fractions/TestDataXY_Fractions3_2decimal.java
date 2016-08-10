@@ -41,14 +41,12 @@ public class TestDataXY_Fractions3_2decimal extends ChartTester {
 				"2");
 		
 		XYChart lineChart = new XYChart(s, ya, xa);
-		
-		JFrame frame = new JFrame();
-		frame.add(lineChart);
-		frame.setSize(700, 500);
-		frame.setVisible(true);
-		
-		
 		return lineChart;
+	}
+	
+	@Override
+	public String getNiceTitle()  {
+		return "Fractions 3";
 	}
 	
 	

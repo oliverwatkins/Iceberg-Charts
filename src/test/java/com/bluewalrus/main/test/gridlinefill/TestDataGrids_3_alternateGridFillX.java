@@ -58,6 +58,11 @@ public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 		return lineChart;
 	}
 
+	@Override
+	public String getNiceTitle() {
+		return "Grids: alternate Grid Fill X";
+	}
+
 
 
 	private ArrayList<DataPoint> getSeries2() {
@@ -99,11 +104,6 @@ public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 		values.add(new DataPoint(95, -26));
 		return values;
 	}
-
-
-
-
-
 
 	private ArrayList<DataPoint> getSeries1() {
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();

@@ -28,5 +28,10 @@ public class TestDataPie_IndicatorSimple extends ChartTester {
         
         return chart;
     }
+	
+	@Override
+	public String getNiceTitle() {
+		return "Pie : indicator simple";
+	}
 
 }

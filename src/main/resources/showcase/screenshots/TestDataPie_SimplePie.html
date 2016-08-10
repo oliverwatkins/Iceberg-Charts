@@ -1,5 +1,4 @@
-<img src=src\main\resources\showcase\screenshots\TestDataPie_SimplePie.PNG/><div>	public Chart getChart() {
-
+<img src='partials/TestDataPie_SimplePie.PNG' style='width:400px;float:right'><div><pre>
         ArrayList&lt;Segment&gt; values = new ArrayList&lt;Segment&gt;();
         values.add(new Segment(35, "something", Color.RED));
         values.add(new Segment(32, "something else", Color.BLUE));
@@ -15,5 +14,10 @@
         
         return pieChart;
     }
+	
+	@Override
+	public String getNiceTitle() {
+		return "Pie : Simple";
+	}
 }
-</div>
+</pre></div>
