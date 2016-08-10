@@ -73,15 +73,15 @@ public class TestDataGrids_7_TimeSeries extends ChartTester {
 
 		xySeriesList.add(series);
 
-		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
 
-		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
+		chart.setSize(1000, 500);
+		chart.rightOffset = 200;
 
-		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-		lineChart.setTitle("Some Kind of XY Chart");
+		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+		chart.setTitle("Some Kind of XY Chart");
 
-		return lineChart;
+		return chart;
 	}
 	
 	@Override

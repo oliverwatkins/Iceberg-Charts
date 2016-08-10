@@ -47,56 +47,63 @@ public class GenerateShowcase {
     	sBuilder.append("{");
     	sBuilder.append(" \"samples\": [{");
     	
+    	StringBuilder sBuilder2 = new StringBuilder();
+    	
+    	sBuilder2.append("<div>");
+    	
     	//XY
-    	new TestDataXY_Simple().createImageAndTextFile(sBuilder);
-    	new TestDataXY_Scatter().createImageAndTextFile(sBuilder);
-    	new TestDataXY_Simple_Series().createImageAndTextFile(sBuilder);
-    	new TestDataXY_LineExamples().createImageAndTextFile(sBuilder);
-    	new TestDataXY_CandlePlot().createImageAndTextFile(sBuilder);
-    	new TestDataXY_Boxplot().createImageAndTextFile(sBuilder);
-    	new TestDataBar_FontFun().createImageAndTextFile(sBuilder);
+    	new TestDataXY_Simple().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataXY_Scatter().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataXY_Simple_Series().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataXY_LineExamples().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataXY_CandlePlot().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataXY_Boxplot().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataBar_FontFun().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//Grid
-    	new TestDataGrids_1_gridSimple().createImageAndTextFile(sBuilder);
-    	new TestDataGrids_2_GraphPaper().createImageAndTextFile(sBuilder);
-    	new TestDataGrids_3_alternateGridFillX().createImageAndTextFile(sBuilder);
-    	new TestDataGrids_4_alternateGridFillY().createImageAndTextFile(sBuilder);
-    	new TestDataGrids_5_Gradiant().createImageAndTextFile(sBuilder);
+    	new TestDataGrids_1_gridSimple().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataGrids_2_GraphPaper().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataGrids_3_alternateGridFillX().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataGrids_4_alternateGridFillY().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataGrids_5_Gradiant().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//BAR
-    	new TestDataBar_1_Simple().createImageAndTextFile(sBuilder);
-    	new TestDataBar_4_GradientColor().createImageAndTextFile(sBuilder);
-    	new TestDataBar_5_PosNegColor().createImageAndTextFile(sBuilder);
+    	new TestDataBar_1_Simple().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataBar_4_GradientColor().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataBar_5_PosNegColor().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//STACKED
-    	new TestDataXY_Math().createImageAndTextFile(sBuilder);
-    	new TestDataXY_SineCurve().createImageAndTextFile(sBuilder);
-    	new TestDataXY_Polynomals().createImageAndTextFile(sBuilder);
+    	new TestDataXY_Math().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataXY_SineCurve().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataXY_Polynomals().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//STACKED
-    	new TestStackedChart2().createImageAndTextFile(sBuilder);
-    	new TestStackedChart3().createImageAndTextFile(sBuilder);
+    	new TestStackedChart2().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestStackedChart3().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//MUTI BAR
-    	new TestDataBar_MultiBar_SideBySide().createImageAndTextFile(sBuilder);
-    	new TestDataBar_MultiBar_Stacked().createImageAndTextFile(sBuilder);
+    	new TestDataBar_MultiBar_SideBySide().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataBar_MultiBar_Stacked().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//BUBBLE
-    	new TestDataBubble_1_guns().createImageAndTextFile(sBuilder);
-    	new TestDataBubble_2_series().createImageAndTextFile(sBuilder); //error!
+    	new TestDataBubble_1_guns().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataBubble_2_series().createImageAndTextFile(sBuilder, sBuilder2); //error!
 //    	new TestDataPieBubble().createImageAndTextFile();
     	
     	//PIE
-    	new TestDataPie_SimplePie().createImageAndTextFile(sBuilder);
-    	new TestDataPie_Multi().createImageAndTextFile(sBuilder);
+    	new TestDataPie_SimplePie().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataPie_Multi().createImageAndTextFile(sBuilder, sBuilder2);
 //    	new TestDataPie_IndicatorMany().createImageAndTextFile(); //TODO cannot do this because it is a JPanel
-    	new TestDataPie_IndicatorSimple().createImageAndTextFile(sBuilder);
+    	new TestDataPie_IndicatorSimple().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//XYY
-    	new TestDataBar_2Y().createImageAndTextFile(sBuilder);
+    	new TestDataBar_2Y().createImageAndTextFile(sBuilder, sBuilder2);
 
     	sBuilder.append("}]}");
+    	
+    	sBuilder2.append("</div>");
 
+    	FileUtils.writeFile(sBuilder2, GenerateShowcase.path, "screenshots.html");
     	FileUtils.writeFile(sBuilder, GenerateShowcase.path, "samples.json");
     	
     	

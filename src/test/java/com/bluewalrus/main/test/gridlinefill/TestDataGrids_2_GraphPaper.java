@@ -31,9 +31,9 @@ public class TestDataGrids_2_GraphPaper extends ChartTester{
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, yInterval1, yInterval2, yInterval3), "Y Axis");
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0, xInterval1, xInterval2, xInterval3), "X Axis");
 
-		XYChart lineChart = new XYChart(new ArrayList<DataPoint>(), "Graphpaper", yAxis, xAxis);
+		XYChart chart = new XYChart(new ArrayList<DataPoint>(), "Graphpaper", yAxis, xAxis);
 
-		return lineChart;
+		return chart;
 	}
 	
 	@Override

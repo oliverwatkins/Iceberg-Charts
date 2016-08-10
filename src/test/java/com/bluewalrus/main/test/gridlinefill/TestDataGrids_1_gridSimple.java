@@ -40,7 +40,7 @@ public class TestDataGrids_1_gridSimple extends ChartTester {
 
 		XYDataSeries series = new XYDataSeries(values, "");
 		
-		XYChart lineChart = new XYChart("Grid Examples", 
+		XYChart chart = new XYChart("Grid Examples", 
 				"My X Axis", 
 				"My Y Axis", 
 				new IntervalStyling(5, new GridLine(Color.GRAY, false, 3), null), 		//first X interval styling
@@ -51,7 +51,7 @@ public class TestDataGrids_1_gridSimple extends ChartTester {
 				null, 																	//third Y interval styling
 				series);
 		
-		return lineChart;
+		return chart;
 	}
 
 	

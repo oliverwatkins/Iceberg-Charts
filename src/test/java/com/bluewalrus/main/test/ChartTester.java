@@ -43,7 +43,7 @@ public abstract class ChartTester extends JFrame{
 	}
 	
 
-	public void createImageAndTextFile(StringBuilder sBuilder) throws IOException, ParseException {
+	public void createImageAndTextFile(StringBuilder samplesJSON, StringBuilder screenshotHTML) throws IOException, ParseException {
 		
         Chart chart = (Chart)this.getChart();
         String s = this.generateCodeSnippetFile();
@@ -55,10 +55,14 @@ public abstract class ChartTester extends JFrame{
         
         this.writeHTML(s, urlChart, chart);
         
-        sBuilder.append("\"title\": \"" + this.getNiceTitle() + "\",");
-        sBuilder.append("\"url\": \"" + "partials/" + chart.fileLocation +  ".html" + "\" ");
         
-        sBuilder.append("}, {");
+        screenshotHTML.append("<img src='partials/" + chart.fileLocation + ".PNG' class='screenshot-image'/>");
+        
+        
+        samplesJSON.append("\"title\": \"" + this.getNiceTitle() + "\",");
+        samplesJSON.append("\"url\": \"" + "partials/" + chart.fileLocation +  ".html" + "\" ");
+        
+        samplesJSON.append("}, {");
 	}
 	
 	

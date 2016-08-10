@@ -45,17 +45,17 @@ public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 				new GridLine(Color.GRAY, false, 1), 
 				null);
 		
-		XYChart lineChart = new XYChart(xySeriesList, "Alternate Grid Fill", null, 
+		XYChart chart = new XYChart(xySeriesList, "Alternate Grid Fill", null, 
 				stylingX, 
 				null, 
 				null, 
 				stylingY, 
 				null, "X Axis", "Y Axis");
 		
-		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
+		chart.setSize(1000, 500);
+		chart.rightOffset = 200;
 
-		return lineChart;
+		return chart;
 	}
 
 	@Override
