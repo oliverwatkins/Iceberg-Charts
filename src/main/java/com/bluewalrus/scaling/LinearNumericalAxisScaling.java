@@ -152,16 +152,11 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 			/**
 			 * check if the pixel position is within the bounds of the chart. If not ignore it.
 			 */
-
-
 			if (!inBounds(pixelsFromEdge, chart)) {
-				
-				String labelValueFormatted = getLabelValue((NumericalInterval)interval, i);
 				continue;
 			}
 			
 			drawIntervalTick(inter, g, chart, pixelsFromEdge);
-
 			
 			if (showLabel)
 				drawIntervalLabel(inter, g, chart, getAxis(chart), pixelsFromEdge, i);

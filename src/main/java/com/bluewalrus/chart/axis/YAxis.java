@@ -14,7 +14,9 @@ import com.bluewalrus.scaling.AxisScaling;
  */
 public class YAxis extends Axis {
 
-    public boolean rightSide = false;
+
+
+	public boolean rightSide = false;
 	
     public YAxis(AxisScaling axisDraw, String name) {
         super(name, axisDraw);
@@ -51,5 +53,12 @@ public class YAxis extends Axis {
 
 	public void setMaxValue(int val) {
 		axisScaling.setMaxValue(val);
+	}
+	
+    @Override
+	public String toString() {
+		return "YAxis [rightSide=" + rightSide + ", axisScaling=" + axisScaling
+				+ ", labelText=" + labelText + ", getMinValue()="
+				+ getMinValue() + ", getMaxValue()=" + getMaxValue() + "]";
 	}
 }

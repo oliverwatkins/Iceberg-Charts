@@ -106,12 +106,15 @@ public abstract class AxisScaling {
 				return true;
 			}
 		
-		}else if (orientation == Orientation.Y) {
+		}else if (orientation == Orientation.Y || orientation == Orientation.Y2) {
 			
 			if (pixelsFromEdge >= chart.topOffset && pixelsFromEdge <= (chart.topOffset + chart.heightChart)) {
 				return true;
 			}
 		}
+//		else if (orientation == Orientation.Y2) {
+//				System.out.println("Y2");			
+//		}
 		return false;
 	}
 	

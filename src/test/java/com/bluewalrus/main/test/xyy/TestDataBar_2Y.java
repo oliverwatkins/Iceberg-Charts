@@ -123,7 +123,6 @@ public class TestDataBar_2Y extends ChartTester {
 		chart.setTitle("Munich Weather");
 
 		return chart;
-
 	}
 
 	public static void main(String[] args) throws Exception {

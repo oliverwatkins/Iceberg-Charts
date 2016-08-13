@@ -36,7 +36,9 @@ import com.bluewalrus.scaling.TimeSeriesAxisScaling;
  */
 public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
-	
+
+	boolean isYAxis2 = false;
+
 	transient BasicStroke chartBorderLine = new BasicStroke(1,
 			BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, new float[] {
 					2, 0 }, // no dash
@@ -143,7 +145,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				
 	}
 	
-	boolean isYAxis2 = false;
 	
 	//XYY
 	public XYChart(String title, 
@@ -162,8 +163,9 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		initialiseScaling(xySeries);
 		
-		initialiseScalingX_enumeration(xySeriesY2);
-		
+		if (isSeriesListEnumerable(xySeriesY2)) {
+			initialiseScalingX_enumeration(xySeriesY2);
+		}
 		
 		this.xAxis.labelText = xLabel;
 		this.yAxis.labelText = yLabel;
@@ -406,7 +408,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 	
 	/**
-	 * Bubble ONLY!!!!!!!
+	 * Bubble only constructor
 	 * 
 	 * @param listOfSeries
 	 * @param yAxis
