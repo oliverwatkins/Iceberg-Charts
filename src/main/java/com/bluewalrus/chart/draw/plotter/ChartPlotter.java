@@ -13,7 +13,7 @@ import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.ValueType;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 
@@ -59,7 +59,6 @@ public class ChartPlotter {
             	continue;
             }
             
-            
             boolean firstRun = true;
 
             //TODO this will crash if only ONE point is used in a chart!!
@@ -79,11 +78,9 @@ public class ChartPlotter {
                 } else {
 
                     if (xYDataSeries.line != null) {
-
                         drawLine(g, xyFactor, xShift, yShift, lastPoint, xYDataSeries, dataPoint);
                     }
                     if (xYDataSeries.pointType != null) {
-
                         drawPoint(g, xyFactor, xShift, yShift, xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
                     }
                     lastPoint = dataPoint;
@@ -143,7 +140,7 @@ public class ChartPlotter {
             int xShift, int yShift, DataPoint lastPoint,
             XYDataSeries xYDataSeries, DataPoint dataPoint) {
 
-        GridLine line = xYDataSeries.line;
+        Line line = xYDataSeries.line;
 
         int adjustedX1 = (int) ((lastPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
         int adjustedY1 = (int) (yShift - (int) (lastPoint.y * xyFactor.getyFactor()) - xyFactor.yZeroOffsetInPixel);
@@ -183,9 +180,6 @@ public class ChartPlotter {
 			throw new RuntimeException("Chart cannot have negative height");
 		if (chart.widthChart < 0)
 			throw new RuntimeException("Chart cannot have negative width");
-		
-		
-		
 		
     	double yMax = yAxis.axisScaling.getMaxValue();
     	double yMin = yAxis.axisScaling.getMinValue();

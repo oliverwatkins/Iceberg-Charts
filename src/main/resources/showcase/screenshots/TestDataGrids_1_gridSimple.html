@@ -1,31 +1,31 @@
 <img src='partials/TestDataGrids_1_gridSimple.PNG' style='width:400px;float:right'><div><pre>
-		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
+ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
-		values.add(new DataPoint(5, 30));
-		values.add(new DataPoint(10, 11));
-		values.add(new DataPoint(15, 14));
-		values.add(new DataPoint(20, 5));
-		values.add(new DataPoint(25, 8));
+ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
+values.add(new DataPoint(5, 30));
+values.add(new DataPoint(10, 11));
+values.add(new DataPoint(15, 14));
+values.add(new DataPoint(20, 5));
+values.add(new DataPoint(25, 8));
 
-		ArrayList&lt;DataPoint&gt; values2 = new ArrayList&lt;DataPoint&gt;();
-		values2.add(new DataPoint(5, 2));
-		values2.add(new DataPoint(10, 33));
-		values2.add(new DataPoint(15, 6));
-		values2.add(new DataPoint(20, 14));
-		values2.add(new DataPoint(25, 17));
+ArrayList&lt;DataPoint&gt; values2 = new ArrayList&lt;DataPoint&gt;();
+values2.add(new DataPoint(5, 2));
+values2.add(new DataPoint(10, 33));
+values2.add(new DataPoint(15, 6));
+values2.add(new DataPoint(20, 14));
+values2.add(new DataPoint(25, 17));
 
-		XYDataSeries series = new XYDataSeries(values, "");
-		
-		XYChart chart = new XYChart("Grid Examples", 
-				"My X Axis", 
-				"My Y Axis", 
-				new IntervalStyling(5, new GridLine(Color.GRAY, false, 3), null), 		//first X interval styling
-				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second X interval styling
-				null,																	//third X interval styling
-				new IntervalStyling(5, new GridLine(Color.GRAY, true, 3), null),		//first Y interval styling
-				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second Y interval styling
-				null, 																	//third Y interval styling
-				series);
-		
+XYDataSeries series = new XYDataSeries(values, "");
+
+XYChart chart = new XYChart("Grid Examples",
+"My X Axis",
+"My Y Axis",
+new IntervalStyling(5, new Line(Color.GRAY, false, 3), null), 		//first X interval styling
+new IntervalStyling(1, new Line(Color.LIGHT_GRAY, false, 1), null),	//second X interval styling
+null,																	//third X interval styling
+new IntervalStyling(5, new Line(Color.GRAY, true, 3), null),		//first Y interval styling
+new IntervalStyling(1, new Line(Color.LIGHT_GRAY, false, 1), null),	//second Y interval styling
+null, 																	//third Y interval styling
+series);
+
 </pre></div>

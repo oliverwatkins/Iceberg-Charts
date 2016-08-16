@@ -3,6 +3,7 @@ package com.bluewalrus.chart.bar;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.draw.point.UIPointBar;
@@ -45,6 +46,9 @@ public class XYBarDataSeries extends XYDataSeries<DataPointBar>{
 		this.dataPoints.add(dataPointBar);
 	}
 
+	
+	//TODO move all this out of this class
+	
 	public void setUpBarDisplayOptions(BarDisplayOptions barDisplayOptions2) {
 		
 		this.barDisplayOptions = barDisplayOptions2;
@@ -53,43 +57,55 @@ public class XYBarDataSeries extends XYDataSeries<DataPointBar>{
 	}
 
 	private void initBarDisplayOptions() {
-		if (this.barDisplayOptions.gradiantRule != null) {
-			
-			double minY = dataPoints.get(0).y;
-			double maxY = dataPoints.get(0).y;
+		if (this.barDisplayOptions.color != null) {
 			for (DataPointBar dataPointBar : dataPoints) {
-				
-				if (dataPointBar.y < minY) {
-					minY = dataPointBar.y;
-				}
-				if (dataPointBar.y > maxY) {
-					maxY = dataPointBar.y;
-				}
-			}
-			
-			double diff = maxY - minY;
-
-			
-			for (DataPointBar dataPointBar : dataPoints) {
-				
-				double percentChange = (double)((dataPointBar.y - minY) / diff);
-				
-				dataPointBar.color = this.barDisplayOptions.gradiantRule.getColor(percentChange);
-			}
-		}else if (this.barDisplayOptions.positiveColor != null && this.barDisplayOptions.negativeColor != null ) {
-			
-			for (DataPointBar dataPointBar : dataPoints) {
-				
-				if (dataPointBar.y < 0) {
-					dataPointBar.color = this.barDisplayOptions.negativeColor;
-				}else {
-					dataPointBar.color = this.barDisplayOptions.positiveColor;
-				}
-				
-				
-//				dataPointBar.color = this.barDisplayOptions.gradiantRule.getColor(percentChange);
+				dataPointBar.color = this.barDisplayOptions.color;
 			}
 		}
-	} 
+		
+		if (this.barDisplayOptions.transparancy != -1) {
+			for (DataPointBar dataPointBar : dataPoints) {
+				
+				double tValue = 255 * this.barDisplayOptions.transparancy;
+				
+				Color newColor = new Color(this.barDisplayOptions.color.getRed(),
+						this.barDisplayOptions.color.getGreen(),
+						this.barDisplayOptions.color.getBlue(), (int)tValue
+						);
+				dataPointBar.color = newColor;
+			}
+		}
+		
+		if (this.barDisplayOptions.gradiantRule != null) {
+			setUpGradiaentColors();
+			
+		}else if (this.barDisplayOptions.positiveColor != null && this.barDisplayOptions.negativeColor != null ) {
+			setUpPositiveAndNegativeColors();
+		}
+	}
 
+	private void setUpPositiveAndNegativeColors() {
+		for (DataPointBar dataPointBar : dataPoints) {
+			
+			if (dataPointBar.y < 0) {
+				dataPointBar.color = this.barDisplayOptions.negativeColor;
+			}else {
+				dataPointBar.color = this.barDisplayOptions.positiveColor;
+			}
+		}
+	}
+
+	private void setUpGradiaentColors() {
+		double maxY = ChartUtils.getMaxYValue(dataPoints);
+		double minY = ChartUtils.getMinYValue(dataPoints);
+		
+		double diff = maxY - minY;
+		
+		for (DataPointBar dataPointBar : dataPoints) {
+			
+			double percentChange = (double)((dataPointBar.y - minY) / diff);
+			
+			dataPointBar.color = this.barDisplayOptions.gradiantRule.getColor(percentChange);
+		}
+	} 
 }

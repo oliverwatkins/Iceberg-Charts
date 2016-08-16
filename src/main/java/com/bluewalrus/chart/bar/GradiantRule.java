@@ -12,20 +12,12 @@ import com.bluewalrus.chart.Utils;
  */
 public class GradiantRule {
 
-    double minValue;
-    double maxValue;
+    private Color color1;
+    private Color color2;
     
-    Color color1;
-    Color color2;
-
-
     public GradiantRule(int minValue, int maxValue, Color color1, Color color2) {
-
-        this.minValue = minValue;
-        this.maxValue = minValue;
         this.color1 = color1;
         this.color2 = color2;
-  
     }
 
     /**

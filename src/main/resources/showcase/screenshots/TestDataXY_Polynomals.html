@@ -1,51 +1,51 @@
 <img src='partials/TestDataXY_Polynomals.PNG' style='width:400px;float:right'><div><pre>
-		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
-		
-		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
-		
-		for (int x = -300; x &lt;= 300; x++) {
-			double xd = ((double)(x))/100;
-			
-			DataPoint dp = new DataPoint(xd, f(xd));
-			
-			values.add(dp);
-		}
+ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-		ArrayList&lt;DataPoint&gt; values3 = new ArrayList&lt;DataPoint&gt;();
-		
-		for (int x = -300; x &lt;= 300; x++) {
-			double xd = ((double)(x))/100;
-			
-			DataPoint dp = new DataPoint(xd, gCos(xd));
-			
-			values3.add(dp);
-		}
-		
-		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.BLUE, 1), new GridLine(Color.BLUE), "x^2");
-		series.dataPoints = values;
+ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 
-		XYDataSeries series3 = new XYDataSeries(new UIPointCircle(Color.RED, 1), new GridLine(Color.RED), "e^x");
-		series3.dataPoints = values3;
+for (int x = -300; x &lt;= 300; x++) {
+double xd = ((double)(x))/100;
 
-		xySeriesList.add(series);
-		xySeriesList.add(series3);
+DataPoint dp = new DataPoint(xd, f(xd));
 
-		XYChart lineChart = new XYChart("Polynomals", "x", "y", xySeriesList);
+values.add(dp);
+}
 
-		return lineChart;
-	}
+ArrayList&lt;DataPoint&gt; values3 = new ArrayList&lt;DataPoint&gt;();
 
-	double f(double x) {
-		return Math.pow(x, 5) - 8*Math.pow(x, 3) + 10*x + 6;
-	}
+for (int x = -300; x &lt;= 300; x++) {
+double xd = ((double)(x))/100;
 
-	double gCos(double x) {
-		return Math.pow(x, 4) - 8*Math.pow(x, 2);
-	}
-	
-	@Override
-	public String getNiceTitle() {
-		return "Maths 2";
-	}
+DataPoint dp = new DataPoint(xd, gCos(xd));
+
+values3.add(dp);
+}
+
+XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.BLUE, 1), new Line(Color.BLUE), "x^2");
+series.dataPoints = values;
+
+XYDataSeries series3 = new XYDataSeries(new UIPointCircle(Color.RED, 1), new Line(Color.RED), "e^x");
+series3.dataPoints = values3;
+
+xySeriesList.add(series);
+xySeriesList.add(series3);
+
+XYChart lineChart = new XYChart("Polynomals", "x", "y", xySeriesList);
+
+return lineChart;
+}
+
+double f(double x) {
+return Math.pow(x, 5) - 8*Math.pow(x, 3) + 10*x + 6;
+}
+
+double gCos(double x) {
+return Math.pow(x, 4) - 8*Math.pow(x, 2);
+}
+
+@Override
+public String getNiceTitle() {
+return "Maths 2";
+}
 }
 </pre></div>

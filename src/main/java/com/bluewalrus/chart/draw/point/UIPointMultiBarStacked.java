@@ -10,7 +10,6 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.datapoint.DataPointMultiBar;
 
-
 /**
  * Note can only be enumerable
  * 
@@ -22,7 +21,6 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 	private int height;
 	private int width;
 	private int y;
-	private Color muchmuchdarker;
 	private Color colorToUse;
 	private int startDrawLeft;
 	
@@ -43,14 +41,11 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 
 		DataPointMultiBar dpX = (DataPointMultiBar)dataPoint;
 		
-
-		
     	if (barWidthPercent != 0) {
     		barWidth = ((barWidthPercent * (double)pixBtnFirst2Pts)/ 100.0); 
     	}else {
     		barWidth = 50; //default
     	}
-    	
 	    
         y = 0;
         width = 0;
@@ -64,7 +59,6 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
     	 * Draw each of the (multi) bars
     	 */
         for (DataPointBar dataPointBar : dpX.bars) {
-        	
         	startDrawLeft = leftPosition  - ((int)barWidth/2);
         	
         	/**
@@ -84,26 +78,15 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
                 colorToUse = color;
             	
             }else { // less than zero
-            	//??
-//                x = point.x - (barWidth/2);
-//                y = point.y + (int)( dpb.y * xyFactor.yFactor);
-//                width = barWidth;
-//                height = (int)((- dpb.y * xyFactor.yFactor)); 
-//                
                 colorToUse = color;
-//                colorToUse = negativeColor;
             }
-
             
             /**
              * Draw rectangle here
              */
             if (dataPointBar.color != null) {
-
             	colorToUse = dataPointBar.color;
             }
-            
-            muchmuchdarker = colorToUse.darker(); 
             
             clipAndDrawPoint(g, chart);
 		}
@@ -111,7 +94,6 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 	
 	@Override
 	public void drawPoint(Graphics2D g) {
-		
         g.setColor(colorToUse);
         
         //bottom rect
@@ -119,19 +101,8 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
         		y,
         		(int)barWidth, //width
         		height+1); //add one pixel so we don't get a white line. It's wrong doing this.. in a way :(
-        
-//        g.setColor(muchmuchdarker);
-//        
-//        //bottom rect
-//        g.drawRect(startDrawLeft,
-//        		y,
-//        		width,
-//        		height);
-		
 	}
 	
-	
-
 	@Override
 	public boolean doesShapeContainPoint(Point point) {
 		// TODO Auto-generated method stub

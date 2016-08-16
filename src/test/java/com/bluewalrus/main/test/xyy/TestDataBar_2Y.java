@@ -8,11 +8,11 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.bar.BarDisplayOptions;
-import com.bluewalrus.chart.bar.GradiantRule_old;
+import com.bluewalrus.chart.bar.GradiantRule;
 import com.bluewalrus.chart.bar.XYBarDataSeries;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
@@ -71,42 +71,43 @@ public class TestDataBar_2Y extends ChartTester {
 		tempAvg.add(new DataPoint("D", -0.9));
 
 		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.RED),
-				new GridLine(Color.RED), "max");
+				new Line(Color.RED), "max");
 		series.dataPoints = tempMax;
 
 		XYDataSeries series2 = new XYDataSeries(new UIPointSquare(Color.BLUE),
-				new GridLine(Color.BLUE), "min");
+				new Line(Color.BLUE), "min");
 		series2.dataPoints = tempMin;
 
 		XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(
-				Color.ORANGE), new GridLine(Color.ORANGE), "average");
+				Color.ORANGE), new Line(Color.ORANGE), "average");
 		series3.dataPoints = tempAvg;
 
 		temperatureSeriesList.add(series);
 		temperatureSeriesList.add(series2);
 		temperatureSeriesList.add(series3);
-
-		GradiantRule_old rule = new GradiantRule_old(0, 130, Color.BLUE, Color.RED, 100);
-
+		
 		ArrayList<DataPointBar> barSeries = new ArrayList<DataPointBar>();
-		barSeries.add(new DataPointBar("J", 54.0, rule.getColor(54.0)));
-		barSeries.add(new DataPointBar("F", 45.2, rule.getColor(45.2)));
-		barSeries.add(new DataPointBar("M", 60.1, rule.getColor(60.1)));
-		barSeries.add(new DataPointBar("A", 69.9, rule.getColor(69.9)));
-		barSeries.add(new DataPointBar("M", 93.4, rule.getColor(93.4)));
-		barSeries.add(new DataPointBar("J", 123.6, rule.getColor(123.6)));
-		barSeries.add(new DataPointBar("J", 117.6, rule.getColor(117.6)));
-		barSeries.add(new DataPointBar("A", 114.5, rule.getColor(114.5)));
-		barSeries.add(new DataPointBar("S", 90.3, rule.getColor(90.3)));
-		barSeries.add(new DataPointBar("O", 69.4, rule.getColor(69.4)));
-		barSeries.add(new DataPointBar("N", 71.0, rule.getColor(71.0)));
-		barSeries.add(new DataPointBar("D", 58.4, rule.getColor(58.4)));
+		barSeries.add(new DataPointBar("J", 54.0)); 
+		barSeries.add(new DataPointBar("F", 45.2));
+		barSeries.add(new DataPointBar("M", 60.1)); 
+		barSeries.add(new DataPointBar("A", 69.9)); 
+		barSeries.add(new DataPointBar("M", 93.4)); 
+		barSeries.add(new DataPointBar("J", 123.6)); 
+		barSeries.add(new DataPointBar("J", 117.6)); 
+		barSeries.add(new DataPointBar("A", 114.5)); 
+		barSeries.add(new DataPointBar("S", 90.3)); 
+		barSeries.add(new DataPointBar("O", 69.4));
+		barSeries.add(new DataPointBar("N", 71.0)); 
+		barSeries.add(new DataPointBar("D", 58.4)); 
 
 		BarDisplayOptions bdo = new BarDisplayOptions();
 		
 		XYBarDataSeries rainfallSeries = new XYBarDataSeries(barSeries,
 				bdo, null, "Rainfall");
 		
+		bdo.setGradiantRule(new GradiantRule(40, 100, new Color(230, 242, 255), Color.BLUE));
+		
+		rainfallSeries.setUpBarDisplayOptions(bdo);
 
 		ArrayList<XYDataSeries> rainfallSeriesList = new ArrayList<XYDataSeries>();
 		rainfallSeriesList.add(rainfallSeries);
@@ -134,5 +135,4 @@ public class TestDataBar_2Y extends ChartTester {
 	public String getNiceTitle() {
 		return "XYY";
 	}
-
 }

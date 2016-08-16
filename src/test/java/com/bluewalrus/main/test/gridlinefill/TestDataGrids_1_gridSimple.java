@@ -9,7 +9,7 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.main.test.ChartTester;
 
 /**
@@ -43,11 +43,11 @@ public class TestDataGrids_1_gridSimple extends ChartTester {
 		XYChart chart = new XYChart("Grid Examples", 
 				"My X Axis", 
 				"My Y Axis", 
-				new IntervalStyling(5, new GridLine(Color.GRAY, false, 3), null), 		//first X interval styling
-				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second X interval styling
+				new IntervalStyling(5, new Line(Color.GRAY, false, 3), null), 		//first X interval styling
+				new IntervalStyling(1, new Line(Color.LIGHT_GRAY, false, 1), null),	//second X interval styling
 				null,																	//third X interval styling
-				new IntervalStyling(5, new GridLine(Color.GRAY, true, 3), null),		//first Y interval styling
-				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second Y interval styling
+				new IntervalStyling(5, new Line(Color.GRAY, true, 3), null),		//first Y interval styling
+				new IntervalStyling(1, new Line(Color.LIGHT_GRAY, false, 1), null),	//second Y interval styling
 				null, 																	//third Y interval styling
 				series);
 		

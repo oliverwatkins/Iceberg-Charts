@@ -13,13 +13,13 @@ import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
 import com.bluewalrus.chart.draw.YAxisDrawUtil;
 
 public class LinearNumericalAxisScaling extends AxisScaling{
 	
-	public GridLine zeroLine = new GridLine(Color.GRAY, false, 1);
+	public Line zeroLine = new Line(Color.GRAY, false, 1);
 	
 	/**
 	 * Default constructor

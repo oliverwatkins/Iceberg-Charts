@@ -11,7 +11,7 @@ import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridFill;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.main.test.ChartTester;
 
 public class TestDataGrids_4_alternateGridFillY extends ChartTester {
@@ -21,17 +21,17 @@ public class TestDataGrids_4_alternateGridFillY extends ChartTester {
 	public Chart getChart() throws ParseException {
 
 		
-		XYDataSeries series = new XYDataSeries(null, new GridLine(Color.BLUE, false, 3), "Blue");
+		XYDataSeries series = new XYDataSeries(null, new Line(Color.BLUE, false, 3), "Blue");
 		series.dataPoints = getSeries1();
 		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		xySeriesList.add(series);
 		
-		IntervalStyling xStyling = new IntervalStyling(1, new GridLine(Color.GRAY, false, 1),
+		IntervalStyling xStyling = new IntervalStyling(1, new Line(Color.GRAY, false, 1),
 				null);
 		
-		IntervalStyling yStyling = new IntervalStyling(1, new GridLine(Color.GRAY, false, 0),
+		IntervalStyling yStyling = new IntervalStyling(1, new Line(Color.GRAY, false, 0),
 				new GridFill(
 						new Color(179, 209, 255), 
 						new Color(172, 109, 215), false));

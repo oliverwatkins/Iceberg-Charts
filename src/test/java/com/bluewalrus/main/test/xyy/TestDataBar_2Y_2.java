@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
-import com.bluewalrus.chart.bar.GradiantRule_old;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
@@ -39,15 +38,15 @@ public class TestDataBar_2Y_2  extends ChartTester{
         values3.add(new DataPoint(5, 7.6));
 
         XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.RED), 
-        		new GridLine(Color.BLACK), "left1");
+        		new Line(Color.BLACK), "left1");
         series.dataPoints = values;
 
         XYDataSeries series2 = new XYDataSeries(new UIPointSquare(Color.BLUE), 
-        		new GridLine(Color.BLUE), "left2");
+        		new Line(Color.BLUE), "left2");
         series2.dataPoints = values2;
 
         XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(Color.ORANGE, 26), 
-        		new GridLine(Color.ORANGE), "left3");
+        		new Line(Color.ORANGE), "left3");
         series3.dataPoints = values3;
 
         xySeries.add(series);
@@ -67,11 +66,11 @@ public class TestDataBar_2Y_2  extends ChartTester{
         ArrayList<XYDataSeries> xySeriesY2 = new ArrayList<XYDataSeries>();
         
         XYDataSeries seriesY2 = new XYDataSeries(new UIPointCircle(Color.PINK), 
-        		new GridLine(Color.PINK, true, 4), "max");
+        		new Line(Color.PINK, true, 4), "max");
         seriesY2.dataPoints = y2series1;
 
         XYDataSeries series2Y2 = new XYDataSeries(new UIPointSquare(Color.PINK), 
-        		new GridLine(Color.PINK, true, 4), "min");
+        		new Line(Color.PINK, true, 4), "min");
         series2Y2.dataPoints = y2series2;
         
         xySeriesY2.add(seriesY2);

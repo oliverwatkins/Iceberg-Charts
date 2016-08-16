@@ -12,7 +12,7 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
@@ -34,7 +34,7 @@ public class TestDataXY_Fractions7_test extends ChartTester {
 		
 		XYDataSeries<DataPoint> series = new XYDataSeries<DataPoint>(
 				new UIPointCircle(Color.ORANGE, 15),
-				new GridLine(Color.RED, true, 1), "1");
+				new Line(Color.RED, true, 1), "1");
 		
 		series.dataPoints = values;
 		

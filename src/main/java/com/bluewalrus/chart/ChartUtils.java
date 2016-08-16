@@ -14,7 +14,7 @@ import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
@@ -78,7 +78,7 @@ public class ChartUtils {
 	}
 	
 
-	static double getMinYValue(ArrayList<DataPoint> values) {
+	public static double getMinYValue(ArrayList<? extends DataPoint> values) {
 		double yMin = values.get(0).y;
 		for (DataPoint dataPoint : values) {
 			if (dataPoint.y < yMin)
@@ -87,7 +87,7 @@ public class ChartUtils {
 		return yMin;
 	}
 
-	static double getMaxYValue(ArrayList<DataPoint> values) {
+	public static double getMaxYValue(ArrayList<? extends DataPoint> values) {
 		double yMax = values.get(0).y;
 		for (DataPoint dataPoint : values) {
 			if (dataPoint.y > yMax)
@@ -272,39 +272,39 @@ public class ChartUtils {
 
 				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointSquare(Color.BLUE);
-					xyDataSeries.line = new GridLine(Color.BLUE, false, 2);
+					xyDataSeries.line = new Line(Color.BLUE, false, 2);
 				}
 			}else if (i == 1) {
 				
 				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointCircle(Color.GREEN);
-					xyDataSeries.line = new GridLine(Color.GREEN, false, 2);
+					xyDataSeries.line = new Line(Color.GREEN, false, 2);
 				}
 			}else if (i == 2) {
 				
 				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointTriangle(Color.RED);
-					xyDataSeries.line = new GridLine(Color.RED, false, 2);
+					xyDataSeries.line = new Line(Color.RED, false, 2);
 				}
 			}else if (i == 3) {
 				
 				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointTriangle(Color.CYAN);
-					xyDataSeries.line = new GridLine(Color.CYAN, false, 2);
+					xyDataSeries.line = new Line(Color.CYAN, false, 2);
 				}
 			}else if (i == 4) {
 				
 				
 				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointCircle(Color.MAGENTA);
-					xyDataSeries.line = new GridLine(Color.MAGENTA, false, 2);
+					xyDataSeries.line = new Line(Color.MAGENTA, false, 2);
 				}
 			}else {
 
 				Color c = ChartUtils.createRandomColor();
 				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointCircle(c);
-					xyDataSeries.line = new GridLine(c, false, 2);
+					xyDataSeries.line = new Line(c, false, 2);
 				}
 			}
 			i++;

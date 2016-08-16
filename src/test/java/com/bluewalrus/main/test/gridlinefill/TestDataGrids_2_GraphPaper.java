@@ -10,7 +10,7 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
@@ -19,13 +19,13 @@ public class TestDataGrids_2_GraphPaper extends ChartTester{
 	@Override
 	public Chart getChart() {
 
-		NumericalInterval yInterval1 = new NumericalInterval(0, 10.0, new GridLine(Color.BLACK, false, 1));
-		NumericalInterval yInterval2 = new NumericalInterval(0, 5.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval yInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
+		NumericalInterval yInterval1 = new NumericalInterval(0, 10.0, new Line(Color.BLACK, false, 1));
+		NumericalInterval yInterval2 = new NumericalInterval(0, 5.0, new Line(Color.GRAY, false, 1));
+		NumericalInterval yInterval3 = new NumericalInterval(0, 1.0, new Line(Color.LIGHT_GRAY, false, 1));
 
-		NumericalInterval xInterval1 = new NumericalInterval(0, 10.0, new GridLine(Color.BLACK, false, 1));
-		NumericalInterval xInterval2 = new NumericalInterval(0, 5.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval xInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
+		NumericalInterval xInterval1 = new NumericalInterval(0, 10.0, new Line(Color.BLACK, false, 1));
+		NumericalInterval xInterval2 = new NumericalInterval(0, 5.0, new Line(Color.GRAY, false, 1));
+		NumericalInterval xInterval3 = new NumericalInterval(0, 1.0, new Line(Color.LIGHT_GRAY, false, 1));
 
 		
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, yInterval1, yInterval2, yInterval3), "Y Axis");

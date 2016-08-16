@@ -91,7 +91,11 @@ public class BarsTester extends JFrame {
         chart = new TestDataBar_5_PosNegColor().getChart();
         charts.add(chart);
         p.add(chart);
-        
+
+        p = createTabbedPane(tabbedPaneBar, "Transparancy");
+        chart = new TestDataBar_6_Transparancy().getChart();
+        charts.add(chart);
+        p.add(chart);
         
         p = createTabbedPane(tabbedPaneBar, "Bar - 2 Y Axes");
         chart = new TestDataBar_2Y().getChart();

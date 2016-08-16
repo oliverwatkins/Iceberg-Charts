@@ -3,11 +3,11 @@ package com.bluewalrus.chart.axis;
 import java.awt.Font;
 
 import com.bluewalrus.chart.draw.GridFill;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 
 public class IntervalStyling {
 
-	public GridLine graphLine;
+	public Line graphLine;
 	public GridFill graphFill;
 	
     /**
@@ -20,7 +20,7 @@ public class IntervalStyling {
 	public IntervalStyling() {
 	}
     
-	public IntervalStyling(int lineLength, GridLine gridLine, GridFill gridFill) {
+	public IntervalStyling(int lineLength, Line gridLine, GridFill gridFill) {
 		
 		this.lineLength = lineLength;
 		

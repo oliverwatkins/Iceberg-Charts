@@ -6,6 +6,7 @@ import com.bluewalrus.main.test.FileUtils;
 import com.bluewalrus.main.test.bar.TestDataBar_1_Simple;
 import com.bluewalrus.main.test.bar.TestDataBar_4_GradientColor;
 import com.bluewalrus.main.test.bar.TestDataBar_5_PosNegColor;
+import com.bluewalrus.main.test.bar.TestDataBar_6_Transparancy;
 import com.bluewalrus.main.test.bubble.TestDataBubble_1_guns;
 import com.bluewalrus.main.test.bubble.TestDataBubble_2_series;
 import com.bluewalrus.main.test.bubble.TestDataPieBubble;
@@ -71,6 +72,7 @@ public class GenerateShowcase {
     	new TestDataBar_1_Simple().createImageAndTextFile(sBuilder, sBuilder2);
     	new TestDataBar_4_GradientColor().createImageAndTextFile(sBuilder, sBuilder2);
     	new TestDataBar_5_PosNegColor().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataBar_6_Transparancy().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//STACKED
     	new TestDataXY_Math().createImageAndTextFile(sBuilder, sBuilder2);
@@ -106,9 +108,6 @@ public class GenerateShowcase {
     	FileUtils.writeFile(sBuilder2, GenerateShowcase.path, "screenshots.html");
     	FileUtils.writeFile(sBuilder, GenerateShowcase.path, "samples.json");
     	
-    	
     	System.out.println("Completed Image Code Genereration !!!!");
-
     }
-
 }

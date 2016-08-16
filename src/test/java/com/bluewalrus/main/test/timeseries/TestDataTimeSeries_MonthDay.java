@@ -15,7 +15,7 @@ import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridFill;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.TimeSeriesAxisScaling;
@@ -44,18 +44,18 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		values.add(new DataPoint(dt4, 5));
 		values.add(new DataPoint(dt5, 8));
 
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE,4), new GridLine(Color.BLUE), "Something Blue");
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE,4), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
 		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
 		SimpleDateFormat dayFormat = new SimpleDateFormat("d");
 
 		
-		TimeInterval timeInt1 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
-		timeInt1.styling = new IntervalStyling(10, new GridLine(Color.BLACK, false, 2), new GridFill(Color.LIGHT_GRAY, Color.WHITE, false));
+		TimeInterval timeInt1 = new TimeInterval(2, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 2), monthFormat);
+		timeInt1.styling = new IntervalStyling(10, new Line(Color.BLACK, false, 2), new GridFill(Color.LIGHT_GRAY, Color.WHITE, false));
 		
-		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.GRAY, false, 1), dayFormat);
-		timeInt2.styling = new IntervalStyling(2, new GridLine(Color.GRAY, false, 1), null);
+		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.DAY, new Line(Color.GRAY, false, 1), dayFormat);
+		timeInt2.styling = new IntervalStyling(2, new Line(Color.GRAY, false, 1), null);
 
 //        barChart.yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
 		timeInt2.styling.intervalFont = new Font("Blackadder ITC", Font.PLAIN, 20);

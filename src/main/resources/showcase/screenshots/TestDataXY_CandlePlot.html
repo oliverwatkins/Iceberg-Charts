@@ -1,33 +1,33 @@
 <img src='partials/TestDataXY_CandlePlot.PNG' style='width:400px;float:right'><div><pre>
-		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
+ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
-		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
+ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
 
-		values.add(new DataPointCandleStick(10, 80, 70, 60, 50, true));
-		values.add(new DataPointCandleStick(20, 80, 75, 50, 15, true));
-		values.add(new DataPointCandleStick(30, 67, 45, 55, 41, false)); //3rd has to be less than 4th!!
-		values.add(new DataPointCandleStick(40, 63, 61, 56, 50, true));
-		values.add(new DataPointCandleStick(50, 69, 56, 50, 43, true));
-		values.add(new DataPointCandleStick(60, 78, 70, 64, 50, true));
-		values.add(new DataPointCandleStick(70, 99, 75, 44, 31, true));
-		values.add(new DataPointCandleStick(80, 80, 60, 70, 50, false)); //3rd has to be less than 4th!!
-		values.add(new DataPointCandleStick(90, 80, 75, 50, 25, true));
-		values.add(new DataPointCandleStick(100, 80, 70, 60, 50, true));
-		values.add(new DataPointCandleStick(110, 80, 75, 50, 15, true));
+values.add(new DataPointCandleStick(10, 80, 70, 60, 50, true));
+values.add(new DataPointCandleStick(20, 80, 75, 50, 15, true));
+values.add(new DataPointCandleStick(30, 67, 45, 55, 41, false)); //3rd has to be less than 4th!!
+values.add(new DataPointCandleStick(40, 63, 61, 56, 50, true));
+values.add(new DataPointCandleStick(50, 69, 56, 50, 43, true));
+values.add(new DataPointCandleStick(60, 78, 70, 64, 50, true));
+values.add(new DataPointCandleStick(70, 99, 75, 44, 31, true));
+values.add(new DataPointCandleStick(80, 80, 60, 70, 50, false)); //3rd has to be less than 4th!!
+values.add(new DataPointCandleStick(90, 80, 75, 50, 25, true));
+values.add(new DataPointCandleStick(100, 80, 70, 60, 50, true));
+values.add(new DataPointCandleStick(110, 80, 75, 50, 15, true));
 
-		XYDataSeries series = new XYDataSeries(values, new UIPointCandleStick(
-				new Color(181, 197, 207, 100)), null, "1994");
+XYDataSeries series = new XYDataSeries(values, new UIPointCandleStick(
+new Color(181, 197, 207, 100)), null, "1994");
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "x Axis");
+YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "y Axis");
+XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "x Axis");
 
-		xySeriesList.add(series);
+xySeriesList.add(series);
 
-		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
 
-		chart.setSize(1000, 500);
+chart.setSize(1000, 500);
 
-		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-		chart.setTitle("Candle Plot");
+chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+chart.setTitle("Candle Plot");
 
 </pre></div>

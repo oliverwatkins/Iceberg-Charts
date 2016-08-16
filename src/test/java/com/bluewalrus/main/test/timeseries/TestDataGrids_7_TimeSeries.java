@@ -16,7 +16,7 @@ import com.bluewalrus.chart.axis.TimeInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
@@ -50,11 +50,11 @@ public class TestDataGrids_7_TimeSeries extends ChartTester {
 		values.add(new DataPoint(dt5, 8));
 		values.add(new DataPoint(dt6, 14));
 
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new GridLine(Color.BLUE), "Something Blue");
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
-		NumericalInterval t1 = new NumericalInterval(6, 50.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval t2 = new NumericalInterval(3, 10.0, new GridLine(Color.LIGHT_GRAY, true, 1));
+		NumericalInterval t1 = new NumericalInterval(6, 50.0, new Line(Color.GRAY, false, 1));
+		NumericalInterval t2 = new NumericalInterval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
 		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, t2, t3), "Y Axis");
@@ -62,9 +62,9 @@ public class TestDataGrids_7_TimeSeries extends ChartTester {
 		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
 		SimpleDateFormat monthFormat = new SimpleDateFormat("");
 		
-		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new GridLine(Color.GRAY, false, 6), yearFormat);
-		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 3), monthFormat);
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.NONE, new GridLine(Color.GRAY, false, 1));
+		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new Line(Color.GRAY, false, 6), yearFormat);
+		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 3), monthFormat);
+		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.NONE, new Line(Color.GRAY, false, 1));
 		
 		
 //		

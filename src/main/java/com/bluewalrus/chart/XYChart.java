@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -19,7 +20,7 @@ import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.datapoint.DataPointMultiBar;
 import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
 import com.bluewalrus.chart.datapoint.ValueType;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.plotter.ChartPlotter;
 import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
@@ -129,7 +130,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		XYDataSeries<DataPoint> xy = new XYDataSeries<DataPoint>(values,
-				new UIPointSquare(Color.BLACK), new GridLine(Color.BLACK), "");
+				new UIPointSquare(Color.BLACK), new Line(Color.BLACK), "");
 		xySeriesList.add(xy);
 
 		initialiseScaling(xySeriesList);
@@ -494,14 +495,14 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		TimeInterval t2x = new TimeInterval(2, interval2, null);
 		TimeInterval t3x = new TimeInterval(1, interval3, null);
 		
-		t1x.styling.graphLine = new GridLine(Color.GRAY, false, 1);
+		t1x.styling.graphLine = new Line(Color.GRAY, false, 1);
 		t1x.styling.lineLength = 6; 
 		
-		t2x.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);		
+		t2x.styling.graphLine = new Line(Color.LIGHT_GRAY, true, 1);		
 		t2x.styling.lineLength = 3; 
 		
 		//invisible!!! But not null
-		t3x.styling.graphLine = new GridLine(Color.WHITE, false, 0);		
+		t3x.styling.graphLine = new Line(Color.WHITE, false, 0);		
 		t3x.styling.lineLength = 0; 
 		
 		
@@ -572,14 +573,14 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		NumericalInterval t2x = new NumericalInterval(initialIntervalX/10); 
 		NumericalInterval t3x = new NumericalInterval(initialIntervalX/100); 
 
-		t1x.styling.graphLine = new GridLine(Color.GRAY, false, 1);
+		t1x.styling.graphLine = new Line(Color.GRAY, false, 1);
 		t1x.styling.lineLength = 6; //new GridLine(Color.GRAY, false, 1);
 		
-		t2x.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);		
+		t2x.styling.graphLine = new Line(Color.LIGHT_GRAY, true, 1);		
 		t2x.styling.lineLength = 3; //new GridLine(Color.LIGHT_GRAY, true, 1);		
 
 		//invisible!!! But not null
-		t3x.styling.graphLine = new GridLine(Color.WHITE, false, 0);		
+		t3x.styling.graphLine = new Line(Color.WHITE, false, 0);		
 		t3x.styling.lineLength = 0; 
 
 		
@@ -597,10 +598,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		NumericalInterval t1 = new NumericalInterval(initialIntervalY); 
 		NumericalInterval t2 = new NumericalInterval(initialIntervalY/10); 
 		
-		t1.styling.graphLine = new GridLine(Color.GRAY, false, 1);
+		t1.styling.graphLine = new Line(Color.GRAY, false, 1);
 		t1.styling.lineLength = 6;
 		
-		t2.styling.graphLine = new GridLine(Color.LIGHT_GRAY, true, 1);
+		t2.styling.graphLine = new Line(Color.LIGHT_GRAY, true, 1);
 		t2.styling.lineLength = 3;
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(drY.min, drY.max, t1, t2, null), "Y TODO");
@@ -638,6 +639,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		 * Maybe we want a filled colored area instead of some lines???
 		 */
 		drawBackground(g2d);
+		
 		drawBottomLine(g2d);
 		drawLeftLine(g2d);
 
@@ -814,4 +816,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public void setChartBackground(Color green) {
 		this.backgroundColor = green;
 	}
+
+	public void clearGraphLines() {
+		this.yAxis.axisScaling.interval1.styling.graphLine = null;
+		this.yAxis.axisScaling.interval2.styling.graphLine = null;
+		this.yAxis.axisScaling.interval3.styling.graphLine = null;
+	}
+
+
 }

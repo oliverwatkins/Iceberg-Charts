@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Shape;
@@ -65,15 +66,28 @@ public abstract class Chart extends JPanel {
 	 * @param g
 	 */
 	protected void drawBackground(Graphics g) {
+		
+		
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, // Anti-alias!
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		g2d.setColor(Color.WHITE);
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
 		g2d.setColor(backgroundColor);
-		g.fillRect(leftOffset, topOffset, this.getWidth() - leftOffset - rightOffset, this.getHeight() - topOffset - bottomOffset);
+		
+		g2d.fillRect(leftOffset, topOffset, this.getWidth() - leftOffset - rightOffset, this.getHeight() - topOffset - bottomOffset);
+		
+		if (background != null) {
+			float opacity = 0.5f;
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+			
+			g2d.drawImage(background, leftOffset, topOffset, this.getWidth() - leftOffset - rightOffset, this.getHeight() - topOffset - bottomOffset, null);
+
+			opacity = 1f;
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+		}
 	}
 
 	/**
@@ -132,6 +146,11 @@ public abstract class Chart extends JPanel {
 		return title.getTitle();
 	}
 	
+	private Image background = null;
+	
+	public void setBackgroundImage(Image background) {
+		this.background = background;
+	}
 	
 	private void drawTrialVersion(Graphics2D g2d) {
 		String trialVersion = "Trial Version : ";

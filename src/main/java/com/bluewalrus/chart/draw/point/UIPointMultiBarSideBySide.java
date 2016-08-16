@@ -22,7 +22,6 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
 	
 	public UIPointMultiBarSideBySide() {
 		super(Color.BLACK); //unimportant, never used.
-//		barWidthPercent = 90;
 	}
 
 	public UIPointMultiBarSideBySide(int totalBarWidthPercent) {
@@ -41,23 +40,12 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
 
         shift = 0;
         
-//        int distanceBetweenXPoints = 40;
-//        if (lastPoint != null) {
-//            distanceBetweenXPoints = lastPoint.x - point.x;
-//        	
-//        }
-        
-        
         int totalWidthOfBars = multiBarDataPoint.bars.size() * barWidthInPixels;
-        
-//        totalWidthOfBars = distanceBetweenXPoints;
-        
         
     	/**
     	 * Draw each of the (multi) bars
     	 */
         for (DataPointBar dpb : multiBarDataPoint.bars) {
-        	
             if (dpb.y > 0) { // greater than zero
                 x = point.x - (totalWidthOfBars/2);
                 y = chart.topOffset + chart.heightChart - (int)(dpb.y * xyFactor.getyFactor());
@@ -67,7 +55,6 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
                 colorToUse = color;
             	
             }else { // less than zero
-            	
                 x = point.x - (totalWidthOfBars/2);
                 y = point.y + (int)( dpb.y * xyFactor.getyFactor());
                 width = barWidthInPixels;
@@ -77,10 +64,8 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
             }
 
             if (dpb.color != null) {
-
             	colorToUse = dpb.color;
             }
-            
             muchmuchdarker = colorToUse.darker(); 
             
     		clipAndDrawPoint(g, chart);
@@ -92,8 +77,6 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
 	
 	@Override
 	public void drawPoint(Graphics2D g) {
-		
-		
         g.setColor(colorToUse);
         
         //bottom rect
@@ -103,12 +86,6 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
         		height);
         
         g.setColor(muchmuchdarker);
-        
-//        //bottom rect
-//        g.drawRect(x + shift,
-//        		y,
-//        		width,
-//        		height);
 	}
 	
 

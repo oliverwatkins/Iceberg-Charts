@@ -102,13 +102,11 @@ public abstract class ChartTester extends JFrame{
 	    
 		BufferedReader br = new BufferedReader(new FileReader(fSearch.getResult().get(0)));
 		try {
-
 		    String line = br.readLine();
 
 		    boolean snippet = false;
 		    
 		    while (line != null) {
-		    	
 
 		    	if (line.contains("return chart;")) {
 //		    		snippet = false;
@@ -116,7 +114,7 @@ public abstract class ChartTester extends JFrame{
 		    	}
 		    	
 		    	if (snippet == true) {
-			        sb.append(line);
+			        sb.append(line.trim());
 			        sb.append(System.lineSeparator());
 		    	}
 		    	

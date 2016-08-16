@@ -11,6 +11,7 @@ import com.bluewalrus.chart.datapoint.DataPointBar;
 
 public class UIPointBar extends UIPointAbstractBar {
 
+	
     boolean doBorder = false;
     Color negativeColor;
     
@@ -19,8 +20,7 @@ public class UIPointBar extends UIPointAbstractBar {
 	private double width;
 	private double height;
 	
-	
-	private Color muchmuchdarker;
+	private Color muchmuchdarker; //by default the border is a darker version of the bar color.
 	private Color colorToUse;
 
     public UIPointBar() {
@@ -49,19 +49,11 @@ public class UIPointBar extends UIPointAbstractBar {
     	
     	double barWidth = -123; //px
     	
-//    	barWidthPercent = 100;
-    	
-//    	if (lastPoint != null) {
-//        	pointDiffWidth = (point.x - lastPoint.x);
-//    	}
-    	
     	if (barWidthPercent != 0) {
     		barWidth = ((barWidthPercent * (double)pixBtnFirst2Pts)/ 100.0); 
     	}else {
     		barWidth = 50; //default
     	}
-    	
-//    	barWidth = pixBtnFirst2Pts;
     	
     	Color dataPointColor = null;
     	
@@ -100,12 +92,10 @@ public class UIPointBar extends UIPointAbstractBar {
         }
 
         if (dataPointColor != null) {
-
             colorToUse = dataPointColor;
         }
 
         muchmuchdarker = colorToUse.darker();
-        
         
         this.clipAndDrawPoint(g, chart);
     }
@@ -119,7 +109,7 @@ public class UIPointBar extends UIPointAbstractBar {
         g.fillRect(x,
                 y,
                 (int)width,
-                (int)height); // - xyFactor.yZeroOffsetInPixel));
+                (int)height); 
 
         g.setColor(muchmuchdarker);
 

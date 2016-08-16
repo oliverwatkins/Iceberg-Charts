@@ -13,7 +13,7 @@ import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointCandleStick;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCandleStick;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.main.test.bar.TestDataBar_5_PosNegColor;
@@ -133,8 +133,8 @@ public class TestStackedChart3 extends ChartTester {
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "Price (USD)");
 		
-		yAxis.axisScaling.interval1.styling = new IntervalStyling(5, new GridLine(Color.LIGHT_GRAY, true), null);
-		yAxis.axisScaling.interval2.styling = new IntervalStyling(2, new GridLine(Color.LIGHT_GRAY, true), null);
+		yAxis.axisScaling.interval1.styling = new IntervalStyling(5, new Line(Color.LIGHT_GRAY, true), null);
+		yAxis.axisScaling.interval2.styling = new IntervalStyling(2, new Line(Color.LIGHT_GRAY, true), null);
 		
 		xySeriesList.add(series);
 

@@ -16,7 +16,7 @@ import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridFill;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
@@ -48,19 +48,19 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 		values.add(new DataPoint(dt5, 8));
 		values.add(new DataPoint(dt6, 14));
 
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new GridLine(Color.BLUE), "Something Blue");
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
-		NumericalInterval t1 = new NumericalInterval(8, 10.0, new GridLine(Color.GRAY, false, 1));
+		NumericalInterval t1 = new NumericalInterval(8, 10.0, new Line(Color.GRAY, false, 1));
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, null, null), "Y Axis");
 		
 		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
 		SimpleDateFormat weekFormat = new SimpleDateFormat("'week'ww");
 		
-		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new GridLine(Color.GRAY, false, 2), monthFormat);
+		TimeInterval timeInt2 = new TimeInterval(6, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 2), monthFormat);
 		
-		TimeInterval timeInt1 = new TimeInterval(2, TimeInterval.Type.WEEK, new GridLine(Color.GRAY, false, 1), weekFormat);
+		TimeInterval timeInt1 = new TimeInterval(2, TimeInterval.Type.WEEK, new Line(Color.GRAY, false, 1), weekFormat);
 		
 		XAxis xAxis = new XAxis(
 				new TimeSeriesAxisScaling(

@@ -21,8 +21,6 @@ public class UIPointBoxPlot extends UIPointComplexXY{
 	private int x3;
 	private Color muchmuchdarker;
 
-
-
 	public UIPointBoxPlot(Color color) {
 		super(color);
 	}

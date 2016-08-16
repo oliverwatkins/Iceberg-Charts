@@ -9,9 +9,11 @@ import com.bluewalrus.chart.XYChart;
 public abstract class UIPointAbstractBar extends UIPointComplexXY {
 
 	/**
-	 * @deprecated note this should be deprecated. Use % instead
+	 * @deprecated note this should be deprecated. Use % instead. This is only used in UIPointMBSideBySide. Should somehow
+	 * be refactored only into that class, or the UIPoint should use %.
 	 */
-    int barWidthInPixels = 15; 
+   protected int barWidthInPixels = 15; 
+
     double barWidthPercent = 0;
     
     public UIPointAbstractBar() {
