@@ -53,14 +53,14 @@ public class UIPointCandleStick  extends UIPointComplexXY{
 		
 		if (dp.filled) {
 			topWhiskerFactored = point.y;
-			topFactored = point.y + ((dp.high - dp.open) * xyFactor.yFactor);
-			bottomFactored = point.y + (dp.high - dp.close) * xyFactor.yFactor;
-			bottomWhiskerFactored = point.y + (dp.high - dp.low)  * xyFactor.yFactor;
+			topFactored = point.y + ((dp.high - dp.open) * xyFactor.getyFactor());
+			bottomFactored = point.y + (dp.high - dp.close) * xyFactor.getyFactor();
+			bottomWhiskerFactored = point.y + (dp.high - dp.low)  * xyFactor.getyFactor();
 		}else {
 			topWhiskerFactored = point.y;
-			topFactored = point.y + ((dp.high - dp.close) * xyFactor.yFactor);
-			bottomFactored = point.y + (dp.high - dp.open) * xyFactor.yFactor;
-			bottomWhiskerFactored = point.y + (dp.high - dp.low)  * xyFactor.yFactor;
+			topFactored = point.y + ((dp.high - dp.close) * xyFactor.getyFactor());
+			bottomFactored = point.y + (dp.high - dp.open) * xyFactor.getyFactor();
+			bottomWhiskerFactored = point.y + (dp.high - dp.low)  * xyFactor.getyFactor();
 		}
 		
 		int width = 6;

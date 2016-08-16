@@ -102,20 +102,20 @@ public class ChartPlotter {
 		
 		int x = 0;
 		if (dataPoint.valueType == ValueType.X_TIME) {
-	        x = (int) ((dataPoint.xDate.getTime() * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
+	        x = (int) ((dataPoint.xDate.getTime() * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
 		}else {
-	        x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
+	        x = (int) ((dataPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
 		}
 		
-        int y = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
+        int y = (int) (yShift - (int) (dataPoint.y * xyFactor.getyFactor()) - xyFactor.yZeroOffsetInPixel);
 
         //hack TODO 
-        if (xyFactor.yFactor * y > 200000) {
+        if (xyFactor.getyFactor() * y > 200000) {
         	System.err.println("ERROR!!! xyFactor.yFactor * y > 200000");
         	System.err.println("Computer is probably going to crash now?");
         }
-        if (xyFactor.xFactor * x > 200000) {
-        	System.err.println("ERROR!!! xyFactor.xFactor * x > 200000");
+        if (xyFactor.getxFactor() * x > 200000) {
+        	System.err.println("ERROR!!! xyFactor.xFactor * x > 200000....  xyFactor.xFactor - " + xyFactor.getxFactor() + " x - " + x);
         	System.err.println("Computer is probably going to crash now?");
         }
         
@@ -145,17 +145,17 @@ public class ChartPlotter {
 
         GridLine line = xYDataSeries.line;
 
-        int adjustedX1 = (int) ((lastPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
-        int adjustedY1 = (int) (yShift - (int) (lastPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
+        int adjustedX1 = (int) ((lastPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
+        int adjustedY1 = (int) (yShift - (int) (lastPoint.y * xyFactor.getyFactor()) - xyFactor.yZeroOffsetInPixel);
 
-        int adjustedX2 = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
-        int adjustedY2 = (int) (yShift - (int) (dataPoint.y * xyFactor.yFactor) - xyFactor.yZeroOffsetInPixel);
+        int adjustedX2 = (int) ((dataPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
+        int adjustedY2 = (int) (yShift - (int) (dataPoint.y * xyFactor.getyFactor()) - xyFactor.yZeroOffsetInPixel);
 
         //hack
-        if (xyFactor.yFactor * adjustedY2 > 200000) {
+        if (xyFactor.getyFactor() * adjustedY2 > 200000) {
             return;
         }
-        if (xyFactor.xFactor * adjustedX2 > 200000) {
+        if (xyFactor.getxFactor() * adjustedX2 > 200000) {
             return;
         }
 
@@ -170,8 +170,8 @@ public class ChartPlotter {
     protected int calculateDistanceBetweenFirstTwoPoints(DataPoint dataPoint,
 			DataPoint dataPoint2, int xShift, XYFactor xyFactor) {
     	
-    	int x = (int) ((dataPoint.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
-    	int x2 = (int) ((dataPoint2.x * xyFactor.xFactor) + xShift + xyFactor.xZeroOffsetInPixel);
+    	int x = (int) ((dataPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
+    	int x2 = (int) ((dataPoint2.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
     	
 		return (x2 - x);
 	}

@@ -85,16 +85,16 @@ public class UIPointBar extends UIPointAbstractBar {
             x = (int)(point.x - (barWidth / 2));
             y = point.y;
             width = barWidth;
-            height = (int) ((yPos * xyFactor.yFactor));
+            height = (int) ((yPos * xyFactor.getyFactor()));
 
             colorToUse = color;
 
         } else { // less than zero
 
             x = (int)(point.x - (barWidth / 2));
-            y = point.y + (int) (yPos * xyFactor.yFactor);
+            y = point.y + (int) (yPos * xyFactor.getyFactor());
             width = barWidth;
-            height = (int) ((-yPos * xyFactor.yFactor));
+            height = (int) ((-yPos * xyFactor.getyFactor()));
 
             colorToUse = negativeColor;
         }

@@ -55,9 +55,9 @@ public class UIPointBubble extends UIPointComplexXY {
 		mag = 0;
 
 		if (scaleOnX) {
-			mag = dpWithM.magnitude * xyFactor.xFactor;
+			mag = dpWithM.magnitude * xyFactor.getxFactor();
 		} else {
-			mag = dpWithM.magnitude * xyFactor.yFactor;
+			mag = dpWithM.magnitude * xyFactor.getyFactor();
 		}
 
 		if (mag <= 0){

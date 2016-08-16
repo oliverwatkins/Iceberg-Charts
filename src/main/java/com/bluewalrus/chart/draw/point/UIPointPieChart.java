@@ -49,9 +49,9 @@ public class UIPointPieChart extends UIPointComplexXY {
         magnitude = 0;
 
         if (scaleOnX) {
-            magnitude = pieChartDataPoint.magnitude * xyFactor.xFactor;
+            magnitude = pieChartDataPoint.magnitude * xyFactor.getxFactor();
         } else {
-            magnitude = pieChartDataPoint.magnitude * xyFactor.yFactor;
+            magnitude = pieChartDataPoint.magnitude * xyFactor.getyFactor();
         }
 
         g.setColor(color);

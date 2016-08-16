@@ -58,7 +58,7 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 
         double distance = 0;
         
-        int leftPosition = (int)(dataPoint.x * xyFactor.xFactor) + chart.leftOffset;
+        int leftPosition = (int)(dataPoint.x * xyFactor.getxFactor()) + chart.leftOffset;
     	
     	/**
     	 * Draw each of the (multi) bars
@@ -72,14 +72,14 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
         	 */
             if (dataPointBar.y > 0) { // greater than zero
             	
-            	double scaledYPoint = (dataPointBar.y * xyFactor.yFactor);
+            	double scaledYPoint = (dataPointBar.y * xyFactor.getyFactor());
             	
                 y = (int)(chart.topOffset + chart.heightChart - scaledYPoint - distance);
 
                 width = (int)barWidth;
-                height = (int)((dataPointBar.y * xyFactor.yFactor));
+                height = (int)((dataPointBar.y * xyFactor.getyFactor()));
                 
-                distance = distance + (dataPointBar.y * xyFactor.yFactor);
+                distance = distance + (dataPointBar.y * xyFactor.getyFactor());
                 
                 colorToUse = color;
             	

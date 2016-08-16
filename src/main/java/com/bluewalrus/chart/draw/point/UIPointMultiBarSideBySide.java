@@ -60,18 +60,18 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
         	
             if (dpb.y > 0) { // greater than zero
                 x = point.x - (totalWidthOfBars/2);
-                y = chart.topOffset + chart.heightChart - (int)(dpb.y * xyFactor.yFactor);
+                y = chart.topOffset + chart.heightChart - (int)(dpb.y * xyFactor.getyFactor());
                 width = barWidthInPixels;
-                height = (int)((dpb.y * xyFactor.yFactor));
+                height = (int)((dpb.y * xyFactor.getyFactor()));
                 
                 colorToUse = color;
             	
             }else { // less than zero
             	
                 x = point.x - (totalWidthOfBars/2);
-                y = point.y + (int)( dpb.y * xyFactor.yFactor);
+                y = point.y + (int)( dpb.y * xyFactor.getyFactor());
                 width = barWidthInPixels;
-                height = (int)((- dpb.y * xyFactor.yFactor)); 
+                height = (int)((- dpb.y * xyFactor.getyFactor())); 
                 
                 colorToUse = color;
             }
