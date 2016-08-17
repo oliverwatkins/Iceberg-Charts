@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.YAxis;
 
@@ -79,7 +79,7 @@ public class YAxisDrawUtil {
 	 * @param fromTop
 	 * @param axis
 	 */
-	public static void drawIntervalTick(NumericalInterval interval, Graphics g, Chart chart,
+	public static void drawIntervalTick(AbstractInterval interval, Graphics g, Chart chart,
 			double fromTop, YAxis axis) {
 		
 		if (interval.styling == null) {
@@ -152,7 +152,7 @@ public class YAxisDrawUtil {
 	 * @param chart
 	 * @param fromTop
 	 */
-	public static void drawGridLine(NumericalInterval interval, Graphics2D g, Chart chart, double fromTop) {
+	public static void drawGridLine(AbstractInterval interval, Graphics2D g, Chart chart, double fromTop) {
 		
 		int x1 = chart.leftOffset;
 		int x2 = chart.leftOffset + chart.widthChart;

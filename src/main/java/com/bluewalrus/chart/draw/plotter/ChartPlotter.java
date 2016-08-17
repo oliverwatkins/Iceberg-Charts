@@ -15,6 +15,7 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.ValueType;
 import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointXY;
+import com.bluewalrus.scaling.LogarithmicAxisScaling;
 import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 
 /**
@@ -46,7 +47,7 @@ public class ChartPlotter {
         xyFactor.xZeroOffsetInPixel = getXZeroOffsetInPixel(chart, xAxis);
 		xyFactor.yZeroOffsetInPixel = getYZeroOffsetInPixel(chart, yAxis);
 
-        int xShift = chart.leftOffset;
+        int xShift = chart.leftOffset; //silly
         int yShift = chart.topOffset + chart.heightChart;
 
         DataPoint lastPoint = null; 
@@ -72,7 +73,6 @@ public class ChartPlotter {
                     lastPoint = dataPoint;
 
                     if (xYDataSeries.pointType != null) {
-
                         drawPoint(g, xyFactor, xShift, yShift, xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
                     }
                 } else {
@@ -91,15 +91,31 @@ public class ChartPlotter {
 	
 	protected void drawPoint(Graphics2D g, 
     		XYFactor xyFactor,
-            int xShift,
+            int xShift, //remove :(
             int yShift,
             XYDataSeries xYDataSeries,
             DataPoint dataPoint, 
             XYChart chart, int pixBtnFirst2Pts) {
 		
+		xShift = chart.leftOffset;
+		
 		int x = 0;
 		if (dataPoint.valueType == ValueType.X_TIME) {
 	        x = (int) ((dataPoint.xDate.getTime() * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
+		} else if (chart.xAxis.axisScaling instanceof LogarithmicAxisScaling) {
+			
+			System.out.println("dataPoint.x " + dataPoint.x);
+			System.out.println("xShift " + xShift);
+			System.out.println("xyFactor.xZeroOffsetInPixel " + xyFactor.xZeroOffsetInPixel);
+			System.out.println("Math.log10(dataPoint.x) " + Math.log10(dataPoint.x));
+			
+			double logMax = Math.log10(chart.xAxis.getMaxValue());
+			double logMin = Math.log10(chart.xAxis.getMinValue());
+			
+			double logDP = Math.log10(dataPoint.x);
+			
+					
+	        x = (int) ((dataPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
 		}else {
 	        x = (int) ((dataPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
 		}

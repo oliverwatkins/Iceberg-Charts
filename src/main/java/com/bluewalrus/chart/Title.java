@@ -24,7 +24,7 @@ public class Title {
 
 		Graphics2D g2d = (Graphics2D) g;
 
-		FontMetrics fmT = chart.getFontMetrics(titleFont);
+		FontMetrics fmT = chart.getFontMetrics(titleFont); //slow??
 		int titleStringWidth = fmT.stringWidth(title);
 		int titleStringHeight = fmT.getHeight();
 

@@ -466,4 +466,28 @@ public class ChartUtils {
 		}
 		return false;
 	}
+	
+	
+	/**
+	 * Check if pixel "point" is within the bounds of the chart.
+	 * 
+	 * @param pixelsFromEdge
+	 * @param chart
+	 * @return
+	 */
+	public static  boolean inBounds(double pixelsFromEdge, Chart chart, Orientation orientation) {
+		if (orientation == Orientation.X) {
+			
+			if ((pixelsFromEdge >= chart.leftOffset) && (pixelsFromEdge <= (chart.leftOffset + chart.widthChart))) {
+				return true;
+			}
+		
+		}else if (orientation == Orientation.Y || orientation == Orientation.Y2) {
+			
+			if (pixelsFromEdge >= chart.topOffset && pixelsFromEdge <= (chart.topOffset + chart.heightChart)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
