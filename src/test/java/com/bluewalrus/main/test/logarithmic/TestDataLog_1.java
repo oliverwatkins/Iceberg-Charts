@@ -37,7 +37,7 @@ public class TestDataLog_1 extends ChartTester {
 		values.add(new DataPoint(2001, 14));
 		values.add(new DataPoint(9301, 19));
 
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "");
 		series.dataPoints = values;
 
 		NumericalInterval t1 = new NumericalInterval(6, 50.0, new Line(Color.GRAY, false, 1));
@@ -46,7 +46,7 @@ public class TestDataLog_1 extends ChartTester {
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, t2, t3), "Y Axis");
 		
-		XAxis xAxis = new XAxis(new LogarithmicAxisScaling(1, 10000.0), "Log Axis"); //timeInt2, timeInt3), "Time Series");
+		XAxis xAxis = new XAxis(new LogarithmicAxisScaling(1, 10000.0), "Log Axis"); 
 
 		xySeriesList.add(series);
 
@@ -56,7 +56,7 @@ public class TestDataLog_1 extends ChartTester {
 		chart.rightOffset = 200;
 
 		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-		chart.setTitle("Some Kind of XY Chart");
+		chart.setTitle("Logarithmic");
 
 		return chart;
 	}

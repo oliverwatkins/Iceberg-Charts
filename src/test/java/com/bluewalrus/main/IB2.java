@@ -21,6 +21,7 @@ import com.bluewalrus.main.test.bar.BarsTester;
 import com.bluewalrus.main.test.bubble.BubbleTester;
 import com.bluewalrus.main.test.fractions.FractionTester;
 import com.bluewalrus.main.test.gridlinefill.GridLineTester;
+import com.bluewalrus.main.test.logarithmic.LogTester;
 import com.bluewalrus.main.test.math.MathTester;
 import com.bluewalrus.main.test.math.TestDataXY_Math;
 import com.bluewalrus.main.test.multibar.MultiBarTester;
@@ -89,6 +90,12 @@ public class IB2 extends JFrame {
          * BUBBLE
          */
         tabbedPane.add("Bubble", new BubbleTester().createPanel());
+        /***
+         * Log
+         */
+        tabbedPane.add("Logarithimc", new LogTester().createPanel());
+        
+        
         
         /***
          * XY
@@ -201,7 +208,7 @@ public class IB2 extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-        IB2 frame = new IB2();
+        IcebergChartsDemo frame = new IcebergChartsDemo();
         frame.setVisible(true);
     }
 

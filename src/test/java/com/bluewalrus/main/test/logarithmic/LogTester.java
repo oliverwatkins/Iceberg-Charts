@@ -65,7 +65,7 @@ public class LogTester extends JFrame {
          * 
          */
 
-        p = createTabbedPane(tabbedPaneBar, "Simple ");
+        p = createTabbedPane(tabbedPaneBar, "Simple Log ");
         chart = new TestDataLog_1().getChart();
         charts.add(chart);
         p.add(chart);
