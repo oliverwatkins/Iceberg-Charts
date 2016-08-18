@@ -20,6 +20,10 @@ import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 public class TestStackedChart_threaded extends ChartTester {
+	
+	public ArrayList<XYChart> charts = new ArrayList<XYChart>();
+	
+	
 	public Chart getChart() {
 
 		//xAxis needs to be shared
@@ -27,7 +31,7 @@ public class TestStackedChart_threaded extends ChartTester {
 		xAxis.axisScaling.setMinValue(0);
 		xAxis.axisScaling.setMaxValue(400);
 		
-		ArrayList<XYChart> charts = new ArrayList<XYChart>();
+
 		charts.add(getCandleChart(xAxis));
 		charts.add(getBarChart(xAxis));
 		

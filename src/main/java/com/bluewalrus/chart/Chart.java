@@ -184,4 +184,8 @@ public abstract class Chart extends JPanel {
 		g2d.setComposite(c);
 	}
 
+	public void reInitialiseScaling() {
+		
+	}
+
 }

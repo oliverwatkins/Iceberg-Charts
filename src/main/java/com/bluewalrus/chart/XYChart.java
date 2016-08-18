@@ -442,6 +442,16 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		YAxis yAxis = null;
 		YAxis yAxis2 = null;
 		
+		if (xySeriesList == null || xySeriesList.size() == 0) {
+			System.err.println("xySeriesList == null || xySeriesList.size() == 0");
+			return;
+		}
+		
+		XYDataSeries xyDataSeries = xySeriesList.get(0);
+		
+		if (xyDataSeries == null || xyDataSeries.dataPoints.size() == 0) {
+			System.err.println("xySeriesList.get(0).dataPoints == null || xySeriesList.get(0).dataPoints.size() == 0");
+		}
 		DataPoint o = (DataPoint)xySeriesList.get(0).dataPoints.get(0);
 
 		/**
@@ -822,6 +832,9 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.yAxis.axisScaling.interval2.styling.graphLine = null;
 		this.yAxis.axisScaling.interval3.styling.graphLine = null;
 	}
-
+	
+	public void reInitialiseScaling() {
+		this.initialiseScaling(data);
+	}
 
 }
