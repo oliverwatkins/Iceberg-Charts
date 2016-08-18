@@ -63,7 +63,7 @@ public class TestDataLog_1 extends ChartTester {
 	
 	@Override
 	public String getNiceTitle() {
-		return "Time Series: ???";
+		return "Logarithmic ";
 	}
 	
 	public static void main(String[] args) throws Exception {

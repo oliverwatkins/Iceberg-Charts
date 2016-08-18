@@ -121,7 +121,6 @@ public class TestDataPieBubble extends ChartTester {
 
         double factor = 1;
 
-//        PieBubbleChart.RadialGradientSettings.frontalTransparancy = 100;
         PieBubbleChart chart = new PieBubbleChart(xySeriesList, yAxis, xAxis, factor, pbcs);
 
         chart.setSize(800, 600);

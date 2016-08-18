@@ -72,14 +72,14 @@ public class ChartPlotter {
                 	
                     firstRun = false;
 
-                    if (xYDataSeries.pointType != null) {
+//                    if (xYDataSeries.pointType != null) {
                     	currentPoint = drawPoint(g, xyFactor, xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
-                    }
+//                    }
                 } else {
 
-                    if (xYDataSeries.pointType != null) {
+//                    if (xYDataSeries.pointType != null) {
                     	currentPoint = drawPoint(g, xyFactor, xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
-                    }
+//                    }
                     if (xYDataSeries.line != null) {
                         drawLine(g, lastPoint, currentPoint, xYDataSeries);
                     }
@@ -124,10 +124,11 @@ public class ChartPlotter {
         	System.err.println("ERROR!!! xyFactor.xFactor * x > 200000....  xyFactor.xFactor - " + xyFactor.getxFactor() + " x - " + x);
         	System.err.println("Computer is probably going to crash now?");
         }
-        
-        if (dataPoint.uiPointXY == null) {
+
+        UIPointXY pointType = xYDataSeries.pointType;
+
+        if (dataPoint.uiPointXY == null && pointType != null) {
         	
-            UIPointXY pointType = xYDataSeries.pointType;
             
             UIPointXY xyInstance = null;
             try {
@@ -138,9 +139,15 @@ public class ChartPlotter {
             dataPoint.setPoinUI(xyInstance);
         }
         
-        //TODO I do not know why the clipping is happening in the point. It is probably better to clip here in this method
-        //see draw line.
-        dataPoint.uiPointXY.draw(g, new Point(x, y), lastPoint, dataPoint, xyFactor, chart, pixBtnFirst2Pts);
+        
+        if (xYDataSeries.pointType != null) {
+            //TODO I do not know why the clipping is happening in the point. It is probably better to clip here in this method
+            //see draw line.
+            dataPoint.uiPointXY.draw(g, new Point(x, y), lastPoint, dataPoint, xyFactor, chart, pixBtnFirst2Pts);
+        	
+        }
+
+        	
         
         lastPoint = new Point(x,y);
         return lastPoint;
@@ -151,8 +158,11 @@ public class ChartPlotter {
         Line line = xYDataSeries.line;
 		Shape cachedClip = ChartUtils.clipChart(g, chart);
 
-		//clip away everything that is not in the chart.
-        line.drawLine(g, lastPoint2.x, lastPoint2.y, currentPoint.x, currentPoint.y);
+		
+		if (lastPoint2 != null && currentPoint != null) {
+			//clip away everything that is not in the chart.
+			line.drawLine(g, lastPoint2.x, lastPoint2.y, currentPoint.x, currentPoint.y);
+		}
         
         g.setClip(cachedClip);
 	}
