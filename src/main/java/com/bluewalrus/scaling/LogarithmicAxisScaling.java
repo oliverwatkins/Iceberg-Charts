@@ -50,11 +50,7 @@ public class LogarithmicAxisScaling extends AxisScaling{
 		NumericalInterval inter = (NumericalInterval)interval;
 		
 		double d1 = Math.log10(maxValue);
-
 		double d2 = Math.log10(minValue);
-		
-		System.out.println("d1 = " + d1);
-		System.out.println("d2 = " + d2);
 		
 		int incrementNo =  (int)(d1 - d2);
 		double incrementInPixel = chart.widthChart / incrementNo;
@@ -62,6 +58,10 @@ public class LogarithmicAxisScaling extends AxisScaling{
 		double pixelsFromEdge = chart.leftOffset;
 		
 		for (int i = 0; i < (incrementNo + 1); i++) {
+			
+			if (orientation == Orientation.Y) {
+				//TODO!!!! need to do for Y axis as well
+			}
 			
 			drawIntervalTick(inter, g, chart, pixelsFromEdge);
 			
@@ -78,7 +78,6 @@ public class LogarithmicAxisScaling extends AxisScaling{
 			
 			pixelsFromEdge = pixelsFromEdge + incrementInPixel;
 		}
-		
 	}
 
 	private void drawLogLines(double pixelsFromEdge, double incrementInPixel, Graphics2D g, XYChart chart) {
@@ -97,7 +96,7 @@ public class LogarithmicAxisScaling extends AxisScaling{
 			XYChart chart, Axis axis, double pixelsFromEdge, int i) {
 		
 		//text to display
-		String labelValueFormatted = "" + Math.pow(10.0, i);
+		String labelValueFormatted = "" + (int)Math.pow(10.0, i);
 		
 		if (orientation == Orientation.X) {
 			XAxisDrawUtil.drawXIntervalLabel(g, chart, pixelsFromEdge, labelValueFormatted, chart.xAxis, inter);

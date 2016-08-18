@@ -44,7 +44,7 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 		values.add(new DataPoint(dt4, 5));
 		values.add(new DataPoint(dt5, 8));
 
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE,4), new Line(Color.BLUE), "Something Blue");
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE,11), new Line(Color.BLUE), "Something Blue");
 		series.dataPoints = values;
 
 		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");

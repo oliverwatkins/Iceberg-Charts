@@ -50,8 +50,6 @@ public class ChartPlotter {
         int xShift = chart.leftOffset; //silly
         int yShift = chart.topOffset + chart.heightChart;
 
-        DataPoint lastPoint = null; 
-
         for (XYDataSeries xYDataSeries : xYDataSerieses) {
 
             ArrayList<DataPoint> dataPoints = xYDataSeries.dataPoints;
@@ -66,56 +64,51 @@ public class ChartPlotter {
             //only for bar
             int pixBtnFirst2Pts = calculateDistanceBetweenFirstTwoPoints(dataPoints.get(0), dataPoints.get(1), xShift, xyFactor);
 
+            Point currentPoint = null;
+            Point lastPoint = null;
+            		
             for (DataPoint dataPoint : dataPoints) {
                 if (firstRun) {
                 	
                     firstRun = false;
-                    lastPoint = dataPoint;
 
                     if (xYDataSeries.pointType != null) {
-                        drawPoint(g, xyFactor, xShift, yShift, xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
+                    	currentPoint = drawPoint(g, xyFactor, xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
                     }
                 } else {
 
-                    if (xYDataSeries.line != null) {
-                        drawLine(g, xyFactor, xShift, yShift, lastPoint, xYDataSeries, dataPoint);
-                    }
                     if (xYDataSeries.pointType != null) {
-                        drawPoint(g, xyFactor, xShift, yShift, xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
+                    	currentPoint = drawPoint(g, xyFactor, xYDataSeries, dataPoint, chart, pixBtnFirst2Pts);
                     }
-                    lastPoint = dataPoint;
+                    if (xYDataSeries.line != null) {
+                        drawLine(g, lastPoint, currentPoint, xYDataSeries);
+                    }
                 }
+                lastPoint = currentPoint;
             }
         }
     }
 	
-	protected void drawPoint(Graphics2D g, 
+
+
+	protected Point drawPoint(Graphics2D g, 
     		XYFactor xyFactor,
-            int xShift, //remove :(
-            int yShift,
             XYDataSeries xYDataSeries,
             DataPoint dataPoint, 
             XYChart chart, int pixBtnFirst2Pts) {
 		
-		xShift = chart.leftOffset;
+		int yShift = chart.topOffset + chart.heightChart;
+		int xShift = chart.leftOffset;
 		
 		int x = 0;
-		if (dataPoint.valueType == ValueType.X_TIME) {
-	        x = (int) ((dataPoint.xDate.getTime() * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
+		
+		if (chart.xAxis.axisScaling instanceof TimeSeriesAxisScaling) {
+			x = (int) ((dataPoint.xDate.getTime() * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
+	        
 		} else if (chart.xAxis.axisScaling instanceof LogarithmicAxisScaling) {
-			
-			System.out.println("dataPoint.x " + dataPoint.x);
-			System.out.println("xShift " + xShift);
-			System.out.println("xyFactor.xZeroOffsetInPixel " + xyFactor.xZeroOffsetInPixel);
-			System.out.println("Math.log10(dataPoint.x) " + Math.log10(dataPoint.x));
-			
-			double logMax = Math.log10(chart.xAxis.getMaxValue());
-			double logMin = Math.log10(chart.xAxis.getMinValue());
-			
-			double logDP = Math.log10(dataPoint.x);
-			
-					
-	        x = (int) ((dataPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
+			double adjustedValue = convertLogValue(dataPoint, chart);
+
+			x = (int)( xShift + (adjustedValue*chart.widthChart));
 		}else {
 	        x = (int) ((dataPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
 		}
@@ -150,36 +143,31 @@ public class ChartPlotter {
         dataPoint.uiPointXY.draw(g, new Point(x, y), lastPoint, dataPoint, xyFactor, chart, pixBtnFirst2Pts);
         
         lastPoint = new Point(x,y);
+        return lastPoint;
     }
+
 	
-	protected void drawLine(Graphics2D g, XYFactor xyFactor,
-            int xShift, int yShift, DataPoint lastPoint,
-            XYDataSeries xYDataSeries, DataPoint dataPoint) {
-
+	private void drawLine(Graphics2D g, Point lastPoint2, Point currentPoint, XYDataSeries xYDataSeries) {
         Line line = xYDataSeries.line;
-
-        int adjustedX1 = (int) ((lastPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
-        int adjustedY1 = (int) (yShift - (int) (lastPoint.y * xyFactor.getyFactor()) - xyFactor.yZeroOffsetInPixel);
-
-        int adjustedX2 = (int) ((dataPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
-        int adjustedY2 = (int) (yShift - (int) (dataPoint.y * xyFactor.getyFactor()) - xyFactor.yZeroOffsetInPixel);
-
-        //hack
-        if (xyFactor.getyFactor() * adjustedY2 > 200000) {
-            return;
-        }
-        if (xyFactor.getxFactor() * adjustedX2 > 200000) {
-            return;
-        }
-
 		Shape cachedClip = ChartUtils.clipChart(g, chart);
 
 		//clip away everything that is not in the chart.
-        line.drawLine(g, adjustedX1, adjustedY1, adjustedX2, adjustedY2);
+        line.drawLine(g, lastPoint2.x, lastPoint2.y, currentPoint.x, currentPoint.y);
         
         g.setClip(cachedClip);
-    }
-    
+	}
+	
+	private double convertLogValue(DataPoint dataPoint, XYChart chart) {
+		double logMax = Math.log10(chart.xAxis.getMaxValue());
+		double logMin = Math.log10(chart.xAxis.getMinValue());
+		
+		double logDP = Math.log10(dataPoint.x);
+		
+		double v = (logDP - logMin)/(logMax - logMin);
+		return v;
+	}
+	
+	
     protected int calculateDistanceBetweenFirstTwoPoints(DataPoint dataPoint,
 			DataPoint dataPoint2, int xShift, XYFactor xyFactor) {
     	
