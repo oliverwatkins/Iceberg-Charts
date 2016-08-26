@@ -100,7 +100,6 @@ public class GridFill{
     	Rectangle fillRect = new Rectangle((int)xPos, chart.topOffset, (int)lengthDimension, (int)chart.heightChart);
     	
 		fillOutRectangle(g, chart, colorCached, fillRect);
-
 	}
     
     /**
@@ -115,9 +114,6 @@ public class GridFill{
 			Rectangle fillRect) {
 		
 		Shape clip = ChartUtils.clipChart(g, chart);
-		
-//		Shape clip = g.getClip();
-//		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
 		
 		g.fill (fillRect);
 

@@ -1,6 +1,11 @@
 # Iceberg-Charts
 
-Swing Charting Library
+Homepage
+
+http://frontangle.com/icharts/#/
+
+Documentation
 
 https://github.com/oliverwatkins/Iceberg-Charts/wiki
+
 

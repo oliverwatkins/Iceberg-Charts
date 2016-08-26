@@ -10,7 +10,7 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPointBar;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
@@ -23,7 +23,7 @@ public class TestDataBar_zero_offchart extends ChartTester {
 	@Override
 	public Chart getChart() {
         
-        NumericalInterval tick1 = new NumericalInterval(20, 10.0, new GridLine(Color.GRAY,true,1)); //grid line
+        NumericalInterval tick1 = new NumericalInterval(20, 10.0, new Line(Color.GRAY,true,1)); //grid line
         NumericalInterval tick2 = new NumericalInterval(10, 1.0, null); //no grid line
         
         YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-14.2, 16.7, tick1, tick2, null), "Y value");

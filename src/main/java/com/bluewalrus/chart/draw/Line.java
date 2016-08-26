@@ -14,27 +14,24 @@ import com.bluewalrus.chart.Chart;
 /**
  * Defines a line used in a <code>XYChart</code>
  * 
- * TODO this needs to be renamed to Line! But eclipse wont let me
- * 
  * @author Oliver Watkins
- *
  */
-public class GridLine implements Serializable{
+public class Line implements Serializable{
 
     public Color color;
     public boolean dashed = false;
     public int thickness = 1;
 
-    public GridLine(Color color) {
+    public Line(Color color) {
         this.color = color;
     }
 
-    public GridLine(Color color, boolean dashed) {
+    public Line(Color color, boolean dashed) {
         this.color = color;
         this.dashed = dashed;
     }
     
-    public GridLine(Color color, boolean dashed, int thickness) {
+    public Line(Color color, boolean dashed, int thickness) {
         this.color = color;
         this.dashed = dashed;
         this.thickness = thickness;

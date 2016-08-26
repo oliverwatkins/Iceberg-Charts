@@ -32,8 +32,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	public TimeSeriesAxisScaling(Date dateStart, Date dateEnd,
 			TimeInterval timeInt1, TimeInterval timeInt2, TimeInterval timeInt3) {
 
-		super();
-
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 
@@ -47,9 +45,46 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 			this.interval2.setLevel(2);
 		if (interval3 != null)
 			this.interval3.setLevel(3);
-
 	}
 
+	
+	@Override
+	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+
+		drawGridFills(g2d, xyChart);
+	}
+	
+	/**
+	 * Draw the tick of the interval. Usually just a small line coming out
+	 * perpendicular to the axis.
+	 * 
+	 * @param interval
+	 * @param g
+	 * @param chart
+	 * @param i
+	 * @param incrementInPixel
+	 */
+	@Override
+	public void drawAll(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+
+		if (this.interval1.isValid() && this.interval1.isActive()) {
+			drawIntervalTickAndLabelsAndGridLines(
+					(TimeInterval) this.interval1, g2d, xyChart, true);
+		}
+		if (this.interval2 != null && this.interval2.isValid()
+				&& this.interval2.isActive()) {
+			drawIntervalTickAndLabelsAndGridLines(
+					(TimeInterval) this.interval2, g2d, xyChart, true);
+		}
+		if (this.interval3 != null && this.interval3.isValid()
+				&& this.interval3.isActive()) {
+			drawIntervalTickAndLabelsAndGridLines(
+					(TimeInterval) this.interval3, g2d, xyChart, false);
+		}
+	}
+	
 	/**
 	 * Draw the intervals ticks and labels for one particular interval:
 	 * 
@@ -65,8 +100,11 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	 * @param chart
 	 * @param showLabel
 	 */
-	protected void drawIntervalTickAndLabelsAndGridLines(TimeInterval interval,
+
+	public void drawIntervalTickAndLabelsAndGridLines(AbstractInterval aInterval,
 			Graphics2D g, XYChart chart, boolean showLabel) {
+		
+		TimeInterval interval = (TimeInterval)aInterval;
 
 		int incrementNo = getIncrementNumber(interval);
 
@@ -75,12 +113,11 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		double dayInPixel = getIncrementInPixels(TimeInterval.Type.DAY, chart);
 
 		if (interval.isCentered() && showLabel) {
-			//we may need to show label that is being cut by the y axis
+			//we may need to show label that is being cut by the y axis... only for centered intervals.
 			drawFirstCenteredLabel(interval, g, chart);
 		}
 		
 		for (int i = 1; i < (incrementNo + 1); i++) {
-
 			double intervalInPixels = 0;
 
 			/**
@@ -112,23 +149,64 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		}
 	}
 	
+	private void drawGridLine(TimeInterval interval, Graphics2D g,
+			XYChart chart, int i, double totalIncrementPixs) {
+
+		g.setColor(chart.xAxis.axisColor);
+
+		double factor = getMultiplicationFactor(chart);
+
+		// to first increment (edge of chart to first interval value)
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				interval, factor);
+
+		double totalDistanceFromEdge = chart.leftOffset + toFirstInPixels
+				+ totalIncrementPixs;
+
+		XAxisDrawUtil.drawGridLine(interval, g, chart, totalDistanceFromEdge);
+
+	}
+	
+	@Override
+	protected void drawGridFills(AbstractInterval intv, Graphics2D g,
+			XYChart chart) {
+
+		TimeInterval interval = (TimeInterval) intv;
+
+		double factor = getMultiplicationFactor(chart);
+		double dayInPixel = getIncrementInPixels(TimeInterval.Type.DAY, chart);
+		// to first increment (edge of chart to first interval value)
+		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
+				interval, factor);
+
+		int incrementNo = getIncrementNumber(interval);
+
+		double intervalInPixels = 0;
+
+		XAxisDrawUtil.drawGridFill(interval, g, chart, chart.leftOffset,
+				toFirstInPixels, 0);
+
+		double sumOfIntervals = 0;
+
+		for (int i = 1; i < (incrementNo + 1); i++) {
+
+			intervalInPixels = getIntervalInPixels(chart, interval, dayInPixel, i);
+
+			XAxisDrawUtil.drawGridFill(interval, g, chart, chart.leftOffset
+					+ toFirstInPixels + sumOfIntervals, intervalInPixels, i);
+
+			sumOfIntervals = sumOfIntervals + intervalInPixels;
+		}
+	}
+	
 	/**
-	 * Draw the first label of a centered label interval.
+	 * Draw the first label of a centered label interval. Only used for centered labels!!
 	 * 
 	 * @param interval
 	 * @param g
 	 * @param chart
 	 */
 	private void drawFirstCenteredLabel(TimeInterval interval, Graphics2D g, XYChart chart) {
-		
-		double factor = getMultiplicationFactor(chart);
-		
-		//pixels to the left
-		double pixelsDistanceToFirstLeftPointOffTheChart = getToFirstPointOffTheChart(
-				interval, factor, chart); 
-
-		double pixelsToFirstIntervalPoint = chart.leftOffset - pixelsDistanceToFirstLeftPointOffTheChart;
-		
 		Date d = DateUtils.getDatePointToNearestDataType(dateStart, interval.type, false);
 
 		SimpleDateFormat df;
@@ -137,8 +215,16 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		} else {
 			df = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		}
-
 		String xLabel = df.format(d);
+		
+		double factor = getMultiplicationFactor(chart);
+		
+		//pixels to the left
+		double pixelsDistanceToFirstLeftPointOffTheChart = getToFirstPointOffTheChart(
+				interval, factor, chart); 
+
+		double pixelsToFirstIntervalPoint = chart.leftOffset - pixelsDistanceToFirstLeftPointOffTheChart;
+
 
 		XAxisDrawUtil.drawXIntervalLabel(g, chart, pixelsToFirstIntervalPoint,
 				xLabel, // + label,
@@ -166,39 +252,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		return diff;
 	}
 
-	@Override
-	protected void drawGridFills(AbstractInterval intv, Graphics2D g,
-			XYChart chart) {
 
-		TimeInterval interval = (TimeInterval) intv;
-
-		double factor = getMultiplicationFactor(chart);
-
-		double dayInPixel = getIncrementInPixels(TimeInterval.Type.DAY, chart);
-		// to first increment (edge of chart to first interval value)
-		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
-				interval, factor);
-
-		int incrementNo = getIncrementNumber(interval);
-
-		double intervalInPixels = 0;
-
-		XAxisDrawUtil.drawGridFill(interval, g, chart, chart.leftOffset,
-				toFirstInPixels, 0);
-
-		double sumOfIntervals = 0;
-
-		for (int i = 1; i < (incrementNo + 1); i++) {
-
-			intervalInPixels = getIntervalInPixels(chart, interval, dayInPixel,
-					i);
-
-			XAxisDrawUtil.drawGridFill(interval, g, chart, chart.leftOffset
-					+ toFirstInPixels + sumOfIntervals, intervalInPixels, i);
-
-			sumOfIntervals = sumOfIntervals + intervalInPixels;
-		}
-	}
 
 	private double getIntervalInPixels(XYChart chart, TimeInterval interval,
 			double dayInPixel, int i) {
@@ -216,32 +270,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		return intervalInPixels;
 	}
 
-	private void drawGridLine(TimeInterval interval, Graphics2D g,
-			XYChart chart, int i, double totalIncrementPixs) {
-
-		g.setColor(chart.xAxis.axisColor);
-
-		double factor = getMultiplicationFactor(chart);
-
-		// to first increment (edge of chart to first interval value)
-		double toFirstInPixels = getToFirstIntervalValueFromMinInPixels(
-				interval, factor);
-
-		double totalDistanceFromEdge = chart.leftOffset + toFirstInPixels
-				+ totalIncrementPixs;
-
-		XAxisDrawUtil.drawGridLine(interval, g, chart, totalDistanceFromEdge);
-
-	}
-
-	/**
-	 * TODO : (see super class comments)
-	 */
-	public void drawGridLines(AbstractInterval interval, Graphics2D g,
-			XYChart chart) {
-
-		// ignore
-	}
 
 	/**
 	 * given a number i, get the i'th month after the start date month and get
@@ -257,13 +285,10 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 			double dayInPixel) {
 
 		Calendar cal = Calendar.getInstance();
-
 		cal.setTime(this.dateStart);
-
 		cal.add(Calendar.MONTH, i);
 
 		int days = DateUtils.getDaysInMonth(cal.getTime());
-
 		return dayInPixel * days;
 	}
 
@@ -271,22 +296,17 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 			double dayInPixel) {
 
 		Calendar cal = Calendar.getInstance();
-
 		cal.setTime(this.dateStart);
-
 		cal.add(Calendar.YEAR, i);
 
 		int days = DateUtils.getDaysInYear(cal.getTime());
-
 		return dayInPixel * days;
 	}
 
 	protected double getIncrementInPixels(TimeInterval.Type t, XYChart chart) {
 
 		long increment = DateUtils.getMsForType(t);
-
 		double factor = this.getMultiplicationFactor(chart);
-
 		double incrementInPixel = (double) (increment * factor);
 
 		return incrementInPixel;
@@ -324,58 +344,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		return incrementNo;
 	}
 
-	/**
-	 * Draw the tick of the interval. Usually just a small line coming out
-	 * perpendicular to the axis.
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param i
-	 * @param incrementInPixel
-	 */
-
-	@Override
-	public void drawAll(Graphics2D g2d, XYChart xyChart,
-			ArrayList<XYDataSeries> data) {
-
-		// NOTE! data is ignored here. It's only used for enumeration
-
-		drawAllIntervalTickAndLabelsAndGridLines(g2d, xyChart);
-	}
-
-	@Override
-	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
-			ArrayList<XYDataSeries> data) {
-
-		drawGridFills(g2d, xyChart);
-	}
-
-	/**
-	 * Draw all the intervals and ticks for all intervals
-	 * 
-	 * @param g
-	 * @param chart
-	 */
-	public void drawAllIntervalTickAndLabelsAndGridLines(Graphics2D g,
-			XYChart chart) {
-
-		if (this.interval1.isValid() && this.interval1.isActive()) {
-			drawIntervalTickAndLabelsAndGridLines(
-					(TimeInterval) this.interval1, g, chart, true);
-		}
-		if (this.interval2 != null && this.interval2.isValid()
-				&& this.interval2.isActive()) {
-			drawIntervalTickAndLabelsAndGridLines(
-					(TimeInterval) this.interval2, g, chart, true);
-		}
-		if (this.interval3 != null && this.interval3.isValid()
-				&& this.interval3.isActive()) {
-			drawIntervalTickAndLabelsAndGridLines(
-					(TimeInterval) this.interval3, g, chart, false);
-		}
-	}
-
 	protected void drawIntervalLabel(TimeInterval interval, Graphics g,
 			XYChart chart, int incrementNumber, double totalIncrementPixs) {
 
@@ -407,10 +375,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		String xLabel = df.format(totalTime);
 
-//		if (interval.getLevel() == 1)
-//			System.out.println("xLabel = " + xLabel + " date " + new Date(totalTime) + " >>increment number : " + incrementNumber);
-		
-		// DRAW
 		double totalDistanceFromEdge = chart.leftOffset + toFirstInPixels + totalIncrementPixs;
 
 		XAxisDrawUtil.drawXIntervalLabel(g, chart, totalDistanceFromEdge,
@@ -469,8 +433,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 		if (pix < 0)
 			throw new RuntimeException(
-					"pixels cannot be negative. First val to min = " + ms
-							+ ". dateStart.getTime() " + dateStart.getTime());
+					"pixels cannot be negative. First val to min = " + ms + ". dateStart.getTime() " + dateStart.getTime());
 
 		return pix;
 	}
@@ -537,5 +500,4 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	public double getMinValue() {
 		return this.dateStart.getTime();
 	}
-
 }

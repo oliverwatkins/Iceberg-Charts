@@ -40,13 +40,13 @@ import com.bluewalrus.main.test.xy.XYTester;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
 import com.bluewalrus.main.test.xyy.TestDataBar_2Y_2;
 
-public class IcebergChartsDemo extends JFrame {
+public class IB2 extends JFrame {
 
 	/**
 	 * 
 	 * @throws Exception
 	 */
-    public IcebergChartsDemo() throws Exception {
+    public IB2() throws Exception {
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	

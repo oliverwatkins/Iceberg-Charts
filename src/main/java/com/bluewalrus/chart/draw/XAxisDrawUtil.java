@@ -116,13 +116,7 @@ public class XAxisDrawUtil {
 			double pics = ChartUtils.getIncrementInPixels(interval, chart, axis.axisScaling);
 			
 			fromLeft = fromLeft + pics/2;
-			
-			//center to the right.
-			//move exactly 50% right in interval
-			
 		}
-		
-		
 		
 		if (interval.styling != null && interval.styling.intervalFont != null)
 			g.setFont(interval.styling.intervalFont);
@@ -160,11 +154,6 @@ public class XAxisDrawUtil {
 		if (fromLeft < rightSideChart && fromLeft > chart.leftOffset) {
 			return true;
 		}
-//		System.out.println("ERROR : fromLeft " + fromLeft
-//				+ " is not inside chart. rightSideChart " + rightSideChart
-//				+ " chart.leftOffset " + chart.leftOffset);
 		return false;
 	}
-
-
 }

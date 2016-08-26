@@ -13,13 +13,13 @@ import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
 import com.bluewalrus.chart.axis.NumericalInterval;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.XAxisDrawUtil;
 import com.bluewalrus.chart.draw.YAxisDrawUtil;
 
 public class LinearNumericalAxisScaling extends AxisScaling{
 	
-	public GridLine zeroLine = new GridLine(Color.GRAY, false, 1);
+	public Line zeroLine = new Line(Color.GRAY, false, 1);
 	
 	/**
 	 * Default constructor
@@ -56,8 +56,6 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 	public LinearNumericalAxisScaling(Double minValue, Double maxValue, 
 			NumericalInterval interval1, NumericalInterval interval2, NumericalInterval interval3) {
 
-		super();
-		
 		this.maxValue = maxValue;
 		this.minValue = minValue;
 
@@ -81,39 +79,26 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 		}
 	}
 	
-	/**
-	 * Draw all the intervals and ticks for all intervals
-	 * @param g
-	 * @param chart
-	 */
-	public void drawAllIntervalTickAndLabels(Graphics2D g, XYChart chart) {
-		
-		if (this.interval1.isValid() && this.interval1.isActive()) {
-			drawIntervalTickAndLabels(this.interval1, g, chart, true);
-		}
-		if (this.interval2.isValid() && this.interval2.isActive()) {
-			drawIntervalTickAndLabels(this.interval2, g, chart, false);
-		}
-		if (this.interval3.isValid() && this.interval3.isActive()) {
-			drawIntervalTickAndLabels(this.interval3, g, chart, false);
-		}
-	}
-	
-	@Override
-	public void drawAll(Graphics2D g2d, XYChart xyChart,
-			ArrayList<XYDataSeries> data) {
-
-		
-		drawAllIntervalTickAndLabels(g2d, xyChart);
-
-		drawGridLines(g2d, xyChart);
-	}
-
 	@Override
 	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
 			ArrayList<XYDataSeries> data) {
 
 		drawGridFills(g2d, xyChart);
+	}
+	
+	@Override
+	public void drawAll(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+		
+		if (this.interval1.isValid() && this.interval1.isActive()) {
+			drawIntervalTickAndLabelsAndGridLines(this.interval1, g2d, xyChart, true);
+		}
+		if (this.interval2.isValid() && this.interval2.isActive()) {
+			drawIntervalTickAndLabelsAndGridLines(this.interval2, g2d, xyChart, false);
+		}
+		if (this.interval3.isValid() && this.interval3.isActive()) {
+			drawIntervalTickAndLabelsAndGridLines(this.interval3, g2d, xyChart, false);
+		}
 	}
 	
 	
@@ -132,7 +117,7 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 	 * @param chart
 	 * @param showLabel
 	 */
-	protected void drawIntervalTickAndLabels(AbstractInterval interval, Graphics2D g,
+	public void drawIntervalTickAndLabelsAndGridLines(AbstractInterval interval, Graphics2D g,
 			XYChart chart, boolean showLabel) {
 
 		NumericalInterval inter = (NumericalInterval)interval;
@@ -152,21 +137,42 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 			/**
 			 * check if the pixel position is within the bounds of the chart. If not ignore it.
 			 */
-
-
-			if (!inBounds(pixelsFromEdge, chart)) {
-				
-				String labelValueFormatted = getLabelValue((NumericalInterval)interval, i);
+			if (!ChartUtils.inBounds(pixelsFromEdge, chart, orientation)) {
 				continue;
 			}
 			
 			drawIntervalTick(inter, g, chart, pixelsFromEdge);
-
 			
 			if (showLabel)
 				drawIntervalLabel(inter, g, chart, getAxis(chart), pixelsFromEdge, i);
+			
+			
+			if (inter != null && inter.isValid()
+					&& inter.styling != null
+					&& inter.styling.graphLine != null) {
+				
+				drawGridLine(inter, g, chart, i, incrementInPixel);
+			}
 		}
 	}
+	
+	public void drawGridLines(AbstractInterval interval, Graphics2D g, XYChart chart) {
+		
+		NumericalInterval inter = (NumericalInterval) interval;
+		
+		Double increment = inter.getInterval();
+		
+        int incrementNo = (int) ((maxValue - minValue) / increment);
+
+        //divide height of chart by actual height of chart to get the multiplaying factor
+        double factor = getMultiplicationFactor(chart); 
+        
+        double incrementInPixel = (double) (inter.getInterval() * factor);
+        
+        for (int i = 0; i < (incrementNo + 1); i++) {
+        	drawGridLine(inter, g, chart, i, incrementInPixel);
+        }
+    }
 	
 
 	/**
@@ -193,23 +199,6 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 	}
 
 
-	
-	protected void drawGridLine(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
-		
-        double pixelsFromEdge = getPixelPositionFromEdge(interval, chart, i, incrementInPixel);
-        
-        
-		if (orientation == Orientation.X) {
-			XAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, pixelsFromEdge);
-		}else if (orientation == Orientation.Y) {
-			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, pixelsFromEdge);
-		}else if (orientation == Orientation.Y2) {
-			//TODO do we support grids on other Y axis too?
-//			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
-		}else {
-			throw new RuntimeException("not supported");
-		}
-	}
 
 
 	protected void drawIntervalLabel(NumericalInterval interval, Graphics2D g,
@@ -241,23 +230,23 @@ public class LinearNumericalAxisScaling extends AxisScaling{
 		return labelValueFormatted;
 	}
 	
-	public void drawGridLines(AbstractInterval interval, Graphics2D g, XYChart chart) {
-		
-		NumericalInterval inter = (NumericalInterval) interval;
-		
-		Double increment = inter.getInterval();
-		
-        int incrementNo = (int) ((maxValue - minValue) / increment);
 
-        //divide height of chart by actual height of chart to get the multiplaying factor
-        double factor = getMultiplicationFactor(chart); 
+	protected void drawGridLine(NumericalInterval interval, Graphics g, XYChart chart, int i, double incrementInPixel) {
+		
+        double pixelsFromEdge = getPixelPositionFromEdge(interval, chart, i, incrementInPixel);
         
-        double incrementInPixel = (double) (inter.getInterval() * factor);
         
-        for (int i = 0; i < (incrementNo + 1); i++) {
-        	drawGridLine(inter, g, chart, i, incrementInPixel);
-        }
-    }
+		if (orientation == Orientation.X) {
+			XAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, pixelsFromEdge);
+		}else if (orientation == Orientation.Y) {
+			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, pixelsFromEdge);
+		}else if (orientation == Orientation.Y2) {
+			//TODO do we support grids on other Y axis too?
+//			YAxisDrawUtil.drawGridLine(interval, (Graphics2D)g, chart, fromStart);
+		}else {
+			throw new RuntimeException("not supported");
+		}
+	}
 	
 	
 	protected void drawGridFills(AbstractInterval interval, Graphics2D g, XYChart chart) {

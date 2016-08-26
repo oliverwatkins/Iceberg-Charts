@@ -21,8 +21,6 @@ public class UIPointBoxPlot extends UIPointComplexXY{
 	private int x3;
 	private Color muchmuchdarker;
 
-
-
 	public UIPointBoxPlot(Color color) {
 		super(color);
 	}
@@ -33,11 +31,11 @@ public class UIPointBoxPlot extends UIPointComplexXY{
 
 		double pointYFactored = (point.y); //has already been factored
 		
-		double topWhiskerFactored = (dp.topWhisker * xyFactor.yFactor);
-		double topFactored = (dp.top * xyFactor.yFactor);
-		double middleFactored = (dp.middle * xyFactor.yFactor);
-		double bottomFactored = (dp.bottom * xyFactor.yFactor);
-		double bottomWhiskerFactored = (dp.bottomWhisker * xyFactor.yFactor);
+		double topWhiskerFactored = (dp.topWhisker * xyFactor.getyFactor());
+		double topFactored = (dp.top * xyFactor.getyFactor());
+		double middleFactored = (dp.middle * xyFactor.getyFactor());
+		double bottomFactored = (dp.bottom * xyFactor.getyFactor());
+		double bottomWhiskerFactored = (dp.bottomWhisker * xyFactor.getyFactor());
 
 
 		int firstQinPix = (int)(topWhiskerFactored - topFactored);

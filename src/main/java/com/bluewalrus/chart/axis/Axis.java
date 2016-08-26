@@ -20,7 +20,6 @@ import com.bluewalrus.scaling.LinearNumericalAxisScaling;
  * @author Oliver Watkins
  */
 public abstract class Axis implements Serializable {
-
 	/**
 	 * determines the schema of the Axis. How it is drawn, ie linear , time , logarithmic
 	 */
@@ -97,6 +96,17 @@ public abstract class Axis implements Serializable {
 	public double getMaxValue() {
 		return axisScaling.getMaxValue();
 	}
+	
+	@Override
+	public String toString() {
+		return "Axis [axisScaling=" + axisScaling + ", font=" + font
+				+ ", labelText=" + labelText + ", axisColor=" + axisColor
+				+ ", tickLabelOffset=" + tickLabelOffset + ", labelOffset="
+				+ labelOffset + ", marginOffset=" + marginOffset
+				+ ", axisCatFont=" + axisCatFont + ", getMinValue()="
+				+ getMinValue() + ", getMaxValue()=" + getMaxValue() + "]";
+	}
+
 	
 
 }

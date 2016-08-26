@@ -20,7 +20,7 @@ public class Threaded extends JFrame {
 	public static void main(String[] args) throws Exception {
 		
 		
-		TestStackedChart_threaded t2 = new TestStackedChart_threaded();
+		final TestStackedChart_threaded t2 = new TestStackedChart_threaded();
 
 		Threaded t = new Threaded();
 		
@@ -48,17 +48,19 @@ public class Threaded extends JFrame {
 			@Override
 			public void run() {
 				
-				for (int i = 0; i < 10000; i++) {
+				for (int i = 0; i < 1000000; i++) {
 					try {
 						Thread.sleep(100);
 						
 						this.t.incrementChart(chart, i);
-						
-//						Threaded.this.incrementChart(chart);
 
 						/**
 						 * Update UI
 						 */
+						
+						t2.charts.get(0).reInitialiseScaling();
+						
+//						chart.reInitialiseScaling();
 						chart.updateUI(); //iteration is happening in here
 						
 					} catch (InterruptedException e) {
@@ -86,6 +88,11 @@ public class Threaded extends JFrame {
 		syxy.xAxis.axisScaling.setMaxValue(ddd2 + 10);
 
 	}
+	
+	double top = 60;
+	double open = 40;
+	double close = 20;
+	double bottom = 10;
 
 	private void addSomeRandomData(StackedXYChart syxy, int i) {
 		
@@ -101,18 +108,50 @@ public class Threaded extends JFrame {
 		
 		XYDataSeries<DataPoint> s2 = c1.data.get(0);
 			
-		double top = 60;
-		double open = 40;
-		double close = 20;
-		double bottom = 10;
+		top = 60;
+		open = 40;
+		close = 20;
+		bottom = 10;
 		
 		top = top*rand;
 		open = open*rand;
 		close = close*rand;
 		bottom = bottom*rand;
 		
+		if (i > 20) {
+			add10percent();
+		}
+		if (i > 30) {
+			add10percent();
+		}
+		if (i > 50) {
+			add10percent();
+		}
+		if (i > 60) {
+			add10percent();
+		}
+		if (i > 100) {
+			add10percent();
+		}
+		if (i > 130) {
+			add10percent();
+		}
+		if (i > 170) {
+			add10percent();
+		}
+		
+		System.out.println("top " + top);
+		
+		
 		s2.dataPoints.add(new DataPointCandleStick(400 + (i*10), top, open, close, bottom, true));
 		s2.dataPoints.remove(0);
+	}
+
+	private void add10percent() {
+		top = top + (top * 1.2);
+		open = open + (open * 1.2);
+		close = close + (close * 1.2);
+		bottom = bottom + (bottom * 1.2);
 	}
 	
 	

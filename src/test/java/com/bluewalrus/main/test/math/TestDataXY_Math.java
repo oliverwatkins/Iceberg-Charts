@@ -11,7 +11,7 @@ import com.bluewalrus.chart.axis.NumericalInterval;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
 import com.bluewalrus.main.test.ChartTester;
@@ -43,19 +43,20 @@ public class TestDataXY_Math extends ChartTester {
 		}
 
 		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE),
-				new GridLine(Color.BLUE), "x^2");
+				new Line(Color.BLUE), "x^2");
 		series.dataPoints = values;
 
 		XYDataSeries series3 = new XYDataSeries(
-				new UIPointTriangle(Color.PINK), new GridLine(Color.PINK),
-				"e^x");
+
+				new UIPointTriangle(Color.PINK), new Line(Color.PINK), "e^x");
+
 		series3.dataPoints = values3;
 
-		NumericalInterval t1x = new NumericalInterval(6, 10.0, new GridLine(
+		NumericalInterval t1x = new NumericalInterval(6, 10.0, new Line(
 				Color.GRAY, false, 1));
-		NumericalInterval t2x = new NumericalInterval(3, 5.0, new GridLine(
+		NumericalInterval t2x = new NumericalInterval(3, 5.0, new Line(
 				Color.LIGHT_GRAY, true, 1));
-		NumericalInterval t3x = new NumericalInterval(1, 1.0, new GridLine(
+		NumericalInterval t3x = new NumericalInterval(1, 1.0, new Line(
 				Color.LIGHT_GRAY, true, 1));
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-10.0, 10.0,

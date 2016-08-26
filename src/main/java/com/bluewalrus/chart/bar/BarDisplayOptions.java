@@ -10,8 +10,11 @@ public class BarDisplayOptions {
 
 	GradiantRule gradiantRule;
 
-	public Color positiveColor;
+	public Color positiveColor, color;
 	public Color negativeColor;
+
+	public double transparancy = -1;
+
 	
 	public void setGradiantRule(GradiantRule gradiantRule) {
 		this.gradiantRule = gradiantRule;

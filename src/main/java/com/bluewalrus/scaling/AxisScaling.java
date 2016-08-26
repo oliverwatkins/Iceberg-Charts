@@ -9,6 +9,7 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.AbstractInterval;
 import com.bluewalrus.chart.axis.Axis;
+import com.bluewalrus.chart.axis.TimeInterval;
 
 /**
  * 
@@ -54,29 +55,6 @@ public abstract class AxisScaling {
 		}
 	}
 
-
-
-	public void drawGridLines(Graphics2D g, XYChart chart) {
-		
-		if (interval3 != null && interval3.isValid()
-				&& interval3.styling != null
-				&& interval3.styling.graphLine != null) {
-			this.drawGridLines(interval3, g, chart);
-		}
-		if (interval2 != null && interval2.isValid()
-				&& interval2.styling != null
-				&& interval2.styling.graphLine != null) {
-			this.drawGridLines(interval2, g, chart);
-		}
-		
-		if (interval1 != null && interval1.isValid()
-				&& interval1.styling != null
-				&& interval1.styling.graphLine != null) {
-			this.drawGridLines(interval1, g, chart);
-		}
-	}
-
-
 	
 	protected Axis getAxis(XYChart chart) {
 		if (orientation == Orientation.X) {
@@ -88,31 +66,6 @@ public abstract class AxisScaling {
 		}else {
 			throw new RuntimeException("not supported");
 		}
-	}
-	
-	
-
-	/**
-	 * Check if pixel "point" is within the bounds of the chart.
-	 * 
-	 * @param pixelsFromEdge
-	 * @param chart
-	 * @return
-	 */
-	protected boolean inBounds(double pixelsFromEdge, Chart chart) {
-		if (orientation == Orientation.X) {
-			
-			if ((pixelsFromEdge >= chart.leftOffset) && (pixelsFromEdge <= (chart.leftOffset + chart.widthChart))) {
-				return true;
-			}
-		
-		}else if (orientation == Orientation.Y) {
-			
-			if (pixelsFromEdge >= chart.topOffset && pixelsFromEdge <= (chart.topOffset + chart.heightChart)) {
-				return true;
-			}
-		}
-		return false;
 	}
 	
 	/**
@@ -129,6 +82,11 @@ public abstract class AxisScaling {
 	
 	public abstract void drawAll(Graphics2D g2d, XYChart xyChart, ArrayList<XYDataSeries> data);
 	
+	public abstract void drawIntervalTickAndLabelsAndGridLines(AbstractInterval interval,
+			Graphics2D g, XYChart chart, boolean showLabel);
+	
+	
+	
 	protected abstract void drawGridLineOnZero(Graphics2D g);
 
 	/**
@@ -140,18 +98,6 @@ public abstract class AxisScaling {
 	public abstract double getMultiplicationFactor(XYChart chart);
 
 	protected abstract void drawGridFills(AbstractInterval interval12, Graphics2D g, XYChart chart);
-	
-	/**
-	 * TODO remove this from the super class. In TimeScaling the grid lines are drawn with the intervals and labels.
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 */
-	protected abstract void drawGridLines(AbstractInterval interval, Graphics2D g, XYChart chart);
-	
-
-	
-	
 	
 	protected abstract double getToFirstIntervalValueFromMinInPixels(Double interval, double factor);
 

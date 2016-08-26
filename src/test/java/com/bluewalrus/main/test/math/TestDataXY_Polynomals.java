@@ -7,7 +7,7 @@ import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.main.test.Showcase;
@@ -45,10 +45,10 @@ public class TestDataXY_Polynomals extends ChartTester {
 			values3.add(dp);
 		}
 		
-		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.BLUE, 1), new GridLine(Color.BLUE), "x^2");
+		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.BLUE, 1), new Line(Color.BLUE), "x^2");
 		series.dataPoints = values;
 
-		XYDataSeries series3 = new XYDataSeries(new UIPointCircle(Color.RED, 1), new GridLine(Color.RED), "e^x");
+		XYDataSeries series3 = new XYDataSeries(new UIPointCircle(Color.RED, 1), new Line(Color.RED), "e^x");
 		series3.dataPoints = values3;
 
 		xySeriesList.add(series);

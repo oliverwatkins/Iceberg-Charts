@@ -18,9 +18,7 @@ import com.bluewalrus.chart.datapoint.DataPointWithMagnitude;
  * TODO offer option of setting magnitude as radius or area!!!
  * 
  * At the moment is radius only.
- * 
  */
-
 public class UIPointBubble extends UIPointComplexXY {
 
 	// by default scale on Y
@@ -30,24 +28,21 @@ public class UIPointBubble extends UIPointComplexXY {
 
 	private boolean mouseIsOverPoint = false;
 	private RadialGradientPaint paint;
-
 	private Paint graphicsPaint;
-
 	private DataPointWithMagnitude dpWithM;
-
 	private int x;
-
 	private int y;
 
 	private double mag;
-
 	private Point point;
-	
+
 	public UIPointBubble(Color color) {
 		super(color);
 	}
 
-	public void draw(Graphics2D g, Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
+	public void draw(Graphics2D g, Point point, Point lastPoint,
+			DataPoint dataPoint, XYFactor xyFactor, XYChart chart,
+			int pixBtnFirst2Pts) {
 
 		this.point = point;
 		dpWithM = (DataPointWithMagnitude) dataPoint;
@@ -55,12 +50,12 @@ public class UIPointBubble extends UIPointComplexXY {
 		mag = 0;
 
 		if (scaleOnX) {
-			mag = dpWithM.magnitude * xyFactor.xFactor;
+			mag = dpWithM.magnitude * xyFactor.getxFactor();
 		} else {
-			mag = dpWithM.magnitude * xyFactor.yFactor;
+			mag = dpWithM.magnitude * xyFactor.getyFactor();
 		}
 
-		if (mag <= 0){
+		if (mag <= 0) {
 			throw new RuntimeException("magnitude cannot be zero or less : " + mag);
 		}
 		/**
@@ -91,8 +86,8 @@ public class UIPointBubble extends UIPointComplexXY {
 		g.setPaint(paint);
 
 		oval = new Ellipse2D.Double(x, y, (int) radius * 2, (int) radius * 2);
-		
-        this.clipAndDrawPoint(g, chart);
+
+		this.clipAndDrawPoint(g, chart);
 	}
 
 	@Override
@@ -110,8 +105,6 @@ public class UIPointBubble extends UIPointComplexXY {
 
 		if (mouseIsOverPoint) {
 			g.setPaint(this.getHighlightedPaint(point, mag));
-
-			// g.setColor(Color.GREEN);
 			g.fill(oval);
 		} else {
 			g.setPaint(paint);
@@ -120,14 +113,17 @@ public class UIPointBubble extends UIPointComplexXY {
 
 	private Paint getHighlightedPaint(Point point, double mag) {
 
-		Color c = new Color(color.getRed(), color.getGreen(), color.getBlue(), 100);
-		Color c2 = new Color(Color.PINK.getRed(), Color.PINK.getGreen(), Color.PINK.getBlue(), 100);
+		Color c = new Color(color.getRed(), color.getGreen(), color.getBlue(),
+				100);
+		Color c2 = new Color(Color.PINK.getRed(), Color.PINK.getGreen(),
+				Color.PINK.getBlue(), 100);
 
 		Color[] colors = { c, c2 };
 
 		float[] dist = { .4f, .6f };
 
-		RadialGradientPaint rpaint = new RadialGradientPaint(new Point(point.x, point.y), (int) mag, dist, colors);
+		RadialGradientPaint rpaint = new RadialGradientPaint(new Point(point.x,
+				point.y), (int) mag, dist, colors);
 
 		return rpaint;
 	}
@@ -142,5 +138,4 @@ public class UIPointBubble extends UIPointComplexXY {
 			return false;
 		}
 	}
-
 }

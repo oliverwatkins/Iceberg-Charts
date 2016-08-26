@@ -8,7 +8,7 @@ import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.main.test.Showcase;
@@ -42,14 +42,17 @@ public class TestDataXY_SineCurve extends ChartTester {
 			values3.add(dp);
 		}
 
-		XYDataSeries series = new XYDataSeries(null, new GridLine(Color.BLUE),
-				"x^2");
+
+		XYDataSeries series = new XYDataSeries(null,
+				new Line(Color.BLUE), "x^2");
+		
 
 		series.dataPoints = values;
 
 		XYDataSeries series3 = new XYDataSeries(
-				new UIPointCircle(Color.PINK, 1), new GridLine(Color.PINK),
-				"e^x");
+
+				new UIPointCircle(Color.PINK, 1), new Line(Color.PINK), "e^x");
+
 		series3.dataPoints = values3;
 
 		xySeriesList.add(series);

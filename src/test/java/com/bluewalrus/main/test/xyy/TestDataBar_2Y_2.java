@@ -7,15 +7,14 @@ import java.util.ArrayList;
 import com.bluewalrus.chart.Chart;
 import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.XYDataSeries;
-import com.bluewalrus.chart.bar.GradiantRule_old;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointCircle;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointTriangle;
 import com.bluewalrus.main.test.ChartTester;
 
-public class TestDataBar_2Y_2 extends ChartTester {
+public class TestDataBar_2Y_2  extends ChartTester{
 
 	@Override
 	public Chart getChart() {
@@ -32,6 +31,7 @@ public class TestDataBar_2Y_2 extends ChartTester {
 		values2.add(new DataPoint(3, -22.7));
 		values2.add(new DataPoint(4, -15.5));
 
+
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
 		values3.add(new DataPoint(2, -2.2));
 		values3.add(new DataPoint(3, -0.4));
@@ -39,43 +39,62 @@ public class TestDataBar_2Y_2 extends ChartTester {
 		values3.add(new DataPoint(5, 7.6));
 
 		XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.RED),
-				new GridLine(Color.BLACK), "left1");
+				new Line(Color.BLACK), "left1");
 		series.dataPoints = values;
 
+
+
 		XYDataSeries series2 = new XYDataSeries(new UIPointSquare(Color.BLUE),
-				new GridLine(Color.BLUE), "left2");
+				new Line(Color.BLUE), "left2");
 		series2.dataPoints = values2;
 
+
+
 		XYDataSeries series3 = new XYDataSeries(new UIPointTriangle(
-				Color.ORANGE), new GridLine(Color.BLUE), "left3");
+				Color.ORANGE), new Line(Color.BLUE), "left3");
 		series3.dataPoints = values3;
 
 		xySeries.add(series);
 		xySeries.add(series2);
 		xySeries.add(series3);
 
-		GradiantRule_old rule = new GradiantRule_old(0, 130, Color.BLUE,
-				Color.RED, 100);
+
+
+//		GradiantRule_old rule = new GradiantRule_old(0, 130, Color.BLUE,
+//				Color.RED, 100);
 
 		ArrayList<DataPoint> y2series1 = new ArrayList<DataPoint>();
 		y2series1.add(new DataPoint(2, 760.4));
 		y2series1.add(new DataPoint(3, 620.6));
 		y2series1.add(new DataPoint(4, 550.6));
 
-		ArrayList<DataPoint> y2series2 = new ArrayList<DataPoint>();
-		y2series2.add(new DataPoint(2, 570.4));
-		y2series2.add(new DataPoint(3, 690.6));
-		y2series2.add(new DataPoint(4, 710.6));
+		
+        xySeries.add(series);
+        xySeries.add(series2);
+        xySeries.add(series3);
+        
+        
+        ArrayList<DataPoint> y2series2 = new ArrayList<DataPoint>();
+        y2series2.add(new DataPoint(2, 570.4));
+        y2series2.add(new DataPoint(3, 690.6));
+        y2series2.add(new DataPoint(7, 710.6));
+        
+        ArrayList<XYDataSeries> xySeriesY2 = new ArrayList<XYDataSeries>();
+        
+        XYDataSeries seriesY2 = new XYDataSeries(new UIPointCircle(Color.PINK), 
+        		new Line(Color.PINK, true, 4), "max");
+        seriesY2.dataPoints = y2series1;
 
-		ArrayList<XYDataSeries> xySeriesY2 = new ArrayList<XYDataSeries>();
 
-		XYDataSeries seriesY2 = new XYDataSeries(new UIPointCircle(Color.PINK),
-				new GridLine(Color.PINK, true, 4), "max");
+        XYDataSeries series2Y2 = new XYDataSeries(new UIPointSquare(Color.PINK), 
+        		new Line(Color.PINK, true, 4), "min");
+        series2Y2.dataPoints = y2series2;
+        
+        xySeriesY2.add(seriesY2);
+        xySeriesY2.add(series2Y2);
+
 		seriesY2.dataPoints = y2series1;
 
-		XYDataSeries series2Y2 = new XYDataSeries(
-				new UIPointSquare(Color.PINK),
-				new GridLine(Color.PINK, true, 4), "min");
 		series2Y2.dataPoints = y2series2;
 
 		xySeriesY2.add(seriesY2);
@@ -90,10 +109,10 @@ public class TestDataBar_2Y_2 extends ChartTester {
 
 		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 		chart.setTitle("Munich Weather");
-
-		return chart;
-
-	}
+        
+        return chart;
+    }
+	
 
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataBar_2Y_2();

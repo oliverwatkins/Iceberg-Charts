@@ -13,7 +13,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSimpleXY;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 
@@ -90,7 +90,7 @@ public class Legend implements Serializable{
                 drawBlock(g, legendX, legendY, i, category);
 
             } else {
-            	GridLine l = category.line;
+            	Line l = category.line;
 
                 if (l != null) {
                     drawLine(g, legendX, legendY, i, l);
@@ -158,7 +158,7 @@ public class Legend implements Serializable{
 
     }
 
-    private void drawLine(Graphics2D g, int legendX, int legendY, int i, GridLine l) {
+    private void drawLine(Graphics2D g, int legendX, int legendY, int i, Line l) {
 
         int y1 = legendY + (i * squareWidth) + squareWidth / 2;
         int y2 = y1; //same

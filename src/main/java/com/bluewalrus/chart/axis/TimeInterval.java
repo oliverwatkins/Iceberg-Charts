@@ -3,7 +3,7 @@ package com.bluewalrus.chart.axis;
 import java.text.SimpleDateFormat;
 
 import com.bluewalrus.chart.Chart;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 
 public class TimeInterval extends AbstractInterval{
 	
@@ -14,7 +14,7 @@ public class TimeInterval extends AbstractInterval{
 	public Type type;
 	public SimpleDateFormat dateFormat;
 
-	public TimeInterval(int lineLength, Type intervalType, GridLine graphLine) {
+	public TimeInterval(int lineLength, Type intervalType, Line graphLine) {
 		
 		this.styling.lineLength = lineLength;
 		styling.graphLine = graphLine;
@@ -25,7 +25,7 @@ public class TimeInterval extends AbstractInterval{
 	}
 	
 	
-    public TimeInterval(int lineLength, Type intervalType, GridLine graphLine, SimpleDateFormat dateFormat) {
+    public TimeInterval(int lineLength, Type intervalType, Line graphLine, SimpleDateFormat dateFormat) {
     	
     	this(lineLength, intervalType, graphLine);
     	

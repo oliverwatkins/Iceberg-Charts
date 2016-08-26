@@ -6,6 +6,7 @@ import com.bluewalrus.main.test.FileUtils;
 import com.bluewalrus.main.test.bar.TestDataBar_1_Simple;
 import com.bluewalrus.main.test.bar.TestDataBar_4_GradientColor;
 import com.bluewalrus.main.test.bar.TestDataBar_5_PosNegColor;
+import com.bluewalrus.main.test.bar.TestDataBar_6_Transparancy;
 import com.bluewalrus.main.test.bubble.TestDataBubble_1_guns;
 import com.bluewalrus.main.test.bubble.TestDataBubble_2_series;
 import com.bluewalrus.main.test.bubble.TestDataPieBubble;
@@ -14,6 +15,7 @@ import com.bluewalrus.main.test.gridlinefill.TestDataGrids_2_GraphPaper;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_3_alternateGridFillX;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_4_alternateGridFillY;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_5_Gradiant;
+import com.bluewalrus.main.test.logarithmic.TestDataLog_1;
 import com.bluewalrus.main.test.math.TestDataXY_Math;
 import com.bluewalrus.main.test.math.TestDataXY_Polynomals;
 import com.bluewalrus.main.test.math.TestDataXY_SineCurve;
@@ -71,6 +73,13 @@ public class GenerateShowcase {
     	new TestDataBar_1_Simple().createImageAndTextFile(sBuilder, sBuilder2);
     	new TestDataBar_4_GradientColor().createImageAndTextFile(sBuilder, sBuilder2);
     	new TestDataBar_5_PosNegColor().createImageAndTextFile(sBuilder, sBuilder2);
+    	new TestDataBar_6_Transparancy().createImageAndTextFile(sBuilder, sBuilder2);
+    	
+    	//LOG
+    	new TestDataLog_1().createImageAndTextFile(sBuilder, sBuilder2);
+    	
+    	//Pie bubble
+    	new TestDataPieBubble().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//STACKED
     	new TestDataXY_Math().createImageAndTextFile(sBuilder, sBuilder2);
@@ -94,7 +103,7 @@ public class GenerateShowcase {
     	new TestDataPie_SimplePie().createImageAndTextFile(sBuilder, sBuilder2);
     	new TestDataPie_Multi().createImageAndTextFile(sBuilder, sBuilder2);
 //    	new TestDataPie_IndicatorMany().createImageAndTextFile(); //TODO cannot do this because it is a JPanel
-    	new TestDataPie_IndicatorSimple().createImageAndTextFile(sBuilder, sBuilder2);
+//    	new TestDataPie_IndicatorSimple().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//XYY
     	new TestDataBar_2Y().createImageAndTextFile(sBuilder, sBuilder2);
@@ -106,9 +115,6 @@ public class GenerateShowcase {
     	FileUtils.writeFile(sBuilder2, GenerateShowcase.path, "screenshots.html");
     	FileUtils.writeFile(sBuilder, GenerateShowcase.path, "samples.json");
     	
-    	
     	System.out.println("Completed Image Code Genereration !!!!");
-
     }
-
 }

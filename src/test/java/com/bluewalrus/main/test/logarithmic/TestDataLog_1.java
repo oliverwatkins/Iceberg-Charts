@@ -1,4 +1,5 @@
-package com.bluewalrus.main.test.timeseries;
+package com.bluewalrus.main.test.logarithmic;
+
 
 import java.awt.Color;
 import java.awt.Font;
@@ -19,56 +20,33 @@ import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
+import com.bluewalrus.scaling.LogarithmicAxisScaling;
 import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 
-public class TestDataGrids_7_TimeSeries extends ChartTester {
+public class TestDataLog_1 extends ChartTester {
 
 	@Override
 	public Chart getChart() throws ParseException {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
-
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
-
-		Date startDate = df.parse("1997-01-01 01-00-00");
-		Date endDate = df.parse("2002-01-20 05-33-00");
-
-		String time = "1985-01-01 00-33-00";
-		Date dt4 = df.parse(time);
-
-		time = "1992-01-01 00-33-00";
-		Date dt5 = df.parse(time);
-
-		time = "1999-07-20 05-33-00";
-		Date dt6 = df.parse(time);
-
+		
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		values.add(new DataPoint(dt4, 5));
-		values.add(new DataPoint(dt5, 8));
-		values.add(new DataPoint(dt6, 14));
+		values.add(new DataPoint(5, -15));
+		values.add(new DataPoint(15, 5));
+		values.add(new DataPoint(139, 8));
+		values.add(new DataPoint(2001, 14));
+		values.add(new DataPoint(9301, 19));
 
-
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "");
 		series.dataPoints = values;
 
 		NumericalInterval t1 = new NumericalInterval(6, 50.0, new Line(Color.GRAY, false, 1));
 		NumericalInterval t2 = new NumericalInterval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
 		NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0,
-				t1, t2, t3), "Y Axis");
-
-		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-		SimpleDateFormat monthFormat = new SimpleDateFormat("");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, t2, t3), "Y Axis");
 		
-		TimeInterval timeInt1 = new TimeInterval(7, TimeInterval.Type.YEAR, new Line(Color.GRAY, false, 6), yearFormat);
-		TimeInterval timeInt2 = new TimeInterval(2, TimeInterval.Type.MONTH, new Line(Color.GRAY, false, 3), monthFormat);
-		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.NONE, new Line(Color.GRAY, false, 1));
-		
-		
-//		
-		
-		XAxis xAxis = new XAxis(new TimeSeriesAxisScaling(startDate, endDate, timeInt1, timeInt2, timeInt3), "Time Series"); //timeInt2, timeInt3), "Time Series");
+		XAxis xAxis = new XAxis(new LogarithmicAxisScaling(1, 10000.0), "Log Axis"); 
 
 		xySeriesList.add(series);
 
@@ -78,19 +56,21 @@ public class TestDataGrids_7_TimeSeries extends ChartTester {
 		chart.rightOffset = 200;
 
 		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-		chart.setTitle("Some Kind of XY Chart");
+		chart.setTitle("Logarithmic");
 
 		return chart;
 	}
-
+	
 	@Override
 	public String getNiceTitle() {
-		return "Time Series: ???";
+		return "Logarithmic ";
 	}
-
+	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataGrids_7_TimeSeries();
+		ChartTester t = new TestDataLog_1();
 		t.testChart(t.getChart());
 	}
-
+	
+	
 }
+

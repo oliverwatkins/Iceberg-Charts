@@ -15,7 +15,7 @@ import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridFill;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.main.test.ChartTester;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
@@ -46,25 +46,31 @@ public class TestDataGrids_6_alternateGridFillXTimesSeries extends ChartTester {
 		values.add(new DataPoint(dt5, 8));
 		values.add(new DataPoint(dt6, 14));
 
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE),
-				new GridLine(Color.BLUE), "Something Blue");
+
+		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "Something Blue");
+
 		series.dataPoints = values;
 
-		NumericalInterval yInterval = new NumericalInterval(8, 10.0,
-				new GridLine(Color.GRAY, false, 1));
+
+		NumericalInterval yInterval = new NumericalInterval(8, 10.0, new Line(Color.GRAY, false, 1));
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0,
 				yInterval, null, null), "Y Axis");
 
 		GridFill gf = new GridFill(new Color(179, 209, 255), Color.RED, false);
 
-		NumericalInterval x1 = new NumericalInterval(2, 5.0, new GridLine(
-				Color.GRAY, true, 2));
+		
+		NumericalInterval x1 = new NumericalInterval(2, 
+				5.0, new Line(Color.GRAY, true, 2));
+
 
 		x1.styling.graphFill = gf;
 
-		NumericalInterval x2 = new NumericalInterval(6, 20.0, new GridLine(
-				Color.GRAY, false, 3));
+		
+		
+		NumericalInterval x2 = new NumericalInterval(6, 
+				20.0, new Line(Color.GRAY, false, 3));
+
 
 		// TODO
 		// TODO

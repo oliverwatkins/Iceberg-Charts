@@ -10,20 +10,24 @@ import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.axis.IntervalStyling;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.draw.GridFill;
-import com.bluewalrus.chart.draw.GridLine;
+import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.main.test.ChartTester;
 
 public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 
 	@Override
 	public Chart getChart() throws ParseException {
-
-		XYDataSeries series = new XYDataSeries(null, new GridLine(Color.BLUE,
-				false, 3), "Blue Series");
+		
+		XYDataSeries series = new XYDataSeries(null, 
+				new Line(Color.BLUE, false, 3), 
+				"Blue Series");
+	
+	
 		series.dataPoints = getSeries1();
-
-		XYDataSeries series2 = new XYDataSeries(null, new GridLine(Color.RED,
-				false, 3), "Red Series");
+		
+		XYDataSeries series2 = new XYDataSeries(null, 
+				new Line(Color.RED, false, 3), 
+				"Red Series");
 		series2.dataPoints = getSeries2();
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -31,16 +35,24 @@ public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
 
-		IntervalStyling stylingX = new IntervalStyling(2, new GridLine(
-				Color.GRAY, false, 0), new GridFill(new Color(179, 209, 255),
-				new Color(172, 109, 215), false));
 
-		IntervalStyling stylingY = new IntervalStyling(8, new GridLine(
-				Color.GRAY, false, 1), null);
-
-		XYChart chart = new XYChart(xySeriesList, "Alternate Grid Fill", null,
-				stylingX, null, null, stylingY, null, "X Axis", "Y Axis");
-
+		IntervalStyling stylingX = new IntervalStyling(2, 
+				new Line(Color.GRAY, false, 0),
+				new GridFill(
+						new Color(179, 209, 255), 
+						new Color(172, 109, 215), false));
+		
+		IntervalStyling stylingY = new IntervalStyling(8,
+				new Line(Color.GRAY, false, 1), 
+				null);
+		
+		XYChart chart = new XYChart(xySeriesList, "Alternate Grid Fill", null, 
+				stylingX, 
+				null, 
+				null, 
+				stylingY, 
+				null, "X Axis", "Y Axis");
+		
 		chart.setSize(1000, 500);
 		chart.rightOffset = 200;
 

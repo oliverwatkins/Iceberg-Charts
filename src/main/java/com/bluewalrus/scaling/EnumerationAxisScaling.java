@@ -29,11 +29,11 @@ public class EnumerationAxisScaling extends AxisScaling{
 		super(Orientation.X);
 	}
 	
-	public double getMaxValue() {
-		return 100;
-	}
-	public double getMinValue() {
-		return 0;
+	@Override
+	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
+			ArrayList<XYDataSeries> data) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -106,11 +106,7 @@ public class EnumerationAxisScaling extends AxisScaling{
 		return 0;
 	}
 
-	@Override
-	protected void drawGridLines(AbstractInterval interval, Graphics2D g,
-			XYChart chart) {
-		// TODO Auto-generated method stub
-	}
+
 
 	@Override
 	protected void drawGridFills(AbstractInterval interval, Graphics2D g,
@@ -119,12 +115,7 @@ public class EnumerationAxisScaling extends AxisScaling{
 		
 	}
 
-	@Override
-	public void drawAllPre(Graphics2D g2d, XYChart xyChart,
-			ArrayList<XYDataSeries> data) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	protected double getToFirstIntervalValueFromMinInPixels(Double interval,
@@ -141,12 +132,27 @@ public class EnumerationAxisScaling extends AxisScaling{
 	}
 
 	
+	public double getMaxValue() {
+		return 100;
+	}
+	public double getMinValue() {
+		return 0;
+	}
+	
 	@Override
 	public String toString() {
 		return "EnumerationAxisDrawX [maxValue=" + maxValue + ", minValue="
 				+ minValue + ", orientation=" + orientation + ", interval1="
 				+ interval1 + ", interval2=" + interval2 + ", interval3="
 				+ interval3 + "]";
+	}
+
+	@Override
+	public void drawIntervalTickAndLabelsAndGridLines(
+			AbstractInterval interval, Graphics2D g, XYChart chart,
+			boolean showLabel) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

@@ -11,12 +11,11 @@ public class XYFactor {
 	 *  (1 / xMax - xMin) * chart.widthChart
 	 * 
 	 */
-	
-	public double xFactor; //x value into pixels converting factor
-	public double yFactor; //y value into pixels converting factor
+	private double xFactor; //x value into pixels converting factor
+
+	private double yFactor; //y value into pixels converting factor
 	
 	public double yZeroOffsetInPixel = 10;
-	
 	
 	/**
 	 * An offset value that is used if the Min value is not zero. This value should be 
@@ -33,8 +32,26 @@ public class XYFactor {
 	
 	public XYFactor(double xFactor, double yFactor) {
 		
+		if (xFactor < 0)
+			throw new IllegalArgumentException("cannot be negative");
 
 		this.xFactor = xFactor;
+		this.yFactor = yFactor;
+	}
+	
+	public double getxFactor() {
+		return xFactor;
+	}
+
+	public void setxFactor(double xFactor) {
+		this.xFactor = xFactor;
+	}
+
+	public double getyFactor() {
+		return yFactor;
+	}
+
+	public void setyFactor(double yFactor) {
 		this.yFactor = yFactor;
 	}
 }
