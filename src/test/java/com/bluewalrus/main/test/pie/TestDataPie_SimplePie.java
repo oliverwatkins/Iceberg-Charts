@@ -5,6 +5,7 @@
  */
 
 package com.bluewalrus.main.test.pie;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -29,22 +30,22 @@ public class TestDataPie_SimplePie extends ChartTester {
 	@Override
 	public Chart getChart() {
 
-        ArrayList<Segment> values = new ArrayList<Segment>();
-        values.add(new Segment(35, "something", Color.RED));
-        values.add(new Segment(32, "something else", Color.BLUE));
-        values.add(new Segment(5, "something or other", Color.BLUE.brighter()));
-        values.add(new Segment(3, "this", Color.BLUE.darker()));
-        values.add(new Segment(7, "that", Color.ORANGE));
-        values.add(new Segment(5, "and", Color.CYAN));
-        values.add(new Segment(13, "the other", Color.GREEN));
+		ArrayList<Segment> values = new ArrayList<Segment>();
+		values.add(new Segment(35, "something", Color.RED));
+		values.add(new Segment(32, "something else", Color.BLUE));
+		values.add(new Segment(5, "something or other", Color.BLUE.brighter()));
+		values.add(new Segment(3, "this", Color.BLUE.darker()));
+		values.add(new Segment(7, "that", Color.ORANGE));
+		values.add(new Segment(5, "and", Color.CYAN));
+		values.add(new Segment(13, "the other", Color.GREEN));
 
-        PieChart pieChart = new PieChart(values, "Simple Pie");
-    
-        pieChart.setSize(800, 700);
-        
-        return pieChart;
-    }
-	
+		PieChart chart = new PieChart(values, "Simple Pie");
+
+		chart.setSize(800, 700);
+
+		return chart;
+	}
+
 	@Override
 	public String getNiceTitle() {
 		return "Pie : Simple";

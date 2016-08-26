@@ -54,9 +54,9 @@ public class TestDataXY_Polynomals extends ChartTester {
 		xySeriesList.add(series);
 		xySeriesList.add(series3);
 
-		XYChart lineChart = new XYChart("Polynomals", "x", "y", xySeriesList);
+		XYChart chart = new XYChart("Polynomals", "x", "y", xySeriesList);
 
-		return lineChart;
+		return chart;
 	}
 
 	double f(double x) {

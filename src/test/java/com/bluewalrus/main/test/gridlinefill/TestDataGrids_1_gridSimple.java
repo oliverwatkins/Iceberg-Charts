@@ -1,6 +1,5 @@
 package com.bluewalrus.main.test.gridlinefill;
 
-
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -19,7 +18,6 @@ import com.bluewalrus.main.test.ChartTester;
  */
 public class TestDataGrids_1_gridSimple extends ChartTester {
 
-	
 	public Chart getChart() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -39,29 +37,40 @@ public class TestDataGrids_1_gridSimple extends ChartTester {
 		values2.add(new DataPoint(25, 17));
 
 		XYDataSeries series = new XYDataSeries(values, "");
-		
-		XYChart chart = new XYChart("Grid Examples", 
-				"My X Axis", 
-				"My Y Axis", 
-				new IntervalStyling(5, new GridLine(Color.GRAY, false, 3), null), 		//first X interval styling
-				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second X interval styling
-				null,																	//third X interval styling
-				new IntervalStyling(5, new GridLine(Color.GRAY, true, 3), null),		//first Y interval styling
-				new IntervalStyling(1, new GridLine(Color.LIGHT_GRAY, false, 1), null),	//second Y interval styling
-				null, 																	//third Y interval styling
+
+		XYChart chart = new XYChart(
+				"Grid Examples",
+				"My X Axis",
+				"My Y Axis",
+				new IntervalStyling(5, new GridLine(Color.GRAY, false, 3), null), // first
+																					// X
+																					// interval
+																					// styling
+				new IntervalStyling(1,
+						new GridLine(Color.LIGHT_GRAY, false, 1), null), // second
+																			// X
+																			// interval
+																			// styling
+				null, // third X interval styling
+				new IntervalStyling(5, new GridLine(Color.GRAY, true, 3), null), // first
+																					// Y
+																					// interval
+																					// styling
+				new IntervalStyling(1,
+						new GridLine(Color.LIGHT_GRAY, false, 1), null), // second
+																			// Y
+																			// interval
+																			// styling
+				null, // third Y interval styling
 				series);
-		
+
 		return chart;
 	}
-
-	
-
 
 	@Override
 	public String getNiceTitle() {
 		return "Grids: simple";
 	}
-
 
 	private ArrayList<DataPoint> getSeries2() {
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
@@ -103,11 +112,6 @@ public class TestDataGrids_1_gridSimple extends ChartTester {
 		return values;
 	}
 
-
-
-
-
-
 	private ArrayList<DataPoint> getSeries1() {
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		values.add(new DataPoint(5, 94));
@@ -147,14 +151,10 @@ public class TestDataGrids_1_gridSimple extends ChartTester {
 		values.add(new DataPoint(95, 4));
 		return values;
 	}
-	
-	
+
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataGrids_1_gridSimple();
 		t.testChart(t.getChart());
 	}
 
-
-	
 }
-

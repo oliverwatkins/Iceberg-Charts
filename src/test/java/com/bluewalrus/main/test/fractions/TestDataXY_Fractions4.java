@@ -23,9 +23,9 @@ public class TestDataXY_Fractions4 extends ChartTester {
 		
 		ArrayList<XYDataSeries> s = new ArrayList<XYDataSeries>();
 				
-		XYChart lineChart = new XYChart(values, "Big Range", "", "");
+		XYChart chart = new XYChart(values, "Big Range", "", "");
 		
-		return lineChart;
+		return chart;
 	}
 	
 	@Override

@@ -1,56 +1,56 @@
-<img src='partials/TestDataBar_MultiBar_SideBySide.PNG' style='width:400px;float:right'><div><pre>        
-        ArrayList&lt;DataPointMultiBar&gt; multiBarList = new ArrayList&lt;DataPointMultiBar&gt;();
+<img src='partials/TestDataBar_MultiBar_SideBySide.PNG' style='width:400px;float:right'><div><pre><span class='code_snippet' style='font-size: 7px'>
+		ArrayList&lt;DataPointMultiBar&gt; multiBarList = new ArrayList&lt;DataPointMultiBar&gt;();
 
-        
-        Color c1 = new Color(112,12,52);
-        Color c2 = new Color(62,82,212);
-        Color c3 = new Color(72,52,112);
-        Color c4 = new Color(82,112,32);
-        Color c5 = new Color(170,62,22);
-        
-        ArrayList&lt;DataPointBar&gt; values = new ArrayList&lt;DataPointBar&gt;();
-        values.add(new DataPointBar("Automobile", 51, c1));
-        values.add(new DataPointBar("Food Industry", 25, c2 ));
-        values.add(new DataPointBar("Cosmetics", 10, c3));
-        values.add(new DataPointBar("Travel Products", 5, c4 ));
-        values.add(new DataPointBar("Government", 67, c5 ));
-        
-        DataPointMultiBar mb1 = new DataPointMultiBar(values, "2007", MultiBarMode.SIDE_BY_SIDE);
-        multiBarList.add(mb1);
+		Color c1 = new Color(112, 12, 52);
+		Color c2 = new Color(62, 82, 212);
+		Color c3 = new Color(72, 52, 112);
+		Color c4 = new Color(82, 112, 32);
+		Color c5 = new Color(170, 62, 22);
 
-        ArrayList&lt;DataPointBar&gt; values2 = new ArrayList&lt;DataPointBar&gt;();
-        values2.add(new DataPointBar("Automobile", 80,  c1));
-        values2.add(new DataPointBar("Food Industry", 45,  c2));
-        values2.add(new DataPointBar("Cosmetics", 12, c3));
-        values2.add(new DataPointBar("Travel Products", 14, c4));
-        values2.add(new DataPointBar("Government", 10, c5));
-        
-        DataPointMultiBar mb2 = new DataPointMultiBar(values2, "2008", MultiBarMode.SIDE_BY_SIDE);
-        multiBarList.add(mb2);
+		ArrayList&lt;DataPointBar&gt; values = new ArrayList&lt;DataPointBar&gt;();
+		values.add(new DataPointBar("Automobile", 51, c1));
+		values.add(new DataPointBar("Food Industry", 25, c2));
+		values.add(new DataPointBar("Cosmetics", 10, c3));
+		values.add(new DataPointBar("Travel Products", 5, c4));
+		values.add(new DataPointBar("Government", 67, c5));
 
-        ArrayList&lt;DataPointBar&gt; values3 = new ArrayList&lt;DataPointBar&gt;();
-        values3.add(new DataPointBar("Automobile", 5,  c1));
-        values3.add(new DataPointBar("Food Industry", 4,  c2));
-        values3.add(new DataPointBar("Cosmetics",  3,  c3));
-        values3.add(new DataPointBar("Travel Products", 1,  c4));
-        values3.add(new DataPointBar("Government", 2, c5));
-        
-        DataPointMultiBar mb3 = new DataPointMultiBar(values3, "2009", MultiBarMode.SIDE_BY_SIDE);
-        multiBarList.add(mb3);
+		DataPointMultiBar mb1 = new DataPointMultiBar(values, "2007",
+				MultiBarMode.SIDE_BY_SIDE);
+		multiBarList.add(mb1);
 
-        
-        ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
+		ArrayList&lt;DataPointBar&gt; values2 = new ArrayList&lt;DataPointBar&gt;();
+		values2.add(new DataPointBar("Automobile", 80, c1));
+		values2.add(new DataPointBar("Food Industry", 45, c2));
+		values2.add(new DataPointBar("Cosmetics", 12, c3));
+		values2.add(new DataPointBar("Travel Products", 14, c4));
+		values2.add(new DataPointBar("Government", 10, c5));
 
-        XYDataSeries series = new XYDataSeries(multiBarList, new UIPointMultiBarSideBySide(70), null, "1994");
+		DataPointMultiBar mb2 = new DataPointMultiBar(values2, "2008",
+				MultiBarMode.SIDE_BY_SIDE);
+		multiBarList.add(mb2);
 
-        xySeriesList.add(series);
-        
-        XYChart chart = new XYChart("Side by Side", "Year", "Percent Taxed", xySeriesList);
-        
-        
-//        chart.rightOffset = 200;
-        chart.yAxis.setMinValue(0);
-        chart.yAxis.setMaxValue(100);
-        
-        
-</pre></div>
+		ArrayList&lt;DataPointBar&gt; values3 = new ArrayList&lt;DataPointBar&gt;();
+		values3.add(new DataPointBar("Automobile", 5, c1));
+		values3.add(new DataPointBar("Food Industry", 4, c2));
+		values3.add(new DataPointBar("Cosmetics", 3, c3));
+		values3.add(new DataPointBar("Travel Products", 1, c4));
+		values3.add(new DataPointBar("Government", 2, c5));
+
+		DataPointMultiBar mb3 = new DataPointMultiBar(values3, "2009",
+				MultiBarMode.SIDE_BY_SIDE);
+		multiBarList.add(mb3);
+
+		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
+
+		XYDataSeries series = new XYDataSeries(multiBarList,
+				new UIPointMultiBarSideBySide(70), null, "1994");
+
+		xySeriesList.add(series);
+
+		XYChart chart = new XYChart("Side by Side", "Year", "Percent Taxed",
+				xySeriesList);
+
+		chart.yAxis.setMinValue(0);
+		chart.yAxis.setMaxValue(100);
+
+</span></pre></div>

@@ -1,16 +1,24 @@
-<img src='partials/TestDataGrids_2_GraphPaper.PNG' style='width:400px;float:right'><div><pre>
-		NumericalInterval yInterval1 = new NumericalInterval(0, 10.0, new GridLine(Color.BLACK, false, 1));
-		NumericalInterval yInterval2 = new NumericalInterval(0, 5.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval yInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
+<img src='partials/TestDataGrids_2_GraphPaper.PNG' style='width:400px;float:right'><div><pre><span class='code_snippet' style='font-size: 7px'>
+		NumericalInterval yInterval1 = new NumericalInterval(0, 10.0,
+				new GridLine(Color.BLACK, false, 1));
+		NumericalInterval yInterval2 = new NumericalInterval(0, 5.0,
+				new GridLine(Color.GRAY, false, 1));
+		NumericalInterval yInterval3 = new NumericalInterval(0, 1.0,
+				new GridLine(Color.LIGHT_GRAY, false, 1));
 
-		NumericalInterval xInterval1 = new NumericalInterval(0, 10.0, new GridLine(Color.BLACK, false, 1));
-		NumericalInterval xInterval2 = new NumericalInterval(0, 5.0, new GridLine(Color.GRAY, false, 1));
-		NumericalInterval xInterval3 = new NumericalInterval(0, 1.0, new GridLine(Color.LIGHT_GRAY, false, 1));
+		NumericalInterval xInterval1 = new NumericalInterval(0, 10.0,
+				new GridLine(Color.BLACK, false, 1));
+		NumericalInterval xInterval2 = new NumericalInterval(0, 5.0,
+				new GridLine(Color.GRAY, false, 1));
+		NumericalInterval xInterval3 = new NumericalInterval(0, 1.0,
+				new GridLine(Color.LIGHT_GRAY, false, 1));
 
-		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, yInterval1, yInterval2, yInterval3), "Y Axis");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0, xInterval1, xInterval2, xInterval3), "X Axis");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0,
+				yInterval1, yInterval2, yInterval3), "Y Axis");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0,
+				xInterval1, xInterval2, xInterval3), "X Axis");
 
-		XYChart chart = new XYChart(new ArrayList&lt;DataPoint&gt;(), "Graphpaper", yAxis, xAxis);
+		XYChart chart = new XYChart(new ArrayList&lt;DataPoint&gt;(), "Graphpaper",
+				yAxis, xAxis);
 
-</pre></div>
+</span></pre></div>

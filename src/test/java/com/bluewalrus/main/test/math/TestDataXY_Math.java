@@ -47,7 +47,8 @@ public class TestDataXY_Math extends ChartTester {
 		series.dataPoints = values;
 
 		XYDataSeries series3 = new XYDataSeries(
-				new UIPointTriangle(Color.PINK), new GridLine(Color.PINK), "e^x");
+				new UIPointTriangle(Color.PINK), new GridLine(Color.PINK),
+				"e^x");
 		series3.dataPoints = values3;
 
 		NumericalInterval t1x = new NumericalInterval(6, 10.0, new GridLine(
@@ -66,23 +67,20 @@ public class TestDataXY_Math extends ChartTester {
 		xySeriesList.add(series);
 		xySeriesList.add(series3);
 
-		XYChart lineChart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
 
-		lineChart.setSize(1000, 500);
-		lineChart.rightOffset = 200;
+		chart.setSize(1000, 500);
+		chart.rightOffset = 200;
 
-		lineChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-		lineChart.setTitle("Maths");
+		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+		chart.setTitle("Maths");
 
-		return lineChart;
+		return chart;
 	}
-	
+
 	@Override
 	public String getNiceTitle() {
 		return "Maths 1";
 	}
-
-	
-	
 
 }

@@ -17,7 +17,7 @@ import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 public class TestDataXY_Boxplot extends ChartTester {
 
 	public static void main(String[] s) {
-//		 getChart();
+		// getChart();
 	}
 
 	public XYChart getChart() {
@@ -55,12 +55,10 @@ public class TestDataXY_Boxplot extends ChartTester {
 
 		return chart;
 	}
-	
+
 	@Override
 	public String getNiceTitle() {
 		return "XY: Boxplot";
 	}
-
-
 
 }

@@ -43,13 +43,14 @@ public class TestDataXY_LineExamples extends ChartTester {
 		values5.add(new DataPoint(8, 7));
 
 		XYDataSeries<DataPoint> series1 = new XYDataSeries<DataPoint>(
-				new UIPointCircle(Color.ORANGE, 15),
-				new GridLine(Color.RED, true, 11), "1");
+				new UIPointCircle(Color.ORANGE, 15), new GridLine(Color.RED,
+						true, 11), "1");
 		XYDataSeries<DataPoint> series2 = new XYDataSeries<DataPoint>(
-				new UIPointSquare(Color.PINK), new GridLine(Color.PINK, true), "2");
+				new UIPointSquare(Color.PINK), new GridLine(Color.PINK, true),
+				"2");
 		XYDataSeries<DataPoint> series3 = new XYDataSeries<DataPoint>(
-				new UIPointCircle(Color.BLACK, 23),
-				new GridLine(Color.BLACK, true, 1), "3");
+				new UIPointCircle(Color.BLACK, 23), new GridLine(Color.BLACK,
+						true, 1), "3");
 		XYDataSeries<DataPoint> series4 = new XYDataSeries<DataPoint>(
 				new UIPointCircle(Color.GRAY), new GridLine(Color.GRAY), "4");
 		XYDataSeries<DataPoint> series5 = new XYDataSeries<DataPoint>(
@@ -61,9 +62,11 @@ public class TestDataXY_LineExamples extends ChartTester {
 		series4.dataPoints = values4;
 		series5.dataPoints = values5;
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-5.0, 10.0, new NumericalInterval(4, 1.0), new NumericalInterval(
-				2, 0.5), null), "y");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 10.0, 1.0, null, null), "x");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-5.0, 10.0,
+				new NumericalInterval(4, 1.0), new NumericalInterval(2, 0.5),
+				null), "y");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 10.0, 1.0,
+				null, null), "x");
 
 		xySeriesList.add(series1);
 		xySeriesList.add(series2);
@@ -81,7 +84,7 @@ public class TestDataXY_LineExamples extends ChartTester {
 
 		return chart;
 	}
-	
+
 	@Override
 	public String getNiceTitle() {
 		return "XY: Line Examples";

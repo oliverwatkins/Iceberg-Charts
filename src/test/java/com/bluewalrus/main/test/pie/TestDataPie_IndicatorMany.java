@@ -116,10 +116,7 @@ public class TestDataPie_IndicatorMany extends ChartTester {
 
         row++;
         
-        
         panel.add(bottomPanel);
-        
-        
         
         return panel;
     }

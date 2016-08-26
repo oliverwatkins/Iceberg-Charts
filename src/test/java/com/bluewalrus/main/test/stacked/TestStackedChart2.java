@@ -22,29 +22,29 @@ import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 public class TestStackedChart2 extends ChartTester {
 	public Chart getChart() {
 
-		//xAxis needs to be shared
+		// xAxis needs to be shared
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(), "X");
 		xAxis.axisScaling.setMinValue(0);
 		xAxis.axisScaling.setMaxValue(400);
-		
+
 		ArrayList<XYChart> charts = new ArrayList<XYChart>();
 		charts.add(getCandleChart(xAxis));
 		charts.add(getBarChart(xAxis));
-		
+
 		ArrayList<Integer> percentages = new ArrayList<Integer>();
 		percentages.add(70);
 		percentages.add(30);
-		
-		StackedXYChart stackedXYChart = new StackedXYChart("Candlestick Chart", charts, percentages);
-		
+
+		StackedXYChart stackedXYChart = new StackedXYChart("Candlestick Chart",
+				charts, percentages);
+
 		return stackedXYChart;
 	}
-	
-	
+
 	public XYChart getBarChart(XAxis xAxis) {
-		
+
 		ArrayList<XYDataSeries> list = new ArrayList<XYDataSeries>();
-		
+
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
 		values3.add(new DataPoint(10, 74));
 		values3.add(new DataPoint(20, 55));
@@ -86,33 +86,34 @@ public class TestStackedChart2 extends ChartTester {
 		values3.add(new DataPoint(380, 45));
 		values3.add(new DataPoint(390, 22));
 		values3.add(new DataPoint(400, 22));
-		
+
 		XYDataSeries series3 = new XYDataSeries(values3, "Third");
 
 		series3.pointType = new UIPointBar(new Color(153, 153, 102), 60);
-		
+
 		list = new ArrayList<XYDataSeries>();
 		list.add(series3);
-		
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(), "Trade Volume");
+
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(),
+				"Trade Volume");
 		yAxis.axisScaling.setMinValue(0);
 		yAxis.axisScaling.setMaxValue(120);
-		
-		yAxis.axisScaling.interval2.styling = new IntervalStyling(3, new GridLine(Color.LIGHT_GRAY, true), null);
-		
-		XYChart lineChart2 = new XYChart(xAxis, yAxis); 
-		lineChart2.data = list;
-		
-		return lineChart2;
+
+		yAxis.axisScaling.interval2.styling = new IntervalStyling(3,
+				new GridLine(Color.LIGHT_GRAY, true), null);
+
+		XYChart chart = new XYChart(xAxis, yAxis);
+		chart.data = list;
+
+		return chart;
 	}
-	
+
 	@Override
 	public String getNiceTitle() {
 		return "Stacked 2";
 	}
-	
-	public XYChart getCandleChart(XAxis xAxis) {
 
+	public XYChart getCandleChart(XAxis xAxis) {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
@@ -120,12 +121,24 @@ public class TestStackedChart2 extends ChartTester {
 
 		values.add(new DataPointCandleStick(10, 83, 70, 60, 50, true));
 		values.add(new DataPointCandleStick(20, 90, 75, 50, 15, true));
-		values.add(new DataPointCandleStick(30, 87, 45, 55, 41, false)); //3rd has to be less than 4th!!
+		values.add(new DataPointCandleStick(30, 87, 45, 55, 41, false)); // 3rd
+																			// has
+																			// to
+																			// be
+																			// less
+																			// than
+																			// 4th!!
 		values.add(new DataPointCandleStick(40, 83, 61, 56, 50, true));
 		values.add(new DataPointCandleStick(50, 89, 56, 50, 43, true));
 		values.add(new DataPointCandleStick(60, 78, 70, 64, 50, true));
 		values.add(new DataPointCandleStick(70, 99, 75, 44, 31, true));
-		values.add(new DataPointCandleStick(80, 80, 60, 70, 50, false)); //3rd has to be less than 4th!!
+		values.add(new DataPointCandleStick(80, 80, 60, 70, 50, false)); // 3rd
+																			// has
+																			// to
+																			// be
+																			// less
+																			// than
+																			// 4th!!
 		values.add(new DataPointCandleStick(90, 99, 75, 50, 25, true));
 		values.add(new DataPointCandleStick(100, 93, 70, 60, 50, true));
 		values.add(new DataPointCandleStick(110, 95, 71, 55, 44, true));
@@ -140,12 +153,30 @@ public class TestStackedChart2 extends ChartTester {
 		values.add(new DataPointCandleStick(200, 67, 95, 60, 55, true));
 		values.add(new DataPointCandleStick(210, 73, 77, 66, 52, true));
 		values.add(new DataPointCandleStick(220, 75, 74, 50, 15, true));
-		values.add(new DataPointCandleStick(230, 77, 45, 55, 41, false)); //3rd has to be less than 4th!!
-		values.add(new DataPointCandleStick(240, 78, 45, 56, 35, false)); //3rd has to be less than 4th!!
+		values.add(new DataPointCandleStick(230, 77, 45, 55, 41, false)); // 3rd
+																			// has
+																			// to
+																			// be
+																			// less
+																			// than
+																			// 4th!!
+		values.add(new DataPointCandleStick(240, 78, 45, 56, 35, false)); // 3rd
+																			// has
+																			// to
+																			// be
+																			// less
+																			// than
+																			// 4th!!
 		values.add(new DataPointCandleStick(250, 75, 56, 50, 43, true));
 		values.add(new DataPointCandleStick(260, 78, 70, 64, 50, true));
 		values.add(new DataPointCandleStick(270, 99, 75, 44, 31, true));
-		values.add(new DataPointCandleStick(280, 80, 60, 70, 50, false)); //3rd has to be less than 4th!!
+		values.add(new DataPointCandleStick(280, 80, 60, 70, 50, false)); // 3rd
+																			// has
+																			// to
+																			// be
+																			// less
+																			// than
+																			// 4th!!
 		values.add(new DataPointCandleStick(290, 77, 51, 41, 25, true));
 		values.add(new DataPointCandleStick(300, 41, 31, 13, 11, true));
 		values.add(new DataPointCandleStick(310, 35, 31, 17, 15, true));
@@ -162,10 +193,13 @@ public class TestStackedChart2 extends ChartTester {
 		XYDataSeries series = new XYDataSeries(values, new UIPointCandleStick(
 				new Color(255, 51, 0)), null, "1994");
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "Price (USD)");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0,
+				50.0, 10.0, null), "Price (USD)");
 
-		yAxis.axisScaling.interval1.styling = new IntervalStyling(5, new GridLine(Color.LIGHT_GRAY, true), null);
-		yAxis.axisScaling.interval2.styling = new IntervalStyling(2, new GridLine(Color.LIGHT_GRAY, true), null);
+		yAxis.axisScaling.interval1.styling = new IntervalStyling(5,
+				new GridLine(Color.LIGHT_GRAY, true), null);
+		yAxis.axisScaling.interval2.styling = new IntervalStyling(2,
+				new GridLine(Color.LIGHT_GRAY, true), null);
 
 		xySeriesList.add(series);
 

@@ -55,9 +55,7 @@ public abstract class ChartTester extends JFrame{
         
         this.writeHTML(s, urlChart, chart);
         
-        
         screenshotHTML.append("<img src='partials/" + chart.fileLocation + ".PNG' class='screenshot-image'/>");
-        
         
         samplesJSON.append("\"title\": \"" + this.getNiceTitle() + "\",");
         samplesJSON.append("\"url\": \"" + "partials/" + chart.fileLocation +  ".html" + "\" ");
@@ -68,10 +66,12 @@ public abstract class ChartTester extends JFrame{
 	
 	private void writeHTML(String s, String urlChart, Chart chart) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<img src='partials/" + chart.fileLocation  + ".PNG' style='width:400px;float:right'>");
-		sb.append("<div>");
-		sb.append("<pre>");
+		sb.append("<img src='partials/" + chart.fileLocation  + ".PNG' style='width:400px;float:right'>\n");
+		sb.append("<div>\n");
+		sb.append("<pre>\n");
+		sb.append("<span class='code_snippet' style='font-size: 11px'>\n");
 		sb.append(s);
+		sb.append("</span>");
 		sb.append("</pre>");
 		sb.append("</div>");
 		

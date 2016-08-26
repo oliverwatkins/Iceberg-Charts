@@ -1,6 +1,5 @@
 package com.bluewalrus.main.test.gridlinefill;
 
-
 import java.awt.Color;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -16,42 +15,32 @@ import com.bluewalrus.main.test.ChartTester;
 
 public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 
-	
 	@Override
 	public Chart getChart() throws ParseException {
-		
-		XYDataSeries series = new XYDataSeries(null, 
-				new GridLine(Color.BLUE, false, 3), 
-				"Blue Series");
+
+		XYDataSeries series = new XYDataSeries(null, new GridLine(Color.BLUE,
+				false, 3), "Blue Series");
 		series.dataPoints = getSeries1();
-		
-		XYDataSeries series2 = new XYDataSeries(null, 
-				new GridLine(Color.RED, false, 3), 
-				"Red Series");
+
+		XYDataSeries series2 = new XYDataSeries(null, new GridLine(Color.RED,
+				false, 3), "Red Series");
 		series2.dataPoints = getSeries2();
-		
+
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
 
-		IntervalStyling stylingX = new IntervalStyling(2, 
-				new GridLine(Color.GRAY, false, 0),
-				new GridFill(
-						new Color(179, 209, 255), 
-						new Color(172, 109, 215), false));
-		
-		IntervalStyling stylingY = new IntervalStyling(8,
-				new GridLine(Color.GRAY, false, 1), 
-				null);
-		
-		XYChart chart = new XYChart(xySeriesList, "Alternate Grid Fill", null, 
-				stylingX, 
-				null, 
-				null, 
-				stylingY, 
-				null, "X Axis", "Y Axis");
-		
+		IntervalStyling stylingX = new IntervalStyling(2, new GridLine(
+				Color.GRAY, false, 0), new GridFill(new Color(179, 209, 255),
+				new Color(172, 109, 215), false));
+
+		IntervalStyling stylingY = new IntervalStyling(8, new GridLine(
+				Color.GRAY, false, 1), null);
+
+		XYChart chart = new XYChart(xySeriesList, "Alternate Grid Fill", null,
+				stylingX, null, null, stylingY, null, "X Axis", "Y Axis");
+
 		chart.setSize(1000, 500);
 		chart.rightOffset = 200;
 
@@ -62,8 +51,6 @@ public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 	public String getNiceTitle() {
 		return "Grids: alternate Grid Fill X";
 	}
-
-
 
 	private ArrayList<DataPoint> getSeries2() {
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
@@ -144,12 +131,10 @@ public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 		values.add(new DataPoint(95, 4));
 		return values;
 	}
-	
-	
+
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataGrids_3_alternateGridFillX();
 		t.testChart(t.getChart());
 	}
-	
-}
 
+}

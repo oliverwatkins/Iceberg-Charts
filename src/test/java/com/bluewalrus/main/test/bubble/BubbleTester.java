@@ -22,83 +22,77 @@ import com.bluewalrus.main.test.xyy.TestDataBar_2Y;
 
 public class BubbleTester extends JFrame {
 
-	
-    public static void main(String[] args) throws Exception {
-        BubbleTester frame = new BubbleTester();
-        frame.setVisible(true);
-    }
-    
+	public static void main(String[] args) throws Exception {
+		BubbleTester frame = new BubbleTester();
+		frame.setVisible(true);
+	}
+
 	/**
 	 * 
 	 * @throws Exception
 	 */
-    public BubbleTester() throws Exception {
-    	JTabbedPane p = createPanel();
-    	
-        getContentPane().add(p);
+	public BubbleTester() throws Exception {
+		JTabbedPane p = createPanel();
 
-    }
-    	
-    	
+		getContentPane().add(p);
+
+	}
+
 	public JTabbedPane createPanel() {
 
-    	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
-    	
-        JTabbedPane tabbedPaneBar = new JTabbedPane();
+		final ArrayList<JComponent> charts = new ArrayList<JComponent>();
 
-        JPanel p = null;
-        JComponent chart = null;
+		JTabbedPane tabbedPaneBar = new JTabbedPane();
 
-        p = createTabbedPane(tabbedPaneBar, "Bubble Guns");
-        chart = new TestDataBubble_1_guns().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Bubble Series");
-        chart = new TestDataBubble_2_series().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, "Pie Bubble");
-        chart = new TestDataPieBubble().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        JButton b = new JButton("Create PNG");
+		JPanel p = null;
+		JComponent chart = null;
 
-        getContentPane().add(b, BorderLayout.SOUTH);
+		p = createTabbedPane(tabbedPaneBar, "Bubble Guns");
+		chart = new TestDataBubble_1_guns().getChart();
+		charts.add(chart);
+		p.add(chart);
 
-        b.addActionListener(new ActionListener() {
+		p = createTabbedPane(tabbedPaneBar, "Bubble Series");
+		chart = new TestDataBubble_2_series().getChart();
+		charts.add(chart);
+		p.add(chart);
+
+		p = createTabbedPane(tabbedPaneBar, "Pie Bubble");
+		chart = new TestDataPieBubble().getChart();
+		charts.add(chart);
+		p.add(chart);
+
+		JButton b = new JButton("Create PNG");
+
+		getContentPane().add(b, BorderLayout.SOUTH);
+
+		b.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int i = 0;
 				for (JComponent chart2 : charts) {
-					
+
 					int width = 0;
 					int height = 0;
-					
+
 					if (chart2 instanceof Chart) {
-						width = ((Chart)chart2).getWidth(); 
-						height = ((Chart)chart2).getHeight();
-					}else {
-						width = chart2.getWidth(); 
+						width = ((Chart) chart2).getWidth();
+						height = ((Chart) chart2).getHeight();
+					} else {
+						width = chart2.getWidth();
 						height = chart2.getHeight();
 					}
-					
-					BufferedImage image = new BufferedImage(width, height, 
+
+					BufferedImage image = new BufferedImage(width, height,
 							BufferedImage.TYPE_INT_ARGB);
 
 					Graphics g2 = image.getGraphics();
 					chart2.paint(g2);
-					
-//					System.out.println("saving ");   
-//					
-//					g2.setColor(Color.GREEN);
-//					g2.drawRect(4, 4, width -2, height-2);
-//					System.out.println("saving ");
 
 					try {
-						ImageIO.write(image, "PNG", new File("src\\main\\resources\\screenshots\\chart-image-" + i + ".png"));
+						ImageIO.write(image, "PNG", new File(
+								"src\\main\\resources\\screenshots\\chart-image-"
+										+ i + ".png"));
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -107,21 +101,20 @@ public class BubbleTester extends JFrame {
 				}
 			}
 		});
-        
-        setSize(1300, 800);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        return tabbedPaneBar;
-    }
+		setSize(1300, 800);
 
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    private JPanel createTabbedPane(JTabbedPane tabbedPane, String string) {
+		return tabbedPaneBar;
+	}
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        tabbedPane.add(string, panel);
-        return panel;
-    }
+	private JPanel createTabbedPane(JTabbedPane tabbedPane, String string) {
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		tabbedPane.add(string, panel);
+		return panel;
+	}
 
 }

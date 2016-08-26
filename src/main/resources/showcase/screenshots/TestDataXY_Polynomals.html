@@ -1,4 +1,4 @@
-<img src='partials/TestDataXY_Polynomals.PNG' style='width:400px;float:right'><div><pre>
+<img src='partials/TestDataXY_Polynomals.PNG' style='width:400px;float:right'><div><pre><span class='code_snippet' style='font-size: 7px'>
 		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 		
 		ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
@@ -30,22 +30,6 @@
 		xySeriesList.add(series);
 		xySeriesList.add(series3);
 
-		XYChart lineChart = new XYChart("Polynomals", "x", "y", xySeriesList);
+		XYChart chart = new XYChart("Polynomals", "x", "y", xySeriesList);
 
-		return lineChart;
-	}
-
-	double f(double x) {
-		return Math.pow(x, 5) - 8*Math.pow(x, 3) + 10*x + 6;
-	}
-
-	double gCos(double x) {
-		return Math.pow(x, 4) - 8*Math.pow(x, 2);
-	}
-	
-	@Override
-	public String getNiceTitle() {
-		return "Maths 2";
-	}
-}
-</pre></div>
+</span></pre></div>

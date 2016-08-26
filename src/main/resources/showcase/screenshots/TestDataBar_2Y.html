@@ -1,4 +1,4 @@
-<img src='partials/TestDataBar_2Y.PNG' style='width:400px;float:right'><div><pre>
+<img src='partials/TestDataBar_2Y.PNG' style='width:400px;float:right'><div><pre><span class='code_snippet' style='font-size: 7px'>
 		ArrayList&lt;XYDataSeries&gt; temperatureSeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
 		ArrayList&lt;DataPoint&gt; tempMax = new ArrayList&lt;DataPoint&gt;();
@@ -59,7 +59,8 @@
 		temperatureSeriesList.add(series2);
 		temperatureSeriesList.add(series3);
 
-		GradiantRule_old rule = new GradiantRule_old(0, 130, Color.BLUE, Color.RED, 100);
+		GradiantRule_old rule = new GradiantRule_old(0, 130, Color.BLUE,
+				Color.RED, 100);
 
 		ArrayList&lt;DataPointBar&gt; barSeries = new ArrayList&lt;DataPointBar&gt;();
 		barSeries.add(new DataPointBar("J", 54.0, rule.getColor(54.0)));
@@ -76,10 +77,9 @@
 		barSeries.add(new DataPointBar("D", 58.4, rule.getColor(58.4)));
 
 		BarDisplayOptions bdo = new BarDisplayOptions();
-		
-		XYBarDataSeries rainfallSeries = new XYBarDataSeries(barSeries,
-				bdo, null, "Rainfall");
-		
+
+		XYBarDataSeries rainfallSeries = new XYBarDataSeries(barSeries, bdo,
+				null, "Rainfall");
 
 		ArrayList&lt;XYDataSeries&gt; rainfallSeriesList = new ArrayList&lt;XYDataSeries&gt;();
 		rainfallSeriesList.add(rainfallSeries);
@@ -95,4 +95,4 @@
 		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 		chart.setTitle("Munich Weather");
 
-</pre></div>
+</span></pre></div>

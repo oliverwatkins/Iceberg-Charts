@@ -1,4 +1,4 @@
-<img src='partials/TestDataBar_4_GradientColor.PNG' style='width:400px;float:right'><div><pre>		
+<img src='partials/TestDataBar_4_GradientColor.PNG' style='width:400px;float:right'><div><pre><span class='code_snippet' style='font-size: 7px'>		
 		XYBarDataSeries barSeries = new XYBarDataSeries();
 		barSeries.add(new DataPointBar("a", 11));
 		barSeries.add(new DataPointBar("b", 14));
@@ -28,10 +28,12 @@
 
 		BarDisplayOptions barDisplayOptions = new BarDisplayOptions();
 		
-		barDisplayOptions.setGradiantRule(new GradiantRule(0, 100, Color.BLUE, Color.RED));
+		barDisplayOptions.setGradiantRule(
+				new GradiantRule(0, 100, Color.BLUE, Color.RED));
 		
 		barSeries.setUpBarDisplayOptions(barDisplayOptions);
 		
-		XYChart chart = new XYChart(barSeries, "Simple Bar Chart (Gradient Color)", "Commodity", "Price Change % (USD)");
+		XYChart chart = new XYChart(barSeries, "Simple Bar Chart (Gradient Color)", 
+				"Commodity", "Price Change % (USD)");
 
-</pre></div>
+</span></pre></div>

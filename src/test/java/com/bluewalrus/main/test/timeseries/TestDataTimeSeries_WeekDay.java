@@ -22,8 +22,6 @@ import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 
 public class TestDataTimeSeries_WeekDay  extends ChartTester {
-
-
 	
 	@Override
 	public Chart getChart() throws ParseException {
@@ -65,7 +63,6 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 		
 		TimeInterval timeInt3 = new TimeInterval(2, TimeInterval.Type.DAY, new GridLine(Color.LIGHT_GRAY, false, 1), dayFormat);
 
-		
 		XAxis xAxis = new XAxis(
 				new TimeSeriesAxisScaling(
 						startDate, 
@@ -75,7 +72,6 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 						null), "Time Series"); 
 
 		xySeriesList.add(series);
-		
 		
 		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, new Color(224,235,235), false);
 

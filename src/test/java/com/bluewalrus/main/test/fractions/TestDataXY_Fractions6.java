@@ -22,9 +22,9 @@ public class TestDataXY_Fractions6 extends ChartTester {
 		
 		ArrayList<XYDataSeries> s = new ArrayList<XYDataSeries>();
 				
-		XYChart lineChart = new XYChart(values, "", "", "");
+		XYChart chart = new XYChart(values, "", "", "");
 		
-		return lineChart;
+		return chart;
 	}
 	
 	@Override

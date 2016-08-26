@@ -27,7 +27,8 @@ public class TestDataBar_3_Simple_fixed_axis extends ChartTester {
 		barSeries.add(new DataPointBar("Oranges", 30, Color.BLACK));
 		barSeries.add(new DataPointBar("Corn", 54, Color.CYAN));
 		
-		XYChart chart = new XYChart(barSeries, "Simple Bar Chart (Axis Set)", "Commodity", "Price (USD)");
+		XYChart chart = new XYChart(barSeries, "Simple Bar Chart (Axis Set)", 
+				"Commodity", "Price (USD)");
 
 		chart.yAxis.setMinValue(0);
 		chart.yAxis.setMaxValue(100);

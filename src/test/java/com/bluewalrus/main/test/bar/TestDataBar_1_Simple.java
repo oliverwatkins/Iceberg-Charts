@@ -18,7 +18,7 @@ public class TestDataBar_1_Simple extends ChartTester {
 
 	@Showcase
 	public Chart getChart() {
-		
+
 		XYBarDataSeries barSeries = new XYBarDataSeries();
 		barSeries.add(new DataPointBar("Apple", 98, Color.ORANGE));
 		barSeries.add(new DataPointBar("Banana", 44, Color.GRAY));
@@ -27,9 +27,10 @@ public class TestDataBar_1_Simple extends ChartTester {
 		barSeries.add(new DataPointBar("Wheat", 50, Color.RED));
 		barSeries.add(new DataPointBar("Oranges", 30, Color.BLACK));
 		barSeries.add(new DataPointBar("Corn", 54, Color.CYAN));
-		
-		XYChart chart = new XYChart(barSeries, "Simple Bar Chart", "Commodity", "Price (USD)");
-		
+
+		XYChart chart = new XYChart(barSeries, "Simple Bar Chart", "Commodity",
+				"Price (USD)");
+
 		return chart;
 	}
 
@@ -39,7 +40,7 @@ public class TestDataBar_1_Simple extends ChartTester {
 	}
 
 	@Override
-	public String getNiceTitle()  {
+	public String getNiceTitle() {
 		return "Bar: Simple";
 	}
 

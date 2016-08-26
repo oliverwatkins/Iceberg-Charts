@@ -9,8 +9,7 @@ import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.main.test.ChartTester;
 
 public class TestDataXY_Simple_Series extends ChartTester {
-	
-	
+
 	public Chart getChart() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -35,7 +34,7 @@ public class TestDataXY_Simple_Series extends ChartTester {
 		values3.add(new DataPoint(15, 67));
 		values3.add(new DataPoint(20, 22));
 		values3.add(new DataPoint(25, 68));
-		
+
 		ArrayList<DataPoint> values4 = new ArrayList<DataPoint>();
 		values4.add(new DataPoint(5, 90));
 		values4.add(new DataPoint(10, 65));
@@ -47,20 +46,21 @@ public class TestDataXY_Simple_Series extends ChartTester {
 		XYDataSeries series2 = new XYDataSeries(values2, "Second");
 		XYDataSeries series3 = new XYDataSeries(values3, "Third");
 		XYDataSeries series4 = new XYDataSeries(values4, "Fourth");
-		
 
-		XYChart chart = new XYChart("Many Series Example", "My X Axis", "My Y Axis", series, series2, series3, series4); 
+		XYChart chart = new XYChart("Many Series Example", "My X Axis",
+				"My Y Axis", series, series2, series3, series4);
 
 		return chart;
 	}
+
 	@Override
 	public String getNiceTitle() {
 		return "XY: Simple Series";
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataXY_Simple_Series();
 		t.testChart(t.getChart());
 	}
-	
+
 }

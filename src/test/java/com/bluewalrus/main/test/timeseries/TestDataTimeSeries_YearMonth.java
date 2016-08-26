@@ -24,8 +24,6 @@ import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 
 public class TestDataTimeSeries_YearMonth extends ChartTester {
 
-
-	
 	@Override
 	public Chart getChart() throws ParseException {
 

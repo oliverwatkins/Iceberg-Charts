@@ -26,11 +26,6 @@ public class TestDataXY_Fractions7_test extends ChartTester {
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 		values.add(new DataPoint(92, 90));
 		values.add(new DataPoint(93, 10));
-//		values.add(new DataPoint(0.76, 0.89));
-
-//		XYDataSeries<DataPoint> series1 = new XYDataSeries<DataPoint>(
-//				new UIPointCircle(Color.ORANGE, 15),
-//				new GridLine(Color.RED, true, 11), "1");
 		
 		XYDataSeries<DataPoint> series = new XYDataSeries<DataPoint>(
 				new UIPointCircle(Color.ORANGE, 15),
@@ -53,16 +48,11 @@ public class TestDataXY_Fractions7_test extends ChartTester {
 					null), 				
 				"2");
 		
-		XYChart lineChart = new XYChart(s, ya, xa);
+		XYChart chart = new XYChart(s, ya, xa);
 		
-		lineChart.setTitle("Negative To Positive");
+		chart.setTitle("Negative To Positive");
 		
-		JFrame frame = new JFrame();
-		frame.add(lineChart);
-		frame.setSize(700, 500);
-		frame.setVisible(true);
-		
-		return lineChart;
+		return chart;
 	}
 	
 	@Override

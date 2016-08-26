@@ -61,14 +61,6 @@ public class TestStackedChart extends ChartTester {
 
 		XYChart lineChart = new XYChart(xAxis, yAxis); 
 		lineChart.data = list;
-		
-		
-		
-		
-		
-		
-		
-		
 
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
 		values3.add(new DataPoint(5, 91));
@@ -95,12 +87,8 @@ public class TestStackedChart extends ChartTester {
 		yAxis2.axisScaling.setMinValue(0);
 		yAxis2.axisScaling.setMaxValue(100);
 		
-		
 		XYChart lineChart2 = new XYChart(xAxis, yAxis2); 
 		lineChart2.data = list;
-		
-
-
 		
 		ArrayList charts = new ArrayList<XYChart>();
 		charts.add(lineChart);
@@ -110,11 +98,9 @@ public class TestStackedChart extends ChartTester {
 		percentages.add(30);
 		percentages.add(70);
 		
+		StackedXYChart chart = new StackedXYChart("Stacked Chart", charts, percentages);
 		
-		StackedXYChart stackedXYChart = new StackedXYChart("Stacked Chart", charts, percentages);
-		
-		
-		return stackedXYChart;
+		return chart;
 	}
 	
 	

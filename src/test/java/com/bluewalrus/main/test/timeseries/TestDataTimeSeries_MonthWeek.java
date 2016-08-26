@@ -94,16 +94,4 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 		ChartTester t = new TestDataTimeSeries_YearMonth();
 		t.testChart(t.getChart());
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

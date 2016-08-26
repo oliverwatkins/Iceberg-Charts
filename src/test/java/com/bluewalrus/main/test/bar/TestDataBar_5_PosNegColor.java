@@ -19,7 +19,7 @@ public class TestDataBar_5_PosNegColor extends ChartTester {
 
 	@Showcase
 	public Chart getChart() {
-		
+
 		XYBarDataSeries barSeries = new XYBarDataSeries();
 		barSeries.add(new DataPointBar("a", 11));
 		barSeries.add(new DataPointBar("b", 14));
@@ -37,13 +37,14 @@ public class TestDataBar_5_PosNegColor extends ChartTester {
 		barSeries.add(new DataPointBar("z", 41));
 
 		BarDisplayOptions barDisplayOptions = new BarDisplayOptions();
-		
+
 		barDisplayOptions.positiveColor = Color.DARK_GRAY;
 		barDisplayOptions.negativeColor = Color.LIGHT_GRAY;
-		
+
 		barSeries.setUpBarDisplayOptions(barDisplayOptions);
-		
-		XYChart chart = new XYChart(barSeries, "Simple Bar Chart (+/- Color)", "Commodity", "Price Change % (USD)");
+
+		XYChart chart = new XYChart(barSeries, "Simple Bar Chart (+/- Color)",
+				"Commodity", "Price Change % (USD)");
 
 		return chart;
 	}
@@ -52,11 +53,10 @@ public class TestDataBar_5_PosNegColor extends ChartTester {
 		ChartTester t = new TestDataBar_5_PosNegColor();
 		t.testChart(t.getChart());
 	}
-	
+
 	@Override
-	public String getNiceTitle()  {
+	public String getNiceTitle() {
 		return "Bar: pos/neg color";
 	}
-	
 
 }

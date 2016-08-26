@@ -30,115 +30,113 @@ public class TestDataPieBubble extends ChartTester {
 	@Override
 	public Chart getChart() {
 
-        System.out.println("getTestData_Bubble2");
+		System.out.println("getTestData_Bubble2");
 
-        ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
+		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
-        ArrayList<DataPoint> values = new ArrayList<DataPoint>();
+		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
 
-        ArrayList<Segment> al = new ArrayList<Segment>();
+		ArrayList<Segment> al = new ArrayList<Segment>();
 
-        al = new ArrayList<Segment>();
-        al.add(new Segment(2, Color.RED));
-        al.add(new Segment(40, Color.CYAN));
-        al.add(new Segment(8, Color.BLUE));
-        al.add(new Segment(25, Color.ORANGE));
-        al.add(new Segment(5, Color.BLACK));
-        al.add(new Segment(5, Color.GRAY));
-        al.add(new Segment(15, Color.PINK));
+		al = new ArrayList<Segment>();
+		al.add(new Segment(2, Color.RED));
+		al.add(new Segment(40, Color.CYAN));
+		al.add(new Segment(8, Color.BLUE));
+		al.add(new Segment(25, Color.ORANGE));
+		al.add(new Segment(5, Color.BLACK));
+		al.add(new Segment(5, Color.GRAY));
+		al.add(new Segment(15, Color.PINK));
 
-        DataPointPieChart dppc = new DataPointPieChart(al, 40, 40, 41.4, "Argentina ");
+		DataPointPieChart dppc = new DataPointPieChart(al, 40, 40, 41.4,
+				"Argentina ");
 
-        values.add(dppc);
+		values.add(dppc);
 
-        al = new ArrayList<Segment>();
-        al.add(new Segment(40, Color.RED));
-        al.add(new Segment(30, Color.CYAN));
-        al.add(new Segment(20, Color.BLUE));
-        al.add(new Segment(10, Color.ORANGE));
-//        al.add(new Segment(0, Color.BLACK));
-//        al.add(new Segment(0, Color.GRAY));
-//        al.add(new Segment(0, Color.PINK));
+		al = new ArrayList<Segment>();
+		al.add(new Segment(40, Color.RED));
+		al.add(new Segment(30, Color.CYAN));
+		al.add(new Segment(20, Color.BLUE));
+		al.add(new Segment(10, Color.ORANGE));
 
-        dppc = new DataPointPieChart(al, 40, 50, 23, "Australia ");
+		dppc = new DataPointPieChart(al, 40, 50, 23, "Australia ");
 
-        values.add(dppc);
+		values.add(dppc);
 
-        al = new ArrayList<Segment>();
-        al.add(new Segment(4, Color.RED));
-        al.add(new Segment(9, Color.CYAN));
-        al.add(new Segment(30, Color.BLUE));
-        al.add(new Segment(10, Color.ORANGE));
-        al.add(new Segment(30, Color.BLACK));
-        al.add(new Segment(1, Color.GRAY));
-        al.add(new Segment(16, Color.PINK));
+		al = new ArrayList<Segment>();
+		al.add(new Segment(4, Color.RED));
+		al.add(new Segment(9, Color.CYAN));
+		al.add(new Segment(30, Color.BLUE));
+		al.add(new Segment(10, Color.ORANGE));
+		al.add(new Segment(30, Color.BLACK));
+		al.add(new Segment(1, Color.GRAY));
+		al.add(new Segment(16, Color.PINK));
 
-        dppc = new DataPointPieChart(al, 100, 100, 11.2, "Belgium ");
-        
-        values.add(dppc);
+		dppc = new DataPointPieChart(al, 100, 100, 11.2, "Belgium ");
 
-        al = new ArrayList<Segment>();
-        al.add(new Segment(2, Color.RED));
-        al.add(new Segment(2, Color.CYAN));
-        al.add(new Segment(2, Color.BLUE));
-        al.add(new Segment(2, Color.ORANGE));
-        al.add(new Segment(2, Color.BLACK));
-        al.add(new Segment(80, Color.GRAY));
-        al.add(new Segment(10, Color.PINK));        
+		values.add(dppc);
 
-        dppc = new DataPointPieChart(al, 95, 120, 0.7, "Bhutan ");
-        
-        values.add(dppc);
-        
-        al = new ArrayList<Segment>();
-//        al.add(new Segment(2, Color.RED));
-        al.add(new Segment(15, Color.CYAN));
-        al.add(new Segment(5, Color.BLUE));
-        al.add(new Segment(10, Color.ORANGE));
-//        al.add(new Segment(2, Color.BLACK));
-//        al.add(new Segment(80, Color.GRAY));
-        al.add(new Segment(70, Color.PINK));        
+		al = new ArrayList<Segment>();
+		al.add(new Segment(2, Color.RED));
+		al.add(new Segment(2, Color.CYAN));
+		al.add(new Segment(2, Color.BLUE));
+		al.add(new Segment(2, Color.ORANGE));
+		al.add(new Segment(2, Color.BLACK));
+		al.add(new Segment(80, Color.GRAY));
+		al.add(new Segment(10, Color.PINK));
 
-        dppc = new DataPointPieChart(al, 60, 70, 4.2, "Croatia ");
+		dppc = new DataPointPieChart(al, 95, 120, 0.7, "Bhutan ");
 
-        values.add(dppc);
-        
-        
-        
+		values.add(dppc);
 
-        PieBubbleChartSettings pbcs = new PieBubbleChartSettings();
+		al = new ArrayList<Segment>();
+		// al.add(new Segment(2, Color.RED));
+		al.add(new Segment(15, Color.CYAN));
+		al.add(new Segment(5, Color.BLUE));
+		al.add(new Segment(10, Color.ORANGE));
+		// al.add(new Segment(2, Color.BLACK));
+		// al.add(new Segment(80, Color.GRAY));
+		al.add(new Segment(70, Color.PINK));
 
-        pbcs.frontalTransparancy = 100;
-        pbcs.setRadialColorStartingPoint1(Color.WHITE);
-        pbcs.setRadialColorStartingPoint2(Color.GREEN);
+		dppc = new DataPointPieChart(al, 60, 70, 4.2, "Croatia ");
 
-        XYDataSeries<DataPoint> series = new XYDataSeries<DataPoint>(values, new UIPointPieChart(Color.BLUE, pbcs), null, "1994");
+		values.add(dppc);
 
-        YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, 10.0, null, null), "GNI ");
-        XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "Life Expectancy ");
+		PieBubbleChartSettings pbcs = new PieBubbleChartSettings();
 
-        xySeriesList.add(series);
+		pbcs.frontalTransparancy = 100;
+		pbcs.setRadialColorStartingPoint1(Color.WHITE);
+		pbcs.setRadialColorStartingPoint2(Color.GREEN);
 
-        double factor = 1;
+		XYDataSeries<DataPoint> series = new XYDataSeries<DataPoint>(values,
+				new UIPointPieChart(Color.BLUE, pbcs), null, "1994");
 
-//        PieBubbleChart.RadialGradientSettings.frontalTransparancy = 100;
-        PieBubbleChart chart = new PieBubbleChart(xySeriesList, yAxis, xAxis, factor, pbcs);
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0,
+				10.0, null, null), "GNI ");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0,
+				50.0, 10.0, null), "Life Expectancy ");
 
-        chart.setSize(800, 600);
+		xySeriesList.add(series);
 
-        chart.rightOffset = 200;
+		double factor = 1;
 
-        chart.setTitle("Country Export Data");
-        chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+		PieBubbleChart chart = new PieBubbleChart(xySeriesList, yAxis, xAxis,
+				factor, pbcs);
 
-        return chart;
-    }
-	
+		chart.setSize(800, 600);
+
+		chart.rightOffset = 200;
+
+		chart.setTitle("Country Export Data");
+		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+
+		return chart;
+	}
+
 	@Override
-	public String getNiceTitle()  {
+	public String getNiceTitle() {
 		return "Bubble: Pie Bubble";
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataPieBubble();
 		t.testChart(t.getChart());

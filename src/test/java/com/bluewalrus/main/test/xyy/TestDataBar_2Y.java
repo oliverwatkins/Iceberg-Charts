@@ -86,7 +86,8 @@ public class TestDataBar_2Y extends ChartTester {
 		temperatureSeriesList.add(series2);
 		temperatureSeriesList.add(series3);
 
-		GradiantRule_old rule = new GradiantRule_old(0, 130, Color.BLUE, Color.RED, 100);
+		GradiantRule_old rule = new GradiantRule_old(0, 130, Color.BLUE,
+				Color.RED, 100);
 
 		ArrayList<DataPointBar> barSeries = new ArrayList<DataPointBar>();
 		barSeries.add(new DataPointBar("J", 54.0, rule.getColor(54.0)));
@@ -103,10 +104,9 @@ public class TestDataBar_2Y extends ChartTester {
 		barSeries.add(new DataPointBar("D", 58.4, rule.getColor(58.4)));
 
 		BarDisplayOptions bdo = new BarDisplayOptions();
-		
-		XYBarDataSeries rainfallSeries = new XYBarDataSeries(barSeries,
-				bdo, null, "Rainfall");
-		
+
+		XYBarDataSeries rainfallSeries = new XYBarDataSeries(barSeries, bdo,
+				null, "Rainfall");
 
 		ArrayList<XYDataSeries> rainfallSeriesList = new ArrayList<XYDataSeries>();
 		rainfallSeriesList.add(rainfallSeries);
@@ -123,7 +123,6 @@ public class TestDataBar_2Y extends ChartTester {
 		chart.setTitle("Munich Weather");
 
 		return chart;
-
 	}
 
 	public static void main(String[] args) throws Exception {

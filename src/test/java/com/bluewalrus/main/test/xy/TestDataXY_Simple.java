@@ -20,20 +20,21 @@ public class TestDataXY_Simple extends ChartTester {
 		values.add(new DataPoint(101, 90));
 		values.add(new DataPoint(135, 67));
 		values.add(new DataPoint(150, 70));
-		
-		XYChart chart = new XYChart(values, "My Easy Example", "X Axis", "Y Axis");
-		
+
+		XYChart chart = new XYChart(values, "My Easy Example", "X Axis",
+				"Y Axis");
+
 		return chart;
 	}
-	
+
 	@Override
 	public String getNiceTitle() {
 		return "XY: Simple";
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataXY_Simple();
 		t.testChart(t.getChart());
 	}
-	
+
 }

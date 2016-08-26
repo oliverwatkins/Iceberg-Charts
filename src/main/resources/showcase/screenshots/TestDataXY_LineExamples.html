@@ -1,4 +1,4 @@
-<img src='partials/TestDataXY_LineExamples.PNG' style='width:400px;float:right'><div><pre>
+<img src='partials/TestDataXY_LineExamples.PNG' style='width:400px;float:right'><div><pre><span class='code_snippet' style='font-size: 7px'>
 		ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
 		ArrayList&lt;DataPoint&gt; values1 = new ArrayList&lt;DataPoint&gt;();
@@ -22,13 +22,14 @@
 		values5.add(new DataPoint(8, 7));
 
 		XYDataSeries&lt;DataPoint&gt; series1 = new XYDataSeries&lt;DataPoint&gt;(
-				new UIPointCircle(Color.ORANGE, 15),
-				new GridLine(Color.RED, true, 11), "1");
+				new UIPointCircle(Color.ORANGE, 15), new GridLine(Color.RED,
+						true, 11), "1");
 		XYDataSeries&lt;DataPoint&gt; series2 = new XYDataSeries&lt;DataPoint&gt;(
-				new UIPointSquare(Color.PINK), new GridLine(Color.PINK, true), "2");
+				new UIPointSquare(Color.PINK), new GridLine(Color.PINK, true),
+				"2");
 		XYDataSeries&lt;DataPoint&gt; series3 = new XYDataSeries&lt;DataPoint&gt;(
-				new UIPointCircle(Color.BLACK, 23),
-				new GridLine(Color.BLACK, true, 1), "3");
+				new UIPointCircle(Color.BLACK, 23), new GridLine(Color.BLACK,
+						true, 1), "3");
 		XYDataSeries&lt;DataPoint&gt; series4 = new XYDataSeries&lt;DataPoint&gt;(
 				new UIPointCircle(Color.GRAY), new GridLine(Color.GRAY), "4");
 		XYDataSeries&lt;DataPoint&gt; series5 = new XYDataSeries&lt;DataPoint&gt;(
@@ -40,9 +41,11 @@
 		series4.dataPoints = values4;
 		series5.dataPoints = values5;
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-5.0, 10.0, new NumericalInterval(4, 1.0), new NumericalInterval(
-				2, 0.5), null), "y");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 10.0, 1.0, null, null), "x");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-5.0, 10.0,
+				new NumericalInterval(4, 1.0), new NumericalInterval(2, 0.5),
+				null), "y");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 10.0, 1.0,
+				null, null), "x");
 
 		xySeriesList.add(series1);
 		xySeriesList.add(series2);
@@ -58,4 +61,4 @@
 		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 		chart.setTitle("xy");
 
-</pre></div>
+</span></pre></div>
