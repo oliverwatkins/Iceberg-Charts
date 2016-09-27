@@ -1,7 +1,5 @@
 package com.bluewalrus.main;
 
-import java.util.concurrent.Future;
-
 import com.bluewalrus.main.test.FileUtils;
 import com.bluewalrus.main.test.bar.TestDataBar_1_Simple;
 import com.bluewalrus.main.test.bar.TestDataBar_4_GradientColor;
@@ -10,8 +8,6 @@ import com.bluewalrus.main.test.bar.TestDataBar_6_Transparancy;
 import com.bluewalrus.main.test.bubble.TestDataBubble_1_guns;
 import com.bluewalrus.main.test.bubble.TestDataBubble_2_series;
 import com.bluewalrus.main.test.bubble.TestDataPieBubble;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_1_gridSimple;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_2_GraphPaper;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_3_alternateGridFillX;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_4_alternateGridFillY;
 import com.bluewalrus.main.test.gridlinefill.TestDataGrids_5_Gradiant;
@@ -21,13 +17,10 @@ import com.bluewalrus.main.test.math.TestDataXY_Polynomals;
 import com.bluewalrus.main.test.math.TestDataXY_SineCurve;
 import com.bluewalrus.main.test.multibar.TestDataBar_MultiBar_SideBySide;
 import com.bluewalrus.main.test.multibar.TestDataBar_MultiBar_Stacked;
-import com.bluewalrus.main.test.pie.TestDataPie_IndicatorMany;
-import com.bluewalrus.main.test.pie.TestDataPie_IndicatorSimple;
 import com.bluewalrus.main.test.pie.TestDataPie_Multi;
 import com.bluewalrus.main.test.pie.TestDataPie_SimplePie;
 import com.bluewalrus.main.test.stacked.TestStackedChart2;
 import com.bluewalrus.main.test.stacked.TestStackedChart3;
-import com.bluewalrus.main.test.timeseries.TestDataGrids_6_alternateGridFillXTimesSeries;
 import com.bluewalrus.main.test.xy.TestDataBar_FontFun;
 import com.bluewalrus.main.test.xy.TestDataXY_Boxplot;
 import com.bluewalrus.main.test.xy.TestDataXY_CandlePlot;
@@ -63,8 +56,8 @@ public class GenerateShowcase {
     	new TestDataBar_FontFun().createImageAndTextFile(sBuilder, sBuilder2);
     	
     	//Grid
-    	new TestDataGrids_1_gridSimple().createImageAndTextFile(sBuilder, sBuilder2);
-    	new TestDataGrids_2_GraphPaper().createImageAndTextFile(sBuilder, sBuilder2);
+//    	new TestDataGrids_1_gridSimple().createImageAndTextFile(sBuilder, sBuilder2);
+//    	new TestDataGrids_2_GraphPaper().createImageAndTextFile(sBuilder, sBuilder2);
     	new TestDataGrids_3_alternateGridFillX().createImageAndTextFile(sBuilder, sBuilder2);
     	new TestDataGrids_4_alternateGridFillY().createImageAndTextFile(sBuilder, sBuilder2);
     	new TestDataGrids_5_Gradiant().createImageAndTextFile(sBuilder, sBuilder2);

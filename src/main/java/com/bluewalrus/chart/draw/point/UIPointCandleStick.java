@@ -18,20 +18,44 @@ public class UIPointCandleStick  extends UIPointComplexXY{
 	private int y4;
 	private int y5;
 	
-	private int x1;
-	private int x2;
-	private int x3;
+	private double x1;
+	private double x2;
+	private double x3;
 //	private Color color = Color.RED;
 	private DataPointCandleStick dp;
 
 
-
+	double width = 6;
+	int widthPercent = 50;
+	
 	public UIPointCandleStick(Color color) {
 		super(color);
 	}
+	
+	public UIPointCandleStick(Color color, int widthPercent) {
+		super(color);
+		this.widthPercent = widthPercent;
+	}
 
-	public void draw(Graphics2D g, Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
+	public void draw(Graphics2D g, 
+			Point point, 
+			Point lastPoint, 
+			DataPoint dataPoint, 
+			XYFactor xyFactor, 
+			XYChart chart, 
+			int pixBtnFirst2Pts) {
 
+		double barWidth = 0;
+		
+    	if (widthPercent != 0) {
+    		barWidth = ((widthPercent * (double)pixBtnFirst2Pts)/ 100.0); 
+    	}else {
+    		barWidth = 10; //default
+    	}
+    	
+    	width = (int) barWidth;
+    	
+    	
 
 		
 		dp = (DataPointCandleStick)dataPoint;
@@ -63,15 +87,15 @@ public class UIPointCandleStick  extends UIPointComplexXY{
 			bottomWhiskerFactored = point.y + (dp.high - dp.low)  * xyFactor.getyFactor();
 		}
 		
-		int width = 6;
+
 		y1 = (int)(point.y) ; 
 		y2 = (int)topFactored ; 
 		y4 = (int)bottomFactored ; 
 		y5 = (int)bottomWhiskerFactored ; 
 		
-		x1 = (int)point.x - width/2;
+		x1 = point.x - width/2;
 		x2 = (int)point.x;
-		x3 = (int)point.x + width/2;
+		x3 = point.x + width/2;
 
         this.clipAndDrawPoint(g, chart);
 
@@ -85,27 +109,27 @@ public class UIPointCandleStick  extends UIPointComplexXY{
         g.setColor(color);
 
         //top
-        g.drawLine(x2,
+        g.drawLine((int)x2,
         		y1,
-        		x2,
+        		(int)x2,
                 y2);
         
-        g.drawRect(x1,
+        g.drawRect((int)x1,
         		y2,
-        		x3 - x1,
+        		(int)(x3 - x1),
                 y4 - y2);
         
 		if (dp.filled) {
 	        //top rect
-	        g.fillRect(x1,
+	        g.fillRect((int)x1,
 	        		y2,
-	        		x3 - x1,
+	        		(int)(x3 - x1),
 	                y4 - y2);
 		}
         
-        g.drawLine(x2,
+        g.drawLine((int)x2,
         		y4,
-        		x2,
+        		(int)x2,
         		y5);
 	}
 	

@@ -7,26 +7,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import com.bluewalrus.chart.Chart;
-import com.bluewalrus.main.test.gridlinefill.TestDataGrids_2_GraphPaper;
-
 public class SingleChartDemo extends JFrame {
 
 
 
 	public SingleChartDemo() throws ParseException {
 
-		JTabbedPane tabbedPaneBar = new JTabbedPane();
-
-		Chart chart2 = new TestDataGrids_2_GraphPaper().getChart();
-
-		tabbedPaneBar.addTab("1", chart2);
-
-		getContentPane().add(tabbedPaneBar);
-
-		setSize(1300, 800);
-
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		JTabbedPane tabbedPaneBar = new JTabbedPane();
+//
+//		Chart chart2 = new TestDataGrids_2_GraphPaper().getChart();
+//
+//		tabbedPaneBar.addTab("1", chart2);
+//
+//		getContentPane().add(tabbedPaneBar);
+//
+//		setSize(1300, 800);
+//
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public static void main(String[] args) throws Exception {
