@@ -192,7 +192,7 @@ public class TestStackedChart2 extends ChartTester {
 		values.add(new DataPointCandleStick(400, 63, 61, 50, 15, true));
 
 		XYDataSeries series = new XYDataSeries(values, new UIPointCandleStick(
-				new Color(255, 51, 0)), null, "1994");
+				new Color(255, 51, 0), 50), null, "1994");
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0,
 				50.0, 10.0, null), "Price (USD)");

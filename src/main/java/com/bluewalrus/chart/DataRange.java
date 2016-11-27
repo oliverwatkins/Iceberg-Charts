@@ -1,5 +1,10 @@
 package com.bluewalrus.chart;
 
+/**
+ * test
+ * @author Oliver Watkins
+ *
+ */
 public class DataRange {
 
 	@Override
