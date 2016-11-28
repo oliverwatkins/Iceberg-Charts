@@ -23,11 +23,12 @@ import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 
 /**
  * Utility class for geometric calculations on the chart.
+ * 
  * @author Oliver Watkins
  *
  */
 public class ChartUtils {
-	
+
 	static double calculateXAxisMax(ArrayList<DataPoint> values) {
 		double d = getMaxXValue(values);
 		return d;
@@ -42,13 +43,14 @@ public class ChartUtils {
 		double d = getMaxYValue(values);
 		return d;
 	}
+
 	static double calculateXAxisMin(ArrayList<DataPoint> values) {
 		double d = getMinXValue(values);
 		return d;
 	}
-	
+
 	static double getMinXValue(ArrayList<DataPoint> values) {
-		
+
 		double xMin = values.get(0).x;
 		for (DataPoint dataPoint : values) {
 			if (dataPoint.x < xMin)
@@ -56,9 +58,9 @@ public class ChartUtils {
 		}
 		return xMin;
 	}
-	
+
 	static Date getMaxXValueDate(ArrayList<DataPoint> values) {
-		
+
 		Date xMax = values.get(0).xDate;
 		for (DataPoint dataPoint : values) {
 			if (dataPoint.xDate.getTime() > xMax.getTime())
@@ -66,8 +68,7 @@ public class ChartUtils {
 		}
 		return xMax;
 	}
-	
-	
+
 	private static Date getMinXValueDate(ArrayList<DataPoint> values) {
 		Date xMin = values.get(0).xDate;
 		for (DataPoint dataPoint : values) {
@@ -76,7 +77,6 @@ public class ChartUtils {
 		}
 		return xMin;
 	}
-	
 
 	public static double getMinYValue(ArrayList<? extends DataPoint> values) {
 		double yMin = values.get(0).y;
@@ -95,7 +95,7 @@ public class ChartUtils {
 		}
 		return yMax;
 	}
-	
+
 	static double getMaxXValue(ArrayList<DataPoint> values) {
 		double xMax = values.get(0).x;
 		for (DataPoint dataPoint : values) {
@@ -109,72 +109,73 @@ public class ChartUtils {
 			ArrayList<XYDataSeries> xySeriesList, boolean b) {
 
 		double max = getMaxYValue(xySeriesList.get(0).dataPoints);
-		
+
 		for (XYDataSeries xyDataSeries : xySeriesList) {
 			ArrayList<DataPoint> dps = xyDataSeries.dataPoints;
-			
+
 			double m = getMaxYValue(dps);
 			if (m > max)
 				max = m;
 		}
 		return max;
 	}
-	
+
 	public static DataRange getDataRangeX(ArrayList<XYDataSeries> xySeriesList) {
-		//get Max/Min
+		// get Max/Min
 		double xMax = ChartUtils.calculateXAxisMax(xySeriesList, true);
 		double xMin = ChartUtils.calculateXAxisMin(xySeriesList, true);
 
-		//range with padding
+		// range with padding
 		DataRange drX = ChartUtils.getDataRange(xMax, xMin, 10);
 		return drX;
 	}
 
 	public static DataRange getDataRangeY(ArrayList<XYDataSeries> xySeriesList) {
-		//Get Max/Min
+		// Get Max/Min
 		double yMax = ChartUtils.calculateYAxisMax(xySeriesList, true);
 		double yMin = ChartUtils.calculateYAxisMin(xySeriesList, true);
-		
-		//range with padding
+
+		// range with padding
 		DataRange drY = ChartUtils.getDataRange(yMax, yMin, 10);
 		return drY;
 	}
-	
+
 	public static DateRange getDateRangeX(ArrayList<XYDataSeries> xySeriesList) {
-		
-		//get Max/Min
+
+		// get Max/Min
 		Date xMax = ChartUtils.calculateXAxisMaxDate(xySeriesList, true);
 		Date xMin = ChartUtils.calculateXAxisMinDate(xySeriesList, true);
 
-		//range with padding
+		// range with padding
 		DateRange drX = ChartUtils.getDateRange(xMax, xMin, 10);
 		return drX;
 	}
-	
-	
-	public static DataRange getDataRange(double max, double min, int paddingPercent) {
+
+	public static DataRange getDataRange(double max, double min,
+			int paddingPercent) {
 		double yDiff = max - min;
-		
+
 		// pad out to 10%
 		double minAdj = min - (yDiff / paddingPercent);
 		double maxAdj = max + (yDiff / paddingPercent);
-		
+
 		DataRange drY = new DataRange();
-		
+
 		drY.min = minAdj;
 		drY.max = maxAdj;
 		return drY;
 	}
-	
-	public static DateRange getDateRange(Date yMax, Date yMin, int paddingPercent) {
+
+	public static DateRange getDateRange(Date yMax, Date yMin,
+			int paddingPercent) {
 		long yDiff = yMax.getTime() - yMin.getTime();
-		
+
 		// pad out to 10%
 		long yMinAdj = yMin.getTime() - (yDiff / paddingPercent);
 		long yMaxAdj = yMax.getTime() + (yDiff / paddingPercent);
-		
+
 		DateRange drY = new DateRange();
-		
+
 		drY.min = new Date(yMinAdj);
 		drY.max = new Date(yMaxAdj);
 		return drY;
@@ -182,12 +183,12 @@ public class ChartUtils {
 
 	public static double calculateYAxisMin(
 			ArrayList<XYDataSeries> xySeriesList, boolean b) {
-		
+
 		double min = getMinYValue(xySeriesList.get(0).dataPoints);
-		
+
 		for (XYDataSeries xyDataSeries : xySeriesList) {
 			ArrayList<DataPoint> dps = xyDataSeries.dataPoints;
-			
+
 			double m = getMinYValue(dps);
 			if (m < min)
 				min = m;
@@ -197,29 +198,29 @@ public class ChartUtils {
 
 	public static double calculateXAxisMax(
 			ArrayList<XYDataSeries> xySeriesList, boolean b) {
-		
+
 		double max = getMaxXValue(xySeriesList.get(0).dataPoints);
-		
+
 		for (XYDataSeries xyDataSeries : xySeriesList) {
 			ArrayList<DataPoint> dps = xyDataSeries.dataPoints;
-			
+
 			double m = getMaxXValue(dps);
 			if (m > max)
 				max = m;
-			
+
 		}
 		return max;
 	}
-	
+
 	public static Date calculateXAxisMaxDate(
 			ArrayList<XYDataSeries> xySeriesList, boolean b) {
-		
+
 		ArrayList<DataPoint> dps = xySeriesList.get(0).dataPoints;
-		
+
 		Date max = getMaxXValueDate(dps);
-		
+
 		for (XYDataSeries xyDataSeries : xySeriesList) {
-			
+
 			Date m = getMaxXValueDate(dps);
 			if (m.getTime() > max.getTime())
 				max = m;
@@ -227,45 +228,44 @@ public class ChartUtils {
 		return max;
 	}
 
-	public static double calculateXAxisMin(ArrayList<XYDataSeries> xySeriesList, boolean b) {
-		
+	public static double calculateXAxisMin(
+			ArrayList<XYDataSeries> xySeriesList, boolean b) {
+
 		double min = getMinXValue(xySeriesList.get(0).dataPoints);
-		
+
 		for (XYDataSeries xyDataSeries : xySeriesList) {
 			ArrayList<DataPoint> dps = xyDataSeries.dataPoints;
-			
+
 			double m = getMinXValue(dps);
 			if (m < min)
 				min = m;
 		}
 		return min;
 	}
-	
-	
+
 	public static Date calculateXAxisMinDate(
 			ArrayList<XYDataSeries> xySeriesList, boolean b) {
-		
+
 		ArrayList<DataPoint> dps = xySeriesList.get(0).dataPoints;
-		
+
 		Date min = getMinXValueDate(dps);
-		
+
 		for (XYDataSeries xyDataSeries : xySeriesList) {
-			
+
 			Date m = getMinXValueDate(dps);
 			if (m.getTime() < min.getTime())
 				min = m;
 		}
 		return min;
 	}
-	
-
 
 	/**
 	 * Set up some default styles for the first 5 series, then random
 	 * 
 	 * @param xySeriesList
 	 */
-	public static void setUpSeriesStyle(ArrayList<XYDataSeries> xySeriesList, XYChart chart) {
+	public static void setUpSeriesStyle(ArrayList<XYDataSeries> xySeriesList,
+			XYChart chart) {
 		int i = 0;
 		for (XYDataSeries xyDataSeries : xySeriesList) {
 			if (i == 0) {
@@ -274,32 +274,31 @@ public class ChartUtils {
 					xyDataSeries.pointType = new UIPointSquare(Color.BLUE);
 					xyDataSeries.line = new Line(Color.BLUE, false, 2);
 				}
-			}else if (i == 1) {
-				
+			} else if (i == 1) {
+
 				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointCircle(Color.GREEN);
 					xyDataSeries.line = new Line(Color.GREEN, false, 2);
 				}
-			}else if (i == 2) {
-				
+			} else if (i == 2) {
+
 				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointTriangle(Color.RED);
 					xyDataSeries.line = new Line(Color.RED, false, 2);
 				}
-			}else if (i == 3) {
-				
+			} else if (i == 3) {
+
 				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointTriangle(Color.CYAN);
 					xyDataSeries.line = new Line(Color.CYAN, false, 2);
 				}
-			}else if (i == 4) {
-				
-				
+			} else if (i == 4) {
+
 				if (!xyDataSeries.hasStyleBeenSet()) {
 					xyDataSeries.pointType = new UIPointCircle(Color.MAGENTA);
 					xyDataSeries.line = new Line(Color.MAGENTA, false, 2);
 				}
-			}else {
+			} else {
 
 				Color c = ChartUtils.createRandomColor();
 				if (!xyDataSeries.hasStyleBeenSet()) {
@@ -312,56 +311,59 @@ public class ChartUtils {
 
 		chart.rightOffset = 200;
 	}
-	
+
 	private static Color createRandomColor() {
-		
-		
+
 		Random random = new Random();
 		final float hue = random.nextFloat();
 		final float saturation = (random.nextInt(2000) + 1000) / 10000f;
 		final float luminance = 0.9f;
 		final Color color = Color.getHSBColor(hue, saturation, luminance);
-		
+
 		return color;
 	}
 
 	/**
-	 * A DataPointBar, should have all its names set to a value, or no values set to name.
+	 * A DataPointBar, should have all its names set to a value, or no values
+	 * set to name.
 	 * 
 	 * @param bars
 	 */
 	public static void validityCheck(ArrayList<DataPoint> bars) {
-		
+
 		DataPoint firstElem = bars.get(0);
 		if (firstElem.name != null) {
-			//enumerable
+			// enumerable
 			for (DataPoint dp : bars) {
 				if (dp.name == null) {
-					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
+					throw new RuntimeException(
+							"Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
 				}
 			}
 		}
-		
+
 		if (firstElem.name == null) {
-			//numerical
+			// numerical
 			for (DataPoint dp : bars) {
 				if (dp.name != null) {
-					throw new RuntimeException("Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
+					throw new RuntimeException(
+							"Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
 				}
 			}
 		}
 	}
 
-	public static String formatNumberValue(double value, NumericalInterval interval) {
-		
-		
-		if (interval.getInterval() == 0.1) { //TODO continue with other intervals
-			
+	public static String formatNumberValue(double value,
+			NumericalInterval interval) {
+
+		if (interval.getInterval() == 0.1) { // TODO continue with other
+												// intervals
+
 			DecimalFormat df = new DecimalFormat("##0.0");
 			df.setRoundingMode(RoundingMode.HALF_UP);
-			
+
 			return df.format(value);
-		}else {
+		} else {
 			return "" + value;
 		}
 	}
@@ -374,17 +376,17 @@ public class ChartUtils {
 	 * @return cached clip
 	 */
 	public static Shape clipChart(Graphics2D g, Chart chart) {
-		
+
 		Shape cachedClip = g.getClip();
-		g.clip(new Rectangle(chart.leftOffset, chart.topOffset, chart.widthChart,chart.heightChart));
+		g.clip(new Rectangle(chart.leftOffset, chart.topOffset,
+				chart.widthChart, chart.heightChart));
 
 		return cachedClip;
 	}
-	
-	
 
 	/**
-	 * Get a sensible interval between two points. Ie. (34 --> 10,000) would be 1000 (36 --> 132) would be 10
+	 * Get a sensible interval between two points. Ie. (34 --> 10,000) would be
+	 * 1000 (36 --> 132) would be 10
 	 * 
 	 * 
 	 * TODO less than 1 and greater than 10000. Need generic algorithm here
@@ -393,50 +395,50 @@ public class ChartUtils {
 	 */
 	public static double getInterval(DataRange dr) {
 
-		double max = dr.max; 
+		double max = dr.max;
 		double min = dr.min;
-		
+
 		if (max - min < 0.0000001) {
-			throw new RuntimeException("data range cannot be less than XXXXXX. DataRange = " + dr);
-		}else if (max - min > 100000000) {
-			throw new RuntimeException("data range cannot be more than XXXXXX. DataRange = " + dr);
+			throw new RuntimeException(
+					"data range cannot be less than XXXXXX. DataRange = " + dr);
+		} else if (max - min > 100000000) {
+			throw new RuntimeException(
+					"data range cannot be more than XXXXXX. DataRange = " + dr);
 		}
 
-
-		// starting at 0.00001 we go up by factors of 10 and check if the interval is acceptable.
+		// starting at 0.00001 we go up by factors of 10 and check if the
+		// interval is acceptable.
 		double magnitude = 0.00001;
-		
+
 		while (magnitude != 100000) {
 			magnitude = magnitude * 10;
-			
+
 			if (isOrderMagnitudeAcceptableFirstInterval(max, min, magnitude)) {
-				
-				//found the correct magnitude
+
+				// found the correct magnitude
 				break;
 			}
 		}
 		return magnitude;
 	}
-	
-	
-	
+
 	public static double getIncrementInPixels(AbstractInterval interval,
 			XYChart chart, AxisScaling scaling) {
-		
+
 		double incrementInPixel = -1;
 		double factor = scaling.getMultiplicationFactor(chart);
-		
+
 		if (scaling instanceof LinearNumericalAxisScaling) {
 			incrementInPixel = (double) (((NumericalInterval) interval)
 					.getInterval() * factor);
-		}else {
-			
+		} else {
+
 			TimeInterval inter = (TimeInterval) interval;
 
 			TimeInterval.Type t = inter.getInterval();
 
 			long increment = DateUtils.getMsForType(t);
-			
+
 			incrementInPixel = (double) (increment * factor);
 		}
 		return incrementInPixel;
@@ -445,8 +447,7 @@ public class ChartUtils {
 	/**
 	 * Is the magnitude acceptable as a first interval.
 	 * 
-	 * ie. 10 would be acceptable for 8 to 164
-	 * (but not for 0.001 to 0.15)
+	 * ie. 10 would be acceptable for 8 to 164 (but not for 0.001 to 0.15)
 	 * 
 	 * This method checks if the magnitude is acceptable
 	 * 
@@ -456,18 +457,17 @@ public class ChartUtils {
 	 * @param orderOfMagnitude
 	 * @return
 	 */
-	public static boolean isOrderMagnitudeAcceptableFirstInterval(double maxValue,
-			double minValue, double orderOfMagnitude) {
+	public static boolean isOrderMagnitudeAcceptableFirstInterval(
+			double maxValue, double minValue, double orderOfMagnitude) {
 
 		double numberTicks = (maxValue - minValue) / orderOfMagnitude;
 
-		if (numberTicks < 10) { 
+		if (numberTicks < 10) {
 			return true;
 		}
 		return false;
 	}
-	
-	
+
 	/**
 	 * Check if pixel "point" is within the bounds of the chart.
 	 * 
@@ -475,16 +475,20 @@ public class ChartUtils {
 	 * @param chart
 	 * @return
 	 */
-	public static  boolean inBounds(double pixelsFromEdge, Chart chart, Orientation orientation) {
+	public static boolean inBounds(double pixelsFromEdge, Chart chart,
+			Orientation orientation) {
 		if (orientation == Orientation.X) {
-			
-			if ((pixelsFromEdge >= chart.leftOffset) && (pixelsFromEdge <= (chart.leftOffset + chart.widthChart))) {
+
+			if ((pixelsFromEdge >= chart.leftOffset)
+					&& (pixelsFromEdge <= (chart.leftOffset + chart.widthChart))) {
 				return true;
 			}
-		
-		}else if (orientation == Orientation.Y || orientation == Orientation.Y2) {
-			
-			if (pixelsFromEdge >= chart.topOffset && pixelsFromEdge <= (chart.topOffset + chart.heightChart)) {
+
+		} else if (orientation == Orientation.Y
+				|| orientation == Orientation.Y2) {
+
+			if (pixelsFromEdge >= chart.topOffset
+					&& pixelsFromEdge <= (chart.topOffset + chart.heightChart)) {
 				return true;
 			}
 		}

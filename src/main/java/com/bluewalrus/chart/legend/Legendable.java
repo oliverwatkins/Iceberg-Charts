@@ -1,4 +1,4 @@
-package com.bluewalrus.chart;
+package com.bluewalrus.chart.legend;
 
 import java.awt.Graphics2D;
 

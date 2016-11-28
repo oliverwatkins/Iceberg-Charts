@@ -1,5 +1,5 @@
 
-package com.bluewalrus.chart;
+package com.bluewalrus.chart.legend;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,6 +13,9 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.bluewalrus.chart.Category;
+import com.bluewalrus.chart.Chart;
+import com.bluewalrus.chart.XYChart;
 import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSimpleXY;
 import com.bluewalrus.chart.draw.point.UIPointXY;
@@ -23,8 +26,10 @@ import com.bluewalrus.chart.draw.point.UIPointXY;
  * 
  * @author Oliver Watkins
  */
-public class Legend implements Serializable{
+public class Legend_Right extends AbstractLegend implements Serializable{
 
+	public LegendPosition legendPosition = LegendPosition.RIGHT;
+	
     //padding between the chart and the legend
     int paddingLegendLeft = 10;
     //padding between the chart and the legend
@@ -36,26 +41,28 @@ public class Legend implements Serializable{
     //category width (also its height)
     int squareWidth = 30;
 
-    Color legendBackgroundColor = new Color(243, 239, 239);
 
-    Chart chart;
 
-    public Font legendFont = new Font("Arial", Font.PLAIN, 10);
+//    public Legend_Right(Font legendFont, Chart chart) {
+//        this.chart = chart;
+//        this.legendFont = legendFont;
+//    }
 
-    private ArrayList<Category> categories = new ArrayList<Category>();
-
-    public Legend(Font legendFont, Chart chart) {
-        this.chart = chart;
-        this.legendFont = legendFont;
-    }
-
-    public Legend(Font legendFont, Chart chart, int paddingLeft) {
+    public Legend_Right(Font legendFont, Chart chart, int paddingLeft) {
+    	
+    	super(legendFont, chart);
+    	
         this.chart = chart;
         this.legendFont = legendFont;
         this.paddingLegendLeft = paddingLeft;
     }
+    
+    public Legend_Right(Font legendFont, Chart chart) {
+    	super(legendFont, chart);
+	}
 
-    public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> data) {
+
+	public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> data) {
 
         int legendX = (chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
         int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;

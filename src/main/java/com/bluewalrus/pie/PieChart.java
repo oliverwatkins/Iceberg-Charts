@@ -6,8 +6,8 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 
 import com.bluewalrus.chart.Category;
-import com.bluewalrus.chart.Legend;
-import com.bluewalrus.chart.Legendable;
+import com.bluewalrus.chart.legend.Legend_Right;
+import com.bluewalrus.chart.legend.Legendable;
 
 public class PieChart extends AbstractPieChart implements Legendable {
 
@@ -118,14 +118,14 @@ public class PieChart extends AbstractPieChart implements Legendable {
     public void drawLegend(Graphics2D g) {
         ArrayList<Category> categories = new ArrayList<Category>();
 
-        legend = new Legend(legendFont, this);
+        legend = new Legend_Right(legendFont, this);
 
         for (Segment bar : initialSegments) {
             Category category = new Category(bar.name, bar.color);
             categories.add(category);
         }
         
-		Legend legend = new Legend(this.legendFont, this);
+		Legend_Right legend = new Legend_Right(this.legendFont, this);
 		
 		this.rightOffset = 200;
 		

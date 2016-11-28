@@ -1,8 +1,12 @@
-package com.bluewalrus.chart;
+package com.bluewalrus.chart.legend;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import com.bluewalrus.chart.Category;
+import com.bluewalrus.chart.XYChart;
+import com.bluewalrus.chart.XYDataSeries;
+import com.bluewalrus.chart.XYDataSeriesType;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.chart.datapoint.DataPointBar;
 import com.bluewalrus.chart.datapoint.DataPointMultiBar;
@@ -35,7 +39,7 @@ public class LegendUtil {
 //		chart.rightOffset = 200;
 		
 		
-		Legend legend = new Legend(chart.legendFont, chart);
+		Legend_Right legend = new Legend_Right(chart.legendFont, chart);
 		
 		legend.paddingLegendLeft = offset;
 		chart.rightOffset = 200;
@@ -80,7 +84,7 @@ public class LegendUtil {
 		
 		chart.rightOffset = 200;
 		
-		Legend legend = new Legend(chart.legendFont, chart);
+		Legend_Right legend = new Legend_Right(chart.legendFont, chart);
 		
 		chart.rightOffset = 200;
 		
@@ -116,7 +120,7 @@ public class LegendUtil {
 		
 		chart.rightOffset = 200;
 		
-		Legend legend = new Legend(chart.legendFont, chart);
+		Legend_Right legend = new Legend_Right(chart.legendFont, chart);
 		
 		chart.rightOffset = 200;
 		

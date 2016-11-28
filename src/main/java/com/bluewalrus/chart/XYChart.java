@@ -25,6 +25,8 @@ import com.bluewalrus.chart.draw.plotter.ChartPlotter;
 import com.bluewalrus.chart.draw.point.UIPointBar;
 import com.bluewalrus.chart.draw.point.UIPointSquare;
 import com.bluewalrus.chart.draw.point.UIPointXY;
+import com.bluewalrus.chart.legend.LegendUtil;
+import com.bluewalrus.chart.legend.Legendable;
 import com.bluewalrus.scaling.EnumerationAxisScaling;
 import com.bluewalrus.scaling.LinearNumericalAxisScaling;
 import com.bluewalrus.scaling.TimeSeriesAxisScaling;
@@ -58,12 +60,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	/**
 	 * For stacked chart
 	 */
-	public XYChart() {
-
-	}
+	public XYChart() {}
 
 	/**
-	 * Create an XY chart passing in also the data set.
+	 * Create an XY chart passing in also the data set as an arraylist.
 	 * 
 	 * @param listOfSeries
 	 * @param yAxis
@@ -146,8 +146,17 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				
 	}
 	
-	
-	//XYY
+
+	/**
+	 * Constructor for XYY chart.
+	 * 
+	 * @param title
+	 * @param xLabel
+	 * @param yLabel
+	 * @param y2Label
+	 * @param xySeries
+	 * @param xySeriesY2
+	 */
 	public XYChart(String title, 
 						String xLabel, 
 						String yLabel, 
