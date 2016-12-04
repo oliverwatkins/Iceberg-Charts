@@ -50,7 +50,7 @@ public class Threaded extends JFrame {
 				
 				for (int i = 0; i < 1000000; i++) {
 					try {
-						Thread.sleep(100);
+						Thread.sleep(10);
 						
 						this.t.incrementChart(chart, i);
 

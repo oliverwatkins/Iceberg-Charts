@@ -28,7 +28,6 @@ import com.bluewalrus.chart.draw.point.UIPointXY;
  */
 public class Legend_Right extends AbstractLegend implements Serializable{
 
-	public LegendPosition legendPosition = LegendPosition.RIGHT;
 	
     //padding between the chart and the legend
     int paddingLegendLeft = 10;

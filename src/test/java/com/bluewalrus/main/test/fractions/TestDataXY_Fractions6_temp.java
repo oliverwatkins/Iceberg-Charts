@@ -10,7 +10,7 @@ import com.bluewalrus.chart.XYDataSeries;
 import com.bluewalrus.chart.datapoint.DataPoint;
 import com.bluewalrus.main.test.ChartTester;
 
-public class TestDataXY_Fractions6 extends ChartTester {
+public class TestDataXY_Fractions6_temp extends ChartTester {
 	
 	@Override
 	public Chart getChart() {
@@ -33,7 +33,7 @@ public class TestDataXY_Fractions6 extends ChartTester {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataXY_Fractions6();
+		ChartTester t = new TestDataXY_Fractions6_temp();
 		t.testChart(t.getChart());
 	}
 	

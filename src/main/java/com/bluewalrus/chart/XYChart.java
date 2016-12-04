@@ -40,7 +40,7 @@ import com.bluewalrus.scaling.TimeSeriesAxisScaling;
 public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 
-	boolean isYAxis2 = false;
+	public boolean isYAxis2 = false;
 
 	transient BasicStroke chartBorderLine = new BasicStroke(1,
 			BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, new float[] {
@@ -733,18 +733,9 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		if (data.get(0).dataPoints.isEmpty())
 			return;
 		
-		XYDataSeries series = data.get(0);
-		DataPoint dp = (DataPoint) series.dataPoints.get(0);
+
+		LegendUtil.setUpLegend(this, g);
 		
-		if (dp instanceof DataPointMultiBar) {
-			LegendUtil.setupLegendMultiBar(this, g);
-		} 
-		if (data.size() > 1) {
-			LegendUtil.setupLegendManySeries(this, g);
-		}
-		if (isYAxis2) {
-			LegendUtil.setupLegendYAxis2(this, g);
-		}
 		
 		if (data.size() == 1) {
 			

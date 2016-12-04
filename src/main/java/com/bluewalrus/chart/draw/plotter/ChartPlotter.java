@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Shape;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.bluewalrus.chart.ChartUtils;
 import com.bluewalrus.chart.XYChart;
@@ -12,7 +13,6 @@ import com.bluewalrus.chart.XYFactor;
 import com.bluewalrus.chart.axis.XAxis;
 import com.bluewalrus.chart.axis.YAxis;
 import com.bluewalrus.chart.datapoint.DataPoint;
-import com.bluewalrus.chart.datapoint.ValueType;
 import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 import com.bluewalrus.scaling.LogarithmicAxisScaling;
@@ -52,7 +52,9 @@ public class ChartPlotter {
 
         for (XYDataSeries xYDataSeries : xYDataSerieses) {
 
-            ArrayList<DataPoint> dataPoints = xYDataSeries.dataPoints;
+//        	TODO replace with Nicks changes : CopyOnWriteArrayList
+        	
+        	ArrayList <DataPoint> dataPoints = xYDataSeries.dataPoints;
 
             if (dataPoints.size() == 0){
             	continue;

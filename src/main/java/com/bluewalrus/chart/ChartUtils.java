@@ -354,18 +354,8 @@ public class ChartUtils {
 	}
 
 	public static String formatNumberValue(double value,
-			NumericalInterval interval) {
-
-		if (interval.getInterval() == 0.1) { // TODO continue with other
-												// intervals
-
-			DecimalFormat df = new DecimalFormat("##0.0");
-			df.setRoundingMode(RoundingMode.HALF_UP);
-
-			return df.format(value);
-		} else {
-			return "" + value;
-		}
+			NumericalInterval interval, DecimalFormat decimalFormat) {
+		return decimalFormat.format(value);
 	}
 
 	/**

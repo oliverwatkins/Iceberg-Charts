@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import com.bluewalrus.chart.legend.LegendPosition;
 import com.bluewalrus.chart.legend.Legend_Right;
 
 /**
@@ -29,6 +30,8 @@ import com.bluewalrus.chart.legend.Legend_Right;
  */
 public abstract class Chart extends JPanel {
 	
+	public LegendPosition legendPosition = LegendPosition.RIGHT;
+
 	//file locations in local file system TODO this probably does not belong here. Have class like ChartExt with meta data like file location?
 	public String fileLocation = "";
 
