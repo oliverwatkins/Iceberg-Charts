@@ -1,0 +1,32 @@
+<img src='partials/TestDataLog_1.PNG' style='width:400px;float:right'><div><pre>
+ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
+
+ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
+values.add(new DataPoint(5, -15));
+values.add(new DataPoint(15, 5));
+values.add(new DataPoint(139, 8));
+values.add(new DataPoint(2001, 14));
+values.add(new DataPoint(9301, 19));
+
+XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.BLUE), new Line(Color.BLUE), "");
+series.dataPoints = values;
+
+NumericalInterval t1 = new NumericalInterval(6, 50.0, new Line(Color.GRAY, false, 1));
+NumericalInterval t2 = new NumericalInterval(3, 10.0, new Line(Color.LIGHT_GRAY, true, 1));
+NumericalInterval t3 = new NumericalInterval(1, 5.0, null);
+
+YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-90.0, 100.0, t1, t2, t3), "Y Axis");
+
+XAxis xAxis = new XAxis(new LogarithmicAxisScaling(1, 10000.0), "Log Axis");
+
+xySeriesList.add(series);
+
+XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+
+chart.setSize(1000, 500);
+chart.rightOffset = 200;
+
+chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+chart.setTitle("Logarithmic");
+
+</pre></div>
