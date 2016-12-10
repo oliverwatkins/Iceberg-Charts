@@ -164,8 +164,10 @@ public class LegendUtil {
 
 		} else if (chart.legendPosition == LegendPosition.BOTTOM) {
 			chart.bottomOffset = 200;
+			
 			Legend_Bottom legend = new Legend_Bottom(chart.legendFont, chart);
 
+			
 			legend.drawLegend(g, chart, categories);
 
 		} else if (chart.legendPosition == LegendPosition.TOP) {

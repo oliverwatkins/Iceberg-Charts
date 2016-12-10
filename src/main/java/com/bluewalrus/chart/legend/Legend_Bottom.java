@@ -21,23 +21,9 @@ import com.bluewalrus.chart.draw.point.UIPointXY;
 public class Legend_Bottom  extends AbstractLegend implements Serializable{
 
 	public LegendPosition legendPosition = LegendPosition.BOTTOM;
-	
-    //padding between the chart and the legend
-    int paddingLegendLeft = 10;
-    //padding between the chart and the legend
-    int paddingLegendRight = 10;
-    //padding square and text
-    int paddingBetweenLegendSquareAndText = 10;
-    //padding for the display square that shows symbol/point
-    int paddingAroundSquare = 3;
-    //category width (also its height)
-    int squareWidth = 30;
-
-//    Chart chart;
 
     public Legend_Bottom(Font legendFont, Chart chart, int paddingLeft) {
     	super(legendFont, chart);
-//        this.chart = chart;
         this.legendFont = legendFont;
         this.paddingLegendLeft = paddingLeft;
     }
@@ -45,16 +31,14 @@ public class Legend_Bottom  extends AbstractLegend implements Serializable{
     public Legend_Bottom(Font legendFont, Chart chart) {
     	super(legendFont, chart);
 	}
-
+    
 	public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> data) {
 
-        int legendX = 30; //(chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
-        int legendY = chart.getHeight() - chart.bottomOffset; // + paddingBetweenChartAndLegend;
+        this.legendX = chart.leftOffset; //30; //(chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
+        this.legendY = chart.getHeight() - chart.bottomOffset + 60; // + paddingBetweenChartAndLegend;
 
-        int legendHeight = (squareWidth); // - (2 * paddingBetweenChartAndLegend);
-        int legendWidth = (data.size() * squareWidth);  //chart.rightOffset - (paddingLegendLeft);
-
-        FontMetrics fmT = chart.getFontMetrics(legendFont);
+        this.legendHeight = (squareWidth); // - (2 * paddingBetweenChartAndLegend);
+        this.legendWidth = (data.size() * squareWidth) + 300;  //chart.rightOffset - (paddingLegendLeft);
 
         //draw outside rectangle
         g.setColor(legendBackgroundColor);
@@ -64,8 +48,9 @@ public class Legend_Bottom  extends AbstractLegend implements Serializable{
         		legendHeight,
                 10, 10));
 
-        //draw outside rectangle
-        g.setColor(Color.LIGHT_GRAY);
+
+		//draw outside rectangle
+        g.setColor(outsideRectangleColor);
         
         g.draw(new RoundRectangle2D.Double(legendX, legendY,
         		legendWidth - paddingLegendRight,
@@ -76,89 +61,11 @@ public class Legend_Bottom  extends AbstractLegend implements Serializable{
 
         for (Category category : data) {
 
-            if (category.block == true) {
-
-                drawBlock(g, legendX, legendY, i, category);
-
-            } else {
-            	Line l = category.line;
-
-                if (l != null) {
-                    drawLine(g, legendX, legendY, i, l);
-                }
-
-                UIPointXY point = category.point;
-
-                if (point != null) {
-                    drawPoint(g, legendX, legendY, i, point);
-                }
-            }
-            drawText((Graphics2D) g, legendX, legendY, fmT, i, category);
-
+            drawCategoryHorizontal(g, chart, i, category);
             i++;
         }
     }
 
-    /**
-     * 
-     * @param g
-     * @param legendX
-     * @param legendY
-     * @param fmT
-     * @param i
-     * @param category 
-     */
-    private void drawText(Graphics2D g, int legendX, int legendY,
-            FontMetrics fmT, int i, Category category) {
-
-        g.setFont(legendFont);
-
-        int legendStringWidth = fmT.stringWidth(category.name);
-        int legendStringHeight = fmT.getHeight();
-
-        int textFactor = (squareWidth - legendStringHeight) / 2;
-
-        int yPos = legendY + ((i + 1) * squareWidth) - textFactor;
-        int xPos = legendX + squareWidth + paddingBetweenLegendSquareAndText;
-
-        g.setColor(Color.BLACK);
-
-        g.drawString(category.name, xPos, yPos);
-    }
-
-    private void drawBlock(Graphics g, int legendX, int legendY, int i, Category category) {
-        g.setColor(category.color);
-
-        int x = legendX + paddingAroundSquare;
-        int y = legendY + (i * squareWidth) + paddingAroundSquare;
-        int width = squareWidth - 2 * paddingAroundSquare;
-
-        g.fillRect(x, y, width, width);
-    }
-
-    private void drawPoint(Graphics2D g, int legendX, int legendY, int i, UIPointXY point) {
-        g.setColor(point.color);
-        int xPos = legendX + squareWidth / 2;
-        int yPos = legendY + squareWidth / 2 + (i * squareWidth);
-
-        Point p = new Point(xPos, yPos);
-
-        if (point instanceof UIPointSimpleXY) {
-            point.draw(g, p, null, null, null, null, 0);
-        }
-
-    }
-
-    private void drawLine(Graphics2D g, int legendX, int legendY, int i, Line l) {
-
-        int y1 = legendY + (i * squareWidth) + squareWidth / 2;
-        int y2 = y1; //same
-
-        int x1 = legendX + paddingAroundSquare;
-        int x2 = legendX + squareWidth - (paddingAroundSquare);
-
-        l.drawLine(g, x1, y1, x2, y2);
-    }
 
     public Shape getChartBounds() {
 

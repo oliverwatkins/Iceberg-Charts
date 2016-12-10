@@ -61,6 +61,15 @@ public abstract class Chart extends JPanel {
 	 */
 	protected void calculateHeighAndWidthOfChart() {
 
+		if ((topOffset + bottomOffset) > getHeight()) {
+			throw new RuntimeException("Offset is greater than height");
+			
+		}
+		if ((leftOffset + rightOffset) > getWidth()) {
+			throw new RuntimeException("Offset is greater than width");
+			
+		}
+		
 		this.heightChart = getHeight() - (topOffset + bottomOffset);
 		this.widthChart = getWidth() - (leftOffset + rightOffset);
 	}
