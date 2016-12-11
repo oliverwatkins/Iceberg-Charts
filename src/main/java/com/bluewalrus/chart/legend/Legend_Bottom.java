@@ -18,66 +18,54 @@ import com.bluewalrus.chart.draw.Line;
 import com.bluewalrus.chart.draw.point.UIPointSimpleXY;
 import com.bluewalrus.chart.draw.point.UIPointXY;
 
-public class Legend_Bottom  extends AbstractLegend implements Serializable{
+public class Legend_Bottom extends AbstractLegend implements Serializable {
 
 	public LegendPosition legendPosition = LegendPosition.BOTTOM;
 
-    public Legend_Bottom(Font legendFont, Chart chart, int paddingLeft) {
-    	super(legendFont, chart);
-        this.legendFont = legendFont;
-        this.paddingLegendLeft = paddingLeft;
-    }
-
-    public Legend_Bottom(Font legendFont, Chart chart) {
-    	super(legendFont, chart);
+	public Legend_Bottom(Font legendFont, Chart chart, int paddingLeft) {
+		super(legendFont, chart);
+		this.legendFont = legendFont;
+		this.paddingLegendLeft = paddingLeft;
 	}
-    
+
+	public Legend_Bottom(Font legendFont, Chart chart) {
+		super(legendFont, chart);
+	}
+
 	public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> data) {
 
-        this.legendX = chart.leftOffset; //30; //(chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
-        this.legendY = chart.getHeight() - chart.bottomOffset + 60; // + paddingBetweenChartAndLegend;
+		this.legendX = getStartingXPointHorizontal(chart, data);
+		
+//		this.legendX = chart.leftOffset + diff;
+		this.legendY = chart.getHeight() - chart.bottomOffset + 60; // +
+																	// paddingBetweenChartAndLegend;
 
-        this.legendHeight = (squareWidth); // - (2 * paddingBetweenChartAndLegend);
-        this.legendWidth = (data.size() * squareWidth) + 300;  //chart.rightOffset - (paddingLegendLeft);
+		this.legendHeight = (squareWidth); // - (2 *
+											// paddingBetweenChartAndLegend);
+		this.legendWidth = (data.size() * squareWidth) + 300; // chart.rightOffset
+																// -
+																// (paddingLegendLeft);
 
-        //draw outside rectangle
-        g.setColor(legendBackgroundColor);
+		// draw outside rectangle
+		g.setColor(legendBackgroundColor);
 
-        g.fill(new RoundRectangle2D.Double(legendX, legendY,
-        		legendWidth - paddingLegendRight,
-        		legendHeight,
-                10, 10));
+		g.fill(new RoundRectangle2D.Double(legendX, legendY, legendWidth
+				- paddingLegendRight, legendHeight, 10, 10));
 
+		// draw outside rectangle
+		g.setColor(outsideRectangleColor);
 
-		//draw outside rectangle
-        g.setColor(outsideRectangleColor);
-        
-        g.draw(new RoundRectangle2D.Double(legendX, legendY,
-        		legendWidth - paddingLegendRight,
-        		legendHeight,
-                10, 10));
-        
-        int i = 0;
+		g.draw(new RoundRectangle2D.Double(legendX, legendY, legendWidth
+				- paddingLegendRight, legendHeight, 10, 10));
 
-        for (Category category : data) {
+		int i = 0;
 
-            drawCategoryHorizontal(g, chart, i, category);
-            i++;
-        }
-    }
+		for (Category category : data) {
+
+			drawCategoryHorizontal(g, chart, i, category);
+			i++;
+		}
+	}
 
 
-    public Shape getChartBounds() {
-
-        int legendX = (chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
-        int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
-
-        int legendHeight = (categories.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
-        int legendWidth = chart.rightOffset - (paddingLegendLeft);
-
-        return new Rectangle(legendX,
-                legendY,
-                legendWidth,
-                legendHeight);
-    }
 }

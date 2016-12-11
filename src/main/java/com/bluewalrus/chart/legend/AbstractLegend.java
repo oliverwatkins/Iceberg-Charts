@@ -76,6 +76,23 @@ public class AbstractLegend {
 		
 	}
 	
+	protected int getStartingXPointHorizontal(Chart chart, ArrayList<Category> data) {
+		int w = this.calculateWidthLegendHorizontal(data);
+
+		//centered
+		int cw = chart.getWidth() - chart.leftOffset - chart.rightOffset;
+		int diff = cw - w;
+		diff = diff/2;
+		
+		return chart.leftOffset + diff;
+	}
+	
+	
+	protected int calculateWidthLegendHorizontal(ArrayList<Category> data) {
+		int s = (data.size() * squareWidth) + (data.size() * fixedTextLength);
+		return s;
+	}
+	
 	/**
 	 *  Draw a category vertically ie top down.
 	 *  

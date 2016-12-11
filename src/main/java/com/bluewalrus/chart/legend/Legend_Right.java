@@ -175,17 +175,17 @@ public class Legend_Right extends AbstractLegend implements Serializable{
         l.drawLine(g, x1, y1, x2, y2);
     }
 
-    public Shape getChartBounds() {
-
-        int legendX = (chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
-        int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
-
-        int legendHeight = (categories.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
-        int legendWidth = chart.rightOffset - (paddingLegendLeft);
-
-        return new Rectangle(legendX,
-                legendY,
-                legendWidth,
-                legendHeight);
-    }
+//    public Shape getChartBounds() {
+//
+//        int legendX = (chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
+//        int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
+//
+//        int legendHeight = (categories.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
+//        int legendWidth = chart.rightOffset - (paddingLegendLeft);
+//
+//        return new Rectangle(legendX,
+//                legendY,
+//                legendWidth,
+//                legendHeight);
+//    }
 }

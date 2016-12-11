@@ -131,12 +131,12 @@ public abstract class Chart extends JPanel {
 	}
 
 
-	public Shape getLegendBounds() {
-		if (legend != null) {
-			return legend.getChartBounds();
-		}
-		return null;
-	}
+//	public Shape getLegendBounds() {
+//		if (legend != null) {
+//			return legend.getChartBounds();
+//		}
+//		return null;
+//	}
 
 
 	protected void drawTitle(Graphics g) {
