@@ -1,6 +1,7 @@
 package com.bluewalrus.chart.legend;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.util.ArrayList;
 
 import com.bluewalrus.chart.Category;
@@ -67,8 +68,9 @@ public class LegendUtil {
 
 		// chart.legend.paddingLegendLeft = offset;
 		// chart.rightOffset = 200;
+		Point startingPoint = new Point(chart.widthChart,200);
 
-		Legend_Right legend = new Legend_Right(chart.legendFont, chart);
+		LegendVertical legend = new LegendVertical(chart.legendFont, chart, startingPoint);
 
 		legend.paddingLegendLeft = offset;
 		chart.rightOffset = 200;
@@ -94,8 +96,8 @@ public class LegendUtil {
 				categories.add(category);
 			} else if (series.type == XYDataSeriesType.MULTI_BAR) {
 
-				DataPointMultiBar mb = (DataPointMultiBar) series.dataPoints
-						.get(0);
+				DataPointMultiBar mb = (DataPointMultiBar) series.dataPoints.get(0);
+				
 				ArrayList<DataPointBar> dps = mb.bars;
 				for (DataPointBar dpb : dps) {
 
@@ -156,23 +158,27 @@ public class LegendUtil {
 
 		if (chart.legendPosition == LegendPosition.RIGHT) {
 			chart.rightOffset = 200;
-			Legend_Right legend = new Legend_Right(chart.legendFont, chart);
+			
+			Point startingPoint = new Point(chart.widthChart,200);
+			
+			LegendVertical legend = new LegendVertical(chart.legendFont, chart, startingPoint);
 
-			chart.rightOffset = 200;
 
 			legend.drawLegend(g, chart, categories);
 
 		} else if (chart.legendPosition == LegendPosition.BOTTOM) {
 			chart.bottomOffset = 200;
-			
-			Legend_Bottom legend = new Legend_Bottom(chart.legendFont, chart);
 
+			Point startingPoint = new Point(200,200);
+			
+			LegendHorizontal legend = new LegendHorizontal(chart.legendFont, chart);
 			
 			legend.drawLegend(g, chart, categories);
 
 		} else if (chart.legendPosition == LegendPosition.TOP) {
+			Point startingPoint = new Point(200,200);
 			chart.topOffset = 200;
-			Legend_Top legend = new Legend_Top(chart.legendFont, chart);
+			LegendHorizontal legend = new LegendHorizontal(chart.legendFont, chart);
 
 			legend.drawLegend(g, chart, categories);
 

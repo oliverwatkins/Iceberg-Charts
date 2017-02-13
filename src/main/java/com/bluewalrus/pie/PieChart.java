@@ -2,11 +2,12 @@ package com.bluewalrus.pie;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
 
 import com.bluewalrus.chart.Category;
-import com.bluewalrus.chart.legend.Legend_Right;
+import com.bluewalrus.chart.legend.LegendVertical;
 import com.bluewalrus.chart.legend.Legendable;
 
 public class PieChart extends AbstractPieChart implements Legendable {
@@ -118,14 +119,15 @@ public class PieChart extends AbstractPieChart implements Legendable {
     public void drawLegend(Graphics2D g) {
         ArrayList<Category> categories = new ArrayList<Category>();
 
-        legend = new Legend_Right(legendFont, this);
+        
+        legend = new LegendVertical(legendFont, this, new Point(100,100));
 
         for (Segment bar : initialSegments) {
             Category category = new Category(bar.name, bar.color);
             categories.add(category);
         }
         
-		Legend_Right legend = new Legend_Right(this.legendFont, this);
+		LegendVertical legend = new LegendVertical(this.legendFont, this, new Point(100,100));
 		
 		this.rightOffset = 200;
 		

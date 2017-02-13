@@ -26,7 +26,7 @@ import com.bluewalrus.chart.draw.point.UIPointXY;
  * 
  * @author Oliver Watkins
  */
-public class Legend_Right extends AbstractLegend implements Serializable{
+public class LegendVertical extends AbstractLegend implements Serializable{
 
 	
     //padding between the chart and the legend
@@ -41,24 +41,17 @@ public class Legend_Right extends AbstractLegend implements Serializable{
     int squareWidth = 30;
 
 
-
-//    public Legend_Right(Font legendFont, Chart chart) {
-//        this.chart = chart;
-//        this.legendFont = legendFont;
-//    }
-
-    public Legend_Right(Font legendFont, Chart chart, int paddingLeft) {
+    public LegendVertical(Font legendFont, Chart chart, Point startingPoint) {
     	
     	super(legendFont, chart);
     	
         this.chart = chart;
         this.legendFont = legendFont;
-        this.paddingLegendLeft = paddingLeft;
     }
     
-    public Legend_Right(Font legendFont, Chart chart) {
-    	super(legendFont, chart);
-	}
+//    public LegendVertical(Font legendFont, Chart chart) {
+//    	super(legendFont, chart);
+//	}
 
 
 	public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> data) {
@@ -174,18 +167,4 @@ public class Legend_Right extends AbstractLegend implements Serializable{
 
         l.drawLine(g, x1, y1, x2, y2);
     }
-
-//    public Shape getChartBounds() {
-//
-//        int legendX = (chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
-//        int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
-//
-//        int legendHeight = (categories.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
-//        int legendWidth = chart.rightOffset - (paddingLegendLeft);
-//
-//        return new Rectangle(legendX,
-//                legendY,
-//                legendWidth,
-//                legendHeight);
-//    }
 }

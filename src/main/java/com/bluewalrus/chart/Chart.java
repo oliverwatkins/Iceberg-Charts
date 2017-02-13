@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import com.bluewalrus.chart.legend.LegendPosition;
-import com.bluewalrus.chart.legend.Legend_Right;
+import com.bluewalrus.chart.legend.LegendVertical;
 
 /**
  * <code>Chart<code> is an abstract chart for all charts.   
@@ -49,7 +49,7 @@ public abstract class Chart extends JPanel {
 	public int heightChart; // generated
 	public int widthChart; // generated
 
-	public Legend_Right legend;
+	public LegendVertical legend;
 
 	public Title title = new Title();
 	
