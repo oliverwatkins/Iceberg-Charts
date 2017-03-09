@@ -1,4 +1,4 @@
-package com.bluewalrus.main.test.stacked;
+package com.bluewalrus.main.test.legend;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -18,11 +19,11 @@ import javax.swing.JTabbedPane;
 
 import com.bluewalrus.chart.Chart;
 
-public class StackedTester extends JFrame {
+public class LegendTester extends JFrame {
 
 	
     public static void main(String[] args) throws Exception {
-    	StackedTester frame = new StackedTester();
+    	LegendTester frame = new LegendTester();
         frame.setVisible(true);
     }
     
@@ -30,7 +31,7 @@ public class StackedTester extends JFrame {
 	 * 
 	 * @throws Exception
 	 */
-    public StackedTester() throws Exception {
+    public LegendTester() throws Exception {
     	JTabbedPane p = createPanel();
     	
         getContentPane().add(p);
@@ -38,18 +39,11 @@ public class StackedTester extends JFrame {
     }
     	
     	
-	public JTabbedPane createPanel() {
+	public JTabbedPane createPanel() throws ParseException {
     		
-
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
     	
-//        JTabbedPane tabbedPane = new JTabbedPane();
-    	
         JTabbedPane tabbedPaneBar = new JTabbedPane();
-
-        
-        
-//        tabbedPane.add("Bar Charts", tabbedPaneBar);
 
         JPanel p = null;
         JComponent chart = null;
@@ -63,22 +57,38 @@ public class StackedTester extends JFrame {
          * 
          */
 
-        p = createTabbedPane(tabbedPaneBar, "Stacked 1");
-        chart = new TestStackedChart().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Simple Grids");
+        chart = new TestData_Legend_1().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneBar, "Graph Paper");
+        chart = new TestData_Legend_2_Left().getChart();
+        charts.add(chart);
+        p.add(chart);
+
+        p = createTabbedPane(tabbedPaneBar, "Fill Y");
+        chart = new TestData_Legend_2_Top().getChart();
         charts.add(chart);
         p.add(chart);
 
         
-        p = createTabbedPane(tabbedPaneBar, "Stacked 2");
-        chart = new TestStackedChart2().getChart();
-        charts.add(chart);
-        p.add(chart);
-
-        p = createTabbedPane(tabbedPaneBar, "Stacked 3");
-        chart = new TestStackedChart3().getChart();
+        p = createTabbedPane(tabbedPaneBar, "Fill X");
+        chart = new TestData_Legend_3_Bottom().getChart();
         charts.add(chart);
         p.add(chart);
         
+        
+//        p = createTabbedPane(tabbedPaneBar, "6 time series");
+//        chart = new TestDataGrids_6_alternateGridFillXTimesSeries().getChart();
+//        charts.add(chart);
+//        p.add(chart);
+//
+//        p = createTabbedPane(tabbedPaneBar, "7");
+//        chart = new TestDataGrids_7_TimeSeries().getChart();
+//        charts.add(chart);
+//        p.add(chart);
+
         JButton b = new JButton("Create PNG");
 
         getContentPane().add(b, BorderLayout.SOUTH);
@@ -106,7 +116,12 @@ public class StackedTester extends JFrame {
 
 					Graphics g2 = image.getGraphics();
 					chart2.paint(g2);
-				
+					
+//					System.out.println("saving ");   
+//					
+//					g2.setColor(Color.GREEN);
+//					g2.drawRect(4, 4, width -2, height-2);
+//					System.out.println("saving ");
 
 					try {
 						ImageIO.write(image, "PNG", new File("src\\main\\resources\\screenshots\\chart-image-" + i + ".png"));
@@ -123,11 +138,8 @@ public class StackedTester extends JFrame {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
         return tabbedPaneBar;
     }
-
-
 
     private JPanel createTabbedPane(JTabbedPane tabbedPane, String string) {
 
