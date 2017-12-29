@@ -21,11 +21,18 @@
 		</license>
 	</licenses>
 
+	<developers>
+		<developer>
+			<name>Oliver Watkins</name>
+			<email>oliver.f.watkins@gmail.com</email>
+			<organization>FrontAngle</organization>
+			<organizationUrl>http://www.frontangle.com</organizationUrl>
+		</developer>
+	</developers>
 
 	<scm>
 		<url>https://github.com/oliverwatkins/Iceberg-Charts</url>
 	</scm>
-
 
 	<build>
 		<plugins>
@@ -42,11 +49,29 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.0.0</version>
-				<configuration>
-					<additionalparam>-Xdoclint:none</additionalparam>
-				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
+
 	</build>
 </project>
 
