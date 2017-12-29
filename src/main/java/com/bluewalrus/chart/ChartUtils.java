@@ -259,13 +259,12 @@ public class ChartUtils {
 		return min;
 	}
 
-	/**
-	 * Set up some default styles for the first 5 series, then random
-	 * 
-	 * @param xySeriesList
-	 */
+
 	public static void setUpSeriesStyle(ArrayList<XYDataSeries> xySeriesList,
 			XYChart chart) {
+		/**
+		 * Set up some default styles for the first 5 series, then random
+		 */
 		int i = 0;
 		for (XYDataSeries xyDataSeries : xySeriesList) {
 			if (i == 0) {
@@ -326,8 +325,6 @@ public class ChartUtils {
 	/**
 	 * A DataPointBar, should have all its names set to a value, or no values
 	 * set to name.
-	 * 
-	 * @param bars
 	 */
 	public static void validityCheck(ArrayList<DataPoint> bars) {
 
@@ -361,8 +358,8 @@ public class ChartUtils {
 	/**
 	 * Clip the chart area based on offsets
 	 * 
-	 * @param g
-	 * @param chart
+	 * @param g graphic context
+	 * @param chart the chart
 	 * @return cached clip
 	 */
 	public static Shape clipChart(Graphics2D g, Chart chart) {
@@ -374,14 +371,12 @@ public class ChartUtils {
 		return cachedClip;
 	}
 
-	/**
-	 * Get a sensible interval between two points. Ie. (34 --> 10,000) would be
-	 * 1000 (36 --> 132) would be 10
-	 * 
+	/*
+	 * Get a sensible interval between two points. Ie. (34 to 10,000) would be
+	 * 1000 (36 to 132) would be 10
 	 * 
 	 * TODO less than 1 and greater than 10000. Need generic algorithm here
 	 * 
-	 * @return
 	 */
 	public static double getInterval(DataRange dr) {
 
@@ -441,11 +436,10 @@ public class ChartUtils {
 	 * 
 	 * This method checks if the magnitude is acceptable
 	 * 
-	 * 
-	 * @param maxValue
-	 * @param minValue
-	 * @param orderOfMagnitude
-	 * @return
+	 * @param maxValue the maximum value
+	 * @param minValue the minimum value
+	 * @param orderOfMagnitude order of magnitude
+	 * @return is first interval acceptable
 	 */
 	public static boolean isOrderMagnitudeAcceptableFirstInterval(
 			double maxValue, double minValue, double orderOfMagnitude) {
@@ -458,12 +452,11 @@ public class ChartUtils {
 		return false;
 	}
 
-	/**
+	/*
 	 * Check if pixel "point" is within the bounds of the chart.
 	 * 
-	 * @param pixelsFromEdge
-	 * @param chart
-	 * @return
+	 * @param pixelsFromEdge pixels from the edge
+	 * @param chart the chart
 	 */
 	public static boolean inBounds(double pixelsFromEdge, Chart chart,
 			Orientation orientation) {

@@ -19,24 +19,10 @@ public class PieChart extends AbstractPieChart implements Legendable {
 
     private int depth;
 
-    /**
-     *
-     * @param values
-     * @param title
-     */
     public PieChart(ArrayList<Segment> values, String title) {
         this(values, 200, 80, title);
     }
 
-    /**
-     * Multi Level
-     *
-     * @param values initial pie slice values.
-     * @param totalWidth total width of this component
-     * @param chartWidth width of the chart (should be less than total width)
-     * @param initialWidth width of the first pie segments.
-     * @param incrementWidth width of each outer layer of arches.
-     */
     public PieChart(ArrayList<Segment> values,
             int initialWidth,
             int incrementWidth, String title) {

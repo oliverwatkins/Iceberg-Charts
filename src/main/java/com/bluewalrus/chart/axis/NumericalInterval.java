@@ -53,7 +53,6 @@ public class NumericalInterval extends AbstractInterval implements Serializable{
 	
     /**
      * increment cannot be zero or less than zero
-     * @return
      */
 	public boolean isValid() {
 		if (increment != null && increment > 0)

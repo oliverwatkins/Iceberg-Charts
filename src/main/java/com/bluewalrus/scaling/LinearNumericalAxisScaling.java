@@ -24,11 +24,8 @@ public class LinearNumericalAxisScaling extends AxisScaling {
 
 	public DecimalFormat decimalFormat;
 
-	/**
+	/*
 	 * Default constructor
-	 *
-	 * @param name
-	 * @param type
 	 */
 	public LinearNumericalAxisScaling() {
 		this(0.0, 100.0, 50.0, 10.0, 5.0); // arbitrary values!!
@@ -108,16 +105,11 @@ public class LinearNumericalAxisScaling extends AxisScaling {
 		}
 	}
 
-	/**
+	/*
 	 * Draw the intervals ticks and labels for one particular interval:
 	 * 
 	 * 10--| | | 20--| |
 	 * 
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param showLabel
 	 */
 	public void drawIntervalTickAndLabelsAndGridLines(
 			AbstractInterval interval, Graphics2D g, XYChart chart,
@@ -180,15 +172,10 @@ public class LinearNumericalAxisScaling extends AxisScaling {
 		}
 	}
 
-	/**
+	/*
 	 * Draw the tick of the interval. Usually just a small line coming out
 	 * perpendicular to the axis.
 	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param i
-	 * @param incrementInPixel
 	 */
 	protected void drawIntervalTick(NumericalInterval interval, Graphics g,
 			XYChart chart, double pixelsFromEdge) {
@@ -331,14 +318,8 @@ public class LinearNumericalAxisScaling extends AxisScaling {
 		}
 	}
 
-	/**
+	/*
 	 * The distance in pixels to the first displayable interval
-	 * 
-	 * @param increment
-	 * @param maxValue
-	 * @param minValue
-	 * @param factor
-	 * @return
 	 */
 	protected double getToFirstIntervalValueFromMinInPixels(Double increment,
 			double factor) {
@@ -348,14 +329,7 @@ public class LinearNumericalAxisScaling extends AxisScaling {
 		return (val - minValue) * factor;
 	}
 
-	/**
-	 * 
-	 * @param interval
-	 * @param chart
-	 * @param i
-	 * @param incrementInPixel
-	 * @return
-	 */
+
 	private double getPixelPositionFromEdge(NumericalInterval interval,
 			XYChart chart, int i, double incrementInPixel) {
 
@@ -372,7 +346,7 @@ public class LinearNumericalAxisScaling extends AxisScaling {
 		return fromStart;
 	}
 
-	/**
+	/*
 	 * Get the first interval that should be displayed on the axis. Eg. if the
 	 * interval increment is 50, then we want the first value to be a multiple
 	 * of 50.
@@ -386,12 +360,6 @@ public class LinearNumericalAxisScaling extends AxisScaling {
 	 * 
 	 * if min/max range is -0.0001/4 ....
 	 * 
-	 * 
-	 * @param increment
-	 * @param maxValue
-	 * @param minValue
-	 * @param factor
-	 * @return
 	 */
 	protected double getToFirstIntervalValueFromMin(Double increment) {
 
@@ -481,12 +449,9 @@ public class LinearNumericalAxisScaling extends AxisScaling {
 		}
 	}
 
-	/**
+	/*
 	 * Basically the width (or height) of the chart in pixels, divided by
 	 * difference in max and min values.
-	 * 
-	 * @param chart
-	 * @return
 	 */
 	@Override
 	public double getMultiplicationFactor(XYChart chart) {

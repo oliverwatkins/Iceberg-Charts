@@ -38,14 +38,8 @@ public abstract class Axis implements Serializable {
 	public int marginOffset = 6;
 
 	public Font axisCatFont = new Font("Arial", Font.BOLD, 12);
-
-
-	/**
-	 * Default constructor
-	 *
-	 * @param name
-	 * @param type
-	 */
+	
+	 //Default constructor
 	public Axis(String name, AxisScaling axisDraw) {
 
 		labelText = name;
@@ -67,16 +61,16 @@ public abstract class Axis implements Serializable {
 	/**
 	 * The overall label for the axis, eg: Temperature, Day of Week.
 	 * 
-	 * @param g
-	 * @param chart
+	 * @param g graphic context
+	 * @param chart chart
 	 */
 	public abstract void drawLabel(Graphics g, Chart chart);
 
 	/**
 	 * Borderline is the OUTER line
 	 * 
-	 * @param g
-	 * @param chart
+	 * @param g graphic context
+	 * @param chart chart
 	 */
 	public abstract void drawBorderLine(Graphics g, Chart chart);
 

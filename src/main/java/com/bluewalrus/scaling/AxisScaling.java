@@ -68,7 +68,7 @@ public abstract class AxisScaling {
 		}
 	}
 	
-	/**
+	/*
 	 * Pre-rendering. Things that can overpaint things of another axis such as grid fills should go in here.
 	 * 
 	 * For example the grid fill of X would overpaint the grid lines of Y if they were in the drawAll. All drawAllPre are
@@ -89,7 +89,7 @@ public abstract class AxisScaling {
 	
 	protected abstract void drawGridLineOnZero(Graphics2D g);
 
-	/**
+	/*
 	 * In order to convert a value interval into pixels, it needs to be multipled by a factor
 	 * 
 	 * @param chart
@@ -101,7 +101,7 @@ public abstract class AxisScaling {
 	
 	protected abstract double getToFirstIntervalValueFromMinInPixels(Double interval, double factor);
 
-	/**
+	/*
 	 * TODO rename
 	 * 
 	 * Get from left, or from top

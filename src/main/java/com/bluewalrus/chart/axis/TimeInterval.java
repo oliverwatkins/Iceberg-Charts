@@ -34,7 +34,6 @@ public class TimeInterval extends AbstractInterval{
 
 	/**
      * increment cannot be zero or less than zero
-     * @return
      */
 	public boolean isValid() {
 		if (type == Type.NONE)

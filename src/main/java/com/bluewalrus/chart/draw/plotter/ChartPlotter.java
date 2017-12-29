@@ -29,7 +29,7 @@ public class ChartPlotter {
 	protected Point lastPoint;
 	private XYChart chart;
 	
-	/**
+	/*
 	 * Entry point
 	 * @param g
 	 * @param chart
@@ -226,7 +226,7 @@ public class ChartPlotter {
         return new XYFactor(xFactor, yfactor);
 	}
 
-	 /**
+	 /*
 	  * TODO this method is completely wrong
 	  * @param chart
 	  * @param yAxis
@@ -241,7 +241,7 @@ public class ChartPlotter {
 	}
 
 	
-	/**
+	/*
 	 * I 
 	 * DO
 	 * NOT 

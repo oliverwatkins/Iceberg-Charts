@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-/**
+/*
  * 
  * test
  * 
@@ -31,7 +31,7 @@ public abstract class AnimationSupport implements ActionListener {
 	
 	protected double value = 0;
 	
-	/**
+	/*
 	 * Constructor where you specify <i>time</i> between the two pixel values.
 	 * 
 	 * @param startValue
@@ -48,7 +48,7 @@ public abstract class AnimationSupport implements ActionListener {
 		this.valuePerMilli = ((double)(endValue - startValue)) / ((double)durationMillis);
 	}
 	
-	/**
+	/*
 	 * Constructor where you specify <i>value/ms</i> between the two pixel values.
 	 * 
 	 * @param startValue
@@ -130,7 +130,7 @@ public abstract class AnimationSupport implements ActionListener {
 	protected void starting () {
 	}
 
-	/**
+	/*
 	 * Optional stop method for an animation. Ie. clean up code, or rendering code that happens at the end of the animation
 	 */
 	protected void stopped () {

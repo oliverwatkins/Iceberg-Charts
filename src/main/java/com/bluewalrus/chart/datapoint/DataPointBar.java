@@ -7,13 +7,7 @@ public class DataPointBar extends DataPoint {
 
     public Color color;
     
-    /**
-     * Enumerable version
-     * 
-     * @param xName
-     * @param y
-     * @param color
-     */
+     //Enumerable version
 	public DataPointBar(String xName, double y, Color color) {
 		super(-9999, y); 
 		this.color = color;
@@ -23,26 +17,14 @@ public class DataPointBar extends DataPoint {
 		this.name = xName;
 	}
 	
-	/**
-	 * Linear version
-	 * 
-	 * @param x
-	 * @param y
-	 * @param name
-	 */
+	 //Linear version
     public DataPointBar(double x, double y, String name) {
         super(x, y);
         this.name = name;
     }
     
     
-    /**
-     * Enumerable version
-     * 
-     * @param xName
-     * @param y
-     * @param color
-     */
+     //Enumerable version
 	public DataPointBar(String xName, double y) {
 		super(-9999, y); 
 		this.color = Color.BLACK;
@@ -57,21 +39,14 @@ public class DataPointBar extends DataPoint {
         this.name = string;
         this.color = color2;
     }
-    
-    
 	
 	public DataPointBar(double x, double y, Color color) {
 		super(x, y);
 		this.color = color;
 		valueType = ValueType.NUMERICAL;
-
 	}
     
     public DataPointBar(double x, double y) {
         super(x, y);
     }
-
-
-
-
 }

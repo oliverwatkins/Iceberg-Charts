@@ -17,20 +17,10 @@ import com.bluewalrus.chart.axis.XAxis;
  * Tick, GridLine, Label, XLabel
  * 
  * @author Oliver Watkins
- *
  */
 public class XAxisDrawUtil {
 
-	/**
-	 * Draw Tick. If the position (from left) is passed the edge of the chart,
-	 * then don't draw it.
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param fromLeft
-	 * @param axis
-	 */
+	 //Draw Tick. If the position (from left) is passed the edge of the chart, then don't draw it.
 	public static void drawIntervalTick(AbstractInterval interval, Graphics g,
 			Chart chart, double fromLeft, Axis axis) {
 
@@ -46,14 +36,7 @@ public class XAxisDrawUtil {
 
 	}
 
-	/**
-	 * Draw Grid Line
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param fromLeft
-	 */
+	 //Draw Grid Line
 	public static void drawGridLine(AbstractInterval interval, Graphics2D g,
 			Chart chart, double fromLeft) {
 
@@ -79,16 +62,7 @@ public class XAxisDrawUtil {
 
 	
 
-	/**
-	 * Draw interval label. By default only first level labels are drawn in. 
-	 * 
-	 * @param g
-	 * @param chart
-	 * @param fromLeft
-	 * @param xLabel
-	 * @param axis
-	 * @param interval
-	 */
+	 //Draw interval label. By default only first level labels are drawn in. 
 	public static void drawXIntervalLabel(Graphics g, XYChart chart, double fromLeft,
 			String xLabel, Axis axis, AbstractInterval interval) {
 		
@@ -125,12 +99,6 @@ public class XAxisDrawUtil {
 			g.drawString(xLabel + "", (int) fromLeft, yPos);
 	}
 
-	/**
-	 * 
-	 * @param chart
-	 * @param axis
-	 * @param g2d
-	 */
 	public static void drawLabel(Chart chart, XAxis axis, Graphics2D g2d) {
 
 		FontMetrics fmX = chart.getFontMetrics(axis.font);

@@ -16,7 +16,7 @@ public class MultiLevelPieChart extends AbstractPieChart {
     private int depth;
 
     
-    /**
+    /*
      * 
      * @param values
      * @param title
@@ -26,7 +26,7 @@ public class MultiLevelPieChart extends AbstractPieChart {
     }
 
     
-    /**
+    /*
      * Multi Level
      * 
      * 
@@ -98,17 +98,8 @@ public class MultiLevelPieChart extends AbstractPieChart {
         }
     }
 
-
-
-    
-
-	
-	/***
-	 * SPECIFIC TO MLPC
-	 */
-	
-    /**
-     * Returns tree decenterPointth
+    /*
+     * Returns tree decenterPointth (SPECIFIC TO MLPC)
      *
      * 1 = simcenterPointle centerPointie chart with no extra dimensions 2 = two
      * level centerPointie chart 3 = 3 level etc..

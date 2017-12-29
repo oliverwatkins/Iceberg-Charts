@@ -99,7 +99,7 @@ public abstract class AbstractPieChart extends Chart  {
     	return getMidpointOfSegment(circleDraw, null, startAngle, angle);
     }
 
-    /**
+    /*
      * Retrieve the midpoint of a filled arc. The midpoint is considered in this
      * case the angular midpoint of the arc combined with the radial midpoint.
      *

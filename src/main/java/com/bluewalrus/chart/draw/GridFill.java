@@ -22,18 +22,7 @@ public class GridFill{
 		this.gradiant = gradiant;
 	}
 	
-    /**
-     * move to UTILS classes!!!
-     * 
-     * fill Y (TODO similar to fill X. May be able to refactor more)
-     * 
-     * @param g
-     * @param yPos
-     * @param lengthDimension
-     * @param chart
-     * @param incrementNo
-     */
-	
+     //fill Y (TODO similar to fill X. May be able to refactor more) move to UTILS classes!!!
     @Deprecated
     public void fillAreaY(Graphics2D g, 
     		int yPos, 
@@ -66,15 +55,7 @@ public class GridFill{
 
 
 
-    /**
-     * FILL X
-     * 
-     * @param g
-     * @param xPos
-     * @param lengthDimension
-     * @param chart
-     * @param incrementNo
-     */
+     //FILL X
     public void fillAreaX(Graphics2D g, 
     		double xPos,
             double lengthDimension, //increment in pixels
@@ -102,14 +83,7 @@ public class GridFill{
 		fillOutRectangle(g, chart, colorCached, fillRect);
 	}
     
-    /**
-     * Put a clip on the chart boundary so that the fill stays within bounds, then fill the rectangle.
-     * 
-     * @param g
-     * @param chart
-     * @param colorCached
-     * @param fillRect
-     */
+     //Put a clip on the chart boundary so that the fill stays within bounds, then fill the rectangle.
 	private void fillOutRectangle(Graphics2D g, Chart chart, Color colorCached,
 			Rectangle fillRect) {
 		

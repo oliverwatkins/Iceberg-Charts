@@ -8,13 +8,9 @@ import com.bluewalrus.chart.axis.TimeInterval.Type;
 
 public class DateUtils {
 
-	/**
+	/*
 	 * ie. if 3rd January, then return 1st January at 00:00
 	 * 
-	 * @param dateStart
-	 * @param type
-	 * @param intoFuture
-	 * @return
 	 */
 	public static Date getDatePointToNearestDataType(Date dateStart, Type type, boolean intoFuture) {
 		
@@ -29,12 +25,8 @@ public class DateUtils {
 		return d;
 	}
 	
-	/**
+	/*
 	 * Given a date (dateStart) get a time amount (in this case milliseconds) to the nearest interval
-	 * 
-	 * @param dateStart
-	 * @param type
-	 * @return
 	 */
 	public static long getMsToNearestDataType(Date dateStart, Type type, boolean intoFuture) {
 		
@@ -164,7 +156,7 @@ public class DateUtils {
 	}
 	
 	
-	/**
+	/*
 	 * TODO this code isn't very correct. The method getMsForType is incorrect for year and month because they are both variable
 	 * and this could lead to the incrementNo below being incorrectly calculated. incrementNo could be out by one.
 	 */
@@ -196,7 +188,7 @@ public class DateUtils {
 	/**
 	 * For a given date, get the number of days in the month of that date. (ie 28,29,20 or 31)
 	 * 
-	 * @param date
+	 * @param date the date
 	 * @return number of days
 	 */
 	public static int getDaysInMonth(Date date) {
@@ -283,14 +275,10 @@ public class DateUtils {
 	
 	
 	
-	/**
-	 * Given a date ( which should be in the for 01.01.00:00 19XX ) add years such that
+	/*
+	 * Given a date ( which should be in the form 01.01.00:00 19XX ) add years such that
 	 * the date returned is 01.01.00:00 (19XX+years) 
 	 * 
-	 * 
-	 * @param date
-	 * @param incrementNumber
-	 * @return
 	 */
 	public static long addYear(long date, int years) {
 		

@@ -10,9 +10,6 @@ import com.bluewalrus.scaling.AxisScaling;
 
 public class XAxis extends Axis {
 
-    /**
-     * @param name axis name
-     */
     public XAxis(AxisScaling axisDraw, String name) {
         super(name, axisDraw);
         

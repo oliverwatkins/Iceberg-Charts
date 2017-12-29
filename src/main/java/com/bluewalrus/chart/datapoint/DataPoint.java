@@ -28,7 +28,7 @@ public class DataPoint implements Serializable{
 
 	public DataPoint() {
 	}
-    /**
+    /*
      * Y point only. The X value is determined by an equally spaced bar chart
      *
      * @param y

@@ -62,25 +62,15 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	public XYChart() {}
 
-	/**
+	/*
 	 * Create an XY chart passing in also the data set as an arraylist.
-	 * 
-	 * @param listOfSeries
-	 * @param yAxis
-	 * @param xAxis
 	 */
 	public XYChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis, XAxis xAxis) {
 		this(xAxis, yAxis);
 		this.data.addAll(listOfSeries);
 	}
 	
-	/**
-	 * 
-	 * @param series
-	 * @param title
-	 * @param yAxis
-	 * @param xAxis
-	 */
+
 	public XYChart(XYDataSeries series, String title, YAxis yAxis,
 			XAxis xAxis) {
 		this.setTitle(title);
@@ -103,12 +93,9 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 
-	/**
+	/*
 	 * Create an XY chart by passing in the two axis. This is the default
 	 * constructor for an empty chart.
-	 * 
-	 * @param xAxis
-	 * @param yAxis
 	 */
 	public XYChart(XAxis xAxis, YAxis yAxis) {
 		this.yAxis = yAxis;
@@ -117,16 +104,10 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.addMouseMotionListener(this);
 	}
 
-	/**
-	 * Simple Single Data Series Constructor
-	 * 
-	 * @param values
-	 * @param xAxisMax
-	 * @param yAxisMax
-	 * @param title
-	 */
+	//Simple Single Data Series Constructor
 	public XYChart(ArrayList<DataPoint> values, String title, String xLabel,
 			String yLabel) {
+		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		XYDataSeries<DataPoint> xy = new XYDataSeries<DataPoint>(values,
@@ -147,16 +128,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 	
 
-	/**
-	 * Constructor for XYY chart.
-	 * 
-	 * @param title
-	 * @param xLabel
-	 * @param yLabel
-	 * @param y2Label
-	 * @param xySeries
-	 * @param xySeriesY2
-	 */
+	 //Constructor for XYY chart.
 	public XYChart(String title, 
 						String xLabel, 
 						String yLabel, 
@@ -185,15 +157,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 	}
 
-	/**
-	 * Simple Bar Chart constructor
-	 * 
-	 * @param bars
-	 * @param title
-	 * @param xLabel
-	 * @param yLabel
-	 * @param pixelBarWidth
-	 */
+	 //Simple Bar Chart constructor
 	public XYChart(ArrayList<DataPointBar> bars, String title, String xLabel,
 			String yLabel, int pixelBarWidth) {
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -215,29 +179,26 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 	
 
-	/**
-	 * TODO is this used?
-	 * 
-	 * @param xySeriesList
-	 * @param title
-	 * @param stylingX
-	 * @param stylingY
-	 */
-	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
-			IntervalStyling stylingX, IntervalStyling stylingY) {
-		
-		this.data.addAll(xySeriesList);
-		initialiseScaling(xySeriesList);
-		
-		xAxis.axisScaling.interval1.styling = stylingX;
-		yAxis.axisScaling.interval1.styling = stylingY;
-		
-		this.addMouseMotionListener(this);
-
-		this.data.addAll(xySeriesList);
-
-		this.setTitle(title);
-	}
+//	/**
+//	 * TODO is this used?
+//	 * 
+//
+//	 */
+//	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
+//			IntervalStyling stylingX, IntervalStyling stylingY) {
+//		
+//		this.data.addAll(xySeriesList);
+//		initialiseScaling(xySeriesList);
+//		
+//		xAxis.axisScaling.interval1.styling = stylingX;
+//		yAxis.axisScaling.interval1.styling = stylingY;
+//		
+//		this.addMouseMotionListener(this);
+//
+//		this.data.addAll(xySeriesList);
+//
+//		this.setTitle(title);
+//	}
 	
 	
 
@@ -255,21 +216,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 	}
 	
-	
-	
-	/**
-	 * Set up a chart with specific stylings.
-	 * 
-	 * @param xySeriesList
-	 * @param title
-	 * @param stylingX
-	 * @param stylingX2
-	 * @param stylingX3
-	 * @param stylingY
-	 * @param stylingY2
-	 * @param stylingY3
-	 */
-	
+	 //Set up a chart with specific stylings.
 	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
 			IntervalStyling stylingX, IntervalStyling stylingX2,
 			IntervalStyling stylingX3, IntervalStyling stylingY,
@@ -296,14 +243,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 	}
 	
-	/**
-	 * 
-	 * @param values
-	 * @param string
-	 * @param yAxis2
-	 * @param xAxis2
-	 */
-	
 	public XYChart(ArrayList<DataPoint> values, String title, YAxis yAxis2,
 			XAxis xAxis2) {
 
@@ -320,14 +259,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	
 
 	
-	/**
-	 * Simple multiple constructor
-	 * 
-	 * @param title chart title
-	 * @param x
-	 * @param y
-	 * @param series
-	 */
+	 //Simple multiple constructor
 	public XYChart(String title, String x, String y, XYDataSeries... series) {
 		
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -349,14 +281,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 
 	}
-	/**
-	 * 
-	 * @param xySeriesList
-	 * @param string
-	 * @param yAxis2
-	 * @param xAxis2
-	 * @param getAroundErasureVariable_IGNORE
-	 */
+
+	
 	public XYChart(ArrayList<XYDataSeries> xySeriesList, String title,
 			YAxis yAxis, XAxis xAxis, boolean getAroundErasureVariable_IGNORE) {
 		
@@ -369,16 +295,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 	}
 	
-	/**
-	 * 
-	 * @param title
-	 * @param xAxisTitle
-	 * @param yAxisTitle
-	 * @param intervalStyling
-	 * @param intervalStyling2
-	 * @param intervalStyling3
-	 * @param series
-	 */
+
 	public XYChart(String title, String xAxisTitle, String yAxisTitle,
 			IntervalStyling intervalStylingX1, 
 			IntervalStyling intervalStylingX2,
@@ -417,14 +334,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 	}
 	
-	/**
-	 * Bubble only constructor
-	 * 
-	 * @param listOfSeries
-	 * @param yAxis
-	 * @param xAxis
-	 * @param multipleMagnitudeBy
-	 */
+	 //Bubble only constructor
     public XYChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis,
             XAxis xAxis, double multipleMagnitudeBy) {
 
@@ -440,12 +350,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
         }
     }
 
-	/**
-	 * Initialize, calculating best x,y scalings and intervals.
-	 * 
-	 * @param xySeriesList
-	 * @param title
-	 */
+	 //Initialize, calculating best x,y scalings and intervals.
 	private void initialiseScaling(ArrayList<XYDataSeries> xySeriesList) {
 		XAxis xAxis = null;
 		YAxis yAxis = null;
@@ -529,10 +434,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		return xAxis;
 	}
 
-	/**
-	 * 
-	 * @param xySeriesList
-	 */
 	private XAxis initialiseScalingX_enumeration(ArrayList<XYDataSeries> xySeriesList) {
     	
     	EnumerationAxisScaling xd = new EnumerationAxisScaling();
@@ -576,11 +477,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 
-	/**
-	 * Numerical only
-	 * @param xySeriesList
-	 * @return
-	 */
+	 //Numerical only
 	private XAxis initialiseScalingX_numerical(ArrayList<XYDataSeries> xySeriesList) {
 		//get padded range
 		DataRange drX = ChartUtils.getDataRangeX(xySeriesList);
@@ -629,8 +526,9 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	
 	/**
 	 * Check if XYDataSeries are enumerable or not.
+	 * 
 	 * @param xySeriesList
-	 * @return
+	 * @return is enumerable
 	 */
 	private boolean isSeriesListEnumerable(ArrayList<XYDataSeries> xySeriesList) {
 		XYDataSeries first = xySeriesList.get(0);
@@ -643,13 +541,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		return false;
 	}
 	
-	/**
-	 * Paint the background, Title, Grid and Axis. All the elements of the chart
-	 * except for the actual data.
-	 *
-	 * @param g2d
-	 * @param data
-	 */
+	 //Paint the background, Title, Grid and Axis. All the elements of the chart
+	 //except for the actual data.
 	protected void prePaint(Graphics2D g2d, ArrayList<XYDataSeries> data) {
 
 		this.calculateHeighAndWidthOfChart();
@@ -743,18 +636,11 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			 * In all other cases (except DataPointMultBar) if there is just one series
 			 * then show nothing. ie. break out.
 			 */
-			
-//			return;
 		}
-
 	}
 
 
-
-	/**
-	 * Inner line just inside of the axis line. Potentially optional??
-	 * 
-	 */
+	 //Inner line just inside of the axis line. Potentially optional??
 	protected void drawBottomLine(Graphics2D g) {
 
 		if (chartBorderLine == null) {
@@ -769,12 +655,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				leftOffset + widthChart, heightChart + topOffset);
 	}
 
-	/**
-	 * Inner line just inside of the axis line. Potentially optional?? Eg
-	 * colored area instead?
-	 * 
-	 */
 	protected void drawLeftLine(Graphics2D g) {
+		/**
+		 * Inner line just inside of the axis line. Potentially optional?? Eg
+		 * colored area instead?
+		 * 
+		 */
 
 		g.setStroke(chartBorderLine);
 		g.setColor(borderLineColor);
@@ -785,7 +671,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * Inner line inside axis line. Not the same as the axis. Only used in
 	 * XYYChart
 	 * 
-	 * @param g
+	 * @param g graphics context
 	 */
 	protected void drawRightLine(Graphics2D g) {
 		g.setStroke(chartBorderLine);

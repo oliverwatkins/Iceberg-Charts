@@ -49,11 +49,6 @@ public class LegendVertical extends AbstractLegend implements Serializable{
         this.legendFont = legendFont;
     }
     
-//    public LegendVertical(Font legendFont, Chart chart) {
-//    	super(legendFont, chart);
-//	}
-
-
 	public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> data) {
 
         int legendX = (chart.getWidth() - chart.rightOffset) + paddingLegendLeft;

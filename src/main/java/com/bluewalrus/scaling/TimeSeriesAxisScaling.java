@@ -59,11 +59,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	 * Draw the tick of the interval. Usually just a small line coming out
 	 * perpendicular to the axis.
 	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param i
-	 * @param incrementInPixel
 	 */
 	@Override
 	public void drawAll(Graphics2D g2d, XYChart xyChart,
@@ -94,11 +89,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	 * 20--| 
 	 *     |
 	 * 
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param showLabel
 	 */
 
 	public void drawIntervalTickAndLabelsAndGridLines(AbstractInterval aInterval,
@@ -201,10 +191,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	
 	/**
 	 * Draw the first label of a centered label interval. Only used for centered labels!!
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
 	 */
 	private void drawFirstCenteredLabel(TimeInterval interval, Graphics2D g, XYChart chart) {
 		Date d = DateUtils.getDatePointToNearestDataType(dateStart, interval.type, false);
@@ -233,11 +219,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 
 	/**
 	 * Get the pixels going to the left to the next interval point.
-	 * 
-	 * @param interval
-	 * @param factor
-	 * @param chart
-	 * @return
 	 */
 	private double getToFirstPointOffTheChart(TimeInterval interval,
 			double factor, XYChart chart) {
@@ -275,11 +256,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	 * given a number i, get the i'th month after the start date month and get
 	 * its increments in pixels.
 	 * 
-	 * @param type
-	 * @param i
-	 *            month after start month
-	 * @param dayInPixel
-	 * @return
 	 */
 	private double getIncrementInPixelsForMonthAfterStartDate(int i,
 			double dayInPixel) {
@@ -315,9 +291,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	/**
 	 * Get number of increments to display on axis for a particular time
 	 * interval type.
-	 * 
-	 * @param interval
-	 * @return
 	 */
 	protected int getIncrementNumber(AbstractInterval interval) {
 
@@ -416,11 +389,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	 * if the min/max range is 3/101, then the first value would be 50 (and not
 	 * 3) *
 	 * 
-	 * @param increment
-	 * @param maxValue
-	 * @param minValue
-	 * @param factor
-	 * @return
 	 */
 	protected double getToFirstIntervalValueFromMinInPixels(
 			AbstractInterval increment, double factor) {
@@ -453,11 +421,6 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 	 * Draw the tick of the interval. Usually just a small line coming out
 	 * perpendicular to the axis.
 	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param i
-	 * @param totalIncrementPixs
 	 */
 	protected void drawIntervalTick(TimeInterval interval, Graphics g,
 			XYChart chart, int i, double totalIncrementPixs) {

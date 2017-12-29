@@ -20,59 +20,52 @@ public class TestDataXY_Mandelbrot extends ChartTester {
 	}
 
 	public Chart getChart() {
-		
-		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
 		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		
-		
-		int width = 1920, height = 1080, max = 1000;
-		
-		BufferedImage image = new BufferedImage(width, height,
-				BufferedImage.TYPE_INT_RGB);
-		
-//		int black = 0x000000, white = 0xFFFFFF;
 
-		for (int row = 0; row < height; row++) {
-			
-			for (int col = 0; col < width; col++) {
-				
-				double c_re = (col - width / 2) * 4.0 / width;
-				
-				double c_im = (row - height / 2) * 4.0 / width;
-				
-				double x = 0, y = 0;
-				
+		int width = 1000, height = 1000, max = 1000;
+		
+		double factor = 5.0;
+		
+		for (int y_pos = 0; y_pos < height; y_pos++) {
+
+			for (int x_pos = 0; x_pos < width; x_pos++) {
+
+				double c_re = (x_pos - width / 2) * factor/ width;
+
+				double c_im = (y_pos - height / 2) * factor / width;
+
+				double x = 0;
+				double y = 0;
+
 				int iterations = 0;
-				
-				while (x * x + y * y < 4 && iterations < max) {
+
+				/**
+				 * Check how far x_pos, y_pos, whether it escapes, or is bounded to some degree
+				 */
+				while (x * x + y * y < factor && iterations < max) {
 					double x_new = x * x - y * y + c_re;
 					y = 2 * x * y + c_im;
 					x = x_new;
 					iterations++;
 				}
-				
 				if (iterations < max)
-					values.add(new DataPoint(col, row));
-				else {}
+					values.add(new DataPoint(x_pos, y_pos));
 			}
 		}
 
-		
-		XYDataSeries series = new XYDataSeries(new UIPointSquare(Color.GRAY,1), null, "");
-		
+		XYDataSeries series = new XYDataSeries(
+				new UIPointSquare(Color.GRAY, 1), null, "");
+
 		series.dataPoints = values;
-		
-		XYChart chart = new XYChart("", "", "", series);
-		chart.setSize(1000, 500);
+
+		XYChart chart = new XYChart("Maths is fun!!", "Real", "Complex", series);
+		chart.setSize(1000, 1000);
 		chart.rightOffset = 200;
 
-		chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
-		chart.setTitle("Maths");
-		
 		return chart;
 	}
-	
+
 	@Override
 	public String getNiceTitle() {
 		return "Mandelbrot Set";

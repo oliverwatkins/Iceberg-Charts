@@ -19,11 +19,11 @@ import com.bluewalrus.chart.legend.LegendPosition;
 import com.bluewalrus.chart.legend.LegendVertical;
 
 /**
- * <code>Chart<code> is an abstract chart for all charts.   
+ * Chart is an abstract chart for all charts.   
  * 
  * It extends a JPanel and defines the basic geometry of where the chart is positioned in the JPanel.
  * 
- * Additionally a Chart is composed of a <code>Title</code> and optionally a <code>Legend</code>
+ * Additionally a Chart is composed of a Title and optionally a Legend
  * 
  *  
  * @author oliver
@@ -74,11 +74,7 @@ public abstract class Chart extends JPanel {
 		this.widthChart = getWidth() - (leftOffset + rightOffset);
 	}
 	
-	/**
-	 * Draw the background. Just a blank white rectangle.
-	 * 
-	 * @param g
-	 */
+	 //Draw the background. Just a blank white rectangle.
 	protected void drawBackground(Graphics g) {
 		
 		
@@ -107,14 +103,11 @@ public abstract class Chart extends JPanel {
 	/**
 	 * Draw the graph ontop of the background within the bounds. 
 	 * 
-	 * @param g
+	 * @param g graphics context
 	 */
 	abstract protected void drawGraphData(Graphics g);
 	
-	/**
-	 * Get the bounds of the actual chart (not the background canvas).
-	 * @return
-	 */
+	 //Get the bounds of the actual chart (not the background canvas).
 	public Rectangle getChartBounds() {
 		return new Rectangle(leftOffset, topOffset, widthChart, heightChart);
 	}
@@ -166,6 +159,16 @@ public abstract class Chart extends JPanel {
 		this.background = background;
 	}
 	
+
+
+//	/**
+//	 * TODO
+//	 */
+//	public void reInitialiseScaling() {
+//		
+//	}
+
+	
 	private void drawTrialVersion(Graphics2D g2d) {
 		String trialVersion = "Trial Version : ";
 		String trialVersion2 = "If you would like a free copy without watermark";
@@ -197,9 +200,5 @@ public abstract class Chart extends JPanel {
 
 		g2d.setComposite(c);
 	}
-
-	public void reInitialiseScaling() {
-		
-	}
-
+	
 }

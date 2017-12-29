@@ -8,13 +8,7 @@ import com.bluewalrus.chart.Orientation;
 import com.bluewalrus.chart.draw.YAxisDrawUtil;
 import com.bluewalrus.scaling.AxisScaling;
 
-/**
- * @copyright 2014
- * @author Oliver Watkins (www.frontangle.com) All Rights Reserved
- */
 public class YAxis extends Axis {
-
-
 
 	public boolean rightSide = false;
 	

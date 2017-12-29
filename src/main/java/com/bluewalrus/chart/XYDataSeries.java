@@ -69,7 +69,7 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
 	/**
      * Has line or point been set
      * 
-     * @return
+     * @return has the style been set
      */
     public boolean hasStyleBeenSet() {
     	if (pointType != null || line != null) {

@@ -20,12 +20,7 @@ public class GradiantRule {
         this.color2 = color2;
     }
 
-    /**
-     * Return the color in color array based on numerical value.
-     * 
-     * @param value
-     * @return 
-     */
+    //Return the color in color array based on numerical value.
     public Color getColor(double percentChange) {
     	
         int red = color1.getRed();

@@ -22,13 +22,7 @@ import com.bluewalrus.chart.axis.YAxis;
 public class YAxisDrawUtil {
 	
 	
-	/**
-	 * Draw the label (vertically)
-	 * 
-	 * @param chart
-	 * @param axis
-	 * @param g2d
-	 */
+	 //Draw the label (vertically)
 	public static void drawLabel(Chart chart, YAxis axis, Graphics2D g2d) {
 		AffineTransform oldTransform = g2d.getTransform();
 
@@ -70,15 +64,7 @@ public class YAxisDrawUtil {
 	}
 	
 	
-	/**
-	 * Draw the interval tick
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param fromTop
-	 * @param axis
-	 */
+	 //Draw the interval tick
 	public static void drawIntervalTick(AbstractInterval interval, Graphics g, Chart chart,
 			double fromTop, YAxis axis) {
 		
@@ -104,16 +90,9 @@ public class YAxisDrawUtil {
         g.setColor(axis.axisColor);
         g.drawLine(x1, (int)fromTop, x2, (int)fromTop);
 	}
-	/**
-	 * 
-	 * Draw a label on the yAxis for an incrememnt eg (10, 20 ,30)
-	 * 
-	 * @param g
-	 * @param chart
-	 * @param fromTop determines its position from the top
-	 * @param yLabel
-	 * @param axis
-	 */
+	
+	
+	 //Draw a label on the yAxis for an incrememnt eg (10, 20 ,30)
 	public static void drawYIntervalLabel(Graphics2D g, XYChart chart, double fromTop, String yLabel, YAxis axis) {
 		
 		FontMetrics fm = chart.getFontMetrics(axis.axisCatFont);
@@ -141,17 +120,7 @@ public class YAxisDrawUtil {
         g.drawString(yLabel, x, y - fm.getDescent());
 	}
 	
-	
-	
-	
-	/**
-	 * Draw Y Grid Line
-	 * 
-	 * @param interval
-	 * @param g
-	 * @param chart
-	 * @param fromTop
-	 */
+	 //Draw Y Grid Line
 	public static void drawGridLine(AbstractInterval interval, Graphics2D g, Chart chart, double fromTop) {
 		
 		int x1 = chart.leftOffset;
@@ -162,5 +131,4 @@ public class YAxisDrawUtil {
 		interval.styling.graphLine.drawLine(g, x1, (int)fromTop, x2, (int)fromTop);
 		g.setClip(clip);
 	}
-
 }
