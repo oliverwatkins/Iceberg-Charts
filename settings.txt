@@ -1,0 +1,26 @@
+
+This is a message to myself 5-6 years into the future when I have completely forgotten how I set this project up.
+
+In order to push the project into the nexus repository you need to run maven deploy like so :
+
+#mvn clean deploy
+
+However when doing this a settings file is required. Running it just like that will create an error.
+
+You need to specify the settings file in the eclipse run config for the project. This contains the username and password for the nexus repository. 
+Which is why i am not committing it to the github project. It is in my dev folder in my cloud drive.
+
+The GPG plugin associates my email address (i think) with this project and knows how to sign the artifacts before sending them up to sonatype.
+
+
+https://oss.sonatype.org/#welcome
+
+Standard guide
+
+http://central.sonatype.org/pages/ossrh-guide.html
+
+The details on how to setup with maven.
+
+http://central.sonatype.org/pages/apache-maven.html
+
+

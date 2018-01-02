@@ -1,8 +1,12 @@
 package com.frontangle.ichart.main.test.bar;
 
+import static org.junit.Assert.assertEquals;
+
 import java.awt.Color;
 import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.XYChart;
@@ -33,6 +37,15 @@ public class TestDataBar_1_Simple extends ChartTester {
 
 		return chart;
 	}
+	
+	  @Test
+	  public void testSnapshot() {
+		  
+//	    Calculator calculator = new Calculator();
+//	    int sum = calculator.evaluate("1+2+3");
+	  }
+	  
+	  
 
 	public static void main(String[] args) throws Exception {
 		ChartTester t = new TestDataBar_1_Simple();
