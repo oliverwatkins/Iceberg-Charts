@@ -81,15 +81,15 @@ public class TimeSeriesTester extends JFrame {
 
         
         
-        p = createTabbedPane(tabbedPaneBar, " 3");
-        chart = new TestDataGrids_6_alternateGridFillXTimesSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
-        
-        p = createTabbedPane(tabbedPaneBar, " 4");
-        chart = new TestDataGrids_7_TimeSeries().getChart();
-        charts.add(chart);
-        p.add(chart);
+//        p = createTabbedPane(tabbedPaneBar, " 3");
+//        chart = new TestDataGrids_6_alternateGridFillXTimesSeries().getChart();
+//        charts.add(chart);
+//        p.add(chart);
+//        
+//        p = createTabbedPane(tabbedPaneBar, " 4");
+//        chart = new TestDataGrids_7_TimeSeries().getChart();
+//        charts.add(chart);
+//        p.add(chart);
         
         JButton b = new JButton("Create PNG");
 

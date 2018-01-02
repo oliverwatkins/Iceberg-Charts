@@ -17,6 +17,7 @@ import com.frontangle.ichart.chart.axis.IntervalStyling;
 import com.frontangle.ichart.chart.axis.TimeInterval;
 import com.frontangle.ichart.chart.axis.XAxis;
 import com.frontangle.ichart.chart.datapoint.DataPoint;
+import com.frontangle.ichart.chart.datapoint.DataPointBar;
 import com.frontangle.ichart.chart.draw.GridFill;
 import com.frontangle.ichart.chart.draw.Line;
 import com.frontangle.ichart.chart.draw.point.UIPointCircle;
@@ -35,6 +36,10 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 	
 	@Override
 	public Chart getChart() throws ParseException {
+		
+		
+
+        
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
 
