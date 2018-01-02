@@ -166,7 +166,7 @@ public class Threaded extends JFrame {
 		values.add(new DataPoint(135, 67));
 		values.add(new DataPoint(150, 70));
 		
-		XYChart lineChart = new XYChart(values, "My Easy Example", "X Axis", "Y Axis");
+		XYChart lineChart = new XYChart("My Easy Example", "X Axis", "Y Axis", values, false);
 		
 		JFrame frame = new JFrame();
 		frame.add(lineChart);

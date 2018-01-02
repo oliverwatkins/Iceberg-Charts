@@ -17,13 +17,10 @@ public class DataPointPieChart extends DataPoint {
     
     
     public DataPointPieChart(ArrayList<Segment> pievalues, double xPoint, double yPoint, double magnitude, String name) {
-
         super(xPoint, yPoint);
         this.name = name;
         this.magnitude = magnitude;
         this.pievalues = pievalues;
-        
-
     }
 
 }

@@ -80,7 +80,7 @@ public class TestDataTimeSeries_YearMonth extends ChartTester {
 
 		xySeriesList.add(series);
 
-		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart("","","",xySeriesList, yAxis, xAxis,false);
 		chart.setTitle("Year Month (May 1991, July 2001)");
 
 		return chart;

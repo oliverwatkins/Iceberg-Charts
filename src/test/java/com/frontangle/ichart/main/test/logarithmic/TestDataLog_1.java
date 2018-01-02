@@ -50,7 +50,7 @@ public class TestDataLog_1 extends ChartTester {
 
 		xySeriesList.add(series);
 
-		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart("","","",xySeriesList, yAxis, xAxis,false);
 
 		chart.setSize(1000, 500);
 		chart.rightOffset = 200;

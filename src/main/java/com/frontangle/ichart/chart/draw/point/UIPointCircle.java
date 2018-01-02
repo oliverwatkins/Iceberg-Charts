@@ -24,8 +24,6 @@ public class UIPointCircle extends UIPointSimpleXY {
     public UIPointCircle(Color color, int size, double transparancyFraction) {
         super(color, size, transparancyFraction);
     }
-
-    
     
     public void draw(Graphics2D g, Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 

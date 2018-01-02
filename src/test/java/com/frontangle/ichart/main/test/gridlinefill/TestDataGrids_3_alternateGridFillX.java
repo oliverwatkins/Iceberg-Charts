@@ -46,12 +46,12 @@ public class TestDataGrids_3_alternateGridFillX extends ChartTester {
 				new Line(Color.GRAY, false, 1), 
 				null);
 		
-		XYChart chart = new XYChart(xySeriesList, "Alternate Grid Fill", null, 
+		XYChart chart = new XYChart("Alternate Grid Fill", "X Axis", "Y Axis", xySeriesList, null, 
 				stylingX, 
 				null, 
 				null, 
 				stylingY, 
-				null, "X Axis", "Y Axis");
+				null);
 		
 		chart.setSize(1000, 500);
 		chart.rightOffset = 200;

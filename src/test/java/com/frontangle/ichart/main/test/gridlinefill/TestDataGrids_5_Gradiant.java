@@ -41,7 +41,7 @@ public class TestDataGrids_5_Gradiant extends ChartTester {
 		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(15.0, 68.0, xInterval1, xInterval2, null), "X Axis");
 
 
-		XYChart lineChart = new XYChart(values, "Gradiant", yAxis, xAxis);
+		XYChart lineChart = new XYChart("Gradiant", "","",values, yAxis, xAxis);
 
 		lineChart.setSize(1000, 500);
 

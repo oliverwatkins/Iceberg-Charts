@@ -23,7 +23,7 @@ public class TestDataXY_Fractions4 extends ChartTester {
 		
 		ArrayList<XYDataSeries> s = new ArrayList<XYDataSeries>();
 				
-		XYChart chart = new XYChart(values, "Big Range", "", "");
+		XYChart chart = new XYChart("Big Range", "x", "y", values, false );
 		
 		return chart;
 	}

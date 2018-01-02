@@ -72,7 +72,7 @@ public class TestDataTimeSeries_MonthWeek  extends ChartTester {
 
 		xySeriesList.add(series);
 
-		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart("","","",xySeriesList, yAxis, xAxis,false);
 		
 		chart.setTitle("Month Week - 2004, 3 Apr - 2004, 12 August");
 		

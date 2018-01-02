@@ -361,20 +361,22 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		/**
 		 * Add incrementNumber of time type to the first interval point
 		 */
-		if (interval.type == Type.YEAR) {
-			totalTime = DateUtils.addYear(timePointAtFirstInterval,
-					incrementNumber);
-		} else if (interval.type == Type.MONTH) {
-			totalTime = DateUtils.addMonth(timePointAtFirstInterval,
-					incrementNumber);
-		} else if (interval.type == Type.DAY) {
-			totalTime = DateUtils.addDay(timePointAtFirstInterval,
-					incrementNumber);
-		} else if (interval.type == Type.WEEK) {
-			totalTime = DateUtils.addWeek(timePointAtFirstInterval,
-					incrementNumber);
-		} else {
-			throw new RuntimeException("Unknown interval type " + interval.type);
+		
+		switch (interval.type) {
+			case YEAR:
+				totalTime = DateUtils.addYear(timePointAtFirstInterval, incrementNumber);
+				break;
+			case MONTH:
+				totalTime = DateUtils.addMonth(timePointAtFirstInterval, incrementNumber);
+				break;
+			case DAY:
+				totalTime = DateUtils.addDay(timePointAtFirstInterval, incrementNumber);
+				break;
+			case WEEK:
+				totalTime = DateUtils.addWeek(timePointAtFirstInterval, incrementNumber);
+				break;
+			default:
+				throw new RuntimeException("Unknown interval type " + interval.type);
 		}
 		return totalTime;
 	}

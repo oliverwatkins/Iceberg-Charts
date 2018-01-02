@@ -42,7 +42,7 @@ public class TestDataBar_6_Transparancy extends ChartTester {
 		
 		barSeries.setUpBarDisplayOptions(barDisplayOptions);
 		
-		XYChart chart = new XYChart(barSeries, "Refugee Arrivals to Germany", "Month", "Number in '1000s");
+		XYChart chart = new XYChart("Refugee Arrivals to Germany", "Month", "Number in '1000s", barSeries);
 		
 		chart.clearGraphLines();
 

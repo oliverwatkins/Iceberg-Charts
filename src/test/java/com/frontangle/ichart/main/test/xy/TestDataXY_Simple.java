@@ -21,8 +21,8 @@ public class TestDataXY_Simple extends ChartTester {
 		values.add(new DataPoint(135, 67));
 		values.add(new DataPoint(150, 70));
 
-		XYChart chart = new XYChart(values, "My Easy Example", "X Axis",
-				"Y Axis");
+		XYChart chart = new XYChart("My Easy Example", "X Axis",
+				"Y Axis", values, false);
 
 		return chart;
 	}

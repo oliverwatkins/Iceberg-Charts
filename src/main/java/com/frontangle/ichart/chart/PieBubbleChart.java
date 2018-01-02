@@ -8,12 +8,10 @@ import com.frontangle.ichart.chart.datapoint.DataPoint;
 import com.frontangle.ichart.chart.datapoint.DataPointPieChart;
 
 /**
- * ShowpieBubbleChartSettings piepieBubbleChartSettings apieBubbleChartSettings
- * bubblepieBubbleChartSettings in a bubble chart.
  * 
  * Magnitude needpieBubbleChartSettings to be multiplied by a factor
  * 
- * @author Oliver WatkinpieBubbleChartSettings
+ * @author Oliver Watkins
  */
 public class PieBubbleChart extends XYChart {
 
@@ -29,7 +27,7 @@ public class PieBubbleChart extends XYChart {
 	public PieBubbleChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis,
 			XAxis xAxis, double multipleMagnitudeBy) {
 
-		super(listOfSeries, yAxis, xAxis);
+		super("","","", listOfSeries, yAxis, xAxis, false);
 
 		for (XYDataSeries xyDataSeries : listOfSeries) {
 

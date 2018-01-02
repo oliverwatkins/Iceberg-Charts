@@ -59,7 +59,7 @@ public class TestStackedChart extends ChartTester {
 		list.add(series);
 		list.add(series2);
 
-		XYChart lineChart = new XYChart(xAxis, yAxis); 
+		XYChart lineChart = new XYChart("","","",xAxis, yAxis); 
 		lineChart.data = list;
 
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
@@ -87,7 +87,7 @@ public class TestStackedChart extends ChartTester {
 		yAxis2.axisScaling.setMinValue(0);
 		yAxis2.axisScaling.setMaxValue(100);
 		
-		XYChart lineChart2 = new XYChart(xAxis, yAxis2); 
+		XYChart lineChart2 = new XYChart("","","",xAxis, yAxis2); 
 		lineChart2.data = list;
 		
 		ArrayList charts = new ArrayList<XYChart>();

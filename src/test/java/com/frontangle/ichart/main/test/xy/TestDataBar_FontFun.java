@@ -18,8 +18,7 @@ public class TestDataBar_FontFun extends ChartTester {
 	@Override
 	public Chart getChart() {
 
-		ArrayList<Color> colors = Utils
-				.makeGradients(Color.RED, Color.BLUE, 12);
+		ArrayList<Color> colors = Utils.makeGradients(Color.RED, Color.BLUE, 12);
 
 		ArrayList<DataPointBar> values = new ArrayList<DataPointBar>();
 		values.add(new DataPointBar("One", 10, colors.get(0)));
@@ -29,8 +28,7 @@ public class TestDataBar_FontFun extends ChartTester {
 		values.add(new DataPointBar("Five", 18, colors.get(5)));
 		values.add(new DataPointBar("Six", 40, colors.get(6)));
 
-		XYChart chart = new XYChart(values, "Really Big Text", "yadda yadda",
-				"yadda yadda", 40);
+		XYChart chart = new XYChart("Really Big Text", "yadda yadda", "yadda yadda", values, 40);
 
 		chart.xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
 		chart.xAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);

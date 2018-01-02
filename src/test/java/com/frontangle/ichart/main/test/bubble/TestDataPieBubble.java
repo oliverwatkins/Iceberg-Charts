@@ -111,10 +111,8 @@ public class TestDataPieBubble extends ChartTester {
 				new UIPointPieChart(Color.BLUE, pbcs), null, "1994");
 
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0,
-				10.0, null, null), "GNI ");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0,
-				50.0, 10.0, null), "Life Expectancy ");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0, 10.0, null, null), "GNI ");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 100.0, 50.0, 10.0, null), "Life Expectancy ");
 
 
 		xySeriesList.add(series);

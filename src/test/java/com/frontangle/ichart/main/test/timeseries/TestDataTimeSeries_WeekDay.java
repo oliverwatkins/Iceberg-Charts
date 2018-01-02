@@ -75,7 +75,7 @@ public class TestDataTimeSeries_WeekDay  extends ChartTester {
 		
 		timeInt2.styling.graphFill =  new GridFill(Color.WHITE, new Color(224,235,235), false);
 
-		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart("","","",xySeriesList, yAxis, xAxis, false);
 		chart.setTitle("Week Day Time Series");
 
 		return chart;

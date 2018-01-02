@@ -38,7 +38,7 @@ public class TestDataBar_thinLines extends ChartTester {
         xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
         xAxis.labelText = "Day of Year"; 
         
-        XYChart barChart = new XYChart(values, "Annual Sunlight Variability", "Day of Year", "Percent Sunlight", 1);
+        XYChart barChart = new XYChart("Annual Sunlight Variability", "Day of Year", "Percent Sunlight", values, 1);
         
         barChart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 

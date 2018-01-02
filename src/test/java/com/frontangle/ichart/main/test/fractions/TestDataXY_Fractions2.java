@@ -31,7 +31,7 @@ public class TestDataXY_Fractions2 extends ChartTester {
 		YAxis ya = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0,
 				new NumericalInterval(5, 10.0), null, null), "2");
 
-		XYChart chart = new XYChart(s, ya, xa);
+		XYChart chart = new XYChart("","","",s, ya, xa, false);
 
 		chart.setTitle("Negative To Positive");
 		return chart;

@@ -31,7 +31,7 @@ public class TestDataXY_Fractions extends ChartTester {
 		YAxis ya = new YAxis(new LinearNumericalAxisScaling(0.0, 100.0,
 				new NumericalInterval(50, 10.0), null, null), "2");
 
-		XYChart chart = new XYChart(s, ya, xa);
+		XYChart chart = new XYChart("","","", s, ya, xa, false);
 
 		chart.setTitle("(range 1.5005 to 3 with 0.1 interval)");
 

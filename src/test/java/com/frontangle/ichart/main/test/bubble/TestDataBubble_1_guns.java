@@ -101,7 +101,7 @@ public class TestDataBubble_1_guns extends ChartTester {
 
 		double factor = 0.000005;
 
-		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis, factor);
+		XYChart chart = new XYChart("","","",xySeriesList, yAxis, xAxis, factor);
 
 		chart.setSize(900, 650);
 

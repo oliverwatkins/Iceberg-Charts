@@ -42,14 +42,12 @@ public class TestDataXY_LineExamples extends ChartTester {
 		values5.add(new DataPoint(1, 1));
 		values5.add(new DataPoint(8, 7));
 
-		XYDataSeries<DataPoint> series1 = new XYDataSeries<DataPoint>(
-				new UIPointCircle(Color.ORANGE, 15),
-				new Line(Color.RED, true, 11), "1");
+		XYDataSeries<DataPoint> series1 = new XYDataSeries<DataPoint>(new UIPointCircle(
+				Color.ORANGE, 15), new Line(Color.RED, true, 11), "1");
 		XYDataSeries<DataPoint> series2 = new XYDataSeries<DataPoint>(
 				new UIPointSquare(Color.PINK), new Line(Color.PINK, true), "2");
-		XYDataSeries<DataPoint> series3 = new XYDataSeries<DataPoint>(
-				new UIPointCircle(Color.BLACK, 23),
-				new Line(Color.BLACK, true, 1), "3");
+		XYDataSeries<DataPoint> series3 = new XYDataSeries<DataPoint>(new UIPointCircle(
+				Color.BLACK, 23), new Line(Color.BLACK, true, 1), "3");
 		XYDataSeries<DataPoint> series4 = new XYDataSeries<DataPoint>(
 				new UIPointCircle(Color.GRAY), new Line(Color.GRAY), "4");
 		XYDataSeries<DataPoint> series5 = new XYDataSeries<DataPoint>(
@@ -61,11 +59,9 @@ public class TestDataXY_LineExamples extends ChartTester {
 		series4.dataPoints = values4;
 		series5.dataPoints = values5;
 
-		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-5.0, 10.0,
-				new NumericalInterval(4, 1.0), new NumericalInterval(2, 0.5),
-				null), "y");
-		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 10.0, 1.0,
-				null, null), "x");
+		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(-5.0, 10.0, new NumericalInterval(4,
+				1.0), new NumericalInterval(2, 0.5), null), "y");
+		XAxis xAxis = new XAxis(new LinearNumericalAxisScaling(0.0, 10.0, 1.0, null, null), "x");
 
 		xySeriesList.add(series1);
 		xySeriesList.add(series2);
@@ -73,7 +69,7 @@ public class TestDataXY_LineExamples extends ChartTester {
 		xySeriesList.add(series4);
 		xySeriesList.add(series5);
 
-		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart("", "", "", xySeriesList, yAxis, xAxis, false);
 
 		chart.setSize(1000, 500);
 		chart.rightOffset = 200;

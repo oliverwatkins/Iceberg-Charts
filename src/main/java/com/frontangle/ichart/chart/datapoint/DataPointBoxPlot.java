@@ -13,8 +13,7 @@ public class DataPointBoxPlot extends DataPoint {
             double bottom,
             double middle,
             double top,
-            double topWhisker
-    ) {
+            double topWhisker) {
         super(x, y);
 
         this.bottomWhisker = bottomWhisker;

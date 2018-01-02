@@ -104,7 +104,7 @@ public class TestStackedChart_threaded extends ChartTester {
 		
 		yAxis.axisScaling.interval2.styling = new IntervalStyling(3, new Line(Color.LIGHT_GRAY, true), null);
 		
-		XYChart lineChart2 = new XYChart(xAxis, yAxis); 
+		XYChart lineChart2 = new XYChart("","","",xAxis, yAxis); 
 		lineChart2.data = list;
 		
 		return lineChart2;
@@ -168,7 +168,7 @@ public class TestStackedChart_threaded extends ChartTester {
 
 		xySeriesList.add(series);
 
-		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart("","","",xySeriesList, yAxis, xAxis,false);
 
 		chart.setSize(1000, 500);
 		chart.rightOffset = 200;

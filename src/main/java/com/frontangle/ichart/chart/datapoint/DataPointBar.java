@@ -16,13 +16,6 @@ public class DataPointBar extends DataPoint {
 		
 		this.name = xName;
 	}
-	
-	 //Linear version
-    public DataPointBar(double x, double y, String name) {
-        super(x, y);
-        this.name = name;
-    }
-    
     
      //Enumerable version
 	public DataPointBar(String xName, double y) {
@@ -38,15 +31,5 @@ public class DataPointBar extends DataPoint {
         super(x, y);
         this.name = string;
         this.color = color2;
-    }
-	
-	public DataPointBar(double x, double y, Color color) {
-		super(x, y);
-		this.color = color;
-		valueType = ValueType.NUMERICAL;
-	}
-    
-    public DataPointBar(double x, double y) {
-        super(x, y);
     }
 }

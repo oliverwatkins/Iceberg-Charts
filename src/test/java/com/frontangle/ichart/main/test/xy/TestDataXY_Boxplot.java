@@ -46,7 +46,7 @@ public class TestDataXY_Boxplot extends ChartTester {
 
 		xySeriesList.add(series);
 
-		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+		XYChart chart = new XYChart("","","",xySeriesList, yAxis, xAxis,false);
 
 		chart.setSize(1000, 500);
 

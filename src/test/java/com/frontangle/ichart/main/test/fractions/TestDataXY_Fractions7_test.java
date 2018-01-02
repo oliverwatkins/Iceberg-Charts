@@ -48,7 +48,7 @@ public class TestDataXY_Fractions7_test extends ChartTester {
 					null), 				
 				"2");
 		
-		XYChart chart = new XYChart(s, ya, xa);
+		XYChart chart = new XYChart("","","",s, ya, xa, false);
 		
 		chart.setTitle("Negative To Positive");
 		

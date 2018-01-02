@@ -43,8 +43,8 @@ public class TestDataBar_5_PosNegColor extends ChartTester {
 
 		barSeries.setUpBarDisplayOptions(barDisplayOptions);
 
-		XYChart chart = new XYChart(barSeries, "Simple Bar Chart (+/- Color)",
-				"Commodity", "Price Change % (USD)");
+		XYChart chart = new XYChart("Simple Bar Chart (+/- Color)",
+				"Commodity", "Price Change % (USD)", barSeries);
 
 		return chart;
 	}

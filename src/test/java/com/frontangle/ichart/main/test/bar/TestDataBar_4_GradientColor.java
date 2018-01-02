@@ -54,8 +54,8 @@ public class TestDataBar_4_GradientColor extends ChartTester {
 		
 		barSeries.setUpBarDisplayOptions(barDisplayOptions);
 		
-		XYChart chart = new XYChart(barSeries, "Simple Bar Chart (Gradient Color)", 
-				"Commodity", "Price Change % (USD)");
+		XYChart chart = new XYChart("Simple Bar Chart (Gradient Color)", 
+				"Commodity", "Price Change % (USD)", barSeries);
 
 		return chart;
 	}

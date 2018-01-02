@@ -67,7 +67,7 @@ public class TestDataBubble_2_series extends ChartTester {
 		xySeriesList.add(series);
 		xySeriesList.add(series2);
 
-		XYChart chart = new XYChart(xySeriesList, yAxis, xAxis, 15);
+		XYChart chart = new XYChart("","","",xySeriesList, yAxis, xAxis, 15);
 
 		chart.setSize(700, 400);
 

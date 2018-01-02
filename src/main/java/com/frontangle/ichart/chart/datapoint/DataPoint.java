@@ -30,19 +30,20 @@ public class DataPoint implements Serializable {
 	}
 
 	public DataPoint(double x, double y) {
+		valueType = ValueType.X_NUMERICAL;
 		this.x = x;
 		this.y = y;
 	}
 
-	public DataPoint(Date date, double y) {
+	public DataPoint(Date dateX, double y) {
 		valueType = ValueType.X_TIME;
-		this.xDate = date;
+		this.xDate = dateX;
 		this.y = y;
 	}
 
-	public DataPoint(String enumerationValue, double y) {
+	public DataPoint(String enumerationValueX, double y) {
 		valueType = ValueType.X_ENUMARABLE;
-		this.name = enumerationValue;
+		this.name = enumerationValueX;
 		this.y = y;
 	}
 
