@@ -12,6 +12,7 @@ import com.frontangle.ichart.chart.datapoint.DataPoint;
 import com.frontangle.ichart.chart.draw.point.UIPointSquare;
 import com.frontangle.ichart.main.test.ChartTester;
 
+//no need to test this!
 public class TestDataXY_Mandelbrot extends ChartTester {
 
 	public static void main(String[] args) throws Exception {

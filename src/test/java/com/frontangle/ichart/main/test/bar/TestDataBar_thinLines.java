@@ -2,7 +2,12 @@ package com.frontangle.ichart.main.test.bar;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.junit.Ignore;
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.XYChart;
@@ -26,6 +31,9 @@ public class TestDataBar_thinLines extends ChartTester {
 
         for (int i = 0; i < 365; i++) {
             double d = Math.random();
+            
+            System.out.println();
+            
             values.add(new DataPointBar("", (int) (100 * d), Color.GRAY));
         }
         
@@ -55,6 +63,13 @@ public class TestDataBar_thinLines extends ChartTester {
 	public String getNiceTitle()  {
 		return "Bar: thin lines";
 	}
+
+	//uses random values. cant test 
+	@Ignore @Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
     
 
 

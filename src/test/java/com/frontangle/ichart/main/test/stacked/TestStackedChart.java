@@ -1,7 +1,11 @@
 package com.frontangle.ichart.main.test.stacked;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.StackedXYChart;
@@ -17,6 +21,13 @@ import com.frontangle.ichart.main.test.ChartTester;
 import com.frontangle.ichart.scaling.LinearNumericalAxisScaling;
 
 public class TestStackedChart extends ChartTester {
+	
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
+	
 	public Chart getChart() {
 
 		YAxis yAxis = new YAxis(new LinearNumericalAxisScaling(), "Y1");

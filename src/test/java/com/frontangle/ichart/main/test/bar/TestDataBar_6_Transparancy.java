@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.imageio.ImageIO;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.XYChart;
@@ -65,6 +68,12 @@ public class TestDataBar_6_Transparancy extends ChartTester {
 	public String getNiceTitle()  {
 		return "Bar: transparancy";
 	}
+	
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
 	
 
 }

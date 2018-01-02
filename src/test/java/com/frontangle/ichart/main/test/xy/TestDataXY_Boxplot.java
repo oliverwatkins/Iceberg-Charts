@@ -2,7 +2,11 @@ package com.frontangle.ichart.main.test.xy;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.XYChart;
 import com.frontangle.ichart.chart.XYDataSeries;
@@ -20,6 +24,11 @@ public class TestDataXY_Boxplot extends ChartTester {
 		// getChart();
 	}
 
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
 	public XYChart getChart() {
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();

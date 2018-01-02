@@ -2,7 +2,11 @@ package com.frontangle.ichart.main.test.xyy;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.XYChart;
@@ -23,6 +27,12 @@ import com.frontangle.ichart.main.test.ChartTester;
  */
 public class TestDataBar_2Y extends ChartTester {
 
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
+	
 	@Override
 	public Chart getChart() {
 

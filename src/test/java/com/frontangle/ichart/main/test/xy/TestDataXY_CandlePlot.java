@@ -2,8 +2,11 @@ package com.frontangle.ichart.main.test.xy;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.XYChart;
@@ -18,6 +21,13 @@ import com.frontangle.ichart.scaling.LinearNumericalAxisScaling;
 
 public class TestDataXY_CandlePlot extends ChartTester {
 
+	
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
+	
 	public static void main(String[] s) throws ParseException {
 
 		ChartTester t = new TestDataXY_CandlePlot();

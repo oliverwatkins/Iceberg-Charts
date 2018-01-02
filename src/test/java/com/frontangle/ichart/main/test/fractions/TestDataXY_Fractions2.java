@@ -1,8 +1,12 @@
 package com.frontangle.ichart.main.test.fractions;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.XYChart;
@@ -16,6 +20,12 @@ import com.frontangle.ichart.scaling.LinearNumericalAxisScaling;
 
 public class TestDataXY_Fractions2 extends ChartTester {
 
+	
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
 	@Override
 	public Chart getChart() {
 

@@ -1,7 +1,11 @@
 package com.frontangle.ichart.main.test.bar;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.XYChart;
@@ -40,8 +44,17 @@ public class TestDataBar_3_Simple_fixed_axis extends ChartTester {
 		ChartTester t = new TestDataBar_3_Simple_fixed_axis();
 		t.testChart(t.getChart());
 	}
+	
+
+	
 	@Override
 	public String getNiceTitle()  {
 		return "Bar with fixed axis";
 	}
+	
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
 }

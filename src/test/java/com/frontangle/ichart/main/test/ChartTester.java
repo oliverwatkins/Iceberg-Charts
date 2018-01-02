@@ -18,8 +18,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import org.junit.Test;
+
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.main.GenerateShowcase;
+import com.frontangle.ichart.main.test.bar.TestDataBar_1_Simple;
 
 public abstract class ChartTester extends JFrame{
 	
@@ -27,6 +30,9 @@ public abstract class ChartTester extends JFrame{
 	
 	public abstract String getNiceTitle();
 
+	
+
+	
 	
 	public void testChart(JPanel chart) throws ParseException {
 
@@ -51,7 +57,7 @@ public abstract class ChartTester extends JFrame{
         
         //create HTML div
 
-        String urlChart = this.writeChart(chart, GenerateShowcase.path, null);
+        String urlChart = FileUtils.writeChartAndGetURL(chart, GenerateShowcase.path, this.defaultDimension);
         
         this.writeHTML(s, urlChart, chart);
         
@@ -144,8 +150,68 @@ public abstract class ChartTester extends JFrame{
 
 		return sb.toString();
 	}
-
 	
+	
+	
+	public void testSnapshot() throws IOException, ParseException {
+
+		Class c = this.getClass();
+		String simpleClassName = c.getSimpleName();
+
+		System.out.println("c " + c.getName());
+		System.out.println("c " + c.getSimpleName());
+
+		String packageBit = c.getPackage().getName();
+
+		String relPath = null;
+		if (packageBit != null) {
+
+			String t = packageBit.replace(".", "\\");
+			System.out.println("t  " + t);
+
+			relPath = "src\\test\\java\\" + packageBit.replace(".", "\\");
+		}
+
+		System.out.println("relPath " + relPath);
+
+		Dimension dimension = new Dimension(560, 560);
+
+		String iFile = relPath + "\\img\\" + simpleClassName + ".PNG";
+
+		File imageFile = new File(iFile);
+
+		Chart chart = (Chart)this.getChart();
+		
+		chart.topOffset = 5;
+		chart.bottomOffset = 5;
+
+		if (imageFile.exists()) {
+
+			System.out.println("imageFile exists!!");
+
+			BufferedImage imageInMemory = new BufferedImage(dimension.width, dimension.height, BufferedImage.TYPE_INT_RGB);
+
+			Graphics g2 = imageInMemory.getGraphics();
+			
+			chart.paint(g2);
+
+			String path = relPath + "\\img\\" + simpleClassName + "_TEST_TO_COMPARE.PNG";
+
+			FileUtils.writeChart((Chart)this.getChart(), path, dimension);
+			BufferedImage imageFromFileSystemToCOmpare = ImageIO.read(new File(path));
+			
+			BufferedImage imageFromFileSystem = ImageIO.read(new File(iFile));
+			
+			if (TestDataBar_1_Simple.compareImages(imageFromFileSystemToCOmpare, imageFromFileSystem)) {
+				System.out.println("equal!!");
+			} else {
+				throw new RuntimeException("not equal!! Please check TEST file");
+			}
+		} else {
+			System.out.println("imageFile does not exist!! So creating");
+			FileUtils.writeChart((Chart)this.getChart(), imageFile.getPath(), dimension);
+		}
+	}
 
 
 //	private void writeFile(StringBuilder sbCodeSnippet, String fileName){
@@ -191,38 +257,7 @@ public abstract class ChartTester extends JFrame{
 	
 	Dimension defaultDimension = new Dimension(1000, 700);
 
-	public String writeChart(Chart chart, String path, Dimension dimension) {
-		
-		String url = "";
-		
-		int width = chart.getWidth(); 
-		int height = chart.getHeight();
 
-		if (dimension == null) {
-			chart.setSize(defaultDimension);
-			chart.setMinimumSize(defaultDimension);
-			chart.setPreferredSize(defaultDimension);
-		}
-		
-		BufferedImage image = new BufferedImage(chart.getWidth(), chart.getHeight(), 
-				BufferedImage.TYPE_INT_ARGB);
-
-		
-		Graphics g2 = image.getGraphics();
-		chart.paint(g2);
-
-		try {
-			ImageIO.write(image, "PNG", new File(path + chart.fileLocation + ".PNG"));
-			
-			url = path + chart.fileLocation + ".PNG";
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	
-		System.out.println("saving ");
-		return url;
-	}
 	
 	
 	class Test extends JComponent {

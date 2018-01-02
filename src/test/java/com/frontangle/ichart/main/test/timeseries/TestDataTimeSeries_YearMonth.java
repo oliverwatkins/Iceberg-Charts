@@ -2,10 +2,13 @@ package com.frontangle.ichart.main.test.timeseries;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.XYChart;
@@ -24,6 +27,12 @@ import com.frontangle.ichart.scaling.TimeSeriesAxisScaling;
 
 public class TestDataTimeSeries_YearMonth extends ChartTester {
 
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
+	
 	@Override
 	public Chart getChart() throws ParseException {
 

@@ -1,7 +1,11 @@
 package com.frontangle.ichart.main.test.bar;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.XYChart;
@@ -85,4 +89,10 @@ public class TestDataBar_zero_offchart extends ChartTester {
 	public String getNiceTitle()  {
 		return "Bar: zero off chart";
 	}
+	
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
 }

@@ -7,7 +7,11 @@ package com.frontangle.ichart.main.test.bubble;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.PieBubbleChart;
@@ -27,6 +31,12 @@ import com.frontangle.ichart.scaling.LinearNumericalAxisScaling;
  * @author oliver
  */
 public class TestDataPieBubble extends ChartTester {
+	
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
 	@Override
 	public Chart getChart() {
 

@@ -11,12 +11,16 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.io.IOException;
 import java.nio.channels.GatheringByteChannel;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.Utils;
@@ -27,6 +31,13 @@ import com.frontangle.ichart.pie.Segment;
 import com.frontangle.ichart.pie.SimpleIndicatorPieChart;
 
 public class TestDataPie_SimplePie extends ChartTester {
+	
+	@Test
+	public void testSnapshot() throws IOException, ParseException {
+		super.testSnapshot();
+	}
+	
+	
 	@Override
 	public Chart getChart() {
 
