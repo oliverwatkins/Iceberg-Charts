@@ -36,9 +36,6 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 	
 	@Override
 	public Chart getChart() throws ParseException {
-		
-		
-
         
 
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -47,7 +44,6 @@ public class TestDataTimeSeries_MonthDay extends ChartTester {
 
 		Date startDate = df.parse("2001-01-03 10-00-00"); // 3 Jan
 		Date endDate = df.parse("2001-04-7 05-33-00"); // 7 april
-
 
 
 		ArrayList<DataPoint> values = createData();

@@ -95,14 +95,8 @@ public class ChartShowcase extends JFrame {
          */
         tabbedPane.add("Logarithimc", new LogTester().createPanel());
         
-        
-        
-        /***
-         * XY
-         */
-        tabbedPane.add("Bubble", new XYTester().createPanel());
-        
         tabbedPane.add("Pie Charts", tabbedPanePie);
+        
         tabbedPane.add("XYY", tabbedPaneXYY);
         
         /**

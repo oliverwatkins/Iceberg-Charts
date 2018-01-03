@@ -6,7 +6,6 @@ import java.util.Date;
  * Describes a date range
  * 
  * @author Oliver Watkins
- *
  */
 public class DateRange {
 

@@ -60,13 +60,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	public XYChart() {
 	}
 
-//	/*
-//	 * Create an XY chart passing in also the data set as an arraylist.
-//	 */
-//	public XYChart(ArrayList<XYDataSeries> listOfSeries, YAxis yAxis, XAxis xAxis) {
-//		this(xAxis, yAxis);
-//		this.data.addAll(listOfSeries);
-//	}
 	
 	/*
 	 * Create an XY chart by passing in the two axis. This is the default
@@ -212,9 +205,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		this.setTitle(title);
 	}
-	
-
-
 	
 	
 	public XYChart(String title, String xLabel, String yLabel,
@@ -407,22 +397,18 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	@Override
 	public void drawLegend(Graphics2D g) {
+		
+		boolean legendable = LegendUtil.isChartLegendable(this);
 
-		ArrayList<Category> categories = new ArrayList<Category>();
+		if (legendable)
+			LegendUtil.setUpLegend(this, g);
 
-		if (data.isEmpty())
-			return;
-		if (data.get(0).dataPoints.isEmpty())
-			return;
-
-		LegendUtil.setUpLegend(this, g);
-
-		if (data.size() == 1) {
-			/**
-			 * In all other cases (except DataPointMultBar) if there is just one
-			 * series then show nothing. ie. break out.
-			 */
-		}
+//		if (data.size() == 1) {
+//			/**
+//			 * In all other cases (except DataPointMultBar) if there is just one
+//			 * series then show nothing. ie. break out.
+//			 */
+//		}
 	}
 
 	// Inner line just inside of the axis line. Potentially optional??

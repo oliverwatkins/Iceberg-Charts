@@ -30,7 +30,7 @@ public abstract class ChartTester extends JFrame{
 	
 	public abstract String getNiceTitle();
 
-	
+	Dimension defaultDimension = new Dimension(1000, 700);
 
 	
 	
@@ -152,7 +152,6 @@ public abstract class ChartTester extends JFrame{
 	}
 	
 	
-	
 	public void testSnapshot() throws IOException, ParseException {
 
 		Class c = this.getClass();
@@ -212,35 +211,6 @@ public abstract class ChartTester extends JFrame{
 			FileUtils.writeChart((Chart)this.getChart(), imageFile.getPath(), dimension);
 		}
 	}
-
-
-//	private void writeFile(StringBuilder sbCodeSnippet, String fileName){
-//		BufferedWriter writer = null;
-//		try {
-//			String s = GenerateShowcase.path + fileName;
-//			
-//			System.out.println("create new file " + s);
-//			
-//			
-//			File file = new File(s);
-//			file.createNewFile();
-//			
-//			System.out.println("file.getCanonicalFile " + file.getCanonicalFile());
-//			System.out.println("sbCodeSnippet length " + sbCodeSnippet.length());
-//			
-//			writer = new BufferedWriter(new FileWriter(file)); 
-//			writer.write(sbCodeSnippet.toString());
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		}finally{
-//			try {
-//				writer.close();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-
 	
 	public String getClassName() {
 		String className = this.getClass().getName();
@@ -255,8 +225,6 @@ public abstract class ChartTester extends JFrame{
         chart.fileLocation = s;
 	}
 	
-	Dimension defaultDimension = new Dimension(1000, 700);
-
 
 	
 	

@@ -413,16 +413,13 @@ public class ChartUtils {
 		double factor = scaling.getMultiplicationFactor(chart);
 
 		if (scaling instanceof LinearNumericalAxisScaling) {
-			incrementInPixel = (double) (((NumericalInterval) interval)
-					.getInterval() * factor);
+			incrementInPixel = (double) (((NumericalInterval) interval).getInterval() * factor);
 		} else {
 
 			TimeInterval inter = (TimeInterval) interval;
-
 			TimeInterval.Type t = inter.getInterval();
 
 			long increment = DateUtils.getMsForType(t);
-
 			incrementInPixel = (double) (increment * factor);
 		}
 		return incrementInPixel;

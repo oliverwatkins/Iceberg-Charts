@@ -108,8 +108,7 @@ public class LegendUtil {
 					categories.add(category);
 				}
 			} else {
-				category = new Category(series.name, series.pointType,
-						series.line);
+				category = new Category(series.name, series.pointType, series.line);
 				categories.add(category);
 			}
 		}
@@ -163,7 +162,6 @@ public class LegendUtil {
 			
 			LegendVertical legend = new LegendVertical(chart.legendFont, chart, startingPoint);
 
-
 			legend.drawLegend(g, chart, categories);
 
 		} else if (chart.legendPosition == LegendPosition.BOTTOM) {
@@ -183,6 +181,64 @@ public class LegendUtil {
 			legend.drawLegend(g, chart, categories);
 
 		}
+	}
+	
+	/**
+	 * Should a legend be able to be shown?
+	 * 
+	 * NO:
+	 * A single series of data
+	 * 
+	 * 
+	 * YES:
+	 * multiple series of data.
+	 * a single series of multibar chart
+	 * 
+	 * @param xyChart
+	 * @return
+	 */
+
+	public static boolean isChartLegendable(XYChart xyChart) {
+		
+//		ArrayList<Category> categories = new ArrayList<Category>();
+
+		if (xyChart.data.isEmpty())
+			return false;
+		if (xyChart.data.get(0).dataPoints.isEmpty())
+			return false;
+		
+		if (xyChart.data.size() == 1) {
+			
+			XYDataSeries<DataPoint> series = xyChart.data.get(0);
+
+			if (series.type == XYDataSeriesType.MULTI_BAR) {
+				return true;
+			}
+			
+			if (xyChart.isYAxis2) {
+
+//				XYDataSeries<DataPoint> series2 = xyChart.dataY2.get(0);
+
+				if (xyChart.dataY2.isEmpty())
+					return false;
+				if (xyChart.dataY2.get(0).dataPoints.isEmpty())
+					return false;
+				
+				if (xyChart.dataY2.size() == 1) {
+					XYDataSeries<DataPoint> series2 = xyChart.dataY2.get(0);
+
+					if (series2.type == XYDataSeriesType.MULTI_BAR) {
+						return true;
+					}
+				}else {
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		
+		return true;
 	}
 
 }

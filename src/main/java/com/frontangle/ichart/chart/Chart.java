@@ -26,13 +26,13 @@ import com.frontangle.ichart.chart.legend.LegendVertical;
  * 
  * Additionally a Chart is composed of a Title and optionally a Legend
  * 
- * 
  * @author oliver
  */
 public abstract class Chart extends JPanel {
 
+	public LegendVertical legend;
 	public LegendPosition legendPosition = LegendPosition.RIGHT;
-
+	
 	// file locations in local file system TODO this probably does not belong
 	// here. Have class like ChartExt with meta data like file location?
 	public String fileLocation = "";
@@ -51,8 +51,6 @@ public abstract class Chart extends JPanel {
 	public int heightChart; // generated
 	public int widthChart; // generated
 
-	public LegendVertical legend;
-
 	public Title title = new Title();
 
 	private Image background = null;
@@ -66,11 +64,12 @@ public abstract class Chart extends JPanel {
 	protected void calculateHeighAndWidthOfChart() {
 
 		if ((topOffset + bottomOffset) > getHeight()) {
-			throw new RuntimeException("Offset is greater than height " );
+			throw new RuntimeException("Offset is greater than height ");
 
 		}
 		if ((leftOffset + rightOffset) > getWidth()) {
-			throw new RuntimeException("Offset (" + leftOffset + " " + rightOffset + ")is greater than width (" + getWidth() +")");
+			throw new RuntimeException("Offset (" + leftOffset + " " + rightOffset
+					+ ")is greater than width (" + getWidth() + ")");
 		}
 
 		this.heightChart = getHeight() - (topOffset + bottomOffset);
@@ -89,21 +88,18 @@ public abstract class Chart extends JPanel {
 
 		g2d.setColor(backgroundColor);
 
-		g2d.fillRect(leftOffset, topOffset, this.getWidth() - leftOffset
-				- rightOffset, this.getHeight() - topOffset - bottomOffset);
+		g2d.fillRect(leftOffset, topOffset, this.getWidth() - leftOffset - rightOffset,
+				this.getHeight() - topOffset - bottomOffset);
 
 		if (background != null) {
 			float opacity = 0.5f;
-			g2d.setComposite(AlphaComposite.getInstance(
-					AlphaComposite.SRC_OVER, opacity));
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 
-			g2d.drawImage(background, leftOffset, topOffset, this.getWidth()
-					- leftOffset - rightOffset, this.getHeight() - topOffset
-					- bottomOffset, null);
+			g2d.drawImage(background, leftOffset, topOffset, this.getWidth() - leftOffset
+					- rightOffset, this.getHeight() - topOffset - bottomOffset, null);
 
 			opacity = 1f;
-			g2d.setComposite(AlphaComposite.getInstance(
-					AlphaComposite.SRC_OVER, opacity));
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 		}
 	}
 
@@ -158,5 +154,4 @@ public abstract class Chart extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 	}
-
 }
