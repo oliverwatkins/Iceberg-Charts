@@ -50,7 +50,7 @@ public class TestDataBar_6_Transparancy extends ChartTester {
 		chart.clearGraphLines();
 
         try {
-        	Image background = ImageIO.read(new File("src/test/java/com/bluewalrus/main/test/bar/refugees.jpg"));
+        	Image background = ImageIO.read(new File("src/test/java/com/frontangle/ichart/main/test/bar/refugees.jpg"));
     		chart.setBackgroundImage(background);
         } catch (IOException e) {
             e.printStackTrace();

@@ -89,6 +89,12 @@ public class TestDataXY_LineExamples extends ChartTester {
 
 		return chart;
 	}
+	
+	public static void main(String[] args) throws Exception {
+		ChartTester t = new TestDataXY_LineExamples();
+		t.testChart(t.getChart());
+	}
+	
 
 	@Override
 	public String getNiceTitle() {
