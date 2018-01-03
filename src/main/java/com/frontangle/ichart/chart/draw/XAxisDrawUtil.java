@@ -3,6 +3,7 @@ package com.frontangle.ichart.chart.draw;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.Shape;
 
 import com.frontangle.ichart.chart.Chart;
@@ -109,6 +110,9 @@ public class XAxisDrawUtil {
 
 		// x label
 		g2d.setFont(axis.font);
+		
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
 
 		g2d.drawString(axis.labelText, chart.widthChart / 2 + chart.leftOffset
 				- xAxisStringWidth / 2, chart.topOffset + chart.heightChart

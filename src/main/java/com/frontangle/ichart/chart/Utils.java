@@ -108,15 +108,11 @@ public class Utils {
         Rectangle outlineBounds = outline.getBounds();
 
         transform = g2.getTransform();
-
         transform.translate(x, y);
 
         g2.transform(transform);
-
         g2.setColor(Color.blue);
-
         g2.draw(outline);
-
         g2.setClip(outline);
 
         transform.translate(-x, -y);

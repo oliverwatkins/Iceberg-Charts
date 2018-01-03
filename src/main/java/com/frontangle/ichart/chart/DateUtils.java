@@ -272,9 +272,6 @@ public class DateUtils {
 		return days;
 	}
 	
-	
-	
-	
 	/*
 	 * Given a date ( which should be in the form 01.01.00:00 19XX ) add years such that
 	 * the date returned is 01.01.00:00 (19XX+years) 

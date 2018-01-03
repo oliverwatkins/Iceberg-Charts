@@ -35,8 +35,6 @@ public class Title {
 
 		g2d.setColor(titleColor);
 		g2d.drawString(title, titleX, titleY);
-
-		// drawTrialVersion(g2d);
 	}
 	
 	public String getTitle() {

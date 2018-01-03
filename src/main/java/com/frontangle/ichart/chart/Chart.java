@@ -32,7 +32,7 @@ public abstract class Chart extends JPanel {
 
 	public LegendVertical legend;
 	public LegendPosition legendPosition = LegendPosition.RIGHT;
-	
+
 	// file locations in local file system TODO this probably does not belong
 	// here. Have class like ChartExt with meta data like file location?
 	public String fileLocation = "";

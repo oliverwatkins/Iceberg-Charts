@@ -2,24 +2,21 @@ package com.frontangle.ichart.chart;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import com.frontangle.ichart.chart.axis.IntervalStyling;
-import com.frontangle.ichart.chart.axis.NumericalInterval;
-import com.frontangle.ichart.chart.axis.TimeInterval;
 import com.frontangle.ichart.chart.axis.XAxis;
 import com.frontangle.ichart.chart.axis.YAxis;
 import com.frontangle.ichart.chart.datapoint.DataPoint;
 import com.frontangle.ichart.chart.datapoint.DataPointBar;
-import com.frontangle.ichart.chart.datapoint.DataPointMultiBar;
 import com.frontangle.ichart.chart.datapoint.DataPointWithMagnitude;
-import com.frontangle.ichart.chart.datapoint.ValueType;
 import com.frontangle.ichart.chart.draw.Line;
 import com.frontangle.ichart.chart.draw.plotter.ChartPlotter;
 import com.frontangle.ichart.chart.draw.point.UIPointBar;
@@ -27,9 +24,6 @@ import com.frontangle.ichart.chart.draw.point.UIPointSquare;
 import com.frontangle.ichart.chart.draw.point.UIPointXY;
 import com.frontangle.ichart.chart.legend.LegendUtil;
 import com.frontangle.ichart.chart.legend.Legendable;
-import com.frontangle.ichart.scaling.EnumerationAxisScaling;
-import com.frontangle.ichart.scaling.LinearNumericalAxisScaling;
-import com.frontangle.ichart.scaling.TimeSeriesAxisScaling;
 
 /**
  * XYChart is a chart where data is represented by x,y data. Typically the y
@@ -59,7 +53,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 */
 	public XYChart() {
 	}
-
 	
 	/*
 	 * Create an XY chart by passing in the two axis. This is the default
@@ -93,8 +86,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				Color.BLACK), new Line(Color.BLACK), "");
 		xySeriesList.add(xy);
 
-		this.addMouseMotionListener(this);
-
 		this.data.addAll(xySeriesList);
 
 		this.setTitle(title);
@@ -104,6 +95,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		xAxis.labelText = xLabel;
 		yAxis.labelText = yLabel;
+		
+		this.addMouseMotionListener(this);
 	}
 
 	// Simple Single Data Series Constructor
@@ -117,7 +110,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		ScalingHelper.initialiseScaling(this, xySeriesList);
 
-		this.addMouseMotionListener(this);
 
 		this.data.addAll(xySeriesList);
 
@@ -125,6 +117,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		xAxis.labelText = xLabel;
 		yAxis.labelText = yLabel;
+
+		this.addMouseMotionListener(this);
 
 	}
 	
@@ -135,12 +129,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		ScalingHelper.initialiseScaling(this, xySeriesList);
 
+		this.setTitle(title);
+		
 		yAxis.labelText = yTitle;
 		xAxis.labelText = xTitle;
 
 		this.addMouseMotionListener(this);
-
-		this.setTitle(title);
 	}
 
 
@@ -151,13 +145,14 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		
 		yAxis.labelText = yTitle;
 		xAxis.labelText = xTitle;
-		
+
+		this.setTitle(title);
+
 		this.xAxis = xAxis;
 		this.yAxis = yAxis;
 
 		this.addMouseMotionListener(this);
 
-		this.setTitle(title);
 	}
 
 	// Set up a chart with specific stylings.
@@ -286,9 +281,8 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				Color.RED, Color.YELLOW, pixelBarWidth), null, "");
 
 		xySeriesList.add(xy);
-
-		xAxis = ScalingHelper.initialiseScalingX_enumeration(xySeriesList);
-		yAxis = ScalingHelper.initialiseScalingY_numerical(xySeriesList);
+		
+		ScalingHelper.initialiseScaling(this, xySeriesList);
 
 		this.setTitle(title);
 
@@ -369,6 +363,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	@Override
 	protected void drawGraphData(Graphics g) {
+		
 
 		if (xAxis.axisScaling.getMaxValue() == xAxis.axisScaling.getMinValue()) {
 			throw new RuntimeException("Bummer! range has not been set for enum axis "

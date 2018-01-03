@@ -15,7 +15,6 @@ import com.frontangle.ichart.chart.axis.XAxis;
  * share the same X axis. 
  * 
  * @author Oliver Watkins
- *
  */
 public class StackedXYChart extends XYChart{
 
@@ -31,7 +30,7 @@ public class StackedXYChart extends XYChart{
 		this.charts = charts;
 		this.percentages = percentages;
 		
-		this.xAxis = charts.get(0).xAxis; //all xAxis are shared
+		this.xAxis = charts.get(0).xAxis; //all xAxis are shared, so just use the first one.
 	}
 
 
@@ -50,7 +49,7 @@ public class StackedXYChart extends XYChart{
 	
 	@Override
 	protected void drawGraphData(Graphics g) {
-		// ?
+		// ? nothing needed here
 	}
 	
 	public void prePaint(Graphics2D g) {

@@ -184,23 +184,23 @@ public class LegendUtil {
 	}
 	
 	/**
-	 * Should a legend be able to be shown?
+	 * Should a legend be able to be shown? (Doesn't necessarily mean that it will be shown... but does it have the capability)
 	 * 
 	 * NO:
 	 * A single series of data
 	 * 
-	 * 
 	 * YES:
-	 * multiple series of data.
+	 * multiple series of data. (line, bubble, scatter)
 	 * a single series of multibar chart
+	 * pie XY chart
+	 * enumerable bar chart
 	 * 
 	 * @param xyChart
 	 * @return
 	 */
-
 	public static boolean isChartLegendable(XYChart xyChart) {
 		
-//		ArrayList<Category> categories = new ArrayList<Category>();
+		//TODO this method is messy as hell
 
 		if (xyChart.data.isEmpty())
 			return false;
@@ -208,7 +208,6 @@ public class LegendUtil {
 			return false;
 		
 		if (xyChart.data.size() == 1) {
-			
 			XYDataSeries<DataPoint> series = xyChart.data.get(0);
 
 			if (series.type == XYDataSeriesType.MULTI_BAR) {
@@ -216,8 +215,6 @@ public class LegendUtil {
 			}
 			
 			if (xyChart.isYAxis2) {
-
-//				XYDataSeries<DataPoint> series2 = xyChart.dataY2.get(0);
 
 				if (xyChart.dataY2.isEmpty())
 					return false;
@@ -236,8 +233,6 @@ public class LegendUtil {
 			}
 			return false;
 		}
-		
-		
 		return true;
 	}
 

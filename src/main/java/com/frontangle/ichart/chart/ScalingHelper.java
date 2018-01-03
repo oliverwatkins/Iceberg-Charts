@@ -21,15 +21,13 @@ import com.frontangle.ichart.scaling.TimeSeriesAxisScaling;
  */
 public class ScalingHelper {
 
-	// Initialize, calculating best x,y scalings and intervals.
 
 	/**
-	 * create xAxis, yAxis with correct scaling.
+	 * Looks at the data and figures out what axis is needed. Then create xAxis, yAxis with correct scaling.
 	 * 
-	 * @param chart
-	 * @param xySeriesList
+	 * @param chart xyChart
+	 * @param xySeriesList the data for the chart
 	 */
-
 	public static void initialiseScaling(XYChart chart,
 			ArrayList<XYDataSeries> xySeriesList) {
 		XAxis xAxis = null;
@@ -94,7 +92,7 @@ public class ScalingHelper {
 	 *            list of chart data
 	 * @return x-axis
 	 */
-	public static XAxis initialiseScalingX_time(
+	private static XAxis initialiseScalingX_time(
 			ArrayList<XYDataSeries> xySeriesList) {
 
 		// get date range on the x axis
@@ -124,49 +122,80 @@ public class ScalingHelper {
 		return xAxis;
 	}
 
+	/**
+	 * 
+	 * 
+	 * @param xySeriesList
+	 * @return xAxis
+	 */
 	public static XAxis initialiseScalingX_enumeration(
 			ArrayList<XYDataSeries> xySeriesList) {
 
 		EnumerationAxisScaling xd = new EnumerationAxisScaling();
 		XAxis xAxis = new XAxis(xd, "");
 
-		double xMax = xd.maxValue; // 100
-		double xMin = xd.minValue; // 0
 
-		int lastLength = xySeriesList.get(0).dataPoints.size();
-		for (XYDataSeries xyDataSeries : xySeriesList) {
-
-			int sizeXPoints = xyDataSeries.dataPoints.size();
-			if (sizeXPoints != lastLength) {
-				throw new RuntimeException(
-						"A list of series for an enumerable/category X Axis requires the exact "
-								+ "same number of data points for each series. "
-								+ "Variable number of series data points not currently supported");
-			}
+		
+		if (!doAllSeriesHaveSameNumberOfDataPoints(xySeriesList)) {
+			throw new RuntimeException(
+					"A list of series for an enumerable/category X Axis requires the exact "
+							+ "same number of data points for each series. "
+							+ "Variable number of series data points not currently supported");
 		}
-
+		
 		ArrayList<DataPoint> dps = xySeriesList.get(0).dataPoints; // will only
 																	// have one
 																	// series
 
+		double xMax = xd.maxValue; // 100
+		double xMin = xd.minValue; // 0
+		
 		double xRange = (double) (xMax - xMin);
 
 		// distance between points (bars)
 		double pointDistance = (double) (xRange / (dps.size() + 1));
 
+		rationaliseDataSeriesX(xySeriesList, pointDistance);
+
+		ChartUtils.validityCheck(dps);
+
+		return xAxis;
+	}
+
+	/**
+	 * Iterate through all series and space out all X values equally based on xDiff. Eg
+	 * if xDiff is 7, then all the x values of all the data series will be 7,14,21, etc.
+	 * 
+	 * @param xySeriesList the data to be rationalised
+	 * @param xDiff the increment value
+	 */
+	private static void rationaliseDataSeriesX(ArrayList<XYDataSeries> xySeriesList,
+			double xDiff) {
+		
 		for (XYDataSeries xyDataSeries : xySeriesList) {
 			ArrayList<DataPoint> dps2 = xyDataSeries.dataPoints;
 
 			int i = 1;
 			for (DataPoint dp : dps2) {
-				dp.x = (double) (pointDistance * i);
+				dp.x = (double) (xDiff * i);
 				i++;
 			}
 		}
+	}
 
-		ChartUtils.validityCheck(dps);
+	private static boolean doAllSeriesHaveSameNumberOfDataPoints(ArrayList<XYDataSeries> xySeriesList) {
+		
+		int lastLength = xySeriesList.get(0).dataPoints.size();
+		
+		for (XYDataSeries xyDataSeries : xySeriesList) {
 
-		return xAxis;
+			int sizeXPoints = xyDataSeries.dataPoints.size();
+			if (sizeXPoints != lastLength) {
+				return false;
+
+			}
+		}
+		return true;
 	}
 
 	// Numerical only
@@ -218,5 +247,4 @@ public class ScalingHelper {
 				drY.max, t1, t2, null), "Y TODO");
 		return yAxis;
 	}
-
 }

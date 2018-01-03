@@ -7,7 +7,6 @@ import com.frontangle.ichart.chart.draw.point.UIPointBubble;
 import com.frontangle.ichart.chart.draw.point.UIPointXY;
 
 /**
- * 
  * @author Oliver Watkins
  */
 public class Category {

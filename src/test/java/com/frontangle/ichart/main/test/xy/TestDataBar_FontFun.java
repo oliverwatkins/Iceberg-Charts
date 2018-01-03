@@ -2,6 +2,7 @@ package com.frontangle.ichart.main.test.xy;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.RenderingHints;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ import com.frontangle.ichart.chart.datapoint.DataPointBar;
 import com.frontangle.ichart.main.test.ChartTester;
 
 /**
- * @copyright @author Oliver Watkins (www.blue-walrus.com) All Rights Reserved
+ * 
+ * @author Oliver Watkins
  */
 public class TestDataBar_FontFun extends ChartTester {
 
@@ -37,17 +39,21 @@ public class TestDataBar_FontFun extends ChartTester {
 		values.add(new DataPointBar("Five", 18, colors.get(5)));
 		values.add(new DataPointBar("Six", 40, colors.get(6)));
 
-		XYChart chart = new XYChart("Really Big Text", "yadda yadda", "yadda yadda", values, 40);
-
-		chart.xAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
-		chart.xAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
-		chart.xAxis.labelText = "Playing with fonts";
+		XYChart chart = new XYChart("", "\u2202 \u2201 \u2602 \u266B \u20AC umbrella sales", "number of sunny days", values, 40);
+		
+		String s = "\u2202";
+				
+		System.out.println("unicode \u2202 \u2602 " + s);
+		Font font = new Font("Lucida Sans Regular", Font.PLAIN, 32);
+        
+		chart.xAxis.axisCatFont = font;
+		chart.xAxis.font = font;
 
 		chart.yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
 		chart.yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
 
-		chart.setTitleFont("Ravie", Font.PLAIN, 70);
-		chart.setTitle("Really Big Text");
+		chart.setTitleFont(new Font("Lucida Sans Regular", Font.PLAIN, 32));
+		chart.setTitle("\u2202 \u2201 \u2602 \u266B \u20AC");
 		chart.setSize(900, 500);
 
 		return chart;

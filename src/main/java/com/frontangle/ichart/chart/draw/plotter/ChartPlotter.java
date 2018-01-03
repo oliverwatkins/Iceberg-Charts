@@ -21,6 +21,8 @@ import com.frontangle.ichart.scaling.TimeSeriesAxisScaling;
 /**
  * Plots chart data
  * 
+ * TODO this class needs a lot of work
+ * 
  * @author Oliver Watkins
  *
  */
@@ -119,18 +121,17 @@ public class ChartPlotter {
 
         //hack TODO 
         if (xyFactor.getyFactor() * y > 200000) {
-        	System.err.println("ERROR!!! xyFactor.yFactor * y > 200000");
-        	System.err.println("Computer is probably going to crash now?");
+        	System.err.println("ERROR!!! xyFactor.yFactor * y > 200000....  xyFactor.xFactor - " + xyFactor.getyFactor() + " y - " + y);
+        	System.err.println("Potential runaway process!!!! Computer is probably going to crash now?");
         }
         if (xyFactor.getxFactor() * x > 200000) {
         	System.err.println("ERROR!!! xyFactor.xFactor * x > 200000....  xyFactor.xFactor - " + xyFactor.getxFactor() + " x - " + x);
-        	System.err.println("Computer is probably going to crash now?");
+        	System.err.println("Potential runaway process!!!! Computer is probably going to crash now?");
         }
 
         UIPointXY pointType = xYDataSeries.pointType;
 
         if (dataPoint.uiPointXY == null && pointType != null) {
-        	
             
             UIPointXY xyInstance = null;
             try {
@@ -141,15 +142,12 @@ public class ChartPlotter {
             dataPoint.setPoinUI(xyInstance);
         }
         
-        
         if (xYDataSeries.pointType != null) {
             //TODO I do not know why the clipping is happening in the point. It is probably better to clip here in this method
             //see draw line.
             dataPoint.uiPointXY.draw(g, new Point(x, y), lastPoint, dataPoint, xyFactor, chart, pixBtnFirst2Pts);
         	
         }
-
-        	
         
         lastPoint = new Point(x,y);
         return lastPoint;
