@@ -36,8 +36,8 @@ public class UIPointMultiBarStacked extends UIPointAbstractMultiBar{
 	
 	double barWidth = -123; //px
 
-	public void draw(Graphics2D g, Point point, Point lastPoint, 
-			DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
+	public void draw(Graphics2D g, Point point, DataPoint dataPoint, 
+			XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
 		DataPointMultiBar dpX = (DataPointMultiBar)dataPoint;
 		

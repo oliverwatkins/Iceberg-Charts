@@ -461,7 +461,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 					boolean b = uip.doesShapeContainPoint(point);
 
 					if (b)
-						System.out.println("CONTAINS POINT!!");
+						System.out.println("CONTAINS POINT");
 				}
 			}
 		}

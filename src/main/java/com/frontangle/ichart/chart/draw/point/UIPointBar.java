@@ -44,7 +44,7 @@ public class UIPointBar extends UIPointAbstractBar {
 
 
 	public void draw(Graphics2D g, 
-    		Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
+    		Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
     	
     	double barWidth = -123; //px

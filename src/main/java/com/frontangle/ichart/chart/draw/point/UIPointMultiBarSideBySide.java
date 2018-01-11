@@ -29,7 +29,7 @@ public class UIPointMultiBarSideBySide extends UIPointAbstractMultiBar{
 		barWidthPercent = totalBarWidthPercent;
 	}
 
-	public void draw(Graphics2D g, Point point, Point lastPoint, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
+	public void draw(Graphics2D g, Point point, DataPoint dataPoint, XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
 		DataPointMultiBar multiBarDataPoint = (DataPointMultiBar)dataPoint;
 	    

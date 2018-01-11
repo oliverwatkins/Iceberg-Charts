@@ -39,7 +39,6 @@ public class UIPointCandleStick  extends UIPointComplexXY{
 
 	public void draw(Graphics2D g, 
 			Point point, 
-			Point lastPoint, 
 			DataPoint dataPoint, 
 			XYFactor xyFactor, 
 			XYChart chart, 

@@ -40,9 +40,8 @@ public class UIPointBubble extends UIPointComplexXY {
 		super(color);
 	}
 
-	public void draw(Graphics2D g, Point point, Point lastPoint,
-			DataPoint dataPoint, XYFactor xyFactor, XYChart chart,
-			int pixBtnFirst2Pts) {
+	public void draw(Graphics2D g, Point point, DataPoint dataPoint,
+			XYFactor xyFactor, XYChart chart, int pixBtnFirst2Pts) {
 
 		this.point = point;
 		dpWithM = (DataPointWithMagnitude) dataPoint;

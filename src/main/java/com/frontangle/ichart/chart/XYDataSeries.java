@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.frontangle.ichart.chart.datapoint.DataPoint;
+import com.frontangle.ichart.chart.draw.Area;
 import com.frontangle.ichart.chart.draw.Line;
 import com.frontangle.ichart.chart.draw.point.UIPointBubble;
 import com.frontangle.ichart.chart.draw.point.UIPointMultiBarSideBySide;
@@ -27,6 +28,9 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
     public UIPointXY pointType; 
     
     public Line line;
+    
+	public Area area;
+    
     public String name;
 
     public XYDataSeriesType type;

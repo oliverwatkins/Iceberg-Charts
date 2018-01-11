@@ -208,7 +208,7 @@ public class AbstractLegend {
         Point p = new Point(xPos, yPos);
 
         if (point instanceof UIPointSimpleXY) {
-            point.draw(g, p, null, null, null, null, 0);
+            point.draw(g, p, null, null, null, 0);
         }
 
     }
@@ -223,7 +223,7 @@ public class AbstractLegend {
         Point p = new Point(xPos, yPos);
 
         if (point instanceof UIPointSimpleXY) {
-            point.draw(g, p, null, null, null, null, 0);
+            point.draw(g, p, null, null, null, 0);
         }
 		
 	}

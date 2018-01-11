@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.frontangle.ichart.chart.Chart;
+import com.frontangle.ichart.main.test.area.AreaTester;
 import com.frontangle.ichart.main.test.bar.BarsTester;
 import com.frontangle.ichart.main.test.bubble.BubbleTester;
 import com.frontangle.ichart.main.test.fractions.FractionTester;
@@ -74,6 +75,10 @@ public class IcebergChartsDemo extends JFrame {
          * BARS
          */
         tabbedPane.add("Bar Charts", new BarsTester().createPanel());
+        /***
+         * AREA
+         */
+        tabbedPane.add("Area Charts", new AreaTester().createPanel());
         /***
          * MATH
          */
