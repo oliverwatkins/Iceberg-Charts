@@ -8,9 +8,10 @@ package com.frontangle.ichart.chart;
 
 import java.awt.Color;
 
+
 /**
- *
- * @author lauren
+ * 
+ * @author Oliver Watkins
  */
 public class PieBubbleChartSettings {
     

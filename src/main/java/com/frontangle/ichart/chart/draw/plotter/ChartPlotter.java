@@ -48,16 +48,22 @@ public class ChartPlotter {
         
         xyFactor.xZeroOffsetInPixel = getXZeroOffsetInPixel(chart, xAxis);
 		xyFactor.yZeroOffsetInPixel = getYZeroOffsetInPixel(chart, yAxis);
-
+		
         int xShift = chart.leftOffset; //silly
         int yShift = chart.topOffset + chart.heightChart;
-
+        
+        
         for (XYDataSeries xYDataSeries : xYDataSerieses) {
 
-//        	TODO replace with Nicks changes : CopyOnWriteArrayList
+            ArrayList<DataPoint> dataPoints_ = xYDataSeries.dataPoints;
+            
+            //prevent concurrentmodification errors :
+            CopyOnWriteArrayList<DataPoint> dataPoints = new CopyOnWriteArrayList<DataPoint>();
+            
+            for (DataPoint dataPoint : dataPoints_) {
+                dataPoints.add(dataPoint);
+            }
         	
-        	ArrayList <DataPoint> dataPoints = xYDataSeries.dataPoints;
-
             if (dataPoints.size() == 0){
             	continue;
             }

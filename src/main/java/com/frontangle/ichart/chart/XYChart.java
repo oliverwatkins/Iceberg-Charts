@@ -71,7 +71,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		this.data.add(series);
 
-		ScalingHelper.initialiseScaling(this, this.data);
+		ScalingHelper.initialiseAxisAndScaling(this, this.data);
 
 		this.xAxis.labelText = xLabel;
 		this.yAxis.labelText = yLabel;
@@ -108,7 +108,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 				Color.BLACK), new Line(Color.BLACK), "");
 		xySeriesList.add(xy);
 
-		ScalingHelper.initialiseScaling(this, xySeriesList);
+		ScalingHelper.initialiseAxisAndScaling(this, xySeriesList);
 
 
 		this.data.addAll(xySeriesList);
@@ -127,7 +127,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		this.data.addAll(xySeriesList);
 		
-		ScalingHelper.initialiseScaling(this, xySeriesList);
+		ScalingHelper.initialiseAxisAndScaling(this, xySeriesList);
 
 		this.setTitle(title);
 		
@@ -160,7 +160,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			IntervalStyling stylingX2, IntervalStyling stylingX3, IntervalStyling stylingY,
 			IntervalStyling stylingY2, IntervalStyling stylingY3) {
 
-		ScalingHelper.initialiseScaling(this, xySeriesList);
+		ScalingHelper.initialiseAxisAndScaling(this, xySeriesList);
 
 		// replace the stylings defined in the intialise
 		xAxis.axisScaling.interval1.styling = stylingX;
@@ -189,7 +189,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		ChartUtils.setUpSeriesStyle(xySeriesList, this);
 
-		ScalingHelper.initialiseScaling(this, xySeriesList);
+		ScalingHelper.initialiseAxisAndScaling(this, xySeriesList);
 
 		this.xAxis.labelText = xLabel;
 		this.yAxis.labelText = yLabel;
@@ -214,7 +214,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 			xySeriesList.add(xyDataSeries);
 		}
 
-		ScalingHelper.initialiseScaling(this, xySeriesList);
+		ScalingHelper.initialiseAxisAndScaling(this, xySeriesList);
 		
 		ChartUtils.setUpSeriesStyle(xySeriesList, this);
 
@@ -251,7 +251,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		ChartUtils.setUpSeriesStyle(xySeries, this);
 
-		ScalingHelper.initialiseScaling(this, xySeries);
+		ScalingHelper.initialiseAxisAndScaling(this, xySeries);
 
 		if (Utils.isSeriesListEnumerable(xySeriesY2)) {
 			ScalingHelper.initialiseScalingX_enumeration(xySeriesY2);
@@ -282,7 +282,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		xySeriesList.add(xy);
 		
-		ScalingHelper.initialiseScaling(this, xySeriesList);
+		ScalingHelper.initialiseAxisAndScaling(this, xySeriesList);
 
 		this.setTitle(title);
 
@@ -397,13 +397,6 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 		if (legendable)
 			LegendUtil.setUpLegend(this, g);
-
-//		if (data.size() == 1) {
-//			/**
-//			 * In all other cases (except DataPointMultBar) if there is just one
-//			 * series then show nothing. ie. break out.
-//			 */
-//		}
 	}
 
 	// Inner line just inside of the axis line. Potentially optional??
@@ -422,12 +415,12 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 	protected void drawLeftLine(Graphics2D g) {
+		
 		/**
 		 * Inner line just inside of the axis line. Potentially optional?? Eg
 		 * colored area instead?
 		 * 
 		 */
-
 		g.setStroke(chartBorderLine);
 		g.setColor(borderLineColor);
 		g.drawLine(leftOffset, topOffset, leftOffset, heightChart + topOffset);
@@ -437,8 +430,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	 * Inner line inside axis line. Not the same as the axis. Only used in
 	 * XYYChart
 	 * 
-	 * @param g
-	 *            graphics context
+	 * @param g graphics context
 	 */
 	protected void drawRightLine(Graphics2D g) {
 		g.setStroke(chartBorderLine);
@@ -487,7 +479,7 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 	}
 
 	public void reInitialiseScaling() {
-		ScalingHelper.initialiseScaling(this, data);
+		ScalingHelper.initialiseAxisAndScaling(this, data);
 	}
 
 }

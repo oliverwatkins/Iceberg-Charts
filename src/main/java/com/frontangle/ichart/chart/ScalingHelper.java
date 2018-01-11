@@ -28,7 +28,7 @@ public class ScalingHelper {
 	 * @param chart xyChart
 	 * @param xySeriesList the data for the chart
 	 */
-	public static void initialiseScaling(XYChart chart,
+	public static void initialiseAxisAndScaling(XYChart chart,
 			ArrayList<XYDataSeries> xySeriesList) {
 		XAxis xAxis = null;
 		YAxis yAxis = null;
@@ -88,8 +88,7 @@ public class ScalingHelper {
 	 * Initialise the X Axis by adding a time scaling with max/min values
 	 * calculated from the XY data.
 	 * 
-	 * @param xySeriesList
-	 *            list of chart data
+	 * @param xySeriesList list of chart data
 	 * @return x-axis
 	 */
 	private static XAxis initialiseScalingX_time(

@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import com.frontangle.ichart.chart.axis.TimeInterval;
 import com.frontangle.ichart.chart.axis.TimeInterval.Type;
 
 public class DateUtils {
@@ -25,10 +26,14 @@ public class DateUtils {
 		return d;
 	}
 	
-	/*
-	 * Given a date (dateStart) get a time amount (in this case milliseconds) to the nearest interval
+	/**
+	 * 
+	 * @param dateStart date to calculate nearest type to
+	 * @param type timeinterval type, eg year, month etc.
+	 * @param intoFuture if false then go into the past.
+	 * @return ms value
 	 */
-	public static long getMsToNearestDataType(Date dateStart, Type type, boolean intoFuture) {
+	public static long getMsToNearestDataType(Date dateStart, TimeInterval.Type type, boolean intoFuture) {
 		
 		Calendar calDateStart = Calendar.getInstance();
 		calDateStart.setTime(dateStart);
@@ -296,6 +301,13 @@ public class DateUtils {
 		return calendar.getTimeInMillis();
 	}
 	
+	/**
+	 * Add weeks to a date as long
+	 * 
+	 * @param date date as ms
+	 * @param weeks number of weeks
+	 * @return time interval in ms
+	 */
 	public static long addWeek(long date, int weeks) {
 		
 		Calendar cal = Calendar.getInstance();
@@ -307,6 +319,13 @@ public class DateUtils {
 	}
 
 
+	/**
+	 * Add a day to a data as long 
+	 * 
+	 * @param date as long
+	 * @param days number of days
+	 * @return time period in ms
+	 */
 	public static long addDay(long date, int days) {
 		
 		Calendar cal = Calendar.getInstance();

@@ -157,9 +157,9 @@ public class StackedXYChart extends XYChart{
 	 */
 	protected void drawLeftLine(Graphics2D g) {
 
-		g.setStroke(chartBorderLine);
-		g.setColor(borderLineColor);
-		g.drawLine(leftOffset+50, topOffset, leftOffset, heightChart + topOffset);
+//		g.setStroke(chartBorderLine);
+//		g.setColor(borderLineColor);
+//		g.drawLine(leftOffset+50, topOffset, leftOffset, heightChart + topOffset);
 	}
 	
 	public ArrayList<XYChart> getCharts() {

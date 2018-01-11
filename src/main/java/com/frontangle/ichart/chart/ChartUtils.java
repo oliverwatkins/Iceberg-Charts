@@ -448,11 +448,13 @@ public class ChartUtils {
 		return false;
 	}
 
-	/*
+	/**
 	 * Check if pixel "point" is within the bounds of the chart.
 	 * 
-	 * @param pixelsFromEdge pixels from the edge
-	 * @param chart the chart
+	 * @param pixelsFromEdge
+	 * @param chart
+	 * @param orientationx or y
+	 * @return is in bounds
 	 */
 	public static boolean inBounds(double pixelsFromEdge, Chart chart,
 			Orientation orientation) {

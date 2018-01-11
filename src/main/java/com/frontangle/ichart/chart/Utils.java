@@ -16,9 +16,9 @@ import com.frontangle.ichart.chart.datapoint.ValueType;
 import com.frontangle.ichart.pie.Segment;
 
 /**
+ * General utils methods
  *
  * @author Oliver Watkins
- *
  */
 public class Utils {
 
@@ -51,8 +51,7 @@ public class Utils {
 	}
 	
 
-    public static ArrayList<Color> makeGradients(Color color1, Color color2,
-            int numberColors) {
+    public static ArrayList<Color> makeGradients(Color color1, Color color2, int numberColors) {
         int red = color1.getRed();
         int blue = color1.getBlue();
         int green = color1.getGreen();
