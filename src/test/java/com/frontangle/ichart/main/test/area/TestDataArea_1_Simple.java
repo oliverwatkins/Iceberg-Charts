@@ -36,7 +36,7 @@ public class TestDataArea_1_Simple extends ChartTester {
 
 		XYDataSeries<DataPoint> xyDataSeries = new XYDataSeries<DataPoint>("");
 		xyDataSeries.dataPoints = values;
-		xyDataSeries.area = new Area();
+		xyDataSeries.setArea(new Area(Color.RED));
 		
 		XYChart chart = new XYChart("My Easy Example", "X Axis",
 				"Y Axis", xyDataSeries);
@@ -45,6 +45,7 @@ public class TestDataArea_1_Simple extends ChartTester {
 	}
 
 
+	@Test
 	public void testSnapshot() throws IOException, ParseException {
 		super.testSnapshot();
 	}

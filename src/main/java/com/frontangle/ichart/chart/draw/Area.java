@@ -10,6 +10,10 @@ public class Area {
 
 	public Color color = Color.RED;
 
+	public Area(Color color) {
+		this.color = color;
+	}
+
 	public void drawArea(Graphics2D g, ArrayList<Point> points) {
 
 		Polygon p = new Polygon();

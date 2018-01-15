@@ -30,8 +30,6 @@ public class TestDataArea_1_Multiple extends ChartTester {
 		values.add(new DataPoint(101, 90));
 		values.add(new DataPoint(135, 67));
 		values.add(new DataPoint(150, 70));
-
-		
 		
 		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
 		values2.add(new DataPoint(5, 1));
@@ -48,26 +46,22 @@ public class TestDataArea_1_Multiple extends ChartTester {
 		values3.add(new DataPoint(150, 321));
 		
 		
-		XYDataSeries<DataPoint> xyDataSeries = new XYDataSeries<DataPoint>("");
+		XYDataSeries<DataPoint> xyDataSeries = new XYDataSeries<DataPoint>("a");
 		xyDataSeries.dataPoints = values;
-		xyDataSeries.area = new Area();
-		xyDataSeries.area.color = new Color(173, 13, 213, 80);
+		xyDataSeries.setArea(new Area(new Color(173, 13, 213, 80)));
 
-		XYDataSeries<DataPoint> xyDataSeries2 = new XYDataSeries<DataPoint>("");
+		XYDataSeries<DataPoint> xyDataSeries2 = new XYDataSeries<DataPoint>("b");
 		xyDataSeries2.dataPoints = values2;
-		xyDataSeries2.area = new Area();
-		xyDataSeries2.area.color = new Color(113, 213, 113, 80);
+		xyDataSeries2.setArea(new Area(new Color(113, 213, 113, 80)));
 		
-		XYDataSeries<DataPoint> xyDataSeries3 = new XYDataSeries<DataPoint>("");
+		XYDataSeries<DataPoint> xyDataSeries3 = new XYDataSeries<DataPoint>("c");
 		xyDataSeries3.dataPoints = values3;
-		xyDataSeries3.area = new Area();
-		xyDataSeries3.area.color = new Color(12, 233, 3, 80);
+		xyDataSeries3.setArea(new Area(new Color(12, 233, 3, 80)));
 		
 		ArrayList<XYDataSeries> ds = new ArrayList<XYDataSeries>();
 		ds.add(xyDataSeries);
 		ds.add(xyDataSeries2);
 		ds.add(xyDataSeries3);
-
 		
 		XYChart chart = new XYChart("Multiple Area with opacity and overlap", "X Axis",
 				"Y Axis", ds);
@@ -76,6 +70,7 @@ public class TestDataArea_1_Multiple extends ChartTester {
 	}
 
 
+	@org.junit.Test
 	public void testSnapshot() throws IOException, ParseException {
 		super.testSnapshot();
 	}

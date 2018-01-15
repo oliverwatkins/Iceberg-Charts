@@ -54,6 +54,8 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
 
     public XYDataSeries(UIPointXY point, Line line, String name) {
 
+    	
+    	
         if (point instanceof UIPointBubble) {
             type = XYDataSeriesType.BUBBLE;
             seriesColor = point.color;
@@ -61,6 +63,10 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
             type = XYDataSeriesType.MULTI_BAR;
         } else if (point instanceof UIPointMultiBarStacked) {
             type = XYDataSeriesType.MULTI_BAR;
+            
+        } else if (area != null) {
+            type = XYDataSeriesType.AREA;
+            seriesColor = area.color;
         } else {
             type = XYDataSeriesType.LINE;
         }
@@ -68,6 +74,11 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
         this.line = line;
         this.name = name;
     }
+    
+	public void setArea(Area area) {
+		type = XYDataSeriesType.AREA;
+		this.area = area;
+	}
 
 
 	/**
@@ -87,6 +98,7 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
 		return "XYDataSeries [dataPoints=" + dataPoints + ", pointType=" + pointType + ", line=" + line + ", name="
 				+ name + ", type=" + type + ", seriesColor=" + seriesColor + "]";
 	}
+
 
 
 }

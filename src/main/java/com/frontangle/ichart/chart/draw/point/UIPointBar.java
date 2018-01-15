@@ -109,7 +109,7 @@ public class UIPointBar extends UIPointAbstractBar {
         g.fillRect(x,
                 y,
                 (int)width,
-                (int)height + 5); 
+                (int)height); 
 
         g.setColor(muchmuchdarker);
 

@@ -94,6 +94,12 @@ public class LegendUtil {
 			if (series.type == XYDataSeriesType.BUBBLE) {
 				category = new Category(series.name, series.seriesColor);
 				categories.add(category);
+				
+			} else if (series.type == XYDataSeriesType.AREA) {
+				category = new Category(series.name, series.area.color);
+				category.block = true;
+				categories.add(category);
+				
 			} else if (series.type == XYDataSeriesType.MULTI_BAR) {
 
 				DataPointMultiBar mb = (DataPointMultiBar) series.dataPoints.get(0);

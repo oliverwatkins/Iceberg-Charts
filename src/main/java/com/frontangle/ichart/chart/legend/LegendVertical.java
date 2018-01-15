@@ -49,12 +49,12 @@ public class LegendVertical extends AbstractLegend implements Serializable{
         this.legendFont = legendFont;
     }
     
-	public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> data) {
+	public void drawLegend(Graphics2D g, Chart chart, ArrayList<Category> categories) {
 
         int legendX = (chart.getWidth() - chart.rightOffset) + paddingLegendLeft;
         int legendY = chart.topOffset; // + paddingBetweenChartAndLegend;
 
-        int legendHeight = (data.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
+        int legendHeight = (categories.size() * squareWidth); // - (2 * paddingBetweenChartAndLegend);
         int legendWidth = chart.rightOffset - (paddingLegendLeft);
 
         FontMetrics fmT = chart.getFontMetrics(legendFont);
@@ -77,7 +77,7 @@ public class LegendVertical extends AbstractLegend implements Serializable{
         
         int i = 0;
 
-        for (Category category : data) {
+        for (Category category : categories) {
 
             if (category.block == true) {
 

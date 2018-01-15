@@ -23,6 +23,7 @@ public class FileUtils {
 		
 		BufferedImage image = new BufferedImage(dimension.width, dimension.height,  BufferedImage.TYPE_INT_RGB);
 
+		System.out.println("path " + path);
 		Graphics g2 = image.getGraphics();
 		chart.paint(g2);
 
