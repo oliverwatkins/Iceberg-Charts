@@ -21,55 +21,23 @@ public class AreaPlotter extends AbstractPlotter {
 		
 		ArrayList<Point> points = new ArrayList<Point>();
 		
+		points.add(ChartPlotter.getPoint(xyFactor, new DataPoint(dataPoints.get(0).x,0), chart));
+		
 		for (DataPoint dataPoint : dataPoints) {
-			points.add(ChartPlotter.getPoint(g, xyFactor, xYDataSeries, dataPoint, chart));
-		}
+			points.add(ChartPlotter.getPoint(xyFactor, dataPoint, chart));
+		}		
+
+		points.add(ChartPlotter.getPoint(xyFactor, new DataPoint(dataPoints.get(dataPoints.size()-1).x,0), chart));
 		
 		Area area = xYDataSeries.area;
 		
+		Shape cachedClip = ChartUtils.clipChart(g, chart);
+		
 		area.drawArea(g, points);
 		
+		g.setClip(cachedClip);
 		
 	}
-	
-	
-//	public static boolean drawLines(Graphics2D g, XYChart chart, XYFactor xyFactor,
-//			XYDataSeries xYDataSeries, CopyOnWriteArrayList<DataPoint> dataPoints) {
-//		
-//		boolean firstRun;
-//		Point currentPoint;
-//		Point lastPoint;
-//		firstRun = true;
-//		currentPoint = null;
-//		lastPoint = null;
-//
-//		for (DataPoint dataPoint : dataPoints) {
-//			if (firstRun) {
-//
-//				firstRun = false;
-//				currentPoint = ChartPlotter.getPoint(g, xyFactor, xYDataSeries, dataPoint, chart);
-//			} else {
-//				currentPoint = ChartPlotter.getPoint(g, xyFactor, xYDataSeries, dataPoint, chart);
-//				if (xYDataSeries.line != null) {
-//					LinePlotter.drawLine(g, lastPoint, currentPoint, xYDataSeries, chart);
-//				}
-//			}
-//			lastPoint = currentPoint;
-//		}
-//		return firstRun;
-//	}
-//	
-//	private static void drawLine(Graphics2D g, Point lastPoint2, Point currentPoint,
-//			XYDataSeries xYDataSeries, XYChart chart) {
-//		Line line = xYDataSeries.line;
-//		Shape cachedClip = ChartUtils.clipChart(g, chart);
-//
-//		if (lastPoint2 != null && currentPoint != null) {
-//			// clip away everything that is not in the chart.
-//			line.drawLine(g, lastPoint2.x, lastPoint2.y, currentPoint.x, currentPoint.y);
-//		}
-//
-//		g.setClip(cachedClip);
-//	}
+
 
 }

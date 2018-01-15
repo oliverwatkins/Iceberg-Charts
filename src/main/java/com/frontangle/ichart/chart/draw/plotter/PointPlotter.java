@@ -40,7 +40,7 @@ public class PointPlotter extends AbstractPlotter {
 			DataPoint dataPoint, XYChart chart, int pixBtnFirst2Pts) {
 
 		//get point in ui
-		Point point = ChartPlotter.getPoint(g,xyFactor,xYDataSeries,dataPoint, chart); 
+		Point point = ChartPlotter.getPoint(xyFactor,dataPoint, chart); 
 		
 		ChartPlotter.checkForRunawayProcess(xyFactor, point.x, point.y);
 
@@ -64,7 +64,7 @@ public class PointPlotter extends AbstractPlotter {
 			dataPoint.uiPointXY.draw(g, point, dataPoint, xyFactor, chart, pixBtnFirst2Pts);
 
 		}
-		return  ChartPlotter.getPoint(g,xyFactor,xYDataSeries,dataPoint, chart); 
+		return  ChartPlotter.getPoint(xyFactor,dataPoint, chart); 
 	}
 	
 	

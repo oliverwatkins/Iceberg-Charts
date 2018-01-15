@@ -44,7 +44,7 @@ public class TestDataArea_1_Simple extends ChartTester {
 		return chart;
 	}
 
-	@Test
+
 	public void testSnapshot() throws IOException, ParseException {
 		super.testSnapshot();
 	}

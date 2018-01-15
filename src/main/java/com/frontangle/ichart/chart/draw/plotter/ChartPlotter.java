@@ -51,11 +51,12 @@ public class ChartPlotter {
 
 		XYFactor xyFactor = getXYFactor(chart, xAxis, yAxis);
 
-		xyFactor.xZeroOffsetInPixel = getXZeroOffsetInPixel(chart, xAxis);
-		xyFactor.yZeroOffsetInPixel = getYZeroOffsetInPixel(chart, yAxis);
+		
+		xyFactor.xZeroOffsetInPixel = ChartUtils.getXZeroOffsetInPixel(chart, xAxis);
+		xyFactor.yZeroOffsetInPixel = ChartUtils.getYZeroOffsetInPixel(chart, yAxis);
 
 		int xShift = chart.leftOffset; // silly
-		int yShift = chart.topOffset + chart.heightChart;
+//		int yShift = chart.topOffset + chart.heightChart;
 
 		for (XYDataSeries xYDataSeries : xYDataSerieses) {
 
@@ -71,11 +72,9 @@ public class ChartPlotter {
 
 			// TODO this will crash if only ONE point is used in a chart!!
 			// only for bar
-			int pixBtnFirst2Pts = calculateDistanceBetweenFirstTwoPoints(dataPoints.get(0),
-					dataPoints.get(1), xShift, xyFactor);
+			int pixBtnFirst2Pts = calculateDistanceBetweenFirstTwoPoints(dataPoints.get(0), dataPoints.get(1), xShift, xyFactor);
 
-			PointPlotter.drawPoints(g, chart, xyFactor, xYDataSeries, dataPoints,
-					pixBtnFirst2Pts);
+			PointPlotter.drawPoints(g, chart, xyFactor, xYDataSeries, dataPoints, pixBtnFirst2Pts);
 			
 			if (isLineSeries(xYDataSeries)) {
 				LinePlotter.drawLines(g, chart, xyFactor, xYDataSeries, dataPoints);
@@ -107,8 +106,19 @@ public class ChartPlotter {
 		return dataPoints;
 	}
 
-	protected static Point getPoint(Graphics2D g, XYFactor xyFactor, XYDataSeries xYDataSeries,
+	/**
+	 * Get point on chart for a given data point.
+
+	 * @param xyFactor
+	 * @param xYDataSeries
+	 * @param dataPoint
+	 * @param chart
+	 * @return
+	 */
+	protected static Point getPoint(XYFactor xyFactor,
 			DataPoint dataPoint, XYChart chart) {
+		
+		
 
 		int yShift = chart.topOffset + chart.heightChart;
 		int xShift = chart.leftOffset;
@@ -118,6 +128,7 @@ public class ChartPlotter {
 			x = (int) ((dataPoint.xDate.getTime() * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
 
 		} else if (chart.xAxis.axisScaling instanceof LogarithmicAxisScaling) {
+			
 			double adjustedValue = convertLogValue(dataPoint, chart);
 
 			x = (int) (xShift + (adjustedValue * chart.widthChart));
@@ -204,64 +215,6 @@ public class ChartPlotter {
 		return new XYFactor(xFactor, yfactor);
 	}
 
-	/*
-	 * TODO this method is completely wrong
-	 * 
-	 * @param chart
-	 * 
-	 * @param yAxis
-	 * 
-	 * @return
-	 */
-	protected double getYZeroOffsetInPixel(XYChart chart, YAxis yAxis) {
 
-		double yMax = yAxis.axisScaling.getMaxValue();
-		double yMin = yAxis.axisScaling.getMinValue();
-
-		return (double) ((-yMin / (yMax - yMin)) * chart.heightChart);
-	}
-
-	/*
-	 * I DO NOT UNDERSTAND THIS METHOD
-	 * 
-	 * TODO this method is completely wrong
-	 * 
-	 * Negative value :
-	 * 
-	 * @param chart
-	 * 
-	 * @param xAxis
-	 * 
-	 * @return
-	 */
-
-	protected double getXZeroOffsetInPixel(XYChart chart, XAxis xAxis) {
-
-		double offset = -1;
-
-		if (xAxis.axisScaling instanceof TimeSeriesAxisScaling) {
-			long xMax = ((TimeSeriesAxisScaling) xAxis.axisScaling).dateEnd.getTime();
-			long xMin = ((TimeSeriesAxisScaling) xAxis.axisScaling).dateStart.getTime();
-
-			long diffX = xMax - xMin;
-
-			double v = (-xMin / (double) diffX);
-
-			offset = (double) (v * chart.widthChart);
-
-		} else {
-
-			double xMax = xAxis.axisScaling.getMaxValue();
-			double xMin = xAxis.axisScaling.getMinValue();
-
-			double diffX = xMax - xMin;
-
-			double v = (double) ((-xMin / (double) diffX) * chart.widthChart);
-
-			offset = v;
-		}
-
-		return offset;
-	}
 
 }

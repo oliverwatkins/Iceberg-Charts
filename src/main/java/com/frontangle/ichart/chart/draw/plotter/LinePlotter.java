@@ -28,9 +28,9 @@ public class LinePlotter extends AbstractPlotter {
 			if (firstRun) {
 
 				firstRun = false;
-				currentPoint = ChartPlotter.getPoint(g, xyFactor, xYDataSeries, dataPoint, chart);
+				currentPoint = ChartPlotter.getPoint(xyFactor,dataPoint, chart);
 			} else {
-				currentPoint = ChartPlotter.getPoint(g, xyFactor, xYDataSeries, dataPoint, chart);
+				currentPoint = ChartPlotter.getPoint(xyFactor, dataPoint, chart);
 				if (xYDataSeries.line != null) {
 					LinePlotter.drawLine(g, lastPoint, currentPoint, xYDataSeries, chart);
 				}

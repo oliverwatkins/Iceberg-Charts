@@ -13,6 +13,8 @@ import java.util.Random;
 import com.frontangle.ichart.chart.axis.AbstractInterval;
 import com.frontangle.ichart.chart.axis.NumericalInterval;
 import com.frontangle.ichart.chart.axis.TimeInterval;
+import com.frontangle.ichart.chart.axis.XAxis;
+import com.frontangle.ichart.chart.axis.YAxis;
 import com.frontangle.ichart.chart.datapoint.DataPoint;
 import com.frontangle.ichart.chart.draw.Line;
 import com.frontangle.ichart.chart.draw.point.UIPointCircle;
@@ -20,6 +22,7 @@ import com.frontangle.ichart.chart.draw.point.UIPointSquare;
 import com.frontangle.ichart.chart.draw.point.UIPointTriangle;
 import com.frontangle.ichart.scaling.AxisScaling;
 import com.frontangle.ichart.scaling.LinearNumericalAxisScaling;
+import com.frontangle.ichart.scaling.TimeSeriesAxisScaling;
 
 /**
  * Utility class for geometric calculations on the chart.
@@ -475,4 +478,81 @@ public class ChartUtils {
 		}
 		return false;
 	}
+	
+	
+	
+	/*
+	 * TODO this method is completely wrong
+	 * 
+	 * @param chart
+	 * 
+	 * @param yAxis
+	 * 
+	 * @return
+	 */
+	public static double getYZeroOffsetInPixel(XYChart chart, YAxis yAxis) {
+
+		double yMax = yAxis.axisScaling.getMaxValue();
+		double yMin = yAxis.axisScaling.getMinValue();
+
+		return (double) ((-yMin / (yMax - yMin)) * chart.heightChart);
+	}
+
+	/*
+	 * I DO NOT UNDERSTAND THIS METHOD
+	 * 
+	 * TODO this method is completely wrong
+	 * 
+	 * Negative value :
+	 * 
+	 * @param chart
+	 * 
+	 * @param xAxis
+	 * 
+	 * @return
+	 */
+
+	public static double getXZeroOffsetInPixel(XYChart chart, XAxis xAxis) {
+
+		double offset = -1;
+
+		if (xAxis.axisScaling instanceof TimeSeriesAxisScaling) {
+			long xMax = ((TimeSeriesAxisScaling) xAxis.axisScaling).dateEnd.getTime();
+			long xMin = ((TimeSeriesAxisScaling) xAxis.axisScaling).dateStart.getTime();
+
+			long diffX = xMax - xMin;
+
+			double v = (-xMin / (double) diffX);
+
+			offset = (double) (v * chart.widthChart);
+
+		} else {
+
+			double xMax = xAxis.axisScaling.getMaxValue();
+			double xMin = xAxis.axisScaling.getMinValue();
+
+			double diffX = xMax - xMin;
+
+			double v = (double) ((-xMin / (double) diffX) * chart.widthChart);
+
+			offset = v;
+		}
+
+		return offset;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
