@@ -52,6 +52,11 @@ public class AreaTester extends JFrame {
         charts.add(chart);
         p.add(chart);
         
+        p = createTabbedPane(tabbedPaneBar, "Multiple Area");
+        chart = new TestDataArea_1_Multiple_Layered().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
         JButton b = new JButton("Create PNG");
 
         getContentPane().add(b, BorderLayout.SOUTH);

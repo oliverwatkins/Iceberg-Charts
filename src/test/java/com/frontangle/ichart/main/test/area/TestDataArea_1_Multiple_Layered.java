@@ -17,7 +17,7 @@ import com.frontangle.ichart.main.test.Showcase;
  * 
  * @author Oliver Watkins
  */
-public class TestDataArea_1_Multiple extends ChartTester {
+public class TestDataArea_1_Multiple_Layered extends ChartTester {
 
 	public static String path = "src\\main\\resources\\showcase\\screenshots\\";
 
@@ -30,6 +30,8 @@ public class TestDataArea_1_Multiple extends ChartTester {
 		values.add(new DataPoint(101, 90));
 		values.add(new DataPoint(135, 67));
 		values.add(new DataPoint(150, 70));
+		values.add(new DataPoint(165, 67));
+		values.add(new DataPoint(196, 1));
 		
 		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
 		values2.add(new DataPoint(5, 1));
@@ -37,6 +39,8 @@ public class TestDataArea_1_Multiple extends ChartTester {
 		values2.add(new DataPoint(101, 290));
 		values2.add(new DataPoint(135, 167));
 		values2.add(new DataPoint(150, 80));
+		values2.add(new DataPoint(165, 67));
+		values2.add(new DataPoint(196, 1));
 		
 		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
 		values3.add(new DataPoint(5,6));
@@ -44,17 +48,19 @@ public class TestDataArea_1_Multiple extends ChartTester {
 		values3.add(new DataPoint(101, 77));
 		values3.add(new DataPoint(135, 123));
 		values3.add(new DataPoint(150, 321));
+		values3.add(new DataPoint(165, 412));
+		values3.add(new DataPoint(196, 312));
 		
 		
-		XYDataSeries<DataPoint> xyDataSeries = new XYDataSeries<DataPoint>("a");
+		XYDataSeries<DataPoint> xyDataSeries = new XYDataSeries<DataPoint>("alabama");
 		xyDataSeries.dataPoints = values;
 		xyDataSeries.setArea(new Area(new Color(173, 13, 213, 80)));
 
-		XYDataSeries<DataPoint> xyDataSeries2 = new XYDataSeries<DataPoint>("b");
+		XYDataSeries<DataPoint> xyDataSeries2 = new XYDataSeries<DataPoint>("maryland");
 		xyDataSeries2.dataPoints = values2;
 		xyDataSeries2.setArea(new Area(new Color(113, 213, 113, 80)));
 		
-		XYDataSeries<DataPoint> xyDataSeries3 = new XYDataSeries<DataPoint>("c");
+		XYDataSeries<DataPoint> xyDataSeries3 = new XYDataSeries<DataPoint>("california");
 		xyDataSeries3.dataPoints = values3;
 		xyDataSeries3.setArea(new Area(new Color(12, 233, 3, 80)));
 		
@@ -76,7 +82,7 @@ public class TestDataArea_1_Multiple extends ChartTester {
 	}
 
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataArea_1_Multiple();
+		ChartTester t = new TestDataArea_1_Multiple_Layered();
 		t.testChart(t.getChart());
 	}
 

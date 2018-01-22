@@ -53,8 +53,6 @@ public class XYDataSeries<T extends DataPoint> implements Categorisable, Seriali
     }
 
     public XYDataSeries(UIPointXY point, Line line, String name) {
-
-    	
     	
         if (point instanceof UIPointBubble) {
             type = XYDataSeriesType.BUBBLE;

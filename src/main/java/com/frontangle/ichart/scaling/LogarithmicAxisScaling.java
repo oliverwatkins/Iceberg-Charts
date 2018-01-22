@@ -126,7 +126,7 @@ public class LogarithmicAxisScaling extends AxisScaling{
 
 	@Override
 	protected void drawGridLineOnZero(Graphics2D g) {
-		// TODO Auto-generated method stub
+		// TODO irrelevant here?
 		
 	}
 
@@ -139,7 +139,7 @@ public class LogarithmicAxisScaling extends AxisScaling{
 	@Override
 	protected void drawGridFills(AbstractInterval interval12, Graphics2D g,
 			XYChart chart) {
-		
+		// TODO irrelevant here?
 	}
 
 	@Override
