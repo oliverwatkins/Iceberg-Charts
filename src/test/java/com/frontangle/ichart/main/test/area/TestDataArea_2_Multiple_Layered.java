@@ -17,7 +17,7 @@ import com.frontangle.ichart.main.test.Showcase;
  * 
  * @author Oliver Watkins
  */
-public class TestDataArea_1_Multiple_Layered extends ChartTester {
+public class TestDataArea_2_Multiple_Layered extends ChartTester {
 
 	public static String path = "src\\main\\resources\\showcase\\screenshots\\";
 
@@ -82,7 +82,7 @@ public class TestDataArea_1_Multiple_Layered extends ChartTester {
 	}
 
 	public static void main(String[] args) throws Exception {
-		ChartTester t = new TestDataArea_1_Multiple_Layered();
+		ChartTester t = new TestDataArea_2_Multiple_Layered();
 		t.testChart(t.getChart());
 	}
 

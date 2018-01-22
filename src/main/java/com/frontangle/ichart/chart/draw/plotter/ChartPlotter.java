@@ -13,6 +13,7 @@ import com.frontangle.ichart.chart.XYFactor;
 import com.frontangle.ichart.chart.axis.XAxis;
 import com.frontangle.ichart.chart.axis.YAxis;
 import com.frontangle.ichart.chart.datapoint.DataPoint;
+import com.frontangle.ichart.chart.draw.Area;
 import com.frontangle.ichart.chart.draw.Line;
 import com.frontangle.ichart.chart.draw.point.UIPointXY;
 import com.frontangle.ichart.scaling.LogarithmicAxisScaling;
@@ -45,7 +46,7 @@ public class ChartPlotter {
 	 * @param xYDataSerieses
 	 */
 	public void plotData(Graphics2D g, XYChart chart, YAxis yAxis, XAxis xAxis,
-			ArrayList<? extends XYDataSeries> xYDataSerieses) {
+			ArrayList<XYDataSeries> xyDataSerieses) {
 
 		this.chart = chart;
 
@@ -57,10 +58,24 @@ public class ChartPlotter {
 
 		int xShift = chart.leftOffset; // silly
 //		int yShift = chart.topOffset + chart.heightChart;
+		XYDataSeries prevXYDataSeries = null;
+		
+		
+		
+		System.out.println("AL before " + xyDataSerieses);
+		
+		if (xyDataSerieses.size() > 0 && xyDataSerieses.get(0).area != null && xyDataSerieses.get(0).area.type == Area.AreaType.STACKED) {
+			
+			/**
+			 * The values need to be recalculated based on previous series values.
+			 */
+			xyDataSerieses = AreaPlotter.getAdjustValuesArray(xyDataSerieses);
+		}
+		
+		
+		for (XYDataSeries<DataPoint> xyDataSeries : xyDataSerieses) {
 
-		for (XYDataSeries xYDataSeries : xYDataSerieses) {
-
-			ArrayList<DataPoint> dataPoints_ = xYDataSeries.dataPoints;
+			ArrayList<DataPoint> dataPoints_ = xyDataSeries.dataPoints;
 
 			// prevent concurrentmodification errors :
 			CopyOnWriteArrayList<DataPoint> dataPoints = createCopySafeArray(dataPoints_);
@@ -74,14 +89,38 @@ public class ChartPlotter {
 			// only for bar
 			int pixBtnFirst2Pts = calculateDistanceBetweenFirstTwoPoints(dataPoints.get(0), dataPoints.get(1), xShift, xyFactor);
 
-			PointPlotter.drawPoints(g, chart, xyFactor, xYDataSeries, dataPoints, pixBtnFirst2Pts);
+			PointPlotter.drawPoints(g, chart, xyFactor, xyDataSeries, dataPoints, pixBtnFirst2Pts);
 			
-			if (isLineSeries(xYDataSeries)) {
-				LinePlotter.drawLines(g, chart, xyFactor, xYDataSeries, dataPoints);
+			if (isLineSeries(xyDataSeries)) {
+				LinePlotter.drawLines(g, chart, xyFactor, xyDataSeries, dataPoints);
 			}
 			
-			if (isAreaSeries(xYDataSeries)) {
-				AreaPlotter.drawAreas(g, chart, xyFactor, xYDataSeries, dataPoints);
+			if (isAreaSeries(xyDataSeries)) {
+				
+				checkAllSeriesHaveSameType(xyDataSerieses);
+				
+				if (xyDataSerieses.get(0).area.type == Area.AreaType.STACKED) {
+					AreaPlotter.drawAreasStacked(g, chart, xyFactor, xyDataSeries, xyDataSerieses);
+				}else {
+					AreaPlotter.drawAreasOverlap(g, chart, xyFactor, xyDataSeries, prevXYDataSeries, dataPoints);
+				}
+			}
+			prevXYDataSeries = xyDataSeries;
+		}
+	}
+
+
+	private void checkAllSeriesHaveSameType(ArrayList<? extends XYDataSeries> xYDataSerieses) {
+		Area.AreaType type = xYDataSerieses.get(0).area.type;
+		
+		for (XYDataSeries xYDataSeries : xYDataSerieses) {
+			
+			if (xYDataSeries.area == null) {
+				throw new RuntimeException("Area is null. All XY Data Series should have the same area type, and cannot be null");
+				
+			}else {
+				if (xYDataSeries.area.type != type)
+					throw new RuntimeException("Area type is " + xYDataSeries.area.type + ". All XY Data Series should have the same area type, and cannot be null");
 			}
 		}
 	}

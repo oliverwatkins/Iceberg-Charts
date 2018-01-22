@@ -53,7 +53,7 @@ public class AreaTester extends JFrame {
         p.add(chart);
         
         p = createTabbedPane(tabbedPaneBar, "Multiple Area");
-        chart = new TestDataArea_1_Multiple_Layered().getChart();
+        chart = new TestDataArea_2_Multiple_Layered().getChart();
         charts.add(chart);
         p.add(chart);
         

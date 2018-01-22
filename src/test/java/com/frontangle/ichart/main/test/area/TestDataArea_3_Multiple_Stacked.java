@@ -24,45 +24,6 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 	@Showcase
 	public Chart getChart() {
 		
-		ArrayList<DataPoint> values = new ArrayList<DataPoint>();
-		values.add(new DataPoint(5, 96));
-		values.add(new DataPoint(58, 43));
-		values.add(new DataPoint(101, 90));
-		values.add(new DataPoint(135, 67));
-		values.add(new DataPoint(150, 70));
-		
-		ArrayList<DataPoint> values2 = new ArrayList<DataPoint>();
-		values2.add(new DataPoint(5, 1));
-		values2.add(new DataPoint(58, 63));
-		values2.add(new DataPoint(101, 290));
-		values2.add(new DataPoint(135, 167));
-		values2.add(new DataPoint(150, 80));
-		
-		ArrayList<DataPoint> values3 = new ArrayList<DataPoint>();
-		values3.add(new DataPoint(5,6));
-		values3.add(new DataPoint(58, 33));
-		values3.add(new DataPoint(101, 77));
-		values3.add(new DataPoint(135, 123));
-		values3.add(new DataPoint(150, 321));
-		
-		
-		XYDataSeries<DataPoint> xyDataSeries = new XYDataSeries<DataPoint>("a");
-		xyDataSeries.dataPoints = values;
-		xyDataSeries.setArea(new Area(new Color(173, 13, 213, 80)));
-
-		XYDataSeries<DataPoint> xyDataSeries2 = new XYDataSeries<DataPoint>("b");
-		xyDataSeries2.dataPoints = values2;
-		xyDataSeries2.setArea(new Area(new Color(12, 42, 113, 80)));
-		
-		XYDataSeries<DataPoint> xyDataSeries3 = new XYDataSeries<DataPoint>("c");
-		xyDataSeries3.dataPoints = values3;
-		xyDataSeries3.setArea(new Area(new Color(12, 123,42, 80)));
-		
-		ArrayList<XYDataSeries> ds = new ArrayList<XYDataSeries>();
-		ds.add(xyDataSeries);
-		ds.add(xyDataSeries2);
-		ds.add(xyDataSeries3);
-		
 		XYChart chart = new XYChart("Multiple Area with opacity and overlap", "X Axis",
 				"Y Axis", getData());
 
@@ -70,7 +31,6 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 	}
 
 
-	@org.junit.Test
 	public void testSnapshot() throws IOException, ParseException {
 		super.testSnapshot();
 	}
@@ -91,35 +51,26 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 		
 		ArrayList<DataPoint> dps = new ArrayList<DataPoint>();
 		
-//		North Africa & the Middle East Total	3.341	14.557	4.668	2.816	2.924	3.236	3.396	2.409	3.929	5.219	6.505	7.501	10.050	8.044	5.754	7.154	7.021	5.417	4.826	7.146
-//		Africa excl North Africa total	1.437	2.279	3.355	3.655	3.783	4.725	5.076	4.351	3.097	2.780	4.976	7.521	7.638	4.830	4.061	3.728	2.823	2.570	3.249	4.857
-//		Southeast Asia total	4.704	6.355	12.329	16.531	19.975	21.908	22.243	19.604	18.299	18.216	17.906	23.042	29.444	31.702	28.201	29.417	22.325	13.853	14.239	14.861
-//		Northeast Asia total	1.782	2.788	3.251	2.860	2.644	2.711	3.774	3.504	4.567	7.631	8.191	8.937	12.672	15.874	16.395	22.100	21.473	12.504	8.045	9.899
-//		Southern Asia total	1.564	1.544	1.829	1.345	1.331	1.636	2.335	2.558	3.318	4.765	4.486	6.256	6.716	7.025	6.011	9.389	10.594	6.632	5.482	7.616
-//		Northern America total	2.088	1.833	1.791	1.787	2.064	2.523	2.881	2.767	2.271	2.366	2.653	2.863	3.085	3.068	3.015	2.811	2.570	2.021	2.002	2.576
-//		South America, Central America & the Caribbean total
-		
-		
 		XYDataSeries x1 = new XYDataSeries<DataPoint>("Oceana");
-		x1.setArea(new Area(new Color(173, 13, 213, 80)));
+		x1.setArea(new Area(new Color(173, 13, 213, 80), Area.AreaType.STACKED));
 		XYDataSeries x2 = new XYDataSeries<DataPoint>("Europe");
-		x2.setArea(new Area(new Color(12, 42, 113, 80)));
+		x2.setArea(new Area(new Color(12, 42, 113, 80), Area.AreaType.STACKED));
 		XYDataSeries x3 = new XYDataSeries<DataPoint>("USSR + Baltic states");
-		x3.setArea(new Area(new Color(32, 42, 1, 80)));
+		x3.setArea(new Area(new Color(32, 42, 1, 80), Area.AreaType.STACKED));
 		XYDataSeries x4 = new XYDataSeries<DataPoint>("North Africa & the Middle East ");
-		x4.setArea(new Area(new Color(53, 23, 1, 80)));
+		x4.setArea(new Area(new Color(53, 23, 1, 80), Area.AreaType.STACKED));
 		XYDataSeries x5 = new XYDataSeries<DataPoint>("Africa excl North Africa");
-		x5.setArea(new Area(new Color(76, 231, 1, 80)));
+		x5.setArea(new Area(new Color(76, 231, 1, 80), Area.AreaType.STACKED));
 		XYDataSeries x6 = new XYDataSeries<DataPoint>("Southeast Asia");
-		x6.setArea(new Area(new Color(41, 211, 1, 80)));
+		x6.setArea(new Area(new Color(41, 211, 1, 80), Area.AreaType.STACKED));
 		XYDataSeries x7 = new XYDataSeries<DataPoint>("Northeast Asia");
-		x7.setArea(new Area(new Color(1, 145, 1, 80)));
+		x7.setArea(new Area(new Color(1, 145, 1, 80), Area.AreaType.STACKED));
 		XYDataSeries x8 = new XYDataSeries<DataPoint>("Southern Asia ");
-		x8.setArea(new Area(new Color(2, 1, 1, 80)));
+		x8.setArea(new Area(new Color(2, 1, 1, 80), Area.AreaType.STACKED));
 		XYDataSeries x9 = new XYDataSeries<DataPoint>("Northern America ");
-		x9.setArea(new Area(new Color(6, 111, 1, 80)));
+		x9.setArea(new Area(new Color(6, 111, 1, 80), Area.AreaType.STACKED));
 		XYDataSeries x10 = new XYDataSeries<DataPoint>("South America, Central America & the Caribbean");
-		x10.setArea(new Area(new Color(12, 42, 1, 80)));
+		x10.setArea(new Area(new Color(12, 42, 1, 80), Area.AreaType.STACKED));
 	
 		dps.add(new DataPoint("1975-76", 4772));
 		dps.add(new DataPoint("1976-77", 6712));
@@ -143,9 +94,6 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 		dps.add(new DataPoint("1994-95", 13592));
 		x1.dataPoints = dps;
 		
-		
-//		Europe total	28.987	30.620	31.980	22.229	29.416	51.952	62.252	47.200	23.749	21.963	27.869	36.343	43.110	41.454	
-//		36.640	31.468	24.803	18.996	18.523	23.183
 
 		dps = new ArrayList<DataPoint>();
 		dps.add(new DataPoint("1975-76", 28987));
@@ -171,11 +119,6 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 		x2.dataPoints = dps;
 		
 		
-//		The Former USSR and the Baltic States total	
-//		481	533	705	828	1.859	712	439	177	185	169	
-//		230	201	450	984	1.746	865	2.067	3.204	1.950	2.340
-	//	
-		
 		dps = new ArrayList<DataPoint>();
 		dps.add(new DataPoint("1975-76", 481));
 		dps.add(new DataPoint("1976-77", 533));
@@ -200,12 +143,6 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 		x3.dataPoints = dps;
 		
 		
-		//	North Africa & the Middle East Total	
-//		3.341	
-//		14.557	4.668	2.816	2.924	3.236	3.396	2.409	3.929	5.219	6.505	7.501	10.050	
-//		8.044	5.754	7.154	7.021	5.417	4.826	7.146
-
-		
 		dps = new ArrayList<DataPoint>();
 		dps.add(new DataPoint("1975-76", 14557));
 		dps.add(new DataPoint("1976-77", 4668));
@@ -229,10 +166,6 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 		dps.add(new DataPoint("1994-95", 2340));
 		x4.dataPoints = dps;
 		
-//		Africa excl North Africa total	
-//		1.437	2.279	3.355	3.655	3.783	4.725	5.076	4.351	3.097	2.780	
-//		4.976	7.521	7.638	4.830	4.061	3.728	2.823	2.570	3.249	4.857
-
 		
 		dps = new ArrayList<DataPoint>();
 		dps.add(new DataPoint("1975-76", 1437));
@@ -257,9 +190,6 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 		dps.add(new DataPoint("1994-95", 4857));
 		x5.dataPoints = dps;
 		
-		//	Southeast Asia total	
-//		4.704	6.355	12.329	16.531	19.975	21.908	22.243	19.604	18.299	18.216	
-//		17.906	23.042	29.444	31.702	28.201	29.417	22.325	13.853	14.239	14.861
 
 		dps = new ArrayList<DataPoint>();
 		dps.add(new DataPoint("1975-76", 4704));
@@ -284,9 +214,6 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 		dps.add(new DataPoint("1994-95", 14861));
 		x6.dataPoints = dps;
 		
-//		Northeast Asia total	
-//		1.782	2.788	3.251	2.860	2.644	2.711	3.774	3.504	4.567	7.631	
-//		8.191	8.937	12.672	15.874	16.395	22.100	21.473	12.504	8.045	9.899
 
 		dps = new ArrayList<DataPoint>();
 		dps.add(new DataPoint("1975-76", 1782));
@@ -311,9 +238,6 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 		dps.add(new DataPoint("1994-95", 9899));
 		x7.dataPoints = dps;
 		
-//		Southern Asia total	1.564	1.544	1.829	1.345	1.331	1.636	2.335	2.558	3.318	4.765	4.486	6.256	6.716	7.025
-//		6.011	9.389	10.594	6.632	5.482	7.616
-
 		
 		dps = new ArrayList<DataPoint>();
 		dps.add(new DataPoint("1975-76", 1564));
@@ -361,9 +285,6 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 		dps.add(new DataPoint("1994-95", 2576));
 		x9.dataPoints = dps;
 		
-		//	South America, Central America & the Caribbean total	
-//		3.592	3.678	3.252	2.468	1.748	1.451	1.437	1.700	2.097	3.645	
-//		4.068	4.269	4.632	4.322	4.125	3.745	3.308	1.557	1.153	1.329
 
 		dps = new ArrayList<DataPoint>();
 		dps.add(new DataPoint("1975-76", 3592));
@@ -402,21 +323,5 @@ public class TestDataArea_3_Multiple_Stacked extends ChartTester {
 		return al;
 	}
 
-
-	
-//	Major Region	1975–76	1976–77	1977–78	1978–79	1979–80	1980–81	1981–82	1982–83	1983–84	1984–85	1985–86	1986–87	1987–88	1988–89	1989–90	1990–91	1991–92	1992–93	1993–94	1994–95
-//	Oceania total	4.772	6.712	10.000	12.662	14.972	19.806	14.184	8.735	7.297	10.754	15.703	16.602	25.657	27.999	15.270	10.970	10.362	9.517	10.196	13.592
-//	Europe total	28.987	30.620	31.980	22.229	29.416	51.952	62.252	47.200	23.749	21.963	27.869	36.343	43.110	41.454	36.640	31.468	24.803	18.996	18.523	23.183
-//	The Former USSR and the Baltic States total	481	533	705	828	1.859	712	439	177	185	169	230	201	450	984	1.746	865	2.067	3.204	1.950	2.340
-	//	North Africa & the Middle East Total	3.341	14.557	4.668	2.816	2.924	3.236	3.396	2.409	3.929	5.219	6.505	7.501	10.050	8.044	5.754	7.154	7.021	5.417	4.826	7.146
-	//	Africa excl North Africa total	1.437	2.279	3.355	3.655	3.783	4.725	5.076	4.351	3.097	2.780	4.976	7.521	7.638	4.830	4.061	3.728	2.823	2.570	3.249	4.857
-	//	Southeast Asia total	4.704	6.355	12.329	16.531	19.975	21.908	22.243	19.604	18.299	18.216	17.906	23.042	29.444	31.702	28.201	29.417	22.325	13.853	14.239	14.861
-	//	Northeast Asia total	1.782	2.788	3.251	2.860	2.644	2.711	3.774	3.504	4.567	7.631	8.191	8.937	12.672	15.874	16.395	22.100	21.473	12.504	8.045	9.899
-	//	Southern Asia total	1.564	1.544	1.829	1.345	1.331	1.636	2.335	2.558	3.318	4.765	4.486	6.256	6.716	7.025	6.011	9.389	10.594	6.632	5.482	7.616
-	//	Northern America total	2.088	1.833	1.791	1.787	2.064	2.523	2.881	2.767	2.271	2.366	2.653	2.863	3.085	3.068	3.015	2.811	2.570	2.021	2.002	2.576
-
-	//	South America, Central America & the Caribbean total	3.592	3.678	3.252	2.468	1.748	1.451	1.437	1.700	2.097	3.645	4.068	4.269	4.632	4.322	4.125	3.745	3.308	1.557	1.153	1.329
-
-	//	Grand Total	52.752	70.916	73.171	67.192	80.748	110.689	118.031	93.011	68.813	77.508	92.590	113.541	143.466	145.316	121.227	121.688	107.391	76.330	69.768	87.428
 
 }
