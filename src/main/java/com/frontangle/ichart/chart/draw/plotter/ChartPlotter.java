@@ -100,9 +100,9 @@ public class ChartPlotter {
 				checkAllSeriesHaveSameType(xyDataSerieses);
 				
 				if (xyDataSerieses.get(0).area.type == Area.AreaType.STACKED) {
-					AreaPlotter.drawAreasStacked(g, chart, xyFactor, xyDataSeries, xyDataSerieses);
+					AreaPlotter.drawAreaStacked(g, chart, xyFactor, xyDataSeries, xyDataSerieses, prevXYDataSeries);
 				}else {
-					AreaPlotter.drawAreasOverlap(g, chart, xyFactor, xyDataSeries, prevXYDataSeries, dataPoints);
+					AreaPlotter.drawAreaOverlap(g, chart, xyFactor, xyDataSeries, prevXYDataSeries, dataPoints);
 				}
 			}
 			prevXYDataSeries = xyDataSeries;

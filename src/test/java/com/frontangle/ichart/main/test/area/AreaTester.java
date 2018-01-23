@@ -52,11 +52,21 @@ public class AreaTester extends JFrame {
         charts.add(chart);
         p.add(chart);
         
-        p = createTabbedPane(tabbedPaneBar, "Multiple Area");
+        p = createTabbedPane(tabbedPaneBar, "Multiple Area Overlay");
         chart = new TestDataArea_2_Multiple_Layered().getChart();
         charts.add(chart);
         p.add(chart);
         
+        
+        p = createTabbedPane(tabbedPaneBar, "Multiple Area Stacked Simple");
+        chart = new TestDataArea_3_Multiple_Stacked_Simple().getChart();
+        charts.add(chart);
+        p.add(chart);
+        
+        p = createTabbedPane(tabbedPaneBar, "Multiple Area Stacked");
+        chart = new TestDataArea_4_Multiple_Stacked().getChart();
+        charts.add(chart);
+        p.add(chart);
         JButton b = new JButton("Create PNG");
 
         getContentPane().add(b, BorderLayout.SOUTH);

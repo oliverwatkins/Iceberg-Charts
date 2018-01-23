@@ -1,11 +1,11 @@
 package com.frontangle.ichart.chart.draw.plotter;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Shape;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.frontangle.ichart.chart.ChartUtils;
@@ -24,18 +24,20 @@ public class AreaPlotter extends AbstractPlotter {
 	 * @param g
 	 * @param chart
 	 * @param xyFactor
-	 * @param xyDataSeries
-	 * @param prevXYDataSeries
+	 * @param currSeries
+	 * @param prevSeries
 	 * @param dataPoints
 	 */
-	public static void drawAreasOverlap(Graphics2D g, XYChart chart, XYFactor xyFactor,
-			XYDataSeries xyDataSeries, XYDataSeries prevXYDataSeries,
+	public static void drawAreaOverlap(Graphics2D g, XYChart chart, XYFactor xyFactor,
+			XYDataSeries currSeries, XYDataSeries prevSeries,
 			CopyOnWriteArrayList<DataPoint> dataPoints) {
 
 		ArrayList<Point> points2d = new ArrayList<Point>();
-		Area area = xyDataSeries.area;
+		Area area = currSeries.area;
 
-		points2d = addPointsToBaseline(chart, xyFactor, dataPoints, points2d);
+		dataPoints = addPointsToBaseline(chart, xyFactor, dataPoints, points2d);
+		
+		points2d = convertDataPointsToXYPoints(dataPoints, xyFactor, chart);
 		
 		Shape cachedClip = ChartUtils.clipChart(g, chart);
 
@@ -45,12 +47,33 @@ public class AreaPlotter extends AbstractPlotter {
 
 	}
 	
-	public static void drawAreasStacked(Graphics2D g, XYChart chart, XYFactor xyFactor, XYDataSeries<DataPoint> xyDataSeries, ArrayList<XYDataSeries> xyDataSerieses) {
+	public static void drawAreaStacked(Graphics2D g, XYChart chart, XYFactor xyFactor, XYDataSeries<DataPoint> currSeries, ArrayList<XYDataSeries> xyDataSerieses, XYDataSeries<DataPoint> prevSeries) {
 
 		ArrayList<Point> points2d = new ArrayList<Point>();
-		Area area = xyDataSeries.area;
+		ArrayList<Point> points2dPrev = new ArrayList<Point>();
+		Area area = currSeries.area;
 		
-		points2d = addPointsToBaseline(chart, xyFactor, new CopyOnWriteArrayList(xyDataSeries.dataPoints), points2d);
+		CopyOnWriteArrayList<DataPoint> dataPoints = new CopyOnWriteArrayList<DataPoint>(currSeries.dataPoints);
+		
+		
+				
+		if (prevSeries == null) {
+			//first series, create polygon to baseline (x == 0). All other series will stack on top of this.
+			dataPoints = addPointsToBaseline(chart, xyFactor, new CopyOnWriteArrayList(currSeries.dataPoints), points2d);
+		}
+		
+		points2d = convertDataPointsToXYPoints(dataPoints, xyFactor, chart);
+
+		if (prevSeries != null) {
+			
+			CopyOnWriteArrayList<DataPoint> dataPointsPrev = new CopyOnWriteArrayList<DataPoint>(prevSeries.dataPoints);
+			
+			points2dPrev = convertDataPointsToXYPoints(new CopyOnWriteArrayList<DataPoint>(dataPointsPrev), xyFactor, chart);
+			
+			Collections.reverse(points2dPrev);
+			
+			points2d.addAll(points2dPrev);
+		}
 		
 		Shape cachedClip = ChartUtils.clipChart(g, chart);
 		
@@ -60,20 +83,31 @@ public class AreaPlotter extends AbstractPlotter {
 			
 	}
 
-	private static  ArrayList<Point> addPointsToBaseline(XYChart chart, XYFactor xyFactor,
+	private static  CopyOnWriteArrayList<DataPoint> addPointsToBaseline(XYChart chart, XYFactor xyFactor,
 			CopyOnWriteArrayList<DataPoint> dataPoints, ArrayList<Point> points2d) {
 		
-		points2d.add(ChartPlotter.getPoint(xyFactor, new DataPoint(dataPoints.get(0).x, 0), chart));
+		CopyOnWriteArrayList<DataPoint> newDataPoints = new CopyOnWriteArrayList<DataPoint>();
+		
+		newDataPoints.add(new DataPoint(dataPoints.get(0).x, 0));
 
+		for (DataPoint dataPoint : dataPoints) {
+			newDataPoints.add(dataPoint);
+		}
+
+		newDataPoints.add(new DataPoint(dataPoints.get(dataPoints.size() - 1).x, 0));
+		
+		return newDataPoints;
+	}
+	
+	private static  ArrayList<Point>  convertDataPointsToXYPoints(CopyOnWriteArrayList<DataPoint> dataPoints, XYFactor xyFactor, XYChart chart) {
+	
+		ArrayList<Point> points2d = new ArrayList<Point>();
 		for (DataPoint dataPoint : dataPoints) {
 			points2d.add(ChartPlotter.getPoint(xyFactor, dataPoint, chart));
 		}
-
-		points2d.add(ChartPlotter.getPoint(xyFactor,
-				new DataPoint(dataPoints.get(dataPoints.size() - 1).x, 0), chart));
-		
 		return points2d;
 	}
+	
 
 	public static void drawArea(Graphics2D g, ArrayList<Point> points, Area area) {
 
@@ -106,7 +140,7 @@ public class AreaPlotter extends AbstractPlotter {
 			}else {
 				xyDataSeriesAdj.dataPoints = currSeries.dataPoints;
 			}
-			prevSeries = currSeries;
+			prevSeries = xyDataSeriesAdj;
 			
 			xyDataSeriesesAdjusted.add(xyDataSeriesAdj);
 		}
