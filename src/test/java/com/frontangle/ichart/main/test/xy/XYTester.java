@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -38,7 +39,7 @@ public class XYTester extends JFrame {
     }
     	
     	
-	public JTabbedPane createPanel() {
+	public JTabbedPane createPanel() throws ParseException {
     		
 
     	final ArrayList<JComponent> charts = new ArrayList<JComponent>();
@@ -64,38 +65,38 @@ public class XYTester extends JFrame {
          */
 
         p = createTabbedPane(tabbedPaneBar, "Simple XY");
-        chart = new TestDataXY_Simple().getChart();
+        chart = new TestDataXY_Simple().getChartPanel();
         charts.add(chart);
         p.add(chart);
 
         
         p = createTabbedPane(tabbedPaneBar, "Simple XY Series");
-        chart = new TestDataXY_Simple_Series().getChart();
+        chart = new TestDataXY_Simple_Series().getChartPanel();
         charts.add(chart);
         p.add(chart);
 
         p = createTabbedPane(tabbedPaneBar, "Scatter");
-        chart = new TestDataXY_Scatter().getChart();
+        chart = new TestDataXY_Scatter().getChartPanel();
         charts.add(chart);
         p.add(chart);
         
         p = createTabbedPane(tabbedPaneBar, "Line Examples");
-        chart = new TestDataXY_LineExamples().getChart();
+        chart = new TestDataXY_LineExamples().getChartPanel();
         charts.add(chart);
         p.add(chart);
 
         p = createTabbedPane(tabbedPaneBar, "Candle Plot");
-        chart = new TestDataXY_CandlePlot().getChart();
+        chart = new TestDataXY_CandlePlot().getChartPanel();
         charts.add(chart);
         p.add(chart);
 
         p = createTabbedPane(tabbedPaneBar, "Box Plot");
-        chart = new TestDataXY_Boxplot().getChart();
+        chart = new TestDataXY_Boxplot().getChartPanel();
         charts.add(chart);
         p.add(chart);
         
         p = createTabbedPane(tabbedPaneBar, "Font Fun");
-        chart = new TestDataBar_FontFun().getChart();
+        chart = new TestDataBar_FontFun().getChartPanel();
         charts.add(chart);
         p.add(chart);
         

@@ -6,18 +6,12 @@
 
 package com.frontangle.ichart.main.test.pie;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.io.IOException;
-import java.nio.channels.GatheringByteChannel;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import org.junit.Test;
@@ -26,9 +20,7 @@ import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.Utils;
 import com.frontangle.ichart.main.test.ChartTester;
 import com.frontangle.ichart.pie.MultiLevelPieChart;
-import com.frontangle.ichart.pie.PieChart;
 import com.frontangle.ichart.pie.Segment;
-import com.frontangle.ichart.pie.SimpleIndicatorPieChart;
 
 public class TestDataPie_Multi extends ChartTester {
 
@@ -39,6 +31,7 @@ public class TestDataPie_Multi extends ChartTester {
 	
 	
 	public Chart getChart() {
+		
 
 		ArrayList<Segment> values = new ArrayList<Segment>();
 		values.add(new Segment(15, "music", Color.RED));

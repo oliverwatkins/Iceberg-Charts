@@ -47,6 +47,16 @@ public class AreaPlotter extends AbstractPlotter {
 
 	}
 	
+	/**
+	 * Draws a stacked area. Its x value is added to the previous series value.
+	 * 
+	 * @param g
+	 * @param chart
+	 * @param xyFactor
+	 * @param currSeries
+	 * @param xyDataSerieses
+	 * @param prevSeries
+	 */
 	public static void drawAreaStacked(Graphics2D g, XYChart chart, XYFactor xyFactor, XYDataSeries<DataPoint> currSeries, ArrayList<XYDataSeries> xyDataSerieses, XYDataSeries<DataPoint> prevSeries) {
 
 		ArrayList<Point> points2d = new ArrayList<Point>();
@@ -109,7 +119,7 @@ public class AreaPlotter extends AbstractPlotter {
 	}
 	
 
-	public static void drawArea(Graphics2D g, ArrayList<Point> points, Area area) {
+	private static void drawArea(Graphics2D g, ArrayList<Point> points, Area area) {
 
 		Polygon polygon = new Polygon();
 
@@ -122,8 +132,14 @@ public class AreaPlotter extends AbstractPlotter {
 	}
 
 
-
-	static ArrayList<XYDataSeries> getAdjustValuesArray(ArrayList<XYDataSeries> xyDataSerieses) {
+	/**
+	 * The stacked area charts add on top of each other. Each subsequent data series needs to have the previous 
+	 * data series values added to it.
+	 * 
+	 * @param xyDataSerieses
+	 * @return adjusted series
+	 */
+	static ArrayList<XYDataSeries> getAdjustedValuesArrayForStackedArea(ArrayList<XYDataSeries> xyDataSerieses) {
 		
 		XYDataSeries<DataPoint> prevSeries = null;
 
@@ -146,6 +162,9 @@ public class AreaPlotter extends AbstractPlotter {
 		}
 		return xyDataSeriesesAdjusted;
 	}
+	
+	
+	
 
 	private static ArrayList<DataPoint> adjustPoints(XYDataSeries<DataPoint> prevSeries,
 			XYDataSeries<DataPoint> xyDataSeries) {
@@ -158,9 +177,7 @@ public class AreaPlotter extends AbstractPlotter {
 			
 			newDataPoint.x = dataPoint.x;
 			
-			System.out.println("dataPoint.y " + dataPoint.y);
 			newDataPoint.y = dataPoint.y + prevSeries.dataPoints.get(i).y;
-			System.out.println("newDataPoint.y " + newDataPoint.y);
 			
 			dpsAdjsuted.add(newDataPoint);
 		}

@@ -59,23 +59,23 @@ public class TimeSeriesTester extends JFrame {
          */
 
         p = createTabbedPane(tabbedPaneBar, " Month Day");
-        chart = new TestDataTimeSeries_MonthDay().getChart();
+        chart = new TestDataTimeSeries_MonthDay().getChartPanel();
         charts.add(chart);
         p.add(chart);
 
         
         p = createTabbedPane(tabbedPaneBar, " Year Month");
-        chart = new TestDataTimeSeries_YearMonth().getChart();
+        chart = new TestDataTimeSeries_YearMonth().getChartPanel();
         charts.add(chart);
         p.add(chart);
         
         p = createTabbedPane(tabbedPaneBar, " Month Week");
-        chart = new TestDataTimeSeries_MonthWeek().getChart();
+        chart = new TestDataTimeSeries_MonthWeek().getChartPanel();
         charts.add(chart);
         p.add(chart);
 
         p = createTabbedPane(tabbedPaneBar, " Week Day");
-        chart = new TestDataTimeSeries_WeekDay().getChart();
+        chart = new TestDataTimeSeries_WeekDay().getChartPanel();
         charts.add(chart);
         p.add(chart);
 

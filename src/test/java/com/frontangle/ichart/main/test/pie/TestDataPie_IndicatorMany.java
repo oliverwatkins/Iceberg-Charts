@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.chart.Utils;
 import com.frontangle.ichart.main.test.ChartTester;
 import com.frontangle.ichart.pie.MultiLevelPieChart;
@@ -34,9 +35,8 @@ public class TestDataPie_IndicatorMany extends ChartTester {
 		super.testSnapshot();
 	}
 	
-	
 	@Override
-	public JPanel getChart() {
+	public JPanel getChartPanel() {
 
     	SimpleIndicatorPieChart pieChart = 
     			new SimpleIndicatorPieChart(34, "Simple Indicator", 10);
@@ -245,4 +245,11 @@ public class TestDataPie_IndicatorMany extends ChartTester {
     private static Color darken(Color c) {
         return c.darker();
     }
+
+
+	@Override
+	public Chart getChart() throws ParseException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

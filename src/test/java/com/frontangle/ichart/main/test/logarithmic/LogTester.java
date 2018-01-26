@@ -66,67 +66,10 @@ public class LogTester extends JFrame {
          */
 
         p = createTabbedPane(tabbedPaneBar, "Simple Log ");
-        chart = new TestDataLog_1().getChart();
+        chart = new TestDataLog_1().getChartPanel();
         charts.add(chart);
         p.add(chart);
 
-        
-//        p = createTabbedPane(tabbedPaneBar, "Double");
-//        chart = new TestDataXY_Polynomals().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-//        
-//        p = createTabbedPane(tabbedPaneBar, "Sin/Cos");
-//        chart = new TestDataXY_SineCurve().getChart();
-//        charts.add(chart);
-//        p.add(chart);
-        
-
-
-//        JButton b = new JButton("Create PNG");
-//
-//        getContentPane().add(b, BorderLayout.SOUTH);
-//
-//        b.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent arg0) {
-//				int i = 0;
-//				for (JComponent chart2 : charts) {
-//					
-//					int width = 0;
-//					int height = 0;
-//					
-//					
-//					if (chart2 instanceof Chart) {
-//						width = ((Chart)chart2).getWidth(); 
-//						height = ((Chart)chart2).getHeight();
-//					}else {
-//						width = chart2.getWidth(); 
-//						height = chart2.getHeight();
-//					}
-//					
-//					BufferedImage image = new BufferedImage(width, height, 
-//							BufferedImage.TYPE_INT_ARGB);
-//
-//					Graphics g2 = image.getGraphics();
-//					chart2.paint(g2);
-//					
-////					System.out.println("saving ");   
-////					
-////					g2.setColor(Color.GREEN);
-////					g2.drawRect(4, 4, width -2, height-2);
-////					System.out.println("saving ");
-//
-//					try {
-//						ImageIO.write(image, "PNG", new File("src\\main\\resources\\screenshots\\chart-image-" + i + ".png"));
-//					} catch (IOException e) {
-//						e.printStackTrace();
-//					}
-//					System.out.println("saving ");
-//					i++;
-//				}
-//			}
-//		});
         
         setSize(1300, 800);
 

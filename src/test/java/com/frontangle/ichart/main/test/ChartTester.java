@@ -1,24 +1,22 @@
 package com.frontangle.ichart.main.test;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-
-import org.junit.Test;
 
 import com.frontangle.ichart.chart.Chart;
 import com.frontangle.ichart.main.GenerateShowcase;
@@ -26,13 +24,55 @@ import com.frontangle.ichart.main.test.bar.TestDataBar_1_Simple;
 
 public abstract class ChartTester extends JFrame{
 	
-	public abstract JPanel getChart() throws ParseException;
+	public abstract Chart getChart() throws ParseException;
 	
 	public abstract String getNiceTitle();
 
 	Dimension defaultDimension = new Dimension(1000, 700);
 
+	private Chart chart;
 	
+	public JPanel getChartPanel() throws ParseException {
+		this.chart = this.getChart();
+		JPanel panel = new JPanel(new BorderLayout());
+		panel.add(chart);
+		JPanel buttonPanel = new JPanel();
+		
+		JButton button = new JButton("Export PDF");
+		
+		buttonPanel.add(button);
+		button.addActionListener(e -> exportImage());
+		
+		panel.add(buttonPanel, BorderLayout.SOUTH);
+		return panel;
+	}
+	
+	
+	public void exportImage()  {
+		int i = 0;
+		
+		Chart chart = this.chart;
+			
+		int width = 0;
+		int height = 0;
+		
+		width = chart.getWidth(); 
+		height = chart.getHeight();
+		
+		BufferedImage image = new BufferedImage(width, height,  BufferedImage.TYPE_INT_ARGB);
+
+		Graphics g2 = image.getGraphics();
+		chart.paint(g2);
+
+		try {
+			ImageIO.write(image, "PNG", new File("src\\main\\resources\\chart-image-" + i + ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("saving ");
+		i++;
+	}
+
 	
 	public void testChart(JPanel chart) throws ParseException {
 

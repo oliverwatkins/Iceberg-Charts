@@ -39,21 +39,17 @@ public class TestDataBar_FontFun extends ChartTester {
 		values.add(new DataPointBar("Five", 18, colors.get(5)));
 		values.add(new DataPointBar("Six", 40, colors.get(6)));
 
-		XYChart chart = new XYChart("", "\u2202 \u2201 \u2602 \u266B \u20AC umbrella sales", "number of sunny days", values, 40);
-		
-		String s = "\u2202";
+		XYChart chart = new XYChart("Some Chart", "Umbrella sales", "number of sunny days", values, 40);
 				
-		System.out.println("unicode \u2202 \u2602 " + s);
 		Font font = new Font("Lucida Sans Regular", Font.PLAIN, 32);
         
 		chart.xAxis.axisCatFont = font;
 		chart.xAxis.font = font;
 
-		chart.yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 16);
-		chart.yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 20);
+		chart.yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 18);
+		chart.yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 24);
 
 		chart.setTitleFont(new Font("Lucida Sans Regular", Font.PLAIN, 32));
-		chart.setTitle("\u2202 \u2201 \u2602 \u266B \u20AC");
 		chart.setSize(900, 500);
 
 		return chart;

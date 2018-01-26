@@ -30,6 +30,12 @@ import com.frontangle.ichart.main.test.xy.TestDataXY_Simple;
 import com.frontangle.ichart.main.test.xy.TestDataXY_Simple_Series;
 import com.frontangle.ichart.main.test.xyy.TestDataBar_2Y;
 
+/**
+ * Generates code snippets and images into one big html file
+ * 
+ * @author Oliver Watkins
+ *
+ */
 public class GenerateShowcase {
 
 	public static String path = "src\\main\\resources\\showcase\\screenshots\\";

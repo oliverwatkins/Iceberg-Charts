@@ -22,10 +22,8 @@ import com.frontangle.ichart.scaling.TimeSeriesAxisScaling;
 /**
  * Plots chart data
  * 
- * TODO this class needs a lot of work
  * 
  * @author Oliver Watkins
- *
  */
 public class ChartPlotter {
 
@@ -51,7 +49,6 @@ public class ChartPlotter {
 		this.chart = chart;
 
 		XYFactor xyFactor = getXYFactor(chart, xAxis, yAxis);
-
 		
 		xyFactor.xZeroOffsetInPixel = ChartUtils.getXZeroOffsetInPixel(chart, xAxis);
 		xyFactor.yZeroOffsetInPixel = ChartUtils.getYZeroOffsetInPixel(chart, yAxis);
@@ -61,15 +58,13 @@ public class ChartPlotter {
 		XYDataSeries prevXYDataSeries = null;
 		
 		
-		
-		System.out.println("AL before " + xyDataSerieses);
-		
-		if (xyDataSerieses.size() > 0 && xyDataSerieses.get(0).area != null && xyDataSerieses.get(0).area.type == Area.AreaType.STACKED) {
+		if (isStackedArea(xyDataSerieses)) {
+			
 			
 			/**
 			 * The values need to be recalculated based on previous series values.
 			 */
-			xyDataSerieses = AreaPlotter.getAdjustValuesArray(xyDataSerieses);
+			xyDataSerieses = AreaPlotter.getAdjustedValuesArrayForStackedArea(xyDataSerieses);
 		}
 		
 		
@@ -84,8 +79,10 @@ public class ChartPlotter {
 				continue;
 			}
 
+			
+			if (dataPoints.size() < 2)
+				throw new RuntimeException("Only data series with two or more datapoints are supported");
 
-			// TODO this will crash if only ONE point is used in a chart!!
 			// only for bar
 			int pixBtnFirst2Pts = calculateDistanceBetweenFirstTwoPoints(dataPoints.get(0), dataPoints.get(1), xShift, xyFactor);
 
@@ -97,7 +94,7 @@ public class ChartPlotter {
 			
 			if (isAreaSeries(xyDataSeries)) {
 				
-				checkAllSeriesHaveSameType(xyDataSerieses);
+				checkAllSeriesHaveSameAreaType(xyDataSerieses);
 				
 				if (xyDataSerieses.get(0).area.type == Area.AreaType.STACKED) {
 					AreaPlotter.drawAreaStacked(g, chart, xyFactor, xyDataSeries, xyDataSerieses, prevXYDataSeries);
@@ -109,8 +106,22 @@ public class ChartPlotter {
 		}
 	}
 
+	/**
+	 * Is the data series stacked area chart. Only checks first, assumes all are the same.
+	 * 
+	 * @param xyDataSerieses data series
+	 * @return is stacked area
+	 */
+	private boolean isStackedArea(ArrayList<XYDataSeries> xyDataSerieses) {
+		return xyDataSerieses.size() > 0 && xyDataSerieses.get(0).area != null && xyDataSerieses.get(0).area.type == Area.AreaType.STACKED;
+	}
 
-	private void checkAllSeriesHaveSameType(ArrayList<? extends XYDataSeries> xYDataSerieses) {
+
+	/**
+	 * Check that all data series have the same area type. The types cannot be mixed.
+	 * @param xYDataSerieses
+	 */
+	private void checkAllSeriesHaveSameAreaType(ArrayList<XYDataSeries> xYDataSerieses) {
 		Area.AreaType type = xYDataSerieses.get(0).area.type;
 		
 		for (XYDataSeries xYDataSeries : xYDataSerieses) {
@@ -127,7 +138,6 @@ public class ChartPlotter {
 
 
 	private boolean isAreaSeries(XYDataSeries xYDataSeries) {
-		
 		return (xYDataSeries.area != null);
 	}
 
@@ -146,18 +156,17 @@ public class ChartPlotter {
 	}
 
 	/**
-	 * Get point on chart for a given data point.
-
-	 * @param xyFactor
-	 * @param xYDataSeries
-	 * @param dataPoint
-	 * @param chart
-	 * @return
+	 * Get 2D point on chart for a given DataPoint. The offset (ie top, bottom etc) is taken into
+	 * consideration, as well as the xyFactor.
+	 * 
+	 * @param xyFactor xy factor
+	 * @param xYDataSeries data series
+	 * @param dataPoint data point to get the 2d point for
+	 * @param chart the current chart
+	 * @return 2d point
 	 */
 	protected static Point getPoint(XYFactor xyFactor,
 			DataPoint dataPoint, XYChart chart) {
-		
-		
 
 		int yShift = chart.topOffset + chart.heightChart;
 		int xShift = chart.leftOffset;
@@ -175,11 +184,14 @@ public class ChartPlotter {
 			x = (int) ((dataPoint.x * xyFactor.getxFactor()) + xShift + xyFactor.xZeroOffsetInPixel);
 		}
 		int y = (int) (yShift - (int) (dataPoint.y * xyFactor.getyFactor()) - xyFactor.yZeroOffsetInPixel);
+		
 		return  new Point(x, y);
 	}
 
 
-
+	/*
+	 * too lazy to solve this bug for now. Putting in this hack for now.
+	 */
 	static void checkForRunawayProcess(XYFactor xyFactor, int x, int y) {
 		// hack TODO
 		if (xyFactor.getyFactor() * y > 200000) {
@@ -198,7 +210,7 @@ public class ChartPlotter {
 
 
 
-	//move
+	//move?
 	private static double convertLogValue(DataPoint dataPoint, XYChart chart) {
 		double logMax = Math.log10(chart.xAxis.getMaxValue());
 		double logMin = Math.log10(chart.xAxis.getMinValue());
@@ -218,6 +230,14 @@ public class ChartPlotter {
 		return (x2 - x);
 	}
 
+	/**
+	 * Gets an XYFactor object. Use this value to multiply datapoints to convert to the graph scale.
+	 * 
+	 * @param chart current chart
+	 * @param xAxis the xAxis
+	 * @param yAxis the yAxis
+	 * @return XYFactor
+	 */
 	protected XYFactor getXYFactor(XYChart chart, XAxis xAxis, YAxis yAxis) {
 
 		if (chart.heightChart < 0)
