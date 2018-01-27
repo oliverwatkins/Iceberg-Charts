@@ -1,0 +1,29 @@
+<img src='partials/TestDataBar_FontFun.PNG' style='width:400px;float:right'>
+<div>
+<pre>
+<span class='code_snippet' style='font-size: 11px'>
+
+ArrayList&lt;Color&gt; colors = Utils.makeGradients(Color.RED, Color.BLUE, 12);
+
+ArrayList&lt;DataPointBar&gt; values = new ArrayList&lt;DataPointBar&gt;();
+values.add(new DataPointBar("One", 10, colors.get(0)));
+values.add(new DataPointBar("Two", 14, colors.get(1)));
+values.add(new DataPointBar("Three", 12, colors.get(3)));
+values.add(new DataPointBar("Four", 1, colors.get(4)));
+values.add(new DataPointBar("Five", 18, colors.get(5)));
+values.add(new DataPointBar("Six", 40, colors.get(6)));
+
+XYChart chart = new XYChart("Some Chart", "Umbrella sales", "number of sunny days", values, 40);
+
+Font font = new Font("Lucida Sans Regular", Font.PLAIN, 32);
+
+chart.xAxis.axisCatFont = font;
+chart.xAxis.font = font;
+
+chart.yAxis.axisCatFont = new Font("Blackadder ITC", Font.PLAIN, 18);
+chart.yAxis.font = new Font("Blackadder ITC", Font.PLAIN, 24);
+
+chart.setTitleFont(new Font("Lucida Sans Regular", Font.PLAIN, 32));
+chart.setSize(900, 500);
+
+</span></pre></div>

@@ -1,0 +1,32 @@
+<img src='partials/TestDataBar_5_PosNegColor.PNG' style='width:400px;float:right'>
+<div>
+<pre>
+<span class='code_snippet' style='font-size: 11px'>
+
+XYBarDataSeries barSeries = new XYBarDataSeries();
+barSeries.add(new DataPointBar("a", 11));
+barSeries.add(new DataPointBar("b", 14));
+barSeries.add(new DataPointBar("c", 7));
+barSeries.add(new DataPointBar("m", 14));
+barSeries.add(new DataPointBar("n", 37));
+barSeries.add(new DataPointBar("o", 4));
+barSeries.add(new DataPointBar("p", -14));
+barSeries.add(new DataPointBar("q", -54));
+barSeries.add(new DataPointBar("t", -41));
+barSeries.add(new DataPointBar("u", -13));
+barSeries.add(new DataPointBar("v", 2));
+barSeries.add(new DataPointBar("w", 3));
+barSeries.add(new DataPointBar("x", 14));
+barSeries.add(new DataPointBar("z", 41));
+
+BarDisplayOptions barDisplayOptions = new BarDisplayOptions();
+
+barDisplayOptions.positiveColor = Color.DARK_GRAY;
+barDisplayOptions.negativeColor = Color.LIGHT_GRAY;
+
+barSeries.setUpBarDisplayOptions(barDisplayOptions);
+
+XYChart chart = new XYChart("Simple Bar Chart (+/- Color)",
+"Commodity", "Price Change % (USD)", barSeries);
+
+</span></pre></div>

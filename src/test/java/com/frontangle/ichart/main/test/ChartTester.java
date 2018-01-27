@@ -89,7 +89,7 @@ public abstract class ChartTester extends JFrame{
 	}
 	
 
-	public void createImageAndTextFile(StringBuilder samplesJSON, StringBuilder screenshotHTML) throws IOException, ParseException {
+	public void createImageAndTextFile(StringBuilder samplesJSON, StringBuilder screenshotHTML, StringBuilder nodeImportCode) throws IOException, ParseException {
 		
         Chart chart = (Chart)this.getChart();
         String s = this.generateCodeSnippetFile();
@@ -100,11 +100,21 @@ public abstract class ChartTester extends JFrame{
         String urlChart = FileUtils.writeChartAndGetURL(chart, GenerateShowcase.path, this.defaultDimension);
         
         this.writeHTML(s, urlChart, chart);
+
+      screenshotHTML.append("<img src='js/pages/icharts/samples/" + chart.fileLocation + ".PNG' class='screenshot-image'/>");
+
+//        screenshotHTML.append("<img src='partials/" + chart.fileLocation + ".PNG' class='screenshot-image'/>");
+
+//        import TestDataBar_4_GradientColor from './samples/TestDataBar_4_GradientColor.PNG'
+        nodeImportCode.append("import " + chart.fileLocation + "_HTML from './samples/" + chart.fileLocation + ".html' \n");
+        nodeImportCode.append("import " + chart.fileLocation + "_PNG from './samples/" + chart.fileLocation + ".PNG' \n");
         
-        screenshotHTML.append("<img src='partials/" + chart.fileLocation + ".PNG' class='screenshot-image'/>");
+//        mapper.append("myMap['" + chart.fileLocation + "'] = " + chart.fileLocation + " \n");
         
         samplesJSON.append("\"title\": \"" + this.getNiceTitle() + "\",");
-        samplesJSON.append("\"url\": \"" + "partials/" + chart.fileLocation +  ".html" + "\" ");
+        samplesJSON.append("\"url\": \"" + "js/pages/icharts/samples/" + chart.fileLocation +  ".html" + "\", ");
+        samplesJSON.append("\"fileName\": \""  + chart.fileLocation + "\" ");
+        
         
         samplesJSON.append("}, {");
 	}
@@ -112,7 +122,7 @@ public abstract class ChartTester extends JFrame{
 	
 	private void writeHTML(String s, String urlChart, Chart chart) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<img src='partials/" + chart.fileLocation  + ".PNG' style='width:400px;float:right'>\n");
+		sb.append("<img src='js/pages/icharts/samples/" + chart.fileLocation  + ".PNG' style='width:400px;float:right'>\n");
 		sb.append("<div>\n");
 		sb.append("<pre>\n");
 		sb.append("<span class='code_snippet' style='font-size: 11px'>\n");
@@ -186,7 +196,7 @@ public abstract class ChartTester extends JFrame{
 //		if (sbCodeSnippet.length() < 10)
 //			throw new RuntimeException("Code snipped must be more than 10 chars " + sbCodeSnippet);
 //		
-		FileUtils.writeFile(sbCodeSnippet, GenerateShowcase.path, lastWord + ".txt");
+//		FileUtils.writeFile(sbCodeSnippet, GenerateShowcase.path, lastWord + ".txt");
 
 		return sb.toString();
 	}

@@ -1,0 +1,32 @@
+<img src='partials/TestDataXY_Scatter.PNG' style='width:400px;float:right'>
+<div>
+<pre>
+<span class='code_snippet' style='font-size: 11px'>
+
+ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
+
+ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
+ArrayList&lt;DataPoint&gt; values2 = new ArrayList&lt;DataPoint&gt;();
+
+XYDataSeries series = new XYDataSeries(new UIPointCircle(Color.RED, 4),
+null, "1994");
+
+series.dataPoints = getData1();
+
+XYDataSeries series2 = new XYDataSeries(new UIPointCircle(Color.ORANGE,
+4), null, "1995");
+
+series2.dataPoints = getData2();
+
+xySeriesList.add(series);
+xySeriesList.add(series2);
+XYChart chart = new XYChart("Sea Lion Height versus Weight",
+"Length (inches)", "Weight (kg)", xySeriesList);
+
+chart.yAxis.turnOffGridLines();
+chart.xAxis.turnOffGridLines();
+
+chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
+chart.setTitle("Sea Lion Height versus Weight");
+
+</span></pre></div>

@@ -1,4 +1,8 @@
-<img src='partials/TestDataBar_6_Transparancy.PNG' style='width:400px;float:right'><div><pre>
+<img src='partials/TestDataBar_6_Transparancy.PNG' style='width:400px;float:right'>
+<div>
+<pre>
+<span class='code_snippet' style='font-size: 11px'>
+
 XYBarDataSeries barSeries = new XYBarDataSeries();
 barSeries.add(new DataPointBar("J", 37));
 barSeries.add(new DataPointBar("F", 42));
@@ -18,15 +22,15 @@ barDisplayOptions.transparancy = 0.5f;
 
 barSeries.setUpBarDisplayOptions(barDisplayOptions);
 
-XYChart chart = new XYChart(barSeries, "Refugee Arrivals to Germany", "Month", "Number in '1000s");
+XYChart chart = new XYChart("Refugee Arrivals to Germany", "Month", "Number in '1000s", barSeries);
 
 chart.clearGraphLines();
 
 try {
-Image background = ImageIO.read(new File("src/test/java/com/bluewalrus/main/test/bar/refugees.jpg"));
+Image background = ImageIO.read(new File("src/test/java/com/frontangle/ichart/main/test/bar/refugees.jpg"));
 chart.setBackgroundImage(background);
 } catch (IOException e) {
 e.printStackTrace();
 }
 
-</pre></div>
+</span></pre></div>

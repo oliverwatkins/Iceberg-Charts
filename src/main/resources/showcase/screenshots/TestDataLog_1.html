@@ -1,4 +1,8 @@
-<img src='partials/TestDataLog_1.PNG' style='width:400px;float:right'><div><pre>
+<img src='partials/TestDataLog_1.PNG' style='width:400px;float:right'>
+<div>
+<pre>
+<span class='code_snippet' style='font-size: 11px'>
+
 ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
 
 ArrayList&lt;DataPoint&gt; values = new ArrayList&lt;DataPoint&gt;();
@@ -21,7 +25,7 @@ XAxis xAxis = new XAxis(new LogarithmicAxisScaling(1, 10000.0), "Log Axis");
 
 xySeriesList.add(series);
 
-XYChart chart = new XYChart(xySeriesList, yAxis, xAxis);
+XYChart chart = new XYChart("","","",xySeriesList, yAxis, xAxis,false);
 
 chart.setSize(1000, 500);
 chart.rightOffset = 200;
@@ -29,4 +33,4 @@ chart.rightOffset = 200;
 chart.setTitleFont(new Font("Ariel", Font.PLAIN, 24));
 chart.setTitle("Logarithmic");
 
-</pre></div>
+</span></pre></div>

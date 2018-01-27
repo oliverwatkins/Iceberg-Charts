@@ -1,0 +1,30 @@
+<img src='partials/TestDataGrids_4_alternateGridFillY.PNG' style='width:400px;float:right'>
+<div>
+<pre>
+<span class='code_snippet' style='font-size: 11px'>
+
+XYDataSeries series = new XYDataSeries(null, new Line(Color.BLUE, false, 3), "Blue");
+
+series.dataPoints = getSeries1();
+
+ArrayList&lt;XYDataSeries&gt; xySeriesList = new ArrayList&lt;XYDataSeries&gt;();
+
+xySeriesList.add(series);
+
+IntervalStyling xStyling = new IntervalStyling(1, new Line(Color.GRAY, false, 1),
+null);
+
+IntervalStyling yStyling = new IntervalStyling(1, new Line(Color.GRAY, false, 0),
+new GridFill(
+new Color(179, 209, 255),
+new Color(172, 109, 215), false));
+
+XYChart chart = new XYChart("Alternate Grid Fill Y", "X axis", "Y Axis", xySeriesList,
+null, xStyling, // second level interval
+null, null, yStyling, // second level interval
+null);
+
+chart.setSize(1000, 500);
+chart.rightOffset = 200;
+
+</span></pre></div>
