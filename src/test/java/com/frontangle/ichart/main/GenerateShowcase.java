@@ -54,7 +54,6 @@ public class GenerateShowcase {
     	
     	sBuilder3.append("");
     	
-    	
     	//XY
     	new TestDataXY_Simple().createImageAndTextFile(sBuilder, sBuilder2, sBuilder3);
     	new TestDataXY_Scatter().createImageAndTextFile(sBuilder, sBuilder2, sBuilder3);

@@ -101,18 +101,13 @@ public abstract class ChartTester extends JFrame{
         
         this.writeHTML(s, urlChart, chart);
 
-      screenshotHTML.append("<img src='js/pages/icharts/samples/" + chart.fileLocation + ".PNG' class='screenshot-image'/>");
+        screenshotHTML.append("<img src='js/pages/icharts/samples/" + chart.fileLocation + ".PNG' class='screenshot-image'/>");
 
-//        screenshotHTML.append("<img src='partials/" + chart.fileLocation + ".PNG' class='screenshot-image'/>");
-
-//        import TestDataBar_4_GradientColor from './samples/TestDataBar_4_GradientColor.PNG'
         nodeImportCode.append("import " + chart.fileLocation + "_HTML from './samples/" + chart.fileLocation + ".html' \n");
         nodeImportCode.append("import " + chart.fileLocation + "_PNG from './samples/" + chart.fileLocation + ".PNG' \n");
         
-//        mapper.append("myMap['" + chart.fileLocation + "'] = " + chart.fileLocation + " \n");
-        
         samplesJSON.append("\"title\": \"" + this.getNiceTitle() + "\",");
-        samplesJSON.append("\"url\": \"" + "js/pages/icharts/samples/" + chart.fileLocation +  ".html" + "\", ");
+        samplesJSON.append("\"urlPath\": \"" + "js/pages/icharts/samples/\", ");
         samplesJSON.append("\"fileName\": \""  + chart.fileLocation + "\" ");
         
         
@@ -122,7 +117,7 @@ public abstract class ChartTester extends JFrame{
 	
 	private void writeHTML(String s, String urlChart, Chart chart) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<img src='js/pages/icharts/samples/" + chart.fileLocation  + ".PNG' style='width:400px;float:right'>\n");
+//		sb.append("<img src='js/pages/icharts/samples/" + chart.fileLocation  + ".PNG' style='width:400px;float:right'>\n");
 		sb.append("<div>\n");
 		sb.append("<pre>\n");
 		sb.append("<span class='code_snippet' style='font-size: 11px'>\n");
