@@ -1,6 +1,8 @@
 package com.frontangle.ichart.main;
 
 import com.frontangle.ichart.main.test.FileUtils;
+import com.frontangle.ichart.main.test.area.TestDataArea_2_Multiple_Layered;
+import com.frontangle.ichart.main.test.area.TestDataArea_4_Multiple_Stacked;
 import com.frontangle.ichart.main.test.bar.TestDataBar_1_Simple;
 import com.frontangle.ichart.main.test.bar.TestDataBar_4_GradientColor;
 import com.frontangle.ichart.main.test.bar.TestDataBar_5_PosNegColor;
@@ -62,6 +64,8 @@ public class GenerateShowcase {
     	new TestDataXY_CandlePlot().createImageAndTextFile(sBuilder, sBuilder2, sBuilder3);
     	new TestDataXY_Boxplot().createImageAndTextFile(sBuilder, sBuilder2, sBuilder3);
     	new TestDataBar_FontFun().createImageAndTextFile(sBuilder, sBuilder2, sBuilder3);
+    	new TestDataArea_2_Multiple_Layered().createImageAndTextFile(sBuilder, sBuilder2, sBuilder3);
+    	new TestDataArea_4_Multiple_Stacked().createImageAndTextFile(sBuilder, sBuilder2, sBuilder3);
     	
     	//Grid
 //    	new TestDataGrids_1_gridSimple().createImageAndTextFile(sBuilder, sBuilder2);
