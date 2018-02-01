@@ -78,8 +78,8 @@ public abstract class UIPointXY implements Serializable, Cloneable {
      * TODO how should this work if the point is linear, like the whiskers of a box plot?
      * TODO should this be optional to implement?
      * 
-     * @param point
-     * @return boolean
+     * @param point ui point
+     * @return boolean shape contains point
      */
 	public abstract boolean doesShapeContainPoint(Point point);
 

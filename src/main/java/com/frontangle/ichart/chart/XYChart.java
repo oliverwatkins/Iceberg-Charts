@@ -237,9 +237,15 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 
 	}
 	
-	
 	/**
-	 * XYY chart
+	 * XYY chart  constructor
+	 * 
+	 * @param title title of chart
+	 * @param xLabel label of x axis
+	 * @param yLabel label of y axis
+	 * @param y2Label label of y2 axis
+	 * @param xySeries data series list
+	 * @param xySeriesY2 data series list
 	 */
 	public XYChart(String title, String xLabel, String yLabel, String y2Label,
 			ArrayList<XYDataSeries> xySeries, ArrayList<XYDataSeries> xySeriesY2) {
@@ -265,14 +271,15 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.setTitle(title);
 	}
 	
-	
-	
 	/**
-	 * BAR
-	 * 
+	 *  Simple Bar Chart constructor
+	 *  
+	 * @param title title of chart
+	 * @param xLabel x axis label
+	 * @param yLabel y axis label
+	 * @param bars bars
+	 * @param pixelBarWidth bar width in pixels
 	 */
-	
-	// Simple Bar Chart constructor
 	public XYChart(String title, String xLabel, String yLabel, ArrayList<DataPointBar> bars, 
 			int pixelBarWidth) {
 		ArrayList<XYDataSeries> xySeriesList = new ArrayList<XYDataSeries>();
@@ -292,11 +299,17 @@ public class XYChart extends Chart implements Legendable, MouseMotionListener {
 		this.data.addAll(xySeriesList);
 	}
 
-
-
 	
 	/**
-	 * BUBBLE
+	 * Bubble chart constructor
+	 * 
+	 * @param title title of chart
+	 * @param xLabel label x axis
+	 * @param yLabel label y axis
+	 * @param listOfSeries list of data series
+	 * @param yAxis y axis
+	 * @param xAxis x axis
+	 * @param multipleMagnitudeBy multiplication factor for bubbles
 	 */
 	public XYChart(String title, String xLabel, String yLabel, ArrayList<XYDataSeries> listOfSeries, YAxis yAxis, XAxis xAxis,
 			double multipleMagnitudeBy) {

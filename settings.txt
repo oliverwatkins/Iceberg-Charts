@@ -7,8 +7,8 @@ In order to push the project into the nexus repository you need to run maven dep
 
 However when doing this a settings file is required. Running it just like that will create an error.
 
-You need to specify the settings file in the eclipse run config for the project. This contains the username and password for the nexus repository. 
-Which is why i am not committing it to the github project. It is in my dev folder in my cloud drive.
+You need to specify the settings file (settings.xml) in the eclipse run config for the project. This contains the username and password for the nexus repository. 
+Which is why i am not committing it to the github project. It is in my dev folder in my cloud drive. Add file to 'User Settings : ' field in the run configuration.
 
 The GPG plugin associates my email address (i think) with this project and knows how to sign the artifacts before sending them up to sonatype.
 

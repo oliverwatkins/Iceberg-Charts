@@ -17,7 +17,7 @@ import com.frontangle.ichart.chart.draw.point.UIPointXY;
  *
  * @author Oliver Watkins
  *
- * @param <T>
+ * @param <T> data point
  */
 public class XYDataSeries<T extends DataPoint> implements Categorisable, Serializable {
 

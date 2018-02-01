@@ -160,7 +160,6 @@ public class ChartPlotter {
 	 * consideration, as well as the xyFactor.
 	 * 
 	 * @param xyFactor xy factor
-	 * @param xYDataSeries data series
 	 * @param dataPoint data point to get the 2d point for
 	 * @param chart the current chart
 	 * @return 2d point

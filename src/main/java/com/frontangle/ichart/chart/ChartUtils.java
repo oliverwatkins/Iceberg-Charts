@@ -327,13 +327,15 @@ public class ChartUtils {
 	/**
 	 * A DataPointBar, should have all its names set to a value, or no values
 	 * set to name.
+	 * 
+	 * @param dataPoints data points
 	 */
-	public static void validityCheck(ArrayList<DataPoint> bars) {
+	public static void validityCheck(ArrayList<DataPoint> dataPoints) {
 
-		DataPoint firstElem = bars.get(0);
+		DataPoint firstElem = dataPoints.get(0);
 		if (firstElem.name != null) {
 			// enumerable
-			for (DataPoint dp : bars) {
+			for (DataPoint dp : dataPoints) {
 				if (dp.name == null) {
 					throw new RuntimeException(
 							"Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
@@ -343,7 +345,7 @@ public class ChartUtils {
 
 		if (firstElem.name == null) {
 			// numerical
-			for (DataPoint dp : bars) {
+			for (DataPoint dp : dataPoints) {
 				if (dp.name != null) {
 					throw new RuntimeException(
 							"Error : All data points need to be either enumarable or numerical. Some data points have an xName and others do not");
@@ -454,9 +456,9 @@ public class ChartUtils {
 	/**
 	 * Check if pixel "point" is within the bounds of the chart.
 	 * 
-	 * @param pixelsFromEdge
-	 * @param chart
-	 * @param orientationx or y
+	 * @param pixelsFromEdge pixels from edge of chart
+	 * @param chart the chart
+	 * @param orientation x or y
 	 * @return is in bounds
 	 */
 	public static boolean inBounds(double pixelsFromEdge, Chart chart,

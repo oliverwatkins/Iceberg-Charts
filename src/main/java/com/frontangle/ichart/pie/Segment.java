@@ -32,8 +32,8 @@ public class Segment implements Categorisable{
     /**
      * Nameless slice
      * 
-     * @param magnitude
-     * @param color
+     * @param magnitude magnitude of segment
+     * @param color color
      */
     public Segment(double magnitude, Color color) {
         this.magnitude = magnitude;

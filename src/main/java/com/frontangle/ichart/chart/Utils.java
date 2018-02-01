@@ -36,7 +36,7 @@ public class Utils {
 	/**
 	 * Check if XYDataSeries are enumerable or not.
 	 * 
-	 * @param xySeriesList
+	 * @param xySeriesList list of XYDataSeries
 	 * @return is enumerable
 	 */
 	public static boolean isSeriesListEnumerable(ArrayList<XYDataSeries> xySeriesList) {

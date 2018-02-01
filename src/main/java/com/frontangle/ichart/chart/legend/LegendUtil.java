@@ -16,10 +16,10 @@ import com.frontangle.ichart.chart.datapoint.DataPointMultiBar;
 public class LegendUtil {
 
 	/**
-	 * Setup for XY
+	 *  Setup for XY
 	 * 
-	 * @param chart
-	 * @param g
+	 * @param chart the chart
+	 * @param g graphics context
 	 */
 	public static void setUpLegend(XYChart chart, Graphics2D g) {
 
@@ -201,8 +201,8 @@ public class LegendUtil {
 	 * pie XY chart
 	 * enumerable bar chart
 	 * 
-	 * @param xyChart
-	 * @return
+	 * @param xyChart xy chart
+	 * @return is legendable
 	 */
 	public static boolean isChartLegendable(XYChart xyChart) {
 		

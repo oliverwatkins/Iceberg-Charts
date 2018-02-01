@@ -21,12 +21,12 @@ public class AreaPlotter extends AbstractPlotter {
 	/**
 	 * draws one area.
 	 * 
-	 * @param g
-	 * @param chart
-	 * @param xyFactor
-	 * @param currSeries
-	 * @param prevSeries
-	 * @param dataPoints
+	 * @param g 2d graphic context
+	 * @param chart xy chart
+	 * @param xyFactor xy factor
+	 * @param currSeries current series
+	 * @param prevSeries previous series
+	 * @param dataPoints data points of current series
 	 */
 	public static void drawAreaOverlap(Graphics2D g, XYChart chart, XYFactor xyFactor,
 			XYDataSeries currSeries, XYDataSeries prevSeries,
@@ -50,12 +50,12 @@ public class AreaPlotter extends AbstractPlotter {
 	/**
 	 * Draws a stacked area. Its x value is added to the previous series value.
 	 * 
-	 * @param g
-	 * @param chart
-	 * @param xyFactor
-	 * @param currSeries
-	 * @param xyDataSerieses
-	 * @param prevSeries
+	 * @param g graphic context
+	 * @param chart the chart
+	 * @param xyFactor xy factor
+	 * @param currSeries current series
+	 * @param xyDataSerieses xy data serieses
+	 * @param prevSeries previous series
 	 */
 	public static void drawAreaStacked(Graphics2D g, XYChart chart, XYFactor xyFactor, XYDataSeries<DataPoint> currSeries, ArrayList<XYDataSeries> xyDataSerieses, XYDataSeries<DataPoint> prevSeries) {
 
@@ -64,8 +64,6 @@ public class AreaPlotter extends AbstractPlotter {
 		Area area = currSeries.area;
 		
 		CopyOnWriteArrayList<DataPoint> dataPoints = new CopyOnWriteArrayList<DataPoint>(currSeries.dataPoints);
-		
-		
 				
 		if (prevSeries == null) {
 			//first series, create polygon to baseline (x == 0). All other series will stack on top of this.

@@ -122,18 +122,16 @@ public class ScalingHelper {
 	}
 
 	/**
+	 * Iinitialise x acis scaling
 	 * 
-	 * 
-	 * @param xySeriesList
-	 * @return xAxis
+	 * @param xySeriesList data series list
+	 * @return xAxis x axis
 	 */
 	public static XAxis initialiseScalingX_enumeration(
 			ArrayList<XYDataSeries> xySeriesList) {
 
 		EnumerationAxisScaling xd = new EnumerationAxisScaling();
 		XAxis xAxis = new XAxis(xd, "");
-
-
 		
 		if (!doAllSeriesHaveSameNumberOfDataPoints(xySeriesList)) {
 			throw new RuntimeException(

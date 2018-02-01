@@ -288,7 +288,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		return incrementInPixel;
 	}
 
-	/**
+	/*
 	 * Get number of increments to display on axis for a particular time
 	 * interval type.
 	 */
@@ -381,7 +381,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 		return totalTime;
 	}
 
-	/**
+	/*
 	 * The distance in pixels to the first displayable interval
 	 * 
 	 * Get the first interval that should be displayed on the axis. Eg. if the
@@ -419,7 +419,7 @@ public class TimeSeriesAxisScaling extends AxisScaling {
 				.getTime()));
 	}
 
-	/**
+	/*
 	 * Draw the tick of the interval. Usually just a small line coming out
 	 * perpendicular to the axis.
 	 * 
