@@ -2,7 +2,7 @@
 
 Homepage
 
-http://frontangle.com/icharts/#/
+http://frontangle.com/#/icharts/
 
 Documentation
 
